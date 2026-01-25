@@ -6,6 +6,7 @@ import { Pressable, StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { LEARN_CONTENT } from '@/src/learn';
+import { addPoints } from '@/utils/points';
 
 export default function LearnSubjectScreen() {
   const params = useLocalSearchParams<{ subject?: string }>();
@@ -43,6 +44,8 @@ export default function LearnSubjectScreen() {
             // Delay slightly to feel natural?
             if (isLastItem) {
               setIsPlaying(false);
+              addPoints(1);
+              alert('学習完了！ +1ポイント');
             } else {
               // Auto-advance
               setCurrentIndex(prev => prev + 1);
@@ -65,6 +68,8 @@ export default function LearnSubjectScreen() {
   const handleManualNext = () => {
     setIsPlaying(false); // Stop auto-play
     if (isLastItem) {
+      addPoints(1);
+      alert('学習完了！ +1ポイント');
       router.back();
     } else {
       setCurrentIndex(currentIndex + 1);

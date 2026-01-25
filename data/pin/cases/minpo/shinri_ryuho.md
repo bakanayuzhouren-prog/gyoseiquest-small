@@ -1,0 +1,135 @@
+---
+id: shinri_ryuho
+title: 心裡留保
+tags: [民法93条, 意思表示, 冗談]
+---
+<div class="case-diagram-container">
+  <div class="header-box">
+    <span class="badge blue">民法 重要判例</span>
+    <h3>心裡留保 (民法93条)</h3>
+    <p>「冗談でやるって言ったのに！」は通用する？</p>
+  </div>
+
+  <!-- 背景事情 -->
+  <div class="context-box">
+    <div class="context-title">📝 背景事情</div>
+    <div class="context-content">
+      <div style="text-align: center; width: 100%;">
+        <span class="kaomoji">🤪💬「あげるよ」</span>
+        <p class="context-note">
+            Aさんは、本当はあげる気がないのに、冗談で<br>
+            「僕の高級時計を君にあげるよ」とBさんに言った。<br>
+            Bさんはそれを真に受けて「ありがとう、もらうよ！」と承諾した。<br>
+            Aさんは時計を渡さなければならない？
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="diagram-area">
+    <!-- 原告側 -->
+    <div class="party-box plaintiff">
+      <div class="icon-area">
+        <span class="kaomoji">🙄</span>
+        <span class="role">表意者 (A)</span>
+      </div>
+      <div class="balloon pl-balloon">
+        <strong>冗談だよ！</strong><br>
+        「本当はあげる気なんてなかったんだ（心の中ではNo）。<br>
+        ただの冗談なんだから、この契約は無効だ。<br>
+        時計は渡さないよ。」
+      </div>
+    </div>
+
+    <!-- VS矢印 -->
+    <div class="versus-area">
+      <div class="arrow-line"></div>
+      <span class="vs-badge">VS</span>
+      <span class="action-label">契約の効力</span>
+    </div>
+
+    <!-- 被告側 -->
+    <div class="party-box defendant">
+      <div class="icon-area">
+        <span class="kaomoji">😲</span>
+        <span class="role">相手方 (B)</span>
+      </div>
+      <div class="balloon def-balloon">
+        <strong>信じたのに！</strong><br>
+        「冗談だなんて知らなかった（善意無過失）。<br>
+        言葉通りに『あげる』って言ったんだから、<br>
+        契約は有効だ。約束通り渡してくれ。」
+      </div>
+    </div>
+  </div>
+
+  <div class="ruling-box">
+    <div class="ruling-header">
+      <span class="gavel">⚖️</span> 民法のルール
+    </div>
+    <div class="ruling-content">
+      <p class="conclusion">
+        <strong>原則：有効（Bの勝ち）</strong><br>
+        <span style="font-size: 0.8em; color: #e74c3c;">※冗談でも責任を取らされる</span>
+      </p>
+      <div class="logic-flow">
+        <p>
+          <span class="check">Rule 1</span> <strong>原則は「有効」</strong><br>
+          ウソや冗談（心裡留保）であっても、相手方は本心を知らないので、<br>
+          表示された通りに<strong>契約は有効</strong>となる。<br>
+          （言ったもん勝ち・言ったもん負け）
+        </p>
+        <p class="arrow-down">⬇️</p>
+        <p>
+          <span class="check">Rule 2</span> <strong>例外：無効になる場合</strong><br>
+          ただし、相手方（B）が、Aの本心が冗談であることを<br>
+          <strong>「知っていた（悪意）」</strong>か、または<br>
+          <strong>「不注意で知らなかった（有過失）」</strong>場合は、<br>
+          Bを保護する必要がないので、契約は<strong>無効</strong>となる。
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .case-diagram-container {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    color: #333;
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .header-box { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+  .header-box h3 { margin: 10px 0 5px; font-size: 1.2em; color: #2c3e50; }
+  .badge { color: #fff; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
+  .badge.blue { background: #3498db; }
+  .diagram-area { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; position: relative; }
+  .party-box { width: 32%; text-align: center; z-index: 2; }
+  .icon-area { margin-bottom: 10px; }
+  .kaomoji { display: block; font-size: 3em; margin-bottom: 5px; animation: bounce 2s infinite; }
+  .role { font-weight: bold; font-size: 0.9em; display: block; color: #555; }
+  .balloon { position: relative; padding: 10px; border-radius: 8px; font-size: 0.85em; line-height: 1.4; text-align: left; background: #f8f9fa; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
+  .balloon strong { color: #e74c3c; }
+  .pl-balloon { border-left: 4px solid #3498db; }
+  .def-balloon { border-left: 4px solid #95a5a6; }
+  .versus-area { width: 30%; text-align: center; margin-top: 30px; position: relative; }
+  .vs-badge { background: #95a5a6; color: #fff; padding: 5px 8px; border-radius: 20px; font-size: 0.9em; font-weight: bold; }
+  .action-label { display: block; margin-top: 5px; font-size: 0.8em; color: #7f8c8d; }
+  .ruling-box { background: #eef9fe; border: 2px solid #5A9BD5; border-radius: 12px; overflow: hidden; }
+  .ruling-header { background: #5A9BD5; color: #fff; padding: 8px 15px; font-weight: bold; display: flex; align-items: center; }
+  .gavel { margin-right: 8px; font-size: 1.2em; }
+  .ruling-content { padding: 15px; text-align: center; }
+  .conclusion { font-size: 1.3em; color: #2980b9; margin-bottom: 15px; border-bottom: 1px dashed #aad4e9; padding-bottom: 10px; }
+  .logic-flow { text-align: left; font-size: 0.9em; background: #fff; padding: 10px; border-radius: 8px; }
+  .check { background: #27ae60; color: #fff; padding: 1px 5px; border-radius: 3px; font-size: 0.8em; margin-right: 5px; }
+  .arrow-down { text-align: center; margin: 5px 0; color: #bdc3c7; }
+  .context-box { background: #fff8e1; border: 2px dashed #f1c40f; border-radius: 8px; padding: 10px; margin-bottom: 20px; text-align: center; }
+  .context-title { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 0.9em; }
+  .context-content { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
+  .context-note { width: 100%; margin-top: 5px; font-size: 0.85em; color: #555; }
+  @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+</style>

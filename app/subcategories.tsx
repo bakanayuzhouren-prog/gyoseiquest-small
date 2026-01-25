@@ -20,7 +20,7 @@ export default function SubCategoriesScreen() {
                     <Link
                         key={field}
                         href={{
-                            pathname: '/question',
+                            pathname: '/stage_select',
                             params: { subject, field },
                         }}
                         asChild>

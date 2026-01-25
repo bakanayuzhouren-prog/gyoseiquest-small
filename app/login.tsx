@@ -30,6 +30,8 @@ export default function LoginScreen() {
                 value={username}
                 onChangeText={setUsername}
                 autoFocus
+                onSubmitEditing={handleLogin}
+                returnKeyType="done"
             />
 
             <Pressable style={styles.button} onPress={handleLogin}>

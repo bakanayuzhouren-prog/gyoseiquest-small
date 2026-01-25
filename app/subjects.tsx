@@ -26,8 +26,9 @@ export default function SubjectsScreen() {
     if (subject === '行政法' || fields.length > 1) {
       router.push({ pathname: '/subcategories', params: { subject } });
     } else {
-      // Direct to question
-      router.push({ pathname: '/question', params: { subject } });
+      // Direct to stage select with the single field
+      const singleField = fields[0] || subject; // Fallback to subject name if no field key (though usually 1 exist or empty)
+      router.push({ pathname: '/stage_select', params: { subject, field: singleField } });
     }
   };
 

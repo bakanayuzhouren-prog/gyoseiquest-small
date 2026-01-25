@@ -1,15 +1,16 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { SUBJECTS } from '@/src/questions';
+import { RESOURCES, SUBJECTS } from '@/src/questions';
 
 export default function QuestionScreen() {
-  const params = useLocalSearchParams<{ subject?: string; field?: string; index?: string }>();
+  const params = useLocalSearchParams<{ subject?: string; field?: string; index?: string; correctCountSession?: string; mode?: string }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
   const paramField = Array.isArray(params.field) ? params.field[0] : params.field;
+  const mode = Array.isArray(params.mode) ? params.mode[0] : params.mode;
 
   const subjectData = subject ? (SUBJECTS as any)[subject] : {};
   const fields = Object.keys(subjectData);
@@ -30,6 +31,82 @@ export default function QuestionScreen() {
 
   // State for current question index
   const [questionIndex, setQuestionIndex] = useState<number | null>(null);
+  const [isLongText, setIsLongText] = useState(false);
+
+  useEffect(() => {
+    setIsLongText(false);
+  }, [questionIndex]);
+
+  // State for slots
+  const [slotSelections, setSlotSelections] = useState<{ [key: string]: string }>({});
+  const [activeSlot, setActiveSlot] = useState<{ label: string; options: string } | null>(null);
+
+  // State for Resource Modal
+  // State for Resource Modal
+  const [resourceModalVisible, setResourceModalVisible] = useState(false);
+  const [resourcePage, setResourcePage] = useState(0);
+
+  // Reset slots when question changes
+  useEffect(() => {
+    setSlotSelections({});
+  }, [questionIndex]);
+
+  const handleSlotPress = (slot: { label: string; options: string }) => {
+    setActiveSlot(slot);
+  };
+
+  const handleSlotSelect = (val: string) => {
+    if (activeSlot) {
+      setSlotSelections(prev => ({ ...prev, [activeSlot.label]: val }));
+      setActiveSlot(null);
+    }
+  };
+
+  const renderQuestionText = () => {
+    if (!question) return null;
+    const text = question.text;
+    const slots = (question as any).slots || [];
+
+    if (slots.length === 0) {
+      return (
+        <ThemedText
+          type="title"
+          style={[styles.questionText, isLongText && styles.questionTextSmall]}
+          onTextLayout={(e) => {
+            if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
+          }}
+        >
+          {text}
+        </ThemedText>
+      );
+    }
+
+    // Escape regex characters for labels
+    const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const pattern = new RegExp(`(${slots.map((s: any) => escapeRegExp(s.label)).join('|')})`, 'g');
+
+    // Split text by labels
+    const parts = text.split(pattern);
+
+    return (
+      <ThemedText style={[styles.questionText, isLongText && styles.questionTextSmall, { lineHeight: 40 }]}>
+        {parts.map((part: string, index: number) => {
+          const slot = slots.find((s: any) => s.label === part);
+          if (slot) {
+            const selected = slotSelections[slot.label];
+            return (
+              <Pressable key={index} onPress={() => handleSlotPress(slot)} style={styles.slotButton}>
+                <ThemedText style={styles.slotButtonText}>
+                  {selected || part}
+                </ThemedText>
+              </Pressable>
+            );
+          }
+          return <ThemedText key={index} style={[styles.questionText, isLongText && styles.questionTextSmall]}>{part}</ThemedText>;
+        })}
+      </ThemedText>
+    );
+  };
 
   // Initialize strictly when questions change (e.g. subject selection)
   useEffect(() => {
@@ -61,12 +138,31 @@ export default function QuestionScreen() {
 
   const question = questionIndex !== null ? questions[questionIndex] : null;
 
+  // Resource Logic
+  const resourceId = question ? (question as any).refId : null;
+  // resource can be an Object (single) or Array (multi). Normalize to Array.
+  const rawResource = resourceId && (RESOURCES as any) ? (RESOURCES as any)[resourceId] : null;
+  const resourcePages = useMemo(() => {
+    if (!rawResource) return [];
+    if (Array.isArray(rawResource)) return rawResource;
+    return [rawResource];
+  }, [rawResource]);
+
+  const currentResource = resourcePages.length > 0 && resourcePage < resourcePages.length ? resourcePages[resourcePage] : null;
+
+  // Reset page on open/change
+  useEffect(() => {
+    if (resourceModalVisible) {
+      setResourcePage(0);
+    }
+  }, [resourceModalVisible, resourceId]);
+
   // Shuffle choices and keep track of original index
   const shuffledChoices = useMemo(() => {
     if (!question) return [];
 
     // Map to object with original index
-    const choicesWithIndex = question.choices.map((text, index) => ({ text, originalIndex: index }));
+    const choicesWithIndex = question.choices.map((text: string, index: number) => ({ text, originalIndex: index }));
 
     // Shuffle (Fisher-Yates)
     for (let i = choicesWithIndex.length - 1; i > 0; i--) {
@@ -94,44 +190,134 @@ export default function QuestionScreen() {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <ThemedText type="subtitle" style={styles.subject}>
           {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length})` : ''}
+          {mode === 'bonus' ? ' ★ボーナスステージ★' : ''}
         </ThemedText>
-        <ThemedText type="title" style={styles.questionText}>
-          {question.text}
-        </ThemedText>
+        {renderQuestionText()}
+
+        {/* Word Bank for Cloze Questions */}
+        {(question as any).wordBank ? (
+          <ThemedView style={styles.wordBankContainer}>
+            <ThemedText style={styles.wordBankTitle}>【語群】</ThemedText>
+            <View style={styles.wordBankGrid}>
+              {((question as any).wordBank || '').split('\n').filter((l: string) => l.trim().length > 0).map((line: string, index: number) => {
+                const item = line.trim();
+                // Check if line already starts with a number (e.g. "1." or "1 ")
+                const hasNumber = /^\d+/.test(item);
+                const text = hasNumber ? item : `${index + 1}. ${item}`;
+                return (
+                  <ThemedText key={index} style={styles.wordBankItem}>
+                    {text}
+                  </ThemedText>
+                );
+              })}
+            </View>
+          </ThemedView>
+        ) : null}
+
         <ThemedView style={styles.choices}>
-          {shuffledChoices.map((choiceObj: { text: string; originalIndex: number }, index: number) => (
-            <Pressable
-              key={`${question.text}-${index}`}
-              style={styles.choiceButton}
-              onPress={() =>
-                router.push({
-                  pathname: '/result',
-                  params: {
-                    subject,
-                    field,
-                    questionIndex: String(questionIndex), // Pass current index
-                    pickedIndex: String(choiceObj.originalIndex),
-                    correctIndices: JSON.stringify(question.answer),
-                    text: question.text,
-                    explain: question.explain,
-                    memo: question.memo || '',
-                    choices: JSON.stringify(question.choices),
-                  },
-                })
-              }>
-              <ThemedText style={styles.choiceText}>{choiceObj.text}</ThemedText>
-            </Pressable>
-          ))}
+          {shuffledChoices.map((choiceObj: { text: string; originalIndex: number }, index: number) => {
+            if (!choiceObj || !choiceObj.text) return null; // Guard against null/empty choices
+            const isDisabled = choiceObj.text.includes('※');
+            return (
+              <Pressable
+                key={`${question.text}-${index}`}
+                style={[styles.choiceButton, isDisabled && styles.choiceButtonDisabled]}
+                disabled={isDisabled}
+                onPress={() =>
+                  router.push({
+                    pathname: '/result',
+                    params: {
+                      subject,
+                      field,
+                      questionIndex: String(questionIndex), // Pass current index
+                      pickedIndex: String(choiceObj.originalIndex),
+                      correctIndices: JSON.stringify(question.answer),
+                      text: question.text,
+                      explain: question.explain,
+                      memo: question.memo || '',
+                      choices: JSON.stringify(question.choices),
+                      totalQuestions: String(questions.length),
+                      correctCountSession: params.correctCountSession || '0', // Pass through or init
+                      refId: (question as any).refId || '', // Pass refId
+                    },
+                  })
+                }>
+                <ThemedText style={[styles.choiceText, isDisabled && styles.choiceTextDisabled]}>{choiceObj.text}</ThemedText>
+              </Pressable>
+            );
+          })}
         </ThemedView>
 
         <View style={styles.navigationContainer}>
           <Pressable style={styles.navButton} onPress={goToPrev}>
             <ThemedText style={styles.navButtonText}>← 前へ</ThemedText>
           </Pressable>
+
+          <Pressable style={styles.navButton} onPress={() => {
+            if (questions.length === 0 || questionIndex === null) return;
+            setQuestionIndex((prev: number | null) => {
+              if (prev === null) return 0;
+              return (prev + 10) % questions.length;
+            });
+          }}>
+            <ThemedText style={styles.navButtonText}>+10問</ThemedText>
+          </Pressable>
           <Pressable style={styles.navButton} onPress={goToNext}>
             <ThemedText style={styles.navButtonText}>次へ →</ThemedText>
           </Pressable>
         </View>
+
+        {/* Resource Modal */}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={resourceModalVisible}
+          onRequestClose={() => setResourceModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContent}>
+              <ThemedText type="subtitle" style={styles.modalTitle}>
+                {currentResource?.title || '資料'}
+                {resourcePages.length > 1 ? ` (${resourcePage + 1}/${resourcePages.length})` : ''}
+              </ThemedText>
+
+              <ScrollView style={{ maxHeight: '70%' }}>
+                {currentResource?.imageUrl ? (
+                  <Image
+                    source={{ uri: currentResource.imageUrl }}
+                    style={styles.resourceImage}
+                    resizeMode="contain"
+                  />
+                ) : null}
+                <ThemedText style={styles.modalBodyText}>{currentResource?.content}</ThemedText>
+              </ScrollView>
+
+              {/* Paging Controls */}
+              {resourcePages.length > 1 && (
+                <View style={styles.pagingContainer}>
+                  <Pressable
+                    style={[styles.pagingButton, resourcePage === 0 && styles.pagingButtonDisabled]}
+                    onPress={() => setResourcePage(prev => Math.max(0, prev - 1))}
+                    disabled={resourcePage === 0}
+                  >
+                    <ThemedText style={styles.pagingButtonText}>前へ</ThemedText>
+                  </Pressable>
+                  <Pressable
+                    style={[styles.pagingButton, resourcePage === resourcePages.length - 1 && styles.pagingButtonDisabled]}
+                    onPress={() => setResourcePage(prev => Math.min(resourcePages.length - 1, prev + 1))}
+                    disabled={resourcePage === resourcePages.length - 1}
+                  >
+                    <ThemedText style={styles.pagingButtonText}>次へ</ThemedText>
+                  </Pressable>
+                </View>
+              )}
+
+              <Pressable style={styles.modalCloseButton} onPress={() => setResourceModalVisible(false)}>
+                <ThemedText style={{ color: '#fff' }}>閉じる</ThemedText>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
       </ScrollView>
     </ThemedView>
   );
@@ -153,6 +339,36 @@ const styles = StyleSheet.create({
   questionText: {
     lineHeight: 30,
   },
+  questionTextSmall: {
+    fontSize: 24, // Smaller than default Title (32)
+    lineHeight: 32,
+  },
+  wordBankContainer: {
+    padding: 16,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    marginVertical: 10,
+  },
+  wordBankTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#666',
+    marginBottom: 8,
+    width: '100%',
+  },
+  wordBankGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  wordBankItem: {
+    width: '30%', // Approx 3 columns
+    fontSize: 14,
+    lineHeight: 20,
+    marginBottom: 4,
+  },
   choices: {
     gap: 12,
   },
@@ -166,6 +382,14 @@ const styles = StyleSheet.create({
   },
   choiceText: {
     fontSize: 16,
+  },
+  choiceButtonDisabled: {
+    backgroundColor: '#f9f9f9',
+    borderColor: '#ddd',
+    opacity: 0.8,
+  },
+  choiceTextDisabled: {
+    color: '#888',
   },
   backButton: {
     marginTop: 12,
@@ -193,6 +417,104 @@ const styles = StyleSheet.create({
   navButtonText: {
     color: '#fff',
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  slotButton: {
+    backgroundColor: '#E9F2FB',
+    borderColor: '#5A9BD5',
+    borderWidth: 1,
+    borderRadius: 4,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    marginHorizontal: 2,
+    // Ensure it flows inline
+    transform: [{ translateY: 4 }], // slight adjustment for baseline
+  },
+  slotButtonText: {
+    fontWeight: 'bold',
+    color: '#0a7ea4',
+    fontSize: 18,
+  },
+  modalOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1000,
+  },
+  modalBackdrop: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalContent: {
+    width: '80%',
+    backgroundColor: 'white',
+    borderRadius: 12,
+    padding: 20,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  modalTitle: {
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  modalOption: {
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
+  },
+  modalOptionText: {
+    fontSize: 16,
+  },
+  modalCloseButton: {
+    marginTop: 16,
+    backgroundColor: '#666',
+    padding: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  resourceButton: {
+    backgroundColor: '#4CAF50', // Green for resource
+    flex: 0.5, // Smaller than nav buttons
+  },
+  resourceImage: {
+    width: '100%',
+    height: 200,
+    marginBottom: 10,
+    backgroundColor: '#f0f0f0',
+  },
+  modalBodyText: {
+    fontSize: 16,
+    lineHeight: 24,
+  },
+  pagingContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    gap: 10,
+  },
+  pagingButton: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: '#8FB3D9',
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  pagingButtonDisabled: {
+    backgroundColor: '#ccc',
+  },
+  pagingButtonText: {
+    color: '#fff',
     fontWeight: 'bold',
   },
 });
