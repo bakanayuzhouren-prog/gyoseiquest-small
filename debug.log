@@ -1,0 +1,27 @@
+[dotenv@17.2.3] injecting env (4) from .env -- tip: 柏 prevent committing .env to code: https://dotenvx.com/precommit
+Generating explanation for single Gyote question...
+Problem: 陦梧帆謇狗ｶ壽ｳ包ｼ井ｻ･荳九∵悽蝠上↓縺翫＞縺ｦ縲梧ｳ輔阪→縺・≧縲ゑｼ峨′螳壹ａ繧倶ｸ榊茜逶雁・蛻・・謇狗ｶ壹↓髢｢縺吶ｋ谺｡縺ｮ險倩ｿｰ縺ｮ縺・■縲∝ｦ･蠖薙↑...
+Limb: 蠑∵・縺ｮ讖滉ｼ壹・莉倅ｸ弱・縲∝・蛻・ｒ陦後≧縺溘ａ諢剰ｦ矩匍霑ｰ繧定ｦ√☆繧句ｴ蜷医〒縲∬・閨槭↓繧医ｋ縺ｹ縺阪ｂ縺ｮ縺ｨ縺励※豕輔′蛻玲嫌縺励※縺・ｋ蝣ｴ...
+---------------------------------------------------
+Failed to generate explanation: Error: Gemini API Error: 404 Not Found - {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+    at generateExplanation (C:\Users\teras\OneDrive\繝・せ繧ｯ繝医ャ繝予閾ｪ菴懊い繝励Μ\gyosei-quest-small\scripts\generate_gyote_explanation.js:50:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async main (C:\Users\teras\OneDrive\繝・せ繧ｯ繝医ャ繝予閾ｪ菴懊い繝励Μ\gyosei-quest-small\scripts\generate_gyote_explanation.js:97:29)
+Error: Gemini API Error: 404 Not Found - {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+    at generateExplanation (C:\Users\teras\OneDrive\繝・せ繧ｯ繝医ャ繝予閾ｪ菴懊い繝励Μ\gyosei-quest-small\scripts\generate_gyote_explanation.js:50:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async main (C:\Users\teras\OneDrive\繝・せ繧ｯ繝医ャ繝予閾ｪ菴懊い繝励Μ\gyosei-quest-small\scripts\generate_gyote_explanation.js:97:29)

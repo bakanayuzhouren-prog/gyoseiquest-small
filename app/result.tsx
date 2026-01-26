@@ -2,6 +2,7 @@ import { Link, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
+import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { PIN_CASES } from '@/src/pinData';
@@ -169,7 +170,7 @@ export default function ResultScreen() {
         <ThemedText type="subtitle" style={styles.explainTitle}>
           解説
         </ThemedText>
-        <ThemedText style={styles.explainText}>{explain}</ThemedText>
+        <MarkdownText text={explain || ''} />
 
         {/* Resources Button */}
         {resourcePages.length > 0 && (
