@@ -4,6 +4,7 @@ import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-nat
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useTheme } from '@/src/context/ThemeContext';
 import { RESOURCES, SUBJECTS } from '@/src/questions';
 
 export default function QuestionScreen() {
@@ -11,6 +12,8 @@ export default function QuestionScreen() {
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
   const paramField = Array.isArray(params.field) ? params.field[0] : params.field;
   const mode = Array.isArray(params.mode) ? params.mode[0] : params.mode;
+
+  const { colors, theme } = useTheme();
 
   const subjectData = subject ? (SUBJECTS as any)[subject] : {};
   const fields = Object.keys(subjectData);
@@ -35,6 +38,14 @@ export default function QuestionScreen() {
 
   useEffect(() => {
     setIsLongText(false);
+  }, [questionIndex]);
+
+  // State for dimmed choices (indices)
+  const [dimmedIndices, setDimmedIndices] = useState<number[]>([]);
+
+  // Reset dimmed choices when question changes
+  useEffect(() => {
+    setDimmedIndices([]);
   }, [questionIndex]);
 
   // State for slots
@@ -71,7 +82,11 @@ export default function QuestionScreen() {
       return (
         <ThemedText
           type="title"
-          style={[styles.questionText, isLongText && styles.questionTextSmall]}
+          style={[
+            styles.questionText,
+            isLongText && styles.questionTextSmall,
+            { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }
+          ]}
           onTextLayout={(e) => {
             if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
           }}
@@ -141,7 +156,9 @@ export default function QuestionScreen() {
   // Resource Logic
   const resourceId = question ? (question as any).refId : null;
   // resource can be an Object (single) or Array (multi). Normalize to Array.
-  const rawResource = resourceId && (RESOURCES as any) ? (RESOURCES as any)[resourceId] : null;
+  // GUARD: RESOURCES might be undefined if import fails or file is incomplete
+  const resourcesData = (RESOURCES as any) || {};
+  const rawResource = resourceId && resourcesData[resourceId] ? resourcesData[resourceId] : null;
   const resourcePages = useMemo(() => {
     if (!rawResource) return [];
     if (Array.isArray(rawResource)) return rawResource;
@@ -186,9 +203,9 @@ export default function QuestionScreen() {
   }
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <ThemedText type="subtitle" style={styles.subject}>
+        <ThemedText type="subtitle" style={[styles.subject, { color: colors.subText }]}>
           {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length})` : ''}
           {mode === 'bonus' ? ' ★ボーナスステージ★' : ''}
         </ThemedText>
@@ -196,8 +213,8 @@ export default function QuestionScreen() {
 
         {/* Word Bank for Cloze Questions */}
         {(question as any).wordBank ? (
-          <ThemedView style={styles.wordBankContainer}>
-            <ThemedText style={styles.wordBankTitle}>【語群】</ThemedText>
+          <ThemedView style={[styles.wordBankContainer, { borderColor: colors.choiceBorder, backgroundColor: colors.card }]}>
+            <ThemedText style={[styles.wordBankTitle, { color: colors.subText }]}>【語群】</ThemedText>
             <View style={styles.wordBankGrid}>
               {((question as any).wordBank || '').split('\n').filter((l: string) => l.trim().length > 0).map((line: string, index: number) => {
                 const item = line.trim();
@@ -205,7 +222,7 @@ export default function QuestionScreen() {
                 const hasNumber = /^\d+/.test(item);
                 const text = hasNumber ? item : `${index + 1}. ${item}`;
                 return (
-                  <ThemedText key={index} style={styles.wordBankItem}>
+                  <ThemedText key={index} style={[styles.wordBankItem, { color: colors.text }]}>
                     {text}
                   </ThemedText>
                 );
@@ -218,11 +235,31 @@ export default function QuestionScreen() {
           {shuffledChoices.map((choiceObj: { text: string; originalIndex: number }, index: number) => {
             if (!choiceObj || !choiceObj.text) return null; // Guard against null/empty choices
             const isDisabled = choiceObj.text.includes('※');
+            const isDimmed = dimmedIndices.includes(index);
+
             return (
               <Pressable
                 key={`${question.text}-${index}`}
-                style={[styles.choiceButton, isDisabled && styles.choiceButtonDisabled]}
+                style={[
+                  styles.choiceButton,
+                  {
+                    backgroundColor: colors.choiceBg,
+                    borderColor: colors.choiceBorder
+                  },
+                  isDisabled && styles.choiceButtonDisabled,
+                  isDimmed && { opacity: 0.3 } // Dim the button
+                ]}
                 disabled={isDisabled}
+                onLongPress={() => {
+                  setDimmedIndices(prev => {
+                    if (prev.includes(index)) {
+                      return prev.filter(i => i !== index);
+                    } else {
+                      return [...prev, index];
+                    }
+                  });
+                }}
+                delayLongPress={200} // Set delay specifically for web responsiveness
                 onPress={() =>
                   router.push({
                     pathname: '/result',
@@ -231,29 +268,33 @@ export default function QuestionScreen() {
                       field,
                       questionIndex: String(questionIndex), // Pass current index
                       pickedIndex: String(choiceObj.originalIndex),
-                      correctIndices: JSON.stringify(question.answer),
-                      text: question.text,
-                      explain: question.explain,
-                      memo: question.memo || '',
-                      choices: JSON.stringify(question.choices),
+                      // correctIndices: JSON.stringify(question.answer), // Removed
+                      // text: question.text, // Removed
+                      // explain: question.explain, // Removed
+                      // memo: question.memo || '', // Removed
+                      // choices: JSON.stringify(question.choices), // Removed
                       totalQuestions: String(questions.length),
                       correctCountSession: params.correctCountSession || '0', // Pass through or init
-                      refId: (question as any).refId || '', // Pass refId
+                      // refId: (question as any).refId || '', // Removed (Result will lookup)
                     },
                   })
                 }>
-                <ThemedText style={[styles.choiceText, isDisabled && styles.choiceTextDisabled]}>{choiceObj.text}</ThemedText>
+                <ThemedText style={[
+                  styles.choiceText,
+                  { color: colors.choiceText },
+                  isDisabled && styles.choiceTextDisabled
+                ]}>{choiceObj.text}</ThemedText>
               </Pressable>
             );
           })}
         </ThemedView>
 
         <View style={styles.navigationContainer}>
-          <Pressable style={styles.navButton} onPress={goToPrev}>
+          <Pressable style={[styles.navButton, { backgroundColor: colors.accent }]} onPress={goToPrev}>
             <ThemedText style={styles.navButtonText}>← 前へ</ThemedText>
           </Pressable>
 
-          <Pressable style={styles.navButton} onPress={() => {
+          <Pressable style={[styles.navButton, { backgroundColor: colors.accent }]} onPress={() => {
             if (questions.length === 0 || questionIndex === null) return;
             setQuestionIndex((prev: number | null) => {
               if (prev === null) return 0;
@@ -262,7 +303,7 @@ export default function QuestionScreen() {
           }}>
             <ThemedText style={styles.navButtonText}>+10問</ThemedText>
           </Pressable>
-          <Pressable style={styles.navButton} onPress={goToNext}>
+          <Pressable style={[styles.navButton, { backgroundColor: colors.accent }]} onPress={goToNext}>
             <ThemedText style={styles.navButtonText}>次へ →</ThemedText>
           </Pressable>
         </View>
@@ -337,15 +378,19 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   questionText: {
-    lineHeight: 30,
+    lineHeight: 36, // Increased line height
+    backgroundColor: 'transparent', // Ensure no white bg
+    fontWeight: '400', // Reduce boldness
   },
   questionTextSmall: {
-    fontSize: 24, // Smaller than default Title (32)
-    lineHeight: 32,
+    fontSize: 22, // Slightly smaller
+    lineHeight: 34,
+    backgroundColor: 'transparent',
+    fontWeight: '400',
   },
   wordBankContainer: {
     padding: 16,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff', // handled by theme
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#ddd',
@@ -373,20 +418,34 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   choiceButton: {
-    borderRadius: 12,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
+    borderRadius: 30, // Pill shape
+    paddingVertical: 16,
+    paddingHorizontal: 20,
     borderWidth: 1,
+    borderBottomWidth: 4, // 3D effect at bottom
     borderColor: '#8FB3D9',
-    backgroundColor: '#F4F8FC',
+    backgroundColor: '#fff', // White background for the button itself
+    // Shadows for depth
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   choiceText: {
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: '600',
+    textAlign: 'center', // Center text
   },
   choiceButtonDisabled: {
     backgroundColor: '#f9f9f9',
     borderColor: '#ddd',
+    borderBottomWidth: 1, // Flatten when disabled
     opacity: 0.8,
+    elevation: 0,
   },
   choiceTextDisabled: {
     color: '#888',
@@ -409,7 +468,7 @@ const styles = StyleSheet.create({
   navButton: {
     flex: 1,
     paddingVertical: 14,
-    backgroundColor: '#8FB3D9',
+    // backgroundColor: '#8FB3D9', // Handled dynamically
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
@@ -420,8 +479,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   slotButton: {
-    backgroundColor: '#E9F2FB',
-    borderColor: '#5A9BD5',
+    // backgroundColor: '#E9F2FB', // Handled dynamically
     borderWidth: 1,
     borderRadius: 4,
     paddingHorizontal: 8,

@@ -5,8 +5,9 @@ import { Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, V
 import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useTheme } from '@/src/context/ThemeContext';
 import { PIN_CASES } from '@/src/pinData';
-import { RESOURCES } from '@/src/questions';
+import { RESOURCES, SUBJECTS } from '@/src/questions';
 import { addPoints } from '@/utils/points';
 import { USER_KEY } from './login';
 
@@ -14,55 +15,52 @@ export default function ResultScreen() {
   const params = useLocalSearchParams<{
     subject?: string;
     pickedIndex?: string;
-    correctIndices?: string; // Expect JSON string of array
-    text?: string;
-    explain?: string;
-    memo?: string;
-    choices?: string;
     field?: string;
     questionIndex?: string; // Current question index
     totalQuestions?: string; // NEW
     correctCountSession?: string; // NEW
-    refId?: string; // NEW
   }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
   const paramField = Array.isArray(params.field) ? params.field[0] : params.field;
   const pickedIndexParam = Array.isArray(params.pickedIndex) ? params.pickedIndex[0] : params.pickedIndex;
-  const correctIndicesParam = Array.isArray(params.correctIndices) ? params.correctIndices[0] : params.correctIndices;
-  const text = Array.isArray(params.text) ? params.text[0] : params.text;
-  const explain = Array.isArray(params.explain) ? params.explain[0] : params.explain;
-  const memo = Array.isArray(params.memo) ? params.memo[0] : params.memo;
-  const choicesParam = Array.isArray(params.choices) ? params.choices[0] : params.choices;
   const field = Array.isArray(params.field) ? params.field[0] : params.field;
+
+  const { colors, theme } = useTheme();
 
   // Calculate next index
   const questionIndex = params.questionIndex ? parseInt(Array.isArray(params.questionIndex) ? params.questionIndex[0] : params.questionIndex, 10) : 0;
   const nextIndex = questionIndex + 1;
 
-  const choices = choicesParam ? JSON.parse(choicesParam) : [];
+  // LOOKUP DATA FROM SUBJECTS
+  const subjectData = subject ? (SUBJECTS as any)[subject] : {};
+  const questions = field && subjectData[field] ? subjectData[field] : [];
+  const question = questions[questionIndex] || null;
 
-  // Parse correct indices array
-  let correctIndices: number[] = [0];
-  try {
-    if (correctIndicesParam) {
-      correctIndices = JSON.parse(correctIndicesParam);
-    }
-  } catch (e) {
-    console.error("Failed to parse correctIndices", e);
+  // Fallback or loading state if question not found (shouldn't happen with correct nav)
+  if (!question) {
+    // Handle error case below
   }
+
+  const text = question?.text || '';
+  const explain = question?.explain || '';
+  const memo = question?.memo || '';
+  const choices = question?.choices || [];
+  const correctIndices = question?.answer || [0];
+  const refId = question?.refId || '';
 
   const pickedIndex = pickedIndexParam ? parseInt(pickedIndexParam, 10) : -1;
   const isCorrect = correctIndices.includes(pickedIndex);
 
-  const correctAnswersText = correctIndices.map(i => choices[i]).join('\n・');
+  const correctAnswersText = correctIndices.map((i: number) => choices[i]).join('\n・');
 
   // Memo State
   const [showOfficialMemo, setShowOfficialMemo] = useState(false);
   const [userMemo, setUserMemo] = useState('');
 
   // Resources State
-  const refId = Array.isArray(params.refId) ? params.refId[0] : params.refId;
-  const resourcePages = (refId && (RESOURCES as any)[refId] ? (RESOURCES as any)[refId] : []) as any[];
+  // GUARD: RESOURCES might be undefined
+  const resourcesData = (RESOURCES as any) || {};
+  const resourcePages = (refId && resourcesData[refId] ? resourcesData[refId] : []) as any[];
 
   // Check for Pinned Case
   const linkedCase = refId ? PIN_CASES.find(c => c.id === refId) : null;
@@ -107,7 +105,7 @@ export default function ResultScreen() {
     }
   };
 
-  if (!subject || !field || !text || !choicesParam) {
+  if (!subject || !field || !question) {
     return (
       <ThemedView style={styles.container}>
         <ThemedText type="title">結果を表示できません</ThemedText>
@@ -157,15 +155,19 @@ export default function ResultScreen() {
   };
 
   return (
-    <ThemedView style={{ flex: 1 }}>
+    <ThemedView style={{ flex: 1, backgroundColor: colors.background }}>
       <ScrollView contentContainerStyle={styles.container}>
-        <ThemedText type="title">{subject} - {field}</ThemedText>
-        <Pressable style={[styles.choiceButton, styles.choiceButtonDisabled]}>
-          <ThemedText style={{ fontSize: 16 }}>{choices[pickedIndex]}</ThemedText>
+        <ThemedText type="title" style={{ color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }}>{subject} - {field}</ThemedText>
+        <Pressable style={[
+          styles.choiceButton,
+          styles.choiceButtonDisabled,
+          { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder }
+        ]}>
+          <ThemedText style={{ fontSize: 16, color: colors.text }}>{choices[pickedIndex]}</ThemedText>
         </Pressable>
-        <ThemedText type="subtitle">{isCorrect ? '正解！' : '不正解'}</ThemedText>
-        <ThemedText style={styles.questionText}>{text}</ThemedText>
-        <ThemedText style={styles.answerText}>正解: {correctAnswersText}</ThemedText>
+        <ThemedText type="subtitle" style={{ color: colors.text }}>{isCorrect ? '正解！' : '不正解'}</ThemedText>
+        <ThemedText style={[styles.questionText, { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }]}>{text}</ThemedText>
+        <ThemedText style={[styles.answerText, { color: colors.text }]}>正解: {correctAnswersText}</ThemedText>
 
         <ThemedText type="subtitle" style={styles.explainTitle}>
           解説
@@ -196,8 +198,8 @@ export default function ResultScreen() {
         ) : null}
 
         {showOfficialMemo && memo && (
-          <ThemedView style={styles.memoBox}>
-            <ThemedText>{memo}</ThemedText>
+          <ThemedView style={[styles.memoBox, { backgroundColor: colors.card, borderColor: colors.choiceBorder, borderWidth: 1 }]}>
+            <ThemedText style={{ color: colors.text }}>{memo}</ThemedText>
           </ThemedView>
         )}
 
@@ -233,8 +235,11 @@ export default function ResultScreen() {
             correctCountSession: String(newCorrectCount) // Pass updated count
           }
         }} asChild>
-          <Pressable style={styles.nextButton} onPress={handleNext}>
-            <ThemedText type="defaultSemiBold">次の問題へ</ThemedText>
+          <Pressable
+            style={StyleSheet.flatten([styles.nextButton, { backgroundColor: colors.accent, borderColor: colors.accent }])}
+            onPress={handleNext}
+          >
+            <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>次の問題へ</ThemedText>
           </Pressable>
         </Link>
         <View style={{ height: 40 }} />
@@ -337,15 +342,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   choiceButton: {
-    padding: 12,
+    padding: 16,
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 8,
+    borderRadius: 30, // Pill shape
     backgroundColor: '#fff',
+    alignItems: 'center', // Center content
   },
   choiceButtonDisabled: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff', // Keep white for result to show clearly
     borderColor: '#ddd',
+    opacity: 1, // Don't dim result choice
   },
   memoBox: {
     padding: 15,
