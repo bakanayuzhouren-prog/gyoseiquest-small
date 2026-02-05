@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
 // --- Theme Definitions ---
-export type ThemeType = 'modern' | 'paper' | 'contrast';
+export type ThemeType = 'modern' | 'paper' | 'contrast' | 'premium';
 
 export interface ThemeColors {
     background: string;
@@ -52,6 +52,18 @@ export const Themes: Record<ThemeType, ThemeColors> = {
         choiceText: '#000000',
         accent: '#000000',
         subText: '#000000'
+    },
+    premium: {
+        // Premium Dark - Cyberpunk/Glassmorphism compatible
+        background: '#0F172A', // Deep Navy/Black
+        text: '#E2E8F0', // Silver/White
+        card: 'rgba(30, 41, 59, 0.7)', // Semi-transparent Dark Blue (needs View support)
+        primary: '#06B6D4', // Neon Cyan
+        choiceBg: 'rgba(51, 65, 85, 0.5)', // Glassy
+        choiceBorder: '#38BDF8', // Bright Blue Border
+        choiceText: '#E0F2FE', // Light Blue Text
+        accent: '#22D3EE', // Cyan Accent
+        subText: '#94A3B8' // Slate Gray
     }
 };
 

@@ -3,44 +3,60 @@ import { Pressable, ScrollView, StyleSheet } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useTheme } from '@/src/context/ThemeContext';
 
 export default function HomeScreen() {
+  const { colors } = useTheme();
+
+  const buttonStyle = StyleSheet.flatten([
+    styles.menuButton,
+    {
+      backgroundColor: colors.choiceBg,
+      borderColor: colors.choiceBorder,
+    }
+  ]);
+
+  const getMenuTextStyle = (baseStyle: any) => StyleSheet.flatten([
+    baseStyle,
+    { color: colors.choiceText }
+  ]);
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <ThemedText type="title">メインメニュー</ThemedText>
       <ThemedText style={styles.subtitle}>機能を選択してください。</ThemedText>
       <Link href="/learn" asChild>
-        <Pressable style={styles.menuButton}>
-          <ThemedText type="defaultSemiBold" style={styles.menuText}>
+        <Pressable style={buttonStyle}>
+          <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
             ①見て聞いて覚える
           </ThemedText>
         </Pressable>
       </Link>
       <Link href="/subjects" asChild>
-        <Pressable style={styles.menuButton}>
-          <ThemedText type="defaultSemiBold" style={styles.menuText}>
+        <Pressable style={buttonStyle}>
+          <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
             ②問題を解く
           </ThemedText>
         </Pressable>
       </Link>
       <Link href="/chat" asChild>
-        <Pressable style={styles.menuButton}>
-          <ThemedText type="defaultSemiBold" style={styles.menuText}>
+        <Pressable style={buttonStyle}>
+          <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
             ③質問する
           </ThemedText>
         </Pressable>
       </Link>
       <Link href="/pin" asChild>
-        <Pressable style={styles.menuButton}>
+        <Pressable style={buttonStyle}>
           <ThemedView style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: 'transparent' }}>
-            <ThemedText type="defaultSemiBold" style={styles.menuText}>
+            <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
               ④ピン
             </ThemedText>
             <ThemedView style={{ position: 'relative', backgroundColor: 'transparent' }}>
-              <ThemedText style={{ position: 'absolute', top: -12, left: 0, right: 0, textAlign: 'center', fontSize: 10, lineHeight: 12 }}>
+              <ThemedText style={StyleSheet.flatten([{ position: 'absolute', top: -12, left: 0, right: 0, textAlign: 'center', fontSize: 10, lineHeight: 12, color: colors.choiceText }])}>
                 と
               </ThemedText>
-              <ThemedText type="defaultSemiBold" style={styles.menuText}>
+              <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
                 図
               </ThemedText>
             </ThemedView>
@@ -48,23 +64,44 @@ export default function HomeScreen() {
         </Pressable>
       </Link>
       <Link href="/statutes" asChild>
-        <Pressable style={styles.menuButton}>
-          <ThemedText type="defaultSemiBold" style={styles.menuText}>
+        <Pressable style={buttonStyle}>
+          <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
             ⑤条文
           </ThemedText>
         </Pressable>
       </Link>
       <Link href="/ranking" asChild>
-        <Pressable style={styles.menuButton}>
-          <ThemedText type="defaultSemiBold" style={styles.menuText}>
+        <Pressable style={buttonStyle}>
+          <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
             ⑥全国ランキング
           </ThemedText>
         </Pressable>
       </Link>
       <Link href="/avatar" asChild>
-        <Pressable style={styles.menuButton}>
-          <ThemedText type="defaultSemiBold" style={styles.menuText}>
+        <Pressable style={buttonStyle}>
+          <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
             ⑦アバター
+          </ThemedText>
+        </Pressable>
+      </Link>
+      <Link href="/meta" asChild>
+        <Pressable style={buttonStyle}>
+          <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
+            ⑧メタ空間
+          </ThemedText>
+        </Pressable>
+      </Link>
+      <Link href="/settings" asChild>
+        <Pressable style={buttonStyle}>
+          <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
+            ⑨設定
+          </ThemedText>
+        </Pressable>
+      </Link>
+      <Link href="/constitution" asChild>
+        <Pressable style={buttonStyle}>
+          <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
+            ⑩憲法を学ぶ
           </ThemedText>
         </Pressable>
       </Link>
@@ -93,8 +130,6 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
     borderWidth: 1,
-    borderColor: '#5A9BD5',
-    backgroundColor: '#E9F2FB',
   },
   menuText: {
     fontSize: 18,

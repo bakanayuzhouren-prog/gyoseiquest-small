@@ -216,7 +216,15 @@ async function sync() {
                 if (valH === '問題' || valH === '肢') continue;
 
                 // Found a Question
-                const questionText = valH;
+                let questionText = valH;
+                let isBonus = false;
+
+                // Check for Bonus Marker (※)
+                if (questionText.startsWith('※')) {
+                    isBonus = true;
+                    questionText = questionText.replace('※', '').trim();
+                }
+
                 const choices = [];
                 let explanation = valL || ''; // Use Col L if available
                 const wordBank = valR; // Col R is now Word Bank
@@ -246,14 +254,16 @@ async function sync() {
                 if (choices.length >= 1) {
                     const correctIndices = [];
                     const cleanChoices = choices.map((c, idx) => {
+                        let choiceText = c;
+
                         // Check for (r) or （ｒ）
-                        const isCorrectMarker = /[\(（][rｒ][\)）]/i.test(c);
+                        const isCorrectMarker = /[\(（][rｒ][\)）]/i.test(choiceText);
                         if (isCorrectMarker) {
                             correctIndices.push(idx);
                             // Remove marker
-                            return c.replace(/[\(（][rｒ][\)）]/gi, '').trim();
+                            return choiceText.replace(/[\(（][rｒ][\)）]/gi, '').trim();
                         }
-                        return c;
+                        return choiceText;
                     });
 
                     // If no (r) found, assume index 0 is correct (legacy behavior)
@@ -275,8 +285,10 @@ async function sync() {
                         wordBank: wordBank,
                         memo: memo,
                         memo: memo,
+                        memo: memo,
                         slots: slots, // New field for interactive slots
-                        refId: valRefId // New field for Resource ID
+                        refId: valRefId, // New field for Resource ID
+                        isBonus: isBonus // Bonus Flag
                     });
                 }
             }

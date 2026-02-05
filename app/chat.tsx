@@ -1,56 +1,167 @@
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Stack } from 'expo-router';
-import React, { useState } from 'react';
-import { FlatList, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { Themes, useTheme } from '@/src/context/ThemeContext';
+import { searchKnowledge, SearchResult } from '@/utils/chatSearch';
+import { Ionicons } from '@expo/vector-icons';
+import React, { useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, FlatList, Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
+
+type Message = {
+    id: string;
+    text: string;
+    sender: 'user' | 'bot';
+    results?: SearchResult[];
+};
+
+const SUGGESTIONS = [
+    "行政手続法について",
+    "朝日訴訟とは",
+    "国家賠償法1条",
+    "理由の提示",
+    "信義則",
+];
 
 export default function ChatScreen() {
-    const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState<{ id: string, text: string, sender: 'user' | 'bot' }[]>([
-        { id: '1', text: 'こんにちは！何か質問はありますか？', sender: 'bot' }
+    const { theme } = useTheme();
+    const colors = Themes[theme]; // Get actual colors based on theme key
+    const [input, setInput] = useState('');
+    const [messages, setMessages] = useState<Message[]>([
+        { id: '0', text: 'こんにちは！行政書士試験の学習アシスタントです。\n判例や条文知識について質問してください。（例：「朝日訴訟とは」「行政手続法の定義」）', sender: 'bot' }
     ]);
+    const [isTyping, setIsTyping] = useState(false);
+    const flatListRef = useRef<FlatList>(null);
 
-    const sendMessage = () => {
-        if (!message.trim()) return;
-        const newMsg = { id: Date.now().toString(), text: message, sender: 'user' as const };
-        setMessages(prev => [...prev, newMsg]);
-        setMessage('');
+    const handleSend = (text: string = input) => {
+        const trimmed = text.trim();
+        if (!trimmed) return;
 
-        // Simple mock response
+        // Add User Message
+        const userMsg: Message = { id: Date.now().toString(), text: trimmed, sender: 'user' };
+        setMessages(prev => [...prev, userMsg]);
+        setInput('');
+        setIsTyping(true);
+
+        // Simulate Network/Processing Delay
         setTimeout(() => {
-            setMessages(prev => [...prev, { id: (Date.now() + 1).toString(), text: '質問ありがとうございます。現在、回答機能を準備中です。', sender: 'bot' }]);
-        }, 1000);
+            const results = searchKnowledge(trimmed);
+            let botText = '';
+
+            if (results.length > 0) {
+                const topMatch = results[0];
+                if (topMatch.type === 'case') {
+                    botText = `【${topMatch.title}】\n\n${topMatch.content}`;
+                } else if (topMatch.type === 'memory') {
+                    botText = `【関連する記憶】\n\n${topMatch.content}`;
+                } else {
+                    botText = `【条文・知識】\n\n${topMatch.content}`;
+                }
+
+                if (results.length > 1) {
+                    botText += `\n\n他にも「${results[1].title}」などが関連しているかもしれません。`;
+                }
+            } else {
+                botText = '申し訳ありません。そのキーワードに関する情報は知識ベースに見つかりませんでした。\n別の言い回しや、重要語句（例：「処分」「行政指導」など）で試してみてください。';
+            }
+
+            const botMsg: Message = {
+                id: (Date.now() + 1).toString(),
+                text: botText,
+                sender: 'bot',
+                results
+            };
+
+            setMessages(prev => [...prev, botMsg]);
+            setIsTyping(false);
+        }, 1200);
+    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            flatListRef.current?.scrollToEnd({ animated: true });
+        }, 200);
+    }, [messages, isTyping]);
+
+    const renderMessage = ({ item }: { item: Message }) => {
+        const isUser = item.sender === 'user';
+        return (
+            <View style={[
+                styles.messageContainer,
+                isUser ? styles.userMessageContainer : styles.botMessageContainer
+            ]}>
+                {!isUser && (
+                    <View style={styles.avatarContainer}>
+                        <Image source={require('@/assets/images/icon.png')} style={styles.avatar} />
+                    </View>
+                )}
+                <View style={[
+                    styles.bubble,
+                    isUser ? { backgroundColor: colors.primary } : { backgroundColor: colors.card },
+                    isUser ? styles.userBubble : styles.botBubble
+                ]}>
+                    <ThemedText style={{ color: isUser ? '#fff' : colors.text }}>
+                        {item.text}
+                    </ThemedText>
+                </View>
+            </View>
+        );
     };
 
     return (
         <ThemedView style={styles.container}>
-            <Stack.Screen options={{ title: '質問する' }} />
+            <View style={[styles.header, { borderBottomColor: colors.choiceBorder }]}>
+                <ThemedText type="subtitle">AI学習アシスタント</ThemedText>
+            </View>
+
             <FlatList
+                ref={flatListRef}
                 data={messages}
                 keyExtractor={item => item.id}
-                contentContainerStyle={styles.messageList}
-                renderItem={({ item }) => (
-                    <View style={[
-                        styles.messageBubble,
-                        item.sender === 'user' ? styles.userBubble : styles.botBubble
-                    ]}>
-                        <ThemedText style={item.sender === 'user' ? styles.userText : styles.botText}>{item.text}</ThemedText>
-                    </View>
-                )}
+                renderItem={renderMessage}
+                contentContainerStyle={styles.listContent}
+                ListFooterComponent={
+                    isTyping ? (
+                        <View style={styles.typingContainer}>
+                            <View style={styles.avatarContainer}>
+                                <Image source={require('@/assets/images/icon.png')} style={styles.avatar} />
+                            </View>
+                            <View style={[styles.bubble, styles.botBubble, { backgroundColor: colors.card }]}>
+                                <ActivityIndicator size="small" color={colors.subText} />
+                            </View>
+                        </View>
+                    ) : null
+                }
             />
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} keyboardVerticalOffset={100}>
-                <View style={styles.inputContainer}>
+
+            <View style={styles.suggestionsContainer}>
+                <FlatList
+                    horizontal
+                    data={SUGGESTIONS}
+                    keyExtractor={item => item}
+                    renderItem={({ item }) => (
+                        <Pressable
+                            style={[styles.chip, { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder }]}
+                            onPress={() => handleSend(item)}
+                        >
+                            <ThemedText style={{ color: colors.choiceText, fontSize: 12 }}>{item}</ThemedText>
+                        </Pressable>
+                    )}
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={{ paddingHorizontal: 16 }}
+                />
+            </View>
+
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} keyboardVerticalOffset={100}>
+                <View style={[styles.inputContainer, { backgroundColor: colors.card, borderTopColor: colors.choiceBorder }]}>
                     <TextInput
-                        style={styles.input}
-                        value={message}
-                        onChangeText={setMessage}
+                        style={[styles.input, { color: colors.text, backgroundColor: colors.background }]}
+                        value={input}
+                        onChangeText={setInput}
                         placeholder="質問を入力..."
-                        placeholderTextColor="#999"
-                        onSubmitEditing={sendMessage}
-                        returnKeyType="send"
+                        placeholderTextColor={colors.subText}
+                        onSubmitEditing={() => handleSend()}
                     />
-                    <Pressable onPress={sendMessage} style={styles.sendButton}>
-                        <ThemedText style={styles.sendButtonText}>送信</ThemedText>
+                    <Pressable onPress={() => handleSend()} style={[styles.sendButton, { backgroundColor: colors.primary }]}>
+                        <Ionicons name="send" size={20} color="#fff" />
                     </Pressable>
                 </View>
             </KeyboardAvoidingView>
@@ -62,57 +173,81 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    messageList: {
+    header: {
         padding: 16,
-        paddingBottom: 80,
+        borderBottomWidth: 1,
+        alignItems: 'center',
     },
-    messageBubble: {
-        maxWidth: '80%',
-        padding: 12,
+    listContent: {
+        padding: 16,
+        paddingBottom: 32,
+    },
+    messageContainer: {
+        flexDirection: 'row',
+        marginBottom: 16,
+        maxWidth: '85%',
+    },
+    userMessageContainer: {
+        alignSelf: 'flex-end',
+        justifyContent: 'flex-end',
+    },
+    botMessageContainer: {
+        alignSelf: 'flex-start',
+    },
+    avatarContainer: {
+        marginRight: 8,
+        justifyContent: 'flex-end',
+    },
+    avatar: {
+        width: 32,
+        height: 32,
         borderRadius: 16,
-        marginBottom: 8,
+    },
+    bubble: {
+        padding: 12,
+        borderRadius: 18,
     },
     userBubble: {
-        alignSelf: 'flex-end',
-        backgroundColor: '#007AFF', // Blue for user
         borderBottomRightRadius: 4,
     },
     botBubble: {
-        alignSelf: 'flex-start',
-        backgroundColor: '#E5E5EA', // Light gray for bot
         borderBottomLeftRadius: 4,
     },
-    userText: {
-        color: '#FFFFFF',
-    },
-    botText: {
-        color: '#000000',
+    typingContainer: {
+        flexDirection: 'row',
+        marginBottom: 16,
+        marginLeft: 0,
     },
     inputContainer: {
         flexDirection: 'row',
-        padding: 10,
-        borderTopWidth: 1,
-        borderTopColor: '#DDD',
-        backgroundColor: '#FFF', // Ensure background is white
+        padding: 12,
         alignItems: 'center',
+        borderTopWidth: 1,
     },
     input: {
         flex: 1,
-        backgroundColor: '#F0F0F0',
+        height: 40,
         borderRadius: 20,
         paddingHorizontal: 16,
-        paddingVertical: 10,
-        marginRight: 10,
-        fontSize: 16,
-        color: '#000',
+        marginRight: 8,
     },
     sendButton: {
-        paddingHorizontal: 16,
-        paddingVertical: 10,
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    sendButtonText: {
-        color: '#007AFF',
-        fontWeight: 'bold',
-        fontSize: 16,
+    suggestionsContainer: {
+        height: 50,
+        marginBottom: 8,
     },
+    chip: {
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        borderRadius: 16,
+        borderWidth: 1,
+        marginRight: 8,
+        alignSelf: 'center', // Center vertically in the container
+    }
 });

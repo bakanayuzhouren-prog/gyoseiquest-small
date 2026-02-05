@@ -22,10 +22,7 @@ async function listSheets() {
             return;
         }
 
-        console.log('--- Available Sheets ---');
-        sheetList.forEach(s => {
-            console.log(`- "${s.properties.title}"`);
-        });
+        console.log(JSON.stringify(sheetList.map(s => s.properties.title), null, 2));
 
     } catch (error) {
         console.error('Error:', error);

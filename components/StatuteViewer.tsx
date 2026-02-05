@@ -1,27 +1,36 @@
-import { Stack } from 'expo-router';
-import { useRef, useState } from 'react';
-import { Alert, ScrollView, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { applyTTSRules } from '@/utils/tts-rules';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Stack, useLocalSearchParams } from 'expo-router';
+import * as Speech from 'expo-speech';
+import { useEffect, useRef, useState } from 'react';
+import { Alert, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 
-// Simple number to Kanji converter for 1-99
+// Improved number to Kanji converter for 1-9999
 const numberToKanji = (num: number): string => {
-    if (num <= 0 || num >= 100) return num.toString();
-
+    if (num <= 0) return num.toString();
     const kanji = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
-    if (num < 10) return kanji[num];
-
-    const tens = Math.floor(num / 10);
-    const ones = num % 10;
+    const units = ['', '十', '百', '千'];
 
     let res = '';
-    if (tens === 1) res += '十';
-    else if (tens > 1) res += kanji[tens] + '十';
+    const digits = num.toString().split('').reverse();
 
-    if (ones > 0) res += kanji[ones];
+    for (let i = 0; i < digits.length; i++) {
+        const digit = parseInt(digits[i], 10);
+        if (digit === 0) continue;
 
-    return res;
+        let part = '';
+        if (i > 0 && digit === 1) {
+            // For 10, 100, 1000, "一" is usually omitted
+            part = units[i];
+        } else {
+            part = kanji[digit] + units[i];
+        }
+        res = part + res;
+    }
+    return res || '〇';
 };
 
 interface StatuteArticle {
@@ -41,15 +50,55 @@ export default function StatuteViewer({ data, title, searchPlaceholder }: Statut
     const [searchQuery, setSearchQuery] = useState('');
     const scrollViewRef = useRef<ScrollView>(null);
     const itemsY = useRef<{ [key: number]: number }>({});
+    const { q } = useLocalSearchParams<{ q?: string }>();
+
+    // TTS States
+    const [speakingIndex, setSpeakingIndex] = useState<number | null>(null);
 
     // State to track search position for "Find Next" functionality
     const lastSearchIndex = useRef(-1);
     const lastSearchQuery = useRef('');
 
-    const handleSearch = () => {
-        if (!searchQuery.trim()) return;
+    // Stop speech on unmount or navigate away
+    useEffect(() => {
+        return () => { Speech.stop(); };
+    }, []);
 
-        const query = searchQuery.trim();
+    const toggleSpeech = async (index: number) => {
+        if (speakingIndex === index) {
+            await Speech.stop();
+            setSpeakingIndex(null);
+        } else {
+            await Speech.stop();
+            setSpeakingIndex(index);
+            const article = articles[index];
+            const textToSpeak = applyTTSRules(`${article.title}。${article.content}`);
+
+            Speech.speak(textToSpeak, {
+                language: 'ja',
+                rate: 1.5,
+                onDone: () => setSpeakingIndex(null),
+                onError: () => setSpeakingIndex(null),
+            });
+        }
+    };
+
+    // Trigger search from URL param on load
+    useEffect(() => {
+        if (q && articles.length > 0) {
+            setSearchQuery(q);
+            // Small delay to ensure onLayout has finished populating itemsY
+            const timer = setTimeout(() => {
+                executeSearch(q);
+            }, 600);
+            return () => clearTimeout(timer);
+        }
+    }, [q, articles.length]);
+
+    const executeSearch = (queryText: string) => {
+        if (!queryText.trim()) return;
+
+        const query = queryText.trim();
         let startIndex = 0;
 
         // If searching for the same thing, start after the last found index
@@ -69,6 +118,8 @@ export default function StatuteViewer({ data, title, searchPlaceholder }: Statut
                 const kanjiNum = numberToKanji(num);
                 const searchPattern = `第${kanjiNum}条`;
                 if (item.title && item.title.includes(searchPattern)) return true;
+                // Also check if title contains the raw number just in case
+                if (item.title && item.title.includes(`第${num}条`)) return true;
             }
 
             // 2. Text Match (Title or Content)
@@ -103,16 +154,17 @@ export default function StatuteViewer({ data, title, searchPlaceholder }: Statut
 
             const y = itemsY.current[targetIndex];
             if (y !== undefined && scrollViewRef.current) {
-                scrollViewRef.current.scrollTo({ y: y, animated: true });
+                scrollViewRef.current.scrollTo({ y: y - 50, animated: false }); // Margin at top
             }
-        } else {
+        } else if (!q) { // Only alert if NOT coming from an automatic jump
             // Not found anywhere
             Alert.alert("見つかりませんでした", "該当する条文が見つかりませんでした。");
-            // Reset search state so next try starts from top if user wants
             lastSearchQuery.current = '';
             lastSearchIndex.current = -1;
         }
     };
+
+    const handleSearch = () => executeSearch(searchQuery);
 
     return (
         <ThemedView style={styles.container}>
@@ -129,9 +181,9 @@ export default function StatuteViewer({ data, title, searchPlaceholder }: Statut
                         onSubmitEditing={handleSearch}
                         returnKeyType="search"
                     />
-                    <TouchableOpacity onPress={handleSearch} style={styles.searchButton}>
+                    <Pressable onPress={handleSearch} style={styles.searchButton}>
                         <ThemedText style={{ color: '#fff', fontWeight: 'bold' }}>検索</ThemedText>
-                    </TouchableOpacity>
+                    </Pressable>
                 </ThemedView>
             </ThemedView>
 
@@ -148,17 +200,32 @@ export default function StatuteViewer({ data, title, searchPlaceholder }: Statut
                     articles.map((item: any, index: number) => (
                         <ThemedView
                             key={index}
-                            style={styles.articleContainer}
+                            style={[
+                                styles.articleContainer,
+                                speakingIndex === index && styles.articleContainerActive
+                            ]}
                             onLayout={(event) => {
                                 const layout = event.nativeEvent.layout;
                                 itemsY.current[index] = layout.y;
                             }}
                         >
-                            {item.title ? (
-                                <ThemedText type="subtitle" style={styles.articleTitle}>
-                                    {item.title}
-                                </ThemedText>
-                            ) : null}
+                            <View style={styles.articleHeader}>
+                                {item.title ? (
+                                    <ThemedText type="subtitle" style={styles.articleTitle}>
+                                        {item.title}
+                                    </ThemedText>
+                                ) : null}
+                                <Pressable
+                                    onPress={() => toggleSpeech(index)}
+                                    style={styles.speakerButton}
+                                >
+                                    <MaterialIcons
+                                        name={speakingIndex === index ? "stop-circle" : "play-circle-filled"}
+                                        size={28}
+                                        color={speakingIndex === index ? "#DC3545" : "#5A9BD5"}
+                                    />
+                                </Pressable>
+                            </View>
                             <ThemedText style={styles.articleContent}>
                                 {item.content}
                             </ThemedText>
@@ -219,11 +286,27 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#eee',
     },
-    articleTitle: {
+    articleContainerActive: {
+        borderColor: '#5A9BD5',
+        backgroundColor: 'rgba(90, 155, 213, 0.05)',
+        borderWidth: 2,
+    },
+    articleHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
         marginBottom: 8,
+        backgroundColor: 'transparent',
+    },
+    articleTitle: {
+        flex: 1,
         color: '#5A9BD5',
     },
     articleContent: {
         lineHeight: 24,
+    },
+    speakerButton: {
+        marginLeft: 8,
+        padding: 2,
     }
 });

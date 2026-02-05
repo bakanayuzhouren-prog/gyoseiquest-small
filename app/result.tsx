@@ -9,12 +9,14 @@ import { useTheme } from '@/src/context/ThemeContext';
 import { PIN_CASES } from '@/src/pinData';
 import { RESOURCES, SUBJECTS } from '@/src/questions';
 import { addPoints } from '@/utils/points';
+import { incrementLoopCount } from '@/utils/progress';
 import { USER_KEY } from './login';
 
 export default function ResultScreen() {
   const params = useLocalSearchParams<{
     subject?: string;
     pickedIndex?: string;
+    pickedIndices?: string; // NEW: JSON string of selected indices
     field?: string;
     questionIndex?: string; // Current question index
     totalQuestions?: string; // NEW
@@ -23,6 +25,7 @@ export default function ResultScreen() {
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
   const paramField = Array.isArray(params.field) ? params.field[0] : params.field;
   const pickedIndexParam = Array.isArray(params.pickedIndex) ? params.pickedIndex[0] : params.pickedIndex;
+  const pickedIndicesParam = Array.isArray(params.pickedIndices) ? params.pickedIndices[0] : params.pickedIndices;
   const field = Array.isArray(params.field) ? params.field[0] : params.field;
 
   const { colors, theme } = useTheme();
@@ -48,14 +51,34 @@ export default function ResultScreen() {
   const correctIndices = question?.answer || [0];
   const refId = question?.refId || '';
 
+  // [NEW] Resolve User Selection & Validation
   const pickedIndex = pickedIndexParam ? parseInt(pickedIndexParam, 10) : -1;
-  const isCorrect = correctIndices.includes(pickedIndex);
+  let userSelection: number[] = [];
+
+  if (pickedIndicesParam) {
+    try {
+      userSelection = JSON.parse(pickedIndicesParam);
+    } catch (e) {
+      userSelection = (pickedIndex !== -1) ? [pickedIndex] : [];
+    }
+  } else {
+    userSelection = (pickedIndex !== -1) ? [pickedIndex] : [];
+  }
+
+  // Exact Match Validation
+  const sortedCorrect = [...correctIndices].sort((a, b) => a - b);
+  const sortedUser = [...userSelection].sort((a, b) => a - b);
+
+  const isCorrect =
+    sortedCorrect.length === sortedUser.length &&
+    sortedCorrect.every((val, index) => val === sortedUser[index]);
 
   const correctAnswersText = correctIndices.map((i: number) => choices[i]).join('\n・');
 
   // Memo State
   const [showOfficialMemo, setShowOfficialMemo] = useState(false);
   const [userMemo, setUserMemo] = useState('');
+  const [isExplainExpanded, setIsExplainExpanded] = useState(false);
 
   // Resources State
   // GUARD: RESOURCES might be undefined
@@ -138,6 +161,9 @@ export default function ResultScreen() {
         message = '全問正解！！ +11ポイント (完了1 + ボーナス10)';
       }
 
+      // [NEW] Increment Loop Count
+      incrementLoopCount(subject, field || '');
+
       addPoints(added);
       alert(message);
     }
@@ -158,21 +184,46 @@ export default function ResultScreen() {
     <ThemedView style={{ flex: 1, backgroundColor: colors.background }}>
       <ScrollView contentContainerStyle={styles.container}>
         <ThemedText type="title" style={{ color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }}>{subject} - {field}</ThemedText>
-        <Pressable style={[
-          styles.choiceButton,
-          styles.choiceButtonDisabled,
-          { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder }
-        ]}>
-          <ThemedText style={{ fontSize: 16, color: colors.text }}>{choices[pickedIndex]}</ThemedText>
-        </Pressable>
-        <ThemedText type="subtitle" style={{ color: colors.text }}>{isCorrect ? '正解！' : '不正解'}</ThemedText>
+
+        <ThemedView style={{ marginBottom: 16 }}>
+          <ThemedText style={{ marginBottom: 8, color: colors.subText }}>あなたの回答:</ThemedText>
+          {userSelection.map((idx) => (
+            <Pressable key={idx} style={[
+              styles.choiceButton,
+              styles.choiceButtonDisabled,
+              { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder, marginBottom: 8 }
+            ]}>
+              <ThemedText style={{ fontSize: 16, color: colors.text }}>
+                {choices[idx] ? choices[idx].replace(/※/g, '') : ''}
+              </ThemedText>
+            </Pressable>
+          ))}
+        </ThemedView>
+        {isCorrect ? (
+          <ThemedView style={{ padding: 16, backgroundColor: '#E8F5E9', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#4CAF50', alignItems: 'center' }}>
+            <ThemedText type="title" style={{ color: '#2E7D32', fontSize: 24 }}>🎉 正解！お見事！</ThemedText>
+            <ThemedText style={{ color: '#1B5E20', marginTop: 4, fontWeight: 'bold' }}>その調子だ！この知識を確実に定着させろ！</ThemedText>
+          </ThemedView>
+        ) : (
+          <ThemedText type="subtitle" style={{ color: '#D32F2F', marginBottom: 8 }}>不正解... 復習が必要だ！</ThemedText>
+        )}
         <ThemedText style={[styles.questionText, { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }]}>{text}</ThemedText>
         <ThemedText style={[styles.answerText, { color: colors.text }]}>正解: {correctAnswersText}</ThemedText>
 
         <ThemedText type="subtitle" style={styles.explainTitle}>
           解説
         </ThemedText>
-        <MarkdownText text={explain || ''} />
+        <View style={!isExplainExpanded ? styles.collapsedExplain : undefined}>
+          <MarkdownText text={explain || ''} />
+        </View>
+        <Pressable
+          style={styles.expandButton}
+          onPress={() => setIsExplainExpanded(!isExplainExpanded)}
+        >
+          <ThemedText style={{ color: '#007BFF' }}>
+            {isExplainExpanded ? '▲ 解説を閉じる' : '▼ 解説をすべて読む'}
+          </ThemedText>
+        </Pressable>
 
         {/* Resources Button */}
         {resourcePages.length > 0 && (
@@ -239,7 +290,18 @@ export default function ResultScreen() {
             style={StyleSheet.flatten([styles.nextButton, { backgroundColor: colors.accent, borderColor: colors.accent }])}
             onPress={handleNext}
           >
-            <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>次の問題へ</ThemedText>
+            <ThemedText type="defaultSemiBold" style={{ color: '#fff', textAlign: 'center' }}>次の問題へ</ThemedText>
+          </Pressable>
+        </Link>
+
+        <Link href="/subjects" replace asChild>
+          <Pressable style={StyleSheet.flatten([styles.nextButton, { backgroundColor: '#fff', borderColor: '#5A9BD5', borderWidth: 2 }])}>
+            <ThemedText type="defaultSemiBold" style={{ color: '#5A9BD5', textAlign: 'center' }}>科目選択</ThemedText>
+          </Pressable>
+        </Link>
+        <Link href="/" replace asChild>
+          <Pressable style={StyleSheet.flatten([styles.nextButton, { backgroundColor: '#fff', borderColor: '#757575', borderWidth: 2 }])}>
+            <ThemedText type="defaultSemiBold" style={{ color: '#757575', textAlign: 'center' }}>メインメニューへ</ThemedText>
           </Pressable>
         </Link>
         <View style={{ height: 40 }} />
@@ -476,5 +538,17 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  collapsedExplain: {
+    maxHeight: 150,
+    overflow: 'hidden',
+    opacity: 0.8,
+  },
+  expandButton: {
+    alignItems: 'center',
+    paddingVertical: 8,
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
+    marginTop: 4,
   },
 });

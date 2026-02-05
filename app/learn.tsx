@@ -4,6 +4,9 @@ import { Pressable, ScrollView, StyleSheet } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { getStickyNotes } from '@/utils/sticky-notes';
+import { useFocusEffect } from 'expo-router';
+import { useCallback } from 'react';
 
 type SubCategory = {
   label: string;
@@ -52,6 +55,30 @@ const CATEGORIES: Category[] = [
 
 export default function LearnScreen() {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const [stickyCounts, setStickyCounts] = useState<{ [key: string]: number }>({});
+
+  // 画面が表示されるたびに付箋数を更新
+  useFocusEffect(
+    useCallback(() => {
+      const counts: { [key: string]: number } = {};
+
+      const updateCounts = (cats: Category[]) => {
+        cats.forEach(cat => {
+          if (cat.key) {
+            counts[cat.key] = getStickyNotes(cat.key).length;
+          }
+          if (cat.subCategories) {
+            cat.subCategories.forEach(sub => {
+              counts[sub.key] = getStickyNotes(sub.key).length;
+            });
+          }
+        });
+      };
+
+      updateCounts(CATEGORIES);
+      setStickyCounts(counts);
+    }, [])
+  );
 
   const handleCategoryPress = (category: Category) => {
     if (category.subCategories) {
@@ -88,6 +115,9 @@ export default function LearnScreen() {
                 onPress={() => handleSubCategoryPress(sub.key)}>
                 <ThemedText type="defaultSemiBold" style={styles.subjectText}>
                   {index + 1} {sub.label}
+                  {stickyCounts[sub.key] > 0 && (
+                    <ThemedText style={styles.stickyBadge}> (付箋: {stickyCounts[sub.key]})</ThemedText>
+                  )}
                 </ThemedText>
               </Pressable>
             ))}
@@ -103,6 +133,9 @@ export default function LearnScreen() {
               onPress={() => handleCategoryPress(category)}>
               <ThemedText type="defaultSemiBold" style={styles.subjectText}>
                 {index + 1} {category.label}
+                {category.key && stickyCounts[category.key] > 0 && (
+                  <ThemedText style={styles.stickyBadge}> (付箋: {stickyCounts[category.key]})</ThemedText>
+                )}
               </ThemedText>
             </Pressable>
           ))
@@ -132,6 +165,11 @@ const styles = StyleSheet.create({
   },
   subjectText: {
     fontSize: 18,
+  },
+  stickyBadge: {
+    fontSize: 14,
+    color: '#B8860B',
+    fontWeight: 'normal',
   },
   list: {
     gap: 16,

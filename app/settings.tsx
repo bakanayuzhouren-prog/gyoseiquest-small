@@ -69,6 +69,25 @@ export default function SettingsScreen() {
                     </View>
                     {theme === 'contrast' && <ThemedText style={styles.check}>✓</ThemedText>}
                 </Pressable>
+
+                {/* Premium Dark */}
+                <Pressable
+                    style={[styles.item, theme === 'premium' && styles.selectedItem, theme === 'premium' && { borderColor: Themes.premium.choiceBorder, backgroundColor: '#0F172A' }]}
+                    onPress={() => handleSelect('premium')}
+                >
+                    <View style={[styles.previewBox, { backgroundColor: Themes.premium.background }]}>
+                        <View style={[styles.previewBtn, { backgroundColor: Themes.premium.choiceBg, borderColor: Themes.premium.choiceBorder, borderWidth: 1 }]}>
+                            <ThemedText style={{ fontSize: 10, color: Themes.premium.choiceText }}>あ</ThemedText>
+                        </View>
+                    </View>
+                    <View style={styles.info}>
+                        <ThemedText type="defaultSemiBold" style={{ color: theme === 'premium' ? Themes.premium.text : undefined }}>プレミアム・ダーク</ThemedText>
+                        <ThemedText style={[styles.desc, { color: theme === 'premium' ? Themes.premium.subText : undefined }]}>
+                            近未来的な高級感。集中力を高める深淵なダークモード。
+                        </ThemedText>
+                    </View>
+                    {theme === 'premium' && <ThemedText style={[styles.check, { color: Themes.premium.accent }]}>✓</ThemedText>}
+                </Pressable>
             </View>
 
             <Pressable style={styles.closeBtn} onPress={() => router.back()}>

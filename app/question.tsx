@@ -1,9 +1,10 @@
-import { router, useLocalSearchParams } from 'expo-router';
+import { Link, router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { BONUS_QUESTIONS } from '@/src/bonus_questions';
 import { useTheme } from '@/src/context/ThemeContext';
 import { RESOURCES, SUBJECTS } from '@/src/questions';
 
@@ -15,22 +16,46 @@ export default function QuestionScreen() {
 
   const { colors, theme } = useTheme();
 
-  const subjectData = subject ? (SUBJECTS as any)[subject] : {};
-  const fields = Object.keys(subjectData);
+  const subjectData = useMemo(() => {
+    const main = subject ? (SUBJECTS as any)[subject] || {} : {};
+    const bonus = subject ? (BONUS_QUESTIONS as any)[subject] || {} : {};
+    const merged = { ...main };
+    Object.keys(bonus).forEach((k) => {
+      merged[k] = [...(merged[k] || []), ...bonus[k]];
+    });
+    return merged;
+  }, [subject]);
 
   const { field, questions } = useMemo(() => {
+    const fields = Object.keys(subjectData);
     if (fields.length === 0) {
       return { field: null, questions: [] };
     }
+
+    let targetQuestions = [];
+    let selectedField = null;
+
     // If field is specified and valid, use it
     if (paramField && fields.includes(paramField)) {
-      return { field: paramField, questions: subjectData[paramField] };
+      selectedField = paramField;
+      targetQuestions = subjectData[paramField] || [];
+    } else {
+      // Otherwise pick random
+      selectedField = fields[Math.floor(Math.random() * fields.length)];
+      targetQuestions = subjectData[selectedField] || [];
     }
 
-    // Otherwise pick random
-    const randomField = fields[Math.floor(Math.random() * fields.length)];
-    return { field: randomField, questions: subjectData[randomField] };
-  }, [subjectData, fields, paramField]);
+    // Filter based on mode
+    if (mode === 'bonus') {
+      // Bonus Mode: Show ALL (Normal + Bonus)
+      // No filter needed
+    } else {
+      // Normal (or Past) Mode: Show ONLY non-bonus
+      targetQuestions = targetQuestions.filter((q: any) => !q.isBonus);
+    }
+
+    return { field: selectedField, questions: targetQuestions };
+  }, [subjectData, paramField, mode]);
 
   // State for current question index
   const [questionIndex, setQuestionIndex] = useState<number | null>(null);
@@ -43,9 +68,13 @@ export default function QuestionScreen() {
   // State for dimmed choices (indices)
   const [dimmedIndices, setDimmedIndices] = useState<number[]>([]);
 
-  // Reset dimmed choices when question changes
+  // State for multi-select
+  const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
+
+  // Reset dimmed choices and selections when question changes
   useEffect(() => {
     setDimmedIndices([]);
+    setSelectedIndices([]);
   }, [questionIndex]);
 
   // State for slots
@@ -77,9 +106,12 @@ export default function QuestionScreen() {
     if (!question) return null;
     const text = question.text;
     const slots = (question as any).slots || [];
+    const correctCount = (question as any).answer ? (question as any).answer.length : 0;
+    const suffix = ` (正解肢${correctCount}問)`;
 
+    let content;
     if (slots.length === 0) {
-      return (
+      content = (
         <ThemedText
           type="title"
           style={[
@@ -91,35 +123,47 @@ export default function QuestionScreen() {
             if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
           }}
         >
-          {text}
+          {text}{suffix}
+        </ThemedText>
+      );
+    } else {
+      // Escape regex characters for labels
+      const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const pattern = new RegExp(`(${slots.map((s: any) => escapeRegExp(s.label)).join('|')})`, 'g');
+
+      // Split text by labels
+      const parts = text.split(pattern);
+
+      content = (
+        <ThemedText style={[styles.questionText, isLongText && styles.questionTextSmall, { lineHeight: 40 }]}>
+          {parts.map((part: string, index: number) => {
+            const slot = slots.find((s: any) => s.label === part);
+            if (slot) {
+              const selected = slotSelections[slot.label];
+              return (
+                <Pressable key={index} onPress={() => handleSlotPress(slot)} style={styles.slotButton}>
+                  <ThemedText style={styles.slotButtonText}>
+                    {selected || part}
+                  </ThemedText>
+                </Pressable>
+              );
+            }
+            return <ThemedText key={index} style={[styles.questionText, isLongText && styles.questionTextSmall]}>{part}</ThemedText>;
+          })}{suffix}
         </ThemedText>
       );
     }
 
-    // Escape regex characters for labels
-    const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const pattern = new RegExp(`(${slots.map((s: any) => escapeRegExp(s.label)).join('|')})`, 'g');
-
-    // Split text by labels
-    const parts = text.split(pattern);
-
     return (
-      <ThemedText style={[styles.questionText, isLongText && styles.questionTextSmall, { lineHeight: 40 }]}>
-        {parts.map((part: string, index: number) => {
-          const slot = slots.find((s: any) => s.label === part);
-          if (slot) {
-            const selected = slotSelections[slot.label];
-            return (
-              <Pressable key={index} onPress={() => handleSlotPress(slot)} style={styles.slotButton}>
-                <ThemedText style={styles.slotButtonText}>
-                  {selected || part}
-                </ThemedText>
-              </Pressable>
-            );
-          }
-          return <ThemedText key={index} style={[styles.questionText, isLongText && styles.questionTextSmall]}>{part}</ThemedText>;
-        })}
-      </ThemedText>
+      <ThemedView style={[
+        styles.questionContainer,
+        {
+          borderColor: colors.choiceBorder,
+          backgroundColor: colors.card,
+        }
+      ]}>
+        {content}
+      </ThemedView>
     );
   };
 
@@ -179,7 +223,14 @@ export default function QuestionScreen() {
     if (!question) return [];
 
     // Map to object with original index
-    const choicesWithIndex = question.choices.map((text: string, index: number) => ({ text, originalIndex: index }));
+    let choicesWithIndex = question.choices.map((text: string, index: number) => ({ text, originalIndex: index }));
+
+    // [NEW] Filter choices based on mode
+    if (mode !== 'bonus') {
+      // In Normal Mode, hide choices with '※'
+      choicesWithIndex = choicesWithIndex.filter(c => !c.text.includes('※'));
+    }
+    // In Bonus Mode, show all (no filter)
 
     // Shuffle (Fisher-Yates)
     for (let i = choicesWithIndex.length - 1; i > 0; i--) {
@@ -188,7 +239,7 @@ export default function QuestionScreen() {
     }
 
     return choicesWithIndex;
-  }, [question]);
+  }, [question, mode]);
 
   if (!subject || !field || !question) {
     return (
@@ -209,6 +260,7 @@ export default function QuestionScreen() {
           {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length})` : ''}
           {mode === 'bonus' ? ' ★ボーナスステージ★' : ''}
         </ThemedText>
+
         {renderQuestionText()}
 
         {/* Word Bank for Cloze Questions */}
@@ -234,8 +286,16 @@ export default function QuestionScreen() {
         <ThemedView style={styles.choices}>
           {shuffledChoices.map((choiceObj: { text: string; originalIndex: number }, index: number) => {
             if (!choiceObj || !choiceObj.text) return null; // Guard against null/empty choices
-            const isDisabled = choiceObj.text.includes('※');
+
+            // [NEW] Display Logic: Strip '※'
+            const displayText = choiceObj.text.replace(/※/g, '');
+            // In Bonus mode, they are enabled, so no disabled logic based on ※ anymore
+            const isDisabled = false;
             const isDimmed = dimmedIndices.includes(index);
+
+            // [NEW] Multi-select Logic
+            const isMultiSelect = (question as any).answer && (question as any).answer.length > 1;
+            const isSelected = selectedIndices.includes(choiceObj.originalIndex);
 
             return (
               <Pressable
@@ -247,7 +307,8 @@ export default function QuestionScreen() {
                     borderColor: colors.choiceBorder
                   },
                   isDisabled && styles.choiceButtonDisabled,
-                  isDimmed && { opacity: 0.3 } // Dim the button
+                  isDimmed && { opacity: 0.3 }, // Dim the button
+                  (isMultiSelect && isSelected) && { backgroundColor: '#E3F2FD', borderColor: '#2196F3', borderWidth: 2 }
                 ]}
                 disabled={isDisabled}
                 onLongPress={() => {
@@ -260,34 +321,67 @@ export default function QuestionScreen() {
                   });
                 }}
                 delayLongPress={200} // Set delay specifically for web responsiveness
-                onPress={() =>
-                  router.push({
-                    pathname: '/result',
-                    params: {
-                      subject,
-                      field,
-                      questionIndex: String(questionIndex), // Pass current index
-                      pickedIndex: String(choiceObj.originalIndex),
-                      // correctIndices: JSON.stringify(question.answer), // Removed
-                      // text: question.text, // Removed
-                      // explain: question.explain, // Removed
-                      // memo: question.memo || '', // Removed
-                      // choices: JSON.stringify(question.choices), // Removed
-                      totalQuestions: String(questions.length),
-                      correctCountSession: params.correctCountSession || '0', // Pass through or init
-                      // refId: (question as any).refId || '', // Removed (Result will lookup)
-                    },
-                  })
-                }>
+                onPress={() => {
+                  if (isMultiSelect) {
+                    setSelectedIndices(prev => {
+                      if (prev.includes(choiceObj.originalIndex)) return prev.filter(i => i !== choiceObj.originalIndex);
+                      return [...prev, choiceObj.originalIndex];
+                    });
+                  } else {
+                    router.push({
+                      pathname: '/result',
+                      params: {
+                        subject,
+                        field,
+                        questionIndex: String(questionIndex), // Pass current index
+                        pickedIndex: String(choiceObj.originalIndex),
+                        // correctIndices: JSON.stringify(question.answer), // Removed
+                        // text: question.text, // Removed
+                        // explain: question.explain, // Removed
+                        // memo: question.memo || '', // Removed
+                        // choices: JSON.stringify(question.choices), // Removed
+                        totalQuestions: String(questions.length),
+                        correctCountSession: params.correctCountSession || '0', // Pass through or init
+                        // refId: (question as any).refId || '', // Removed (Result will lookup)
+                      },
+                    });
+                  }
+                }}
+              >
                 <ThemedText style={[
                   styles.choiceText,
                   { color: colors.choiceText },
-                  isDisabled && styles.choiceTextDisabled
-                ]}>{choiceObj.text}</ThemedText>
+                  isDisabled && styles.choiceTextDisabled,
+                  (isMultiSelect && isSelected) && { color: '#1565C0', fontWeight: 'bold' }
+                ]}>{displayText}</ThemedText>
               </Pressable>
             );
           })}
         </ThemedView>
+
+        {/* Answer Button for Multi-Select */}
+        {((question as any).answer && (question as any).answer.length > 1) && (
+          <Pressable
+            style={[styles.answerButton, selectedIndices.length === 0 && styles.answerButtonDisabled]}
+            disabled={selectedIndices.length === 0}
+            onPress={() => {
+              router.push({
+                pathname: '/result',
+                params: {
+                  subject,
+                  field,
+                  questionIndex: String(questionIndex),
+                  pickedIndex: '-1', // Placeholder
+                  pickedIndices: JSON.stringify(selectedIndices), // NEW
+                  totalQuestions: String(questions.length),
+                  correctCountSession: params.correctCountSession || '0',
+                }
+              });
+            }}
+          >
+            <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
+          </Pressable>
+        )}
 
         <View style={styles.navigationContainer}>
           <Pressable style={[styles.navButton, { backgroundColor: colors.accent }]} onPress={goToPrev}>
@@ -307,6 +401,35 @@ export default function QuestionScreen() {
             <ThemedText style={styles.navButtonText}>次へ →</ThemedText>
           </Pressable>
         </View>
+
+        <Link href="/subjects" replace asChild>
+          <Pressable style={StyleSheet.flatten([
+            styles.choiceButton,
+            {
+              backgroundColor: '#fff',
+              borderColor: '#5A9BD5',
+              borderWidth: 2,
+              elevation: 0,
+              marginBottom: 12
+            }
+          ])}>
+            <ThemedText type="defaultSemiBold" style={{ color: '#5A9BD5', fontSize: 16 }}>科目選択</ThemedText>
+          </Pressable>
+        </Link>
+        <Link href="/" replace asChild>
+          <Pressable style={StyleSheet.flatten([
+            styles.choiceButton,
+            {
+              backgroundColor: '#fff',
+              borderColor: '#757575',
+              borderWidth: 2,
+              elevation: 0,
+              marginBottom: 40
+            }
+          ])}>
+            <ThemedText type="defaultSemiBold" style={{ color: '#757575', fontSize: 16 }}>メインメニューへ</ThemedText>
+          </Pressable>
+        </Link>
 
         {/* Resource Modal */}
         <Modal
@@ -376,6 +499,21 @@ const styles = StyleSheet.create({
   },
   subject: {
     opacity: 0.7,
+  },
+  questionContainer: {
+    padding: 20,
+    borderRadius: 12,
+    borderWidth: 2,
+    marginBottom: 8,
+    // Shadows for depth
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 3.84,
+    elevation: 2,
   },
   questionText: {
     lineHeight: 36, // Increased line height
@@ -574,5 +712,27 @@ const styles = StyleSheet.create({
   pagingButtonText: {
     color: '#fff',
     fontWeight: 'bold',
+  },
+  answerButton: {
+    marginVertical: 20,
+    backgroundColor: '#FF9800',
+    padding: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  answerButtonDisabled: {
+    backgroundColor: '#FFE0B2',
+    elevation: 0,
+  },
+  answerButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 20,
+    letterSpacing: 2,
   },
 });

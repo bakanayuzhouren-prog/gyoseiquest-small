@@ -1,0 +1,9 @@
+Processing 2025 lec1隗｣遲・(2).pdf with OCR...
+PDF loaded. Total pages: 57
+Processing page 1/57...
+Error during OCR processing: TypeError: Image or Canvas expected
+    at drawImageAtIntegerCoords (file:///C:/Users/teras/OneDrive/%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97/%E8%87%AA%E4%BD%9C%E3%82%A2%E3%83%97%E3%83%AA/gyosei-quest-small/node_modules/pdfjs-dist/legacy/build/pdf.mjs:16763:9)
+    at CanvasGraphics.paintInlineImageXObject (file:///C:/Users/teras/OneDrive/%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97/%E8%87%AA%E4%BD%9C%E3%82%A2%E3%83%97%E3%83%AA/gyosei-quest-small/node_modules/pdfjs-dist/legacy/build/pdf.mjs:18530:5)
+    at CanvasGraphics.paintImageXObject (file:///C:/Users/teras/OneDrive/%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97/%E8%87%AA%E4%BD%9C%E3%82%A2%E3%83%97%E3%83%AA/gyosei-quest-small/node_modules/pdfjs-dist/legacy/build/pdf.mjs:18452:10)
+    at CanvasGraphics.executeOperatorList (file:///C:/Users/teras/OneDrive/%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97/%E8%87%AA%E4%BD%9C%E3%82%A2%E3%83%97%E3%83%AA/gyosei-quest-small/node_modules/pdfjs-dist/legacy/build/pdf.mjs:17124:23)
+    at InternalRenderTask._next (file:///C:/Users/teras/OneDrive/%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97/%E8%87%AA%E4%BD%9C%E3%82%A2%E3%83%97%E3%83%AA/gyosei-quest-small/node_modules/pdfjs-dist/legacy/build/pdf.mjs:22449:37)

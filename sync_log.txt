@@ -1,0 +1,23 @@
+
+> gyosei-quest-small@1.0.0 sync:learn
+> node scripts/syncLearn.js
+
+[dotenv@17.2.3] injecting env (4) from .env -- tip: 笞呻ｸ・ suppress all logs with { quiet: true }
+Syncing from spreadsheet: 17JnEROPXhPt6j7DmmwTHDlFilMirhd9bnpOJ7gBixxs
+Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱・
+Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ托ｼ・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・郁｡梧帆豕慕ｷ剰ｫ厄ｼ・Skipping noisy content: 譚｡譁・..
+Title: "陦梧帆豕慕ｷ剰ｫ・, Normalized: "陦梧帆豕慕ｷ剰ｫ・, CharCodes: 884c,653f,6cd5,7dcf,8ad6
+Skipping content matching generic placeholder: 蜀・ｮｹ・郁｡梧帆豕慕ｷ剰ｫ厄ｼ・Skipping noisy content: 豕穂ｺｺ遞取ｳ輔↓隕丞ｮ壹☆繧玖ｳｪ蝠上∵､懈渊縺ｯ險ｼ諡雉・侭縺ｮ蜿門ｾ励∬ｪｿ譟ｻ縲∵骨譟ｻ縺ｮ縺・..
+Skipping non-problem sheet: 隗｣隱ｬ雉・侭・郁｡梧焔・・Skipping noisy content: 陦梧帆蠎√′蠖謎ｺ玖・♀繧医・蜿ょ刈莠ｺ縺九ｉ縲∽ｸ榊茜逶雁・蛻・・莠句ｮ溘ｒ險ｼ縺吶ｋ雉・侭...
+Skipping noisy content: 閨ｴ閨槭・蠖謎ｺ玖・♀繧医・蜿ょ刈莠ｺ縺ｯ縲∬・閨槭′邨らｵ舌☆繧九∪縺ｧ縺ｯ縲∬｡梧帆蠎√↓蟇ｾ...
+Skipping noisy content: 荳榊茜逶雁・縺ｮ蜷榊ｮ帑ｺｺ縺ｯ縲∬・閨樒ｵらｵ舌∪縺ｧ縺ｮ髢薙∬｡梧帆蠎√↓蟇ｾ縺励∽ｸ榊茜逶雁・...
+Skipping non-problem sheet: 隗｣隱ｬ雉・侭・郁｡悟ｯｩ・・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・郁｡瑚ｨｴ・・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥嵜雉・・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥慍譁ｹ閾ｪ豐ｻ豕包ｼ・Title: "陦梧帆豕慕ｷ丞粋", Normalized: "陦梧帆豕慕ｷ丞粋", CharCodes: 884c,653f,6cd5,7dcf,5408
+Skipping non-problem sheet: 隗｣隱ｬ雉・侭・育ｷ丞援・・Title: "豌第ｳ慕ｷ剰ｫ・, Normalized: "豌第ｳ慕ｷ剰ｫ・, CharCodes: 6c11,6cd5,7dcf,8ad6
+Skipping non-problem sheet: 隗｣隱ｬ雉・侭・育黄讓ｩ・・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥し讓ｩ邱剰ｫ厄ｼ・Title: "蛯ｵ讓ｩ邱剰ｫ・, Normalized: "蛯ｵ讓ｩ邱剰ｫ・, CharCodes: 50b5,6a29,7dcf,8ad6
+Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥し讓ｩ蜷・ｫ厄ｼ・Skipping noisy content: 譛ｪ遒ｺ遶九・蛹ｻ逋ゅ↓縺､縺・※繧ゅ∫憾豕√↓繧医▲縺ｦ縺ｯ隱ｬ譏守ｾｩ蜍吶ｒ雋縺・..
+Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥ｮｶ譌擾ｼ・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥ｮｶ譌乗ｳ包ｼ・No data in sheet: 豌第ｳ募・闊ｬ
+Skipping non-problem sheet: 隗｣隱ｬ雉・侭・域・豕墓擅譁・ｼ・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・域・豕募愛萓具ｼ・Skipping noisy content: 荳榊茜逶贋ｾ幄ｿｰ縺ｮ蠑ｷ隕√・遖∵ｭ｢縺ｫ髢｢縺吶ｋ諞ｲ豕輔・菫晞囿縺ｯ縲∝ｮ溯ｳｪ荳翫∝・莠玖ｲｬ莉ｻ...
+Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥膚繝ｻ莨夲ｼ・No data in sheet: 蝓ｺ遉取ｳ募ｭｦ
+Skipping noisy content: 蝗ｳ譖ｸ鬢ｨ縺ｮ閨ｷ蜩｡縺ｯ縲∝・豁｣縺ｫ蝗ｳ譖ｸ鬢ｨ雉・侭繧貞叙繧頑桶縺・∋縺阪∬・蜍吩ｸ翫・鄒ｩ蜍・..
+Skipping noisy content: ・亥酔豕輔・譚｡譁・・陦ｨ迴ｾ繧定ｸ上∪縺医※險倥☆縺薙→縲ゑｼ峨≫造縺ｩ縺ｮ繧医≧縺ｪ險ｴ險溘ｒ...
+learn.js synced successfully to C:\Users\teras\OneDrive\繝・せ繧ｯ繝医ャ繝予閾ｪ菴懊い繝励Μ\gyosei-quest-small\src\learn.js
