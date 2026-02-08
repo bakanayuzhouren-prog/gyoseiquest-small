@@ -6,14 +6,14 @@ import { useTheme } from '@/src/context/ThemeContext';
 import { LEARN_CONTENT } from '@/src/learn';
 import { SUBJECTS } from '@/src/questions';
 import { applyTTSRules } from '@/utils/tts-rules';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
 import { useEffect, useState } from 'react';
-import { Platform, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { FlatList, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 export default function ReferencePage() {
-    const { subject, id } = useLocalSearchParams();
+    const { subject, id, originSubject, originId } = useLocalSearchParams();
     const router = useRouter();
     const { colors } = useTheme();
     const { applyCharacterNames } = useCharacter();
@@ -36,6 +36,9 @@ export default function ReferencePage() {
 
     // Mini Player State
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isChunkModalVisible, setIsChunkModalVisible] = useState(false);
+
+    const chunks = foundQuestion?.chunks || [];
 
     useEffect(() => {
         return () => { Speech.stop(); };
@@ -224,9 +227,83 @@ export default function ReferencePage() {
                 </ThemedView>
             </ScrollView>
 
-            <Pressable onPress={() => router.back()} style={styles.backButton}>
+            {chunks.length > 0 && (
+                <Pressable
+                    onPress={() => setIsChunkModalVisible(true)}
+                    style={[styles.chunkButton, { backgroundColor: colors.card, borderColor: colors.primary + '40' }]}
+                >
+                    <MaterialCommunityIcons name="infinity" size={32} color={colors.primary} />
+                </Pressable>
+            )}
+
+            <Pressable
+                onPress={() => {
+                    if (originSubject && originId) {
+                        router.replace({
+                            pathname: `/learn/[subject]` as any,
+                            params: { subject: originSubject }
+                        });
+                    } else {
+                        router.back();
+                    }
+                }}
+                style={styles.backButton}
+            >
                 <ThemedText style={{ color: colors.primary, fontWeight: 'bold' }}>学習へ戻る</ThemedText>
             </Pressable>
+
+            {/* Chunk Selection Modal */}
+            <Modal
+                visible={isChunkModalVisible}
+                transparent={true}
+                animationType="fade"
+                onRequestClose={() => setIsChunkModalVisible(false)}
+            >
+                <Pressable
+                    style={styles.modalOverlay}
+                    onPress={() => setIsChunkModalVisible(false)}
+                >
+                    <ThemedView style={[styles.modalContent, { backgroundColor: colors.card }]}>
+                        <ThemedText style={styles.modalTitle}>関連知識をチャンクする (∞)</ThemedText>
+                        <FlatList
+                            data={chunks}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item }) => (
+                                <Pressable
+                                    onPress={() => {
+                                        setIsChunkModalVisible(false);
+                                        router.replace({
+                                            pathname: `/learn/reference/[subject]/[id]` as any,
+                                            params: {
+                                                subject: item.subject,
+                                                id: item.id,
+                                                originSubject: originSubject || subjectName,
+                                                originId: originId || id
+                                            }
+                                        });
+                                    }}
+                                    style={({ pressed }) => [
+                                        styles.chunkItem,
+                                        { borderBottomColor: colors.choiceBorder, backgroundColor: pressed ? colors.primary + '10' : 'transparent' }
+                                    ]}
+                                >
+                                    <View style={styles.chunkItemHeader}>
+                                        <MaterialCommunityIcons name="link-variant" size={20} color={colors.primary} />
+                                        <ThemedText style={[styles.chunkItemSubject, { color: colors.primary }]}>{item.subject}</ThemedText>
+                                    </View>
+                                    <ThemedText style={styles.chunkItemTitle}>{item.title}</ThemedText>
+                                </Pressable>
+                            )}
+                        />
+                        <Pressable
+                            onPress={() => setIsChunkModalVisible(false)}
+                            style={[styles.closeButton, { backgroundColor: colors.primary }]}
+                        >
+                            <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>閉じる</ThemedText>
+                        </Pressable>
+                    </ThemedView>
+                </Pressable>
+            </Modal>
 
             {/* Mini Player */}
             <ThemedView style={[styles.miniPlayer, { borderTopColor: colors.choiceBorder, backgroundColor: colors.background }]}>
@@ -274,6 +351,67 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         paddingVertical: 8,
         paddingHorizontal: 16,
+    },
+    chunkButton: {
+        alignSelf: 'center',
+        marginBottom: 10,
+        width: 56,
+        height: 56,
+        borderRadius: 28,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2,
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+        elevation: 3,
+    },
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+    },
+    modalContent: {
+        width: '100%',
+        maxWidth: 400,
+        borderRadius: 16,
+        padding: 24,
+        maxHeight: '80%',
+    },
+    modalTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        textAlign: 'center',
+    },
+    chunkItem: {
+        paddingVertical: 16,
+        paddingHorizontal: 12,
+        borderBottomWidth: 1,
+    },
+    chunkItemHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        marginBottom: 4,
+    },
+    chunkItemSubject: {
+        fontSize: 12,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+    },
+    chunkItemTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+    },
+    closeButton: {
+        marginTop: 20,
+        paddingVertical: 12,
+        borderRadius: 8,
+        alignItems: 'center',
     },
     miniPlayer: {
         flexDirection: 'row',
