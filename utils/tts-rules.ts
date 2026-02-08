@@ -2,6 +2,7 @@ export const applyTTSRules = (text: string): string => {
     return text
         .replace(/※.*$/g, '')
         // New rules added
+        .replace(/家庭裁判所/g, 'かていさいばんしょ')
         .replace(/後順位抵当権者/g, 'こうじゅんいていとうけんしゃ')
         .replace(/制限行為能力者/g, 'せいげんこういのうりょくしゃ')
         .replace(/意思能力者/g, 'いしのうりょくしゃ')

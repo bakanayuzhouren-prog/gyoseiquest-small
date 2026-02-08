@@ -162,9 +162,12 @@ export default function LearnSubjectScreen() {
         await Speech.stop();
         setSpokenIndex(0);
 
-        const currentMainText = currentDisplayContent.includes('※')
+        let currentMainText = currentDisplayContent.includes('※')
           ? currentDisplayContent.split('※')[0]
           : currentDisplayContent;
+
+        // Strip [[LINK...]] patterns
+        currentMainText = currentMainText.replace(/\[\[LINK:.*?\]\]/g, '');
 
         const spokenText = applyTTSRules(currentMainText);
         Speech.speak(spokenText, {
@@ -373,12 +376,15 @@ export default function LearnSubjectScreen() {
               </Pressable>
             ) : null}
 
-            {digDeeperUrl ? (
-              <Pressable style={styles.digDeeperButton} onPress={handleOpenDeepDive}>
-                <MaterialIcons name="article" size={20} color="#fff" />
-                <ThemedText style={styles.digDeeperText}>もっと深掘る</ThemedText>
-              </Pressable>
-            ) : null}
+            {/* Play/Stop Button (Swapped position) */}
+            <Pressable
+              style={[styles.playButton, isPlaying ? styles.stopButton : styles.startButton]}
+              onPress={handleTogglePlay}
+            >
+              <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>
+                {isPlaying ? '■ 停止' : '▶ 再生 (3回ずつ連続)'}
+              </ThemedText>
+            </Pressable>
           </ThemedView>
 
           {/* Speed Controls */}
@@ -409,15 +415,13 @@ export default function LearnSubjectScreen() {
             </Pressable>
           </ThemedView>
 
-          {/* Play/Stop Button */}
-          <Pressable
-            style={[styles.playButton, isPlaying ? styles.stopButton : styles.startButton]}
-            onPress={handleTogglePlay}
-          >
-            <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>
-              {isPlaying ? '■ 停止' : '▶ 再生 (3回ずつ連続)'}
-            </ThemedText>
-          </Pressable>
+          {/* Deep Dive Button (Swapped position) */}
+          {digDeeperUrl ? (
+            <Pressable style={styles.digDeeperButton} onPress={handleOpenDeepDive}>
+              <MaterialIcons name="article" size={20} color="#fff" />
+              <ThemedText style={styles.digDeeperText}>もっと深掘る</ThemedText>
+            </Pressable>
+          ) : null}
 
           <ThemedText style={styles.count}>読んだ回数: {readCount} (現在:{currentReadCount}/3)</ThemedText>
 
