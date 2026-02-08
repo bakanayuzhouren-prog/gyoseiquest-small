@@ -13,7 +13,9 @@ export interface ThemeColors {
     choiceBorder: string;
     choiceText: string;
     accent: string;
+
     subText: string;
+    tint?: string;
 }
 
 export const Themes: Record<ThemeType, ThemeColors> = {

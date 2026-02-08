@@ -211,7 +211,7 @@ export default function ResultScreen() {
         <ThemedText style={[styles.answerText, { color: colors.text }]}>正解: {correctAnswersText}</ThemedText>
 
         <ThemedText type="subtitle" style={styles.explainTitle}>
-          解説
+          もっと深掘る！
         </ThemedText>
         <View style={!isExplainExpanded ? styles.collapsedExplain : undefined}>
           <MarkdownText text={explain || ''} />
@@ -221,7 +221,7 @@ export default function ResultScreen() {
           onPress={() => setIsExplainExpanded(!isExplainExpanded)}
         >
           <ThemedText style={{ color: '#007BFF' }}>
-            {isExplainExpanded ? '▲ 解説を閉じる' : '▼ 解説をすべて読む'}
+            {isExplainExpanded ? '▲ 閉じる' : '▼ もっと深掘る（解説を読む）'}
           </ThemedText>
         </Pressable>
 
@@ -259,10 +259,10 @@ export default function ResultScreen() {
           <Link href={`/pin/${linkedCase.category}/${linkedCase.id}`} asChild>
             <Pressable style={styles.caseButton}>
               <ThemedText style={styles.caseButtonText}>
-                📌 判例図解を見る
+                {linkedCase.category === 'kenpo' ? '📌 判例図解を見る' : '📌 詳細解説を見る'}
               </ThemedText>
               <ThemedText style={styles.resourceButtonSubText}>
-                ※図解でわかりやすく解説
+                {linkedCase.category === 'kenpo' ? '※図解でわかりやすく解説' : '※表や図で整理して解説'}
               </ThemedText>
             </Pressable>
           </Link>

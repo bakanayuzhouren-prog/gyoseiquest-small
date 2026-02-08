@@ -57,6 +57,7 @@ export default function LearnSubjectScreen() {
   const [isPriorityMode, setIsPriorityMode] = useState(false);
   const [notes, setNotes] = useState<LearnNote[]>([]);
 
+
   const { theme, colors } = useTheme();
 
   // Stop speech when leaving screen
@@ -139,6 +140,20 @@ export default function LearnSubjectScreen() {
   const [mainText, basisText] = contentToProcess.includes('※')
     ? [contentToProcess.split('※')[0], '※' + contentToProcess.split('※')[1]]
     : [contentToProcess, ''];
+
+  const handleOpenDeepDive = () => {
+    if (!digDeeperUrl || !subject) return;
+
+    // Parse the ID (question index)
+    const questionIndex = parseInt(digDeeperUrl, 10);
+    if (isNaN(questionIndex)) return;
+
+    // Navigate to reference page
+    router.push({
+      pathname: `/learn/reference/[subject]/[id]` as any,
+      params: { subject: subject, id: questionIndex }
+    });
+  };
 
   // Continuous Playback Effect
   useEffect(() => {
@@ -359,12 +374,10 @@ export default function LearnSubjectScreen() {
             ) : null}
 
             {digDeeperUrl ? (
-              <Link href={digDeeperUrl as any} asChild>
-                <Pressable style={styles.digDeeperButton}>
-                  <MaterialIcons name="article" size={20} color="#fff" />
-                  <ThemedText style={styles.digDeeperText}>もっと深掘る</ThemedText>
-                </Pressable>
-              </Link>
+              <Pressable style={styles.digDeeperButton} onPress={handleOpenDeepDive}>
+                <MaterialIcons name="article" size={20} color="#fff" />
+                <ThemedText style={styles.digDeeperText}>もっと深掘る</ThemedText>
+              </Pressable>
             ) : null}
           </ThemedView>
 
@@ -459,6 +472,7 @@ export default function LearnSubjectScreen() {
             themeColors={colors}
           />
         ))}
+
       </ThemedView>
     </GestureHandlerRootView>
   );
