@@ -6,6 +6,7 @@ import { Alert, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } f
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { characterPlaceholders, defaultCharacterMap, useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import { LEARN_CONTENT } from '@/src/learn';
 import { PIN_CASES } from '@/src/pinData';
@@ -56,6 +57,9 @@ export default function LearnSubjectScreen() {
   const [isSticky, setIsSticky] = useState(false);
   const [isPriorityMode, setIsPriorityMode] = useState(false);
   const [notes, setNotes] = useState<LearnNote[]>([]);
+  const [isCharacterModalVisible, setIsCharacterModalVisible] = useState(false);
+
+  const { characterMap, updateCharacterName, applyCharacterNames } = useCharacter();
 
 
   const { theme, colors } = useTheme();
@@ -162,14 +166,17 @@ export default function LearnSubjectScreen() {
         await Speech.stop();
         setSpokenIndex(0);
 
-        let currentMainText = currentDisplayContent.includes('※')
+        const currentMainText = currentDisplayContent.includes('※')
           ? currentDisplayContent.split('※')[0]
           : currentDisplayContent;
 
         // Strip [[LINK...]] patterns
-        currentMainText = currentMainText.replace(/\[\[LINK:.*?\]\]/g, '');
+        let processedText = currentMainText.replace(/\[\[LINK:.*?\]\]/g, '');
 
-        const spokenText = applyTTSRules(currentMainText);
+        // Apply character name replacements
+        processedText = applyCharacterNames(processedText);
+
+        const spokenText = applyTTSRules(processedText);
         Speech.speak(spokenText, {
           language: 'ja',
           rate: playbackRate,
@@ -358,15 +365,24 @@ export default function LearnSubjectScreen() {
                 />
                 <ThemedText style={[styles.stickyText, isSticky && styles.stickyTextActive]}>付箋</ThemedText>
               </Pressable>
+
+              {/* Character Settings Button */}
+              <Pressable
+                style={styles.stickyButton}
+                onPress={() => setIsCharacterModalVisible(true)}
+              >
+                <MaterialIcons name="people" size={20} color={colors.text} />
+                <ThemedText style={styles.stickyText}>登場人物</ThemedText>
+              </Pressable>
             </ThemedView>
           </ThemedView>
 
           <ThemedView style={styles.contentContainer}>
             <ThemedText style={styles.content}>
               <ThemedText style={[styles.content, { color: colors.primary, fontWeight: 'bold' }]}>
-                {mainText.substring(0, spokenIndex)}
+                {applyCharacterNames(mainText.substring(0, spokenIndex))}
               </ThemedText>
-              {mainText.substring(spokenIndex)}
+              {applyCharacterNames(mainText.substring(spokenIndex))}
             </ThemedText>
             {basisText ? (
               <Pressable onPress={handleBasisPress}>
@@ -477,7 +493,47 @@ export default function LearnSubjectScreen() {
           />
         ))}
 
+        {/* Character Settings Modal */}
+        {isCharacterModalVisible && (
+          <View style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' }]}>
+            <ThemedView style={{ width: '80%', padding: 20, borderRadius: 10, backgroundColor: colors.card, maxHeight: '80%' }}>
+              <ThemedText type="subtitle" style={{ marginBottom: 15 }}>登場人物の設定</ThemedText>
+              <ScrollView style={{ marginBottom: 15 }}>
+                {Object.entries(characterMap).map(([original, current]) => (
+                  <View key={original} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+                    <ThemedText style={{ width: 80, textAlign: 'center', fontWeight: 'bold' }}>
+                      {defaultCharacterMap[original] || original}
+                    </ThemedText>
+                    <MaterialIcons name="arrow-forward" size={16} color={colors.text} style={{ marginHorizontal: 5 }} />
+                    <TextInput
+                      style={{
+                        flex: 1,
+                        borderWidth: 1,
+                        borderColor: colors.choiceBorder,
+                        borderRadius: 5,
+                        padding: 8,
+                        color: colors.text,
+                        backgroundColor: colors.background
+                      }}
+                      value={current === defaultCharacterMap[original] ? '' : current}
+                      placeholder={characterPlaceholders[original]}
+                      placeholderTextColor={colors.subText || "#999"}
+                      onChangeText={(text) => updateCharacterName(original, text)}
+                    />
+                  </View>
+                ))}
+              </ScrollView>
+              <Pressable
+                style={{ backgroundColor: colors.primary, padding: 10, borderRadius: 5, alignItems: 'center' }}
+                onPress={() => setIsCharacterModalVisible(false)}
+              >
+                <ThemedText style={{ color: '#fff', fontWeight: 'bold' }}>閉じる</ThemedText>
+              </Pressable>
+            </ThemedView>
+          </View>
+        )}
       </ThemedView>
+
     </GestureHandlerRootView>
   );
 }

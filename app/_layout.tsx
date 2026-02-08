@@ -6,6 +6,7 @@ import { Platform } from 'react-native';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { CharacterProvider } from '@/src/context/CharacterContext';
 import { ThemeProvider as CustomThemeProvider } from '@/src/context/ThemeContext';
 import { UserProvider } from '@/src/context/UserContext';
 
@@ -37,16 +38,18 @@ export default function RootLayout() {
   return (
     <CustomThemeProvider>
       <UserProvider>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="login" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-            <Stack.Screen name="settings" options={{ presentation: 'modal', title: '設定' }} />
-            <Stack.Screen name="avatar" options={{ headerShown: false }} />
-          </Stack>
-          <StatusBar style="auto" />
-        </ThemeProvider>
+        <CharacterProvider>
+          <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="login" options={{ headerShown: false }} />
+              <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+              <Stack.Screen name="settings" options={{ presentation: 'modal', title: '設定' }} />
+              <Stack.Screen name="avatar" options={{ headerShown: false }} />
+            </Stack>
+            <StatusBar style="auto" />
+          </ThemeProvider>
+        </CharacterProvider>
       </UserProvider>
     </CustomThemeProvider>
   );

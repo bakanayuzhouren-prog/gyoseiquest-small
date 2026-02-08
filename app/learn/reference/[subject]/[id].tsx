@@ -1,6 +1,7 @@
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import { LEARN_CONTENT } from '@/src/learn';
 import { SUBJECTS } from '@/src/questions';
@@ -15,6 +16,7 @@ export default function ReferencePage() {
     const { subject, id } = useLocalSearchParams();
     const router = useRouter();
     const { colors } = useTheme();
+    const { applyCharacterNames } = useCharacter();
 
     const questionIndex = parseInt(Array.isArray(id) ? id[0] : id || '0', 10);
     const subjectName = Array.isArray(subject) ? subject[0] : subject || '';
@@ -61,6 +63,9 @@ export default function ReferencePage() {
 
             // Just in case, clean up any remaining potential tags
             contentToRead = contentToRead.replace(/\[\[.*?\]\]/g, '');
+
+            // Apply character name replacements
+            contentToRead = applyCharacterNames(contentToRead);
 
             // Apply TTS rules
             const spokenText = applyTTSRules(contentToRead);
@@ -168,7 +173,9 @@ export default function ReferencePage() {
     };
 
     const renderContent = (text: string) => {
-        const lines = text.split('\n');
+        // Apply character names before parsing rich text
+        const processedText = applyCharacterNames(text);
+        const lines = processedText.split('\n');
         return lines.map((line, lineIndex) => {
             const parsedLine = parseRichText(line);
             return (
