@@ -13,10 +13,16 @@ import { useEffect, useState } from 'react';
 import { FlatList, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 // Use import for static assets to ensure bundler resolves it correctly
+import chachalot from '@/assets/images/characters/chachalot.png';
+import kachadokuro from '@/assets/images/characters/kachadokuro.png';
+import taskTurtle from '@/assets/images/characters/task_turtle.png';
 import summaryDiagram from '@/assets/images/summary_diagram_v4.jpg';
 
 const IMAGE_MAP: Record<string, any> = {
     'summary_diagram': summaryDiagram,
+    'chachalot': chachalot,
+    'task': taskTurtle,
+    'kachadokuro': kachadokuro,
 };
 
 export default function ReferencePage() {
