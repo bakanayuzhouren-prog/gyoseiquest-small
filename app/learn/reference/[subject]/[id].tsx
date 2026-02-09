@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { FlatList, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 // Use import for static assets to ensure bundler resolves it correctly
+import agencyDiagram from '@/assets/images/agency_diagram.jpg';
 import chachalot from '@/assets/images/characters/chachalot.png';
 import kachadokuro from '@/assets/images/characters/kachadokuro.png';
 import kingKachadokuro from '@/assets/images/characters/king_kachadokuro.png';
@@ -29,6 +30,7 @@ const IMAGE_MAP: Record<string, any> = {
     'king_kachadokuro': kingKachadokuro,
     'princess_kachadokuro': princessKachadokuro,
     'pitchi': pitchi,
+    'agency_diagram': agencyDiagram,
 };
 
 export default function ReferencePage() {
@@ -51,7 +53,11 @@ export default function ReferencePage() {
         }
     }
 
-    const explainText = foundQuestion?.explain || '解説が見つかりませんでした。';
+    // Override for Agency Personation Diagram (Workaround for large questions.js)
+    let explainText = foundQuestion?.explain || '解説が見つかりませんでした。';
+    if (subjectName === '民法総論' && questionIndex === 54) {
+        explainText = "[[image:agency_diagram]]";
+    }
 
     // Mini Player State
     const [isPlaying, setIsPlaying] = useState(false);
@@ -207,12 +213,14 @@ export default function ReferencePage() {
                 const imageSource = IMAGE_MAP[part.content];
                 if (imageSource) {
                     return (
-                        <View key={lineIndex} style={{ width: '100%', aspectRatio: 16 / 9, marginVertical: 10 }}>
-                            <Image
-                                source={imageSource}
-                                style={{ width: '100%', height: '100%' }}
-                                resizeMode="contain"
-                            />
+                        <View key={lineIndex} style={{ width: '100%', alignItems: 'center', marginVertical: 5 }}>
+                            <View style={{ width: '40%', minHeight: 120, aspectRatio: 3 / 4 }}>
+                                <Image
+                                    source={imageSource}
+                                    style={{ width: '100%', height: '100%' }}
+                                    resizeMode="contain"
+                                />
+                            </View>
                         </View>
                     );
                 }
@@ -279,7 +287,7 @@ export default function ReferencePage() {
                 </ThemedView>
             </ScrollView>
 
-            {chunks.length > 0 && (
+            {(chunks.length > 0 && !(subjectName === '民法総論' && questionIndex === 54)) && (
                 <Pressable
                     onPress={() => setIsChunkModalVisible(true)}
                     style={[styles.chunkButton, { backgroundColor: colors.card, borderColor: colors.primary + '40' }]}

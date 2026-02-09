@@ -434,8 +434,14 @@ export default function LearnSubjectScreen() {
           {/* Deep Dive Button (Swapped position) */}
           {digDeeperUrl ? (
             <Pressable style={styles.digDeeperButton} onPress={handleOpenDeepDive}>
-              <MaterialIcons name="article" size={20} color="#fff" />
-              <ThemedText style={styles.digDeeperText}>もっと深掘る</ThemedText>
+              <MaterialIcons
+                name={(digDeeperUrl === '54' && subject === '民法総論') ? "brush" : "article"}
+                size={20}
+                color="#fff"
+              />
+              <ThemedText style={styles.digDeeperText}>
+                {(digDeeperUrl === '54' && subject === '民法総論') ? "絵で覚える" : "もっと深掘る"}
+              </ThemedText>
             </Pressable>
           ) : null}
 
