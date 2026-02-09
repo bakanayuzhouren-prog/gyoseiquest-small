@@ -10,7 +10,14 @@ import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
 import { useEffect, useState } from 'react';
-import { FlatList, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { FlatList, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+
+// Use import for static assets to ensure bundler resolves it correctly
+import summaryDiagram from '@/assets/images/summary_diagram_v4.jpg';
+
+const IMAGE_MAP: Record<string, any> = {
+    'summary_diagram': summaryDiagram,
+};
 
 export default function ReferencePage() {
     const { subject, id, originSubject, originId } = useLocalSearchParams();
@@ -141,7 +148,7 @@ export default function ReferencePage() {
     // Parse rich text
     const parseRichText = (text: string) => {
         // Regex for custom tags: [[tag:content]]
-        const regex = /\[\[(red|big|bold|marker):(.+?)\]\]/g;
+        const regex = /\[\[(red|big|bold|marker|image):(.+?)\]\]/g;
         const parts = [];
         let lastIndex = 0;
         let match;
@@ -181,6 +188,24 @@ export default function ReferencePage() {
         const lines = processedText.split('\n');
         return lines.map((line, lineIndex) => {
             const parsedLine = parseRichText(line);
+
+            // Special handling for lines that are JUST an image
+            if (parsedLine.length === 1 && parsedLine[0].type === 'image') {
+                const part = parsedLine[0];
+                const imageSource = IMAGE_MAP[part.content];
+                if (imageSource) {
+                    return (
+                        <View key={lineIndex} style={{ width: '100%', aspectRatio: 16 / 9, marginVertical: 10 }}>
+                            <Image
+                                source={imageSource}
+                                style={{ width: '100%', height: '100%' }}
+                                resizeMode="contain"
+                            />
+                        </View>
+                    );
+                }
+            }
+
             return (
                 <ThemedText key={lineIndex} style={styles.line}>
                     {parsedLine.map((part, partIndex) => {
@@ -209,6 +234,21 @@ export default function ReferencePage() {
                                         {part.content}
                                     </ThemedText>
                                 );
+                            case 'image':
+                                // Inline image fallback (or if mixed with text)
+                                const imageSource = IMAGE_MAP[part.content];
+                                if (imageSource) {
+                                    return (
+                                        <View key={partIndex} style={{ width: 200, height: 150 }}>
+                                            <Image
+                                                source={imageSource}
+                                                style={{ width: '100%', height: '100%' }}
+                                                resizeMode="contain"
+                                            />
+                                        </View>
+                                    );
+                                }
+                                return <ThemedText key={partIndex}>[画像が見つかりません: {part.content}]</ThemedText>;
                             default:
                                 return <ThemedText key={partIndex}>{part.content}</ThemedText>;
                         }
