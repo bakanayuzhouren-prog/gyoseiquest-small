@@ -15,6 +15,9 @@ import { FlatList, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, Vi
 // Use import for static assets to ensure bundler resolves it correctly
 import chachalot from '@/assets/images/characters/chachalot.png';
 import kachadokuro from '@/assets/images/characters/kachadokuro.png';
+import kingKachadokuro from '@/assets/images/characters/king_kachadokuro.png';
+import pitchi from '@/assets/images/characters/pitchi.png';
+import princessKachadokuro from '@/assets/images/characters/princess_kachadokuro.png';
 import taskTurtle from '@/assets/images/characters/task_turtle.png';
 import summaryDiagram from '@/assets/images/summary_diagram_v4.jpg';
 
@@ -23,6 +26,9 @@ const IMAGE_MAP: Record<string, any> = {
     'chachalot': chachalot,
     'task': taskTurtle,
     'kachadokuro': kachadokuro,
+    'king_kachadokuro': kingKachadokuro,
+    'princess_kachadokuro': princessKachadokuro,
+    'pitchi': pitchi,
 };
 
 export default function ReferencePage() {
