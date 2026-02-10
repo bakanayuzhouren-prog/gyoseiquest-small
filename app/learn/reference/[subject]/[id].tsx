@@ -20,6 +20,7 @@ import kingKachadokuro from '@/assets/images/characters/king_kachadokuro.png';
 import pitchi from '@/assets/images/characters/pitchi.png';
 import princessKachadokuro from '@/assets/images/characters/princess_kachadokuro.png';
 import taskTurtle from '@/assets/images/characters/task_turtle.png';
+import rigidConstitutionAngry from '@/assets/images/rigid_constitution_angry.jpg';
 import summaryDiagram from '@/assets/images/summary_diagram_v4.jpg';
 
 const IMAGE_MAP: Record<string, any> = {
@@ -31,6 +32,7 @@ const IMAGE_MAP: Record<string, any> = {
     'princess_kachadokuro': princessKachadokuro,
     'pitchi': pitchi,
     'agency_diagram': agencyDiagram,
+    'rigid_constitution': rigidConstitutionAngry,
 };
 
 export default function ReferencePage() {
@@ -280,35 +282,60 @@ export default function ReferencePage() {
                         }
                     }
 
+                    const hasLayoutTag = lineParts.some(p => ['image', 'gift_arrow', 'arrow'].includes(p.type));
+
+                    if (!hasLayoutTag) {
+                        return (
+                            <ThemedText key={lineIndex} style={styles.lineWrapper}>
+                                {lineParts.map((part, partIndex) => {
+                                    switch (part.type) {
+                                        case 'red':
+                                            return <ThemedText key={partIndex} style={{ color: colors.primary, fontWeight: 'bold' }}>{part.content}</ThemedText>;
+                                        case 'big':
+                                            return <ThemedText key={partIndex} style={{ fontSize: 22, fontWeight: 'bold', lineHeight: 32 }}>{part.content}</ThemedText>;
+                                        case 'bold':
+                                            return <ThemedText key={partIndex} style={{ fontWeight: 'bold' }}>{part.content}</ThemedText>;
+                                        case 'marker':
+                                            return <ThemedText key={partIndex} style={{ backgroundColor: colors.primary + '30' }}>{part.content}</ThemedText>;
+                                        default:
+                                            return <ThemedText key={partIndex}>{part.content}</ThemedText>;
+                                    }
+                                })}
+                            </ThemedText>
+                        );
+                    }
+
                     return (
-                        <View key={lineIndex} style={styles.lineWrapper}>
+                        <View key={lineIndex} style={styles.lineWrapperRow}>
                             {lineParts.map((part, partIndex) => {
                                 switch (part.type) {
                                     case 'red':
-                                        return <ThemedText key={partIndex} style={{ color: colors.primary, fontWeight: 'bold' }}>{part.content}</ThemedText>;
+                                        return <ThemedText key={partIndex} style={[styles.line, { color: colors.primary, fontWeight: 'bold' }]}>{part.content}</ThemedText>;
                                     case 'big':
-                                        return <ThemedText key={partIndex} style={{ fontSize: 22, fontWeight: 'bold', lineHeight: 30, marginVertical: 4 }}>{part.content}</ThemedText>;
+                                        return <ThemedText key={partIndex} style={[styles.line, { fontSize: 22, fontWeight: 'bold', lineHeight: 32 }]}>{part.content}</ThemedText>;
                                     case 'bold':
-                                        return <ThemedText key={partIndex} style={{ fontWeight: 'bold' }}>{part.content}</ThemedText>;
+                                        return <ThemedText key={partIndex} style={[styles.line, { fontWeight: 'bold' }]}>{part.content}</ThemedText>;
                                     case 'marker':
-                                        return <ThemedText key={partIndex} style={{ backgroundColor: colors.primary + '40' }}>{part.content}</ThemedText>;
+                                        return <ThemedText key={partIndex} style={[styles.line, { backgroundColor: colors.primary + '30' }]}>{part.content}</ThemedText>;
                                     case 'image':
                                         const img = IMAGE_MAP[part.content];
                                         if (img) {
+                                            const isRigid = part.content === 'rigid_constitution';
+                                            const size = isRigid ? 150 : 70;
                                             return (
-                                                <View key={partIndex} style={{ alignItems: 'center', marginHorizontal: 3 }}>
+                                                <View key={partIndex} style={{ alignItems: 'center', marginHorizontal: 3, marginVertical: isRigid ? 10 : 0 }}>
                                                     {part.label ? (
                                                         <View style={{ backgroundColor: colors.primary, paddingHorizontal: 8, paddingVertical: 2, borderRadius: 6, marginBottom: 4 }}>
                                                             <ThemedText style={{ fontSize: 10, color: '#fff', fontWeight: 'bold' }}>{part.label}</ThemedText>
                                                         </View>
-                                                    ) : <View style={{ height: 18 }} />}
-                                                    <View style={{ width: 70, height: 70, borderRadius: 35, backgroundColor: '#fff', borderWidth: 2, borderColor: colors.primary + '30', overflow: 'hidden' }}>
+                                                    ) : <View style={{ height: isRigid ? 0 : 18 }} />}
+                                                    <View style={{ width: size, height: size, borderRadius: isRigid ? 12 : size / 2, backgroundColor: '#fff', borderWidth: 2, borderColor: colors.primary + '30', overflow: 'hidden' }}>
                                                         <Image source={img} style={{ width: '100%', height: '100%' }} resizeMode="contain" />
                                                     </View>
                                                 </View>
                                             );
                                         }
-                                        return <ThemedText key={partIndex}>[画像なし]</ThemedText>;
+                                        return <ThemedText key={partIndex} style={styles.line}>[画像なし]</ThemedText>;
                                     case 'gift_arrow':
                                         const isRight = part.content === 'right';
                                         return (
@@ -400,13 +427,18 @@ const styles = StyleSheet.create({
     line: {
         fontSize: 16,
         lineHeight: 28,
-        marginBottom: 8,
     },
     lineWrapper: {
+        fontSize: 16,
+        lineHeight: 28,
+        marginBottom: 12,
+    },
+    lineWrapperRow: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         paddingVertical: 4,
+        marginBottom: 8,
     },
     sectionCard: {
         padding: 24,

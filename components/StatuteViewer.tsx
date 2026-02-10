@@ -1,6 +1,6 @@
 import { applyTTSRules } from '@/utils/tts-rules';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { router, Stack, useLocalSearchParams } from 'expo-router';
 import * as Speech from 'expo-speech';
 import { useEffect, useRef, useState } from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
@@ -50,7 +50,11 @@ export default function StatuteViewer({ data, title, searchPlaceholder }: Statut
     const [searchQuery, setSearchQuery] = useState('');
     const scrollViewRef = useRef<ScrollView>(null);
     const itemsY = useRef<{ [key: number]: number }>({});
-    const { q } = useLocalSearchParams<{ q?: string }>();
+    const { q, returnPath, returnIndex } = useLocalSearchParams<{
+        q?: string,
+        returnPath?: string,
+        returnIndex?: string
+    }>();
 
     // TTS States
     const [speakingIndex, setSpeakingIndex] = useState<number | null>(null);
@@ -171,6 +175,20 @@ export default function StatuteViewer({ data, title, searchPlaceholder }: Statut
             <Stack.Screen options={{ title: title }} />
 
             <ThemedView style={styles.stickyHeader}>
+                {returnPath ? (
+                    <Pressable
+                        style={styles.returnButton}
+                        onPress={() => {
+                            router.push({
+                                pathname: returnPath as any,
+                                params: { index: returnIndex }
+                            });
+                        }}
+                    >
+                        <MaterialIcons name="arrow-back" size={20} color="#fff" />
+                        <ThemedText style={styles.returnButtonText}>問題に戻る</ThemedText>
+                    </Pressable>
+                ) : null}
                 <ThemedView style={styles.searchContainer}>
                     <TextInput
                         style={styles.searchInput}
@@ -308,5 +326,20 @@ const styles = StyleSheet.create({
     speakerButton: {
         marginLeft: 8,
         padding: 2,
+    },
+    returnButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#6c757d',
+        paddingVertical: 10,
+        borderRadius: 8,
+        marginBottom: 12,
+        gap: 6,
+    },
+    returnButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 16,
     }
 });

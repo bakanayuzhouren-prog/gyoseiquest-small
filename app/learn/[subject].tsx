@@ -101,7 +101,12 @@ export default function LearnSubjectScreen() {
         Speech.stop();
         router.push({
           pathname: path as any,
-          params: { q: articleNumStr + '条' }
+          params: {
+            q: articleNumStr + '条',
+            returnPath: `/learn/${subject}`,
+            returnSubject: subject,
+            returnIndex: currentIndex.toString()
+          }
         });
         return;
       }
@@ -189,11 +194,7 @@ export default function LearnSubjectScreen() {
           rate: playbackRate,
           onBoundary: (event: any) => {
             if (event.charIndex !== undefined) {
-              // Use charLength if available to highlight the entire "spoken unit" immediately.
-              // If charLength is missing, we still set it to charIndex.
-              // To make it feel "faster", we jump to the end of the word being started.
-              const length = event.charLength || 1;
-              setSpokenIndex(event.charIndex + length);
+              setSpokenIndex(event.charIndex);
             }
           },
           onDone: () => {
@@ -394,21 +395,21 @@ export default function LearnSubjectScreen() {
             {basisText ? (
               <Pressable onPress={handleBasisPress}>
                 <ThemedText style={[styles.basisText, { color: '#007BFF', textDecorationLine: 'underline' }]}>
-                  {basisText}
+                  {basisText.replace('※', '関連条文')}
                 </ThemedText>
               </Pressable>
             ) : null}
-
-            {/* Play/Stop Button (Swapped position) */}
-            <Pressable
-              style={[styles.playButton, isPlaying ? styles.stopButton : styles.startButton]}
-              onPress={handleTogglePlay}
-            >
-              <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>
-                {isPlaying ? '■ 停止' : '▶ 再生 (3回ずつ連続)'}
-              </ThemedText>
-            </Pressable>
           </ThemedView>
+
+          {/* Play/Stop Button (Moved outside contentContainer) */}
+          <Pressable
+            style={[styles.playButton, isPlaying ? styles.stopButton : styles.startButton]}
+            onPress={handleTogglePlay}
+          >
+            <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>
+              {isPlaying ? '■ 停止' : '▶ 再生 (3回ずつ連続)'}
+            </ThemedText>
+          </Pressable>
 
           {/* Speed Controls */}
           <ThemedView style={styles.speedContainer}>
@@ -705,6 +706,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 48,
+    backgroundColor: '#f5f7fa',
   },
   headerRow: {
     flexDirection: 'row',
@@ -746,39 +748,40 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   seekBarContainer: {
-    height: 30,
+    height: 44,
     justifyContent: 'center',
     marginBottom: 8,
     backgroundColor: 'transparent',
+    // 確実にタッチを拾うための設定
   },
   seekBarTrack: {
-    height: 6,
-    borderRadius: 3,
+    height: 8,
+    borderRadius: 4,
     backgroundColor: '#E0E0E0',
     width: '100%',
     position: 'relative',
   },
   seekBarProgress: {
     height: '100%',
-    borderRadius: 3,
+    borderRadius: 4,
     position: 'absolute',
     left: 0,
   },
   seekBarThumb: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
     backgroundColor: '#FFF',
     borderWidth: 2,
     borderColor: '#007BFF',
     position: 'absolute',
-    top: -7,
-    marginLeft: -10,
-    elevation: 3,
+    top: -8,
+    marginLeft: -12,
+    elevation: 4,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
   resizeHandle: {
     position: 'absolute',
@@ -802,13 +805,18 @@ const styles = StyleSheet.create({
     color: '#4A90E2',
   },
   contentContainer: {
-    minHeight: 200,
+    minHeight: 220,
     justifyContent: 'center',
-    padding: 20,
-    backgroundColor: 'rgba(0,0,0,0.03)',
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.05)',
+    padding: 30,
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: '#000000',
+    ...Platform.select({
+      ios: { shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.08, shadowRadius: 12 },
+      android: { elevation: 4 },
+      web: { boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }
+    })
   },
   content: {
     lineHeight: 48,
@@ -877,7 +885,8 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 16,
     alignItems: 'center',
-    marginBottom: 16,
+    marginTop: 16,
+    marginBottom: 8,
   },
   startButton: {
     backgroundColor: '#28A745',
