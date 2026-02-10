@@ -168,7 +168,7 @@ export default function ReferencePage() {
     // Parse rich text
     const parseRichText = (text: string) => {
         // Regex for custom tags: [[tag:content]] or [[gift]]/[[gift_arrow:direction]]/[[arrow:direction]]
-        const regex = /\[\[(red|big|bold|marker|image|gift|gift_arrow|arrow):?(.+?)?\]\]/g;
+        const regex = /\[\[(red|big|bold|marker|image|gift|gift_arrow|arrow|section|point):?(.+?)?\]\]/g;
         const parts = [];
         let lastIndex = 0;
         let match;
@@ -194,7 +194,7 @@ export default function ReferencePage() {
                 parts.push({ type: 'gift_arrow', content, or: or === 'or' });
             } else {
                 parts.push({
-                    type: type, // red, big, bold, marker
+                    type: type, // red, big, bold, marker, section, point
                     content: rawContent,
                 });
             }
@@ -214,184 +214,135 @@ export default function ReferencePage() {
     };
 
     const renderContent = (text: string) => {
-        // Apply character names before parsing rich text
         const processedText = applyCharacterNames(text);
         const lines = processedText.split('\n');
-        return lines.map((line, lineIndex) => {
+
+        const blocks: { type: 'section' | 'plain', title?: string, content: any[][] }[] = [];
+        let currentBlock: { type: 'section' | 'plain', title?: string, content: any[][] } | null = null;
+
+        lines.forEach(line => {
             const parsedLine = parseRichText(line);
+            const sectionTag = parsedLine.find(p => p.type === 'section');
 
-            // Special handling for lines that are JUST an image
-            if (parsedLine.length === 1 && parsedLine[0].type === 'image') {
-                const part = parsedLine[0];
-                const imageSource = IMAGE_MAP[part.content];
-                if (imageSource) {
-                    let imageStyle: any = { width: '100%', height: '100%' };
-                    let wrapperStyle: any = { width: '40%', minHeight: 120, aspectRatio: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', marginVertical: 5 };
+            if (sectionTag) {
+                // Start a new section block
+                currentBlock = { type: 'section', title: sectionTag.content, content: [] };
+                blocks.push(currentBlock);
+                // Filter out the section tag from the line content if it has other content
+                const filteredLine = parsedLine.filter(p => p.type !== 'section');
+                if (filteredLine.length > 0) {
+                    currentBlock.content.push(filteredLine);
+                }
+            } else {
+                if (!currentBlock) {
+                    currentBlock = { type: 'plain', content: [] };
+                    blocks.push(currentBlock);
+                }
+                currentBlock.content.push(parsedLine);
+            }
+        });
 
-                    // Custom clipping for specific characters
-                    if (part.content === 'pitchi') {
-                        // Chick: Standard center (Show name)
-                        imageStyle = { width: '100%', height: '100%', position: 'absolute' };
-                    } else if (part.content === 'task') {
-                        // Turtle: Standard center (Show name)
-                        imageStyle = { width: '100%', height: '100%', position: 'absolute' };
-                    } else if (part.content === 'chachalot') {
-                        imageStyle = { width: '100%', height: '100%', position: 'absolute' };
-                    } else if (part.content === 'kachadokuro' || part.content === 'king_kachadokuro' || part.content === 'princess_kachadokuro') {
-                        imageStyle = { width: '100%', height: '100%', position: 'absolute' };
+        return blocks.map((block, blockIndex) => (
+            <View key={blockIndex} style={[
+                block.type === 'section' ? styles.sectionCard : {},
+                { backgroundColor: block.type === 'section' ? colors.background : 'transparent' }
+            ]}>
+                {block.title && (
+                    <ThemedText style={styles.sectionTitle}>{block.title}</ThemedText>
+                )}
+                {block.content.map((lineParts, lineIndex) => {
+                    const isPoint = lineParts.some(p => p.type === 'point');
+                    if (isPoint) {
+                        const pointPart = lineParts.find(p => p.type === 'point');
+                        return (
+                            <View key={lineIndex} style={[styles.pointBox, { backgroundColor: colors.primary + '15', borderColor: colors.primary }]}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                                    <MaterialIcons name="lightbulb" size={20} color={colors.primary} />
+                                    <ThemedText style={{ color: colors.primary, fontWeight: 'bold' }}>POINT / まとめ</ThemedText>
+                                </View>
+                                <ThemedText style={styles.line}>{pointPart?.content}</ThemedText>
+                            </View>
+                        );
+                    }
+
+                    // Special handling for lines that are JUST an image
+                    if (lineParts.length === 1 && lineParts[0].type === 'image') {
+                        const part = lineParts[0];
+                        const imageSource = IMAGE_MAP[part.content];
+                        if (imageSource) {
+                            return (
+                                <View key={lineIndex} style={{ width: '100%', alignItems: 'center', marginVertical: 10 }}>
+                                    <View style={[{ width: '60%', aspectRatio: 1, backgroundColor: colors.background + '80', borderRadius: 15, position: 'relative', overflow: 'hidden' }]}>
+                                        <Image source={imageSource} style={{ width: '100%', height: '100%' }} resizeMode="contain" />
+                                    </View>
+                                </View>
+                            );
+                        }
                     }
 
                     return (
-                        <View key={lineIndex} style={{ width: '100%', alignItems: 'center' }}>
-                            <View style={[wrapperStyle, { backgroundColor: colors.background + '80', borderRadius: 15, position: 'relative' }]}>
-                                <Image
-                                    source={imageSource}
-                                    style={imageStyle}
-                                    resizeMode="contain"
-                                />
-                            </View>
+                        <View key={lineIndex} style={styles.lineWrapper}>
+                            {lineParts.map((part, partIndex) => {
+                                switch (part.type) {
+                                    case 'red':
+                                        return <ThemedText key={partIndex} style={{ color: colors.primary, fontWeight: 'bold' }}>{part.content}</ThemedText>;
+                                    case 'big':
+                                        return <ThemedText key={partIndex} style={{ fontSize: 22, fontWeight: 'bold', lineHeight: 30, marginVertical: 4 }}>{part.content}</ThemedText>;
+                                    case 'bold':
+                                        return <ThemedText key={partIndex} style={{ fontWeight: 'bold' }}>{part.content}</ThemedText>;
+                                    case 'marker':
+                                        return <ThemedText key={partIndex} style={{ backgroundColor: colors.primary + '40' }}>{part.content}</ThemedText>;
+                                    case 'image':
+                                        const img = IMAGE_MAP[part.content];
+                                        if (img) {
+                                            return (
+                                                <View key={partIndex} style={{ alignItems: 'center', marginHorizontal: 3 }}>
+                                                    {part.label ? (
+                                                        <View style={{ backgroundColor: colors.primary, paddingHorizontal: 8, paddingVertical: 2, borderRadius: 6, marginBottom: 4 }}>
+                                                            <ThemedText style={{ fontSize: 10, color: '#fff', fontWeight: 'bold' }}>{part.label}</ThemedText>
+                                                        </View>
+                                                    ) : <View style={{ height: 18 }} />}
+                                                    <View style={{ width: 70, height: 70, borderRadius: 35, backgroundColor: '#fff', borderWidth: 2, borderColor: colors.primary + '30', overflow: 'hidden' }}>
+                                                        <Image source={img} style={{ width: '100%', height: '100%' }} resizeMode="contain" />
+                                                    </View>
+                                                </View>
+                                            );
+                                        }
+                                        return <ThemedText key={partIndex}>[画像なし]</ThemedText>;
+                                    case 'gift_arrow':
+                                        const isRight = part.content === 'right';
+                                        return (
+                                            <View key={partIndex} style={{ width: 60, height: 40, alignItems: 'center', justifyContent: 'center' }}>
+                                                {part.or && <ThemedText style={{ position: 'absolute', top: -14, color: '#e74c3c', fontSize: 16, fontWeight: 'bold' }}>or</ThemedText>}
+                                                <View style={{ width: '100%', height: 3, backgroundColor: colors.primary }} />
+                                                <View style={{ position: 'absolute', [isRight ? 'right' : 'left']: -2, width: 0, height: 0, borderTopWidth: 8, borderBottomWidth: 8, [isRight ? 'borderLeftWidth' : 'borderRightWidth']: 12, borderTopColor: 'transparent', borderBottomColor: 'transparent', [isRight ? 'borderLeftColor' : 'borderRightColor']: colors.primary }} />
+                                                <View style={{ position: 'absolute', backgroundColor: '#fff', borderRadius: 4, borderWidth: 1, borderColor: colors.primary, padding: 1 }}><ThemedText style={{ fontSize: 16 }}>🎁</ThemedText></View>
+                                            </View>
+                                        );
+                                    case 'arrow':
+                                        const isArrowRight = part.content === 'right';
+                                        return (
+                                            <View key={partIndex} style={{ width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }}>
+                                                <View style={{ width: '100%', height: 3, backgroundColor: colors.primary }} />
+                                                <View style={{ position: 'absolute', [isArrowRight ? 'right' : 'left']: -2, width: 0, height: 0, borderTopWidth: 8, borderBottomWidth: 8, [isArrowRight ? 'borderLeftWidth' : 'borderRightWidth']: 12, borderTopColor: 'transparent', borderBottomColor: 'transparent', [isArrowRight ? 'borderLeftColor' : 'borderRightColor']: colors.primary }} />
+                                            </View>
+                                        );
+                                    default:
+                                        return <ThemedText key={partIndex} style={styles.line}>{part.content}</ThemedText>;
+                                }
+                            })}
                         </View>
                     );
-                }
-            }
-
-            return (
-                <View key={lineIndex} style={[styles.lineWrapper, { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', paddingVertical: 2 }]}>
-                    {parsedLine.map((part, partIndex) => {
-                        switch (part.type) {
-                            case 'red':
-                                return (
-                                    <ThemedText key={partIndex} style={{ color: colors.primary, fontWeight: 'bold' }}>
-                                        {part.content}
-                                    </ThemedText>
-                                );
-                            case 'big':
-                                return (
-                                    <ThemedText key={partIndex} style={{ fontSize: 20, fontWeight: 'bold', lineHeight: 28 }}>
-                                        {part.content}
-                                    </ThemedText>
-                                );
-                            case 'bold':
-                                return (
-                                    <ThemedText key={partIndex} style={{ fontWeight: 'bold' }}>
-                                        {part.content}
-                                    </ThemedText>
-                                );
-                            case 'marker':
-                                return (
-                                    <ThemedText key={partIndex} style={{ backgroundColor: colors.primary + '40', color: colors.text }}>
-                                        {part.content}
-                                    </ThemedText>
-                                );
-                            case 'image':
-                                const imageSource = IMAGE_MAP[part.content];
-                                if (imageSource) {
-                                    let imageStyle: any = { width: '100%', height: '100%', position: 'absolute' };
-                                    let containerSize = 75;
-
-                                    // Reset to standard 100% since names are in images now
-                                    imageStyle = { width: '100%', height: '100%', position: 'absolute' };
-
-                                    return (
-                                        <View key={partIndex} style={{ alignItems: 'center', marginHorizontal: 3 }}>
-                                            {part.label ? (
-                                                <View style={{ backgroundColor: colors.primary, paddingHorizontal: 10, paddingVertical: 2, borderRadius: 6, marginBottom: 4, zIndex: 10 }}>
-                                                    <ThemedText style={{ fontSize: 10, color: '#fff', fontWeight: 'bold' }}>{part.label}</ThemedText>
-                                                </View>
-                                            ) : <View style={{ height: 18 }} />}
-                                            <View style={{ width: containerSize, height: containerSize, overflow: 'hidden', borderRadius: 25, backgroundColor: '#fff', borderWidth: 3, borderColor: colors.primary + '30', position: 'relative', alignItems: 'center', justifyContent: 'center' }}>
-                                                <Image
-                                                    source={imageSource}
-                                                    style={imageStyle}
-                                                    resizeMode="contain"
-                                                />
-                                            </View>
-                                        </View>
-                                    );
-                                }
-                                return <ThemedText key={partIndex}>[画像なし]</ThemedText>;
-                            case 'gift_arrow':
-                                const isRight = part.content === 'right';
-                                return (
-                                    <View key={partIndex} style={{ width: 80, height: 60, alignItems: 'center', justifyContent: 'center', marginHorizontal: -12 }}>
-                                        {/* "or" Indicator */}
-                                        {part.or && (
-                                            <ThemedText style={{ position: 'absolute', top: -15, color: '#e74c3c', fontSize: 24, fontWeight: 'bold', zIndex: 40, fontFamily: Platform.OS === 'ios' ? 'Marker Felt' : 'monospace' }}>or</ThemedText>
-                                        )}
-
-                                        {/* Horizontal Arrow Line */}
-                                        <View style={{ width: 80, height: 4, backgroundColor: colors.primary, zIndex: 1 }} />
-
-                                        {/* Arrow Tip */}
-                                        <View style={{
-                                            position: 'absolute',
-                                            [isRight ? 'right' : 'left']: -2,
-                                            width: 0,
-                                            height: 0,
-                                            backgroundColor: 'transparent',
-                                            borderStyle: 'solid',
-                                            borderLeftWidth: isRight ? 20 : 0,
-                                            borderRightWidth: isRight ? 0 : 20,
-                                            borderBottomWidth: 14,
-                                            borderTopWidth: 14,
-                                            borderLeftColor: isRight ? colors.primary : 'transparent',
-                                            borderRightColor: isRight ? 'transparent' : colors.primary,
-                                            zIndex: 2
-                                        }} />
-
-                                        {/* Gift Box centered on line */}
-                                        <View style={{ position: 'absolute', backgroundColor: '#fff', borderRadius: 8, borderWidth: 2, borderColor: colors.primary, padding: 2, zIndex: 30, elevation: 5 }}>
-                                            <ThemedText style={{ fontSize: 24 }}>🎁</ThemedText>
-                                        </View>
-                                    </View>
-                                );
-                            case 'arrow':
-                                const isArrowRight = part.content === 'right';
-                                return (
-                                    <View key={partIndex} style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center', marginHorizontal: -5 }}>
-                                        {/* Horizontal Arrow Line */}
-                                        <View style={{ width: 60, height: 4, backgroundColor: colors.primary, zIndex: 1 }} />
-
-                                        {/* Arrow Tip */}
-                                        <View style={{
-                                            position: 'absolute',
-                                            [isArrowRight ? 'right' : 'left']: -2,
-                                            width: 0,
-                                            height: 0,
-                                            backgroundColor: 'transparent',
-                                            borderStyle: 'solid',
-                                            borderLeftWidth: isArrowRight ? 16 : 0,
-                                            borderRightWidth: isArrowRight ? 0 : 16,
-                                            borderBottomWidth: 10,
-                                            borderTopWidth: 10,
-                                            borderLeftColor: isArrowRight ? colors.primary : 'transparent',
-                                            borderRightColor: isArrowRight ? 'transparent' : colors.primary,
-                                            zIndex: 2
-                                        }} />
-                                    </View>
-                                );
-                            case 'gift':
-                                return (
-                                    <View key={partIndex} style={{ width: 30, height: 30, backgroundColor: colors.primary + '20', borderRadius: 8, alignItems: 'center', justifyContent: 'center', marginHorizontal: 2 }}>
-                                        <ThemedText style={{ fontSize: 18 }}>🎁</ThemedText>
-                                    </View>
-                                );
-                            default:
-                                return <ThemedText key={partIndex}>{part.content}</ThemedText>;
-                        }
-                    })}
-                </View>
-            );
-        });
+                })}
+            </View>
+        ));
     };
 
     return (
         <ThemedView style={styles.container}>
             <Stack.Screen options={{ title: 'もっと深掘る', headerBackTitle: '戻る' }} />
             <ScrollView contentContainerStyle={styles.scrollContent}>
-                <ThemedView style={[styles.paper, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
-                    {renderContent(explainText)}
-                </ThemedView>
+                {renderContent(explainText)}
             </ScrollView>
 
 
@@ -440,24 +391,51 @@ export default function ReferencePage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#f5f7fa',
     },
     scrollContent: {
-        padding: 20,
+        padding: 16,
         paddingBottom: 40,
     },
-    paper: {
-        padding: 20,
-        borderRadius: 20,
-        borderWidth: 1,
+    line: {
+        fontSize: 16,
+        lineHeight: 28,
+        marginBottom: 8,
     },
     lineWrapper: {
-        marginVertical: 2,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        paddingVertical: 4,
     },
-    line: {
-        fontSize: 18,
-        lineHeight: 32,
+    sectionCard: {
+        padding: 24,
+        borderRadius: 20,
+        marginBottom: 24,
+        borderWidth: 2,
+        borderColor: '#000000',
+        backgroundColor: '#ffffff',
+        ...Platform.select({
+            ios: { shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.08, shadowRadius: 12 },
+            android: { elevation: 4 },
+            web: { boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }
+        })
+    },
+    sectionTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        borderBottomWidth: 3,
+        borderBottomColor: 'rgba(0,0,0,0.05)',
+        paddingBottom: 10,
+        color: '#333',
+    },
+    pointBox: {
+        marginTop: 16,
         marginBottom: 8,
-        textAlign: 'justify',
+        padding: 20,
+        borderRadius: 16,
+        borderLeftWidth: 8,
     },
     backButton: {
         alignSelf: 'center',
