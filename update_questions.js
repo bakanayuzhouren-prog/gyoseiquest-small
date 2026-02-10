@@ -1,157 +1,27 @@
 const fs = require('fs');
-const path = 'c:/dev/gyosei-quest-small/src/questions.js';
-let content = fs.readFileSync(path, 'utf8');
+const path = 'c:\\dev\\gyosei-quest-small\\src\\questions.js';
 
-// Chunk for ID 50
-const chunk50_target = `"chunks": [
-          {
-            "subject": "民法総論",
-            "id": 51,
-            "title": "代理権の錯誤"
-          },
-          {
-            "subject": "民法総論",
-            "id": 52,
-            "title": "代理権の乱用"
-          }
-        ]`;
-const chunk50_replacement = `"chunks": [
-          {
-            "subject": "民法総論",
-            "id": 51,
-            "title": "代理権의錯誤"
-          },
-          {
-            "subject": "民法総論",
-            "id": 52,
-            "title": "代理権の乱用"
-          },
-          {
-            "subject": "民法総論",
-            "id": 53,
-            "title": "相手方の催告権"
-          }
-        ]`;
+try {
+  let content = fs.readFileSync(path, 'utf8');
+  const targetText = '憲法の概念に関する次の記述のうち、妥当なものはどれか。';
+  const explainText = `[[big:1. 硬性憲法と軟性憲法の定義]]\\n憲法の改正手続きが、通常の法律（一般法）の制定・改廃手続きよりも厳格か否かで区別されます。\\n\\n[[bold:硬性憲法 (Rigid Constitution):]]\\n改正に[[red:「出席議員の3分の2以上の賛成」]]や[[red:「国民投票」]]など、通常の法律（過半数の賛成など）よりも高いハードルが課されている憲法です。\\n日本、アメリカ、ドイツ、フランスなどがこれに該当します。\\n\\n[[bold:軟性憲法 (Flexible Constitution):]]\\n通常の法律と同じ手続きで改正できる憲法です。典型例は[[red:イギリス]]です。\\nイギリスには「不文憲法」の伝統があり、議会が制定する法律が憲法と同等の重みを持ちます。\\n\\n[[big:2. ドイツ・フランスが「硬性」なのに改正が多い理由]]\\n「硬性＝改正しにくい＝改正回数が少ない」と考えがちですが、実際にはそうではありません。\\nドイツやフランスは手続き上は間違いなく「硬性憲法」ですが、改正回数は非常に多いのが特徴です。\\n\\n[[marker:ドイツ（基本法）の事例]]\\n1949年の制定以来、[[bold:60回以上]]改正されています。\\n[[bold:なぜ硬性か：]] 改正には連邦議会（下院）と連邦参議院（上院）の[[red:両方で3分の2以上の賛成]]が必要です。\\n[[bold:なぜ多いか：]] ドイツでは、新しい課題が生じるたびに、条文を具体的に書き換えて対応する文化があるためです。\\n[[bold:憲法の核：]] ただし、人間としての尊厳や民主主義の本質については改正を禁じる[[red:「戦う民主主義（永久条項）」]]が存在します。\\n\\n[[marker:フランス（第五共和国憲法）の事例]]\\n1958年の制定以来、[[bold:20回以上]]改正されています。\\n[[bold:なぜ硬性か：]] 改正には両議院の可決に加え、[[red:国民投票]]または両院合同会議での[[red:5分の3以上の賛成]]が必要です。\\n[[bold:なぜ多いか：]] 時代の変化に合わせて統治機構を微調整することを厭わない姿勢があります。\n\n[[big:3. 日本との比較：手続きの「重み」の違い]]\\n日本国憲法も硬性憲法ですが、1947年の施行以来、[[bold:一度も改正されていません]]。\\n\\n[[bold:国名 | 改正手続き | 回数 | 分類]]\\n----------------------------------------\\n[[bold:日本]] | 各議院の2/3 + 国民投票 | 0回 | [[bold:硬性]]\\n[[bold:米国]] | 2/3以上の賛成 + 3/4の州承認 | 27回 | [[bold:極めて硬性]]\\n[[bold:独国]] | 連邦議会・参議院の2/3 | 60回+ | [[bold:硬性]]\\n[[bold:英国]] | 通常の法律と同じ | 頻繁 | [[bold:軟性]]\\n\\n[[big:周辺知識：なぜ硬性にする必要があるのか？]]\\n憲法を硬性にする最大の目的は[[marker:「少数派の保護」と「法の安定性」]]です。\\n\\n[[bold:1. 時の政権による濫用防止:]]\\n権力者が自分に都合のいいように規定をコロコロ変えてしまうのを防ぎます。\\n[[bold:2. 最高法規性の担保:]]\\n国家の根本的なルールを一段高い場所に置くためです。\\n\\n[[marker:💡 POINT]]\\n「硬性」とは「改正不可能」という意味ではなく、[[red:「熟議を必要とする」]]という意味であると捉えると、ドイツやフランスの例が分かりやすくなります。`;
 
-// Chunk for ID 51
-const chunk51_target = `"chunks": [
-          {
-            "subject": "民法総論",
-            "id": 50,
-            "title": "代理人の詐欺"
-          },
-          {
-            "subject": "民法総論",
-            "id": 52,
-            "title": "代理権の乱用"
-          }
-        ]`;
-const chunk51_replacement = `"chunks": [
-          {
-            "subject": "民法総論",
-            "id": 50,
-            "title": "代理人の詐欺"
-          },
-          {
-            "subject": "民法総論",
-            "id": 52,
-            "title": "代理権の乱用"
-          },
-          {
-            "subject": "民法総論",
-            "id": 53,
-            "title": "相手方の催告権"
-          }
-        ]`;
+  const startIndex = content.indexOf(targetText);
+  if (startIndex === -1) {
+    console.error('Target text not found');
+    process.exit(1);
+  }
 
-// Chunk for ID 52
-const chunk52_target = `"chunks": [
-          {
-            "subject": "民法総論",
-            "id": 50,
-            "title": "代理人の詐欺"
-          },
-          {
-            "subject": "民法総論",
-            "id": 51,
-            "title": "代理権の錯誤"
-          }
-        ]`;
-const chunk52_replacement = `"chunks": [
-          {
-            "subject": "民法総論",
-            "id": 50,
-            "title": "代理人の詐欺"
-          },
-          {
-            "subject": "民法総論",
-            "id": 51,
-            "title": "代理権の錯誤"
-          },
-          {
-            "subject": "民法総論",
-            "id": 53,
-            "title": "相手方の催告権"
-          }
-        ]`;
+  const explainIndex = content.indexOf('"explain": ""', startIndex);
+  if (explainIndex === -1) {
+    console.error('Explain field not found after target text');
+    process.exit(1);
+  }
 
-// New question for ID 53
-const q53_insertion = `      },
-      {
-        "text": "無権代理行為の相手方が本人に対し、相当の期間を定めて催告をした場合、本人が確答をしないときは、追認を拒絶したものとみなされる",
-        "choices": [
-          "妥当である",
-          "妥当でない"
-        ],
-        "answer": [0],
-        "explain": "[[big:1. 無権代理と相手方の催告権（民法114条）]]\\n無権代理行為（勝手に代理人を名乗って契約された状態）は、本人が「追認（あとから認めること）」しない限り、本人に効果は及びません。しかし、本人が「どうしようかな…」と黙ったままだと、相手方は契約が有効になるのか、それとも無効なのか分からず、ずっと不安定な立場に置かれてしまいます。\\n\\nそこで、相手方は本人に対し、[[bold:「やるのかやらないのか、ハッキリしてください！」と催告（さいこく）する権利]]を持っています。\\n\\n[[big:2. 「沈黙」は拒絶とみなされる（重要！）]]\\n本人が、相当の期間内に確答（お返事）をしない場合、[[red:「追認を拒絶したもの」]]とみなされます。\\n\\n[[marker:理由：]] 本人が何も言わないということは、積極的に「認めます」と言っていない以上、契約の責任を負わせない（＝拒絶したことにする）のが本人にとって安全であり、相手方にとっても契約が有効にならないことが確定するため、不確実な状態を解消できるからです。\\n\\n[[big:3. 制限行為能力者の「催告権」との違い]]\\nここが試験でよく狙われる最高難度のひっかけポイントです！\\n\\n項目	無権代理（本人の沈黙）	制限行為能力者（保護者の沈黙）\\nお返事がない場合	[[red:追認拒絶]]とみなす	[[blue:追認]]したとみなす（原則）\\n\\n[[bold:なぜ違うのか？]]\\n- **無権代理：** 本人が全く知らないところでされた勝手な行為なので、[[marker:本人を守るために「拒絶」]]にしたことにします。\\n- **制限行為能力者：** 保護者は本人の状況を監督すべき立場にあるため、お返事がないなら「認めた」ことにして、相手方を守ろうとする傾向があります（※例外あり）。",
-        "wordBank": "",
-        "memo": "",
-        "slots": [],
-        "refId": "civil_unqualified_agency_demand",
-        "isBonus": false,
-        "chunks": [
-          {
-            "subject": "民法総論",
-            "id": 50,
-            "title": "代理人の詐欺"
-          },
-          {
-            "subject": "民法総論",
-            "id": 51,
-            "title": "代理権の錯誤"
-          },
-          {
-            "subject": "民法総論",
-            "id": 52,
-            "title": "代理権の乱用"
-          }
-        ]
-      }`;
-
-// Apply replacements
-// Use split/join for simple replacement (replaces all occurrences, but target strings should be unique enough)
-content = content.replace(chunk50_target, chunk50_replacement);
-content = content.replace(chunk51_target, chunk51_replacement);
-content = content.replace(chunk52_target, chunk52_replacement);
-
-// Boundary replacement
-const boundary = '      }\n    ],\n    "民法物権": [';
-const boundary_replacement = q53_insertion + '\n    ],\n    "民法物権": [';
-
-if (content.includes(boundary)) {
-    content = content.replace(boundary, boundary_replacement);
-} else {
-    // Try with different line endings or slightly different spacing
-    console.error('Boundary not found exactly. Trying alternative...');
-    const alt_boundary = '      }\r\n    ],\r\n    "民法物権": [';
-    if (content.includes(alt_boundary)) {
-        content = content.replace(alt_boundary, q53_insertion + '\r\n    ],\r\n    "民法物権": [');
-    } else {
-        console.error('Alt boundary not found either.');
-        process.exit(1);
-    }
+  const updatedContent = content.substring(0, explainIndex) + '"explain": "' + explainText + '"' + content.substring(explainIndex + '"explain": ""'.length);
+  fs.writeFileSync(path, updatedContent, 'utf8');
+  console.log('Successfully updated questions.js');
+} catch (err) {
+  console.error('Error updating file:', err);
+  process.exit(1);
 }
-
-fs.writeFileSync(path, content, 'utf8');
-console.log('Successfully updated questions.js');
