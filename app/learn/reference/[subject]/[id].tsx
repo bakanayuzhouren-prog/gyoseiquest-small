@@ -6,11 +6,11 @@ import { useTheme } from '@/src/context/ThemeContext';
 import { LEARN_CONTENT } from '@/src/learn';
 import { SUBJECTS } from '@/src/questions';
 import { applyTTSRules } from '@/utils/tts-rules';
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
 import { useEffect, useState } from 'react';
-import { FlatList, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 // Use import for static assets to ensure bundler resolves it correctly
 import agencyDiagram from '@/assets/images/agency_diagram.jpg';
@@ -34,7 +34,7 @@ const IMAGE_MAP: Record<string, any> = {
 };
 
 export default function ReferencePage() {
-    const { subject, id, originSubject, originId } = useLocalSearchParams();
+    const { subject, id, originSubject, originId, originIndex } = useLocalSearchParams();
     const router = useRouter();
     const { colors } = useTheme();
     const { applyCharacterNames } = useCharacter();
@@ -58,10 +58,12 @@ export default function ReferencePage() {
     if (subjectName === '民法総論' && questionIndex === 54) {
         explainText = "[[image:agency_diagram]]";
     }
+    if (subjectName === '民法総論' && questionIndex === 55) {
+        explainText = "[[big:復代理人の引渡義務（民法107条2項）]]\n\n[[bold:【1. 復代理人の選任】]]\n[[image:chachalot:本人]] [[arrow:right]] [[image:pitchi:代理人]] [[arrow:right]] [[image:task:復代理人]]\n\n[[bold:【2. 目的物の受領】]]\n[[image:task:復代理人]] [[gift_arrow:left]] [[image:king_kachadokuro:相手方]]\n\n[[bold:【3. 本人または代理人への引渡し】]]\n[[image:chachalot:本人]] [[gift_arrow:left:or]] [[image:task:復代理人]] [[gift_arrow:right:or]] [[image:pitchi:代理人]]\nどちらかに渡せば義務を履行したことになります。\n\n[[big:【結論】]]\n[[marker:復代理人は、本人、代理人のいずれかに目的物を引き渡せば、引渡義務を履行したことになります。]]";
+    }
 
     // Mini Player State
     const [isPlaying, setIsPlaying] = useState(false);
-    const [isChunkModalVisible, setIsChunkModalVisible] = useState(false);
 
     const chunks = foundQuestion?.chunks || [];
 
@@ -165,8 +167,8 @@ export default function ReferencePage() {
 
     // Parse rich text
     const parseRichText = (text: string) => {
-        // Regex for custom tags: [[tag:content]]
-        const regex = /\[\[(red|big|bold|marker|image):(.+?)\]\]/g;
+        // Regex for custom tags: [[tag:content]] or [[gift]]/[[gift_arrow:direction]]/[[arrow:direction]]
+        const regex = /\[\[(red|big|bold|marker|image|gift|gift_arrow|arrow):?(.+?)?\]\]/g;
         const parts = [];
         let lastIndex = 0;
         let match;
@@ -181,10 +183,21 @@ export default function ReferencePage() {
             }
 
             // Add the matched tag part
-            parts.push({
-                type: match[1], // red, big, bold, marker
-                content: match[2],
-            });
+            const type = match[1];
+            const rawContent = match[2] || "";
+
+            if (type === 'image') {
+                const [content, label] = rawContent.split(':');
+                parts.push({ type: 'image', content, label });
+            } else if (type === 'gift_arrow') {
+                const [content, or] = rawContent.split(':');
+                parts.push({ type: 'gift_arrow', content, or: or === 'or' });
+            } else {
+                parts.push({
+                    type: type, // red, big, bold, marker
+                    content: rawContent,
+                });
+            }
 
             lastIndex = regex.lastIndex;
         }
@@ -212,12 +225,28 @@ export default function ReferencePage() {
                 const part = parsedLine[0];
                 const imageSource = IMAGE_MAP[part.content];
                 if (imageSource) {
+                    let imageStyle: any = { width: '100%', height: '100%' };
+                    let wrapperStyle: any = { width: '40%', minHeight: 120, aspectRatio: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', marginVertical: 5 };
+
+                    // Custom clipping for specific characters
+                    if (part.content === 'pitchi') {
+                        // Chick: Standard center (Show name)
+                        imageStyle = { width: '100%', height: '100%', position: 'absolute' };
+                    } else if (part.content === 'task') {
+                        // Turtle: Standard center (Show name)
+                        imageStyle = { width: '100%', height: '100%', position: 'absolute' };
+                    } else if (part.content === 'chachalot') {
+                        imageStyle = { width: '100%', height: '100%', position: 'absolute' };
+                    } else if (part.content === 'kachadokuro' || part.content === 'king_kachadokuro' || part.content === 'princess_kachadokuro') {
+                        imageStyle = { width: '100%', height: '100%', position: 'absolute' };
+                    }
+
                     return (
-                        <View key={lineIndex} style={{ width: '100%', alignItems: 'center', marginVertical: 5 }}>
-                            <View style={{ width: '40%', minHeight: 120, aspectRatio: 3 / 4 }}>
+                        <View key={lineIndex} style={{ width: '100%', alignItems: 'center' }}>
+                            <View style={[wrapperStyle, { backgroundColor: colors.background + '80', borderRadius: 15, position: 'relative' }]}>
                                 <Image
                                     source={imageSource}
-                                    style={{ width: '100%', height: '100%' }}
+                                    style={imageStyle}
                                     resizeMode="contain"
                                 />
                             </View>
@@ -227,7 +256,7 @@ export default function ReferencePage() {
             }
 
             return (
-                <ThemedText key={lineIndex} style={styles.line}>
+                <View key={lineIndex} style={[styles.lineWrapper, { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', paddingVertical: 2 }]}>
                     {parsedLine.map((part, partIndex) => {
                         switch (part.type) {
                             case 'red':
@@ -238,7 +267,7 @@ export default function ReferencePage() {
                                 );
                             case 'big':
                                 return (
-                                    <ThemedText key={partIndex} style={{ fontSize: 24, fontWeight: 'bold', lineHeight: 32 }}>
+                                    <ThemedText key={partIndex} style={{ fontSize: 20, fontWeight: 'bold', lineHeight: 28 }}>
                                         {part.content}
                                     </ThemedText>
                                 );
@@ -255,25 +284,103 @@ export default function ReferencePage() {
                                     </ThemedText>
                                 );
                             case 'image':
-                                // Inline image fallback (or if mixed with text)
                                 const imageSource = IMAGE_MAP[part.content];
                                 if (imageSource) {
+                                    let imageStyle: any = { width: '100%', height: '100%', position: 'absolute' };
+                                    let containerSize = 75;
+
+                                    // Reset to standard 100% since names are in images now
+                                    imageStyle = { width: '100%', height: '100%', position: 'absolute' };
+
                                     return (
-                                        <View key={partIndex} style={{ width: 200, height: 150 }}>
-                                            <Image
-                                                source={imageSource}
-                                                style={{ width: '100%', height: '100%' }}
-                                                resizeMode="contain"
-                                            />
+                                        <View key={partIndex} style={{ alignItems: 'center', marginHorizontal: 3 }}>
+                                            {part.label ? (
+                                                <View style={{ backgroundColor: colors.primary, paddingHorizontal: 10, paddingVertical: 2, borderRadius: 6, marginBottom: 4, zIndex: 10 }}>
+                                                    <ThemedText style={{ fontSize: 10, color: '#fff', fontWeight: 'bold' }}>{part.label}</ThemedText>
+                                                </View>
+                                            ) : <View style={{ height: 18 }} />}
+                                            <View style={{ width: containerSize, height: containerSize, overflow: 'hidden', borderRadius: 25, backgroundColor: '#fff', borderWidth: 3, borderColor: colors.primary + '30', position: 'relative', alignItems: 'center', justifyContent: 'center' }}>
+                                                <Image
+                                                    source={imageSource}
+                                                    style={imageStyle}
+                                                    resizeMode="contain"
+                                                />
+                                            </View>
                                         </View>
                                     );
                                 }
-                                return <ThemedText key={partIndex}>[画像が見つかりません: {part.content}]</ThemedText>;
+                                return <ThemedText key={partIndex}>[画像なし]</ThemedText>;
+                            case 'gift_arrow':
+                                const isRight = part.content === 'right';
+                                return (
+                                    <View key={partIndex} style={{ width: 80, height: 60, alignItems: 'center', justifyContent: 'center', marginHorizontal: -12 }}>
+                                        {/* "or" Indicator */}
+                                        {part.or && (
+                                            <ThemedText style={{ position: 'absolute', top: -15, color: '#e74c3c', fontSize: 24, fontWeight: 'bold', zIndex: 40, fontFamily: Platform.OS === 'ios' ? 'Marker Felt' : 'monospace' }}>or</ThemedText>
+                                        )}
+
+                                        {/* Horizontal Arrow Line */}
+                                        <View style={{ width: 80, height: 4, backgroundColor: colors.primary, zIndex: 1 }} />
+
+                                        {/* Arrow Tip */}
+                                        <View style={{
+                                            position: 'absolute',
+                                            [isRight ? 'right' : 'left']: -2,
+                                            width: 0,
+                                            height: 0,
+                                            backgroundColor: 'transparent',
+                                            borderStyle: 'solid',
+                                            borderLeftWidth: isRight ? 20 : 0,
+                                            borderRightWidth: isRight ? 0 : 20,
+                                            borderBottomWidth: 14,
+                                            borderTopWidth: 14,
+                                            borderLeftColor: isRight ? colors.primary : 'transparent',
+                                            borderRightColor: isRight ? 'transparent' : colors.primary,
+                                            zIndex: 2
+                                        }} />
+
+                                        {/* Gift Box centered on line */}
+                                        <View style={{ position: 'absolute', backgroundColor: '#fff', borderRadius: 8, borderWidth: 2, borderColor: colors.primary, padding: 2, zIndex: 30, elevation: 5 }}>
+                                            <ThemedText style={{ fontSize: 24 }}>🎁</ThemedText>
+                                        </View>
+                                    </View>
+                                );
+                            case 'arrow':
+                                const isArrowRight = part.content === 'right';
+                                return (
+                                    <View key={partIndex} style={{ width: 60, height: 60, alignItems: 'center', justifyContent: 'center', marginHorizontal: -5 }}>
+                                        {/* Horizontal Arrow Line */}
+                                        <View style={{ width: 60, height: 4, backgroundColor: colors.primary, zIndex: 1 }} />
+
+                                        {/* Arrow Tip */}
+                                        <View style={{
+                                            position: 'absolute',
+                                            [isArrowRight ? 'right' : 'left']: -2,
+                                            width: 0,
+                                            height: 0,
+                                            backgroundColor: 'transparent',
+                                            borderStyle: 'solid',
+                                            borderLeftWidth: isArrowRight ? 16 : 0,
+                                            borderRightWidth: isArrowRight ? 0 : 16,
+                                            borderBottomWidth: 10,
+                                            borderTopWidth: 10,
+                                            borderLeftColor: isArrowRight ? colors.primary : 'transparent',
+                                            borderRightColor: isArrowRight ? 'transparent' : colors.primary,
+                                            zIndex: 2
+                                        }} />
+                                    </View>
+                                );
+                            case 'gift':
+                                return (
+                                    <View key={partIndex} style={{ width: 30, height: 30, backgroundColor: colors.primary + '20', borderRadius: 8, alignItems: 'center', justifyContent: 'center', marginHorizontal: 2 }}>
+                                        <ThemedText style={{ fontSize: 18 }}>🎁</ThemedText>
+                                    </View>
+                                );
                             default:
                                 return <ThemedText key={partIndex}>{part.content}</ThemedText>;
                         }
                     })}
-                </ThemedText>
+                </View>
             );
         });
     };
@@ -287,21 +394,16 @@ export default function ReferencePage() {
                 </ThemedView>
             </ScrollView>
 
-            {(chunks.length > 0 && !(subjectName === '民法総論' && questionIndex === 54)) && (
-                <Pressable
-                    onPress={() => setIsChunkModalVisible(true)}
-                    style={[styles.chunkButton, { backgroundColor: colors.card, borderColor: colors.primary + '40' }]}
-                >
-                    <MaterialCommunityIcons name="infinity" size={32} color={colors.primary} />
-                </Pressable>
-            )}
 
             <Pressable
                 onPress={() => {
-                    if (originSubject && originId) {
+                    if (originSubject) {
                         router.replace({
                             pathname: `/learn/[subject]` as any,
-                            params: { subject: originSubject }
+                            params: {
+                                subject: originSubject,
+                                index: originIndex || '0'
+                            }
                         });
                     } else {
                         router.back();
@@ -312,58 +414,6 @@ export default function ReferencePage() {
                 <ThemedText style={{ color: colors.primary, fontWeight: 'bold' }}>学習へ戻る</ThemedText>
             </Pressable>
 
-            {/* Chunk Selection Modal */}
-            <Modal
-                visible={isChunkModalVisible}
-                transparent={true}
-                animationType="fade"
-                onRequestClose={() => setIsChunkModalVisible(false)}
-            >
-                <Pressable
-                    style={styles.modalOverlay}
-                    onPress={() => setIsChunkModalVisible(false)}
-                >
-                    <ThemedView style={[styles.modalContent, { backgroundColor: colors.card }]}>
-                        <ThemedText style={styles.modalTitle}>関連知識をチャンクする (∞)</ThemedText>
-                        <FlatList
-                            data={chunks}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item }) => (
-                                <Pressable
-                                    onPress={() => {
-                                        setIsChunkModalVisible(false);
-                                        router.replace({
-                                            pathname: `/learn/reference/[subject]/[id]` as any,
-                                            params: {
-                                                subject: item.subject,
-                                                id: item.id,
-                                                originSubject: originSubject || subjectName,
-                                                originId: originId || id
-                                            }
-                                        });
-                                    }}
-                                    style={({ pressed }) => [
-                                        styles.chunkItem,
-                                        { borderBottomColor: colors.choiceBorder, backgroundColor: pressed ? colors.primary + '10' : 'transparent' }
-                                    ]}
-                                >
-                                    <View style={styles.chunkItemHeader}>
-                                        <MaterialCommunityIcons name="link-variant" size={20} color={colors.primary} />
-                                        <ThemedText style={[styles.chunkItemSubject, { color: colors.primary }]}>{item.subject}</ThemedText>
-                                    </View>
-                                    <ThemedText style={styles.chunkItemTitle}>{item.title}</ThemedText>
-                                </Pressable>
-                            )}
-                        />
-                        <Pressable
-                            onPress={() => setIsChunkModalVisible(false)}
-                            style={[styles.closeButton, { backgroundColor: colors.primary }]}
-                        >
-                            <ThemedText style={{ color: 'white', fontWeight: 'bold' }}>閉じる</ThemedText>
-                        </Pressable>
-                    </ThemedView>
-                </Pressable>
-            </Modal>
 
             {/* Mini Player */}
             <ThemedView style={[styles.miniPlayer, { borderTopColor: colors.choiceBorder, backgroundColor: colors.background }]}>
@@ -396,9 +446,12 @@ const styles = StyleSheet.create({
         paddingBottom: 40,
     },
     paper: {
-        padding: 24,
-        borderRadius: 8,
+        padding: 20,
+        borderRadius: 20,
         borderWidth: 1,
+    },
+    lineWrapper: {
+        marginVertical: 2,
     },
     line: {
         fontSize: 18,

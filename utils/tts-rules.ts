@@ -103,5 +103,6 @@ export const applyTTSRules = (text: string): string => {
         .replace(/外国人との間に/g, 'がいこくじんとのかんに')
         .replace(/非嫡出子/g, 'ひちゃくしゅつし')
         .replace(/嫡出子/g, 'ちゃくしゅつし')
+        .replace(/目的物/g, 'もくてきぶつ')
         .replace(/祭事/g, 'さいじ');
 };

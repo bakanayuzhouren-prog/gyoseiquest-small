@@ -42,13 +42,14 @@ const getCivilPath = (articleNum: number): string => {
 };
 
 export default function LearnSubjectScreen() {
-  const params = useLocalSearchParams<{ subject?: string }>();
+  const params = useLocalSearchParams<{ subject?: string; index?: string }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
+  const initialIndex = parseInt(params.index || '0', 10);
   // Ensure content is treated as an array (fallback for backward compatibility if file not synced yet)
   const rawContent = subject ? (LEARN_CONTENT as any)[subject] : [];
   const contentList = Array.isArray(rawContent) ? rawContent : (rawContent ? [rawContent] : []);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [currentReadCount, setCurrentReadCount] = useState(1); // Counter for the 3 repeats
   const [readCount, setReadCount] = useState(0); // Cumulative total count (optional, but keep for UI)
   const [playbackRate, setPlaybackRate] = useState(2.0); // Default speed
@@ -155,7 +156,13 @@ export default function LearnSubjectScreen() {
     // Navigate to reference page
     router.push({
       pathname: `/learn/reference/[subject]/[id]` as any,
-      params: { subject: subject, id: questionIndex }
+      params: {
+        subject: subject,
+        id: questionIndex,
+        originSubject: subject,
+        originId: questionIndex,
+        originIndex: currentIndex
+      }
     });
   };
 
