@@ -411,6 +411,19 @@ export default function LearnSubjectScreen() {
                 </ThemedText>
               </Pressable>
             ) : null}
+
+            {/* Past Question Button (Visible only for Constitution index 3) */}
+            {subject === '憲法' && currentIndex === 3 ? (
+              <Pressable
+                style={styles.pastQuestionButton}
+                onPress={() => {
+                  router.push('/learn/past/sunagawa');
+                }}
+              >
+                <MaterialIcons name="quiz" size={18} color="#007BFF" />
+                <ThemedText style={styles.pastQuestionText}>過去問</ThemedText>
+              </Pressable>
+            ) : null}
           </ThemedView>
 
           {/* Speed Controls */}
@@ -848,8 +861,25 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontSize: 18,
     color: '#666',
-    textAlign: 'center',
-    fontStyle: 'italic',
+  },
+  pastQuestionButton: {
+    position: 'absolute',
+    right: 16,
+    bottom: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+    backgroundColor: '#F0F7FF',
+    borderWidth: 1,
+    borderColor: '#007BFF',
+  },
+  pastQuestionText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#007BFF',
   },
   count: {
     fontSize: 18,
