@@ -468,7 +468,6 @@ export default function LearnSubjectScreen() {
             </Pressable>
           </ThemedView>
 
-          <ThemedText style={styles.count}>読んだ回数: {readCount} (現在:{currentReadCount}/3)</ThemedText>
 
           <ThemedView style={styles.controlsRow}>
             <Pressable
@@ -861,6 +860,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontSize: 18,
     color: '#666',
+    textAlign: 'center',
   },
   pastQuestionButton: {
     position: 'absolute',
