@@ -425,6 +425,20 @@ export default function LearnSubjectScreen() {
               </Pressable>
             ))}
 
+            {/* Deep Dive Button (Moved inside speedContainer) */}
+            {digDeeperUrl ? (
+              <Pressable style={styles.digDeeperButtonSmall} onPress={handleOpenDeepDive}>
+                <MaterialIcons
+                  name={(digDeeperUrl === '54' && subject === '民法総論') ? "brush" : "article"}
+                  size={16}
+                  color="#fff"
+                />
+                <ThemedText style={styles.digDeeperTextSmall}>
+                  {(digDeeperUrl === '54' && subject === '民法総論') ? "絵で覚える" : "もっと深掘る"}
+                </ThemedText>
+              </Pressable>
+            ) : null}
+
             <Pressable
               style={[styles.priorityButton, isPriorityMode && styles.priorityButtonActive]}
               onPress={handleTogglePriorityMode}
@@ -437,20 +451,6 @@ export default function LearnSubjectScreen() {
               <ThemedText style={[styles.priorityText, isPriorityMode && styles.priorityTextActive]}>付箋優先</ThemedText>
             </Pressable>
           </ThemedView>
-
-          {/* Deep Dive Button (Swapped position) */}
-          {digDeeperUrl ? (
-            <Pressable style={styles.digDeeperButton} onPress={handleOpenDeepDive}>
-              <MaterialIcons
-                name={(digDeeperUrl === '54' && subject === '民法総論') ? "brush" : "article"}
-                size={20}
-                color="#fff"
-              />
-              <ThemedText style={styles.digDeeperText}>
-                {(digDeeperUrl === '54' && subject === '民法総論') ? "絵で覚える" : "もっと深掘る"}
-              </ThemedText>
-            </Pressable>
-          ) : null}
 
           <ThemedText style={styles.count}>読んだ回数: {readCount} (現在:{currentReadCount}/3)</ThemedText>
 
@@ -900,26 +900,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f8f8',
     alignItems: 'center',
   },
-  digDeeperButton: {
+  digDeeperButtonSmall: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
-    marginTop: 16,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: '#FF9800', // Orange color for "Dig Deeper"
-    borderRadius: 25,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.5,
+    gap: 4,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    backgroundColor: '#FF9800',
+    borderRadius: 8,
+    marginLeft: 8,
+    marginRight: 8,
+    flex: 1,
   },
-  digDeeperText: {
+  digDeeperTextSmall: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 14,
   },
   nextButton: {
     flex: 2,
