@@ -1,6 +1,10 @@
 export const applyTTSRules = (text: string): string => {
     return text
         .replace(/※.*$/g, '')
+        .replace(/国家/g, 'こっか')
+        .replace(/国会/g, 'こっかい')
+        .replace(/国務/g, 'こくむ')
+        .replace(/国民/g, 'こくみん')
         // New rules added
         .replace(/家庭裁判所/g, 'かていさいばんしょ')
         .replace(/後順位抵当権者/g, 'こうじゅんいていとうけんしゃ')

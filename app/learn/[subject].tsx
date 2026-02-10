@@ -353,7 +353,19 @@ export default function LearnSubjectScreen() {
           />
 
           <ThemedView style={styles.headerRow}>
-            <ThemedText type="title">{subject} ({currentIndex + 1}/{displayContentList.length})</ThemedText>
+            <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: 'transparent' }}>
+              <ThemedText type="title">{subject} ({currentIndex + 1}/{displayContentList.length})</ThemedText>
+              <ThemedView style={styles.bulbContainer}>
+                {[1, 2, 3].map((num) => (
+                  <MaterialIcons
+                    key={num}
+                    name="fiber-manual-record"
+                    size={20}
+                    color={currentReadCount >= num ? "#28A745" : "#E0E0E0"}
+                  />
+                ))}
+              </ThemedView>
+            </ThemedView>
             <ThemedView style={{ flexDirection: 'row', gap: 8, backgroundColor: 'transparent' }}>
               <Pressable
                 style={styles.stickyButton}
@@ -401,16 +413,6 @@ export default function LearnSubjectScreen() {
             ) : null}
           </ThemedView>
 
-          {/* Play/Stop Button (Moved outside contentContainer) */}
-          <Pressable
-            style={[styles.playButton, isPlaying ? styles.stopButton : styles.startButton]}
-            onPress={handleTogglePlay}
-          >
-            <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>
-              {isPlaying ? '■ 停止' : '▶ 再生 (3回ずつ連続)'}
-            </ThemedText>
-          </Pressable>
-
           {/* Speed Controls */}
           <ThemedView style={styles.speedContainer}>
             <ThemedText>速度: </ThemedText>
@@ -455,13 +457,22 @@ export default function LearnSubjectScreen() {
 
           <ThemedText style={styles.count}>読んだ回数: {readCount} (現在:{currentReadCount}/3)</ThemedText>
 
-          <ThemedView style={styles.navButtons}>
+          <ThemedView style={styles.controlsRow}>
             <Pressable
               style={[styles.prevButton, currentIndex === 0 && styles.disabledButton]}
               onPress={handleManualPrev}
               disabled={currentIndex === 0}
             >
               <ThemedText type="defaultSemiBold" style={currentIndex === 0 ? { color: '#999' } : {}}>前へ</ThemedText>
+            </Pressable>
+
+            <Pressable
+              style={[styles.playButton, isPlaying ? styles.stopButton : styles.startButton]}
+              onPress={handleTogglePlay}
+            >
+              <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>
+                {isPlaying ? '■ 停止' : '▶ 再生'}
+              </ThemedText>
             </Pressable>
 
             <Pressable style={isLastItem ? styles.completeButton : styles.nextButton} onPress={handleManualNext}>
@@ -713,6 +724,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: 'transparent',
+    marginBottom: 8,
+  },
+  bulbContainer: {
+    flexDirection: 'row',
+    gap: 6,
+    backgroundColor: '#333',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+    alignItems: 'center',
   },
   stickyButton: {
     flexDirection: 'row',
@@ -881,12 +902,11 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   playButton: {
+    flex: 3,
     borderRadius: 12,
     paddingVertical: 14,
     paddingHorizontal: 16,
     alignItems: 'center',
-    marginTop: 16,
-    marginBottom: 8,
   },
   startButton: {
     backgroundColor: '#28A745',
@@ -894,10 +914,12 @@ const styles = StyleSheet.create({
   stopButton: {
     backgroundColor: '#DC3545',
   },
-  navButtons: {
+  controlsRow: {
     flexDirection: 'row',
     gap: 12,
-    zIndex: 10, // メモ(zIndex: 1)より前面に表示
+    alignItems: 'center',
+    marginTop: 16,
+    zIndex: 10,
   },
   prevButton: {
     flex: 1,
@@ -928,7 +950,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   nextButton: {
-    flex: 2,
+    flex: 1,
     borderRadius: 12,
     paddingVertical: 14,
     paddingHorizontal: 16,
@@ -938,7 +960,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   completeButton: {
-    flex: 2,
+    flex: 1,
     borderRadius: 12,
     paddingVertical: 14,
     paddingHorizontal: 16,
