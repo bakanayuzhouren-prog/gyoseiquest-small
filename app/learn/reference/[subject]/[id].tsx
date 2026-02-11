@@ -212,52 +212,56 @@ export default function ReferencePage() {
 
     const renderContent = (text: string) => {
         const processedText = applyCharacterNames(text);
-        const lines = processedText.split('\n');
+        const lines = processedText.split('\n').filter(l => l.trim() !== '' || l === ''); // Keep empty lines for spacing but filter out purely empty padding
 
         const blocks: { type: 'section' | 'plain', title?: string, content: any[][] }[] = [];
         let currentBlock: { type: 'section' | 'plain', title?: string, content: any[][] } | null = null;
 
-        lines.forEach(line => {
+        lines.forEach((line, index) => {
             const trimmedLine = line.trim();
+            if (!trimmedLine && !currentBlock) return; // Skip leading empty lines
+
             const parsedLine = parseRichText(line);
 
             // Detection Patterns for auto-card splitting
-            // 1. [[section:Title]] tag
             const sectionTag = parsedLine.find(p => p.type === 'section');
 
-            // 2. Automated detection: "1. ", "①", "Q1. ", etc.
-            const isNumericHeader = /^[0-9]+[\.．]/.test(trimmedLine);
+            // Improved regex to support "1: ", "1. ", "1．" and "Q: "
+            const isNumericHeader = /^[0-9]+[:\.．\s]/.test(trimmedLine);
             const isCircledNumber = /^[①②③④⑤⑥⑦⑧⑨⑩]/.test(trimmedLine);
-            const isQAHeader = /^[Qq](＆|&)[Aa]|^[Qq][0-9]*[\.．]/.test(trimmedLine);
-            const isCaseHeader = /^【?[0-9]*[\.．]?事例/.test(trimmedLine);
+            const isQAHeader = /^[Qq](＆|&)[Aa]|^[Qq][0-9]*[:\.．\s]/.test(trimmedLine);
+            const isCaseHeader = /^【?[0-9]*[\.．]?事例|^判例|^憲法[0-9]*条/.test(trimmedLine);
 
-            const isNewSection = sectionTag || isNumericHeader || isCircledNumber || isQAHeader || isCaseHeader;
+            // Heuristic: Treat the very first line as a title if it's reasonably short and no other title starts immediately
+            const isFirstLineTitle = index === 0 && trimmedLine.length < 60 && !sectionTag;
+
+            const isNewSection = sectionTag || isNumericHeader || isCircledNumber || isQAHeader || isCaseHeader || isFirstLineTitle;
 
             if (isNewSection) {
-                // If the previous block was empty/plain and only had whitespace, we can replace it
-                // otherwise start a new one.
                 const title = sectionTag ? sectionTag.content : trimmedLine;
                 currentBlock = { type: 'section', title: title, content: [] };
                 blocks.push(currentBlock);
 
-                // If it was a tag, we continue without adding this line specifically if it's just the tag
                 if (sectionTag) {
                     const filteredLine = parsedLine.filter(p => p.type !== 'section');
                     if (filteredLine.length > 0) {
                         currentBlock.content.push(filteredLine);
                     }
-                } else {
-                    // It was an auto-detected header, we don't add the header itself to content if it's the title
-                    // But usually "1. Title" - so we keep it if it's just plain text.
-                    // Actually, let's keep the line in the card content but maybe style it differently?
-                    // No, using it as title is cleaner.
+                } else if (!isFirstLineTitle && !isNumericHeader && !isCircledNumber && !isQAHeader && !isCaseHeader) {
+                    // If it's an auto-detected header but not specifically handled, we might want to keep the line
+                    // For now, if it's detected as a title, we don't duplicate it in content.
+                } else if (isNumericHeader || isCircledNumber || isQAHeader || isCaseHeader) {
+                    // We use the full line as title, but maybe some people want the line in content too?
+                    // Usually cleaner to have it as title only.
                 }
             } else {
                 if (!currentBlock) {
                     currentBlock = { type: 'plain', content: [] };
                     blocks.push(currentBlock);
                 }
-                currentBlock.content.push(parsedLine);
+                if (trimmedLine || currentBlock.content.length > 0) {
+                    currentBlock.content.push(parsedLine);
+                }
             }
         });
 
@@ -267,6 +271,9 @@ export default function ReferencePage() {
         const mainTextCol = isModern ? '#2C5282' : '#2c3e50';
 
         return blocks.map((block, blockIndex) => {
+            const isPointBlock = block.title && (block.title.includes('💡') || block.title.includes('ポイント'));
+            const isCaseTitle = blockIndex === 0;
+
             return (
                 <View key={blockIndex} style={styles.cardWrapper}>
                     <LinearGradient
@@ -276,26 +283,45 @@ export default function ReferencePage() {
                         style={[
                             styles.sectionCard,
                             { borderColor: borderCol },
-                            block.type === 'plain' ? { borderWidth: 0, elevation: 0, shadowOpacity: 0, backgroundColor: 'transparent' } : {},
+                            isPointBlock ? styles.pointCard : {},
                         ]}
                     >
+                        {isModern && (
+                            <View style={[
+                                styles.accentBar,
+                                isPointBlock ? { backgroundColor: '#38A169', width: 8 } : {},
+                                isCaseTitle ? { backgroundColor: '#2B6CB0', width: 8 } : {}
+                            ]} />
+                        )}
+
                         {block.title && (
-                            <View style={styles.sectionHeader}>
-                                <ThemedText style={[styles.sectionTitle, { color: mainTextCol }]}>{block.title}</ThemedText>
+                            <View style={[styles.sectionHeader, isCaseTitle ? { borderBottomWidth: 1, borderBottomColor: '#E2E8F0', paddingBottom: 12, marginBottom: 12 } : {}]}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                                    {isCaseTitle && <MaterialIcons name="gavel" size={24} color="#2B6CB0" />}
+                                    {isPointBlock && <MaterialIcons name="lightbulb" size={24} color="#38A169" />}
+                                    <ThemedText style={[
+                                        styles.sectionTitle,
+                                        { color: isCaseTitle ? '#1A365D' : mainTextCol },
+                                        isCaseTitle ? { fontSize: 22, fontWeight: '900' } : {},
+                                        isPointBlock ? { color: '#2F855A' } : {}
+                                    ]}>
+                                        {block.title}
+                                    </ThemedText>
+                                </View>
                             </View>
                         )}
                         <View style={styles.cardBody}>
                             {block.content.map((lineParts, lineIndex) => {
-                                const isPoint = lineParts.some(p => p.type === 'point');
-                                if (isPoint) {
+                                const isPointLine = lineParts.some(p => p.type === 'point');
+                                if (isPointLine) {
                                     const pointPart = lineParts.find(p => p.type === 'point');
                                     return (
-                                        <View key={lineIndex} style={[styles.pointBox, { backgroundColor: colors.primary + '15', borderColor: colors.primary }]}>
+                                        <View key={lineIndex} style={[styles.pointBox, { backgroundColor: '#F0FFF4', borderColor: '#C6F6D5' }]}>
                                             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-                                                <MaterialIcons name="stars" size={22} color={colors.primary} />
-                                                <ThemedText style={{ color: colors.primary, fontWeight: 'bold', fontSize: 13, letterSpacing: 1 }}>CHECK / ポイント</ThemedText>
+                                                <MaterialIcons name="stars" size={22} color="#38A169" />
+                                                <ThemedText style={{ color: '#2F855A', fontWeight: 'bold', fontSize: 13, letterSpacing: 1 }}>CHECK / 重要点</ThemedText>
                                             </View>
-                                            <ThemedText style={styles.pointText}>{pointPart?.content}</ThemedText>
+                                            <ThemedText style={[styles.pointText, { color: '#276749' }]}>{pointPart?.content}</ThemedText>
                                         </View>
                                     );
                                 }
@@ -322,16 +348,11 @@ export default function ReferencePage() {
                                         <ThemedText key={lineIndex} style={styles.lineWrapper}>
                                             {lineParts.map((part, partIndex) => {
                                                 switch (part.type) {
-                                                    case 'red':
-                                                        return <ThemedText key={partIndex} style={{ color: '#e74c3c', fontWeight: 'bold' }}>{part.content}</ThemedText>;
-                                                    case 'big':
-                                                        return <ThemedText key={partIndex} style={{ fontSize: 20, fontWeight: 'bold', lineHeight: 30, color: mainTextCol }}>{part.content}</ThemedText>;
-                                                    case 'bold':
-                                                        return <ThemedText key={partIndex} style={{ fontWeight: 'bold', color: mainTextCol }}>{part.content}</ThemedText>;
-                                                    case 'marker':
-                                                        return <ThemedText key={partIndex} style={styles.markerText}>{part.content}</ThemedText>;
-                                                    default:
-                                                        return <ThemedText key={partIndex} style={{ color: mainTextCol }}>{part.content}</ThemedText>;
+                                                    case 'red': return <ThemedText key={partIndex} style={{ color: '#E53E3E', fontWeight: 'bold' }}>{part.content}</ThemedText>;
+                                                    case 'big': return <ThemedText key={partIndex} style={{ fontSize: 20, fontWeight: '900', lineHeight: 30, color: '#2C5282' }}>{part.content}</ThemedText>;
+                                                    case 'bold': return <ThemedText key={partIndex} style={{ fontWeight: 'bold', color: '#1A365D' }}>{part.content}</ThemedText>;
+                                                    case 'marker': return <ThemedText key={partIndex} style={styles.markerText}>{part.content}</ThemedText>;
+                                                    default: return <ThemedText key={partIndex} style={{ color: mainTextCol }}>{part.content}</ThemedText>;
                                                 }
                                             })}
                                         </ThemedText>
@@ -342,31 +363,23 @@ export default function ReferencePage() {
                                     <View key={lineIndex} style={styles.lineWrapperRow}>
                                         {lineParts.map((part, partIndex) => {
                                             switch (part.type) {
-                                                case 'red':
-                                                    return <ThemedText key={partIndex} style={[styles.line, { color: '#e74c3c', fontWeight: 'bold' }]}>{part.content}</ThemedText>;
-                                                case 'big':
-                                                    return <ThemedText key={partIndex} style={[styles.line, { fontSize: 20, fontWeight: 'bold', lineHeight: 30, color: mainTextCol }]}>{part.content}</ThemedText>;
-                                                case 'bold':
-                                                    return <ThemedText key={partIndex} style={[styles.line, { fontWeight: 'bold', color: mainTextCol }]}>{part.content}</ThemedText>;
-                                                case 'marker':
-                                                    return <ThemedText key={partIndex} style={[styles.line, styles.markerText]}>{part.content}</ThemedText>;
+                                                case 'red': return <ThemedText key={partIndex} style={[styles.line, { color: '#E53E3E', fontWeight: 'bold' }]}>{part.content}</ThemedText>;
+                                                case 'big': return <ThemedText key={partIndex} style={[styles.line, { fontSize: 20, fontWeight: '900', lineHeight: 30, color: '#2C5282' }]}>{part.content}</ThemedText>;
+                                                case 'bold': return <ThemedText key={partIndex} style={[styles.line, { fontWeight: 'bold', color: '#1A365D' }]}>{part.content}</ThemedText>;
+                                                case 'marker': return <ThemedText key={partIndex} style={[styles.line, styles.markerText]}>{part.content}</ThemedText>;
                                                 case 'image':
                                                     const img = IMAGE_RESOURCES_MAP[part.content];
                                                     if (img) {
                                                         const isLargeImage = part.content.includes('rigid_constitution') || part.content.includes('flexible_constitution');
                                                         const size = isLargeImage ? 150 : 70;
                                                         return (
-                                                            <Pressable
-                                                                key={partIndex}
-                                                                onPress={() => setSelectedImageSource(img)}
-                                                                style={{ alignItems: 'center', marginHorizontal: 5, marginVertical: isLargeImage ? 15 : 5 }}
-                                                            >
+                                                            <Pressable key={partIndex} onPress={() => setSelectedImageSource(img)} style={{ alignItems: 'center', marginHorizontal: 5, marginVertical: isLargeImage ? 15 : 5 }}>
                                                                 {part.label ? (
                                                                     <View style={{ backgroundColor: colors.primary, paddingHorizontal: 10, paddingVertical: 3, borderRadius: 8, marginBottom: 6 }}>
                                                                         <ThemedText style={{ fontSize: 11, color: '#fff', fontWeight: 'bold' }}>{part.label}</ThemedText>
                                                                     </View>
                                                                 ) : <View style={{ height: isLargeImage ? 0 : 20 }} />}
-                                                                <View style={[styles.avatarFrame, { width: size, height: size, borderRadius: isLargeImage ? 16 : size / 2, borderColor: colors.primary + '40' }]}>
+                                                                <View style={[styles.avatarFrame, { width: size, height: size, borderRadius: isLargeImage ? 16 : size / 2, borderColor: colors.primary + '40', backgroundColor: '#fff' }]}>
                                                                     <Image source={img} style={{ width: '100%', height: '100%' }} resizeMode="contain" />
                                                                 </View>
                                                             </Pressable>
@@ -391,8 +404,7 @@ export default function ReferencePage() {
                                                             <View style={[styles.arrowHead, { [isArrowRight ? 'right' : 'left']: -2, [isArrowRight ? 'borderLeftColor' : 'borderRightColor']: colors.primary, [isArrowRight ? 'borderLeftWidth' : 'borderRightWidth']: 12 }]} />
                                                         </View>
                                                     );
-                                                default:
-                                                    return <ThemedText key={partIndex} style={[styles.line, { color: mainTextCol }]}>{part.content}</ThemedText>;
+                                                default: return <ThemedText key={partIndex} style={[styles.line, { color: mainTextCol }]}>{part.content}</ThemedText>;
                                             }
                                         })}
                                     </View>
@@ -516,20 +528,36 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         borderWidth: 1.5,
         overflow: 'hidden',
+        position: 'relative',
+    },
+    accentBar: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        width: 5,
+        backgroundColor: '#BEE3F8',
+    },
+    pointCard: {
+        backgroundColor: '#F0FFF4', // Very light green for points
+        borderColor: '#C6F6D5',
     },
     sectionHeader: {
         paddingHorizontal: 20,
         paddingTop: 18,
         paddingBottom: 8,
+        paddingLeft: 25, // Compensation for accentBar
     },
     sectionTitle: {
-        fontSize: 17,
-        fontWeight: '800',
-        lineHeight: 26,
+        fontSize: 20,
+        fontWeight: '900',
+        lineHeight: 28,
+        letterSpacing: -0.5,
     },
     cardBody: {
         paddingHorizontal: 20,
         paddingBottom: 20,
+        paddingLeft: 25, // Compensation for accentBar
     },
     pointBox: {
         marginTop: 12,
