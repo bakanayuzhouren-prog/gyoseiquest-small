@@ -3,12 +3,18 @@ const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
 
-const auth = new google.auth.GoogleAuth({
-  keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
-  scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-});
-
-const sheets = google.sheets({ version: 'v4', auth });
+let sheets;
+if (process.env.GOOGLE_SHEETS_API_KEY) {
+  console.log('Using API Key for authentication');
+  sheets = google.sheets({ version: 'v4', auth: process.env.GOOGLE_SHEETS_API_KEY });
+} else {
+  console.log('Using Service Account for authentication');
+  const auth = new google.auth.GoogleAuth({
+    keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+    scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+  });
+  sheets = google.sheets({ version: 'v4', auth });
+}
 const OUTPUT_FILE = path.join(__dirname, '../src/learn.js');
 
 async function sync() {
@@ -86,19 +92,22 @@ async function sync() {
       sheetDefaultSubject = '基礎知識';
     }
 
-    let range = `${title}!A:C`;
+    let range = `${title}!A:F`;
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
       range,
     });
 
     const rows = response.data.values;
-    if (!rows || rows.length === 0) {
-      console.log(`No data in sheet: ${title}`);
+    if (!rows || rows.length <= 1) {
+      console.log(`No data or only header in sheet: ${title}`);
       continue;
     }
 
-    rows.forEach(row => {
+    // Skip the first row (memo/header row)
+    const dataRows = rows.slice(1);
+
+    dataRows.forEach(row => {
       // RESET currentSubject for every row to the sheet default
       let currentSubject = sheetDefaultSubject;
 
@@ -129,51 +138,55 @@ async function sync() {
         else if (rawSubject.includes('基礎知識')) currentSubject = '基礎知識';
       }
 
-      // If we have a determined subject (either from sheet title or col A), add content
+      // If we have a determined subject, add content
       if (currentSubject) {
-        // User confirmed A=Subject, C=Content for the main sheet.
-        // But for individual sheets (e.g. "全審"), content is often in A.
-        // Priority: C > B > A (if long enough)
-
         let content = row[2];
-        if (!content && row[1] && row[1].length > 5) content = row[1];
-        // Fallback to A if it looks like content (long enough) and isn't just a subject name repetition
-        if (!content && row[0] && row[0].length > 8) {
-          // Exclude obvious headers like "科目（...）"
+        if (!content && row[1]) content = row[1];
+        if (!content && row[0]) {
           if (!row[0].startsWith('科目')) {
             content = row[0];
           }
         }
 
         if (content) {
-          // Filter out content that is EXACTLY "本文" or a simple header variation.
-          // Legal articles often contain "本文" in the sentence which should NOT be filtered.
           const trimmedContent = content.trim();
 
-          // Global noise filter: skip raw statutes, deep explanations, or metadata
-          if (
-            trimmedContent.includes('条文') ||
-            trimmedContent.includes('解説') ||
-            trimmedContent.includes('資料') ||
-            trimmedContent.includes('説明')
-          ) {
-            console.log(`Skipping noisy content: ${content.substring(0, 30)}...`);
-            return;
+          if (!learnContent[currentSubject]) {
+            learnContent[currentSubject] = [];
           }
 
-          if (
-            trimmedContent === '本文' || trimmedContent === '（本文）' || trimmedContent === '【本文】' || trimmedContent === '本文：' || trimmedContent === '本文:' ||
-            trimmedContent === '内容' || /^内容[（(].*[）)]$/.test(trimmedContent) || trimmedContent === '内容：' || trimmedContent === '内容:'
-          ) {
-            console.log(`Skipping content matching generic placeholder: ${content}`);
-            return;
-          }
-
-          if (learnContent[currentSubject]) {
-            learnContent[currentSubject].push(content);
+          // Capping Kenpo at 230 items and avoiding leakage from other sheets
+          if (currentSubject === '憲法') {
+            if (t !== '憲法') return; // Strict source control
+            if (learnContent['憲法'].length >= 230) return;
+            // No noisy filters for the primary Kenpo sheet to ensure we get all 230
           } else {
-            learnContent[currentSubject] = [content];
+            // Original filters for other subjects
+            if (
+              trimmedContent.includes('条文') ||
+              trimmedContent.includes('解説') ||
+              trimmedContent.includes('資料') ||
+              trimmedContent.includes('説明')
+            ) {
+              return;
+            }
+
+            if (
+              trimmedContent === '本文' || trimmedContent === '（本文）' || trimmedContent === '【本文】' ||
+              trimmedContent === '内容' || /^内容[（(].*[）)]$/.test(trimmedContent)
+            ) {
+              return;
+            }
           }
+
+          // Check for Deep Dive in F column (Index 5)
+          const deepDive = row[5] ? row[5].trim() : '';
+          if (deepDive && !content.includes('[[LINK:')) {
+            const index = learnContent[currentSubject].length;
+            content = `${content}[[LINK:${index}]]`;
+          }
+
+          learnContent[currentSubject].push(content);
         }
       }
     });

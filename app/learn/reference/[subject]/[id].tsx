@@ -7,38 +7,32 @@ import { LEARN_CONTENT } from '@/src/learn';
 import { SUBJECTS } from '@/src/questions';
 import { applyTTSRules } from '@/utils/tts-rules';
 import { MaterialIcons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
 import { useEffect, useState } from 'react';
-import { Image, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-// Use import for static assets to ensure bundler resolves it correctly
-import agencyDiagram from '@/assets/images/agency_diagram.jpg';
-import chachalot from '@/assets/images/characters/chachalot.png';
-import kachadokuro from '@/assets/images/characters/kachadokuro.png';
-import kingKachadokuro from '@/assets/images/characters/king_kachadokuro.png';
-import pitchi from '@/assets/images/characters/pitchi.png';
-import princessKachadokuro from '@/assets/images/characters/princess_kachadokuro.png';
-import taskTurtle from '@/assets/images/characters/task_turtle.png';
-import rigidConstitutionAngry from '@/assets/images/rigid_constitution_angry.jpg';
-import summaryDiagram from '@/assets/images/summary_diagram_v4.jpg';
 
-const IMAGE_MAP: Record<string, any> = {
-    'summary_diagram': summaryDiagram,
-    'chachalot': chachalot,
-    'task': taskTurtle,
-    'kachadokuro': kachadokuro,
-    'king_kachadokuro': kingKachadokuro,
-    'princess_kachadokuro': princessKachadokuro,
-    'pitchi': pitchi,
-    'agency_diagram': agencyDiagram,
-    'rigid_constitution': rigidConstitutionAngry,
+
+const IMAGE_RESOURCES_MAP: Record<string, any> = {
+    'summary_diagram': require('@/assets/images/summary_diagram_v4.jpg'),
+    'chachalot': require('@/assets/images/characters/chachalot.png'),
+    'task': require('@/assets/images/characters/task_turtle.png'),
+    'kachadokuro': require('@/assets/images/characters/kachadokuro.png'),
+    'king_kachadokuro': require('@/assets/images/characters/king_kachadokuro.png'),
+    'princess_kachadokuro': require('@/assets/images/characters/princess_kachadokuro.png'),
+    'pitchi': require('@/assets/images/characters/pitchi.png'),
+    'agency_diagram': require('@/assets/images/agency_diagram.jpg'),
+    'rigid_constitution': require('@/assets/images/rigid_v2.jpg'),
+    'flexible_constitution': require('@/assets/images/flexible_v2.jpg'),
+    'yahata_steel': require('@/assets/images/yahata_steel.png'),
 };
 
 export default function ReferencePage() {
     const { subject, id, originSubject, originId, originIndex } = useLocalSearchParams();
     const router = useRouter();
-    const { colors } = useTheme();
+    const { theme, colors } = useTheme();
     const { applyCharacterNames } = useCharacter();
 
     const questionIndex = parseInt(Array.isArray(id) ? id[0] : id || '0', 10);
@@ -66,6 +60,7 @@ export default function ReferencePage() {
 
     // Mini Player State
     const [isPlaying, setIsPlaying] = useState(false);
+    const [selectedImageSource, setSelectedImageSource] = useState<any>(null);
 
     const chunks = foundQuestion?.chunks || [];
 
@@ -223,17 +218,39 @@ export default function ReferencePage() {
         let currentBlock: { type: 'section' | 'plain', title?: string, content: any[][] } | null = null;
 
         lines.forEach(line => {
+            const trimmedLine = line.trim();
             const parsedLine = parseRichText(line);
+
+            // Detection Patterns for auto-card splitting
+            // 1. [[section:Title]] tag
             const sectionTag = parsedLine.find(p => p.type === 'section');
 
-            if (sectionTag) {
-                // Start a new section block
-                currentBlock = { type: 'section', title: sectionTag.content, content: [] };
+            // 2. Automated detection: "1. ", "①", "Q1. ", etc.
+            const isNumericHeader = /^[0-9]+[\.．]/.test(trimmedLine);
+            const isCircledNumber = /^[①②③④⑤⑥⑦⑧⑨⑩]/.test(trimmedLine);
+            const isQAHeader = /^[Qq](＆|&)[Aa]|^[Qq][0-9]*[\.．]/.test(trimmedLine);
+            const isCaseHeader = /^【?[0-9]*[\.．]?事例/.test(trimmedLine);
+
+            const isNewSection = sectionTag || isNumericHeader || isCircledNumber || isQAHeader || isCaseHeader;
+
+            if (isNewSection) {
+                // If the previous block was empty/plain and only had whitespace, we can replace it
+                // otherwise start a new one.
+                const title = sectionTag ? sectionTag.content : trimmedLine;
+                currentBlock = { type: 'section', title: title, content: [] };
                 blocks.push(currentBlock);
-                // Filter out the section tag from the line content if it has other content
-                const filteredLine = parsedLine.filter(p => p.type !== 'section');
-                if (filteredLine.length > 0) {
-                    currentBlock.content.push(filteredLine);
+
+                // If it was a tag, we continue without adding this line specifically if it's just the tag
+                if (sectionTag) {
+                    const filteredLine = parsedLine.filter(p => p.type !== 'section');
+                    if (filteredLine.length > 0) {
+                        currentBlock.content.push(filteredLine);
+                    }
+                } else {
+                    // It was an auto-detected header, we don't add the header itself to content if it's the title
+                    // But usually "1. Title" - so we keep it if it's just plain text.
+                    // Actually, let's keep the line in the card content but maybe style it differently?
+                    // No, using it as title is cleaner.
                 }
             } else {
                 if (!currentBlock) {
@@ -244,131 +261,159 @@ export default function ReferencePage() {
             }
         });
 
-        return blocks.map((block, blockIndex) => (
-            <View key={blockIndex} style={[
-                block.type === 'section' ? styles.sectionCard : {},
-                { backgroundColor: block.type === 'section' ? colors.background : 'transparent' }
-            ]}>
-                {block.title && (
-                    <ThemedText style={styles.sectionTitle}>{block.title}</ThemedText>
-                )}
-                {block.content.map((lineParts, lineIndex) => {
-                    const isPoint = lineParts.some(p => p.type === 'point');
-                    if (isPoint) {
-                        const pointPart = lineParts.find(p => p.type === 'point');
-                        return (
-                            <View key={lineIndex} style={[styles.pointBox, { backgroundColor: colors.primary + '15', borderColor: colors.primary }]}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-                                    <MaterialIcons name="lightbulb" size={20} color={colors.primary} />
-                                    <ThemedText style={{ color: colors.primary, fontWeight: 'bold' }}>POINT / まとめ</ThemedText>
-                                </View>
-                                <ThemedText style={styles.line}>{pointPart?.content}</ThemedText>
+        const isModern = theme === 'modern';
+        const cardBg = isModern ? ['#EBF8FF', '#F0F9FF'] : [colors.card, colors.card];
+        const borderCol = isModern ? '#BEE3F8' : 'rgba(0,0,0,0.03)';
+        const mainTextCol = isModern ? '#2C5282' : '#2c3e50';
+
+        return blocks.map((block, blockIndex) => {
+            return (
+                <View key={blockIndex} style={styles.cardWrapper}>
+                    <LinearGradient
+                        colors={cardBg as any}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 1 }}
+                        style={[
+                            styles.sectionCard,
+                            { borderColor: borderCol },
+                            block.type === 'plain' ? { borderWidth: 0, elevation: 0, shadowOpacity: 0, backgroundColor: 'transparent' } : {},
+                        ]}
+                    >
+                        {block.title && (
+                            <View style={styles.sectionHeader}>
+                                <ThemedText style={[styles.sectionTitle, { color: mainTextCol }]}>{block.title}</ThemedText>
                             </View>
-                        );
-                    }
-
-                    // Special handling for lines that are JUST an image
-                    if (lineParts.length === 1 && lineParts[0].type === 'image') {
-                        const part = lineParts[0];
-                        const imageSource = IMAGE_MAP[part.content];
-                        if (imageSource) {
-                            return (
-                                <View key={lineIndex} style={{ width: '100%', alignItems: 'center', marginVertical: 10 }}>
-                                    <View style={[{ width: '60%', aspectRatio: 1, backgroundColor: colors.background + '80', borderRadius: 15, position: 'relative', overflow: 'hidden' }]}>
-                                        <Image source={imageSource} style={{ width: '100%', height: '100%' }} resizeMode="contain" />
-                                    </View>
-                                </View>
-                            );
-                        }
-                    }
-
-                    const hasLayoutTag = lineParts.some(p => ['image', 'gift_arrow', 'arrow'].includes(p.type));
-
-                    if (!hasLayoutTag) {
-                        return (
-                            <ThemedText key={lineIndex} style={styles.lineWrapper}>
-                                {lineParts.map((part, partIndex) => {
-                                    switch (part.type) {
-                                        case 'red':
-                                            return <ThemedText key={partIndex} style={{ color: colors.primary, fontWeight: 'bold' }}>{part.content}</ThemedText>;
-                                        case 'big':
-                                            return <ThemedText key={partIndex} style={{ fontSize: 22, fontWeight: 'bold', lineHeight: 32 }}>{part.content}</ThemedText>;
-                                        case 'bold':
-                                            return <ThemedText key={partIndex} style={{ fontWeight: 'bold' }}>{part.content}</ThemedText>;
-                                        case 'marker':
-                                            return <ThemedText key={partIndex} style={{ backgroundColor: colors.primary + '30' }}>{part.content}</ThemedText>;
-                                        default:
-                                            return <ThemedText key={partIndex}>{part.content}</ThemedText>;
-                                    }
-                                })}
-                            </ThemedText>
-                        );
-                    }
-
-                    return (
-                        <View key={lineIndex} style={styles.lineWrapperRow}>
-                            {lineParts.map((part, partIndex) => {
-                                switch (part.type) {
-                                    case 'red':
-                                        return <ThemedText key={partIndex} style={[styles.line, { color: colors.primary, fontWeight: 'bold' }]}>{part.content}</ThemedText>;
-                                    case 'big':
-                                        return <ThemedText key={partIndex} style={[styles.line, { fontSize: 22, fontWeight: 'bold', lineHeight: 32 }]}>{part.content}</ThemedText>;
-                                    case 'bold':
-                                        return <ThemedText key={partIndex} style={[styles.line, { fontWeight: 'bold' }]}>{part.content}</ThemedText>;
-                                    case 'marker':
-                                        return <ThemedText key={partIndex} style={[styles.line, { backgroundColor: colors.primary + '30' }]}>{part.content}</ThemedText>;
-                                    case 'image':
-                                        const img = IMAGE_MAP[part.content];
-                                        if (img) {
-                                            const isRigid = part.content === 'rigid_constitution';
-                                            const size = isRigid ? 150 : 70;
-                                            return (
-                                                <View key={partIndex} style={{ alignItems: 'center', marginHorizontal: 3, marginVertical: isRigid ? 10 : 0 }}>
-                                                    {part.label ? (
-                                                        <View style={{ backgroundColor: colors.primary, paddingHorizontal: 8, paddingVertical: 2, borderRadius: 6, marginBottom: 4 }}>
-                                                            <ThemedText style={{ fontSize: 10, color: '#fff', fontWeight: 'bold' }}>{part.label}</ThemedText>
-                                                        </View>
-                                                    ) : <View style={{ height: isRigid ? 0 : 18 }} />}
-                                                    <View style={{ width: size, height: size, borderRadius: isRigid ? 12 : size / 2, backgroundColor: '#fff', borderWidth: 2, borderColor: colors.primary + '30', overflow: 'hidden' }}>
-                                                        <Image source={img} style={{ width: '100%', height: '100%' }} resizeMode="contain" />
-                                                    </View>
-                                                </View>
-                                            );
-                                        }
-                                        return <ThemedText key={partIndex} style={styles.line}>[画像なし]</ThemedText>;
-                                    case 'gift_arrow':
-                                        const isRight = part.content === 'right';
-                                        return (
-                                            <View key={partIndex} style={{ width: 60, height: 40, alignItems: 'center', justifyContent: 'center' }}>
-                                                {part.or && <ThemedText style={{ position: 'absolute', top: -14, color: '#e74c3c', fontSize: 16, fontWeight: 'bold' }}>or</ThemedText>}
-                                                <View style={{ width: '100%', height: 3, backgroundColor: colors.primary }} />
-                                                <View style={{ position: 'absolute', [isRight ? 'right' : 'left']: -2, width: 0, height: 0, borderTopWidth: 8, borderBottomWidth: 8, [isRight ? 'borderLeftWidth' : 'borderRightWidth']: 12, borderTopColor: 'transparent', borderBottomColor: 'transparent', [isRight ? 'borderLeftColor' : 'borderRightColor']: colors.primary }} />
-                                                <View style={{ position: 'absolute', backgroundColor: '#fff', borderRadius: 4, borderWidth: 1, borderColor: colors.primary, padding: 1 }}><ThemedText style={{ fontSize: 16 }}>🎁</ThemedText></View>
+                        )}
+                        <View style={styles.cardBody}>
+                            {block.content.map((lineParts, lineIndex) => {
+                                const isPoint = lineParts.some(p => p.type === 'point');
+                                if (isPoint) {
+                                    const pointPart = lineParts.find(p => p.type === 'point');
+                                    return (
+                                        <View key={lineIndex} style={[styles.pointBox, { backgroundColor: colors.primary + '15', borderColor: colors.primary }]}>
+                                            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+                                                <MaterialIcons name="stars" size={22} color={colors.primary} />
+                                                <ThemedText style={{ color: colors.primary, fontWeight: 'bold', fontSize: 13, letterSpacing: 1 }}>CHECK / ポイント</ThemedText>
                                             </View>
-                                        );
-                                    case 'arrow':
-                                        const isArrowRight = part.content === 'right';
-                                        return (
-                                            <View key={partIndex} style={{ width: 40, height: 40, alignItems: 'center', justifyContent: 'center' }}>
-                                                <View style={{ width: '100%', height: 3, backgroundColor: colors.primary }} />
-                                                <View style={{ position: 'absolute', [isArrowRight ? 'right' : 'left']: -2, width: 0, height: 0, borderTopWidth: 8, borderBottomWidth: 8, [isArrowRight ? 'borderLeftWidth' : 'borderRightWidth']: 12, borderTopColor: 'transparent', borderBottomColor: 'transparent', [isArrowRight ? 'borderLeftColor' : 'borderRightColor']: colors.primary }} />
-                                            </View>
-                                        );
-                                    default:
-                                        return <ThemedText key={partIndex} style={styles.line}>{part.content}</ThemedText>;
+                                            <ThemedText style={styles.pointText}>{pointPart?.content}</ThemedText>
+                                        </View>
+                                    );
                                 }
+
+                                // Special handling for lines that are JUST an image
+                                if (lineParts.length === 1 && lineParts[0].type === 'image') {
+                                    const part = lineParts[0];
+                                    const imageSource = IMAGE_RESOURCES_MAP[part.content];
+                                    if (imageSource) {
+                                        return (
+                                            <View key={lineIndex} style={{ width: '100%', alignItems: 'center', marginVertical: 15 }}>
+                                                <View style={styles.imageContainer}>
+                                                    <Image source={imageSource} style={{ width: '100%', height: '100%' }} resizeMode="contain" />
+                                                </View>
+                                            </View>
+                                        );
+                                    }
+                                }
+
+                                const hasLayoutTag = lineParts.some(p => ['image', 'gift_arrow', 'arrow'].includes(p.type));
+
+                                if (!hasLayoutTag) {
+                                    return (
+                                        <ThemedText key={lineIndex} style={styles.lineWrapper}>
+                                            {lineParts.map((part, partIndex) => {
+                                                switch (part.type) {
+                                                    case 'red':
+                                                        return <ThemedText key={partIndex} style={{ color: '#e74c3c', fontWeight: 'bold' }}>{part.content}</ThemedText>;
+                                                    case 'big':
+                                                        return <ThemedText key={partIndex} style={{ fontSize: 20, fontWeight: 'bold', lineHeight: 30, color: mainTextCol }}>{part.content}</ThemedText>;
+                                                    case 'bold':
+                                                        return <ThemedText key={partIndex} style={{ fontWeight: 'bold', color: mainTextCol }}>{part.content}</ThemedText>;
+                                                    case 'marker':
+                                                        return <ThemedText key={partIndex} style={styles.markerText}>{part.content}</ThemedText>;
+                                                    default:
+                                                        return <ThemedText key={partIndex} style={{ color: mainTextCol }}>{part.content}</ThemedText>;
+                                                }
+                                            })}
+                                        </ThemedText>
+                                    );
+                                }
+
+                                return (
+                                    <View key={lineIndex} style={styles.lineWrapperRow}>
+                                        {lineParts.map((part, partIndex) => {
+                                            switch (part.type) {
+                                                case 'red':
+                                                    return <ThemedText key={partIndex} style={[styles.line, { color: '#e74c3c', fontWeight: 'bold' }]}>{part.content}</ThemedText>;
+                                                case 'big':
+                                                    return <ThemedText key={partIndex} style={[styles.line, { fontSize: 20, fontWeight: 'bold', lineHeight: 30, color: mainTextCol }]}>{part.content}</ThemedText>;
+                                                case 'bold':
+                                                    return <ThemedText key={partIndex} style={[styles.line, { fontWeight: 'bold', color: mainTextCol }]}>{part.content}</ThemedText>;
+                                                case 'marker':
+                                                    return <ThemedText key={partIndex} style={[styles.line, styles.markerText]}>{part.content}</ThemedText>;
+                                                case 'image':
+                                                    const img = IMAGE_RESOURCES_MAP[part.content];
+                                                    if (img) {
+                                                        const isLargeImage = part.content.includes('rigid_constitution') || part.content.includes('flexible_constitution');
+                                                        const size = isLargeImage ? 150 : 70;
+                                                        return (
+                                                            <Pressable
+                                                                key={partIndex}
+                                                                onPress={() => setSelectedImageSource(img)}
+                                                                style={{ alignItems: 'center', marginHorizontal: 5, marginVertical: isLargeImage ? 15 : 5 }}
+                                                            >
+                                                                {part.label ? (
+                                                                    <View style={{ backgroundColor: colors.primary, paddingHorizontal: 10, paddingVertical: 3, borderRadius: 8, marginBottom: 6 }}>
+                                                                        <ThemedText style={{ fontSize: 11, color: '#fff', fontWeight: 'bold' }}>{part.label}</ThemedText>
+                                                                    </View>
+                                                                ) : <View style={{ height: isLargeImage ? 0 : 20 }} />}
+                                                                <View style={[styles.avatarFrame, { width: size, height: size, borderRadius: isLargeImage ? 16 : size / 2, borderColor: colors.primary + '40' }]}>
+                                                                    <Image source={img} style={{ width: '100%', height: '100%' }} resizeMode="contain" />
+                                                                </View>
+                                                            </Pressable>
+                                                        );
+                                                    }
+                                                    return <ThemedText key={partIndex} style={styles.line}>[画像なし]</ThemedText>;
+                                                case 'gift_arrow':
+                                                    const isRight = part.content === 'right';
+                                                    return (
+                                                        <View key={partIndex} style={styles.arrowWrapper}>
+                                                            {part.or && <ThemedText style={styles.orLabel}>or</ThemedText>}
+                                                            <View style={[styles.arrowLine, { backgroundColor: colors.primary }]} />
+                                                            <View style={[styles.arrowHead, { [isRight ? 'right' : 'left']: -2, [isRight ? 'borderLeftColor' : 'borderRightColor']: colors.primary, [isRight ? 'borderLeftWidth' : 'borderRightWidth']: 12 }]} />
+                                                            <View style={[styles.giftIcon, { borderColor: colors.primary }]}><ThemedText style={{ fontSize: 18 }}>🎁</ThemedText></View>
+                                                        </View>
+                                                    );
+                                                case 'arrow':
+                                                    const isArrowRight = part.content === 'right';
+                                                    return (
+                                                        <View key={partIndex} style={styles.smallArrowWrapper}>
+                                                            <View style={[styles.arrowLine, { backgroundColor: colors.primary }]} />
+                                                            <View style={[styles.arrowHead, { [isArrowRight ? 'right' : 'left']: -2, [isArrowRight ? 'borderLeftColor' : 'borderRightColor']: colors.primary, [isArrowRight ? 'borderLeftWidth' : 'borderRightWidth']: 12 }]} />
+                                                        </View>
+                                                    );
+                                                default:
+                                                    return <ThemedText key={partIndex} style={[styles.line, { color: mainTextCol }]}>{part.content}</ThemedText>;
+                                            }
+                                        })}
+                                    </View>
+                                );
                             })}
                         </View>
-                    );
-                })}
-            </View>
-        ));
+                    </LinearGradient>
+                </View>
+            );
+        });
     };
 
     return (
         <ThemedView style={styles.container}>
             <Stack.Screen options={{ title: 'もっと深掘る', headerBackTitle: '戻る' }} />
             <ScrollView contentContainerStyle={styles.scrollContent}>
+                {foundQuestion?.title && (
+                    <ThemedView style={styles.titleCard}>
+                        <ThemedText style={styles.titleText}>{foundQuestion.title}</ThemedText>
+                    </ThemedView>
+                )}
                 {renderContent(explainText)}
             </ScrollView>
 
@@ -411,6 +456,25 @@ export default function ReferencePage() {
                     <MaterialIcons name="skip-next" size={32} color={colors.primary} />
                 </Pressable>
             </ThemedView>
+
+            {/* Image Zoom Modal */}
+            <Modal
+                visible={!!selectedImageSource}
+                transparent={true}
+                animationType="fade"
+                onRequestClose={() => setSelectedImageSource(null)}
+            >
+                <TouchableOpacity
+                    style={styles.modalOverlay}
+                    activeOpacity={1}
+                    onPress={() => setSelectedImageSource(null)}
+                >
+                    <View style={styles.zoomImageContainer}>
+                        <Image source={selectedImageSource} style={styles.zoomImage} resizeMode="contain" />
+                        <ThemedText style={styles.zoomHint}>タップして閉じる</ThemedText>
+                    </View>
+                </TouchableOpacity>
+            </Modal>
         </ThemedView>
     );
 }
@@ -418,62 +482,142 @@ export default function ReferencePage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f7fa',
+        backgroundColor: '#F7FAFC', // Slightly softer white/gray
     },
     scrollContent: {
-        padding: 16,
-        paddingBottom: 40,
+        padding: 12,
+        paddingBottom: 60,
     },
     line: {
         fontSize: 16,
-        lineHeight: 28,
+        lineHeight: 26,
     },
     lineWrapper: {
         fontSize: 16,
-        lineHeight: 28,
-        marginBottom: 12,
+        lineHeight: 26,
+        marginBottom: 10,
     },
     lineWrapperRow: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        alignItems: 'flex-start',
-        paddingVertical: 4,
-        marginBottom: 8,
+        alignItems: 'baseline',
+        paddingVertical: 2,
+        marginBottom: 6,
     },
-    sectionCard: {
-        padding: 24,
-        borderRadius: 20,
-        marginBottom: 24,
-        borderWidth: 2,
-        borderColor: '#000000',
-        backgroundColor: '#ffffff',
+    cardWrapper: {
+        marginBottom: 16,
         ...Platform.select({
-            ios: { shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.08, shadowRadius: 12 },
-            android: { elevation: 4 },
-            web: { boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }
+            ios: { shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 4 },
+            android: { elevation: 2 },
+            web: { boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }
         })
     },
+    sectionCard: {
+        borderRadius: 20,
+        borderWidth: 1.5,
+        overflow: 'hidden',
+    },
+    sectionHeader: {
+        paddingHorizontal: 20,
+        paddingTop: 18,
+        paddingBottom: 8,
+    },
     sectionTitle: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 20,
-        borderBottomWidth: 3,
-        borderBottomColor: 'rgba(0,0,0,0.05)',
-        paddingBottom: 10,
-        color: '#333',
+        fontSize: 17,
+        fontWeight: '800',
+        lineHeight: 26,
+    },
+    cardBody: {
+        paddingHorizontal: 20,
+        paddingBottom: 20,
     },
     pointBox: {
-        marginTop: 16,
-        marginBottom: 8,
-        padding: 20,
-        borderRadius: 16,
-        borderLeftWidth: 8,
+        marginTop: 12,
+        marginBottom: 6,
+        padding: 18,
+        borderRadius: 20,
+        borderLeftWidth: 6,
+    },
+    pointText: {
+        fontSize: 15,
+        lineHeight: 24,
+        color: '#2d3748',
+        fontWeight: '500',
+    },
+    imageContainer: {
+        width: '100%',
+        aspectRatio: 1.2,
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#edf2f7',
+        padding: 10,
+    },
+    markerText: {
+        backgroundColor: '#fff176',
+        paddingHorizontal: 2,
+    },
+    avatarFrame: {
+        backgroundColor: '#fff',
+        borderWidth: 2,
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    arrowWrapper: {
+        width: 70,
+        height: 44,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginHorizontal: 4,
+    },
+    smallArrowWrapper: {
+        width: 44,
+        height: 44,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginHorizontal: 2,
+    },
+    orLabel: {
+        position: 'absolute',
+        top: -16,
+        color: '#e74c3c',
+        fontSize: 14,
+        fontWeight: '900',
+        fontStyle: 'italic',
+    },
+    arrowLine: {
+        width: '100%',
+        height: 2.5,
+    },
+    arrowHead: {
+        position: 'absolute',
+        width: 0,
+        height: 0,
+        borderTopWidth: 8,
+        borderBottomWidth: 8,
+        borderTopColor: 'transparent',
+        borderBottomColor: 'transparent',
+    },
+    giftIcon: {
+        position: 'absolute',
+        backgroundColor: '#fff',
+        borderRadius: 6,
+        borderWidth: 1.5,
+        padding: 2,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+        elevation: 1,
     },
     backButton: {
         alignSelf: 'center',
-        marginBottom: 10,
-        paddingVertical: 8,
-        paddingHorizontal: 16,
+        marginVertical: 15,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 12,
+        backgroundColor: 'rgba(0,0,0,0.05)',
     },
     chunkButton: {
         alignSelf: 'center',
@@ -496,6 +640,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
+    },
+    zoomImageContainer: {
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    zoomImage: {
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get('window').height * 0.8,
+    },
+    zoomHint: {
+        color: '#fff',
+        marginTop: 20,
+        fontSize: 14,
     },
     modalContent: {
         width: '100%',
@@ -565,5 +724,25 @@ const styles = StyleSheet.create({
     },
     playButton: {
         padding: 0,
+    },
+    titleCard: {
+        backgroundColor: '#ffffff',
+        borderRadius: 12,
+        padding: 16,
+        marginBottom: 16,
+        alignItems: 'center',
+        borderLeftWidth: 6,
+        borderLeftColor: '#3498db', // Using a primary color or similar blue
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    titleText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#2c3e50',
+        textAlign: 'center',
     },
 });

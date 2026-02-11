@@ -12,7 +12,8 @@
     "lint": "expo lint",
     "build:questions": "node scripts/convertQuestions.js",
     "sync:questions": "node scripts/syncQuiz.js",
-    "sync:learn": "node scripts/syncLearn.js"
+    "sync:learn": "node scripts/syncLearn.js",
+    "sync:sheets": "node scripts/sync-spreadsheet.js"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",

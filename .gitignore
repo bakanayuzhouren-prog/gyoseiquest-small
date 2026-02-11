@@ -46,3 +46,6 @@ app-example
 
 # debug output
 debug_*.txt
+
+# Google Sheets sync
+src/questions-from-sheets.json

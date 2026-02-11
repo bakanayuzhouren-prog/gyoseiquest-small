@@ -1,10 +1,15 @@
 require('dotenv').config();
 const { google } = require('googleapis');
 
-const auth = new google.auth.GoogleAuth({
-    keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
-    scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-});
+let auth;
+if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+    auth = new google.auth.GoogleAuth({
+        keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+        scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
+    });
+} else {
+    auth = process.env.GOOGLE_SHEETS_API_KEY;
+}
 
 const sheets = google.sheets({ version: 'v4', auth });
 
