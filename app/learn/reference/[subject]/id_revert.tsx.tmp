@@ -3,6 +3,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
+import { LEARN_CONTENT } from '@/src/learn';
 import { SUBJECTS } from '@/src/questions';
 import { applyTTSRules } from '@/utils/tts-rules';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -11,6 +12,8 @@ import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
 import { useEffect, useState } from 'react';
 import { Dimensions, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+
+
 
 const IMAGE_RESOURCES_MAP: Record<string, any> = {
     'summary_diagram': require('@/assets/images/summary_diagram_v4.jpg'),
@@ -32,8 +35,6 @@ export default function ReferencePage() {
     const { theme, colors } = useTheme();
     const { applyCharacterNames } = useCharacter();
 
-    const [currentChunkIndex, setCurrentChunkIndex] = useState<number | null>(null);
-
     const questionIndex = parseInt(Array.isArray(id) ? id[0] : id || '0', 10);
     const subjectName = Array.isArray(subject) ? subject[0] : subject || '';
 
@@ -48,18 +49,20 @@ export default function ReferencePage() {
         }
     }
 
-    // Dynamic chunks from synchronized data
-    const chunks = foundQuestion?.chunks || [];
-
-    const initialExplain = foundQuestion?.explain || '解説が見つかりませんでした。';
-
-    // Choose between main explanation and chunk/dig-deeper content
-    const explainText = currentChunkIndex !== null ? chunks[currentChunkIndex].explain : initialExplain;
-    const currentTitle = currentChunkIndex !== null ? chunks[currentChunkIndex].title : foundQuestion?.title;
+    // Override for Agency Personation Diagram (Workaround for large questions.js)
+    let explainText = foundQuestion?.explain || '解説が見つかりませんでした。';
+    if (subjectName === '民法総論' && questionIndex === 54) {
+        explainText = "[[image:agency_diagram]]";
+    }
+    if (subjectName === '民法総論' && questionIndex === 55) {
+        explainText = "[[big:復代理人の引渡義務（民法107条2項）]]\n\n[[bold:【1. 復代理人の選任】]]\n[[image:chachalot:本人]] [[arrow:right]] [[image:pitchi:代理人]] [[arrow:right]] [[image:task:復代理人]]\n\n[[bold:【2. 目的物の受領】]]\n[[image:task:復代理人]] [[gift_arrow:left]] [[image:king_kachadokuro:相手方]]\n\n[[bold:【3. 本人または代理人への引渡し】]]\n[[image:chachalot:本人]] [[gift_arrow:left:or]] [[image:task:復代理人]] [[gift_arrow:right:or]] [[image:pitchi:代理人]]\nどちらかに渡せば義務を履行したことになります。\n\n[[big:【結論】]]\n[[marker:復代理人は、本人、代理人のいずれかに目的物を引き渡せば、引渡義務を履行したことになります。]]";
+    }
 
     // Mini Player State
     const [isPlaying, setIsPlaying] = useState(false);
     const [selectedImageSource, setSelectedImageSource] = useState<any>(null);
+
+    const chunks = foundQuestion?.chunks || [];
 
     useEffect(() => {
         return () => { Speech.stop(); };
@@ -70,12 +73,28 @@ export default function ReferencePage() {
             Speech.stop();
             setIsPlaying(false);
         } else {
-            // Read current text (either main explain or chunk explain)
-            let contentToRead = explainText;
+            // Get original learn content for TTS (not the Deep Dive explanation)
+            let contentToRead = '解説が見つかりませんでした。';
 
-            // Remove tags
+            if (subjectName && (LEARN_CONTENT as any)[subjectName]) {
+                const subjectContent = (LEARN_CONTENT as any)[subjectName];
+                // id is the index, same as question index
+                if (Array.isArray(subjectContent) && subjectContent[questionIndex]) {
+                    contentToRead = subjectContent[questionIndex];
+                }
+            }
+
+            // Remove [[LINK:...]] and everything after it
+            // Using a more robust regex to catch variations and ensure split works
+            contentToRead = contentToRead.split(/\[\[LINK:/)[0];
+
+            // Just in case, clean up any remaining potential tags
             contentToRead = contentToRead.replace(/\[\[.*?\]\]/g, '');
+
+            // Apply character name replacements
             contentToRead = applyCharacterNames(contentToRead);
+
+            // Apply TTS rules
             const spokenText = applyTTSRules(contentToRead);
 
             let count = 0;
@@ -101,6 +120,9 @@ export default function ReferencePage() {
     const handleNext = () => {
         Speech.stop();
         setIsPlaying(false);
+        // Navigate to next question if exists
+        // This requires knowing the max index for the subject.
+        // We can check if the next index exists in the data.
         const nextIndex = questionIndex + 1;
 
         let nextQuestion = null;
@@ -113,8 +135,7 @@ export default function ReferencePage() {
             }
         }
 
-        if (nextQuestion) {
-            setCurrentChunkIndex(null);
+        if (nextQuestion && nextQuestion.explain) {
             router.replace({
                 pathname: `/learn/reference/[subject]/[id]` as any,
                 params: { subject: subjectName, id: nextIndex }
@@ -129,7 +150,9 @@ export default function ReferencePage() {
         setIsPlaying(false);
         if (questionIndex > 0) {
             const prevIndex = questionIndex - 1;
-            setCurrentChunkIndex(null);
+            // Check if strict existence is needed or just navigate?
+            // Assuming previous index exists and has explanation is safer? 
+            // Just navigating back to 0 is safe.
             router.replace({
                 pathname: `/learn/reference/[subject]/[id]` as any,
                 params: { subject: subjectName, id: prevIndex }
@@ -141,12 +164,14 @@ export default function ReferencePage() {
 
     // Parse rich text
     const parseRichText = (text: string) => {
+        // Regex for custom tags: [[tag:content]] or [[gift]]/[[gift_arrow:direction]]/[[arrow:direction]]
         const regex = /\[\[(red|big|bold|marker|image|gift|gift_arrow|arrow|section|point):?(.+?)?\]\]/g;
         const parts = [];
         let lastIndex = 0;
         let match;
 
         while ((match = regex.exec(text)) !== null) {
+            // Add text before the match
             if (match.index > lastIndex) {
                 parts.push({
                     type: 'text',
@@ -154,6 +179,7 @@ export default function ReferencePage() {
                 });
             }
 
+            // Add the matched tag part
             const type = match[1];
             const rawContent = match[2] || "";
 
@@ -165,7 +191,7 @@ export default function ReferencePage() {
                 parts.push({ type: 'gift_arrow', content, or: or === 'or' });
             } else {
                 parts.push({
-                    type: type,
+                    type: type, // red, big, bold, marker, section, point
                     content: rawContent,
                 });
             }
@@ -173,6 +199,7 @@ export default function ReferencePage() {
             lastIndex = regex.lastIndex;
         }
 
+        // Add remaining text
         if (lastIndex < text.length) {
             parts.push({
                 type: 'text',
@@ -194,7 +221,11 @@ export default function ReferencePage() {
             const trimmedLine = line.trim();
             const parsedLine = parseRichText(line);
 
+            // Detection Patterns for auto-card splitting
+            // 1. [[section:Title]] tag
             const sectionTag = parsedLine.find(p => p.type === 'section');
+
+            // 2. Automated detection: "1. ", "①", "Q1. ", etc.
             const isNumericHeader = /^[0-9]+[\.．]/.test(trimmedLine);
             const isCircledNumber = /^[①②③④⑤⑥⑦⑧⑨⑩]/.test(trimmedLine);
             const isQAHeader = /^[Qq](＆|&)[Aa]|^[Qq][0-9]*[\.．]/.test(trimmedLine);
@@ -203,15 +234,23 @@ export default function ReferencePage() {
             const isNewSection = sectionTag || isNumericHeader || isCircledNumber || isQAHeader || isCaseHeader;
 
             if (isNewSection) {
+                // If the previous block was empty/plain and only had whitespace, we can replace it
+                // otherwise start a new one.
                 const title = sectionTag ? sectionTag.content : trimmedLine;
                 currentBlock = { type: 'section', title: title, content: [] };
                 blocks.push(currentBlock);
 
+                // If it was a tag, we continue without adding this line specifically if it's just the tag
                 if (sectionTag) {
                     const filteredLine = parsedLine.filter(p => p.type !== 'section');
                     if (filteredLine.length > 0) {
                         currentBlock.content.push(filteredLine);
                     }
+                } else {
+                    // It was an auto-detected header, we don't add the header itself to content if it's the title
+                    // But usually "1. Title" - so we keep it if it's just plain text.
+                    // Actually, let's keep the line in the card content but maybe style it differently?
+                    // No, using it as title is cleaner.
                 }
             } else {
                 if (!currentBlock) {
@@ -261,6 +300,7 @@ export default function ReferencePage() {
                                     );
                                 }
 
+                                // Special handling for lines that are JUST an image
                                 if (lineParts.length === 1 && lineParts[0].type === 'image') {
                                     const part = lineParts[0];
                                     const imageSource = IMAGE_RESOURCES_MAP[part.content];
@@ -369,52 +409,34 @@ export default function ReferencePage() {
         <ThemedView style={styles.container}>
             <Stack.Screen options={{ title: 'もっと深掘る', headerBackTitle: '戻る' }} />
             <ScrollView contentContainerStyle={styles.scrollContent}>
-                {currentTitle && (
+                {foundQuestion?.title && (
                     <ThemedView style={styles.titleCard}>
-                        <ThemedText style={styles.titleText}>{currentTitle}</ThemedText>
+                        <ThemedText style={styles.titleText}>{foundQuestion.title}</ThemedText>
                     </ThemedView>
                 )}
-
                 {renderContent(explainText)}
-
-                {/* Back to learning button */}
-                <Pressable
-                    onPress={() => {
-                        if (originSubject) {
-                            router.replace({
-                                pathname: `/learn/[subject]` as any,
-                                params: { subject: originSubject, index: originIndex || '0' }
-                            });
-                        } else {
-                            router.back();
-                        }
-                    }}
-                    style={styles.backButton}
-                >
-                    <ThemedText style={{ color: colors.primary, fontWeight: 'bold' }}>学習へ戻る</ThemedText>
-                </Pressable>
             </ScrollView>
 
-            {/* Chunk (∞) buttons - Horizontal overlay or bottom? Let's use floating or pre-player area */}
-            <View style={{ position: 'absolute', right: 20, bottom: 100, gap: 10 }}>
-                {chunks.map((chunk, index) => (
-                    <TouchableOpacity
-                        key={index}
-                        style={[
-                            styles.chunkButton,
-                            {
-                                backgroundColor: currentChunkIndex === index ? colors.primary : '#fff',
-                                borderColor: colors.primary
+
+            <Pressable
+                onPress={() => {
+                    if (originSubject) {
+                        router.replace({
+                            pathname: `/learn/[subject]` as any,
+                            params: {
+                                subject: originSubject,
+                                index: originIndex || '0'
                             }
-                        ]}
-                        onPress={() => setCurrentChunkIndex(currentChunkIndex === index ? null : index)}
-                    >
-                        <ThemedText style={{ color: currentChunkIndex === index ? '#fff' : colors.primary, fontSize: 24, fontWeight: 'bold' }}>
-                            ∞
-                        </ThemedText>
-                    </TouchableOpacity>
-                ))}
-            </View>
+                        });
+                    } else {
+                        router.back();
+                    }
+                }}
+                style={styles.backButton}
+            >
+                <ThemedText style={{ color: colors.primary, fontWeight: 'bold' }}>学習へ戻る</ThemedText>
+            </Pressable>
+
 
             {/* Mini Player */}
             <ThemedView style={[styles.miniPlayer, { borderTopColor: colors.choiceBorder, backgroundColor: colors.background }]}>
@@ -460,11 +482,11 @@ export default function ReferencePage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F7FAFC',
+        backgroundColor: '#F7FAFC', // Slightly softer white/gray
     },
     scrollContent: {
         padding: 12,
-        paddingBottom: 150, // Space for chunks and player
+        paddingBottom: 60,
     },
     line: {
         fontSize: 16,
@@ -576,8 +598,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 8,
         borderTopColor: 'transparent',
         borderBottomColor: 'transparent',
-        borderLeftWidth: 0,
-        borderRightWidth: 0,
     },
     giftIcon: {
         position: 'absolute',
@@ -600,23 +620,26 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.05)',
     },
     chunkButton: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
+        alignSelf: 'center',
+        marginBottom: 10,
+        width: 56,
+        height: 56,
+        borderRadius: 28,
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 2,
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.1,
         shadowRadius: 3,
-        elevation: 5,
+        elevation: 3,
     },
     modalOverlay: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.85)',
+        backgroundColor: 'rgba(0,0,0,0.5)',
         justifyContent: 'center',
         alignItems: 'center',
+        padding: 20,
     },
     zoomImageContainer: {
         width: '100%',
@@ -625,13 +648,52 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     zoomImage: {
-        width: Dimensions.get('window').width * 0.95,
-        height: Dimensions.get('window').height * 0.85,
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get('window').height * 0.8,
     },
     zoomHint: {
         color: '#fff',
         marginTop: 20,
         fontSize: 14,
+    },
+    modalContent: {
+        width: '100%',
+        maxWidth: 400,
+        borderRadius: 16,
+        padding: 24,
+        maxHeight: '80%',
+    },
+    modalTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        textAlign: 'center',
+    },
+    chunkItem: {
+        paddingVertical: 16,
+        paddingHorizontal: 12,
+        borderBottomWidth: 1,
+    },
+    chunkItemHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        marginBottom: 4,
+    },
+    chunkItemSubject: {
+        fontSize: 12,
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+    },
+    chunkItemTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+    },
+    closeButton: {
+        marginTop: 20,
+        paddingVertical: 12,
+        borderRadius: 8,
+        alignItems: 'center',
     },
     miniPlayer: {
         flexDirection: 'row',
@@ -641,10 +703,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         borderTopWidth: 1,
         gap: 40,
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
+        // Add shadow for elevation
         ...Platform.select({
             ios: {
                 shadowColor: '#000',
@@ -673,7 +732,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         alignItems: 'center',
         borderLeftWidth: 6,
-        borderLeftColor: '#3498db',
+        borderLeftColor: '#3498db', // Using a primary color or similar blue
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,

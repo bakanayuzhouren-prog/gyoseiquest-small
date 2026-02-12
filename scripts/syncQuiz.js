@@ -16,6 +16,8 @@ if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
 const sheets = google.sheets({ version: 'v4', auth });
 const OUTPUT_FILE = path.join(__dirname, '../src/questions.js');
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 const SUBJECT_ORDER = [
     '基礎法学',
     '憲法',
@@ -134,12 +136,27 @@ async function sync() {
         const t = title.normalize('NFKC').trim();
         console.log(`Processing ${title} -> Default: [${sheetDefaultSubject}] ${sheetDefaultCategory}...`);
 
-        const response = await sheets.spreadsheets.values.get({
-            spreadsheetId,
-            range: `${title}!A:T`,
-        });
+        const response = await (async () => {
+            for (let attempt = 1; attempt <= 3; attempt++) {
+                try {
+                    return await sheets.spreadsheets.values.get({
+                        spreadsheetId,
+                        range: `${title}!A:AZ`,
+                    });
+                } catch (e) {
+                    if (e.message.includes('Quota exceeded') && attempt < 3) {
+                        console.warn(`Quota exceeded for ${title}, retrying in ${attempt * 10}s...`);
+                        await sleep(attempt * 10000);
+                        continue;
+                    }
+                    throw e;
+                }
+            }
+        })();
 
         const rows = response.data.values;
+
+
         if (!rows || rows.length <= 1) continue;
 
         for (let i = 1; i < rows.length; i++) {
@@ -148,7 +165,44 @@ async function sync() {
             const valB = row[1] ? row[1].trim() : '';
             const valC = row[2] ? row[2].trim() : '';
             const valK = row[10] ? row[10].trim() : '';
-            const valF = row[5] ? row[5].trim() : '';
+
+            // Check if it has choices (Columns C-G, indices 2-6)
+            const valC1 = row[2] ? row[2].trim() : '';
+            const valC2 = row[3] ? row[3].trim() : '';
+            const valC3 = row[4] ? row[4].trim() : '';
+
+            // Column F (Index 5) might be Choice 4 OR Dig Deeper Content
+            const valC4_raw = row[5] ? row[5].trim() : '';
+            let valC4 = valC4_raw;
+            let potentialChunkFromF = null;
+
+            // If C1-C3 are empty, and F looks like a chunk (Long text or has "1：" etc), treat F as Chunk, not Choice
+            // Or if F starts with typical chunk title pattern
+            if ((!valC1 && !valC2 && !valC3) || (valC4_raw.length > 50) || (valC4_raw.includes('1：') && valC4_raw.includes('2：'))) {
+                // It's likely a chunk/explanation, not a choice
+                valC4 = '';
+                if (valC4_raw) {
+                    // Try to parse Title and Body from the cell content
+                    // Format: "Title... 1:..."
+                    // Simple heuristic: First line or up to "1：" is title?
+                    // Or just use the whole thing as title/explain logic later.
+                    // For now, let's look for the first newline or "1："
+                    let firstSplit = valC4_raw.indexOf('1：');
+                    if (firstSplit === -1) firstSplit = valC4_raw.indexOf('1:'); // Check for half-width colon
+
+                    if (firstSplit > 0) {
+                        const title = valC4_raw.substring(0, firstSplit).trim();
+                        const explain = valC4_raw.substring(firstSplit).trim();
+                        potentialChunkFromF = { title, explain };
+                    } else {
+                        // Fallback: Use prompt as title, or generic
+                        potentialChunkFromF = { title: "参考解説", explain: valC4_raw };
+                    }
+                }
+            }
+
+            const valC5 = row[6] ? row[6].trim() : '';
+            const valF = row[5] ? row[5].trim() : ''; // This valF is used for explanation, not choice
             const valM = row[12] ? row[12].trim() : '';
             const valR = row[17] ? row[17].trim() : '';
             const valRefId = row[19] ? row[19].trim() : '';
@@ -248,96 +302,150 @@ async function sync() {
                     });
                     if (correctIndices.length === 0) correctIndices.push(0);
 
+                    // Extract chunks from Column U (index 20) / V (index 21) / W (index 22)...
+                    const chunks = [];
+                    // Add potential chunk from F if found
+                    if (potentialChunkFromF) {
+                        chunks.push(potentialChunkFromF);
+                    }
+
+                    if (row.length > 20) {
+                        for (let j = 20; j < row.length; j += 2) {
+                            const chunkTitle = row[j] ? row[j].trim() : '';
+                            const chunkExplain = row[j + 1] ? row[j + 1].trim() : '';
+                            if (chunkTitle && chunkExplain) {
+                                chunks.push({ title: chunkTitle, explain: chunkExplain });
+                            }
+                        }
+                    }
+
                     questionsData[currentSubject][currentCategory].push({
                         text: questionText,
                         choices: cleanChoices,
                         answer: correctIndices,
-                        explain: explanation,
+                        explain: explanation || questionText, // Fallback to text if explanation empty
                         wordBank: valR,
                         memo: valM,
                         slots: slots,
                         refId: valRefId,
-                        isBonus: isBonus
+                        isBonus: isBonus,
+                        chunks: chunks
                     });
                 } else {
+                    // Extract chunks for non-choice questions too
+                    const chunks = [];
+
+                    // Column F might be a chunk here too (if logical)
+                    // Re-evaluate Row 5 for non-choice context
+                    const valF_for_chunk = row[5] ? row[5].trim() : '';
+
+
+                    if (valF_for_chunk && (valF_for_chunk.length > 50 || (valF_for_chunk.includes('1：') || valF_for_chunk.includes('1:')))) {
+                        // Check for full-width or half-width colon
+                        let firstSplit = valF_for_chunk.indexOf('1：');
+                        if (firstSplit === -1) firstSplit = valF_for_chunk.indexOf('1:');
+
+                        if (firstSplit > 0) {
+                            chunks.push({
+                                title: valF_for_chunk.substring(0, firstSplit).trim(),
+                                explain: valF_for_chunk.substring(firstSplit).trim()
+                            });
+                        } else {
+                            chunks.push({ title: "参考解説", explain: valF_for_chunk });
+                        }
+                    }
+
+                    if (row.length > 20) {
+                        for (let j = 20; j < row.length; j += 2) {
+                            const chunkTitle = row[j] ? row[j].trim() : '';
+                            const chunkExplain = row[j + 1] ? row[j + 1].trim() : '';
+                            if (chunkTitle && chunkExplain) {
+                                chunks.push({ title: chunkTitle, explain: chunkExplain });
+                            }
+                        }
+                    }
+
                     questionsData[currentSubject][currentCategory].push({
                         text: questionText,
-                        explain: explanation || ""
+                        explain: explanation || questionText, // Use question text as explanation fallback
+                        chunks: chunks
                     });
                 }
             }
         }
     }
+}
+    }
 
-    console.log('Syncing Resources and Statutes...');
-    const resourcesData = {};
-    const statutesData = {};
+console.log('Syncing Resources and Statutes...');
+const resourcesData = {};
+const statutesData = {};
 
-    const syncResourceSheet = async (sheetName, type) => {
-        try {
-            const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: `${sheetName}!A:F` });
-            const rows = resp.data.values;
-            if (rows && rows.length > 0) {
-                let start = (rows[0][0] === 'ID' || rows[0][1] === 'タイトル') ? 1 : 0;
-                for (let i = start; i < rows.length; i++) {
-                    const r = rows[i];
-                    const id = r[0] ? r[0].trim() : '';
-                    if (!id) continue;
-                    if (!resourcesData[id]) resourcesData[id] = [];
-                    resourcesData[id].push({
+const syncResourceSheet = async (sheetName, type) => {
+    try {
+        const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: `${sheetName}!A:F` });
+        const rows = resp.data.values;
+        if (rows && rows.length > 0) {
+            let start = (rows[0][0] === 'ID' || rows[0][1] === 'タイトル') ? 1 : 0;
+            for (let i = start; i < rows.length; i++) {
+                const r = rows[i];
+                const id = r[0] ? r[0].trim() : '';
+                if (!id) continue;
+                if (!resourcesData[id]) resourcesData[id] = [];
+                resourcesData[id].push({
+                    title: r[1] ? r[1].trim() : '',
+                    content: r[2] ? r[2].trim() : '',
+                    imageUrl: r[3] ? r[3].trim() : '',
+                    order: parseInt(r[4], 10) || 999,
+                    targetChoice: r[5] ? r[5].trim() : null,
+                    type
+                });
+            }
+        }
+    } catch (e) { console.warn(`Skip ${sheetName}: ${e.message}`); }
+};
+
+const syncStatutes = async (sheetName, key) => {
+    try {
+        const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: `${sheetName}!A:F` });
+        const rows = resp.data.values;
+        if (rows && rows.length > 0) {
+            statutesData[key] = [];
+            for (let i = 1; i < rows.length; i++) {
+                const r = rows[i];
+                if (r[1] || r[2]) {
+                    statutesData[key].push({
                         title: r[1] ? r[1].trim() : '',
                         content: r[2] ? r[2].trim() : '',
                         imageUrl: r[3] ? r[3].trim() : '',
-                        order: parseInt(r[4], 10) || 999,
-                        targetChoice: r[5] ? r[5].trim() : null,
-                        type
+                        order: parseInt(r[4], 10) || 999
                     });
                 }
             }
-        } catch (e) { console.warn(`Skip ${sheetName}: ${e.message}`); }
-    };
+            statutesData[key].sort((a, b) => a.order - b.order);
+        }
+    } catch (e) { console.warn(`Skip ${sheetName}: ${e.message}`); }
+};
 
-    const syncStatutes = async (sheetName, key) => {
-        try {
-            const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: `${sheetName}!A:F` });
-            const rows = resp.data.values;
-            if (rows && rows.length > 0) {
-                statutesData[key] = [];
-                for (let i = 1; i < rows.length; i++) {
-                    const r = rows[i];
-                    if (r[1] || r[2]) {
-                        statutesData[key].push({
-                            title: r[1] ? r[1].trim() : '',
-                            content: r[2] ? r[2].trim() : '',
-                            imageUrl: r[3] ? r[3].trim() : '',
-                            order: parseInt(r[4], 10) || 999
-                        });
-                    }
-                }
-                statutesData[key].sort((a, b) => a.order - b.order);
-            }
-        } catch (e) { console.warn(`Skip ${sheetName}: ${e.message}`); }
-    };
+await syncResourceSheet('解説資料', 'manga');
+await syncStatutes('解説資料（行手）', 'gyote');
+await syncStatutes('解説資料（行審）', 'gyoshin');
+await syncStatutes('解説資料（行訴）', 'gyoso');
+await syncStatutes('解説資料（地方自治法）', 'jichi');
+await syncStatutes('解説資料（国賠）', 'kokubai');
+await syncStatutes('解説資料（総則）', 'minpo_sosoku');
+await syncStatutes('解説資料（物権）', 'minpo_bukken');
+await syncStatutes('解説資料（債権総論）', 'minpo_saiken_soron');
+await syncStatutes('解説資料（債権各論）', 'minpo_saiken_kakuron');
+await syncStatutes('解説資料（家族法）', 'minpo_kazoku');
+await syncStatutes('解説資料（商・会）', 'sho_kai');
+await syncStatutes('解説資料（憲法条文）', 'kenpo');
 
-    await syncResourceSheet('解説資料', 'manga');
-    await syncStatutes('解説資料（行手）', 'gyote');
-    await syncStatutes('解説資料（行審）', 'gyoshin');
-    await syncStatutes('解説資料（行訴）', 'gyoso');
-    await syncStatutes('解説資料（地方自治法）', 'jichi');
-    await syncStatutes('解説資料（国賠）', 'kokubai');
-    await syncStatutes('解説資料（総則）', 'minpo_sosoku');
-    await syncStatutes('解説資料（物権）', 'minpo_bukken');
-    await syncStatutes('解説資料（債権総論）', 'minpo_saiken_soron');
-    await syncStatutes('解説資料（債権各論）', 'minpo_saiken_kakuron');
-    await syncStatutes('解説資料（家族法）', 'minpo_kazoku');
-    await syncStatutes('解説資料（商・会）', 'sho_kai');
-    await syncStatutes('解説資料（憲法条文）', 'kenpo');
+Object.keys(resourcesData).forEach(k => resourcesData[k].sort((a, b) => a.order - b.order));
 
-    Object.keys(resourcesData).forEach(k => resourcesData[k].sort((a, b) => a.order - b.order));
-
-    const output = `// Generated by syncQuiz.js\nexport const SUBJECTS = ${JSON.stringify(questionsData, null, 2)};\nexport const RESOURCES = ${JSON.stringify(resourcesData, null, 2)};\nexport const STATUTES = ${JSON.stringify(statutesData, null, 2)};`;
-    fs.writeFileSync(OUTPUT_FILE, output);
-    console.log(`Synced to ${OUTPUT_FILE}`);
+const output = `// Generated by syncQuiz.js\nexport const SUBJECTS = ${JSON.stringify(questionsData, null, 2)};\nexport const RESOURCES = ${JSON.stringify(resourcesData, null, 2)};\nexport const STATUTES = ${JSON.stringify(statutesData, null, 2)};`;
+fs.writeFileSync(OUTPUT_FILE, output);
+console.log(`Synced to ${OUTPUT_FILE}`);
 }
 
 sync();

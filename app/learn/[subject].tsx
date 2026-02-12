@@ -10,6 +10,7 @@ import { characterPlaceholders, defaultCharacterMap, useCharacter } from '@/src/
 import { useTheme } from '@/src/context/ThemeContext';
 import { LEARN_CONTENT } from '@/src/learn';
 import { PIN_CASES } from '@/src/pinData';
+import { SUBJECTS } from '@/src/questions';
 import { getLearnNotes, LearnNote, saveLearnNotes } from '@/utils/learn-notes';
 import { addPoints } from '@/utils/points';
 import { getStickyNotes, toggleStickyNote } from '@/utils/sticky-notes';
@@ -151,11 +152,30 @@ export default function LearnSubjectScreen() {
     ? [contentToProcess.split('※')[0], '※' + contentToProcess.split('※')[1]]
     : [contentToProcess, ''];
 
+
+  // Check for chunks in SUBJECTS
+  let foundQuestion: any = null;
+  if (subject) {
+    for (const category of Object.values(SUBJECTS as any)) {
+      if ((category as any)[subject]) {
+        foundQuestion = (category as any)[subject]?.[currentIndex];
+        break;
+      }
+    }
+  }
+  const hasChunks = foundQuestion?.chunks && foundQuestion.chunks.length > 0;
+
   const handleOpenDeepDive = () => {
-    if (!digDeeperUrl || !subject) return;
+    if ((!digDeeperUrl && !hasChunks) || !subject) return;
 
     // Parse the ID (question index)
-    const questionIndex = parseInt(digDeeperUrl, 10);
+    let questionIndex = -1;
+    if (digDeeperUrl) {
+      questionIndex = parseInt(digDeeperUrl, 10);
+    } else {
+      questionIndex = currentIndex;
+    }
+
     if (isNaN(questionIndex)) return;
 
     // Navigate to reference page
@@ -442,7 +462,7 @@ export default function LearnSubjectScreen() {
             ))}
 
             {/* Deep Dive Button (Moved inside speedContainer) */}
-            {digDeeperUrl ? (
+            {(digDeeperUrl || hasChunks) ? (
               <Pressable style={styles.digDeeperButtonSmall} onPress={handleOpenDeepDive}>
                 <MaterialIcons
                   name={(digDeeperUrl === '54' && subject === '民法総論') ? "brush" : "article"}

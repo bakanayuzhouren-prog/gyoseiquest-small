@@ -17,6 +17,8 @@ if (process.env.GOOGLE_SHEETS_API_KEY) {
 }
 const OUTPUT_FILE = path.join(__dirname, '../src/learn.js');
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 async function sync() {
   const spreadsheetId = process.env.SHEET_ID;
   console.log(`Syncing from spreadsheet: ${spreadsheetId}`);
@@ -93,10 +95,23 @@ async function sync() {
     }
 
     let range = `${title}!A:F`;
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId,
-      range,
-    });
+    let response;
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        response = await sheets.spreadsheets.values.get({
+          spreadsheetId,
+          range,
+        });
+        break;
+      } catch (e) {
+        if (e.message.includes('Quota exceeded') && attempt < 3) {
+          console.warn(`Quota exceeded for ${title}, retrying in ${attempt * 10}s...`);
+          await sleep(attempt * 10000);
+          continue;
+        }
+        throw e;
+      }
+    }
 
     const rows = response.data.values;
     if (!rows || rows.length <= 1) {
@@ -147,6 +162,14 @@ async function sync() {
             content = row[0];
           }
         }
+
+        // Filter out header/metadata rows to match syncQuiz.js logic exactly
+        // syncQuiz skips: valA === '問題' || valA === '肢' || valA === '科目（憲法）' || valA === '科目'
+        // Here 'content' serves as the primary text. If it matches these, skip.
+        // Also check raw row[0] if content came from there? 
+        // SyncQuiz checks row[0] (valA) specifically.
+        const valA = row[0] ? row[0].trim() : '';
+        if (valA === '問題' || valA === '肢' || valA === '科目（憲法）' || valA === '科目') return;
 
         if (content) {
           const trimmedContent = content.trim();
