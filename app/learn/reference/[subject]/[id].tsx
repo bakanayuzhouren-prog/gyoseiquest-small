@@ -184,7 +184,10 @@ export default function ReferencePage() {
     };
 
     const renderContent = (text: string) => {
-        const processedText = applyCharacterNames(text);
+        // 1. Pre-process text to ensure ■ and 💡 start on new lines
+        const processedText = applyCharacterNames(text)
+            .replace(/([^\n])\s*([■💡])/g, '$1\n$2');
+
         const lines = processedText.split('\n');
 
         const blocks: { type: 'section' | 'plain', title?: string, content: any[][] }[] = [];
@@ -192,6 +195,8 @@ export default function ReferencePage() {
 
         lines.forEach(line => {
             const trimmedLine = line.trim();
+            if (!trimmedLine) return; // Skip empty lines to prevent empty cards
+
             const parsedLine = parseRichText(line);
 
             const sectionTag = parsedLine.find(p => p.type === 'section');
@@ -199,11 +204,15 @@ export default function ReferencePage() {
             const isCircledNumber = /^[①②③④⑤⑥⑦⑧⑨⑩]/.test(trimmedLine);
             const isQAHeader = /^[Qq](＆|&)[Aa]|^[Qq][0-9]*[\.．]/.test(trimmedLine);
             const isCaseHeader = /^【?[0-9]*[\.．]?事例/.test(trimmedLine);
+            const isBlockSymbol = /^[■💡]/.test(trimmedLine);
 
-            const isNewSection = sectionTag || isNumericHeader || isCircledNumber || isQAHeader || isCaseHeader;
+            const isNewSection = sectionTag || isNumericHeader || isCircledNumber || isQAHeader || isCaseHeader || isBlockSymbol;
 
             if (isNewSection) {
-                const title = sectionTag ? sectionTag.content : trimmedLine;
+                // If it's a block symbol (■/💡), treat it as content in a new card
+                // Otherwise, treat it as a title
+                const title = (sectionTag ? sectionTag.content : (isBlockSymbol ? undefined : trimmedLine));
+
                 currentBlock = { type: 'section', title: title, content: [] };
                 blocks.push(currentBlock);
 
@@ -212,6 +221,9 @@ export default function ReferencePage() {
                     if (filteredLine.length > 0) {
                         currentBlock.content.push(filteredLine);
                     }
+                } else if (isBlockSymbol) {
+                    // Add the line as content immediately
+                    currentBlock.content.push(parsedLine);
                 }
             } else {
                 if (!currentBlock) {
@@ -245,7 +257,7 @@ export default function ReferencePage() {
                                 <ThemedText style={[styles.sectionTitle, { color: mainTextCol }]}>{block.title}</ThemedText>
                             </View>
                         )}
-                        <View style={styles.cardBody}>
+                        <View style={[styles.cardBody, !block.title && block.type === 'section' && { paddingTop: 20 }]}>
                             {block.content.map((lineParts, lineIndex) => {
                                 const isPoint = lineParts.some(p => p.type === 'point');
                                 if (isPoint) {

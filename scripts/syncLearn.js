@@ -94,7 +94,7 @@ async function sync() {
       sheetDefaultSubject = '基礎知識';
     }
 
-    let range = `${title}!A:F`;
+    let range = `${title}!A:Z`;
     let response;
     for (let attempt = 1; attempt <= 3; attempt++) {
       try {
@@ -169,7 +169,7 @@ async function sync() {
         // Also check raw row[0] if content came from there? 
         // SyncQuiz checks row[0] (valA) specifically.
         const valA = row[0] ? row[0].trim() : '';
-        if (valA === '問題' || valA === '肢' || valA === '科目（憲法）' || valA === '科目') return;
+        if (valA === '問題' || valA === '肢' || valA.startsWith('科目')) return;
 
         if (content) {
           const trimmedContent = content.trim();
@@ -204,6 +204,8 @@ async function sync() {
 
           // Check for Deep Dive in F column (Index 5)
           const deepDive = row[5] ? row[5].trim() : '';
+
+
           if (deepDive && !content.includes('[[LINK:')) {
             const index = learnContent[currentSubject].length;
             content = `${content}[[LINK:${index}]]`;

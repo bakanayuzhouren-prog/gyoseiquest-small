@@ -117,7 +117,9 @@ async function sync() {
     });
 
     for (const sheet of sheetList) {
+        await sleep(1500); // Rate limit backoff
         const title = sheet.properties.title;
+        console.log(`[DEBUG] Found Sheet: ${title}`);
         const mapping = getMapping(title);
         let sheetDefaultSubject = mapping ? mapping.subject : null;
         let sheetDefaultCategory = mapping ? mapping.category : null;
@@ -158,6 +160,7 @@ async function sync() {
 
 
         if (!rows || rows.length <= 1) continue;
+        console.log(`[DEBUG] Processing Sheet: ${title} (${rows.length} rows)`);
 
         for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
@@ -244,7 +247,7 @@ async function sync() {
                 if (!questionsData[currentSubject]) questionsData[currentSubject] = {};
                 if (!questionsData[currentSubject][currentCategory]) questionsData[currentSubject][currentCategory] = [];
 
-                if (valA === '問題' || valA === '肢' || valA === '科目（憲法）' || valA === '科目') continue;
+                if (valA === '問題' || valA === '肢' || valA.startsWith('科目')) continue;
 
                 // Match syncLearn text extraction logic exactly
                 let questionText = valC;
@@ -374,78 +377,76 @@ async function sync() {
             }
         }
     }
-}
-    }
 
-console.log('Syncing Resources and Statutes...');
-const resourcesData = {};
-const statutesData = {};
+    console.log('Syncing Resources and Statutes...');
+    const resourcesData = {};
+    const statutesData = {};
 
-const syncResourceSheet = async (sheetName, type) => {
-    try {
-        const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: `${sheetName}!A:F` });
-        const rows = resp.data.values;
-        if (rows && rows.length > 0) {
-            let start = (rows[0][0] === 'ID' || rows[0][1] === 'タイトル') ? 1 : 0;
-            for (let i = start; i < rows.length; i++) {
-                const r = rows[i];
-                const id = r[0] ? r[0].trim() : '';
-                if (!id) continue;
-                if (!resourcesData[id]) resourcesData[id] = [];
-                resourcesData[id].push({
-                    title: r[1] ? r[1].trim() : '',
-                    content: r[2] ? r[2].trim() : '',
-                    imageUrl: r[3] ? r[3].trim() : '',
-                    order: parseInt(r[4], 10) || 999,
-                    targetChoice: r[5] ? r[5].trim() : null,
-                    type
-                });
-            }
-        }
-    } catch (e) { console.warn(`Skip ${sheetName}: ${e.message}`); }
-};
-
-const syncStatutes = async (sheetName, key) => {
-    try {
-        const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: `${sheetName}!A:F` });
-        const rows = resp.data.values;
-        if (rows && rows.length > 0) {
-            statutesData[key] = [];
-            for (let i = 1; i < rows.length; i++) {
-                const r = rows[i];
-                if (r[1] || r[2]) {
-                    statutesData[key].push({
+    const syncResourceSheet = async (sheetName, type) => {
+        try {
+            const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: `${sheetName}!A:F` });
+            const rows = resp.data.values;
+            if (rows && rows.length > 0) {
+                let start = (rows[0][0] === 'ID' || rows[0][1] === 'タイトル') ? 1 : 0;
+                for (let i = start; i < rows.length; i++) {
+                    const r = rows[i];
+                    const id = r[0] ? r[0].trim() : '';
+                    if (!id) continue;
+                    if (!resourcesData[id]) resourcesData[id] = [];
+                    resourcesData[id].push({
                         title: r[1] ? r[1].trim() : '',
                         content: r[2] ? r[2].trim() : '',
                         imageUrl: r[3] ? r[3].trim() : '',
-                        order: parseInt(r[4], 10) || 999
+                        order: parseInt(r[4], 10) || 999,
+                        targetChoice: r[5] ? r[5].trim() : null,
+                        type
                     });
                 }
             }
-            statutesData[key].sort((a, b) => a.order - b.order);
-        }
-    } catch (e) { console.warn(`Skip ${sheetName}: ${e.message}`); }
-};
+        } catch (e) { console.warn(`Skip ${sheetName}: ${e.message}`); }
+    };
 
-await syncResourceSheet('解説資料', 'manga');
-await syncStatutes('解説資料（行手）', 'gyote');
-await syncStatutes('解説資料（行審）', 'gyoshin');
-await syncStatutes('解説資料（行訴）', 'gyoso');
-await syncStatutes('解説資料（地方自治法）', 'jichi');
-await syncStatutes('解説資料（国賠）', 'kokubai');
-await syncStatutes('解説資料（総則）', 'minpo_sosoku');
-await syncStatutes('解説資料（物権）', 'minpo_bukken');
-await syncStatutes('解説資料（債権総論）', 'minpo_saiken_soron');
-await syncStatutes('解説資料（債権各論）', 'minpo_saiken_kakuron');
-await syncStatutes('解説資料（家族法）', 'minpo_kazoku');
-await syncStatutes('解説資料（商・会）', 'sho_kai');
-await syncStatutes('解説資料（憲法条文）', 'kenpo');
+    const syncStatutes = async (sheetName, key) => {
+        try {
+            const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: `${sheetName}!A:F` });
+            const rows = resp.data.values;
+            if (rows && rows.length > 0) {
+                statutesData[key] = [];
+                for (let i = 1; i < rows.length; i++) {
+                    const r = rows[i];
+                    if (r[1] || r[2]) {
+                        statutesData[key].push({
+                            title: r[1] ? r[1].trim() : '',
+                            content: r[2] ? r[2].trim() : '',
+                            imageUrl: r[3] ? r[3].trim() : '',
+                            order: parseInt(r[4], 10) || 999
+                        });
+                    }
+                }
+                statutesData[key].sort((a, b) => a.order - b.order);
+            }
+        } catch (e) { console.warn(`Skip ${sheetName}: ${e.message}`); }
+    };
 
-Object.keys(resourcesData).forEach(k => resourcesData[k].sort((a, b) => a.order - b.order));
+    await syncResourceSheet('解説資料', 'manga');
+    await syncStatutes('解説資料（行手）', 'gyote');
+    await syncStatutes('解説資料（行審）', 'gyoshin');
+    await syncStatutes('解説資料（行訴）', 'gyoso');
+    await syncStatutes('解説資料（地方自治法）', 'jichi');
+    await syncStatutes('解説資料（国賠）', 'kokubai');
+    await syncStatutes('解説資料（総則）', 'minpo_sosoku');
+    await syncStatutes('解説資料（物権）', 'minpo_bukken');
+    await syncStatutes('解説資料（債権総論）', 'minpo_saiken_soron');
+    await syncStatutes('解説資料（債権各論）', 'minpo_saiken_kakuron');
+    await syncStatutes('解説資料（家族法）', 'minpo_kazoku');
+    await syncStatutes('解説資料（商・会）', 'sho_kai');
+    await syncStatutes('解説資料（憲法条文）', 'kenpo');
 
-const output = `// Generated by syncQuiz.js\nexport const SUBJECTS = ${JSON.stringify(questionsData, null, 2)};\nexport const RESOURCES = ${JSON.stringify(resourcesData, null, 2)};\nexport const STATUTES = ${JSON.stringify(statutesData, null, 2)};`;
-fs.writeFileSync(OUTPUT_FILE, output);
-console.log(`Synced to ${OUTPUT_FILE}`);
+    Object.keys(resourcesData).forEach(k => resourcesData[k].sort((a, b) => a.order - b.order));
+
+    const output = `// Generated by syncQuiz.js\nexport const SUBJECTS = ${JSON.stringify(questionsData, null, 2)};\nexport const RESOURCES = ${JSON.stringify(resourcesData, null, 2)};\nexport const STATUTES = ${JSON.stringify(statutesData, null, 2)};`;
+    fs.writeFileSync(OUTPUT_FILE, output);
+    console.log(`Synced to ${OUTPUT_FILE}`);
 }
 
 sync();
