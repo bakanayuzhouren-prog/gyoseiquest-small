@@ -3,6 +3,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
+import { LEARN_CONTENT } from '@/src/learn';
 import { SUBJECTS } from '@/src/questions';
 import { applyTTSRules } from '@/utils/tts-rules';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -57,6 +58,13 @@ export default function ReferencePage() {
     const explainText = currentChunkIndex !== null ? chunks[currentChunkIndex].explain : initialExplain;
     const currentTitle = currentChunkIndex !== null ? chunks[currentChunkIndex].title : foundQuestion?.title;
 
+    // Learning content for mini player
+    const learningSubject = Array.isArray(originSubject) ? originSubject[0] : originSubject || '';
+    const learningIndex = parseInt(Array.isArray(originIndex) ? originIndex[0] : originIndex || '0', 10);
+    const rawLearningContent = learningSubject ? (LEARN_CONTENT as any)[learningSubject] : [];
+    const learningContentList = Array.isArray(rawLearningContent) ? rawLearningContent : (rawLearningContent ? [rawLearningContent] : []);
+    const currentLearningContent = learningContentList[learningIndex] || '';
+
     // Mini Player State
     const [isPlaying, setIsPlaying] = useState(false);
     const [selectedImageSource, setSelectedImageSource] = useState<any>(null);
@@ -70,13 +78,28 @@ export default function ReferencePage() {
             Speech.stop();
             setIsPlaying(false);
         } else {
-            // Read current text (either main explain or chunk explain)
-            let contentToRead = explainText;
+            // Read learning content (from "見て聞いて覚えるモード")
+            console.log('[DEBUG] Mini Player Play Button Clicked');
+            console.log('[DEBUG] originSubject:', originSubject);
+            console.log('[DEBUG] originIndex:', originIndex);
+            console.log('[DEBUG] learningSubject:', learningSubject);
+            console.log('[DEBUG] learningIndex:', learningIndex);
+            console.log('[DEBUG] currentLearningContent:', currentLearningContent);
 
-            // Remove tags
-            contentToRead = contentToRead.replace(/\[\[.*?\]\]/g, '');
+            if (!currentLearningContent) {
+                alert('学習コンテンツが見つかりません。');
+                return;
+            }
+
+            // Extract main text (remove basis text after ※ and [[LINK...]] patterns)
+            let contentToRead = currentLearningContent.includes('※')
+                ? currentLearningContent.split('※')[0]
+                : currentLearningContent;
+            contentToRead = contentToRead.replace(/\[\[LINK:.*?\]\]/g, '');
             contentToRead = applyCharacterNames(contentToRead);
             const spokenText = applyTTSRules(contentToRead);
+
+            console.log('[DEBUG] Content to speak:', spokenText.substring(0, 100) + '...');
 
             let count = 0;
             const speak = () => {
@@ -101,41 +124,34 @@ export default function ReferencePage() {
     const handleNext = () => {
         Speech.stop();
         setIsPlaying(false);
-        const nextIndex = questionIndex + 1;
 
-        let nextQuestion = null;
-        if (subjectName) {
-            for (const category of Object.values(SUBJECTS as any)) {
-                if ((category as any)[subjectName]) {
-                    nextQuestion = (category as any)[subjectName]?.[nextIndex];
-                    break;
-                }
-            }
-        }
-
-        if (nextQuestion) {
-            setCurrentChunkIndex(null);
+        // Navigate to next learning content
+        if (learningSubject && learningIndex < learningContentList.length - 1) {
+            const nextLearningIndex = learningIndex + 1;
+            // Update the learning screen
             router.replace({
-                pathname: `/learn/reference/[subject]/[id]` as any,
-                params: { subject: subjectName, id: nextIndex }
+                pathname: `/learn/[subject]` as any,
+                params: { subject: learningSubject, index: nextLearningIndex }
             });
         } else {
-            alert('次の解説はありません。');
+            alert('次の学習項目はありません。');
         }
     };
 
     const handlePrev = () => {
         Speech.stop();
         setIsPlaying(false);
-        if (questionIndex > 0) {
-            const prevIndex = questionIndex - 1;
-            setCurrentChunkIndex(null);
+
+        // Navigate to previous learning content
+        if (learningSubject && learningIndex > 0) {
+            const prevLearningIndex = learningIndex - 1;
+            // Update the learning screen
             router.replace({
-                pathname: `/learn/reference/[subject]/[id]` as any,
-                params: { subject: subjectName, id: prevIndex }
+                pathname: `/learn/[subject]` as any,
+                params: { subject: learningSubject, index: prevLearningIndex }
             });
         } else {
-            alert('前の解説はありません。');
+            alert('前の学習項目はありません。');
         }
     };
 

@@ -205,10 +205,16 @@ async function sync() {
           // Check for Deep Dive in F column (Index 5)
           const deepDive = row[5] ? row[5].trim() : '';
 
+          if (currentSubject === '債権総論' && deepDive) {
+            console.log(`[DEBUG] 債権総論 DeepDive found: ${deepDive.substring(0, 30)}...`);
+          }
 
           if (deepDive && !content.includes('[[LINK:')) {
             const index = learnContent[currentSubject].length;
             content = `${content}[[LINK:${index}]]`;
+            if (currentSubject === '債権総論') {
+              console.log(`[DEBUG] Added LINK:${index} to 債権総論 row`);
+            }
           }
 
           learnContent[currentSubject].push(content);

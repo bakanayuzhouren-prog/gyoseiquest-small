@@ -1,11 +1,226 @@
-[dotenv@17.2.3] injecting env (4) from .env -- tip: 屏・・ run anywhere with `dotenvx run -- yourcommand`
-Using API Key for authentication
-Syncing from spreadsheet: 17JnEROPXhPt6j7DmmwTHDlFilMirhd9bnpOJ7gBixxs
-Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱・
-Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ・Skipping excluded sheet: 邱擾ｼ托ｼ・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・郁｡梧帆豕慕ｷ剰ｫ厄ｼ・Title: "陦梧帆豕慕ｷ剰ｫ・, Normalized: "陦梧帆豕慕ｷ剰ｫ・, CharCodes: 884c,653f,6cd5,7dcf,8ad6
-Skipping non-problem sheet: 隗｣隱ｬ雉・侭・郁｡梧焔・・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・郁｡悟ｯｩ・・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・郁｡瑚ｨｴ・・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥嵜雉・・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥慍譁ｹ閾ｪ豐ｻ豕包ｼ・Title: "陦梧帆豕慕ｷ丞粋", Normalized: "陦梧帆豕慕ｷ丞粋", CharCodes: 884c,653f,6cd5,7dcf,5408
-Skipping non-problem sheet: 隗｣隱ｬ雉・侭・育ｷ丞援・・Title: "豌第ｳ慕ｷ剰ｫ・, Normalized: "豌第ｳ慕ｷ剰ｫ・, CharCodes: 6c11,6cd5,7dcf,8ad6
-Skipping non-problem sheet: 隗｣隱ｬ雉・侭・育黄讓ｩ・・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥し讓ｩ邱剰ｫ厄ｼ・Title: "蛯ｵ讓ｩ邱剰ｫ・, Normalized: "蛯ｵ讓ｩ邱剰ｫ・, CharCodes: 50b5,6a29,7dcf,8ad6
-Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥し讓ｩ蜷・ｫ厄ｼ・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥ｮｶ譌擾ｼ・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥ｮｶ譌乗ｳ包ｼ・No data or only header in sheet: 豌第ｳ募・闊ｬ
-Skipping non-problem sheet: 隗｣隱ｬ雉・侭・域・豕墓擅譁・ｼ・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・域・豕募愛萓具ｼ・Skipping non-problem sheet: 隗｣隱ｬ雉・侭・亥膚繝ｻ莨夲ｼ・No data or only header in sheet: 蝠・ｳ輔・莨夂､ｾ豕・No data or only header in sheet: 蝓ｺ遉取ｳ募ｭｦ
-learn.js synced successfully to C:\dev\gyosei-quest-small\src\learn.js
+[dotenv@17.2.3] injecting env (4) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+Syncing Quiz questions from: 17JnEROPXhPt6j7DmmwTHDlFilMirhd9bnpOJ7gBixxs
+[DEBUG] Found Sheet: 総１
+Processing 総１ -> Default: [null] null...
+[DEBUG] Processing Sheet: 総１ (13 rows)
+[DEBUG] Found Sheet: 総２
+Processing 総２ -> Default: [null] null...
+[DEBUG] Processing Sheet: 総２ (13 rows)
+[DEBUG] Found Sheet: 総３
+Processing 総３ -> Default: [null] null...
+[DEBUG] Processing Sheet: 総３ (14 rows)
+[DEBUG] Found Sheet: 総４
+Processing 総４ -> Default: [null] null...
+[DEBUG] Processing Sheet: 総４ (13 rows)
+[DEBUG] Found Sheet: 総５
+Processing 総５ -> Default: [null] null...
+[DEBUG] Processing Sheet: 総５ (15 rows)
+[DEBUG] Found Sheet: 総６
+Processing 総６ -> Default: [null] null...
+[DEBUG] Processing Sheet: 総６ (10 rows)
+[DEBUG] Found Sheet: 総7
+Processing 総7 -> Default: [null] null...
+[DEBUG] Processing Sheet: 総7 (14 rows)
+[DEBUG] Found Sheet: 総８
+Processing 総８ -> Default: [null] null...
+[DEBUG] Processing Sheet: 総８ (14 rows)
+[DEBUG] Found Sheet: 総９
+Processing 総９ -> Default: [null] null...
+[DEBUG] Processing Sheet: 総９ (14 rows)
+[DEBUG] Found Sheet: 総１０
+Processing 総１０ -> Default: [null] null...
+[DEBUG] Processing Sheet: 総１０ (13 rows)
+[DEBUG] Found Sheet: 解説資料（行政法総論）
+Skipping non-problem sheet: 解説資料（行政法総論）
+[DEBUG] Found Sheet: 行政代執行法
+Processing 行政代執行法 -> Default: [null] null...
+[DEBUG] Processing Sheet: 行政代執行法 (11 rows)
+[DEBUG] Found Sheet: 行政法総論
+Processing 行政法総論 -> Default: [行政法] 行政法総論...
+[DEBUG] Processing Sheet: 行政法総論 (188 rows)
+[DEBUG] Found Sheet: 解説資料（行手）
+Skipping non-problem sheet: 解説資料（行手）
+[DEBUG] Found Sheet: 行政手続法
+Processing 行政手続法 -> Default: [行政法] 行政手続法...
+[DEBUG] Processing Sheet: 行政手続法 (182 rows)
+[DEBUG] Found Sheet: 解説資料（行審）
+Skipping non-problem sheet: 解説資料（行審）
+[DEBUG] Found Sheet: 行政不服審査法
+Processing 行政不服審査法 -> Default: [行政法] 行政不服審査法...
+[DEBUG] Processing Sheet: 行政不服審査法 (165 rows)
+[DEBUG] Found Sheet: 解説資料（行訴）
+Skipping non-problem sheet: 解説資料（行訴）
+[DEBUG] Found Sheet: 行政事件訴訟法
+Processing 行政事件訴訟法 -> Default: [行政法] 行政事件訴訟法...
+[DEBUG] Processing Sheet: 行政事件訴訟法 (197 rows)
+[DEBUG] Found Sheet: 解説資料（国賠）
+Skipping non-problem sheet: 解説資料（国賠）
+[DEBUG] Found Sheet: 国家賠償法
+Processing 国家賠償法 -> Default: [行政法] 国家賠償法・損失訴訟...
+[DEBUG] Processing Sheet: 国家賠償法 (100 rows)
+[DEBUG] Found Sheet: 解説資料（地方自治法）
+Skipping non-problem sheet: 解説資料（地方自治法）
+[DEBUG] Found Sheet: 地方自治法
+Processing 地方自治法 -> Default: [行政法] 地方自治法...
+[DEBUG] Processing Sheet: 地方自治法 (209 rows)
+[DEBUG] Found Sheet: 行政法総合
+Processing 行政法総合 -> Default: [行政法] 行政法総合...
+[DEBUG] Processing Sheet: 行政法総合 (73 rows)
+[DEBUG] Found Sheet: 解説資料（総則）
+Skipping non-problem sheet: 解説資料（総則）
+[DEBUG] Found Sheet: 民法総論
+Processing 民法総論 -> Default: [民法] 民法総論...
+[DEBUG] Processing Sheet: 民法総論 (133 rows)
+[DEBUG] Found Sheet: 解説資料（物権）
+Skipping non-problem sheet: 解説資料（物権）
+[DEBUG] Found Sheet: 民法物権
+Processing 民法物権 -> Default: [民法] 民法物権...
+[DEBUG] Processing Sheet: 民法物権 (138 rows)
+[DEBUG] Found Sheet: 解説資料（債権総論）
+Skipping non-problem sheet: 解説資料（債権総論）
+[DEBUG] Found Sheet: 債権総論
+Processing 債権総論 -> Default: [民法] 債権総論...
+[DEBUG] Processing Sheet: 債権総論 (100 rows)
+[DEBUG_SAIKEN] Row 1: A='利息について利率が定められなかったとき、利率は借主が金銭を受け取った日の法定利率', B='', C=''
+[DEBUG_SAIKEN] Row 2: A='契約当初の適用利率が変動しても、法定利率は変動しない', B='', C=''
+[DEBUG_SAIKEN] Row 3: A='遅延損害の定めがない場合で約定利率が法定利率より低い場合、遅延損害金は法定利率によって定める', B='', C=''
+[DEBUG_SAIKEN] Row 4: A='不法行為の損害賠償請求において、遅延損害金は、原則、不法行為時の法定利率による', B='', C=''
+[DEBUG_SAIKEN] Row 5: A='将来取得すべき利益について、損害賠償額を定める場合、その利益を取得するときまでに利息相当額を控除するときは、', B='', C=''
+[DEBUG_SAIKEN] Row 6: A='損害賠償請求が生じた時点における法定利率による', B='', C=''
+[DEBUG_SAIKEN] Row 7: A='選択債権の選択権は特約のない限り、債務者に帰属する', B='', C=''
+[DEBUG_SAIKEN] Row 8: A='選択権は相手方に対する意思表示によってし、相手の承諾を得なければ、撤回することはできない', B='', C=''
+[DEBUG_SAIKEN] Row 9: A='特約により選択権者になった者が過失なく給付が不能になった場合、残存する物に特定される', B='', C=''
+[DEBUG_SAIKEN] Row 10: A='第三者が選択権を有する場合、債権者または債務者に対する意思表示によってする', B='', C=''
+[DEBUG_SAIKEN] Row 11: A='第三者が選択権を有する場合で、その第三者が選択できず、または選択する意思を有しないとき、選択権は債務者に移転する', B='', C=''
+[DEBUG_SAIKEN] Row 12: A='不確定期限付き契約の履行遅滞の起算時期は、期限到来後に履行の請求を受けたときまたは、期限の到来を知った時の早い方', B='', C=''
+[DEBUG_SAIKEN] Row 13: A='契約に基づく債務の履行がその契約の成立時に不能であった場合、それが自然災害を原因としたものであっても、債務者は債権者に損害賠償責任を負う', B='', C=''
+[DEBUG_SAIKEN] Row 14: A='債務者が履行補助者を用いた場合、その履行補助者の過失により動産が滅失して引渡しができなくなったときは、債務者自身に過失がないときであっても、債務者は損害賠償責任を負う。', B='', C=''
+[DEBUG_SAIKEN] Row 15: A='当事者双方の責めに帰すことができない事由によって債務の履行ができなくなったとき、債権者は反対給付の履行つまり代金の支払いを拒むことができる', B='', C=''
+[DEBUG_SAIKEN] Row 16: A='債権者による受領遅滞がある場合で、履行の提供があった時以降に当事者双方の責めに帰することができない事由により履行不能になったとき、債権者の責めに帰すべき事由とされる', B='', C=''
+[DEBUG_SAIKEN] Row 17: A='債権者は反対給付の履行を拒むことはできない', B='', C=''
+[DEBUG_SAIKEN] Row 18: A='債権者があらかじめその受領を拒み、または債務の履行にいて債権者の行為を要するときは、弁済の準備したことを通知してその受領を催告すれば足りる（口頭の提供）', B='', C=''
+[DEBUG_SAIKEN] Row 19: A='債務者がその債務の全部の履行を拒絶する意思を明確に表示したとき、債権者は催告をすることなく、直ちに契約の解除ができる', B='', C=''
+[DEBUG_SAIKEN] Row 20: A='債権者が債務の履行を受けることを拒み、または受けることができない場合、履行の提供があった時以降当事者双方の責めに帰すことができない事由によってその債務の履行が不能となったときは、その履行不能は債権者の責めに帰すべき事由によるものとみなされ、債権者は目的物の補修を請求することはできない', B='', C=''
+[DEBUG_SAIKEN] Row 21: A='債権者が債務の履行を受けることを拒み、または受けることができない場合、履行の提供があった時以後に当事者双方の責めに帰することができない事由によってその債務の履行が不能となったときは、履行の不能は、債権者の責めに帰すべき事由によるものとみなされ、債権者の責めに帰すべき事由によって債務を履行することができなくなったとき、債権者は、反対給付の履行を拒むことができない', B='', C=''
+[DEBUG_SAIKEN] Row 22: A='債権者が債務の履行を受けることを拒み、または受けることができない場合において、履行の提供があった時以後に当事者双方の責めに帰することができない事由によってその債務の履行が不能となったときは、その履行の不能は、債権者の責めに帰すべき事由によるものとみなされる。債務の不履行が債権者の責めに帰すべき事由によるものであるときは、債権者は、契約の解除をすることができない', B='', C=''
+[DEBUG_SAIKEN] Row 23: A='売買契約における売買代金の支払いの遅延損害について、損害賠償請求をする場合、債権者は損害の証明をすることを要しない', B='', C=''
+[DEBUG_SAIKEN] Row 24: A='売買契約における売買代金の支払いの遅延損害について、損害賠償請求をする場合、弁護士費用その他の取立請求をすることはできない', B='', C=''
+[DEBUG_SAIKEN] Row 25: A='金銭の給付を目的とする債務不履行による損害賠償について、債務者の不可抗力をもって対抗することはできず、システムエラーが不可抗力にあたる', B='', C=''
+[DEBUG_SAIKEN] Row 26: A='債務の履行について不確定期限があるときは、債務者は、その期限の到来した後に履行の請求を受けた時またはその期限の到来したことを知った時のいずれか早い時から遅滞の責任を負う債務者が期限の到来したことを知らないままである場合、債権者は遅延損害金の請求をすることはできない', B='', C=''
+[DEBUG_SAIKEN] Row 27: A='債務の履行について期限を定めなかったときは、債務者は、履行の請求を受けた時から遅滞の責任を負う', B='', C=''
+[DEBUG_SAIKEN] Row 28: A='不確定期限がある債務については、その期限が到来した時ではなく、債務者が履行期の到来を知った時から履行遅滞になる', B='', C=''
+[DEBUG_SAIKEN] Row 29: A='債務者が自己の債務を履行しない場合、その債務不履行につき帰責事由がないことを債務者の側において立証することができなければ、債務者は債務不履行責任を免れることができない', B='', C=''
+[DEBUG_SAIKEN] Row 30: A='受寄者が寄託者の承諾を得て寄託物を第三者に保管させたが、当該第三者の行為により寄託物を損傷させた場合、受寄者は免責されず、寄託者に対して債務不履行責任を負う', B='', C=''
+[DEBUG_SAIKEN] Row 31: A='特別の事情によって生じた損害につき、債務者が契約締結時においてその事情を予見できなかったとしても、債務不履行時までに予見すべきであったと認められるときは、債務者はこれを賠償しなければならない', B='', C=''
+[DEBUG_SAIKEN] Row 32: A='債権者は、債務者の取消権についても、債権者代位権を行使することができる', B='', C=''
+[DEBUG_SAIKEN] Row 33: A='債権者の債務者に対する期限が到来していなければ、債権者代位権を行使することはできない', B='', C=''
+[DEBUG_SAIKEN] Row 34: A='債権者代位権の目的物が動産である場合、債権者は債務者の相手方に対し、自己に引渡しを求めることができる', B='', C=''
+[DEBUG_SAIKEN] Row 35: A='債権者が債権者代位権を行使した場合であっても、債務者は相手方に対する被代位権理について自ら取立て、その他の処分をすることができる', B='', C=''
+[DEBUG_SAIKEN] Row 36: A='債権者が債権者代位権を行使したばあいであっても、債務者の相手方は、被代位権理について、債務者に対して履行をすることを妨げられない', B='', C=''
+[DEBUG_SAIKEN] Row 37: A='債権者は弁済期前に、債権者代位権を行使することはできないが、保存行為はこの限りではない　　登記の申請行為がこれにあたる', B='', C=''
+[DEBUG_SAIKEN] Row 38: A='債権者は債務者に属する取消権や解除権のような形成権についても代位行使できる', B='', C=''
+[DEBUG_SAIKEN] Row 39: A='債権者代位権は債権者自身の行為として行使できる', B='', C=''
+[DEBUG_SAIKEN] Row 40: A='不動産を緒方から寺島へ、同不動産を緒方から宮田へ二重譲渡され宮田が登記を備え、緒方から宮田への譲渡で緒方が無資力になった場合、寺島は、緒方から宮田への譲渡を詐害行為として取り消すことができる', B='', C=''
+[DEBUG_SAIKEN] Row 41: A='詐害行為の立証責任は債務者が負い、受益者の悪意に関しては、受益者自らの善意について立証責任を負う', B='', C=''
+[DEBUG_SAIKEN] Row 42: A='連帯債務の混同は絶対効', B='', C=''
+[DEBUG_SAIKEN] Row 43: A='連帯債務の代物弁済は絶対効', B='', C=''
+[DEBUG_SAIKEN] Row 44: A='連帯債務の相殺は絶対効', B='', C=''
+[DEBUG_SAIKEN] Row 45: A='連帯債務の請求は相対効', B='', C=''
+[DEBUG_SAIKEN] Row 46: A='連帯債務の免除は相対効', B='', C=''
+[DEBUG_SAIKEN] Row 47: A='ダイゴとひろゆきが連帯して債務を負う場合、ダイゴの錯誤を理由にひろゆきは債務を免れることはない', B='', C=''
+[DEBUG_SAIKEN] Row 48: A='ダイゴと債権者間で更改があった場合、ひろゆきは貸金債務を免れる', B='', C=''
+[DEBUG_SAIKEN] Row 49: A='ダイゴが債権者に時効の援用をしても、ひろゆきには効力が生じず、ひろゆき自身で時効を援用する必要がある　　　弁済の猶予を求めることは時効更新事由にあたる', B='', C=''
+[DEBUG_SAIKEN] Row 50: A='債権者から履行を求められたダイゴが、ひろゆきに通知することなく１０００万円を弁済し、ひろゆきは債権者に５００万円の金銭債権を有しており、弁済期が到来していた場合、ひろゆきは債権者から５００万円を求償されても相殺をもって対抗することができる', B='', C=''
+[DEBUG_SAIKEN] Row 51: A='ダイゴが債権者に弁済した後にひろゆきに対して通知しなかったため、ひろゆきはこれを知らずに、ダイゴに弁済する旨の通知をして、債権者に弁済した。ひろゆきはダイゴの求償を拒み、ひろゆきが債権者に対し、５００万円を求償することができる', B='', C=''
+[DEBUG_SAIKEN] Row 52: A='寺島が公庫に対し保証人を立てる義務を負う場合、公庫がオレンジ大祐を指名したとき、オレンジ大祐が弁済する資力を有しなくなったときでも、公庫は寺島に対し、オレンジ大祐に代えて、資力を有する保証人を立てるよう請求することはできない', B='', C=''
+[DEBUG_SAIKEN] Row 53: A='寺島が公庫に対し保証人を立てる義務を負う場合、公庫が指名する保証人は行為能力者であることを要しない', B='', C=''
+[DEBUG_SAIKEN] Row 54: A='公庫が寺島に対して有する履行の請求、時効の完成猶予および更新の効力は、オレンジ大祐に対しても及ぶ', B='', C=''
+[DEBUG_SAIKEN] Row 55: A='オレンジ大祐の保証債務に、寺島の債務に関する利息、違約金、損害賠償、その他債務に従たるすべてのものを含有する', B='', C=''
+[DEBUG_SAIKEN] Row 56: A='オレンジ大祐は、保証債務についてのみ、違約金又は損害賠償の額を約定することができる', B='', C=''
+[DEBUG_SAIKEN] Row 57: A='併存的債務引受は、債権者と引受人とで契約をすることができる', B='', C=''
+[DEBUG_SAIKEN] Row 58: A='債務者と引受人との間で併存的債務引受の契約を結ぶことができ、効力発生時期は債権者が承諾をしたとき', B='', C=''
+[DEBUG_SAIKEN] Row 59: A='債権者と引受人との間で免責的債務引受の契約を結ぶことができ、効力発生時期は債権者が債務者に通知したとき', B='', C=''
+[DEBUG_SAIKEN] Row 60: A='債務者と引受人との間で免責的債務引受の契約を結ぶことができ、効力発生時期は債権者が引受人に対し承諾したとき', B='', C=''
+[DEBUG_SAIKEN] Row 61: A='免責的債務引受の引受人は求償権を有しない', B='', C=''
+[DEBUG_SAIKEN] Row 62: A='債務者が1個または数個の債務について元本のほか利息および費用を支払うべき場合において、弁済をする者がその債務の全部を消滅させるのに足りない給付をしたとき、これを順次に費用、利息および元本に充当しなければならない　この「費用→利息→元本」の順序は、当事者の合意により変更することができる', B='', C=''
+[DEBUG_SAIKEN] Row 63: A='同一の債権者に対して数個の金銭債務を負担する債務者が、弁済として給付した金銭の額が全ての債務を消滅させるのに足りない場合であって、債務者が充当の指定をしないときは、債権者が弁済を受領する時に充当の指定をすることができるが、債務者がその充当に対して直ちに異議を述べたときは、この限りでない。', B='', C=''
+[DEBUG_SAIKEN] Row 64: A='金銭債務を負担した債務者が、債権者の承諾を得て金銭の支払に代えて不動産を給付する場合において、代物弁済により債務を消滅させるためには、債権者に所有権を移転させる旨の意思表示をするだけでは足りず、所有権移転登記がされなければならない', B='', C=''
+[DEBUG_SAIKEN] Row 65: A='債権者があらかじめ弁済の受領を拒んでいる場合、債務者は、口頭の提供をすれば債務不履行責任を免れるが、債権者において契約そのものの存在を否定する等弁済を受領しない意思が明確に認められるときは、口頭の提供をしなくても同責任を免れる', B='', C=''
+[DEBUG_SAIKEN] Row 66: A='債権者があらかじめ金銭債務の弁済の受領を拒んでいる場合、債務者は、口頭の提供をした上で弁済の目的物を供託することにより、債務を消滅させることができる', B='', C=''
+[DEBUG_SAIKEN] Row 67: A='債務者が債権者と合意して、債権者に対し本来の債務の弁済に代えて自己が所有する土地を譲渡した場合、土地所有権の移転の効果は、原則として代物弁済契約の意思表示によって生じる', B='', C=''
+[DEBUG_SAIKEN] Row 68: A='債務者が債権者と合意して、債権者に対し本来の債務の弁済に代えて自己が所有する土地を譲渡した場合、債務消滅の効果は、原則として移転登記の完了時に生じる', B='', C=''
+[DEBUG_SAIKEN] Row 69: A='債務者が債権者と合意して、債権者に対し本来の債務の弁済に代えて自己が占有する時計を引き渡した場合、当該時計が他人から借りた時計であったとしても、債権者が、善意、無過失で、平穏に、かつ、公然と占有を開始したときには、時計の所有権を取得できる', B='', C=''
+[DEBUG_SAIKEN] Row 70: A='代物弁済の目的物に品質に関する契約不適合があるときは、債権者は債務者に対して契約不適合責任を追及することができる', B='', C=''
+[DEBUG_SAIKEN] Row 71: A='債務者が債権者と合意して、債権者に対し本来の債務の弁済に代えて手形または小切手を交付した場合、これによって債務消滅の効果が生じるので、それらの不渡りがあっても、債権者は、債務者に対し損害賠償を請求することはできない', B='', C=''
+[DEBUG_SAIKEN] Row 72: A='差押えを受けた債権の第三債務者は、差押え後に取得した債権が差押え前の原因に基づいて生じたものであれば、その第三債務者が、差押え後に他人の債権を取得したときでなければ、その債権による相殺をもって差押債権者に対抗することができる', B='', C=''
+[DEBUG_SAIKEN] Row 73: A='時効によって消滅した債権が、その消滅以前に相殺適状にあった場合には、その債権者は、当該債権を自働債権として相殺することができる', B='', C=''
+[DEBUG_SAIKEN] Row 74: A='相殺禁止特約のついた債権を譲り受けた者が当該特約について悪意又は重過失である場合には、当該譲渡債権の債務者は、当該特約を譲受人に対抗することができる', B='', C=''
+[DEBUG_SAIKEN] Row 75: A='債務者に対する貸金債権の回収が困難なため、債権者がその腹いせに悪意で債務者の物を破損した場合には、債権者は、当該行為による損害賠償債務を受働債権として自己が有する貸金債権と相殺することはできない', B='', C=''
+[DEBUG_SAIKEN] Row 76: A='人の生命又は身体の侵害による損害賠償の債務の債務者（加害者）は、相殺をもって債権者（被害者）に対抗することができない', B='', C=''
+[DEBUG_SAIKEN] Row 77: A='', B='', C=''
+[DEBUG_SAIKEN] Row 78: A='', B='', C=''
+[DEBUG_SAIKEN] Row 79: A='', B='', C=''
+[DEBUG_SAIKEN] Row 80: A='', B='', C=''
+[DEBUG_SAIKEN] Row 81: A='', B='', C=''
+[DEBUG_SAIKEN] Row 82: A='', B='', C=''
+[DEBUG_SAIKEN] Row 83: A='', B='', C=''
+[DEBUG_SAIKEN] Row 84: A='', B='', C=''
+[DEBUG_SAIKEN] Row 85: A='', B='', C=''
+[DEBUG_SAIKEN] Row 86: A='', B='', C=''
+[DEBUG_SAIKEN] Row 87: A='', B='', C=''
+[DEBUG_SAIKEN] Row 88: A='', B='', C=''
+[DEBUG_SAIKEN] Row 89: A='', B='', C=''
+[DEBUG_SAIKEN] Row 90: A='', B='', C=''
+[DEBUG_SAIKEN] Row 91: A='', B='', C=''
+[DEBUG_SAIKEN] Row 92: A='', B='', C=''
+[DEBUG_SAIKEN] Row 93: A='', B='', C=''
+[DEBUG_SAIKEN] Row 94: A='', B='', C=''
+[DEBUG_SAIKEN] Row 95: A='', B='', C=''
+[DEBUG_SAIKEN] Row 96: A='', B='', C=''
+[DEBUG_SAIKEN] Row 97: A='', B='', C=''
+[DEBUG_SAIKEN] Row 98: A='', B='', C=''
+[DEBUG_SAIKEN] Row 99: A='', B='', C=''
+[DEBUG] Found Sheet: 解説資料（債権各論）
+Skipping non-problem sheet: 解説資料（債権各論）
+[DEBUG] Found Sheet: 債権各論
+Processing 債権各論 -> Default: [民法] 債権各論...
+[DEBUG] Processing Sheet: 債権各論 (122 rows)
+[DEBUG] Found Sheet: 解説資料（家族）
+Skipping non-problem sheet: 解説資料（家族）
+[DEBUG] Found Sheet: 解説資料（家族法）
+Skipping non-problem sheet: 解説資料（家族法）
+[DEBUG] Found Sheet: 家族法
+Processing 家族法 -> Default: [民法] 家族法...
+[DEBUG] Processing Sheet: 家族法 (70 rows)
+[DEBUG] Found Sheet: 民法全般
+Processing 民法全般 -> Default: [民法] 民法総合...
+[DEBUG] Processing Sheet: 民法全般 (11 rows)
+[DEBUG] Found Sheet: 解説資料（憲法条文）
+Skipping non-problem sheet: 解説資料（憲法条文）
+[DEBUG] Found Sheet: 解説資料（憲法判例）
+Skipping non-problem sheet: 解説資料（憲法判例）
+[DEBUG] Found Sheet: 憲法
+Processing 憲法 -> Default: [憲法] 憲法...
+[DEBUG] Processing Sheet: 憲法 (271 rows)
+[DEBUG] Found Sheet: 解説資料（商・会）
+Skipping non-problem sheet: 解説資料（商・会）
+[DEBUG] Found Sheet: 商法・会社法
+Processing 商法・会社法 -> Default: [商法・会社法] 商法・会社法...
+[DEBUG] Processing Sheet: 商法・会社法 (251 rows)
+[DEBUG] Found Sheet: 基礎法学
+Processing 基礎法学 -> Default: [基礎法学] 基礎法学...
+[DEBUG] Processing Sheet: 基礎法学 (51 rows)
+[DEBUG] Found Sheet: 多肢選択憲法
+Processing 多肢選択憲法 -> Default: [多肢選択] 憲法...
+[DEBUG] Processing Sheet: 多肢選択憲法 (30 rows)
+[DEBUG] Found Sheet: 多肢選択行政法
+Processing 多肢選択行政法 -> Default: [多肢選択] 行政法...
+[DEBUG] Processing Sheet: 多肢選択行政法 (51 rows)
+[DEBUG] Found Sheet: 民法記述
+Processing 民法記述 -> Default: [記述] 民法...
+[DEBUG] Processing Sheet: 民法記述 (96 rows)
+[DEBUG] Found Sheet: 行政法記述
+Processing 行政法記述 -> Default: [記述] 行政法...
+[DEBUG] Processing Sheet: 行政法記述 (77 rows)
+Syncing Resources and Statutes...
+Synced to C:\dev\gyosei-quest-small\src\questions.js
