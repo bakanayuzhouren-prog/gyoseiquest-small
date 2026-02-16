@@ -432,6 +432,17 @@ export default function LearnSubjectScreen() {
               </Pressable>
             ) : null}
 
+            {/* Case Title (事件名・訴訟名) - from chunks[0].title, only show if ends with 事件 or 訴訟 */}
+            {(() => {
+              const caseTitle = foundQuestion?.chunks?.[0]?.title || '';
+              const isLegalCase = caseTitle.endsWith('事件') || caseTitle.endsWith('訴訟');
+              return isLegalCase ? (
+                <ThemedText style={styles.caseTitleText}>
+                  {caseTitle}
+                </ThemedText>
+              ) : null;
+            })()}
+
             {/* Past Question Button (Visible only for Constitution index 3) */}
             {subject === '憲法' && currentIndex === 3 ? (
               <Pressable
@@ -444,6 +455,30 @@ export default function LearnSubjectScreen() {
                 <ThemedText style={styles.pastQuestionText}>過去問</ThemedText>
               </Pressable>
             ) : null}
+          </ThemedView>
+
+          {/* Control Buttons (前へ、再生、次へ) */}
+          <ThemedView style={styles.controlsRow}>
+            <Pressable
+              style={[styles.prevButton, currentIndex === 0 && styles.disabledButton]}
+              onPress={handleManualPrev}
+              disabled={currentIndex === 0}
+            >
+              <ThemedText type="defaultSemiBold" style={currentIndex === 0 ? { color: '#999' } : {}}>前へ</ThemedText>
+            </Pressable>
+
+            <Pressable
+              style={[styles.playButton, isPlaying ? styles.stopButton : styles.startButton]}
+              onPress={handleTogglePlay}
+            >
+              <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>
+                {isPlaying ? '■ 停止' : '▶ 再生'}
+              </ThemedText>
+            </Pressable>
+
+            <Pressable style={isLastItem ? styles.completeButton : styles.nextButton} onPress={handleManualNext}>
+              <ThemedText type="defaultSemiBold">{isLastItem ? '完了' : '次へ'}</ThemedText>
+            </Pressable>
           </ThemedView>
 
           {/* Speed Controls */}
@@ -485,30 +520,6 @@ export default function LearnSubjectScreen() {
                 color={isPriorityMode ? "#fff" : colors.text}
               />
               <ThemedText style={[styles.priorityText, isPriorityMode && styles.priorityTextActive]}>付箋優先</ThemedText>
-            </Pressable>
-          </ThemedView>
-
-
-          <ThemedView style={styles.controlsRow}>
-            <Pressable
-              style={[styles.prevButton, currentIndex === 0 && styles.disabledButton]}
-              onPress={handleManualPrev}
-              disabled={currentIndex === 0}
-            >
-              <ThemedText type="defaultSemiBold" style={currentIndex === 0 ? { color: '#999' } : {}}>前へ</ThemedText>
-            </Pressable>
-
-            <Pressable
-              style={[styles.playButton, isPlaying ? styles.stopButton : styles.startButton]}
-              onPress={handleTogglePlay}
-            >
-              <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>
-                {isPlaying ? '■ 停止' : '▶ 再生'}
-              </ThemedText>
-            </Pressable>
-
-            <Pressable style={isLastItem ? styles.completeButton : styles.nextButton} onPress={handleManualNext}>
-              <ThemedText type="defaultSemiBold">{isLastItem ? '完了' : '次へ'}</ThemedText>
             </Pressable>
           </ThemedView>
 
@@ -881,6 +892,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#666',
     textAlign: 'center',
+  },
+  caseTitleText: {
+    marginTop: 8,
+    fontSize: 14,
+    color: '#999',
+    textAlign: 'center',
+    fontStyle: 'italic',
   },
   pastQuestionButton: {
     position: 'absolute',

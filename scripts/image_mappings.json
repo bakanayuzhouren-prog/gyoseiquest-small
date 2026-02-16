@@ -1,0 +1,38 @@
+[
+    {
+        "searchText": "戸別訪問禁止事件",
+        "imageName": "door_to_door_4panel",
+        "position": "start",
+        "comment": "戸別訪問禁止事件の4コマ漫画"
+    },
+    {
+        "searchText": "参考解説",
+        "imageName": "rigid_flexible_constitution",
+        "position": "start",
+        "comment": "硬性憲法・軟性憲法の比較図（憲法1/230）"
+    },
+    {
+        "searchText": "Google検索結果削除（逮捕歴とプライバシー）事件",
+        "imageName": "info_infrastructure",
+        "position": "start",
+        "comment": "情報流通のインフラとしての検索"
+    },
+    {
+        "searchText": "Google検索結果削除（逮捕歴とプライバシー）事件",
+        "imageName": "google_search",
+        "position": "start",
+        "comment": "Google検索の仕組み"
+    },
+    {
+        "searchText": "Google検索結果削除（逮捕歴とプライバシー）事件",
+        "imageName": "privacy_violation",
+        "position": "start",
+        "comment": "プライバシー侵害"
+    },
+    {
+        "searchText": "Google検索結果削除（逮捕歴とプライバシー）事件",
+        "imageName": "newspaper_restriction",
+        "position": "start",
+        "comment": "新聞閲覧の制限と表現の自由"
+    }
+]

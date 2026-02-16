@@ -10,22 +10,12 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
+// @ts-ignore
+import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { useEffect, useState } from 'react';
 import { Dimensions, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
-const IMAGE_RESOURCES_MAP: Record<string, any> = {
-    'summary_diagram': require('@/assets/images/summary_diagram_v4.jpg'),
-    'chachalot': require('@/assets/images/characters/chachalot.png'),
-    'task': require('@/assets/images/characters/task_turtle.png'),
-    'kachadokuro': require('@/assets/images/characters/kachadokuro.png'),
-    'king_kachadokuro': require('@/assets/images/characters/king_kachadokuro.png'),
-    'princess_kachadokuro': require('@/assets/images/characters/princess_kachadokuro.png'),
-    'pitchi': require('@/assets/images/characters/pitchi.png'),
-    'agency_diagram': require('@/assets/images/agency_diagram.jpg'),
-    'rigid_constitution': require('@/assets/images/rigid_v2.jpg'),
-    'flexible_constitution': require('@/assets/images/flexible_v2.jpg'),
-    'yahata_steel': require('@/assets/images/yahata_steel.png'),
-};
+// Local map removed in favor of generated map
 
 export default function ReferencePage() {
     const { subject, id, originSubject, originId, originIndex } = useLocalSearchParams();
