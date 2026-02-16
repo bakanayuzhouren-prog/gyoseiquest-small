@@ -90,7 +90,7 @@ export default function ChatScreen() {
             ]}>
                 {!isUser && (
                     <View style={styles.avatarContainer}>
-                        <Image source={require('@/assets/images/icon.png')} style={styles.avatar} />
+                        <Image source={require('@/assets/images/avatar_suit.png')} style={styles.avatar} />
                     </View>
                 )}
                 <View style={[
@@ -122,7 +122,7 @@ export default function ChatScreen() {
                     isTyping ? (
                         <View style={styles.typingContainer}>
                             <View style={styles.avatarContainer}>
-                                <Image source={require('@/assets/images/icon.png')} style={styles.avatar} />
+                                <Image source={require('@/assets/images/avatar_suit.png')} style={styles.avatar} />
                             </View>
                             <View style={[styles.bubble, styles.botBubble, { backgroundColor: colors.card }]}>
                                 <ActivityIndicator size="small" color={colors.subText} />

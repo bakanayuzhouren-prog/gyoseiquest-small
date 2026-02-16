@@ -1,5 +1,4 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { Image } from 'expo-image';
 import { router, Stack } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
@@ -22,13 +21,7 @@ export default function RemarriageProhibitionScreen() {
                 <ThemedText type="title" style={styles.title}>再婚禁止期間違憲判決 4コマ物語</ThemedText>
 
                 {/* Visual Diagram */}
-                <View style={styles.imageContainer}>
-                    <Image
-                        source={require('@/assets/images/remarriage_prohibition_ruling.png')}
-                        style={styles.diagramImage}
-                        resizeMode="contain"
-                    />
-                </View>
+
 
                 {/* Panel 1 */}
                 <View style={styles.panelContainer}>

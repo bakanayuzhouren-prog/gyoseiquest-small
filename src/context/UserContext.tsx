@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 
 // --- Avatar Definitions ---
 export const AVATARS = {
-    default: require('@/assets/images/icon.png'),
+    default: require('@/assets/images/avatar_suit.png'),
     suit: require('@/assets/images/avatar_suit.png'),
     cyber: require('@/assets/images/avatar_cyber.png'),
     casual: require('@/assets/images/avatar_casual.png'),

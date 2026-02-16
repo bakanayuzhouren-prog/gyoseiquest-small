@@ -10,23 +10,23 @@ import { useTheme } from '../src/context/ThemeContext';
 // Static Asset Imports (using ES6 import)
 import AsahiLawsuitImage from '../assets/images/asahi_lawsuit.png';
 import AsahikawaTestImage from '../assets/images/asahikawa_test.png';
-import ConstitutionOverviewImage from '../assets/images/constitution_overview.png';
-import CustomsInspectionImage from '../assets/images/customs_inspection.png';
-import ForestActImage from '../assets/images/forest_act.png';
-import HorikiLawsuitImage from '../assets/images/horiki_lawsuit.png';
-import IllegitimateChildImage from '../assets/images/illegitimate_child.png';
-import KajiKitoImage from '../assets/images/kaji_kito.png';
-import LockheedScandalImage from '../assets/images/lockheed_scandal.png';
-import MitsubishiResinImage from '../assets/images/mitsubishi_resin_diagram.png';
-import OverseasVotersImage from '../assets/images/overseas_voters.png';
-import PatricideImage from '../assets/images/patricide_unconstitutionality.png';
-import PharmacyDistanceImage from '../assets/images/pharmacy_distance.png';
-import PoliceReserveImage from '../assets/images/police_reserve.png';
-import RemarriageBanImage from '../assets/images/remarriage_ban.png';
-import RetailMarketImage from '../assets/images/retail_market_distance.png';
-import ShowaWomensUnivImage from '../assets/images/showa_womens_univ.png';
-import TsuGroundbreakingImage from '../assets/images/tsu_groundbreaking.png';
-import ZennorinStrikeImage from '../assets/images/zennorin_strike.png';
+// import ConstitutionOverviewImage from '../assets/images/constitution_overview.png';
+// import CustomsInspectionImage from '../assets/images/customs_inspection.png';
+// import ForestActImage from '../assets/images/forest_act.png';
+// import HorikiLawsuitImage from '../assets/images/horiki_lawsuit.png';
+// import IllegitimateChildImage from '../assets/images/illegitimate_child.png';
+// import KajiKitoImage from '../assets/images/kaji_kito.png';
+// import LockheedScandalImage from '../assets/images/lockheed_scandal.png';
+// import MitsubishiResinImage from '../assets/images/mitsubishi_resin_diagram.png';
+// import OverseasVotersImage from '../assets/images/overseas_voters.png';
+// import PatricideImage from '../assets/images/patricide_unconstitutionality.png';
+// import PharmacyDistanceImage from '../assets/images/pharmacy_distance.png';
+// import PoliceReserveImage from '../assets/images/police_reserve.png';
+// import RemarriageBanImage from '../assets/images/remarriage_ban.png';
+// import RetailMarketImage from '../assets/images/retail_market_distance.png';
+// import ShowaWomensUnivImage from '../assets/images/showa_womens_univ.png';
+// import TsuGroundbreakingImage from '../assets/images/tsu_groundbreaking.png';
+// import ZennorinStrikeImage from '../assets/images/zennorin_strike.png';
 
 type TOCItem = {
     id: string;
@@ -89,25 +89,25 @@ export default function ConstitutionScreen() {
         if (line.trim().startsWith('{{diagram:') && line.trim().endsWith('}}')) {
             const diagramName = line.trim().replace('{{diagram:', '').replace('}}', '');
             const diagramMap: { [key: string]: any } = {
-                'constitution_overview': ConstitutionOverviewImage,
-                'mitsubishi_resin': MitsubishiResinImage,
-                'patricide_unconstitutionality': PatricideImage,
-                'tsu_groundbreaking': TsuGroundbreakingImage,
-                'customs_inspection': CustomsInspectionImage,
-                'showa_womens_univ': ShowaWomensUnivImage,
-                'kaji_kito': KajiKitoImage,
-                'police_reserve': PoliceReserveImage,
-                'pharmacy_distance': PharmacyDistanceImage,
-                'retail_market_distance': RetailMarketImage,
+                // 'constitution_overview': ConstitutionOverviewImage,
+                // 'mitsubishi_resin': MitsubishiResinImage,
+                // 'patricide_unconstitutionality': PatricideImage,
+                // 'tsu_groundbreaking': TsuGroundbreakingImage,
+                // 'customs_inspection': CustomsInspectionImage,
+                // 'showa_womens_univ': ShowaWomensUnivImage,
+                // 'kaji_kito': KajiKitoImage,
+                // 'police_reserve': PoliceReserveImage,
+                // 'pharmacy_distance': PharmacyDistanceImage,
+                // 'retail_market_distance': RetailMarketImage,
                 'asahi_lawsuit': AsahiLawsuitImage,
-                'horiki_lawsuit': HorikiLawsuitImage,
+                // 'horiki_lawsuit': HorikiLawsuitImage,
                 'asahikawa_test': AsahikawaTestImage,
-                'forest_act': ForestActImage,
-                'overseas_voters': OverseasVotersImage,
-                'illegitimate_child': IllegitimateChildImage,
-                'remarriage_ban': RemarriageBanImage,
-                'lockheed_scandal': LockheedScandalImage,
-                'zennorin_strike': ZennorinStrikeImage,
+                // 'forest_act': ForestActImage,
+                // 'overseas_voters': OverseasVotersImage,
+                // 'illegitimate_child': IllegitimateChildImage,
+                // 'remarriage_ban': RemarriageBanImage,
+                // 'lockheed_scandal': LockheedScandalImage,
+                // 'zennorin_strike': ZennorinStrikeImage,
             };
 
             const imageSource = diagramMap[diagramName];
