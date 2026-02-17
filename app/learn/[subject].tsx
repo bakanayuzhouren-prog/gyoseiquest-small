@@ -18,6 +18,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, { runOnJS, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
+// @ts-ignore
+
 const LAW_MAP: { [key: string]: string } = {
   '行審法': '/statutes/administrative/appeal',
   '行政不服審査法': '/statutes/administrative/appeal',
@@ -145,12 +147,19 @@ export default function LearnSubjectScreen() {
   const linkMatch = currentDisplayContent.match(/\[\[LINK:(.+?)\]\]/);
   const digDeeperUrl = linkMatch ? linkMatch[1] : null;
 
-  // Remove LINK tag from content for display processing
-  const contentToProcess = currentDisplayContent.replace(/\[\[LINK:.+?\]\]/g, '');
+  // Extract image tag
+  const imageMatch = currentDisplayContent.match(/\[\[image:(.*?)\]\]/);
+  const currentImageName = imageMatch ? imageMatch[1].split(' ')[0] : null;
 
-  const [mainText, basisText] = contentToProcess.includes('※')
+  // Remove LINK and IMAGE tags from content for display processing
+  const contentToProcess = currentDisplayContent
+    .replace(/\[\[LINK:.+?\]\]/g, '')
+    .replace(/\[\[image:.+?\]\]/g, '');
+
+  const [mainTextRaw, basisText] = contentToProcess.includes('※')
     ? [contentToProcess.split('※')[0], '※' + contentToProcess.split('※')[1]]
     : [contentToProcess, ''];
+  const mainText = mainTextRaw.trim();
 
 
   // Check for chunks in SUBJECTS
@@ -202,22 +211,34 @@ export default function LearnSubjectScreen() {
           ? currentDisplayContent.split('※')[0]
           : currentDisplayContent;
 
-        // Strip [[LINK...]] patterns
-        let processedText = currentMainText.replace(/\[\[LINK:.*?\]\]/g, '');
+        // Strip [[LINK...]], [[image...]], etc. patterns
+        let processedText = currentMainText.replace(/\[\[.*?\]\]/g, '');
 
         // Apply character name replacements
         processedText = applyCharacterNames(processedText);
 
         const spokenText = applyTTSRules(processedText);
+
+        if (!spokenText.trim()) {
+          console.log("Empty spoken text, stopping");
+          setIsPlaying(false);
+          return;
+        }
+
+        // Small delay to ensure previous speech is fully stopped and engine is ready
+        await new Promise(resolve => setTimeout(resolve, 200));
+
         Speech.speak(spokenText, {
           language: 'ja',
           rate: playbackRate,
           onBoundary: (event: any) => {
-            if (event.charIndex !== undefined) {
+            if (isPlaying && event.charIndex !== undefined) {
               setSpokenIndex(event.charIndex);
             }
           },
           onDone: () => {
+            if (!isPlaying) return;
+
             setSpokenIndex(currentMainText.length);
             // Wait even less after completion for tighter feedback
             setTimeout(() => {
@@ -238,7 +259,10 @@ export default function LearnSubjectScreen() {
               }
             }, 50); // Reduced from 100ms
           },
-          onError: () => setIsPlaying(false),
+          onError: (e) => {
+            console.log("TTS Error:", e);
+            setIsPlaying(false);
+          },
         });
       };
 
@@ -418,6 +442,7 @@ export default function LearnSubjectScreen() {
           </ThemedView>
 
           <ThemedView style={styles.contentContainer}>
+
             <ThemedText style={styles.content}>
               <ThemedText style={[styles.content, { color: colors.primary, fontWeight: 'bold' }]}>
                 {applyCharacterNames(mainText.substring(0, spokenIndex))}
@@ -1093,5 +1118,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 8,
     backgroundColor: '#007BFF',
+  },
+  imageContainer: {
+    width: '100%',
+    aspectRatio: 1.5,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+    marginBottom: 20,
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
