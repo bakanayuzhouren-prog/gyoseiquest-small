@@ -170,6 +170,7 @@ async function sync() {
             const valA = row[0] ? row[0].trim() : '';
             const valB = row[1] ? row[1].trim() : '';
             const valC = row[2] ? row[2].trim() : '';
+            const valH = row[7] ? row[7].trim() : ''; // NEW: Column H (Index 7)
             const valK = row[10] ? row[10].trim() : '';
 
             // Check if it has choices (Columns C-G, indices 2-6)
@@ -213,7 +214,7 @@ async function sync() {
             const valR = row[17] ? row[17].trim() : '';
             const valRefId = row[19] ? row[19].trim() : '';
 
-            if (valA || valB || valC || (t === '憲法')) {
+            if (valH || (t === '憲法' && (valA || valB || valC))) {
                 // Check if row is a header trying to switch subject
                 if (valA && valA.length < 20) {
                     if (valA.includes('憲法')) {
@@ -253,11 +254,16 @@ async function sync() {
                 if (valA === '問題' || valA === '肢' || valA.startsWith('科目')) continue;
 
                 // Match syncLearn text extraction logic exactly
-                let questionText = valC;
-                if (!questionText && valB) questionText = valB;
-                if (!questionText && valA) {
-                    if (!valA.startsWith('科目')) {
-                        questionText = valA;
+                // PRIORITY: H Column (if present)
+                let questionText = valH || '';
+
+                if (!questionText) {
+                    questionText = valC;
+                    if (!questionText && valB) questionText = valB;
+                    if (!questionText && valA) {
+                        if (!valA.startsWith('科目')) {
+                            questionText = valA;
+                        }
                     }
                 }
                 if (!questionText) continue;
@@ -292,17 +298,38 @@ async function sync() {
                 let offset = 1;
                 while ((i + offset) < rows.length) {
                     const nextRow = rows[i + offset];
-                    if (nextRow[0] && nextRow[0].trim()) break;
-                    if (nextRow[10] && nextRow[10].trim()) choices.push(nextRow[10].trim());
+
+                    // Breaking Condition:
+                    // If we are in 'Structure H' mode (Administrative/Civil), we break ONLY when we see a new Question (H column)
+                    // If we are in 'Legacy' mode (Constitution), we break when we see a new Question (A column)
+
+                    // Assumption: If the sheet is NOT '憲法', we use Structure H.
+                    if (t !== '憲法') {
+                        if (nextRow[7] && nextRow[7].trim()) break; // H column exists -> New Question
+                    } else {
+                        if (nextRow[0] && nextRow[0].trim()) break; // A column exists -> New Question (Legacy)
+                    }
+
+                    let choiceText = nextRow[10] ? nextRow[10].trim() : '';
+                    if (choiceText) {
+                        if (choiceText.startsWith('※')) {
+                            // It's a note/supplement, add to explanation instead of choices
+                            explanation += '\n\n' + choiceText;
+                        } else {
+                            choices.push(choiceText);
+                        }
+                    }
                     offset++;
                 }
 
                 if (choices.length >= 1) {
                     const correctIndices = [];
                     const cleanChoices = choices.map((c, idx) => {
-                        if (/[\(（][rｒ][\)）]/i.test(c)) {
+                        // Match (r), ( r ), （r）, （ｒ） with optional spaces
+                        const rPattern = /[\(（]\s*[rｒ]\s*[\)）]/i;
+                        if (rPattern.test(c)) {
                             correctIndices.push(idx);
-                            return c.replace(/[\(（][rｒ][\)）]/gi, '').trim();
+                            return c.replace(rPattern, '').trim();
                         }
                         return c;
                     });
