@@ -122,9 +122,10 @@ async function sync() {
     // Skip the first row (memo/header row)
     const dataRows = rows.slice(1);
 
+    // RESET currentSubject for every row to the sheet default
+    let currentSubject = sheetDefaultSubject;
+
     dataRows.forEach(row => {
-      // RESET currentSubject for every row to the sheet default
-      let currentSubject = sheetDefaultSubject;
 
       const rawSubject = row[0];
       // ONLY Column A overrides if it is relatively short (category name) 

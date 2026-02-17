@@ -131,6 +131,24 @@ export const IMAGE_RESOURCES_MAP = {
   '143-230': require('@/assets/images/143-230.png'),
   '144-230': require('@/assets/images/144-230.png'),
   '145-230': require('@/assets/images/145-230.png'),
+  '154-230': require('@/assets/images/154-230.png'),
+  '190-230': require('@/assets/images/190-230.png'),
+  '191-230': require('@/assets/images/191-230.png'),
+  '192-230': require('@/assets/images/192-230.png'),
+  '193-230': require('@/assets/images/193-230.png'),
+  '194-230': require('@/assets/images/194-230.png'),
+  '195-230': require('@/assets/images/195-230.png'),
+  '196-230': require('@/assets/images/196-230.png'),
+  '197-230': require('@/assets/images/197-230.png'),
+  '198-230': require('@/assets/images/198-230.png'),
+  '199-230': require('@/assets/images/199-230.png'),
+  '200-230': require('@/assets/images/200-230.png'),
+  '206-230': require('@/assets/images/206-230.png'),
+  '208-230': require('@/assets/images/208-230.png'),
+  '209-230': require('@/assets/images/209-230.png'),
+  '222-230': require('@/assets/images/222-230.png'),
+  '223-230': require('@/assets/images/223-230.png'),
+
 
 
 };

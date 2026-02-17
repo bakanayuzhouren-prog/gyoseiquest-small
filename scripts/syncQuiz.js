@@ -162,6 +162,9 @@ async function sync() {
         if (!rows || rows.length <= 1) continue;
         console.log(`[DEBUG] Processing Sheet: ${title} (${rows.length} rows)`);
 
+        let currentSubject = sheetDefaultSubject;
+        let currentCategory = sheetDefaultCategory;
+
         for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
             const valA = row[0] ? row[0].trim() : '';
@@ -211,12 +214,12 @@ async function sync() {
             const valRefId = row[19] ? row[19].trim() : '';
 
             if (valA || valB || valC || (t === '憲法')) {
-                let currentSubject = sheetDefaultSubject;
-                let currentCategory = sheetDefaultCategory;
-
+                // Check if row is a header trying to switch subject
                 if (valA && valA.length < 20) {
-                    if (valA.includes('憲法') || valA.includes('人権') || valA.includes('統治')) {
-                        currentSubject = '憲法'; currentCategory = '憲法';
+                    if (valA.includes('憲法')) {
+                        if (valA.includes('多肢選択')) { currentSubject = '多肢選択', currentCategory = '憲法'; }
+                        else if (valA.includes('条文')) { /* skip */ }
+                        else { currentSubject = '憲法'; currentCategory = '憲法'; }
                     }
                     else if (valA.includes('行政法総論')) { currentSubject = '行政法'; currentCategory = '行政法総論'; }
                     else if (valA.includes('行政手続法')) { currentSubject = '行政法'; currentCategory = '行政手続法'; }
