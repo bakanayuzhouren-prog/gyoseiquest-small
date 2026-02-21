@@ -23,7 +23,7 @@ export const defaultCharacterMap: CharacterMap = {
     'ヤンノリ': 'I',
     '父': 'J',
     '母': 'K',
-    '子': 'L',
+    // '子': 'L',
     '兄弟姉妹': 'M',
     '祖父母': 'N',
 };
@@ -34,8 +34,8 @@ export const characterPlaceholders: CharacterMap = {
     '寺島': 'あなた',
     '父': '父（被相続人）',
     '母': '母（被相続人の妻）',
-    '子': '子（相続人）',
-    '兄弟姉妹': 'Lの兄弟姉妹',
+    // '子': '子（相続人）',
+    '兄弟姉妹': '子の兄弟姉妹',
 };
 
 const CharacterContext = createContext<CharacterContextType | undefined>(undefined);
