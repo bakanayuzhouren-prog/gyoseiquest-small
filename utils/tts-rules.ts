@@ -165,5 +165,6 @@ export const applyTTSRules = (text: string): string => {
         .replace(/表裏/g, 'ひょうり')
         .replace(/鑑みれば/g, 'かんがみれば')
         .replace(/当たつて/g, 'あたって')
+        .replace(/児童買春/g, 'じどうばいしゅん')
         .replace(/売春/g, 'ばいしゅん');
 };

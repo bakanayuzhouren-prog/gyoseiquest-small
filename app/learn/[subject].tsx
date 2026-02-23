@@ -77,8 +77,9 @@ export default function LearnSubjectScreen() {
     }
   }, [currentIndex, subject]);
 
+  // アンマウント時は停止しない（ページ遷移で音声を継続させるため）
   useEffect(() => {
-    return () => { Speech.stop(); };
+    return () => { /* Speech.stop() removed for continuity */ };
   }, []);
 
   const handleBasisPress = () => {
@@ -100,8 +101,8 @@ export default function LearnSubjectScreen() {
       }
 
       if (path) {
-        setIsPlaying(false);
-        Speech.stop();
+        // setIsPlaying(false); // 条文表示へ行くときは音声を継続させる
+        // Speech.stop();
         router.push({
           pathname: path as any,
           params: {
@@ -125,8 +126,8 @@ export default function LearnSubjectScreen() {
     });
 
     if (foundCase) {
-      setIsPlaying(false);
-      Speech.stop();
+      // setIsPlaying(false); // 判例表示へ行くときは音声を継続させる
+      // Speech.stop();
       // Navigate to /pin/[category]/[id]
       router.push(`/pin/${foundCase.category}/${foundCase.id}` as any);
     }
@@ -549,25 +550,29 @@ export default function LearnSubjectScreen() {
           </ThemedView>
 
           <Link href="/learn" replace asChild>
-            <Pressable style={StyleSheet.flatten([
-              styles.navLinkButton,
-              {
-                borderColor: '#5A9BD5',
-                marginTop: 24,
-                marginBottom: 12
-              }
-            ])}>
+            <Pressable
+              onPress={() => Speech.stop()} // 学習フロー外に出るときは止める
+              style={StyleSheet.flatten([
+                styles.navLinkButton,
+                {
+                  borderColor: '#5A9BD5',
+                  marginTop: 24,
+                  marginBottom: 12
+                }
+              ])}>
               <ThemedText type="defaultSemiBold" style={{ color: '#5A9BD5' }}>科目選択</ThemedText>
             </Pressable>
           </Link>
           <Link href="/" replace asChild>
-            <Pressable style={StyleSheet.flatten([
-              styles.navLinkButton,
-              {
-                borderColor: '#757575',
-                marginBottom: 40
-              }
-            ])}>
+            <Pressable
+              onPress={() => Speech.stop()} // 学習フロー外に出るときは止める
+              style={StyleSheet.flatten([
+                styles.navLinkButton,
+                {
+                  borderColor: '#757575',
+                  marginBottom: 40
+                }
+              ])}>
               <ThemedText type="defaultSemiBold" style={{ color: '#757575' }}>メインメニューへ</ThemedText>
             </Pressable>
           </Link>

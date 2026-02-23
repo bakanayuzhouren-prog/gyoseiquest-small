@@ -63,9 +63,9 @@ export default function StatuteViewer({ data, title, searchPlaceholder }: Statut
     const lastSearchIndex = useRef(-1);
     const lastSearchQuery = useRef('');
 
-    // Stop speech on unmount or navigate away
+    // アンマウント時は停止しない（メイン画面の音声を継続させるため）
     useEffect(() => {
-        return () => { Speech.stop(); };
+        return () => { /* 以前はここで Speech.stop() していたが削除 */ };
     }, []);
 
     const toggleSpeech = async (index: number) => {
