@@ -151,6 +151,7 @@ export const IMAGE_RESOURCES_MAP = {
   '156-230': require('@/assets/images/156-230.png'),
   '204-230': require('@/assets/images/204-230.png'),
   '213-230': require('@/assets/images/213-230.png'),
+  '10-121物権': require('@/assets/images/10-121物権.png'),
 
 
 
