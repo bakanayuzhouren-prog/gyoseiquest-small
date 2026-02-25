@@ -26,6 +26,12 @@ export const defaultCharacterMap: CharacterMap = {
     // '子': 'L',
     '兄弟姉妹': 'M',
     '祖父母': 'N',
+    '小原': 'O',
+    '小田': 'P',
+    '琴音': 'Q',
+    '里見': 'R',
+    '菅原': 'S',
+    '橘': 'T',
 };
 
 export const characterPlaceholders: CharacterMap = {
@@ -36,6 +42,12 @@ export const characterPlaceholders: CharacterMap = {
     '母': '母（被相続人の妻）',
     // '子': '子（相続人）',
     '兄弟姉妹': '子の兄弟姉妹',
+    '小原': 'O（双子）',
+    '小田': 'P（双子）',
+    '琴音': 'OPの友人',
+    '里見': 'R（共有者）',
+    '菅原': 'S（共有者）',
+    '橘': 'T（共有者）',
 };
 
 const CharacterContext = createContext<CharacterContextType | undefined>(undefined);

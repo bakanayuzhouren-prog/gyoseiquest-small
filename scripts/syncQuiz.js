@@ -214,7 +214,10 @@ async function sync() {
             const valR = row[17] ? row[17].trim() : '';
             const valRefId = row[19] ? row[19].trim() : '';
 
-            if (valH || (t === '憲法' && (valA || valB || valC))) {
+            // Bukken (物権) sheet uses Column A as trigger (not H)
+            const isBukken = t === '民法物権';
+            const hasTrigger = valH || (t === '憲法' && (valA || valB || valC)) || (isBukken && valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢');
+            if (hasTrigger) {
                 // Check if row is a header trying to switch subject
                 if (valA && valA.length < 20) {
                     if (valA.includes('憲法')) {
@@ -304,10 +307,12 @@ async function sync() {
                     // If we are in 'Legacy' mode (Constitution), we break when we see a new Question (A column)
 
                     // Assumption: If the sheet is NOT '憲法', we use Structure H.
-                    if (t !== '憲法') {
-                        if (nextRow[7] && nextRow[7].trim()) break; // H column exists -> New Question
+                    // Exception: Bukken (物権) uses Column A like Kenpo
+                    const nextValA = nextRow[0] ? nextRow[0].trim() : '';
+                    if (t === '憲法' || isBukken) {
+                        if (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢') break;
                     } else {
-                        if (nextRow[0] && nextRow[0].trim()) break; // A column exists -> New Question (Legacy)
+                        if (nextRow[7] && nextRow[7].trim()) break; // H column exists -> New Question
                     }
 
                     let choiceText = nextRow[10] ? nextRow[10].trim() : '';

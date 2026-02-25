@@ -164,9 +164,28 @@ export default function ReferencePage() {
     };
 
     const renderContent = (text: string) => {
-        // 1. Pre-process text to ensure ■ and 💡 start on new lines
-        const processedText = applyCharacterNames(text)
-            .replace(/([^\n])\s*([■💡])/g, '$1\n$2'); // Ensure symbol starts new line
+        // 1. 改行なし長文の自動分割プリプロセス
+        const preInsertNewlines = (raw: string): string => raw
+            // 【見出し】パターンの前に改行を挿入（ただし行頭・改行直後は除く）
+            .replace(/([^\n])(【[^】]{1,30}】)/g, '$1\n$2')
+            // 「N. テキスト」パターン（数字＋ドット）の前に改行を挿入
+            .replace(/([^\n])([1-9][0-9]?[\.．]\s+[^\s])/g, '$1\n$2')
+            // 「N. タイトル（サブタイトル）本文...」の）または）直後にも改行を挿入（タイトルと本文を分離）
+            .replace(/(^[1-9][0-9]?[\.．][^\n]{1,50}?[）)])\s*(?=[^\n（）\s])/gm, '$1\n')
+            // 「N. タイトル（括弧なし）본文」を分離: スペース区切り後の長文 
+            .replace(/(^[1-9][0-9]?[\.．]\s*[\u30A0-\u30FF\u3040-\u309F\u4E00-\u9FFF]{2,15})\s*([結論ひ具過周受])/gm, '$1\n$2')
+            // ①②...⑩ の前に改行
+            .replace(/([^\n])([①②③④⑤⑥⑦⑧⑨⑩])/g, '$1\n$2')
+            // ■ 💡 の前に改行
+            .replace(/([^\n])([■💡])/g, '$1\n$2')
+            // 既知のセクションキーワードの前に改行
+            .replace(/([^\n])(考え方のポイント|受験生へのアドバイス|趣旨(?=\s*[\r\n　\s])|根拠条文：|根拠判例：|結論：)/g, '$1\n$2');
+
+        // 2. Pre-process text to ensure ■ and 💡 start on new lines AND split titles from body
+        const processedText = applyCharacterNames(preInsertNewlines(text))
+            .replace(/([^\n])\s*([■💡])/g, '$1\n$2') // Ensure symbol starts new line
+            .replace(/([■💡][^■💡\n]{2,60}?[)）】：:])\s*(?![■💡\n])(.)/g, '$1\n$2') // Split after delimiters
+            .replace(/([■💡][^■💡\n]{2,30}?[\s　/])\s*(?![■💡\n])(.)/g, '$1\n$2'); // Split after space/slash
 
         const lines = processedText.split('\n');
 
@@ -186,11 +205,23 @@ export default function ReferencePage() {
             const isQAHeader = /^[Qq](＆|&)[Aa]|^[Qq][0-9]*[\.．]/.test(trimmedLine);
             const isCaseHeader = /^(【?[0-9]*[\.．]?(事例|判例|事件|訴訟))|((事件|訴訟|判例)$)/.test(trimmedLine);
             const isBlockSymbol = /^[■💡]/.test(trimmedLine);
+            // 【見出し】パターン: 行頭が【...】で始まる（内容が続く場合も含む）
+            const isBracketHeader = /^【[^】]{1,30}】/.test(trimmedLine);
 
-            const isNewSection = sectionTag || isNumericHeader || isCircledNumber || isQAHeader || isCaseHeader || isBlockSymbol;
+            const isNewSection = sectionTag || isNumericHeader || isCircledNumber || isQAHeader || isCaseHeader || isBlockSymbol || isBracketHeader;
 
             if (isNewSection) {
-                let title = sectionTag ? sectionTag.content : (isBlockSymbol ? trimmedLine.replace(/^[■💡]\s*/, '') : trimmedLine);
+                // 【見出し】パターンのタイトル抽出: 【...】部分のみをタイトルとし、残りをコンテンツへ
+                let title: string;
+                let remainderLine: string | null = null;
+                if (isBracketHeader && !sectionTag && !isBlockSymbol) {
+                    const bracketMatch = trimmedLine.match(/^(【[^】]{1,30}】)\s*(.*)/s);
+                    title = bracketMatch ? bracketMatch[1].replace(/^【|】$/g, '') : trimmedLine;
+                    const remainder = bracketMatch ? bracketMatch[2].trim() : '';
+                    if (remainder) remainderLine = remainder;
+                } else {
+                    title = sectionTag ? sectionTag.content : (isBlockSymbol ? trimmedLine.replace(/^[■💡]\s*/, '') : trimmedLine);
+                }
                 const styleType = trimmedLine.startsWith('💡') ? 'advice' : 'normal';
 
                 currentBlock = { type: 'section', title: title, content: [], styleType };
@@ -201,6 +232,9 @@ export default function ReferencePage() {
                     if (filteredLine.length > 0) currentBlock.content.push(filteredLine);
                 } else if (isBlockSymbol) {
                     // Don't add the header line itself to content if it's the title
+                } else if (isBracketHeader && remainderLine) {
+                    // 【見出し】の後ろに続くテキストをコンテンツに追加
+                    currentBlock.content.push(parseRichText(remainderLine));
                 }
             } else {
                 if (!currentBlock) {
@@ -279,9 +313,9 @@ export default function ReferencePage() {
                                         <ThemedText key={lineIndex} style={styles.lineWrapper}>
                                             {lineParts.map((part, partIndex) => {
                                                 switch (part.type) {
-                                                    case 'red': return <ThemedText key={partIndex} style={{ color: '#e74c3c', fontWeight: 'bold' }}>{part.content}</ThemedText>;
-                                                    case 'big': return <ThemedText key={partIndex} style={{ fontSize: 20, fontWeight: 'bold', lineHeight: 30, color: mainTextCol }}>{part.content}</ThemedText>;
-                                                    case 'bold': return <ThemedText key={partIndex} style={{ fontWeight: 'bold', color: mainTextCol }}>{part.content}</ThemedText>;
+                                                    case 'red': return <ThemedText key={partIndex} style={{ color: '#e74c3c' }}>{part.content}</ThemedText>;
+                                                    case 'big': return <ThemedText key={partIndex} style={{ fontSize: 18, lineHeight: 28, color: mainTextCol }}>{part.content}</ThemedText>;
+                                                    case 'bold': return <ThemedText key={partIndex} style={{ color: mainTextCol }}>{part.content}</ThemedText>;
                                                     case 'marker': return <ThemedText key={partIndex} style={styles.markerText}>{part.content}</ThemedText>;
                                                     default: return <ThemedText key={partIndex} style={{ color: mainTextCol }}>{part.content}</ThemedText>;
                                                 }
@@ -293,9 +327,9 @@ export default function ReferencePage() {
                                     <View key={lineIndex} style={styles.lineWrapperRow}>
                                         {lineParts.map((part, partIndex) => {
                                             switch (part.type) {
-                                                case 'red': return <ThemedText key={partIndex} style={[styles.line, { color: '#e74c3c', fontWeight: 'bold' }]}>{part.content}</ThemedText>;
-                                                case 'big': return <ThemedText key={partIndex} style={[styles.line, { fontSize: 20, fontWeight: 'bold', lineHeight: 30, color: mainTextCol }]}>{part.content}</ThemedText>;
-                                                case 'bold': return <ThemedText key={partIndex} style={[styles.line, { fontWeight: 'bold', color: mainTextCol }]}>{part.content}</ThemedText>;
+                                                case 'red': return <ThemedText key={partIndex} style={[styles.line, { color: '#e74c3c' }]}>{part.content}</ThemedText>;
+                                                case 'big': return <ThemedText key={partIndex} style={[styles.line, { fontSize: 18, lineHeight: 28, color: mainTextCol }]}>{part.content}</ThemedText>;
+                                                case 'bold': return <ThemedText key={partIndex} style={[styles.line, { color: mainTextCol }]}>{part.content}</ThemedText>;
                                                 case 'marker': return <ThemedText key={partIndex} style={[styles.line, styles.markerText]}>{part.content}</ThemedText>;
                                                 case 'image':
                                                     const img = (IMAGE_RESOURCES_MAP as any)[part.content];
@@ -412,7 +446,7 @@ const styles = StyleSheet.create({
     },
     sectionCard: { borderRadius: 20, borderWidth: 1.5, overflow: 'hidden' },
     sectionHeader: { paddingHorizontal: 20, paddingTop: 18, paddingBottom: 8 },
-    sectionTitle: { fontSize: 17, fontWeight: '800', lineHeight: 26 },
+    sectionTitle: { fontSize: 17, fontWeight: '700', lineHeight: 26 },
     cardBody: { paddingHorizontal: 20, paddingBottom: 20 },
     pointBox: { marginTop: 12, marginBottom: 6, padding: 18, borderRadius: 20, borderLeftWidth: 6 },
     pointText: { fontSize: 15, lineHeight: 24, color: '#2d3748', fontWeight: '500' },
