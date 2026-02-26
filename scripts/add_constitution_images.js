@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 const QUEST_FILE = path.join(__dirname, '..', 'src', 'questions.js');
-const TEMP_DIR = path.join(__dirname, '..', 'temp_images');
+const TEMP_DIR = path.join(__dirname, '..', 'temp_images', 'kenpou');
 
 if (!fs.existsSync(TEMP_DIR)) {
     console.error('Temp dir not found');
