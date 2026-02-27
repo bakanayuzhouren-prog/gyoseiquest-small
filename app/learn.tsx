@@ -44,6 +44,7 @@ const CATEGORIES: Category[] = [
       { label: '物権', key: '民法物権' },
       { label: '債権総論', key: '債権総論' },
       { label: '債権各論', key: '債権各論' },
+      { label: '家族法', key: '家族法' },
     ]
   },
   { id: 'commercial', label: '商法・会社法', key: '商法・会社法' },
