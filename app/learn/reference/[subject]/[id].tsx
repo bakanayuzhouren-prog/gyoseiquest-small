@@ -35,8 +35,31 @@ export default function ReferencePage() {
         }
     }
 
+    const chunks = foundQuestion?.chunks || [];
+    let explainText = '';
+
+    if (chunks.length > 0) {
+        // If chunks exist, combine their titles and explanations
+        explainText = chunks.map((c: any) => {
+            let res = '';
+            if (c.title) res += `[[section:${c.title}]]\n`;
+            res += c.explain || '';
+            return res;
+        }).join('\n\n');
+
+        // [Fix] Pickup image tags from root explain
+        if (foundQuestion?.explain) {
+            const matches = foundQuestion.explain.match(/\[\[image:.*?\]\]/g);
+            if (matches) {
+                explainText = matches.join('\n') + '\n\n' + explainText;
+            }
+        }
+
+    } else {
+        explainText = foundQuestion?.explain || '解説が見つかりませんでした。';
+    }
+
     // Override for Agency Personation Diagram (Workaround for large questions.js)
-    let explainText = foundQuestion?.explain || '解説が見つかりませんでした。';
     if (subjectName === '民法総論' && questionIndex === 54) {
         explainText = "[[image:agency_diagram]]";
     }
@@ -48,7 +71,6 @@ export default function ReferencePage() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [selectedImageSource, setSelectedImageSource] = useState<any>(null);
 
-    const chunks = foundQuestion?.chunks || [];
 
     // アンマウント時は停止しない（メイン画面の音声を継続させるため）
     useEffect(() => {
