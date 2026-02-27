@@ -256,6 +256,8 @@ async function sync() {
           if (currentSubject === '憲法') {
             if (t !== '憲法') continue; // Strict source control
             if (learnContent['憲法'].length >= 230) continue;
+          } else if (currentSubject === '民法物権') {
+            if (learnContent['民法物権'].length >= 105) continue;
           } else {
             // Original filters for other subjects, but relaxed for Bukken to keep Articls
             if (currentSubject !== '民法物権') {

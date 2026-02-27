@@ -107,13 +107,25 @@ async function sync() {
 
     if (!sheetList) return;
 
-    const questionsData = {};
+    // 既存のデータを読み込んで保持する
+    const currentQuestions = require(OUTPUT_FILE);
+    const questionsData = currentQuestions.SUBJECTS || {};
+
+    // 構造の初期化（既存データがない場合のみ）
     SUBJECT_ORDER.forEach(subj => {
-        questionsData[subj] = {};
-        if (subj === '行政法') GYOSEI_SUB_ORDER.forEach(sub => { questionsData[subj][sub] = []; });
-        if (subj === '民法') MINPO_SUB_ORDER.forEach(sub => { questionsData[subj][sub] = []; });
-        if (subj === '多肢選択') TASHI_SUB_ORDER.forEach(sub => { questionsData[subj][sub] = []; });
-        if (subj === '記述') KIJUTSU_SUB_ORDER.forEach(sub => { questionsData[subj][sub] = []; });
+        if (!questionsData[subj]) questionsData[subj] = {};
+        if (subj === '行政法') {
+            GYOSEI_SUB_ORDER.forEach(sub => { if (!questionsData[subj][sub]) questionsData[subj][sub] = []; });
+        }
+        if (subj === '民法') {
+            MINPO_SUB_ORDER.forEach(sub => { if (!questionsData[subj][sub]) questionsData[subj][sub] = []; });
+        }
+        if (subj === '多肢選択') {
+            TASHI_SUB_ORDER.forEach(sub => { if (!questionsData[subj][sub]) questionsData[subj][sub] = []; });
+        }
+        if (subj === '記述') {
+            KIJUTSU_SUB_ORDER.forEach(sub => { if (!questionsData[subj][sub]) questionsData[subj][sub] = []; });
+        }
     });
 
     for (const sheet of sheetList) {
@@ -137,6 +149,9 @@ async function sync() {
 
         const t = title.normalize('NFKC').trim();
         console.log(`Processing ${title} -> Default: [${sheetDefaultSubject}] ${sheetDefaultCategory}...`);
+
+        // 初期化フラグ：このシートで処理するカテゴリーを、最初の一回だけ空にする
+        const initializedCategories = new Set();
 
         const response = await (async () => {
             for (let attempt = 1; attempt <= 3; attempt++) {
@@ -183,26 +198,22 @@ async function sync() {
             let valC4 = valC4_raw;
             let potentialChunkFromF = null;
 
-            // If C1-C3 are empty, and F looks like a chunk (Long text or has "1：" etc), treat F as Chunk, not Choice
-            // Or if F starts with typical chunk title pattern
-            if ((!valC1 && !valC2 && !valC3) || (valC4_raw.length > 50) || (valC4_raw.includes('1：') && valC4_raw.includes('2：'))) {
+            // If C1-C3 are empty, OR F contains image tags, OR F is long/has structure, treat it as chunk
+            const hasImageTag = valC4_raw.includes('[[image:');
+            const hasStructure = valC4_raw.includes('1：') || valC4_raw.includes('1:');
+
+            if ((!valC1 && !valC2 && !valC3) || (valC4_raw.length > 50) || hasStructure || hasImageTag) {
                 // It's likely a chunk/explanation, not a choice
                 valC4 = '';
                 if (valC4_raw) {
-                    // Try to parse Title and Body from the cell content
-                    // Format: "Title... 1:..."
-                    // Simple heuristic: First line or up to "1：" is title?
-                    // Or just use the whole thing as title/explain logic later.
-                    // For now, let's look for the first newline or "1："
                     let firstSplit = valC4_raw.indexOf('1：');
-                    if (firstSplit === -1) firstSplit = valC4_raw.indexOf('1:'); // Check for half-width colon
+                    if (firstSplit === -1) firstSplit = valC4_raw.indexOf('1:');
 
                     if (firstSplit > 0) {
                         const title = valC4_raw.substring(0, firstSplit).trim();
                         const explain = valC4_raw.substring(firstSplit).trim();
                         potentialChunkFromF = { title, explain };
                     } else {
-                        // Fallback: Use prompt as title, or generic
                         potentialChunkFromF = { title: "参考解説", explain: valC4_raw };
                     }
                 }
@@ -214,45 +225,33 @@ async function sync() {
             const valR = row[17] ? row[17].trim() : '';
             const valRefId = row[19] ? row[19].trim() : '';
 
+            // 憲法の同期を一時的にスキップ（画像タグ保護のため）
+            if (t === '憲法') {
+                // console.log('[DEBUG] Skipping Kenpo sync to preserve local image tags');
+                continue;
+            }
+
             // Bukken (物権) sheet uses Column A as trigger (not H)
             const isBukken = t === '民法物権';
-            const hasTrigger = valH || (t === '憲法' && (valA || valB || valC)) || (isBukken && valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢');
+            // 物権の場合、106問にするためにA列(ID/質問文)があることを必須とする。
+            // また、H列に見出し的な導入文のみがある行は除外するが、実問題の長文は除外しないように文字数制限を入れる。
+            const isHeading = isBukken && valH && valH.length < 50 && (valH.includes('に照らし、') || valH.includes('次の記述のうち、'));
+            const hasTrigger = valH && !isHeading || (isBukken && valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢');
+
             if (hasTrigger) {
-                // Check if row is a header trying to switch subject
-                if (valA && valA.length < 20) {
-                    if (valA.includes('憲法')) {
-                        if (valA.includes('多肢選択')) { currentSubject = '多肢選択', currentCategory = '憲法'; }
-                        else if (valA.includes('条文')) { /* skip */ }
-                        else { currentSubject = '憲法'; currentCategory = '憲法'; }
-                    }
-                    else if (valA.includes('行政法総論')) { currentSubject = '行政法'; currentCategory = '行政法総論'; }
-                    else if (valA.includes('行政手続法')) { currentSubject = '行政法'; currentCategory = '行政手続法'; }
-                    else if (valA.includes('行政不服審査法')) { currentSubject = '行政法'; currentCategory = '行政不服審査法'; }
-                    else if (valA.includes('行政事件訴訟法')) { currentSubject = '行政法'; currentCategory = '行政事件訴訟法'; }
-                    else if (valA.includes('国家賠償法')) { currentSubject = '行政法'; currentCategory = '国家賠償法・損失訴訟'; }
-                    else if (valA.includes('地方自治法')) { currentSubject = '行政法'; currentCategory = '地方自治法'; }
-                    else if (valA.includes('民法総論')) { currentSubject = '民法'; currentCategory = '民法総論'; }
-                    else if (valA.includes('民法物権')) { currentSubject = '民法'; currentCategory = '民法物権'; }
-                    else if (valA.includes('債権総論')) { currentSubject = '民法'; currentCategory = '債権総論'; }
-                    else if (valA.includes('債権各論')) { currentSubject = '民法'; currentCategory = '債権各論'; }
-                    else if (valA.includes('家族法')) { currentSubject = '民法'; currentCategory = '家族法'; }
-                    else if (valA.includes('商法') || valA.includes('会社法')) { currentSubject = '商法・会社法'; currentCategory = currentSubject; }
-                    else if (valA.includes('基礎法学')) { currentSubject = '基礎法学'; currentCategory = '基礎法学'; }
-                    else if (valA.includes('基礎知識')) { currentSubject = '基礎知識'; currentCategory = '基礎知識'; }
-                }
-
-                if (!currentSubject) continue;
-
-                // Capping Kenpo at 230 items and avoiding leakage
-                if (currentSubject === '憲法' && currentCategory === '憲法') {
-                    if (t !== '憲法') continue; // Strict source control
-                    if (!questionsData['憲法']) questionsData['憲法'] = {};
-                    if (!questionsData['憲法']['憲法']) questionsData['憲法']['憲法'] = [];
-                    if (questionsData['憲法']['憲法'].length >= 230) continue;
-                }
 
                 if (!questionsData[currentSubject]) questionsData[currentSubject] = {};
-                if (!questionsData[currentSubject][currentCategory]) questionsData[currentSubject][currentCategory] = [];
+                // このシートで初めてこのカテゴリーに遭遇した場合のみ、既存データをクリアする
+                const categoryKey = `${currentSubject}|${currentCategory}`;
+                if (!initializedCategories.has(categoryKey)) {
+                    questionsData[currentSubject][currentCategory] = [];
+                    initializedCategories.add(categoryKey);
+                }
+
+                // 民法物権を 105問に制限する
+                if (isBukken && questionsData[currentSubject][currentCategory].length >= 105) {
+                    continue;
+                }
 
                 if (valA === '問題' || valA === '肢' || valA.startsWith('科目')) continue;
 
