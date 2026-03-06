@@ -45,14 +45,18 @@ export default function QuestionScreen() {
       targetQuestions = subjectData[selectedField] || [];
     }
 
-    // Filter based on mode
-    if (mode === 'bonus') {
-      // Bonus Mode: Show ALL (Normal + Bonus)
-      // No filter needed
-    } else {
-      // Normal (or Past) Mode: Show ONLY non-bonus
-      targetQuestions = targetQuestions.filter((q: any) => !q.isBonus);
-    }
+    // Filter based on mode AND validate structure
+    targetQuestions = targetQuestions.filter((q: any) => {
+      // 必須フィールドの存在確認
+      const isValid = q && typeof q === 'object' && q.text && Array.isArray(q.choices) && Array.isArray(q.answer);
+      if (!isValid) return false;
+
+      if (mode === 'bonus') {
+        return true;
+      } else {
+        return !q.isBonus;
+      }
+    });
 
     return { field: selectedField, questions: targetQuestions };
   }, [subjectData, paramField, mode]);
@@ -104,9 +108,10 @@ export default function QuestionScreen() {
 
   const renderQuestionText = () => {
     if (!question) return null;
-    const text = question.text;
+    const text = question.text || '';
     const slots = (question as any).slots || [];
-    const correctCount = (question as any).answer ? (question as any).answer.length : 0;
+    const answer = (question as any).answer || [];
+    const correctCount = Array.isArray(answer) ? answer.length : 0;
     const suffix = ` (正解肢${correctCount}問)`;
 
     let content;
@@ -220,7 +225,7 @@ export default function QuestionScreen() {
 
   // Shuffle choices and keep track of original index
   const shuffledChoices = useMemo(() => {
-    if (!question) return [];
+    if (!question || !question.choices) return [];
 
     // Map to object with original index
     let choicesWithIndex = question.choices.map((text: string, index: number) => ({ text, originalIndex: index }));
@@ -257,7 +262,7 @@ export default function QuestionScreen() {
     <ThemedView style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <ThemedText type="subtitle" style={[styles.subject, { color: colors.subText }]}>
-          {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length})` : ''}
+          {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length || 0})` : ''}
           {mode === 'bonus' ? ' ★ボーナスステージ★' : ''}
         </ThemedText>
 
@@ -268,7 +273,7 @@ export default function QuestionScreen() {
           <ThemedView style={[styles.wordBankContainer, { borderColor: colors.choiceBorder, backgroundColor: colors.card }]}>
             <ThemedText style={[styles.wordBankTitle, { color: colors.subText }]}>【語群】</ThemedText>
             <View style={styles.wordBankGrid}>
-              {((question as any).wordBank || '').split('\n').filter((l: string) => l.trim().length > 0).map((line: string, index: number) => {
+              {(String((question as any).wordBank || '')).split('\n').filter((l: string) => l.trim().length > 0).map((line: string, index: number) => {
                 const item = line.trim();
                 // Check if line already starts with a number (e.g. "1." or "1 ")
                 const hasNumber = /^\d+/.test(item);
@@ -294,7 +299,8 @@ export default function QuestionScreen() {
             const isDimmed = dimmedIndices.includes(index);
 
             // [NEW] Multi-select Logic
-            const isMultiSelect = (question as any).answer && (question as any).answer.length > 1;
+            const answer = (question as any).answer || [];
+            const isMultiSelect = Array.isArray(answer) && answer.length > 1;
             const isSelected = selectedIndices.includes(choiceObj.originalIndex);
 
             return (
@@ -360,28 +366,34 @@ export default function QuestionScreen() {
         </ThemedView>
 
         {/* Answer Button for Multi-Select */}
-        {((question as any).answer && (question as any).answer.length > 1) && (
-          <Pressable
-            style={[styles.answerButton, selectedIndices.length === 0 && styles.answerButtonDisabled]}
-            disabled={selectedIndices.length === 0}
-            onPress={() => {
-              router.push({
-                pathname: '/result',
-                params: {
-                  subject,
-                  field,
-                  questionIndex: String(questionIndex),
-                  pickedIndex: '-1', // Placeholder
-                  pickedIndices: JSON.stringify(selectedIndices), // NEW
-                  totalQuestions: String(questions.length),
-                  correctCountSession: params.correctCountSession || '0',
-                }
-              });
-            }}
-          >
-            <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
-          </Pressable>
-        )}
+        {(() => {
+          const answer = (question as any).answer || [];
+          if (Array.isArray(answer) && answer.length > 1) {
+            return (
+              <Pressable
+                style={[styles.answerButton, selectedIndices.length === 0 && styles.answerButtonDisabled]}
+                disabled={selectedIndices.length === 0}
+                onPress={() => {
+                  router.push({
+                    pathname: '/result',
+                    params: {
+                      subject,
+                      field,
+                      questionIndex: String(questionIndex),
+                      pickedIndex: '-1', // Placeholder
+                      pickedIndices: JSON.stringify(selectedIndices), // NEW
+                      totalQuestions: String(questions.length),
+                      correctCountSession: params.correctCountSession || '0',
+                    }
+                  });
+                }}
+              >
+                <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
+              </Pressable>
+            );
+          }
+          return null;
+        })()}
 
         <View style={styles.navigationContainer}>
           <Pressable style={[styles.navButton, { backgroundColor: colors.accent }]} onPress={goToPrev}>

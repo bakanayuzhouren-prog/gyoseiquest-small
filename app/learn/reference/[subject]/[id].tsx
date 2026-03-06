@@ -186,6 +186,9 @@ export default function ReferencePage() {
     };
 
     const renderContent = (text: string) => {
+        // 0. エスケープされた \n を本物の改行に変換（JSONで\\nとして格納されている場合）
+        text = text.replace(/\\n/g, '\n');
+
         // 1. 改行なし長文の自動分割プリプロセス
         const preInsertNewlines = (raw: string): string => raw
             // 【見出し】パターンの前に改行を挿入（ただし行頭・改行直後は除く）

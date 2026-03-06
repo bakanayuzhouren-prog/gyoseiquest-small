@@ -50,6 +50,7 @@ export const applyTTSRules = (text: string): string => {
         .replace(/審理関係人/g, 'しんりかんけいにん')
         .replace(/利害関係人/g, 'りがいかんけいにん')
         .replace(/取下げ/g, 'とりさげ')
+        .replace(/取立/g, 'とりたて')
         .replace(/認容/g, 'にんよう')
         .replace(/一般概括主義/g, 'いっぱんがいかつしゅぎ')
         .replace(/申立人/g, 'もうしたてにん')
