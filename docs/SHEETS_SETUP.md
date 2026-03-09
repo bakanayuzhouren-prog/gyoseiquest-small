@@ -42,13 +42,13 @@
    cp .env.example .env
    ```
 
-2. **APIキーを設定**
+2. **APIキーとスプレッドシートIDを設定**
    `.env`ファイルを開き、以下のように編集：
    ```env
    GOOGLE_SHEETS_API_KEY=ここに取得したAPIキーを貼り付け
-   SPREADSHEET_ID=17InEROPXhPtGj7DmmwTHDlFliMirHd9bnpOJ7gBiixx
-   SHEET_NAME=行政法 1（ここに全部入ってる）
+   SHEET_ID=17JnEROPXhPt6j7DmmwTHDlFilMirhd9bnpOJ7gBixxs
    ```
+   行政法総論はシート「行政法総論」または「行政法１（ここに全部入ってる）」から取得されます。
 
 ## 📊 3. スプレッドシートの公開設定
 

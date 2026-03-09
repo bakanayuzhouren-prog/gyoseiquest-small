@@ -1,0 +1,33 @@
+--- Consistency Verification: Questions vs Learn ---
+Learn Content (Constitution): 257 items
+Questions Content (Constitution): 230 items
+
+Item 1:
+  Q Text: 通常の憲法より改正手続が困難な憲法を硬性憲法、法律と同等の手続きで改正できる憲法を軟性憲法ドイツ、フ...
+  L Text: 通常の法律より改正手続が困難な憲法を硬性憲法、法律と同等の手続きで改正できる憲法を軟性憲法ドイツ、フ...
+  Q Image Tag: [[image:1-230]]
+  L Image Tag: [[image:1-230]]
+
+Item 2:
+  Q Text: 特定の意味を持つ憲法を実質的意味の憲法と呼び、実質的意味の憲法は成文憲法以外の形式で存在することもあ...
+  L Text: 特定の意味を持つ憲法を実質的意味の憲法と呼び、実質的意味の憲法は成文憲法以外の形式で存在することもあ...
+  Q Image Tag: [[image:2-230]]
+  L Image Tag: [[image:2-230]]
+
+Item 3:
+  Q Text: 憲法を擁護する義務を負うのは、天皇または摂政および国務大臣、国会議員、裁判官、その他公務員...
+  L Text: 憲法を擁護する義務を負うのは、天皇または摂政および国務大臣、国会議員、裁判官、その他公務員※憲法99...
+  Q Image Tag: [[image:3-230]]
+  L Image Tag: [[image:3-230]]
+
+Item 4:
+  Q Text: 判例では憲法は条約に優越する立場を前提とする...
+  L Text: 砂川事件では、憲法は条約に優越するとされた※憲法98条・砂川事件(最大判昭34.12.16)[[LI...
+  Q Image Tag: [[image:4-230]]
+  L Image Tag: [[image:4-230]]
+
+Item 5:
+  Q Text: 前文は法規範性を有する...
+  L Text: 前文は法規範性を有する [[image:5-230]]...
+  Q Image Tag: [[image:5-230]]
+  L Image Tag: [[image:5-230]]

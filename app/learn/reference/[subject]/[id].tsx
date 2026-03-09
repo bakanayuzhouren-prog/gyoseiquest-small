@@ -46,17 +46,15 @@ export default function ReferencePage() {
             res += c.explain || '';
             return res;
         }).join('\n\n');
-
-        // [Fix] Pickup image tags from root explain
-        if (foundQuestion?.explain) {
-            const matches = foundQuestion.explain.match(/\[\[image:.*?\]\]/g);
-            if (matches) {
-                explainText = matches.join('\n') + '\n\n' + explainText;
-            }
-        }
-
     } else {
         explainText = foundQuestion?.explain || '解説が見つかりませんでした。';
+    }
+
+    // LEARN_CONTENT から [[image:...]] タグを取得して先頭に表示
+    const learnEntry = (LEARN_CONTENT as any)[subjectName]?.[questionIndex] || '';
+    const learnImageMatches = learnEntry.match(/\[\[image:[^\]]+\]\]/g);
+    if (learnImageMatches) {
+        explainText = learnImageMatches.join('\n') + '\n\n' + explainText;
     }
 
     // Override for Agency Personation Diagram (Workaround for large questions.js)

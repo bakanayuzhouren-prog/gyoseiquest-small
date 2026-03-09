@@ -1,5 +1,6 @@
-Processing 2025 lec1隗｣遲・(2).pdf...
-Detected Category: 陦梧帆豕・- 陦梧帆豕慕ｷ丞粋
-Saved Markdown to C:\Users\teras\OneDrive\繝・せ繧ｯ繝医ャ繝予閾ｪ菴懊い繝励Μ\gyosei-quest-small\data\bonus\2025 lec1隗｣遲・(2).md
-Regenerating bonus_questions.js from stored MD files...
-Updated C:\Users\teras\OneDrive\繝・せ繧ｯ繝医ャ繝予閾ｪ菴懊い繝励Μ\gyosei-quest-small\src\bonus_questions.js
+Failed: ReferenceError: require is not defined
+    at loadDataFromFile (file:///C:/dev/gyosei-quest-small/sync_admin_law.mjs:12:9)
+    at file:///C:/dev/gyosei-quest-small/sync_admin_law.mjs:21:25
+    at ModuleJob.run (node:internal/modules/esm/module_job:377:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:671:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)

@@ -3,13 +3,24 @@ import { Pressable, ScrollView, StyleSheet } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useTheme } from '@/src/context/ThemeContext';
 import { SUBJECTS } from '@/src/questions';
+
+const isLightBg = (hex: string) => {
+    if (!hex || hex.startsWith('rgba')) return false;
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminance > 0.5;
+};
 
 export default function SubCategoriesScreen() {
     const params = useLocalSearchParams<{ subject?: string }>();
     const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
     const subjectData = subject ? (SUBJECTS as any)[subject] : {};
     const fields = Object.keys(subjectData) || [];
+    const { colors } = useTheme();
 
     return (
         <ThemedView style={styles.container}>
@@ -24,8 +35,8 @@ export default function SubCategoriesScreen() {
                             params: { subject, field },
                         }}
                         asChild>
-                        <Pressable style={styles.button}>
-                            <ThemedText type="defaultSemiBold" style={styles.text}>
+                        <Pressable style={[styles.button, { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder }]}>
+                            <ThemedText type="defaultSemiBold" style={[styles.text, { color: isLightBg(colors.choiceBg) ? '#000000' : colors.choiceText }]}>
                                 {field}
                             </ThemedText>
                         </Pressable>
@@ -55,8 +66,6 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         paddingHorizontal: 20,
         borderWidth: 1,
-        borderColor: '#5A9BD5',
-        backgroundColor: '#E9F2FB',
     },
     text: {
         fontSize: 18,

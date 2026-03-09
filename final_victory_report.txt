@@ -1,0 +1,16 @@
+--- Hybrid Ultimate Restoration: Final Verification Results ---
+憲法 -> 憲法: 230 items
+行政法総論 -> 行政法総論: 132 items
+行政手続法 -> 行政手続法: 122 items
+行政不服審査法 -> 行政不服審査法: 130 items
+行政事件訴訟法 -> 行政事件訴訟法: 157 items
+国家賠償法・損失訴訟 -> 国家賠償法・損失訴訟: 90 items
+地方自治法 -> 地方自治法: 146 items
+行政法総合 -> 行政法総合: 70 items
+民法総論 -> 民法総論: 88 items
+民法物権 -> 民法物権: 123 items
+債権総論 -> 債権総論: 76 items
+債権各論 -> 債権各論: 103 items
+家族法 -> 家族法: 69 items
+
+TOTAL QUESTIONS: 1536

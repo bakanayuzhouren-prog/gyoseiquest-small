@@ -29,6 +29,7 @@ const SUBJECT_ORDER = [
     '記述'
 ];
 
+// 行政法総論: シート「行政法総論」または「行政法１（ここに全部入ってる）」→ 行政法 > 行政法総論
 const GYOSEI_SUB_ORDER = [
     '行政法総論',
     '行政手続法',
@@ -64,6 +65,7 @@ const getMapping = (title) => {
         if (title.includes('多肢選択')) return { subject: '多肢選択', category: '憲法' };
         return { subject: '憲法', category: title };
     }
+    if (title === '行政法総論' || title.includes('行政法総論')) return { subject: '行政法', category: '行政法総論' };
     if (title.includes('行政手続法')) return { subject: '行政法', category: '行政手続法' };
     if (title.includes('行政不服審査法')) return { subject: '行政法', category: '行政不服審査法' };
     if (title.includes('行政事件訴訟法')) return { subject: '行政法', category: '行政事件訴訟法' };
@@ -136,18 +138,26 @@ async function sync() {
         let sheetDefaultSubject = mapping ? mapping.subject : null;
         let sheetDefaultCategory = mapping ? mapping.category : null;
 
-        if (title.includes('行政法 1')) {
+        // 行政法総論シート（行政法１、行政法 1 等の表記ゆれに対応）
+        if (title.includes('行政法 1') || title.includes('行政法１') || title === '行政法総論' || title.includes('行政法総論')) {
             sheetDefaultSubject = '行政法';
             sheetDefaultCategory = '行政法総論';
         }
 
-        // Skip non-problem sheets to match syncLearn.js
+        // Skip non-problem sheets
         if (title.includes('解説') || title.includes('資料') || title.includes('条文') || title.includes('説明')) {
             console.log(`Skipping non-problem sheet: ${title}`);
             continue;
         }
 
         const t = title.normalize('NFKC').trim();
+
+        // マッピングが存在しないシートはスキップ（総1-10、行政代執行法 等）
+        if (!sheetDefaultSubject) {
+            console.log(`Skipping unmapped sheet: ${title}`);
+            continue;
+        }
+
         console.log(`Processing ${title} -> Default: [${sheetDefaultSubject}] ${sheetDefaultCategory}...`);
 
         // 初期化フラグ：このシートで処理するカテゴリーを、最初の一回だけ空にする
@@ -180,13 +190,19 @@ async function sync() {
         let currentSubject = sheetDefaultSubject;
         let currentCategory = sheetDefaultCategory;
 
+        // 行政法１（ここに全部入ってる）: B列=問題文, C列=第1肢, 続く行のB列=残り肢。他: H列=問題文, K列=肢
+        const useGyosei1Layout = title.includes('行政法１') || title.includes('行政法 1');
+
         for (let i = 1; i < rows.length; i++) {
             const row = rows[i];
             const valA = row[0] ? row[0].trim() : '';
             const valB = row[1] ? row[1].trim() : '';
             const valC = row[2] ? row[2].trim() : '';
-            const valH = row[7] ? row[7].trim() : ''; // NEW: Column H (Index 7)
+            const valH = row[7] ? row[7].trim() : ''; // Column H (Index 7)
             const valK = row[10] ? row[10].trim() : '';
+
+            const valProblem = useGyosei1Layout ? valB : valH;
+            const valChoice = useGyosei1Layout ? (valC || valB) : valK;
 
             // Check if it has choices (Columns C-G, indices 2-6)
             const valC1 = row[2] ? row[2].trim() : '';
@@ -225,18 +241,18 @@ async function sync() {
             const valR = row[17] ? row[17].trim() : '';
             const valRefId = row[19] ? row[19].trim() : '';
 
-            // 憲法の同期を一時的にスキップ（画像タグ保護のため）
-            if (t === '憲法') {
-                // console.log('[DEBUG] Skipping Kenpo sync to preserve local image tags');
-                continue;
-            }
-
-            // Bukken (物権) sheet uses Column A as trigger (not H)
-            const isBukken = t === '民法物権';
-            // 物権の場合、106問にするためにA列(ID/質問文)があることを必須とする。
-            // また、H列に見出し的な導入文のみがある行は除外するが、実問題の長文は除外しないように文字数制限を入れる。
-            const isHeading = isBukken && valH && valH.length < 50 && (valH.includes('に照らし、') || valH.includes('次の記述のうち、'));
-            const hasTrigger = valH && !isHeading || (isBukken && valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢');
+            // ＜複数解＞ や （複数解）（正解肢２つ）（複数回）等のサフィックスを除去してから判定
+            const valProblemNorm = valProblem
+                .replace(/\s*[＜<][^＞>]*[＞>]\s*$/, '')   // ＜...＞ 除去
+                .replace(/\s*（[^）]{1,20}）\s*$/, '')       // （...） 除去（最大20文字）
+                .trim();
+            // 行政法１: B列が①⑫・で始まる行は新問題。通常: 問題文で終わる行が新問題
+            const isNewProblemRow = useGyosei1Layout ? /^[①②③④⑤⑥⑦⑧⑨⑩⑪⑫・]/.test(valProblem) : true;
+            const isRealQuestion = valProblemNorm && /どれか[。]?$|どれ[。]?$|ものか[。]?$|なるか[。]?$|述べよ[。]?$|選びなさい[。]?$|いくつある[。]?$|正しいものはどれ[。]?$|誤っているものはどれ[。]?$/.test(valProblemNorm);
+            const isHeading = !isRealQuestion && valProblem && valProblemNorm.length < 60 &&
+                (valProblem.includes('に照らし、') || valProblem.includes('次の記述のうち、') ||
+                 valProblem.includes('次のア〜オ') || valProblem.includes('次の文章'));
+            const hasTrigger = valProblem && !isHeading && (useGyosei1Layout ? isNewProblemRow : true);
 
             if (hasTrigger) {
 
@@ -248,36 +264,15 @@ async function sync() {
                     initializedCategories.add(categoryKey);
                 }
 
-                // 民法物権を 105問に制限する
-                if (isBukken && questionsData[currentSubject][currentCategory].length >= 105) {
-                    continue;
-                }
-
                 if (valA === '問題' || valA === '肢' || valA.startsWith('科目')) continue;
 
-                // Match syncLearn text extraction logic exactly
-                // PRIORITY: H Column (if present)
-                let questionText = valH || '';
-
-                if (!questionText) {
-                    questionText = valC;
-                    if (!questionText && valB) questionText = valB;
-                    if (!questionText && valA) {
-                        if (!valA.startsWith('科目')) {
-                            questionText = valA;
-                        }
-                    }
-                }
+                // 問題文（行政法１はB列、通常はH列）
+                let questionText = valProblem;
                 if (!questionText) continue;
 
-                // Filters
+                // ノイズフィルタ（明らかなヘッダー行のみ除外）
                 const trimmedContent = questionText.trim();
-                if (currentSubject === '憲法' && currentCategory === '憲法') {
-                    // No noisy filters for primary Kenpo
-                } else {
-                    if (trimmedContent.includes('条文') || trimmedContent.includes('解説') || trimmedContent.includes('資料') || trimmedContent.includes('説明')) continue;
-                    if (trimmedContent === '本文' || trimmedContent === '（本文）' || trimmedContent === '【本文】' || trimmedContent === '内容' || /^内容[（(].*[）)]$/.test(trimmedContent)) continue;
-                }
+                if (trimmedContent === '本文' || trimmedContent === '（本文）' || trimmedContent === '【本文】' || trimmedContent === '内容' || /^内容[（(].*[）)]$/.test(trimmedContent)) continue;
 
                 let isBonus = false;
                 if (questionText.startsWith('※')) {
@@ -295,37 +290,35 @@ async function sync() {
 
                 const choices = [];
                 let explanation = valF || '';
-                if (valK) choices.push(valK);
+                // 第1肢（行政法１はC列、通常はK列）
+                const firstChoice = useGyosei1Layout ? valC : valK;
+                if (firstChoice) choices.push(firstChoice.replace(/^※\s*/, '').trim() || firstChoice);
 
                 let offset = 1;
                 while ((i + offset) < rows.length) {
                     const nextRow = rows[i + offset];
+                    const nextB = nextRow[1] ? nextRow[1].trim() : '';
+                    const nextH = nextRow[7] ? nextRow[7].trim() : '';
+                    const nextK = nextRow[10] ? nextRow[10].trim() : '';
 
-                    // Breaking Condition:
-                    // If we are in 'Structure H' mode (Administrative/Civil), we break ONLY when we see a new Question (H column)
-                    // If we are in 'Legacy' mode (Constitution), we break when we see a new Question (A column)
-
-                    // Assumption: If the sheet is NOT '憲法', we use Structure H.
-                    // Exception: Bukken (物権) uses Column A like Kenpo
-                    const nextValA = nextRow[0] ? nextRow[0].trim() : '';
-                    if (t === '憲法' || isBukken) {
-                        if (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢') break;
+                    // 次の問題の検出（行政法１: B列が①⑫・で始まる / 通常: H列に値）
+                    if (useGyosei1Layout) {
+                        if (nextB && /^[①②③④⑤⑥⑦⑧⑨⑩⑪⑫・]/.test(nextB)) break;
                     } else {
-                        if (nextRow[7] && nextRow[7].trim()) break; // H column exists -> New Question
+                        if (nextH) break;
                     }
 
-                    let choiceText = nextRow[10] ? nextRow[10].trim() : '';
+                    let choiceText = useGyosei1Layout ? (nextRow[2] ? nextRow[2].trim() : nextB) : nextK;
                     if (choiceText) {
-                        if (choiceText.startsWith('※')) {
-                            // It's a note/supplement, add to explanation instead of choices
-                            explanation += '\n\n' + choiceText;
-                        } else {
-                            choices.push(choiceText);
-                        }
+                        choices.push(choiceText.replace(/^※\s*/, '').trim() || choiceText);
                     }
                     offset++;
                 }
 
+                // 肢が0件でも問題文があれば追加（プレースホルダー肢で表示可能に）
+                if (choices.length === 0 && questionText.length > 20) {
+                    choices.push('（選択肢はスプレッドシートのK列で設定してください）');
+                }
                 if (choices.length >= 1) {
                     const correctIndices = [];
                     const cleanChoices = choices.map((c, idx) => {
@@ -337,7 +330,7 @@ async function sync() {
                         }
                         return c;
                     });
-                    if (correctIndices.length === 0) correctIndices.push(0);
+                    // (r)未記入の場合は answer:[] のまま（正解未設定）
 
                     // Extract chunks from Column U (index 20) / V (index 21) / W (index 22)...
                     const chunks = [];
@@ -356,10 +349,18 @@ async function sync() {
                         }
                     }
 
+                    // 多肢選択: answer は N,O,P,Q 列（ア,イ,ウ,エの正解語句）
+                    let finalAnswer = correctIndices;
+                    if (currentSubject === '多肢選択' && valR) {
+                        const slotAnswers = [row[13], row[14], row[15], row[16]]
+                            .map((v) => (v ? v.trim() : '')).filter(Boolean);
+                        finalAnswer = slotAnswers.length > 0 ? slotAnswers : [];
+                    }
+
                     questionsData[currentSubject][currentCategory].push({
                         text: questionText,
                         choices: cleanChoices,
-                        answer: correctIndices,
+                        answer: finalAnswer,
                         explain: explanation || questionText, // Fallback to text if explanation empty
                         wordBank: valR,
                         memo: valM,

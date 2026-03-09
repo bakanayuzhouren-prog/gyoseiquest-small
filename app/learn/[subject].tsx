@@ -2,12 +2,13 @@ import { applyTTSRules } from '@/utils/tts-rules';
 import { Link, router, useLocalSearchParams } from 'expo-router';
 import * as Speech from 'expo-speech';
 import { useEffect, useState } from 'react';
-import { Alert, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { Alert, Image, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { characterPlaceholders, defaultCharacterMap, useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
+import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { LEARN_CONTENT } from '@/src/learn';
 import { PIN_CASES } from '@/src/pinData';
 import { SUBJECTS } from '@/src/questions';
@@ -178,7 +179,13 @@ export default function LearnSubjectScreen() {
   const handleOpenDeepDive = () => {
     if ((!digDeeperUrl && !hasChunks) || !subject) return;
 
-    // Parse the ID (question index)
+    // [[LINK:/columns/...]] など URL パスの場合はそのまま遷移
+    if (digDeeperUrl && digDeeperUrl.startsWith('/')) {
+      router.push(digDeeperUrl as any);
+      return;
+    }
+
+    // chunks がある場合、または数値インデックスの場合は reference ページへ
     let questionIndex = -1;
     if (digDeeperUrl) {
       questionIndex = parseInt(digDeeperUrl, 10);
@@ -188,7 +195,6 @@ export default function LearnSubjectScreen() {
 
     if (isNaN(questionIndex)) return;
 
-    // Navigate to reference page
     router.push({
       pathname: `/learn/reference/[subject]/[id]` as any,
       params: {
@@ -817,7 +823,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 1,
     borderColor: '#ccc',
-    backgroundColor: 'rgba(255,255,255,0.8)',
+    backgroundColor: '#f5f7fa',
   },
   stickyButtonActive: {
     borderColor: '#FFD700',
@@ -902,7 +908,7 @@ const styles = StyleSheet.create({
     minHeight: 220,
     justifyContent: 'center',
     padding: 30,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f5f7fa',
     borderRadius: 20,
     borderWidth: 2,
     borderColor: '#000000',
@@ -1080,7 +1086,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f7fa',
   },
   modalOverlay: {
     flex: 1,
@@ -1124,10 +1130,16 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: '#007BFF',
   },
+  questionImage: {
+    width: '100%',
+    height: 220,
+    marginTop: 16,
+    borderRadius: 8,
+  },
   imageContainer: {
     width: '100%',
     aspectRatio: 1.5,
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f7fa',
     borderRadius: 12,
     borderWidth: 1,
     borderColor: '#e2e8f0',

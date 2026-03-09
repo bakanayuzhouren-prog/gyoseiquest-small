@@ -17,6 +17,8 @@ export default function ResultScreen() {
     subject?: string;
     pickedIndex?: string;
     pickedIndices?: string; // NEW: JSON string of selected indices
+    pickedText?: string; // 記述式の解答文
+    pickedSlots?: string; // 多肢選択の穴埋め解答 JSON ["アの解答","イの解答",...]
     field?: string;
     questionIndex?: string; // Current question index
     totalQuestions?: string; // NEW
@@ -26,7 +28,17 @@ export default function ResultScreen() {
   const paramField = Array.isArray(params.field) ? params.field[0] : params.field;
   const pickedIndexParam = Array.isArray(params.pickedIndex) ? params.pickedIndex[0] : params.pickedIndex;
   const pickedIndicesParam = Array.isArray(params.pickedIndices) ? params.pickedIndices[0] : params.pickedIndices;
+  const pickedTextParam = Array.isArray(params.pickedText) ? params.pickedText[0] : params.pickedText;
+  const pickedSlotsParam = Array.isArray(params.pickedSlots) ? params.pickedSlots[0] : params.pickedSlots;
   const field = Array.isArray(params.field) ? params.field[0] : params.field;
+
+  const isDescriptive = subject === '記述';
+  const isTashi = subject === '多肢選択';
+  const pickedText = pickedTextParam || '';
+  let pickedSlots: string[] = [];
+  try {
+    pickedSlots = pickedSlotsParam ? JSON.parse(pickedSlotsParam) : [];
+  } catch (_) {}
 
   const { colors, theme } = useTheme();
 
@@ -48,7 +60,9 @@ export default function ResultScreen() {
   const explain = question?.explain || '';
   const memo = question?.memo || '';
   const choices = question?.choices || [];
-  const correctIndices = question?.answer || [0];
+  const correctIndices: number[] = question?.answer || [];
+  const correctSlots: string[] = Array.isArray(question?.answer) && typeof (question?.answer as any[])[0] === 'string' ? (question?.answer as string[]) : [];
+  const answerPending = isTashi ? correctSlots.length === 0 : correctIndices.length === 0;
   const refId = question?.refId || '';
 
   // [NEW] Resolve User Selection & Validation
@@ -68,12 +82,12 @@ export default function ResultScreen() {
   // Exact Match Validation
   const sortedCorrect = [...correctIndices].sort((a, b) => a - b);
   const sortedUser = [...userSelection].sort((a, b) => a - b);
+  const isCorrectTashi = !answerPending && correctSlots.length === pickedSlots.length && correctSlots.every((v, i) => v === pickedSlots[i]);
+  const isCorrect = isTashi
+    ? isCorrectTashi
+    : !answerPending && sortedCorrect.length === sortedUser.length && sortedCorrect.every((val, index) => val === sortedUser[index]);
 
-  const isCorrect =
-    sortedCorrect.length === sortedUser.length &&
-    sortedCorrect.every((val, index) => val === sortedUser[index]);
-
-  const correctAnswersText = correctIndices.map((i: number) => choices[i]).join('\n・');
+  const correctAnswersText = isTashi ? correctSlots.map((s, i) => `${'アイウエオ'[i]}: ${s}`).join('\n') : correctIndices.map((i: number) => choices[i]).join('\n・');
 
   // Memo State
   const [showOfficialMemo, setShowOfficialMemo] = useState(false);
@@ -146,8 +160,8 @@ export default function ResultScreen() {
   const totalQuestions = parseInt(Array.isArray(params.totalQuestions) ? params.totalQuestions[0] : params.totalQuestions || '0', 10);
   const correctCountSessionCurrent = parseInt(Array.isArray(params.correctCountSession) ? params.correctCountSession[0] : params.correctCountSession || '0', 10);
 
-  // Update count (optimistically for next step)
-  const newCorrectCount = isCorrect ? correctCountSessionCurrent + 1 : correctCountSessionCurrent;
+  // Update count（回答設定中の問題はカウント対象外）
+  const newCorrectCount = (isCorrect && !answerPending) ? correctCountSessionCurrent + 1 : correctCountSessionCurrent;
 
   const handleNext = () => {
     // Check if we are looping (Index + 1 >= Total)
@@ -187,19 +201,58 @@ export default function ResultScreen() {
 
         <ThemedView style={{ marginBottom: 16 }}>
           <ThemedText style={{ marginBottom: 8, color: colors.subText }}>あなたの回答:</ThemedText>
-          {userSelection.map((idx) => (
-            <Pressable key={idx} style={[
-              styles.choiceButton,
-              styles.choiceButtonDisabled,
-              { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder, marginBottom: 8 }
-            ]}>
-              <ThemedText style={{ fontSize: 16, color: colors.text }}>
-                {choices[idx] ? choices[idx].replace(/※/g, '') : ''}
-              </ThemedText>
-            </Pressable>
-          ))}
+          {isTashi && pickedSlots.length > 0 ? (
+            <ThemedView style={[styles.descriptiveAnswerBox, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
+              {pickedSlots.map((s, i) => (
+                <ThemedText key={i} style={{ fontSize: 16, color: colors.text, lineHeight: 24, marginBottom: 4 }}>
+                  {['ア','イ','ウ','エ','オ'][i]}: {s}
+                </ThemedText>
+              ))}
+            </ThemedView>
+          ) : isDescriptive && pickedText ? (
+            <ThemedView style={[styles.descriptiveAnswerBox, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
+              <ThemedText style={{ fontSize: 16, color: colors.text, lineHeight: 24 }}>{pickedText}</ThemedText>
+            </ThemedView>
+          ) : (
+            userSelection.map((idx) => (
+              <Pressable key={idx} style={[
+                styles.choiceButton,
+                styles.choiceButtonDisabled,
+                { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder, marginBottom: 8 }
+              ]}>
+                <ThemedText style={{ fontSize: 16, color: colors.text }}>
+                  {choices[idx] ? choices[idx].replace(/※/g, '') : ''}
+                </ThemedText>
+              </Pressable>
+            ))
+          )}
         </ThemedView>
-        {isCorrect ? (
+        {isDescriptive ? (
+          <ThemedView style={{ padding: 16, backgroundColor: '#E3F2FD', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#2196F3', alignItems: 'center' }}>
+            <ThemedText type="title" style={{ color: '#1565C0', fontSize: 20 }}>📝 記述式</ThemedText>
+            <ThemedText style={{ color: '#0D47A1', marginTop: 4 }}>解説を読んで自分の解答と照らし合わせてください。</ThemedText>
+          </ThemedView>
+        ) : isTashi && answerPending ? (
+          <ThemedView style={{ padding: 16, backgroundColor: '#FFF8E1', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#FFC107', alignItems: 'center' }}>
+            <ThemedText type="title" style={{ color: '#F57F17', fontSize: 20 }}>⏳ 回答設定中</ThemedText>
+            <ThemedText style={{ color: '#E65100', marginTop: 4 }}>正解はスプレッドシートで設定してください。</ThemedText>
+          </ThemedView>
+        ) : isTashi ? (
+          isCorrect ? (
+            <ThemedView style={{ padding: 16, backgroundColor: '#E8F5E9', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#4CAF50', alignItems: 'center' }}>
+              <ThemedText type="title" style={{ color: '#2E7D32', fontSize: 24 }}>🎉 正解！お見事！</ThemedText>
+            </ThemedView>
+          ) : (
+            <ThemedView style={{ padding: 16, backgroundColor: '#FFEBEE', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#D32F2F', alignItems: 'center' }}>
+              <ThemedText type="title" style={{ color: '#D32F2F', fontSize: 20 }}>不正解... 復習が必要だ！</ThemedText>
+            </ThemedView>
+          )
+        ) : answerPending ? (
+          <ThemedView style={{ padding: 16, backgroundColor: '#FFF8E1', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#FFC107', alignItems: 'center' }}>
+            <ThemedText type="title" style={{ color: '#F57F17', fontSize: 20 }}>⏳ 回答設定中</ThemedText>
+            <ThemedText style={{ color: '#E65100', marginTop: 4 }}>この問題の正解はまだ設定されていません。後日更新されます。</ThemedText>
+          </ThemedView>
+        ) : isCorrect ? (
           <ThemedView style={{ padding: 16, backgroundColor: '#E8F5E9', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#4CAF50', alignItems: 'center' }}>
             <ThemedText type="title" style={{ color: '#2E7D32', fontSize: 24 }}>🎉 正解！お見事！</ThemedText>
             <ThemedText style={{ color: '#1B5E20', marginTop: 4, fontWeight: 'bold' }}>その調子だ！この知識を確実に定着させろ！</ThemedText>
@@ -208,7 +261,9 @@ export default function ResultScreen() {
           <ThemedText type="subtitle" style={{ color: '#D32F2F', marginBottom: 8 }}>不正解... 復習が必要だ！</ThemedText>
         )}
         <ThemedText style={[styles.questionText, { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }]}>{text}</ThemedText>
-        <ThemedText style={[styles.answerText, { color: colors.text }]}>正解: {correctAnswersText}</ThemedText>
+        {!isDescriptive && !answerPending && correctAnswersText && (
+          <ThemedText style={[styles.answerText, { color: colors.text }]}>正解: {correctAnswersText}</ThemedText>
+        )}
 
         <ThemedText type="subtitle" style={styles.explainTitle}>
           もっと深掘る！
@@ -402,6 +457,12 @@ const styles = StyleSheet.create({
     borderColor: '#666',
     borderRadius: 8,
     alignItems: 'center',
+  },
+  descriptiveAnswerBox: {
+    padding: 16,
+    borderWidth: 2,
+    borderRadius: 12,
+    minHeight: 60,
   },
   choiceButton: {
     padding: 16,

@@ -1,18 +1,20 @@
 import { Link, router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
-import { Image, Modal, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, Modal, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { BONUS_QUESTIONS } from '@/src/bonus_questions';
 import { useTheme } from '@/src/context/ThemeContext';
 import { RESOURCES, SUBJECTS } from '@/src/questions';
+import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
 
 export default function QuestionScreen() {
-  const params = useLocalSearchParams<{ subject?: string; field?: string; index?: string; correctCountSession?: string; mode?: string }>();
+  const params = useLocalSearchParams<{ subject?: string; field?: string; index?: string; correctCountSession?: string; mode?: string; shuffle?: string }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
   const paramField = Array.isArray(params.field) ? params.field[0] : params.field;
   const mode = Array.isArray(params.mode) ? params.mode[0] : params.mode;
+  const isShuffle = (Array.isArray(params.shuffle) ? params.shuffle[0] : params.shuffle) === '1';
 
   const { colors, theme } = useTheme();
 
@@ -47,8 +49,11 @@ export default function QuestionScreen() {
 
     // Filter based on mode AND validate structure
     targetQuestions = targetQuestions.filter((q: any) => {
-      // 必須フィールドの存在確認
-      const isValid = q && typeof q === 'object' && q.text && Array.isArray(q.choices) && Array.isArray(q.answer);
+      const hasText = q && typeof q === 'object' && q.text;
+      const hasChoices = Array.isArray(q?.choices) && q.choices.length > 0;
+      const isDescriptive = subject === '記述';
+      // 記述式: textのみでOK。 選択式: text + choices 必須
+      const isValid = hasText && (isDescriptive || hasChoices);
       if (!isValid) return false;
 
       if (mode === 'bonus') {
@@ -58,8 +63,18 @@ export default function QuestionScreen() {
       }
     });
 
+    // シャッフルモード：問題をランダム順に並び替え
+    if (isShuffle && targetQuestions.length > 0) {
+      const arr = [...targetQuestions];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return { field: selectedField, questions: arr };
+    }
+
     return { field: selectedField, questions: targetQuestions };
-  }, [subjectData, paramField, mode]);
+  }, [subjectData, paramField, mode, isShuffle]);
 
   // State for current question index
   const [questionIndex, setQuestionIndex] = useState<number | null>(null);
@@ -75,10 +90,14 @@ export default function QuestionScreen() {
   // State for multi-select
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
 
+  // State for 記述式（文章入力）
+  const [descriptiveAnswer, setDescriptiveAnswer] = useState('');
+
   // Reset dimmed choices and selections when question changes
   useEffect(() => {
     setDimmedIndices([]);
     setSelectedIndices([]);
+    setDescriptiveAnswer('');
   }, [questionIndex]);
 
   // State for slots
@@ -112,37 +131,96 @@ export default function QuestionScreen() {
     const slots = (question as any).slots || [];
     const answer = (question as any).answer || [];
     const correctCount = Array.isArray(answer) ? answer.length : 0;
-    const suffix = ` (正解肢${correctCount}問)`;
+    const suffix = correctCount === 0 ? ' (回答設定中)' : ` (正解肢${correctCount}問)`;
+
+    // 多肢選択: tashiData からスロットを生成（語群から選択して穴埋め）
+    const effectiveSlots = tashiData
+      ? tashiData.slotLabels.map((label) => ({
+          label: `[ ${label} ]`,
+          options: tashiData.options.join(' / '),
+        }))
+      : slots;
 
     let content;
-    if (slots.length === 0) {
-      content = (
-        <ThemedText
-          type="title"
-          style={[
-            styles.questionText,
-            isLongText && styles.questionTextSmall,
-            { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }
-          ]}
-          onTextLayout={(e) => {
-            if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
-          }}
-        >
-          {text}{suffix}
-        </ThemedText>
-      );
-    } else {
-      // Escape regex characters for labels
-      const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const pattern = new RegExp(`(${slots.map((s: any) => escapeRegExp(s.label)).join('|')})`, 'g');
+    if (effectiveSlots.length === 0) {
+      const isDescriptive = subject === '記述';
+      const useFormatted = isDescriptive && text.length > 150;
 
-      // Split text by labels
-      const parts = text.split(pattern);
+      if (useFormatted) {
+        const paragraphs = formatDescriptiveText(text);
+        const segmentStyle = (seg: TextSegment) => {
+          const base = { fontFamily: theme === 'paper' ? 'serif' : undefined };
+          switch (seg.type) {
+            case 'header':
+              return { ...base, color: '#333' };
+            case 'section':
+            case 'keyword':
+            case 'person':
+            case 'law':
+            default:
+              return { ...base, color: colors.text };
+          }
+        };
+        content = (
+          <View style={styles.descriptiveFormatted}>
+            {paragraphs.map((para, pi) => (
+              <View
+                key={pi}
+                style={[
+                  styles.descriptiveParagraph,
+                  para.spacing === 'before' && { marginTop: 16 },
+                  para.spacing === 'after' && { marginBottom: 16 },
+                  para.spacing === 'both' && { marginVertical: 16 },
+                ]}
+              >
+                <ThemedText
+                  style={[
+                    styles.questionText,
+                    { color: colors.text, lineHeight: 28, fontFamily: theme === 'paper' ? 'serif' : undefined }
+                  ]}
+                >
+                  {para.segments.map((seg, si) => (
+                    <ThemedText key={si} style={segmentStyle(seg)}>
+                      {seg.text}
+                    </ThemedText>
+                  ))}
+                </ThemedText>
+              </View>
+            ))}
+          </View>
+        );
+      } else {
+        content = (
+          <ThemedText
+            type="title"
+            style={[
+              styles.questionText,
+              isLongText && styles.questionTextSmall,
+              { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }
+            ]}
+            onTextLayout={(e) => {
+              if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
+            }}
+          >
+            {text}{subject === '多肢選択' ? suffix : ''}
+          </ThemedText>
+        );
+      }
+    } else {
+      // Escape regex characters for labels（多肢選択は [ ア ] 形式、他はラベルそのまま）
+      const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const pattern = new RegExp(`(${effectiveSlots.map((s: any) => escapeRegExp(s.label)).join('|')})`, 'g');
+
+      // 多肢選択: テキスト内の [ ア ] 等を正規化してマッチ（全角［］も考慮）
+      const normalizedText = tashiData
+        ? text.replace(/［\s*([ア-オ])\s*］/g, '[ $1 ]').replace(/\[\s*([ア-オ])\s*\]/g, '[ $1 ]')
+        : text;
+      const parts = normalizedText.split(pattern);
 
       content = (
         <ThemedText style={[styles.questionText, isLongText && styles.questionTextSmall, { lineHeight: 40 }]}>
           {parts.map((part: string, index: number) => {
-            const slot = slots.find((s: any) => s.label === part);
+            const slot = effectiveSlots.find((s: any) => s.label === part);
             if (slot) {
               const selected = slotSelections[slot.label];
               return (
@@ -164,7 +242,7 @@ export default function QuestionScreen() {
         styles.questionContainer,
         {
           borderColor: colors.choiceBorder,
-          backgroundColor: colors.card,
+          backgroundColor: '#e8e8e8',
         }
       ]}>
         {content}
@@ -223,6 +301,36 @@ export default function QuestionScreen() {
     }
   }, [resourceModalVisible, resourceId]);
 
+  // 多肢選択: テキストから [ア][イ][ウ][エ] を解析し、語群から選択肢をパース
+  const tashiData = useMemo(() => {
+    if (subject !== '多肢選択' || !question) return null;
+    const wb = (question as any).wordBank;
+    if (!wb || typeof wb !== 'string') return null;
+    const text = (question as any).text || '';
+    // スロットラベル抽出（[ ア ] [ イ ] 等、全角・半角スペース対応）
+    const matches = text.match(/[\[［]\s*([ア-オ])\s*[\]］]/g) || [];
+    const seen = new Set<string>();
+    const slotLabels: string[] = [];
+    for (const m of matches) {
+      const label = m.replace(/[\[［\s\]］]/g, '').trim();
+      if (label && !seen.has(label)) {
+        seen.add(label);
+        slotLabels.push(label);
+      }
+    }
+    if (slotLabels.length === 0) return null;
+    // 語群パース: "【選択肢】 1 従属 / 2 平等 / 3 合法" -> ["従属","平等","合法"]
+    const raw = wb.replace(/【選択肢】\s*/g, '').trim();
+    const parts = raw.split(/\s*\/\s*/);
+    const options = parts
+      .map((p) => {
+        const m = p.match(/^\d+\s+(.+)$/);
+        return m ? m[1].trim() : p.trim();
+      })
+      .filter(Boolean);
+    return { slotLabels, options };
+  }, [subject, question]);
+
   // Shuffle choices and keep track of original index
   const shuffledChoices = useMemo(() => {
     if (!question || !question.choices) return [];
@@ -230,21 +338,21 @@ export default function QuestionScreen() {
     // Map to object with original index
     let choicesWithIndex = question.choices.map((text: string, index: number) => ({ text, originalIndex: index }));
 
-    // [NEW] Filter choices based on mode
+    // ※フィルタ（ボーナスモード以外では ※ の肢を除外）
     if (mode !== 'bonus') {
-      // In Normal Mode, hide choices with '※'
       choicesWithIndex = choicesWithIndex.filter(c => !c.text.includes('※'));
     }
-    // In Bonus Mode, show all (no filter)
 
-    // Shuffle (Fisher-Yates)
-    for (let i = choicesWithIndex.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [choicesWithIndex[i], choicesWithIndex[j]] = [choicesWithIndex[j], choicesWithIndex[i]];
+    // シャッフルモード時は肢もランダム順に並び替え
+    if (isShuffle) {
+      for (let i = choicesWithIndex.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [choicesWithIndex[i], choicesWithIndex[j]] = [choicesWithIndex[j], choicesWithIndex[i]];
+      }
     }
 
     return choicesWithIndex;
-  }, [question, mode]);
+  }, [question, mode, isShuffle]);
 
   if (!subject || !field || !question) {
     return (
@@ -261,35 +369,125 @@ export default function QuestionScreen() {
   return (
     <ThemedView style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <ThemedText type="subtitle" style={[styles.subject, { color: colors.subText }]}>
+        <ThemedText type="subtitle" style={[styles.subject, { color: colors.text, fontWeight: '800' }]}>
           {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length || 0})` : ''}
           {mode === 'bonus' ? ' ★ボーナスステージ★' : ''}
         </ThemedText>
 
         {renderQuestionText()}
 
-        {/* Word Bank for Cloze Questions */}
+        {/* Word Bank: 多肢選択ではタップで穴埋め、他は表示のみ */}
         {(question as any).wordBank ? (
           <ThemedView style={[styles.wordBankContainer, { borderColor: colors.choiceBorder, backgroundColor: colors.card }]}>
-            <ThemedText style={[styles.wordBankTitle, { color: colors.subText }]}>【語群】</ThemedText>
+            <ThemedText style={[styles.wordBankTitle, { color: colors.subText }]}>
+              【語群】{tashiData && activeSlot ? ` → 空欄 [ ${activeSlot.label.replace(/[\[\]\s]/g, '')} ] を選んでください` : ''}
+            </ThemedText>
+            {tashiData && activeSlot ? (
+              <Pressable style={[styles.cancelSlotButton, { borderColor: colors.choiceBorder }]} onPress={() => setActiveSlot(null)}>
+                <ThemedText style={{ color: colors.subText, fontSize: 12 }}>キャンセル</ThemedText>
+              </Pressable>
+            ) : null}
             <View style={styles.wordBankGrid}>
-              {(String((question as any).wordBank || '')).split('\n').filter((l: string) => l.trim().length > 0).map((line: string, index: number) => {
-                const item = line.trim();
-                // Check if line already starts with a number (e.g. "1." or "1 ")
-                const hasNumber = /^\d+/.test(item);
-                const text = hasNumber ? item : `${index + 1}. ${item}`;
-                return (
-                  <ThemedText key={index} style={[styles.wordBankItem, { color: colors.text }]}>
-                    {text}
-                  </ThemedText>
-                );
-              })}
+              {tashiData && activeSlot
+                ? tashiData.options.map((opt: string, index: number) => (
+                    <Pressable
+                      key={index}
+                      style={[styles.wordBankItem, styles.wordBankItemPressable, { borderColor: colors.choiceBorder }]}
+                      onPress={() => handleSlotSelect(opt)}
+                    >
+                      <ThemedText style={{ color: colors.text, fontSize: 14 }}>{opt}</ThemedText>
+                    </Pressable>
+                  ))
+                : (String((question as any).wordBank || '')).split('\n').filter((l: string) => l.trim().length > 0).map((line: string, index: number) => {
+                    const item = line.trim();
+                    const hasNumber = /^\d+/.test(item);
+                    const text = hasNumber ? item : `${index + 1}. ${item}`;
+                    return (
+                      <ThemedText key={index} style={[styles.wordBankItem, { color: colors.text }]}>
+                        {text}
+                      </ThemedText>
+                    );
+                  })}
             </View>
           </ThemedView>
         ) : null}
 
-        <ThemedView style={styles.choices}>
-          {shuffledChoices.map((choiceObj: { text: string; originalIndex: number }, index: number) => {
+        <ThemedView style={[styles.choices, { backgroundColor: colors.background }]}>
+          {tashiData ? (
+            <>
+              <Pressable
+                style={[
+                  styles.answerButton,
+                  (() => {
+                    const allFilled = tashiData.slotLabels.every((l) => slotSelections[`[ ${l} ]`]);
+                    return !allFilled && styles.answerButtonDisabled;
+                  })()
+                ]}
+                disabled={!tashiData.slotLabels.every((l) => slotSelections[`[ ${l} ]`])}
+                onPress={() => {
+                  const ans = tashiData.slotLabels.map((l) => slotSelections[`[ ${l} ]`] || '');
+                  router.push({
+                    pathname: '/result',
+                    params: {
+                      subject,
+                      field,
+                      questionIndex: String(questionIndex),
+                      pickedIndex: '-1',
+                      pickedSlots: JSON.stringify(ans),
+                      totalQuestions: String(questions.length),
+                      correctCountSession: params.correctCountSession || '0',
+                    }
+                  });
+                }}
+              >
+                <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
+              </Pressable>
+            </>
+          ) : subject === '記述' ? (
+            <>
+              <ThemedText style={[styles.descriptiveLabel, { color: colors.subText }]}>解答欄（40字程度で記述）</ThemedText>
+              <TextInput
+                style={[
+                  styles.descriptiveInput,
+                  {
+                    borderColor: colors.choiceBorder,
+                    backgroundColor: colors.card,
+                    color: colors.text,
+                  }
+                ]}
+                placeholder="ここに解答を入力してください"
+                placeholderTextColor={colors.subText || '#999'}
+                multiline
+                numberOfLines={4}
+                value={descriptiveAnswer}
+                onChangeText={setDescriptiveAnswer}
+                textAlignVertical="top"
+              />
+              <Pressable
+                style={[
+                  styles.answerButton,
+                  descriptiveAnswer.trim().length === 0 && styles.answerButtonDisabled
+                ]}
+                disabled={descriptiveAnswer.trim().length === 0}
+                onPress={() => {
+                  router.push({
+                    pathname: '/result',
+                    params: {
+                      subject,
+                      field,
+                      questionIndex: String(questionIndex),
+                      pickedIndex: '-1',
+                      pickedText: descriptiveAnswer.trim(),
+                      totalQuestions: String(questions.length),
+                      correctCountSession: params.correctCountSession || '0',
+                    }
+                  });
+                }}
+              >
+                <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
+              </Pressable>
+            </>
+          ) : shuffledChoices.map((choiceObj: { text: string; originalIndex: number }, index: number) => {
             if (!choiceObj || !choiceObj.text) return null; // Guard against null/empty choices
 
             // [NEW] Display Logic: Strip '※'
@@ -528,15 +726,22 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   questionText: {
-    lineHeight: 36, // Increased line height
-    backgroundColor: 'transparent', // Ensure no white bg
-    fontWeight: '400', // Reduce boldness
+    fontSize: 24,
+    lineHeight: 38,
+    backgroundColor: 'transparent',
+    fontWeight: '600',
   },
   questionTextSmall: {
-    fontSize: 22, // Slightly smaller
+    fontSize: 22,
     lineHeight: 34,
     backgroundColor: 'transparent',
-    fontWeight: '400',
+    fontWeight: '600',
+  },
+  descriptiveFormatted: {
+    gap: 12,
+  },
+  descriptiveParagraph: {
+    marginBottom: 4,
   },
   wordBankContainer: {
     padding: 16,
@@ -564,8 +769,33 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 4,
   },
+  wordBankItemPressable: {
+    padding: 8,
+    borderRadius: 8,
+    borderWidth: 1,
+  },
+  cancelSlotButton: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 8,
+    borderWidth: 1,
+    marginBottom: 8,
+  },
   choices: {
     gap: 12,
+  },
+  descriptiveLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  descriptiveInput: {
+    minHeight: 120,
+    borderWidth: 2,
+    borderRadius: 12,
+    padding: 16,
+    fontSize: 16,
   },
   choiceButton: {
     borderRadius: 30, // Pill shape
@@ -587,8 +817,8 @@ const styles = StyleSheet.create({
   },
   choiceText: {
     fontSize: 18,
-    fontWeight: '600',
-    textAlign: 'center', // Center text
+    fontWeight: '400',
+    textAlign: 'center',
   },
   choiceButtonDisabled: {
     backgroundColor: '#f9f9f9',

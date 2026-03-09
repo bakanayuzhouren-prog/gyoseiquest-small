@@ -19,10 +19,24 @@ export function ThemedView({ style, lightColor, darkColor, ...otherProps }: Them
         colors={['#0F172A', '#1E293B']} // Deep Navy Gradient
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        style={[{ flex: 1 }, style]} // Ensure gradient fills if flex is used
+        style={[{ flex: 1 }, style]}
         {...otherProps}
       >
-        {/* Gradient wrapper behaves like a View but with gradient bg */}
+        {/* Gradient wrapper */}
+      </LinearGradient>
+    );
+  }
+
+  if (theme === 'cyberpunk') {
+    return (
+      <LinearGradient
+        colors={['#0d0221', '#1a0a2e', '#0d0221']} // ダークパープル〜ネオン基調
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={[{ flex: 1 }, style]}
+        {...otherProps}
+      >
+        {/* Cyberpunk gradient */}
       </LinearGradient>
     );
   }

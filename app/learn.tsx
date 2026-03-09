@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useTheme } from '@/src/context/ThemeContext';
 import { getStickyNotes } from '@/utils/sticky-notes';
 import { useFocusEffect } from 'expo-router';
 import { useCallback } from 'react';
@@ -18,6 +19,15 @@ type Category = {
   label: string;
   key?: string; // If leaf node
   subCategories?: SubCategory[];
+};
+
+const isLightBg = (hex: string) => {
+  if (!hex || hex.startsWith('rgba')) return false;
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5;
 };
 
 const CATEGORIES: Category[] = [
@@ -55,6 +65,7 @@ const CATEGORIES: Category[] = [
 ];
 
 export default function LearnScreen() {
+  const { colors } = useTheme();
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [stickyCounts, setStickyCounts] = useState<{ [key: string]: number }>({});
 
@@ -112,9 +123,9 @@ export default function LearnScreen() {
             {selectedCategory.subCategories?.map((sub, index) => (
               <Pressable
                 key={sub.key}
-                style={styles.subjectButton}
+                style={[styles.subjectButton, { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder }]}
                 onPress={() => handleSubCategoryPress(sub.key)}>
-                <ThemedText type="defaultSemiBold" style={styles.subjectText}>
+                <ThemedText type="defaultSemiBold" style={[styles.subjectText, { color: isLightBg(colors.choiceBg) ? '#000000' : colors.choiceText }]}>
                   {index + 1} {sub.label}
                   {stickyCounts[sub.key] > 0 && (
                     <ThemedText style={styles.stickyBadge}> (付箋: {stickyCounts[sub.key]})</ThemedText>
@@ -122,17 +133,17 @@ export default function LearnScreen() {
                 </ThemedText>
               </Pressable>
             ))}
-            <Pressable style={styles.backButton} onPress={handleBack}>
-              <ThemedText type="defaultSemiBold">戻る</ThemedText>
+            <Pressable style={[styles.backButton, { backgroundColor: isLightBg(colors.card) ? '#e0e0e0' : colors.card }]} onPress={handleBack}>
+              <ThemedText type="defaultSemiBold" style={{ color: isLightBg(colors.card) ? '#000000' : colors.text }}>戻る</ThemedText>
             </Pressable>
           </>
         ) : (
           CATEGORIES.map((category, index) => (
             <Pressable
               key={category.id}
-              style={styles.subjectButton}
+              style={[styles.subjectButton, { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder }]}
               onPress={() => handleCategoryPress(category)}>
-              <ThemedText type="defaultSemiBold" style={styles.subjectText}>
+              <ThemedText type="defaultSemiBold" style={[styles.subjectText, { color: isLightBg(colors.choiceBg) ? '#000000' : colors.choiceText }]}>
                 {index + 1} {category.label}
                 {category.key && stickyCounts[category.key] > 0 && (
                   <ThemedText style={styles.stickyBadge}> (付箋: {stickyCounts[category.key]})</ThemedText>
@@ -161,8 +172,6 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
     borderWidth: 1,
-    borderColor: '#5A9BD5',
-    backgroundColor: '#E9F2FB',
   },
   subjectText: {
     fontSize: 18,
@@ -178,7 +187,6 @@ const styles = StyleSheet.create({
   },
   backButton: {
     padding: 16,
-    backgroundColor: '#e0e0e0',
     borderRadius: 12,
     alignItems: 'center',
     marginTop: 8,

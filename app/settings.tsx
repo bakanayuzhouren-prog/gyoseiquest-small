@@ -88,6 +88,25 @@ export default function SettingsScreen() {
                     </View>
                     {theme === 'premium' && <ThemedText style={[styles.check, { color: Themes.premium.accent }]}>✓</ThemedText>}
                 </Pressable>
+
+                {/* Cyberpunk */}
+                <Pressable
+                    style={[styles.item, theme === 'cyberpunk' && styles.selectedItem, theme === 'cyberpunk' && { borderColor: Themes.cyberpunk.choiceBorder, backgroundColor: '#0d0221' }]}
+                    onPress={() => handleSelect('cyberpunk')}
+                >
+                    <View style={[styles.previewBox, { backgroundColor: Themes.cyberpunk.background }]}>
+                        <View style={[styles.previewBtn, { backgroundColor: Themes.cyberpunk.choiceBg, borderColor: Themes.cyberpunk.choiceBorder, borderWidth: 1 }]}>
+                            <ThemedText style={{ fontSize: 10, color: Themes.cyberpunk.choiceText }}>あ</ThemedText>
+                        </View>
+                    </View>
+                    <View style={styles.info}>
+                        <ThemedText type="defaultSemiBold" style={{ color: theme === 'cyberpunk' ? Themes.cyberpunk.text : undefined }}>サイバーパンク</ThemedText>
+                        <ThemedText style={[styles.desc, { color: theme === 'cyberpunk' ? Themes.cyberpunk.subText : undefined }]}>
+                            ネオンシアン×マゼンタ。近未来の夜を彩るダークテーマ。
+                        </ThemedText>
+                    </View>
+                    {theme === 'cyberpunk' && <ThemedText style={[styles.check, { color: Themes.cyberpunk.accent }]}>✓</ThemedText>}
+                </Pressable>
             </View>
 
             <Pressable style={styles.closeBtn} onPress={() => router.back()}>

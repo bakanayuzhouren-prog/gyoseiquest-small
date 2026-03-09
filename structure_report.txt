@@ -1,0 +1,88 @@
+=== current (src/questions.js) ===
+基礎法学:
+  - 基礎法学 (0 items)
+憲法:
+  - 憲法 (337 items)
+行政法:
+  - 行政法総論 (4 items)
+  - 行政手続法 (0 items)
+  - 行政不服審査法 (0 items)
+  - 行政事件訴訟法 (0 items)
+  - 国家賠償法・損失訴訟 (0 items)
+  - 地方自治法 (0 items)
+  - 行政法総合 (0 items)
+民法:
+  - 民法総論 (0 items)
+  - 民法物権 (0 items)
+  - 債権総論 (128 items)
+  - 債権各論 (206 items)
+  - 家族法 (0 items)
+  - 民法総合 (0 items)
+商法・会社法:
+  - 商法・会社法 (0 items)
+基礎知識:
+多肢選択:
+  - 憲法 (0 items)
+  - 行政法 (0 items)
+記述:
+  - 民法 (0 items)
+  - 行政法 (0 items)
+
+=== bak (src/questions.js.bak) ===
+基礎法学:
+  - 基礎法学 (0 items)
+憲法:
+  - 憲法 (337 items)
+行政法:
+  - 行政法総論 (4 items)
+  - 行政手続法 (0 items)
+  - 行政不服審査法 (0 items)
+  - 行政事件訴訟法 (0 items)
+  - 国家賠償法・損失訴訟 (0 items)
+  - 地方自治法 (0 items)
+  - 行政法総合 (0 items)
+民法:
+  - 民法総論 (0 items)
+  - 民法物権 (204 items)
+  - 債権総論 (126 items)
+  - 債権各論 (206 items)
+  - 家族法 (0 items)
+  - 民法総合 (0 items)
+商法・会社法:
+  - 商法・会社法 (0 items)
+基礎知識:
+多肢選択:
+  - 憲法 (0 items)
+  - 行政法 (0 items)
+記述:
+  - 民法 (0 items)
+  - 行政法 (0 items)
+
+=== backup (src/questions.js.backup) ===
+基礎法学:
+憲法:
+  - 憲法 (337 items)
+行政法:
+  - 行政法総論 (4 items)
+  - 行政手続法 (0 items)
+  - 行政不服審査法 (0 items)
+  - 行政事件訴訟法 (0 items)
+  - 国家賠償法・損失訴訟 (0 items)
+  - 地方自治法 (0 items)
+  - 行政法総合 (0 items)
+民法:
+  - 民法総論 (0 items)
+  - 民法物権 (0 items)
+  - 債権総論 (128 items)
+  - 債権各論 (206 items)
+  - 家族法 (0 items)
+  - 民法総合 (0 items)
+商法・会社法:
+基礎知識:
+多肢選択:
+  - 憲法 (0 items)
+  - 行政法 (0 items)
+記述:
+  - 民法 (0 items)
+  - 行政法 (0 items)
+
