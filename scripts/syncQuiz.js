@@ -287,9 +287,9 @@ async function sync() {
                 if (trimmedContent === '本文' || trimmedContent === '（本文）' || trimmedContent === '【本文】' || trimmedContent === '内容' || /^内容[（(].*[）)]$/.test(trimmedContent)) continue;
 
                 let isBonus = false;
-                if (questionText.startsWith('※')) {
+                if (/^※/.test(questionText)) {
                     isBonus = true;
-                    questionText = questionText.replace('※', '').trim();
+                    questionText = questionText.replace(/^※\s*/, '').trim();
                 }
 
                 const slots = [];
@@ -327,6 +327,7 @@ async function sync() {
                     slots.some(s => s.options && s.options.length > 0);
 
                 const choices = [];
+                const choiceIsBonus = [];
                 let explanation = valF || '';
                 let slotAnswersFromNtoP = null;
 
@@ -354,7 +355,11 @@ async function sync() {
 
                 // 第1肢（行政法１はC列、通常はK列）
                 const firstChoice = useGyosei1Layout ? valC : valK;
-                if (firstChoice) choices.push(firstChoice.replace(/^※\s*/, '').trim() || firstChoice);
+                if (firstChoice) {
+                    choiceIsBonus.push(/^※/.test(firstChoice));
+                    if (/^※/.test(firstChoice)) isBonus = true;
+                    choices.push(firstChoice.replace(/^※\s*/, '').trim() || firstChoice);
+                }
 
                 let offset = 1;
                 while ((i + offset) < rows.length) {
@@ -372,6 +377,8 @@ async function sync() {
 
                     let choiceText = useGyosei1Layout ? (nextRow[2] ? nextRow[2].trim() : nextB) : nextK;
                     if (choiceText) {
+                        choiceIsBonus.push(/^※/.test(choiceText));
+                        if (/^※/.test(choiceText)) isBonus = true;
                         choices.push(choiceText.replace(/^※\s*/, '').trim() || choiceText);
                     }
                     offset++;
@@ -423,6 +430,7 @@ async function sync() {
                     questionsData[currentSubject][currentCategory].push({
                         text: questionText,
                         choices: cleanChoices,
+                        choiceIsBonus: choiceIsBonus,
                         answer: finalAnswer,
                         explain: explanation || questionText, // Fallback to text if explanation empty
                         wordBank: valR,

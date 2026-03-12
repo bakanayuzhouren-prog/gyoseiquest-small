@@ -57,10 +57,12 @@ export default function QuestionScreen() {
       const isValid = hasText && (isDescriptive || hasChoices);
       if (!isValid) return false;
 
+      // 肢単位の※分離: choiceIsBonusがあればそれで判定、なければ従来のisBonus
+      const cb = q.choiceIsBonus as boolean[] | undefined;
       if (mode === 'bonus') {
-        return true;
+        return cb ? cb.some((b: boolean) => b) : !!q.isBonus;
       } else {
-        return !q.isBonus;
+        return cb ? cb.some((b: boolean) => !b) : !q.isBonus;
       }
     });
 
@@ -340,13 +342,24 @@ export default function QuestionScreen() {
   const shuffledChoices = useMemo(() => {
     if (!question || !question.choices) return [];
 
+    const cb = (question as any).choiceIsBonus as boolean[] | undefined;
+    const isBonusChoice = (i: number) => (cb && i < cb.length ? cb[i] : !!(question as any).isBonus);
+    const hasBonus = cb ? cb.some((b: boolean) => b) : !!(question as any).isBonus;
+    const hasNormal = cb ? cb.some((b: boolean) => !b) : !(question as any).isBonus;
+    const isMixed = hasBonus && hasNormal;
+
     // Map to object with original index
     let choicesWithIndex = question.choices.map((text: string, index: number) => ({ text, originalIndex: index }));
 
-    // ※フィルタ（ボーナスモード以外では ※ の肢を除外）
+    // 肢単位の※フィルタ
+    // 通常モード: ※なし肢のみ
+    // ボーナスモード: ※付き・通常が混在する問題は全肢表示、それ以外は※付き肢のみ
     if (mode !== 'bonus') {
-      choicesWithIndex = choicesWithIndex.filter(c => !c.text.includes('※'));
+      choicesWithIndex = choicesWithIndex.filter((c) => !isBonusChoice(c.originalIndex));
+    } else if (!isMixed) {
+      choicesWithIndex = choicesWithIndex.filter((c) => isBonusChoice(c.originalIndex));
     }
+    // isMixed && mode==='bonus' → フィルタせず全肢表示
 
     // シャッフルモード時は肢もランダム順に並び替え
     if (isShuffle) {
