@@ -261,7 +261,7 @@ async function sync() {
                 .trim();
             // 行政法１: B列が①⑫・で始まる行は新問題。通常: 問題文で終わる行が新問題
             const isNewProblemRow = useGyosei1Layout ? /^[①②③④⑤⑥⑦⑧⑨⑩⑪⑫・]/.test(valProblem) : true;
-            const isRealQuestion = valProblemNorm && /どれか[。]?$|どれ[。]?$|ものか[。]?$|なるか[。]?$|述べよ[。]?$|選びなさい[。]?$|いくつある[。]?$|正しいものはどれ[。]?$|誤っているものはどれ[。]?$/.test(valProblemNorm);
+            const isRealQuestion = valProblemNorm && /どれか(?:[。.]|$)|どれ(?:[。.]|$)|ものか(?:[。.]|$)|なるか(?:[。.]|$)|述べよ(?:[。.]|$)|選びなさい(?:[。.]|$)|いくつある(?:[。.]|$)|正しいものはどれ(?:[。.]|$)|誤っているものはどれ(?:[。.]|$)/.test(valProblemNorm);
             const isHeading = !isRealQuestion && valProblem && valProblemNorm.length < 60 &&
                 (valProblem.includes('に照らし、') || valProblem.includes('次の記述のうち、') ||
                  valProblem.includes('次のア〜オ') || valProblem.includes('次の文章'));
@@ -294,29 +294,61 @@ async function sync() {
                 }
 
                 const slots = [];
-                // 「語句の組合せとして」「語句(ア)と考え方(イ)の組合せ」→ K列選択肢を(ア)(イ)2列で表示。slotsは使わない
+                const buildDefaultSlots = () => {
+                    const problemText = valProblem || '';
+                    const pushLabels = (labels, bracketed = true) => {
+                        for (const label of labels) {
+                            slots.push({ label: bracketed ? `[ ${label} ]` : label, options: '' });
+                        }
+                    };
+
+                    if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[〜～]\s*[\[［]\s*[オ]\s*[\]］]/.test(problemText)) {
+                        pushLabels(['ア', 'イ', 'ウ', 'エ', 'オ']);
+                    } else if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[〜～]\s*[\[［]\s*[エ]\s*[\]］]/.test(problemText)) {
+                        pushLabels(['ア', 'イ', 'ウ', 'エ']);
+                    } else if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[・\s]*[\[［]\s*[イ]\s*[\]］]\s*[・\s]*[\[［]\s*[ウ]\s*[\]］]/.test(problemText)) {
+                        pushLabels(['ア', 'イ', 'ウ']);
+                    } else if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[・\s]*[\[［]\s*[イ]\s*[\]］]/.test(problemText)) {
+                        pushLabels(['ア', 'イ']);
+                    } else if (/空欄\s*ア\s*[〜～]\s*オ/.test(problemText)) {
+                        pushLabels(['ア', 'イ', 'ウ', 'エ', 'オ'], false);
+                    } else if (/空欄\s*ア\s*[〜～]\s*エ/.test(problemText)) {
+                        pushLabels(['ア', 'イ', 'ウ', 'エ'], false);
+                    } else if (/空欄\s*ア\s*[・\s]\s*イ\s*[・\s]\s*ウ/.test(problemText)) {
+                        pushLabels(['ア', 'イ', 'ウ'], false);
+                    } else if (/空欄\s*ア\s*[・\s]\s*イ/.test(problemText)) {
+                        pushLabels(['ア', 'イ'], false);
+                    } else if (/ア\s*[〜～]\s*オ/.test(problemText)) {
+                        pushLabels(['ア', 'イ', 'ウ', 'エ', 'オ'], false);
+                    } else if (/ア\s*[〜～]\s*エ/.test(problemText)) {
+                        pushLabels(['ア', 'イ', 'ウ', 'エ'], false);
+                    }
+                };
+                // 「語句の組合せとして」「語句(ア)と考え方(イ)の組合せ」→ K列選択肢を(ア)(イ)2列で表示。
+                // ただし K列が空で N〜S 列に語群がある場合は通常のスロット問題として扱う。
                 const isComboChoice = /語句の組合せとして|語句\s*[\(（]\s*[ア]\s*[\)）].*考え方\s*[\(（]\s*[イ]\s*[\)）].*組合せ/.test(valProblem || '');
-                if (!isComboChoice) {
-                for (let j = 0; j < 4; j++) {
-                    const label = row[3 + j] ? row[3 + j].trim() : '';
-                    const choice = row[13 + j] ? row[13 + j].trim() : '';
-                    if (label) slots.push({ label, options: choice });
-                }
-                if (row[8]) slots.push({ label: row[8].trim(), options: row[18] ? row[18].trim() : '' });
+                const shouldSkipSlotsForCombo = isComboChoice && !!valK;
+                if (!shouldSkipSlotsForCombo) {
+                    for (let j = 0; j < 4; j++) {
+                        const label = row[3 + j] ? row[3 + j].trim() : '';
+                        const choice = row[13 + j] ? row[13 + j].trim() : '';
+                        if (label) slots.push({ label, options: choice });
+                    }
+                    if (row[8]) slots.push({ label: row[8].trim(), options: row[18] ? row[18].trim() : '' });
                 }
                 // 問題文に空欄表記があるがスロット未設定の場合、デフォルトスロットを作成
-                if (slots.length === 0 && !isComboChoice) {
-                    if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[〜～]\s*[\[［]\s*[エ]\s*[\]］]/.test(valProblem || '')) {
-                        for (const lab of ['[ ア ]', '[ イ ]', '[ ウ ]', '[ エ ]']) slots.push({ label: lab, options: '' });
-                    } else if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[・\s]*[\[［]\s*[イ]\s*[\]］]/.test(valProblem || '')) {
-                        for (const lab of ['[ ア ]', '[ イ ]']) slots.push({ label: lab, options: '' });
-                    } else if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[・\s]*[\[［]\s*[イ]\s*[\]］]\s*[・\s]*[\[［]\s*[ウ]\s*[\]］]/.test(valProblem || '')) {
-                        for (const lab of ['[ ア ]', '[ イ ]', '[ ウ ]']) slots.push({ label: lab, options: '' });
+                if (slots.length === 0 && !shouldSkipSlotsForCombo) {
+                    buildDefaultSlots();
+                }
+                if (slots.length > 0) {
+                    const initialSlotOptions = [valN, valO, valP, valQ, valS];
+                    for (let j = 0; j < Math.min(slots.length, 5); j++) {
+                        if (initialSlotOptions[j] && !slots[j].options) slots[j].options = initialSlotOptions[j];
                     }
                 }
 
                 // スロットありでN,O,P,Qが空の場合、継続行から取得（選択肢が次の行にある場合）
-                if (slots.length > 0 && ![valN, valO, valP, valQ].some(v => v && v.length > 0)) {
+                if (slots.length > 0 && ![valN, valO, valP, valQ, valS].some(v => v && v.length > 0)) {
                     for (let o = 1; o < 10 && (i + o) < rows.length; o++) {
                         const rw = rows[i + o];
                         const nextH = rw[7] ? rw[7].trim() : '';
@@ -325,9 +357,10 @@ async function sync() {
                         const oo = rw[14] ? rw[14].trim() : '';
                         const p = rw[15] ? rw[15].trim() : '';
                         const q = rw[16] ? rw[16].trim() : '';
-                        if (n || oo || p || q) {
-                            const opts = [n, oo, p, q];
-                            for (let j = 0; j < Math.min(slots.length, 4); j++) {
+                        const s = rw[18] ? rw[18].trim() : '';
+                        if (n || oo || p || q || s) {
+                            const opts = [n, oo, p, q, s];
+                            for (let j = 0; j < Math.min(slots.length, 5); j++) {
                                 if (opts[j] && !slots[j].options) slots[j].options = opts[j];
                             }
                             break;
@@ -342,39 +375,25 @@ async function sync() {
                 let explanation = valF || '';
                 let slotAnswersFromNtoP = null;
 
-                // 語群選択問題: N,O,P,Q列がスロットの選択肢。各列内の①/②のどちらかに（ｒ）→そのindexが正解
-                const nopqFromSlots = slots.slice(0, 4).map(s => s.options || '');
-                const colsForR = [valN, valO, valP, valQ].map((v, idx) => v || nopqFromSlots[idx] || '');
+                // 語群選択問題: N,O,P,Q,S列がスロットの選択肢。各列内の（ｒ）が付いた語句そのものを正解として保持
+                const nopqsFromSlots = slots.slice(0, 5).map(s => s.options || '');
+                const colsForR = [valN, valO, valP, valQ, valS].map((v, idx) => v || nopqsFromSlots[idx] || '');
                 if ((hasNtoSChoices || hasNtoSChoicesAfter) && slots.length > 0) {
                     const rPattern = /[\(（]\s*[rｒ]\s*[\)）]/i;
-                    const parseSlotCorrectIndex = (optStr) => {
-                        if (!optStr) return -1;
-                        const byNewline = optStr.split(/\n+/).filter(Boolean);
-                        for (let i = 0; i < byNewline.length; i++) {
-                            if (rPattern.test(byNewline[i])) return i;
-                        }
-                        const byMaru = optStr.split(/(?=[①②])/).filter(Boolean);
-                        for (let i = 0; i < byMaru.length; i++) {
-                            if (rPattern.test(byMaru[i])) return i;
-                        }
-                        const byNum = optStr.split(/(?=\d+[\.．]\s*)/).filter(Boolean);
-                        for (let i = 0; i < byNum.length; i++) {
-                            if (rPattern.test(byNum[i])) return i;
-                        }
-                        const bySlash = optStr.split(/\s*[\/／]\s*/).filter(Boolean);
-                        for (let i = 0; i < bySlash.length; i++) {
-                            if (rPattern.test(bySlash[i])) return i;
-                        }
-                        const byTab = optStr.split(/\t+/).filter(Boolean);
-                        for (let i = 0; i < byTab.length; i++) {
-                            if (rPattern.test(byTab[i])) return i;
-                        }
-                        if (rPattern.test(optStr)) return 0;
-                        return -1;
+                    const splitSlotOptions = (optStr) => {
+                        if (!optStr) return [];
+                        return optStr
+                            .split(/\n+|(?=[①②③④⑤])|(?=\d+[\.．]\s*)|[\/／]|\t+/)
+                            .map((part) => part.trim())
+                            .filter(Boolean);
                     };
-                    const cols = colsForR;
-                    const raw = cols.slice(0, slots.length).map(parseSlotCorrectIndex);
-                    if (raw.every(i => i >= 0)) slotAnswersFromNtoP = raw;
+                    const parseSlotCorrectValue = (optStr) => {
+                        const parts = splitSlotOptions(optStr);
+                        const hit = parts.find((part) => rPattern.test(part));
+                        return hit ? hit.replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim() : '';
+                    };
+                    const raw = colsForR.slice(0, slots.length).map(parseSlotCorrectValue);
+                    if (raw.every(Boolean)) slotAnswersFromNtoP = raw;
                 }
 
                 // 第1肢（行政法１はC列、通常はK列）
@@ -485,11 +504,15 @@ async function sync() {
                         }
                     }
                     const comboN = nArr.join('\n'), comboO = oArr.join('\n');
+                    const slotWordBank = slots.length > 0 && slots.some((slot) => slot.options)
+                        ? slots
+                            .filter((slot) => slot.options)
+                            .map((slot) => `【${String(slot.label || '').replace(/[\[\]\s]/g, '')}】\n${stripR(slot.options || '')}`)
+                            .join('\n\n')
+                        : '';
                     const nopqWordBank = isComboWithWordBank && (comboN || comboO)
                         ? '【ア】\n' + (comboN || '') + '\n\n【イ】\n' + (comboO || '')
-                        : (slots.length >= 2 && (slots[0].options || slots[1].options)
-                            ? '【ア】\n' + stripR(slots[0].options || '') + '\n\n【イ】\n' + stripR(slots[1].options || '')
-                            : '');
+                        : slotWordBank;
                     const finalWordBank = nopqWordBank || valR;
 
                     questionsData[currentSubject][currentCategory].push({

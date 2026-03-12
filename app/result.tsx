@@ -63,9 +63,13 @@ export default function ResultScreen() {
   const explain = question?.explain || '';
   const memo = question?.memo || '';
   const choices = question?.choices || [];
-  const correctIndices: number[] = question?.answer || [];
-  const correctSlots: string[] = Array.isArray(question?.answer) && typeof (question?.answer as any[])[0] === 'string' ? (question?.answer as string[]) : [];
-  const answerPending = isTashi ? correctSlots.length === 0 : correctIndices.length === 0;
+  const rawAnswer = Array.isArray(question?.answer) ? (question.answer as any[]) : [];
+  const correctIndices: number[] = rawAnswer.length > 0 && typeof rawAnswer[0] === 'number' ? (rawAnswer as number[]) : [];
+  const correctSlots: string[] = rawAnswer.length > 0 && typeof rawAnswer[0] === 'string' ? (rawAnswer as string[]) : [];
+  const hasUsableSlots = Array.isArray((question as any)?.slots) && (question as any).slots.some((s: any) => s?.options);
+  const isSlotQuestion = !isDescriptive && (hasUsableSlots || pickedSlots.length > 0 || correctSlots.length > 0);
+  const isSlotStyle = isTashi || isSlotQuestion;
+  const answerPending = isSlotStyle ? correctSlots.length === 0 : correctIndices.length === 0;
   const refId = question?.refId || '';
 
   // [NEW] Resolve User Selection & Validation
@@ -85,15 +89,19 @@ export default function ResultScreen() {
   // Exact Match Validation
   const sortedCorrect = [...correctIndices].sort((a, b) => a - b);
   const sortedUser = [...userSelection].sort((a, b) => a - b);
-  const isCorrectTashi = !answerPending && correctSlots.length === pickedSlots.length && correctSlots.every((v, i) => v === pickedSlots[i]);
+  const isCorrectSlots = !answerPending && correctSlots.length === pickedSlots.length && correctSlots.every((v, i) => v === pickedSlots[i]);
   const isCorrectReorder = isReorder && !answerPending && correctIndices.length === userSelection.length && correctIndices.every((v, i) => v === userSelection[i]);
-  const isCorrect = isTashi
-    ? isCorrectTashi
+  const isCorrect = isSlotStyle
+    ? isCorrectSlots
     : isReorder
       ? isCorrectReorder
       : !answerPending && sortedCorrect.length === sortedUser.length && sortedCorrect.every((val, index) => val === sortedUser[index]);
 
-  const correctAnswersText = isTashi ? correctSlots.map((s, i) => `${'アイウエオ'[i]}: ${s}`).join('\n') : isReorder ? correctIndices.map((i: number, pos: number) => `${pos + 1}. ${choices[i]}`).join('\n') : correctIndices.map((i: number) => choices[i]).join('\n・');
+  const correctAnswersText = isSlotStyle
+    ? correctSlots.map((s, i) => `${'アイウエオ'[i] || `${i + 1}`}: ${s}`).join('\n')
+    : isReorder
+      ? correctIndices.map((i: number, pos: number) => `${pos + 1}. ${choices[i]}`).join('\n')
+      : correctIndices.map((i: number) => choices[i]).join('\n・');
 
   // Memo State
   const [showOfficialMemo, setShowOfficialMemo] = useState(false);
@@ -207,7 +215,7 @@ export default function ResultScreen() {
 
         <ThemedView style={{ marginBottom: 16 }}>
           <ThemedText style={{ marginBottom: 8, color: colors.subText }}>あなたの回答:</ThemedText>
-          {isTashi && pickedSlots.length > 0 ? (
+          {isSlotStyle && pickedSlots.length > 0 ? (
             <ThemedView style={[styles.descriptiveAnswerBox, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
               {pickedSlots.map((s, i) => (
                 <ThemedText key={i} style={{ fontSize: 16, color: colors.text, lineHeight: 24, marginBottom: 4 }}>
@@ -238,12 +246,12 @@ export default function ResultScreen() {
             <ThemedText type="title" style={{ color: '#1565C0', fontSize: 20 }}>📝 記述式</ThemedText>
             <ThemedText style={{ color: '#0D47A1', marginTop: 4 }}>解説を読んで自分の解答と照らし合わせてください。</ThemedText>
           </ThemedView>
-        ) : isTashi && answerPending ? (
+        ) : isSlotStyle && answerPending ? (
           <ThemedView style={{ padding: 16, backgroundColor: '#FFF8E1', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#FFC107', alignItems: 'center' }}>
             <ThemedText type="title" style={{ color: '#F57F17', fontSize: 20 }}>⏳ 回答設定中</ThemedText>
             <ThemedText style={{ color: '#E65100', marginTop: 4 }}>正解はスプレッドシートで設定してください。</ThemedText>
           </ThemedView>
-        ) : isTashi ? (
+        ) : isSlotStyle ? (
           isCorrect ? (
             <ThemedView style={{ padding: 16, backgroundColor: '#E8F5E9', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#4CAF50', alignItems: 'center' }}>
               <ThemedText type="title" style={{ color: '#2E7D32', fontSize: 24 }}>🎉 正解！お見事！</ThemedText>
