@@ -20,6 +20,7 @@ export default function ResultScreen() {
     pickedIndices?: string; // NEW: JSON string of selected indices
     pickedText?: string; // 記述式の解答文
     pickedSlots?: string; // 多肢選択の穴埋め解答 JSON ["アの解答","イの解答",...]
+    isReorder?: string; // 並べ替え問題: 1
     field?: string;
     questionIndex?: string; // Current question index
     totalQuestions?: string; // NEW
@@ -51,6 +52,7 @@ export default function ResultScreen() {
   const subjectData = subject ? (SUBJECTS as any)[subject] : {};
   const questions = field && subjectData[field] ? subjectData[field] : [];
   const question = questions[questionIndex] || null;
+  const isReorder = params.isReorder === '1' || (question as any)?.isReorder;
 
   // Fallback or loading state if question not found (shouldn't happen with correct nav)
   if (!question) {
@@ -84,11 +86,14 @@ export default function ResultScreen() {
   const sortedCorrect = [...correctIndices].sort((a, b) => a - b);
   const sortedUser = [...userSelection].sort((a, b) => a - b);
   const isCorrectTashi = !answerPending && correctSlots.length === pickedSlots.length && correctSlots.every((v, i) => v === pickedSlots[i]);
+  const isCorrectReorder = isReorder && !answerPending && correctIndices.length === userSelection.length && correctIndices.every((v, i) => v === userSelection[i]);
   const isCorrect = isTashi
     ? isCorrectTashi
-    : !answerPending && sortedCorrect.length === sortedUser.length && sortedCorrect.every((val, index) => val === sortedUser[index]);
+    : isReorder
+      ? isCorrectReorder
+      : !answerPending && sortedCorrect.length === sortedUser.length && sortedCorrect.every((val, index) => val === sortedUser[index]);
 
-  const correctAnswersText = isTashi ? correctSlots.map((s, i) => `${'アイウエオ'[i]}: ${s}`).join('\n') : correctIndices.map((i: number) => choices[i]).join('\n・');
+  const correctAnswersText = isTashi ? correctSlots.map((s, i) => `${'アイウエオ'[i]}: ${s}`).join('\n') : isReorder ? correctIndices.map((i: number, pos: number) => `${pos + 1}. ${choices[i]}`).join('\n') : correctIndices.map((i: number) => choices[i]).join('\n・');
 
   // Memo State
   const [showOfficialMemo, setShowOfficialMemo] = useState(false);

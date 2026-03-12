@@ -59,10 +59,11 @@ export default function QuestionScreen() {
 
       // 肢単位の※分離: choiceIsBonusがあればそれで判定、なければ従来のisBonus
       const cb = q.choiceIsBonus as boolean[] | undefined;
+      const hasCb = cb && cb.length > 0;
       if (mode === 'bonus') {
-        return cb ? cb.some((b: boolean) => b) : !!q.isBonus;
+        return hasCb ? cb.some((b: boolean) => b) : !!q.isBonus;
       } else {
-        return cb ? cb.some((b: boolean) => !b) : !q.isBonus;
+        return hasCb ? cb.some((b: boolean) => !b) : !q.isBonus;
       }
     });
 
@@ -83,6 +84,8 @@ export default function QuestionScreen() {
   const [questionIndex, setQuestionIndex] = useState<number | null>(null);
   const [isLongText, setIsLongText] = useState(false);
 
+  const question = questionIndex !== null ? questions[questionIndex] : null;
+
   useEffect(() => {
     setIsLongText(false);
   }, [questionIndex]);
@@ -93,6 +96,11 @@ export default function QuestionScreen() {
   // State for multi-select
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
 
+  // State for 並べ替え問題（表示順のインデックス配列）
+  const [reorderOrder, setReorderOrder] = useState<number[]>([]);
+  // クリック順で選択（並べ替え問題）
+  const [reorderSelection, setReorderSelection] = useState<number[]>([]);
+
   // State for 記述式（文章入力）
   const [descriptiveAnswer, setDescriptiveAnswer] = useState('');
 
@@ -101,7 +109,22 @@ export default function QuestionScreen() {
     setDimmedIndices([]);
     setSelectedIndices([]);
     setDescriptiveAnswer('');
+    setReorderSelection([]);
   }, [questionIndex]);
+
+  // 並べ替え問題: 初期化（シャッフルした順序）
+  useEffect(() => {
+    if ((question as any)?.isReorder && question?.choices?.length) {
+      const indices = question.choices.map((_: string, i: number) => i);
+      for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i], indices[j]] = [indices[j], indices[i]];
+      }
+      setReorderOrder(indices);
+    } else {
+      setReorderOrder([]);
+    }
+  }, [questionIndex, question?.choices, (question as any)?.isReorder]);
 
   // State for slots
   const [slotSelections, setSlotSelections] = useState<{ [key: string]: string }>({});
@@ -130,9 +153,11 @@ export default function QuestionScreen() {
     }
   };
 
+  const stripR = (s: string) => (s || '').replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim();
+
   const renderQuestionText = () => {
     if (!question) return null;
-    const text = question.text || '';
+    const text = stripR(question.text || '');
     const slots = (question as any).slots || [];
     const answer = (question as any).answer || [];
     const correctCount = Array.isArray(answer) ? answer.length : 0;
@@ -285,8 +310,6 @@ export default function QuestionScreen() {
     });
   };
 
-  const question = questionIndex !== null ? questions[questionIndex] : null;
-
   // Resource Logic
   const resourceId = question ? (question as any).refId : null;
   // resource can be an Object (single) or Array (multi). Normalize to Array.
@@ -337,6 +360,25 @@ export default function QuestionScreen() {
       .filter(Boolean);
     return { slotLabels, options };
   }, [subject, question]);
+
+  // (ア)(イ)2列組合せ形式: 語句(ア)と考え方(イ)の組合せ問題
+  const comboFormatData = useMemo(() => {
+    if (!question || !question.choices?.length) return null;
+    const text = (question as any).text || '';
+    const isCombo = /語句\s*[\(（]\s*[ア]\s*[\)）].*[\(（]\s*[イ]\s*[\)）]|[\(（]\s*[ア]\s*[\)）].*[\(（]\s*[イ]\s*[\)）].*組合せ|考え方\s*[\(（]\s*[イ]\s*[\)）]|空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[・\s]*[\[［]\s*[イ]\s*[\]］].*組合せ/.test(text);
+    if (!isCombo) return null;
+    const cb = (question as any).choiceIsBonus as boolean[] | undefined;
+    let list = question.choices.map((c: string, idx: number) => {
+      const t = (c || '').replace(/^[\d\.．]+\s*/, '').trim();
+      const parts = t.replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim().split(/\s*[\/／]\s*|[　\t\r\n]+|\s{2,}/);
+      return { partA: parts[0] || t, partB: parts[1] || '', originalIndex: idx, isBonus: cb && idx < cb.length ? cb[idx] : false };
+    });
+    if (mode === 'bonus') list = list.filter((x: { isBonus: boolean }) => x.isBonus);
+    else if (cb?.some((b: boolean) => b)) list = list.filter((x: { isBonus: boolean }) => !x.isBonus);
+    if (list.length === 0) return null;
+    if (!list.every((p: { partB: string }) => p.partB)) return null;
+    return list;
+  }, [question, mode]);
 
   // Shuffle choices and keep track of original index
   const shuffledChoices = useMemo(() => {
@@ -438,13 +480,13 @@ export default function QuestionScreen() {
 
         {renderQuestionText()}
 
-        {/* Word Bank: 多肢選択ではタップで穴埋め、他は表示のみ */}
+        {/* Word Bank: 多肢選択・N,O列語群ではタップで穴埋め、他は表示のみ */}
         {(question as any).wordBank ? (
           <ThemedView style={[styles.wordBankContainer, { borderColor: colors.choiceBorder, backgroundColor: colors.card }]}>
             <ThemedText style={[styles.wordBankTitle, { color: colors.subText }]}>
-              【語群】{tashiData && activeSlot ? ` → 空欄 [ ${activeSlot.label.replace(/[\[\]\s]/g, '')} ] を選んでください` : ''}
+              【語群】{(tashiData || ((question as any).slots?.length > 0 && activeSlot)) && activeSlot ? ` → 空欄 [ ${activeSlot.label.replace(/[\[\]\s]/g, '')} ] を選んでください` : ''}
             </ThemedText>
-            {tashiData && activeSlot ? (
+            {(tashiData || ((question as any).slots?.length > 0 && activeSlot)) ? (
               <Pressable style={[styles.cancelSlotButton, { borderColor: colors.choiceBorder }]} onPress={() => setActiveSlot(null)}>
                 <ThemedText style={{ color: colors.subText, fontSize: 12 }}>キャンセル</ThemedText>
               </Pressable>
@@ -460,8 +502,28 @@ export default function QuestionScreen() {
                       <ThemedText style={{ color: colors.text, fontSize: 14 }}>{opt}</ThemedText>
                     </Pressable>
                   ))
+                : activeSlot && (question as any).slots?.length > 0
+                ? (() => {
+                    const optStr = activeSlot.options || '';
+                    const rPattern = /[\(（]\s*[rｒ]\s*[\)）]/gi;
+                    const parts = optStr.split(/\n+|(?=[①②])|(?=\d+[\.．]\s*)|[\/／]|\t+/).filter((p: string) => p.trim());
+                    return parts.map((p: string, idx: number) => {
+                      const clean = p.replace(rPattern, '').trim();
+                      if (!clean) return null;
+                      return (
+                        <Pressable
+                          key={idx}
+                          style={[styles.wordBankItem, styles.wordBankItemPressable, { borderColor: colors.choiceBorder }]}
+                          onPress={() => handleSlotSelect(clean)}
+                        >
+                          <ThemedText style={{ color: colors.text, fontSize: 14 }}>{clean}</ThemedText>
+                        </Pressable>
+                      );
+                    });
+                  })()
                 : (String((question as any).wordBank || '')).split('\n').filter((l: string) => l.trim().length > 0).map((line: string, index: number) => {
-                    const item = line.trim();
+                    const item = line.trim().replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim();
+                    if (!item) return null;
                     const hasNumber = /^\d+/.test(item);
                     const text = hasNumber ? item : `${index + 1}. ${item}`;
                     return (
@@ -475,19 +537,22 @@ export default function QuestionScreen() {
         ) : null}
 
         <ThemedView style={[styles.choices, { backgroundColor: colors.background }]}>
-          {tashiData ? (
+          {(tashiData || ((question as any).slots?.length > 0 && (question as any).slots?.some((s: any) => s.options))) ? (
             <>
               <Pressable
                 style={[
                   styles.answerButton,
                   (() => {
-                    const allFilled = tashiData.slotLabels.every((l) => slotSelections[`[ ${l} ]`]);
+                    const labels = tashiData ? tashiData.slotLabels.map((l) => `[ ${l} ]`) : ((question as any).slots || []).map((s: any) => s.label);
+                    const allFilled = labels.every((l) => slotSelections[l]);
                     return !allFilled && styles.answerButtonDisabled;
                   })()
                 ]}
-                disabled={!tashiData.slotLabels.every((l) => slotSelections[`[ ${l} ]`])}
+                disabled={!(tashiData ? tashiData.slotLabels.every((l) => slotSelections[`[ ${l} ]`]) : ((question as any).slots || []).every((s: any) => slotSelections[s.label]))}
                 onPress={() => {
-                  const ans = tashiData.slotLabels.map((l) => slotSelections[`[ ${l} ]`] || '');
+                  const ans = tashiData
+                    ? tashiData.slotLabels.map((l) => slotSelections[`[ ${l} ]`] || '')
+                    : ((question as any).slots || []).map((s: any) => slotSelections[s.label] || '');
                   router.push({
                     pathname: '/result',
                     params: {
@@ -504,6 +569,98 @@ export default function QuestionScreen() {
               >
                 <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
               </Pressable>
+            </>
+          ) : ((question as any).isReorder || /並び順|ア[〜~]オ|ア～オ/.test((question as any).text || '')) && (question as any).choices?.length > 0 ? (
+            <>
+              <ThemedText style={[styles.descriptiveLabel, { color: colors.subText, marginBottom: 8 }]}>
+                肢をクリックした順番に選択してください。{reorderSelection.length > 0 && ` (選択順: ${reorderSelection.map((i) => i + 1).join(' → ')})`}
+              </ThemedText>
+              {reorderSelection.length > 0 && (
+                <Pressable style={[styles.cancelSlotButton, { borderColor: colors.choiceBorder, marginBottom: 8 }]} onPress={() => setReorderSelection([])}>
+                  <ThemedText style={{ color: colors.subText, fontSize: 12 }}>やり直す</ThemedText>
+                </Pressable>
+              )}
+              {((question as any).choices as string[]).map((choice: string, idx: number) => {
+                const label = String(idx + 1);
+                const isSelected = reorderSelection.includes(idx);
+                const selectedPos = reorderSelection.indexOf(idx) + 1;
+                return (
+                  <Pressable
+                    key={idx}
+                    style={[
+                      styles.reorderRow,
+                      { backgroundColor: isSelected ? '#E3F2FD' : colors.choiceBg,
+                        borderWidth: isSelected ? 2 : 1, borderColor: isSelected ? '#2196F3' : colors.choiceBorder }
+                    ]}
+                    onPress={() => {
+                      setReorderSelection(prev => {
+                        if (prev.includes(idx)) return prev.filter((i) => i !== idx);
+                        if (prev.length >= ((question as any).choices?.length || 0)) return prev;
+                        return [...prev, idx];
+                      });
+                    }}
+                  >
+                    <ThemedText style={[styles.reorderNum, { color: colors.text }]}>{label}.</ThemedText>
+                    <ThemedText style={[styles.reorderText, { color: colors.text, flex: 1 }]} numberOfLines={5}>
+                      {choice || ''}
+                    </ThemedText>
+                    {isSelected && <ThemedText style={{ color: '#2196F3', fontWeight: 'bold', marginLeft: 8 }}>→{selectedPos}番目</ThemedText>}
+                  </Pressable>
+                );
+              })}
+              <Pressable
+                style={[styles.answerButton, reorderSelection.length !== ((question as any).choices?.length || 0) && styles.answerButtonDisabled]}
+                disabled={reorderSelection.length !== ((question as any).choices?.length || 0)}
+                onPress={() => {
+                  router.push({
+                    pathname: '/result',
+                    params: {
+                      subject,
+                      field,
+                      questionIndex: String(questionIndex),
+                      pickedIndex: '-1',
+                      pickedIndices: JSON.stringify(reorderSelection),
+                      isReorder: '1',
+                      totalQuestions: String(questions.length),
+                      correctCountSession: params.correctCountSession || '0',
+                    }
+                  });
+                }}
+              >
+                <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
+              </Pressable>
+            </>
+          ) : comboFormatData ? (
+            <>
+              <View style={[styles.comboTable, { borderColor: colors.choiceBorder }]}>
+                <View style={[styles.comboTableHeader, { backgroundColor: colors.card }]}>
+                  <ThemedText style={[styles.comboTableHeaderCell, { color: colors.text }]}>(ア)</ThemedText>
+                  <ThemedText style={[styles.comboTableHeaderCell, { color: colors.text }]}>(イ)</ThemedText>
+                </View>
+                {comboFormatData.map((item: { partA: string; partB: string; originalIndex: number }, idx: number) => (
+                  <Pressable
+                    key={idx}
+                    style={[styles.comboTableRow, { borderColor: colors.choiceBorder, backgroundColor: colors.choiceBg }]}
+                    onPress={() => {
+                      router.push({
+                        pathname: '/result',
+                        params: {
+                          subject,
+                          field,
+                          questionIndex: String(questionIndex),
+                          pickedIndex: String(item.originalIndex),
+                          totalQuestions: String(questions.length),
+                          correctCountSession: params.correctCountSession || '0',
+                        }
+                      });
+                    }}
+                  >
+                    <ThemedText style={[styles.comboTableNum, { color: colors.text }]}>{idx + 1}.</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{item.partA}</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{item.partB}</ThemedText>
+                  </Pressable>
+                ))}
+              </View>
             </>
           ) : subject === '記述' ? (
             <>
@@ -881,6 +1038,74 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     fontSize: 16,
+  },
+  reorderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+    borderRadius: 8,
+    borderWidth: 1,
+    marginBottom: 8,
+    gap: 8,
+  },
+  reorderNum: {
+    fontSize: 16,
+    fontWeight: '700',
+    minWidth: 28,
+  },
+  reorderText: {
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  reorderButtons: {
+    flexDirection: 'row',
+    gap: 4,
+  },
+  reorderBtn: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 6,
+  },
+  reorderBtnText: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#fff',
+  },
+  comboTable: {
+    borderWidth: 1,
+    borderRadius: 8,
+    overflow: 'hidden',
+    marginBottom: 12,
+  },
+  comboTableHeader: {
+    flexDirection: 'row',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderBottomWidth: 2,
+  },
+  comboTableHeaderCell: {
+    flex: 1,
+    fontSize: 16,
+    fontWeight: '700',
+    textAlign: 'center',
+  },
+  comboTableRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    borderBottomWidth: 1,
+    gap: 8,
+  },
+  comboTableNum: {
+    fontSize: 16,
+    fontWeight: '700',
+    minWidth: 28,
+  },
+  comboTableCell: {
+    flex: 1,
+    fontSize: 15,
+    lineHeight: 22,
   },
   choiceButton: {
     borderRadius: 30, // Pill shape
