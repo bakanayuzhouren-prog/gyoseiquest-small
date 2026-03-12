@@ -107,8 +107,8 @@ export default function StageSelectScreen() {
                         params: { subject, field, mode: 'bonus' },
                     }}
                     asChild>
-                    <Pressable style={[styles.button, styles.bonusButton]}>
-                        <ThemedText type="defaultSemiBold" style={[styles.text, styles.bonusText]}>
+                    <Pressable style={StyleSheet.flatten([styles.button, styles.bonusButton])}>
+                        <ThemedText type="defaultSemiBold" style={StyleSheet.flatten([styles.text, styles.bonusText])}>
                             ② ボーナスステージ ★
                         </ThemedText>
                     </Pressable>

@@ -532,12 +532,12 @@ export default function LearnSubjectScreen() {
             {(digDeeperUrl || hasChunks) ? (
               <Pressable style={styles.digDeeperButtonSmall} onPress={handleOpenDeepDive}>
                 <MaterialIcons
-                  name={(digDeeperUrl === '54' && subject === '民法総論') ? "brush" : "article"}
+                  name={(digDeeperUrl === '54' && subject === '民法総則') ? "brush" : "article"}
                   size={16}
                   color="#fff"
                 />
                 <ThemedText style={styles.digDeeperTextSmall}>
-                  {(digDeeperUrl === '54' && subject === '民法総論') ? "絵で覚える" : "もっと深掘る"}
+                  {(digDeeperUrl === '54' && subject === '民法総則') ? "絵で覚える" : "もっと深掘る"}
                 </ThemedText>
               </Pressable>
             ) : null}

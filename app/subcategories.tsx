@@ -35,8 +35,8 @@ export default function SubCategoriesScreen() {
                             params: { subject, field },
                         }}
                         asChild>
-                        <Pressable style={[styles.button, { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder }]}>
-                            <ThemedText type="defaultSemiBold" style={[styles.text, { color: isLightBg(colors.choiceBg) ? '#000000' : colors.choiceText }]}>
+                        <Pressable style={StyleSheet.flatten([styles.button, { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder }])}>
+                            <ThemedText type="defaultSemiBold" style={StyleSheet.flatten([styles.text, { color: isLightBg(colors.choiceBg) ? '#000000' : colors.choiceText }])}>
                                 {field}
                             </ThemedText>
                         </Pressable>

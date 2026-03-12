@@ -8,6 +8,7 @@ import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
 import { PIN_CASES } from '@/src/pinData';
 import { RESOURCES, SUBJECTS } from '@/src/questions';
+import { getChoicePrefix, hasNumberPrefix } from '@/utils/choiceNumber';
 import { addPoints } from '@/utils/points';
 import { incrementLoopCount } from '@/utils/progress';
 import { USER_KEY } from './login';
@@ -260,7 +261,7 @@ export default function ResultScreen() {
         ) : (
           <ThemedText type="subtitle" style={{ color: '#D32F2F', marginBottom: 8 }}>不正解... 復習が必要だ！</ThemedText>
         )}
-        <ThemedText style={[styles.questionText, { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }]}>{text}</ThemedText>
+        <ThemedText style={[styles.questionText, { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }]}>{(hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex))}{text}</ThemedText>
         {!isDescriptive && !answerPending && correctAnswersText && (
           <ThemedText style={[styles.answerText, { color: colors.text }]}>正解: {correctAnswersText}</ThemedText>
         )}

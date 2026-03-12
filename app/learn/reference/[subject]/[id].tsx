@@ -58,10 +58,10 @@ export default function ReferencePage() {
     }
 
     // Override for Agency Personation Diagram (Workaround for large questions.js)
-    if (subjectName === '民法総論' && questionIndex === 54) {
+    if (subjectName === '民法総則' && questionIndex === 54) {
         explainText = "[[image:agency_diagram]]";
     }
-    if (subjectName === '民法総論' && questionIndex === 55) {
+    if (subjectName === '民法総則' && questionIndex === 55) {
         explainText = "[[big:復代理人の引渡義務（民法107条2項）]]\n\n[[bold:【1. 復代理人の選任】]]\n[[image:chachalot:本人]] [[arrow:right]] [[image:pitchi:代理人]] [[arrow:right]] [[image:task:復代理人]]\n\n[[bold:【2. 目的物の受領】]]\n[[image:task:復代理人]] [[gift_arrow:left]] [[image:king_kachadokuro:相手方]]\n\n[[bold:【3. 本人または代理人への引渡し】]]\n[[image:chachalot:本人]] [[gift_arrow:left:or]] [[image:task:復代理人]] [[gift_arrow:right:or]] [[image:pitchi:代理人]]\nどちらかに渡せば義務を履行したことになります。\n\n[[big:【結論】]]\n[[marker:復代理人は、本人、代理人のいずれかに目的物を引き渡せば、引渡義務を履行したことになります。]]";
     }
 

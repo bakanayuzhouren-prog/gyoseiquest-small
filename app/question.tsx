@@ -1,5 +1,5 @@
 import { Link, router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Image, Modal, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
@@ -8,6 +8,7 @@ import { BONUS_QUESTIONS } from '@/src/bonus_questions';
 import { useTheme } from '@/src/context/ThemeContext';
 import { RESOURCES, SUBJECTS } from '@/src/questions';
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
+import { getChoicePrefix, hasNumberPrefix } from '@/utils/choiceNumber';
 
 export default function QuestionScreen() {
   const params = useLocalSearchParams<{ subject?: string; field?: string; index?: string; correctCountSession?: string; mode?: string; shuffle?: string }>();
@@ -105,9 +106,11 @@ export default function QuestionScreen() {
   const [activeSlot, setActiveSlot] = useState<{ label: string; options: string } | null>(null);
 
   // State for Resource Modal
-  // State for Resource Modal
   const [resourceModalVisible, setResourceModalVisible] = useState(false);
   const [resourcePage, setResourcePage] = useState(0);
+
+  const sidebarScrollRef = useRef<ScrollView>(null);
+  const ITEM_WIDTH = 42;
 
   // Reset slots when question changes
   useEffect(() => {
@@ -149,7 +152,7 @@ export default function QuestionScreen() {
       if (useFormatted) {
         const paragraphs = formatDescriptiveText(text);
         const segmentStyle = (seg: TextSegment) => {
-          const base = { fontFamily: theme === 'paper' ? 'serif' : undefined };
+          const base = theme === 'paper' ? { fontFamily: 'serif' as const } : {};
           switch (seg.type) {
             case 'header':
               return { ...base, color: '#333' };
@@ -166,12 +169,12 @@ export default function QuestionScreen() {
             {paragraphs.map((para, pi) => (
               <View
                 key={pi}
-                style={[
+                style={StyleSheet.flatten([
                   styles.descriptiveParagraph,
                   para.spacing === 'before' && { marginTop: 16 },
                   para.spacing === 'after' && { marginBottom: 16 },
                   para.spacing === 'both' && { marginVertical: 16 },
-                ]}
+                ].filter(Boolean))}
               >
                 <ThemedText
                   style={[
@@ -179,6 +182,7 @@ export default function QuestionScreen() {
                     { color: colors.text, lineHeight: 28, fontFamily: theme === 'paper' ? 'serif' : undefined }
                   ]}
                 >
+                  {pi === 0 && !hasNumberPrefix(text) ? `${getChoicePrefix(questionIndex)} ` : ''}
                   {para.segments.map((seg, si) => (
                     <ThemedText key={si} style={segmentStyle(seg)}>
                       {seg.text}
@@ -202,7 +206,7 @@ export default function QuestionScreen() {
               if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
             }}
           >
-            {text}{subject === '多肢選択' ? suffix : ''}
+            {(hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex))}{text}{subject === '多肢選択' ? suffix : ''}
           </ThemedText>
         );
       }
@@ -219,6 +223,7 @@ export default function QuestionScreen() {
 
       content = (
         <ThemedText style={[styles.questionText, isLongText && styles.questionTextSmall, { lineHeight: 40 }]}>
+          {hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex)}
           {parts.map((part: string, index: number) => {
             const slot = effectiveSlots.find((s: any) => s.label === part);
             if (slot) {
@@ -354,6 +359,19 @@ export default function QuestionScreen() {
     return choicesWithIndex;
   }, [question, mode, isShuffle]);
 
+  useEffect(() => {
+    if (questionIndex !== null && sidebarScrollRef.current) {
+      sidebarScrollRef.current.scrollTo({ x: Math.max(0, questionIndex * ITEM_WIDTH - 80), animated: true });
+    }
+  }, [questionIndex]);
+
+  const jumpToQuestion = (idx: number) => {
+    if (idx >= 0 && idx < questions.length) {
+      setQuestionIndex(idx);
+      sidebarScrollRef.current?.scrollTo({ x: Math.max(0, idx * ITEM_WIDTH - 80), animated: true });
+    }
+  };
+
   if (!subject || !field || !question) {
     return (
       <ThemedView style={styles.container}>
@@ -369,6 +387,37 @@ export default function QuestionScreen() {
   return (
     <ThemedView style={[styles.container, { backgroundColor: colors.background }]}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
+        {/* 問題番号サイドバー: タップでジャンプ */}
+        {questions.length > 0 && questionIndex !== null && (
+          <ScrollView
+            ref={sidebarScrollRef}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.questionSidebar}
+            contentContainerStyle={styles.questionSidebarContent}
+          >
+            {questions.map((_, idx) => (
+              <Pressable
+                key={idx}
+                style={[
+                  styles.questionSidebarItem,
+                  { borderColor: colors.choiceBorder, backgroundColor: colors.choiceBg },
+                  idx === questionIndex && { backgroundColor: colors.primary, borderColor: colors.primary }
+                ]}
+                onPress={() => jumpToQuestion(idx)}
+              >
+                <ThemedText
+                  style={[
+                    styles.questionSidebarItemText,
+                    { color: idx === questionIndex ? '#fff' : colors.text }
+                  ]}
+                >
+                  {idx + 1}
+                </ThemedText>
+              </Pressable>
+            ))}
+          </ScrollView>
+        )}
         <ThemedText type="subtitle" style={[styles.subject, { color: colors.text, fontWeight: '800' }]}>
           {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length || 0})` : ''}
           {mode === 'bonus' ? ' ★ボーナスステージ★' : ''}
@@ -706,6 +755,29 @@ const styles = StyleSheet.create({
     paddingTop: 48,
     paddingBottom: 40,
     gap: 16,
+  },
+  questionSidebar: {
+    marginHorizontal: -20,
+    marginBottom: 8,
+    maxHeight: 44,
+  },
+  questionSidebarContent: {
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    gap: 6,
+    paddingBottom: 4,
+  },
+  questionSidebarItem: {
+    width: 36,
+    height: 36,
+    borderRadius: 8,
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  questionSidebarItemText: {
+    fontSize: 14,
+    fontWeight: '600',
   },
   subject: {
     opacity: 0.7,

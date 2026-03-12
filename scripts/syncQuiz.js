@@ -41,7 +41,7 @@ const GYOSEI_SUB_ORDER = [
 ];
 
 const MINPO_SUB_ORDER = [
-    '民法総論',
+    '民法総則',
     '民法物権',
     '債権総論',
     '債権各論',
@@ -78,7 +78,7 @@ const getMapping = (title) => {
         if (title.includes('多肢選択')) return { subject: '多肢選択', category: '行政法' };
         return { subject: '行政法', category: '行政法総論' };
     }
-    if (title.includes('民法総論')) return { subject: '民法', category: '民法総論' };
+    if (title.includes('民法総論') || title.includes('民法総則')) return { subject: '民法', category: '民法総則' };
     if (title.includes('民法物権')) return { subject: '民法', category: '民法物権' };
     if (title.includes('物権')) return { subject: '民法', category: '民法物権' };
     if (title.includes('債権総論')) return { subject: '民法', category: '債権総論' };
@@ -120,7 +120,12 @@ async function sync() {
             GYOSEI_SUB_ORDER.forEach(sub => { if (!questionsData[subj][sub]) questionsData[subj][sub] = []; });
         }
         if (subj === '民法') {
-            MINPO_SUB_ORDER.forEach(sub => { if (!questionsData[subj][sub]) questionsData[subj][sub] = []; });
+            const old = questionsData[subj] || {};
+            questionsData[subj] = {};
+            MINPO_SUB_ORDER.forEach(sub => {
+                const src = sub === '民法総則' ? (old['民法総則'] || old['民法総論']) : old[sub];
+                questionsData[subj][sub] = src || [];
+            });
         }
         if (subj === '多肢選択') {
             TASHI_SUB_ORDER.forEach(sub => { if (!questionsData[subj][sub]) questionsData[subj][sub] = []; });
@@ -240,6 +245,13 @@ async function sync() {
             const valM = row[12] ? row[12].trim() : '';
             const valR = row[17] ? row[17].trim() : '';
             const valRefId = row[19] ? row[19].trim() : '';
+            // N,O,P,Q,S列（選択肢A〜E）: 語群選択問題
+            const valN = row[13] ? row[13].trim() : '';
+            const valO = row[14] ? row[14].trim() : '';
+            const valP = row[15] ? row[15].trim() : '';
+            const valQ = row[16] ? row[16].trim() : '';
+            const valS = row[18] ? row[18].trim() : '';
+            const hasNtoSChoices = [valN, valO, valP, valQ, valS].some(v => v.length > 0);
 
             // ＜複数解＞ や （複数解）（正解肢２つ）（複数回）等のサフィックスを除去してから判定
             const valProblemNorm = valProblem
@@ -287,9 +299,59 @@ async function sync() {
                     if (label) slots.push({ label, options: choice });
                 }
                 if (row[8]) slots.push({ label: row[8].trim(), options: row[18] ? row[18].trim() : '' });
+                // 問題文に「空欄[ア]〜[エ]」があるがスロット未設定の場合、デフォルト4スロットを作成
+                if (slots.length === 0 && /空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[〜～]\s*[\[［]\s*[エ]\s*[\]］]/.test(valProblem || '')) {
+                    for (const lab of ['[ ア ]', '[ イ ]', '[ ウ ]', '[ エ ]']) slots.push({ label: lab, options: '' });
+                }
+
+                // スロットありでN,O,P,Qが空の場合、継続行から取得（選択肢が次の行にある場合）
+                if (slots.length > 0 && ![valN, valO, valP, valQ].some(v => v && v.length > 0)) {
+                    for (let o = 1; o < 10 && (i + o) < rows.length; o++) {
+                        const rw = rows[i + o];
+                        const nextH = rw[7] ? rw[7].trim() : '';
+                        if (nextH && nextH.length > 20) break; // 次の問題に到達
+                        const n = rw[13] ? rw[13].trim() : '';
+                        const oo = rw[14] ? rw[14].trim() : '';
+                        const p = rw[15] ? rw[15].trim() : '';
+                        const q = rw[16] ? rw[16].trim() : '';
+                        if (n || oo || p || q) {
+                            const opts = [n, oo, p, q];
+                            for (let j = 0; j < Math.min(slots.length, 4); j++) {
+                                if (opts[j] && !slots[j].options) slots[j].options = opts[j];
+                            }
+                            break;
+                        }
+                    }
+                }
+                const hasNtoSChoicesAfter = slots.length > 0 && [valN, valO, valP, valQ].some(v => v && v.length > 0) ||
+                    slots.some(s => s.options && s.options.length > 0);
 
                 const choices = [];
                 let explanation = valF || '';
+                let slotAnswersFromNtoP = null;
+
+                // 語群選択問題: N,O,P,Q列がスロットの選択肢。各列内の①/②のどちらかに（ｒ）→そのindexが正解
+                const nopqFromSlots = slots.slice(0, 4).map(s => s.options || '');
+                const colsForR = [valN, valO, valP, valQ].map((v, idx) => v || nopqFromSlots[idx] || '');
+                if ((hasNtoSChoices || hasNtoSChoicesAfter) && slots.length > 0) {
+                    const rPattern = /[\(（]\s*[rｒ]\s*[\)）]/i;
+                    const parseSlotCorrectIndex = (optStr) => {
+                        if (!optStr) return -1;
+                        const byNewline = optStr.split(/\n+/).filter(Boolean);
+                        for (let i = 0; i < byNewline.length; i++) {
+                            if (rPattern.test(byNewline[i])) return i;
+                        }
+                        const byMaru = optStr.split(/(?=[①②])/).filter(Boolean);
+                        for (let i = 0; i < byMaru.length; i++) {
+                            if (rPattern.test(byMaru[i])) return i;
+                        }
+                        return -1;
+                    };
+                    const cols = colsForR;
+                    const raw = cols.slice(0, slots.length).map(parseSlotCorrectIndex);
+                    if (raw.every(i => i >= 0)) slotAnswersFromNtoP = raw;
+                }
+
                 // 第1肢（行政法１はC列、通常はK列）
                 const firstChoice = useGyosei1Layout ? valC : valK;
                 if (firstChoice) choices.push(firstChoice.replace(/^※\s*/, '').trim() || firstChoice);
@@ -322,7 +384,6 @@ async function sync() {
                 if (choices.length >= 1) {
                     const correctIndices = [];
                     const cleanChoices = choices.map((c, idx) => {
-                        // Match (r), ( r ), （r）, （ｒ） with optional spaces
                         const rPattern = /[\(（]\s*[rｒ]\s*[\)）]/i;
                         if (rPattern.test(c)) {
                             correctIndices.push(idx);
@@ -351,7 +412,9 @@ async function sync() {
 
                     // 多肢選択: answer は N,O,P,Q 列（ア,イ,ウ,エの正解語句）
                     let finalAnswer = correctIndices;
-                    if (currentSubject === '多肢選択' && valR) {
+                    if (slotAnswersFromNtoP && slotAnswersFromNtoP.length > 0) {
+                        finalAnswer = slotAnswersFromNtoP;
+                    } else if (currentSubject === '多肢選択' && valR) {
                         const slotAnswers = [row[13], row[14], row[15], row[16]]
                             .map((v) => (v ? v.trim() : '')).filter(Boolean);
                         finalAnswer = slotAnswers.length > 0 ? slotAnswers : [];
@@ -478,6 +541,11 @@ async function sync() {
     await syncStatutes('解説資料（憲法条文）', 'kenpo');
 
     Object.keys(resourcesData).forEach(k => resourcesData[k].sort((a, b) => a.order - b.order));
+
+    // 民法総論→民法総則リネーム: 旧キーを削除
+    if (questionsData['民法'] && questionsData['民法']['民法総論']) {
+        delete questionsData['民法']['民法総論'];
+    }
 
     const output = `// Generated by syncQuiz.js\nexport const SUBJECTS = ${JSON.stringify(questionsData, null, 2)};\nexport const RESOURCES = ${JSON.stringify(resourcesData, null, 2)};\nexport const STATUTES = ${JSON.stringify(statutesData, null, 2)};`;
     fs.writeFileSync(OUTPUT_FILE, output);
