@@ -439,14 +439,17 @@ async function sync() {
                 }
                 if (choices.length >= 1) {
                     const correctIndices = [];
-                    const cleanChoices = choices.map((c, idx) => {
-                        const rPattern = /[\(（]\s*[rｒ]\s*[\)）]/i;
-                        if (rPattern.test(c)) {
-                            correctIndices.push(idx);
-                            return c.replace(rPattern, '').trim();
-                        }
-                        return c;
-                    });
+                    const cleanChoices = currentSubject === '記述'
+                        ? choices.map((c) => (c || '').trim())
+                        : choices.map((c, idx) => {
+                            const rPattern = /[\(（]\s*[rｒ]\s*[\)）]/i;
+                            if (rPattern.test(c)) {
+                                correctIndices.push(idx);
+                                return c.replace(rPattern, '').trim();
+                            }
+                            return c;
+                        });
+                    // 記述式: （ｒ）は使わず K列を模範解答として modelAnswer に保存。正解判定はアプリ側で類似度
                     // (r)未記入の場合は answer:[] のまま（正解未設定）
 
                     // Extract chunks from Column U (index 20) / V (index 21) / W (index 22)...
@@ -466,7 +469,29 @@ async function sync() {
                         }
                     }
 
-                    // 多肢選択: answer は N,O,P,Q 列（ア,イ,ウ,エの正解語句）
+                    const parseTashiWordBank = (wordBankText) => {
+                        const raw = String(wordBankText || '').replace(/【選択肢】\s*/g, '').trim();
+                        if (!raw) return [];
+                        return raw
+                            .split(/\s*\/\s*|\n+/)
+                            .map((part) => part.trim())
+                            .filter(Boolean)
+                            .map((part) => {
+                                const labels = [...part.matchAll(/[\(（]\s*([ア-オ])\s*[\)）]/g)].map((m) => m[1]);
+                                const text = part
+                                    .replace(/^\d+\s+/, '')
+                                    .replace(/[\(（]\s*([ア-オ]|[rｒ])\s*[\)）]/gi, '')
+                                    .trim();
+                                return { text, labels };
+                            })
+                            .filter((item) => item.text);
+                    };
+                    const tashiWordBankData = currentSubject === '多肢選択' ? parseTashiWordBank(valR) : [];
+                    const tashiSlotLabels = currentSubject === '多肢選択'
+                        ? [...new Set([...(valProblem || '').matchAll(/[\[［]\s*([ア-オ])\s*[\]］]/g)].map((m) => m[1]))]
+                        : [];
+
+                    // 多肢選択: answer は R列の（ア）（イ）マーカー、または従来の N,O,P,Q 列
                     // 並べ替え問題: L列に「5,1,2,3,4」または「5. 1. 2. 3. 4.」形式で正解順序（1始まり）を指定
                     let finalAnswer = correctIndices;
                     let isReorder = false;
@@ -483,9 +508,18 @@ async function sync() {
                     if (!isReorder && slotAnswersFromNtoP && slotAnswersFromNtoP.length > 0) {
                         finalAnswer = slotAnswersFromNtoP;
                     } else if (!isReorder && currentSubject === '多肢選択' && valR) {
-                        const slotAnswers = [row[13], row[14], row[15], row[16]]
-                            .map((v) => (v ? v.trim() : '')).filter(Boolean);
-                        finalAnswer = slotAnswers.length > 0 ? slotAnswers : [];
+                        const labels = tashiSlotLabels.length > 0
+                            ? tashiSlotLabels
+                            : [...new Set(tashiWordBankData.flatMap((item) => item.labels))];
+                        const slotAnswers = labels
+                            .map((label) => tashiWordBankData.find((item) => item.labels.includes(label))?.text || '');
+                        if (slotAnswers.length > 0 && slotAnswers.every(Boolean)) {
+                            finalAnswer = slotAnswers;
+                        } else {
+                            const legacySlotAnswers = [row[13], row[14], row[15], row[16]]
+                                .map((v) => (v ? v.trim() : '')).filter(Boolean);
+                            finalAnswer = legacySlotAnswers.length > 0 ? legacySlotAnswers : [];
+                        }
                     }
 
                     // 問2・問3: K列選択肢形式だが、語群(N,O)を先に表示。問題行＋継続行のN,Oをすべて集約。（ｒ）は表示用に除去
@@ -513,13 +547,18 @@ async function sync() {
                     const nopqWordBank = isComboWithWordBank && (comboN || comboO)
                         ? '【ア】\n' + (comboN || '') + '\n\n【イ】\n' + (comboO || '')
                         : slotWordBank;
-                    const finalWordBank = nopqWordBank || valR;
+                    const cleanedTashiWordBank = currentSubject === '多肢選択' && tashiWordBankData.length > 0
+                        ? `【選択肢】 ${tashiWordBankData.map((item, index) => `${index + 1} ${item.text}`).join(' / ')}`
+                        : '';
+                    const finalWordBank = nopqWordBank || cleanedTashiWordBank || valR;
 
+                    const modelAnswerForDescriptive = currentSubject === '記述' ? (valK || '').trim() : undefined;
                     questionsData[currentSubject][currentCategory].push({
                         text: questionText,
                         choices: cleanChoices,
                         choiceIsBonus: choiceIsBonus,
-                        answer: finalAnswer,
+                        answer: currentSubject === '記述' ? [] : finalAnswer,
+                        modelAnswer: modelAnswerForDescriptive,
                         isReorder: isReorder,
                         explain: explanation || questionText, // Fallback to text if explanation empty
                         wordBank: finalWordBank,
@@ -563,10 +602,12 @@ async function sync() {
                         }
                     }
 
+                    const modelAnswerForDescriptiveOnly = currentSubject === '記述' ? (row[10] ? row[10].trim() : '') : undefined;
                     questionsData[currentSubject][currentCategory].push({
                         text: questionText,
                         explain: explanation || questionText, // Use question text as explanation fallback
-                        chunks: chunks
+                        chunks: chunks,
+                        ...(modelAnswerForDescriptiveOnly !== undefined && { modelAnswer: modelAnswerForDescriptiveOnly })
                     });
                 }
             }

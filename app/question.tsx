@@ -1,6 +1,6 @@
 import { Link, router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Image, Modal, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { Animated, Image, Modal, PanResponder, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -9,6 +9,67 @@ import { useTheme } from '@/src/context/ThemeContext';
 import { RESOURCES, SUBJECTS } from '@/src/questions';
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
 import { getChoicePrefix, hasNumberPrefix } from '@/utils/choiceNumber';
+
+function DraggableWordBankItem({
+  value,
+  onDrop,
+  onPress,
+  borderColor,
+  textColor,
+}: {
+  value: string;
+  onDrop: (value: string, pageX: number, pageY: number) => void;
+  onPress: () => void;
+  borderColor: string;
+  textColor: string;
+}) {
+  const pan = useRef(new Animated.ValueXY()).current;
+  const [dragging, setDragging] = useState(false);
+
+  const resetPosition = () => {
+    Animated.spring(pan, {
+      toValue: { x: 0, y: 0 },
+      useNativeDriver: false,
+      bounciness: 6,
+    }).start();
+  };
+
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => false,
+      onMoveShouldSetPanResponder: (_, gestureState) => Math.abs(gestureState.dx) > 4 || Math.abs(gestureState.dy) > 4,
+      onPanResponderGrant: () => {
+        setDragging(true);
+      },
+      onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }], { useNativeDriver: false }),
+      onPanResponderRelease: (evt) => {
+        setDragging(false);
+        onDrop(value, evt.nativeEvent.pageX, evt.nativeEvent.pageY);
+        resetPosition();
+      },
+      onPanResponderTerminate: () => {
+        setDragging(false);
+        resetPosition();
+      },
+    })
+  ).current;
+
+  return (
+    <Animated.View
+      {...panResponder.panHandlers}
+      style={[
+        styles.wordBankItem,
+        styles.wordBankItemPressable,
+        { borderColor, transform: pan.getTranslateTransform() },
+        dragging && styles.wordBankItemDragging,
+      ]}
+    >
+      <Pressable onPress={onPress} style={styles.wordBankItemButton}>
+        <ThemedText style={{ color: textColor, fontSize: 14 }}>{value}</ThemedText>
+      </Pressable>
+    </Animated.View>
+  );
+}
 
 export default function QuestionScreen() {
   const params = useLocalSearchParams<{ subject?: string; field?: string; index?: string; correctCountSession?: string; mode?: string; shuffle?: string }>();
@@ -129,6 +190,7 @@ export default function QuestionScreen() {
   // State for slots
   const [slotSelections, setSlotSelections] = useState<{ [key: string]: string }>({});
   const [activeSlot, setActiveSlot] = useState<{ label: string; options: string } | null>(null);
+  const slotDropRefs = useRef<Record<string, View | null>>({});
 
   // State for Resource Modal
   const [resourceModalVisible, setResourceModalVisible] = useState(false);
@@ -143,14 +205,23 @@ export default function QuestionScreen() {
   }, [questionIndex]);
 
   const handleSlotPress = (slot: { label: string; options: string }) => {
-    setActiveSlot(slot);
+    setActiveSlot((prev) => prev?.label === slot.label ? null : slot);
   };
 
-  const handleSlotSelect = (val: string) => {
-    if (activeSlot) {
-      setSlotSelections(prev => ({ ...prev, [activeSlot.label]: val }));
-      setActiveSlot(null);
+  const handleSlotSelect = (val: string, forcedLabel?: string) => {
+    const targetLabel = forcedLabel || activeSlot?.label;
+    if (targetLabel) {
+      setSlotSelections((prev) => ({ ...prev, [targetLabel]: val }));
+      if (!forcedLabel || activeSlot?.label === forcedLabel) setActiveSlot(null);
     }
+  };
+
+  const clearSlotSelection = (label: string) => {
+    setSlotSelections((prev) => {
+      const next = { ...prev };
+      delete next[label];
+      return next;
+    });
   };
 
   const stripR = (s: string) => (s || '').replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim();
@@ -162,14 +233,10 @@ export default function QuestionScreen() {
     const answer = (question as any).answer || [];
     const correctCount = Array.isArray(answer) ? answer.length : 0;
     const suffix = correctCount === 0 ? ' (回答設定中)' : ` (正解肢${correctCount}問)`;
+    const isTashiQuestion = subject === '多肢選択';
 
     // 多肢選択: tashiData からスロットを生成（語群から選択して穴埋め）
-    const effectiveSlots = tashiData
-      ? tashiData.slotLabels.map((label) => ({
-          label: `[ ${label} ]`,
-          options: tashiData.options.join(' / '),
-        }))
-      : slots;
+    const effectiveSlots = interactiveSlots.length > 0 ? interactiveSlots : slots;
 
     let content;
     if (effectiveSlots.length === 0) {
@@ -226,14 +293,16 @@ export default function QuestionScreen() {
             type="title"
             style={[
               styles.questionText,
+              isTashiQuestion && styles.questionTextTashi,
               isLongText && styles.questionTextSmall,
+              isTashiQuestion && isLongText && styles.questionTextTashiSmall,
               { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }
             ]}
             onTextLayout={(e) => {
               if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
             }}
           >
-            {(hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex))}{text}{subject === '多肢選択' ? suffix : ''}
+            {(hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex))}{text}
           </ThemedText>
         );
       }
@@ -249,22 +318,40 @@ export default function QuestionScreen() {
       const parts = normalizedText.split(pattern);
 
       content = (
-        <ThemedText style={[styles.questionText, isLongText && styles.questionTextSmall, { lineHeight: 40 }]}>
+        <ThemedText style={[
+          styles.questionText,
+          isTashiQuestion && styles.questionTextTashi,
+          isLongText && styles.questionTextSmall,
+          isTashiQuestion && isLongText && styles.questionTextTashiSmall,
+          { lineHeight: isTashiQuestion ? 32 : 40 }
+        ]}>
           {hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex)}
           {parts.map((part: string, index: number) => {
             const slot = effectiveSlots.find((s: any) => s.label === part);
             if (slot) {
               const selected = slotSelections[slot.label];
               return (
-                <Pressable key={index} onPress={() => handleSlotPress(slot)} style={styles.slotButton}>
-                  <ThemedText style={styles.slotButtonText}>
+                <Pressable key={index} onPress={() => handleSlotPress(slot)} style={[styles.slotButton, isTashiQuestion && styles.slotButtonTashi]}>
+                  <ThemedText style={[styles.slotButtonText, isTashiQuestion && styles.slotButtonTextTashi]}>
                     {selected || part}
                   </ThemedText>
                 </Pressable>
               );
             }
-            return <ThemedText key={index} style={[styles.questionText, isLongText && styles.questionTextSmall]}>{part}</ThemedText>;
-          })}{suffix}
+            return (
+              <ThemedText
+                key={index}
+                style={[
+                  styles.questionText,
+                  isTashiQuestion && styles.questionTextTashi,
+                  isLongText && styles.questionTextSmall,
+                  isTashiQuestion && isLongText && styles.questionTextTashiSmall
+                ]}
+              >
+                {part}
+              </ThemedText>
+            );
+          })}
         </ThemedText>
       );
     }
@@ -272,11 +359,17 @@ export default function QuestionScreen() {
     return (
       <ThemedView style={[
         styles.questionContainer,
+        isTashiQuestion && styles.questionContainerTashi,
         {
           borderColor: colors.choiceBorder,
-          backgroundColor: '#e8e8e8',
+          backgroundColor: isTashiQuestion ? '#f5f7fa' : '#e8e8e8',
         }
       ]}>
+        {isTashiQuestion ? (
+          <ThemedText style={[styles.questionMetaText, { color: colors.subText }]}>
+            {suffix.trim()}
+          </ThemedText>
+        ) : null}
         {content}
       </ThemedView>
     );
@@ -351,15 +444,60 @@ export default function QuestionScreen() {
     if (slotLabels.length === 0) return null;
     // 語群パース: "【選択肢】 1 従属 / 2 平等 / 3 合法" -> ["従属","平等","合法"]
     const raw = wb.replace(/【選択肢】\s*/g, '').trim();
-    const parts = raw.split(/\s*\/\s*/);
+    const parts = raw.split(/\s*\/\s*|\n+/);
     const options = parts
       .map((p) => {
         const m = p.match(/^\d+\s+(.+)$/);
-        return m ? m[1].trim() : p.trim();
+        const cleaned = (m ? m[1] : p)
+          .replace(/[\(（]\s*([ア-オ]|[rｒ])\s*[\)）]/gi, '')
+          .trim();
+        return cleaned;
       })
       .filter(Boolean);
     return { slotLabels, options };
   }, [subject, question]);
+
+  const interactiveSlots = useMemo(() => {
+    if (tashiData) {
+      return tashiData.slotLabels.map((label) => ({
+        label: `[ ${label} ]`,
+        options: tashiData.options.join(' / '),
+      }));
+    }
+    const rawSlots = ((question as any)?.slots || []) as Array<{ label: string; options: string }>;
+    return rawSlots.filter((slot) => slot?.options);
+  }, [tashiData, question]);
+
+  const handleWordBankTap = (value: string) => {
+    const fallbackLabel =
+      activeSlot?.label ||
+      interactiveSlots.find((slot) => !slotSelections[slot.label])?.label ||
+      interactiveSlots[0]?.label;
+    if (fallbackLabel) handleSlotSelect(value, fallbackLabel);
+  };
+
+  const handleWordBankDrop = async (value: string, pageX: number, pageY: number) => {
+    const measured = await Promise.all(
+      interactiveSlots.map(
+        (slot) =>
+          new Promise<{ label: string; x: number; y: number; w: number; h: number } | null>((resolve) => {
+            const ref = slotDropRefs.current[slot.label];
+            if (!ref || typeof (ref as any).measureInWindow !== 'function') {
+              resolve(null);
+              return;
+            }
+            (ref as any).measureInWindow((x: number, y: number, w: number, h: number) => {
+              resolve({ label: slot.label, x, y, w, h });
+            });
+          })
+      )
+    );
+
+    const hit = measured.find(
+      (box) => box && pageX >= box.x && pageX <= box.x + box.w && pageY >= box.y && pageY <= box.y + box.h
+    );
+    if (hit) handleSlotSelect(value, hit.label);
+  };
 
   // (ア)(イ)2列組合せ形式: 語句(ア)と考え方(イ)の組合せ問題
   const comboFormatData = useMemo(() => {
@@ -480,11 +618,62 @@ export default function QuestionScreen() {
 
         {renderQuestionText()}
 
+        {interactiveSlots.length > 0 ? (
+          <ThemedView style={[styles.slotTargetContainer, { borderColor: colors.choiceBorder, backgroundColor: colors.card }]}>
+            <ThemedText style={[styles.wordBankTitle, { color: colors.subText }]}>
+              【空欄】語群をドラッグして入れるか、空欄を選んで語群をタップ
+            </ThemedText>
+            <View style={styles.slotTargetGrid}>
+              {[...interactiveSlots]
+                .sort((a, b) => {
+                  const order = ['ア', 'イ', 'ウ', 'エ', 'オ'];
+                  const ka = a.label.replace(/[\[\]\s]/g, '');
+                  const kb = b.label.replace(/[\[\]\s]/g, '');
+                  return (order.indexOf(ka) - order.indexOf(kb)) || 0;
+                })
+                .map((slot) => {
+                const selected = slotSelections[slot.label];
+                const isActive = activeSlot?.label === slot.label;
+                return (
+                  <View
+                    key={slot.label}
+                    ref={(node) => {
+                      slotDropRefs.current[slot.label] = node;
+                    }}
+                    style={[
+                      styles.slotTargetBox,
+                      {
+                        borderColor: isActive ? colors.primary : colors.choiceBorder,
+                        backgroundColor: selected ? colors.choiceBg : colors.card,
+                      },
+                      isActive && styles.slotTargetBoxActive,
+                    ]}
+                  >
+                    <Pressable onPress={() => handleSlotPress(slot)} style={styles.slotTargetButton}>
+                      <ThemedText style={[styles.slotTargetLabel, { color: colors.subText }]}>
+                        {slot.label.replace(/[\[\]\s]/g, '')}
+                      </ThemedText>
+                      <ThemedText style={[styles.slotTargetValue, { color: colors.text }]}>
+                        {selected || 'ここへドロップ'}
+                      </ThemedText>
+                    </Pressable>
+                    {selected ? (
+                      <Pressable onPress={() => clearSlotSelection(slot.label)} style={styles.slotTargetClear}>
+                        <ThemedText style={{ color: colors.subText, fontSize: 12 }}>×</ThemedText>
+                      </Pressable>
+                    ) : null}
+                  </View>
+                );
+              })}
+            </View>
+          </ThemedView>
+        ) : null}
+
         {/* Word Bank: 多肢選択・N,O列語群ではタップで穴埋め、他は表示のみ */}
         {(question as any).wordBank ? (
           <ThemedView style={[styles.wordBankContainer, { borderColor: colors.choiceBorder, backgroundColor: colors.card }]}>
             <ThemedText style={[styles.wordBankTitle, { color: colors.subText }]}>
-              【語群】{(tashiData || ((question as any).slots?.length > 0 && activeSlot)) && activeSlot ? ` → 空欄 [ ${activeSlot.label.replace(/[\[\]\s]/g, '')} ] を選んでください` : ''}
+              【語群】{activeSlot ? ` → 空欄 [ ${activeSlot.label.replace(/[\[\]\s]/g, '')} ] に入れます` : ''}
             </ThemedText>
             {(tashiData || ((question as any).slots?.length > 0 && activeSlot)) ? (
               <Pressable style={[styles.cancelSlotButton, { borderColor: colors.choiceBorder }]} onPress={() => setActiveSlot(null)}>
@@ -492,15 +681,16 @@ export default function QuestionScreen() {
               </Pressable>
             ) : null}
             <View style={styles.wordBankGrid}>
-              {tashiData && activeSlot
+              {tashiData
                 ? tashiData.options.map((opt: string, index: number) => (
-                    <Pressable
-                      key={index}
-                      style={[styles.wordBankItem, styles.wordBankItemPressable, { borderColor: colors.choiceBorder }]}
-                      onPress={() => handleSlotSelect(opt)}
-                    >
-                      <ThemedText style={{ color: colors.text, fontSize: 14 }}>{opt}</ThemedText>
-                    </Pressable>
+                    <DraggableWordBankItem
+                      key={`${opt}-${index}`}
+                      value={opt}
+                      onDrop={handleWordBankDrop}
+                      onPress={() => handleWordBankTap(opt)}
+                      borderColor={colors.choiceBorder}
+                      textColor={colors.text}
+                    />
                   ))
                 : activeSlot && (question as any).slots?.length > 0
                 ? (() => {
@@ -967,17 +1157,45 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 2,
   },
+  questionContainerTashi: {
+    minHeight: 240,
+    paddingHorizontal: 24,
+    paddingVertical: 28,
+    borderRadius: 20,
+    marginBottom: 12,
+    ...Platform.select({
+      ios: { shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.08, shadowRadius: 12 },
+      android: { elevation: 4 },
+      web: { boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }
+    })
+  },
+  questionMetaText: {
+    fontSize: 14,
+    fontWeight: '700',
+    marginBottom: 14,
+    textAlign: 'center',
+  },
   questionText: {
     fontSize: 24,
     lineHeight: 38,
     backgroundColor: 'transparent',
     fontWeight: '600',
   },
+  questionTextTashi: {
+    fontSize: 18,
+    lineHeight: 32,
+    fontWeight: '500',
+  },
   questionTextSmall: {
     fontSize: 22,
     lineHeight: 34,
     backgroundColor: 'transparent',
     fontWeight: '600',
+  },
+  questionTextTashiSmall: {
+    fontSize: 16,
+    lineHeight: 29,
+    fontWeight: '500',
   },
   descriptiveFormatted: {
     gap: 12,
@@ -1005,6 +1223,9 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 8,
   },
+  wordBankItemButton: {
+    width: '100%',
+  },
   wordBankItem: {
     width: '30%', // Approx 3 columns
     fontSize: 14,
@@ -1015,6 +1236,14 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 8,
     borderWidth: 1,
+  },
+  wordBankItemDragging: {
+    zIndex: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.18,
+    shadowRadius: 8,
+    elevation: 8,
   },
   cancelSlotButton: {
     alignSelf: 'flex-start',
@@ -1178,10 +1407,19 @@ const styles = StyleSheet.create({
     // Ensure it flows inline
     transform: [{ translateY: 4 }], // slight adjustment for baseline
   },
+  slotButtonTashi: {
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    marginHorizontal: 3,
+  },
   slotButtonText: {
     fontWeight: 'bold',
     color: '#0a7ea4',
     fontSize: 18,
+  },
+  slotButtonTextTashi: {
+    fontSize: 16,
   },
   modalOverlay: {
     position: 'absolute',
@@ -1286,5 +1524,51 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     letterSpacing: 2,
+  },
+  slotTargetContainer: {
+    padding: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+    marginTop: 8,
+  },
+  slotTargetGrid: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    gap: 8,
+  },
+  slotTargetBox: {
+    flex: 1,
+    minWidth: 0,
+    minHeight: 82,
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    borderRadius: 12,
+    padding: 12,
+    position: 'relative',
+  },
+  slotTargetBoxActive: {
+    borderStyle: 'solid',
+  },
+  slotTargetButton: {
+    flex: 1,
+  },
+  slotTargetLabel: {
+    fontSize: 12,
+    fontWeight: '700',
+    marginBottom: 6,
+  },
+  slotTargetValue: {
+    fontSize: 15,
+    lineHeight: 22,
+    fontWeight: '600',
+  },
+  slotTargetClear: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    width: 20,
+    height: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

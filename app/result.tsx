@@ -1,6 +1,7 @@
+import Constants from 'expo-constants';
 import { Link, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
-import { Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
@@ -8,10 +9,29 @@ import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
 import { PIN_CASES } from '@/src/pinData';
 import { RESOURCES, SUBJECTS } from '@/src/questions';
+import { gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
 import { getChoicePrefix, hasNumberPrefix } from '@/utils/choiceNumber';
 import { addPoints } from '@/utils/points';
 import { incrementLoopCount } from '@/utils/progress';
 import { USER_KEY } from './login';
+
+const GEMINI_API_KEY = (typeof Constants?.expoConfig?.extra !== 'undefined' && (Constants.expoConfig.extra as any)?.geminiApiKey) || (typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_GEMINI_API_KEY) || (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) || '';
+
+/** 記述式: 模範解答とユーザー解答が「近い」か（正解とするか） */
+function isDescriptiveAnswerSimilar(modelAnswer: string, userAnswer: string): boolean {
+  const norm = (s: string) => (s || '').trim().replace(/\s+/g, ' ');
+  const m = norm(modelAnswer);
+  const u = norm(userAnswer);
+  if (!m) return false;
+  if (!u) return false;
+  if (m === u) return true;
+  if (u.includes(m) || m.includes(u)) return true;
+  // 語の重なり: 空白・句読点で区切ったトークンの6割以上がユーザー解答に含まれる
+  const tokens = m.split(/[\s。、・]+/).filter(Boolean);
+  if (tokens.length === 0) return false;
+  const hit = tokens.filter((t) => t.length >= 1 && u.includes(t)).length;
+  return hit / tokens.length >= 0.6;
+}
 
 export default function ResultScreen() {
   const params = useLocalSearchParams<{
@@ -71,6 +91,9 @@ export default function ResultScreen() {
   const isSlotStyle = isTashi || isSlotQuestion;
   const answerPending = isSlotStyle ? correctSlots.length === 0 : correctIndices.length === 0;
   const refId = question?.refId || '';
+  const modelAnswer = (question as any)?.modelAnswer as string | undefined;
+  const hasDescriptiveModel = isDescriptive && !!modelAnswer;
+  const isCorrectDescriptive = hasDescriptiveModel && isDescriptiveAnswerSimilar(modelAnswer, pickedText);
 
   // [NEW] Resolve User Selection & Validation
   const pickedIndex = pickedIndexParam ? parseInt(pickedIndexParam, 10) : -1;
@@ -91,11 +114,13 @@ export default function ResultScreen() {
   const sortedUser = [...userSelection].sort((a, b) => a - b);
   const isCorrectSlots = !answerPending && correctSlots.length === pickedSlots.length && correctSlots.every((v, i) => v === pickedSlots[i]);
   const isCorrectReorder = isReorder && !answerPending && correctIndices.length === userSelection.length && correctIndices.every((v, i) => v === userSelection[i]);
-  const isCorrect = isSlotStyle
-    ? isCorrectSlots
-    : isReorder
-      ? isCorrectReorder
-      : !answerPending && sortedCorrect.length === sortedUser.length && sortedCorrect.every((val, index) => val === sortedUser[index]);
+  const isCorrect = isDescriptive && hasDescriptiveModel
+    ? isCorrectDescriptive
+    : isSlotStyle
+      ? isCorrectSlots
+      : isReorder
+        ? isCorrectReorder
+        : !answerPending && sortedCorrect.length === sortedUser.length && sortedCorrect.every((val, index) => val === sortedUser[index]);
 
   const correctAnswersText = isSlotStyle
     ? correctSlots.map((s, i) => `${'アイウエオ'[i] || `${i + 1}`}: ${s}`).join('\n')
@@ -107,6 +132,32 @@ export default function ResultScreen() {
   const [showOfficialMemo, setShowOfficialMemo] = useState(false);
   const [userMemo, setUserMemo] = useState('');
   const [isExplainExpanded, setIsExplainExpanded] = useState(false);
+
+  // 記述式: AI部分点・分析
+  const [aiGradeLoading, setAiGradeLoading] = useState(false);
+  const [aiGradeResult, setAiGradeResult] = useState<GradeDescriptiveResult | null>(null);
+  const [aiGradeError, setAiGradeError] = useState<string | null>(null);
+  const requestAiGrade = useCallback(async () => {
+    if (!modelAnswer || !pickedText || !GEMINI_API_KEY) {
+      setAiGradeError(GEMINI_API_KEY ? '' : 'APIキー未設定。.env に EXPO_PUBLIC_GEMINI_API_KEY または app.config の extra.geminiApiKey を設定してください。');
+      return;
+    }
+    setAiGradeError(null);
+    setAiGradeResult(null);
+    setAiGradeLoading(true);
+    try {
+      const result = await gradeDescriptiveAnswer(GEMINI_API_KEY, {
+        problemText: text,
+        modelAnswer,
+        userAnswer: pickedText,
+      });
+      setAiGradeResult(result);
+    } catch (e: any) {
+      setAiGradeError(e?.message || 'AI採点に失敗しました。');
+    } finally {
+      setAiGradeLoading(false);
+    }
+  }, [text, modelAnswer, pickedText]);
 
   // Resources State
   // GUARD: RESOURCES might be undefined
@@ -175,7 +226,7 @@ export default function ResultScreen() {
   const correctCountSessionCurrent = parseInt(Array.isArray(params.correctCountSession) ? params.correctCountSession[0] : params.correctCountSession || '0', 10);
 
   // Update count（回答設定中の問題はカウント対象外）
-  const newCorrectCount = (isCorrect && !answerPending) ? correctCountSessionCurrent + 1 : correctCountSessionCurrent;
+  const newCorrectCount = (isCorrect && (!answerPending || (isDescriptive && hasDescriptiveModel))) ? correctCountSessionCurrent + 1 : correctCountSessionCurrent;
 
   const handleNext = () => {
     // Check if we are looping (Index + 1 >= Total)
@@ -241,11 +292,21 @@ export default function ResultScreen() {
             ))
           )}
         </ThemedView>
-        {isDescriptive ? (
+        {isDescriptive && !hasDescriptiveModel ? (
           <ThemedView style={{ padding: 16, backgroundColor: '#E3F2FD', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#2196F3', alignItems: 'center' }}>
             <ThemedText type="title" style={{ color: '#1565C0', fontSize: 20 }}>📝 記述式</ThemedText>
             <ThemedText style={{ color: '#0D47A1', marginTop: 4 }}>解説を読んで自分の解答と照らし合わせてください。</ThemedText>
           </ThemedView>
+        ) : isDescriptive && hasDescriptiveModel ? (
+          isCorrectDescriptive ? (
+            <ThemedView style={{ padding: 16, backgroundColor: '#E8F5E9', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#4CAF50', alignItems: 'center' }}>
+              <ThemedText type="title" style={{ color: '#2E7D32', fontSize: 24 }}>🎉 正解！お見事！</ThemedText>
+            </ThemedView>
+          ) : (
+            <ThemedView style={{ padding: 16, backgroundColor: '#FFEBEE', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#D32F2F', alignItems: 'center' }}>
+              <ThemedText type="title" style={{ color: '#D32F2F', fontSize: 20 }}>不正解... 復習が必要だ！</ThemedText>
+            </ThemedView>
+          )
         ) : isSlotStyle && answerPending ? (
           <ThemedView style={{ padding: 16, backgroundColor: '#FFF8E1', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#FFC107', alignItems: 'center' }}>
             <ThemedText type="title" style={{ color: '#F57F17', fontSize: 20 }}>⏳ 回答設定中</ThemedText>
@@ -278,6 +339,41 @@ export default function ResultScreen() {
         {!isDescriptive && !answerPending && correctAnswersText && (
           <ThemedText style={[styles.answerText, { color: colors.text }]}>正解: {correctAnswersText}</ThemedText>
         )}
+        {isDescriptive && hasDescriptiveModel && (
+          <ThemedText style={[styles.answerText, { color: colors.text, marginTop: 8 }]}>模範解答: {modelAnswer}</ThemedText>
+        )}
+
+        {isDescriptive && hasDescriptiveModel && pickedText ? (
+          <ThemedView style={{ marginTop: 16, marginBottom: 16 }}>
+            {GEMINI_API_KEY ? (
+              <>
+                <Pressable
+                  style={[styles.aiGradeButton, { backgroundColor: colors.primary, opacity: aiGradeLoading ? 0.7 : 1 }]}
+                  onPress={requestAiGrade}
+                  disabled={aiGradeLoading}
+                >
+                  {aiGradeLoading ? (
+                    <ActivityIndicator color="#fff" />
+                  ) : (
+                    <ThemedText style={styles.aiGradeButtonText}>🤖 AIで部分点・分析</ThemedText>
+                  )}
+                </Pressable>
+                {aiGradeError ? (
+                  <ThemedText style={{ color: '#D32F2F', marginTop: 8, fontSize: 14 }}>{aiGradeError}</ThemedText>
+                ) : null}
+                {aiGradeResult ? (
+                  <ThemedView style={[styles.aiGradeBox, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
+                    <ThemedText style={[styles.aiGradeScore, { color: colors.text }]}>部分点: {aiGradeResult.score} 点</ThemedText>
+                    <ThemedText style={[styles.aiGradeAnalysis, { color: colors.text }]}>分析:</ThemedText>
+                    <MarkdownText text={aiGradeResult.analysis} />
+                  </ThemedView>
+                ) : null}
+              </>
+            ) : (
+              <ThemedText style={{ color: colors.subText, fontSize: 14 }}>APIキーを設定すると「AIで部分点・分析」が使えます。</ThemedText>
+            )}
+          </ThemedView>
+        ) : null}
 
         <ThemedText type="subtitle" style={styles.explainTitle}>
           もっと深掘る！
@@ -477,6 +573,32 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 12,
     minHeight: 60,
+  },
+  aiGradeButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  aiGradeButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  aiGradeBox: {
+    marginTop: 12,
+    padding: 16,
+    borderWidth: 2,
+    borderRadius: 12,
+  },
+  aiGradeScore: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  aiGradeAnalysis: {
+    fontSize: 14,
+    marginBottom: 4,
   },
   choiceButton: {
     padding: 16,

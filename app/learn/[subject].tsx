@@ -1,7 +1,7 @@
 import { applyTTSRules } from '@/utils/tts-rules';
 import { Link, router, useLocalSearchParams } from 'expo-router';
 import * as Speech from 'expo-speech';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Alert, Image, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
@@ -49,9 +49,21 @@ export default function LearnSubjectScreen() {
   const params = useLocalSearchParams<{ subject?: string; index?: string }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
   const initialIndex = parseInt(params.index || '0', 10);
-  // Ensure content is treated as an array (fallback for backward compatibility if file not synced yet)
-  const rawContent = subject ? (LEARN_CONTENT as any)[subject] : [];
-  const contentList = Array.isArray(rawContent) ? rawContent : (rawContent ? [rawContent] : []);
+  const flattenedSubjectQuestions = useMemo(() => {
+    if (!subject) return [];
+    const subjectQuestions = (SUBJECTS as any)[subject];
+    if (!subjectQuestions || typeof subjectQuestions !== 'object') return [];
+    return Object.values(subjectQuestions).flatMap((questions: any) => Array.isArray(questions) ? questions : []);
+  }, [subject]);
+
+  // 多肢選択は LEARN_CONTENT ではなく、実問題の30問をそのまま学習対象にする
+  const contentList = useMemo(() => {
+    if (subject === '多肢選択') {
+      return flattenedSubjectQuestions.map((q: any) => q?.text || '').filter(Boolean);
+    }
+    const rawContent = subject ? (LEARN_CONTENT as any)[subject] : [];
+    return Array.isArray(rawContent) ? rawContent : (rawContent ? [rawContent] : []);
+  }, [subject, flattenedSubjectQuestions]);
 
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [currentReadCount, setCurrentReadCount] = useState(1); // Counter for the 3 repeats
@@ -166,7 +178,9 @@ export default function LearnSubjectScreen() {
 
   // Check for chunks in SUBJECTS
   let foundQuestion: any = null;
-  if (subject) {
+  if (subject === '多肢選択') {
+    foundQuestion = flattenedSubjectQuestions[currentIndex] || null;
+  } else if (subject) {
     for (const category of Object.values(SUBJECTS as any)) {
       if ((category as any)[subject]) {
         foundQuestion = (category as any)[subject]?.[currentIndex];
