@@ -8,7 +8,82 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
 import { PIN_CASES } from '@/src/pinData';
-import { RESOURCES, SUBJECTS } from '@/src/questions';
+import { RESOURCES, STATUTES, SUBJECTS } from '@/src/questions';
+
+/** 行政法の分野 → 条文モード(STATUTES)のキー。もっと深掘るで根拠条文を表示 */
+const FIELD_TO_STATUTES_KEY: Record<string, string> = {
+  '行政手続法': 'gyote',
+  '行政不服審査法': 'gyoshin',
+  '行政事件訴訟法': 'gyoso',
+  '国家賠償法・損失訴訟': 'kokubai',
+  '地方自治法': 'jichi',
+};
+
+/** 第〇条・号・号内（イロハ）を遡り、「第二条（定義） 三」「第二条（定義） 四 イ」のように表示 */
+function getStatuteDisplayTitle(
+  statute: { title: string; content: string },
+  fullStatutes: Array<{ title: string; content: string }>
+): string {
+  const t = statute.title?.trim() || '';
+  if (!t) return t;
+  if (/^第.*条/.test(t)) return t;
+  const idx = fullStatutes.findIndex(
+    (s) => (s.title === statute.title && s.content === statute.content)
+  );
+  if (idx <= 0) return t;
+  const isGouLevel = (s: string) => /^[一二三四五六七八九十]$|^[１２３４５６７８９１０]$/.test(s);
+  const isSubGou = (s: string) => /^[ァ-ン]$/.test(s);
+  let articleTitle = '';
+  let gouTitle = '';
+  for (let i = idx - 1; i >= 0; i--) {
+    const pt = fullStatutes[i]?.title?.trim() || '';
+    if (!pt) continue;
+    if (/^第.*条/.test(pt)) {
+      articleTitle = pt;
+      break;
+    }
+  }
+  if (!articleTitle) return t;
+  if (isSubGou(t)) {
+    for (let i = idx - 1; i >= 0; i--) {
+      const pt = fullStatutes[i]?.title?.trim() || '';
+      if (pt === articleTitle) break;
+      if (isGouLevel(pt)) {
+        gouTitle = pt;
+        break;
+      }
+    }
+    return gouTitle ? `${articleTitle} ${gouTitle} ${t}` : `${articleTitle} ${t}`;
+  }
+  return `${articleTitle} ${t}`;
+}
+
+function pickRelatedStatutes(
+  statutes: Array<{ title: string; content: string }>,
+  questionText: string,
+  limit: number = 5
+) {
+  const norm = (s: string) =>
+    (s || '')
+      .trim()
+      .replace(/[\s。、．，,.「」『』【】［］()（）]/g, '');
+  const q = norm(questionText);
+  if (!q) return [];
+  const scored = statutes
+    .map((st, idx) => {
+      const t = norm(`${st.title || ''}${st.content || ''}`);
+      if (!t) return { idx, score: 0 };
+      let hit = 0;
+      for (const ch of new Set(q.split(''))) {
+        if (t.includes(ch)) hit++;
+      }
+      const score = hit / q.length;
+      return { idx, score };
+    })
+    .filter((s) => s.score > 0.15)
+    .sort((a, b) => b.score - a.score);
+  return scored.slice(0, limit).map((s) => statutes[s.idx]);
+}
 import { gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
 import { getChoicePrefix, hasNumberPrefix } from '@/utils/choiceNumber';
 import { addPoints } from '@/utils/points';
@@ -19,18 +94,27 @@ const GEMINI_API_KEY = (typeof Constants?.expoConfig?.extra !== 'undefined' && (
 
 /** 記述式: 模範解答とユーザー解答が「近い」か（正解とするか） */
 function isDescriptiveAnswerSimilar(modelAnswer: string, userAnswer: string): boolean {
-  const norm = (s: string) => (s || '').trim().replace(/\s+/g, ' ');
+  const norm = (s: string) =>
+    (s || '')
+      .trim()
+      // 空白・句読点・かっこ類を除去して、文字レベルで比較しやすくする
+      .replace(/[\s。、．，,.「」『』【】［］()（）]/g, '');
+
   const m = norm(modelAnswer);
   const u = norm(userAnswer);
-  if (!m) return false;
-  if (!u) return false;
+  if (!m || !u) return false;
   if (m === u) return true;
   if (u.includes(m) || m.includes(u)) return true;
-  // 語の重なり: 空白・句読点で区切ったトークンの6割以上がユーザー解答に含まれる
-  const tokens = m.split(/[\s。、・]+/).filter(Boolean);
-  if (tokens.length === 0) return false;
-  const hit = tokens.filter((t) => t.length >= 1 && u.includes(t)).length;
-  return hit / tokens.length >= 0.6;
+
+  // 文字単位の重なり度合いで判定（短いフレーズに対して少し甘め）
+  const shorter = m.length <= u.length ? m : u;
+  const longer = m.length <= u.length ? u : m;
+  let hit = 0;
+  for (const ch of new Set(shorter.split(''))) {
+    if (longer.includes(ch)) hit++;
+  }
+  const ratio = hit / shorter.length;
+  return ratio >= 0.7;
 }
 
 export default function ResultScreen() {
@@ -45,6 +129,7 @@ export default function ResultScreen() {
     questionIndex?: string; // Current question index
     totalQuestions?: string; // NEW
     correctCountSession?: string; // NEW
+    mode?: string; // 'bonus' など
   }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
   const paramField = Array.isArray(params.field) ? params.field[0] : params.field;
@@ -53,6 +138,7 @@ export default function ResultScreen() {
   const pickedTextParam = Array.isArray(params.pickedText) ? params.pickedText[0] : params.pickedText;
   const pickedSlotsParam = Array.isArray(params.pickedSlots) ? params.pickedSlots[0] : params.pickedSlots;
   const field = Array.isArray(params.field) ? params.field[0] : params.field;
+  const mode = Array.isArray(params.mode) ? params.mode[0] : params.mode;
 
   const isDescriptive = subject === '記述';
   const isTashi = subject === '多肢選択';
@@ -89,11 +175,45 @@ export default function ResultScreen() {
   const hasUsableSlots = Array.isArray((question as any)?.slots) && (question as any).slots.some((s: any) => s?.options);
   const isSlotQuestion = !isDescriptive && (hasUsableSlots || pickedSlots.length > 0 || correctSlots.length > 0);
   const isSlotStyle = isTashi || isSlotQuestion;
-  const answerPending = isSlotStyle ? correctSlots.length === 0 : correctIndices.length === 0;
   const refId = question?.refId || '';
+  const choiceIsBonusArr = (question as any)?.choiceIsBonus as boolean[] | undefined;
+  const isBonusChoice = (i: number) => (choiceIsBonusArr && i < choiceIsBonusArr.length ? choiceIsBonusArr[i] : !!(question as any).isBonus);
+  const hasBonusChoices = choiceIsBonusArr ? choiceIsBonusArr.some((b: boolean) => b) : !!(question as any).isBonus;
+  const hasNormalChoices = choiceIsBonusArr ? choiceIsBonusArr.some((b: boolean) => !b) : !(question as any).isBonus;
+  const isMixedBonus = hasBonusChoices && hasNormalChoices;
+
+  let effectiveCorrectIndices = correctIndices;
+  if (!isSlotStyle && !isReorder && correctIndices.length > 0) {
+    if (mode !== 'bonus') {
+      // 通常モード: ※付き肢は出題から除外 → 正解判定からも除外
+      effectiveCorrectIndices = correctIndices.filter((i) => !isBonusChoice(i));
+    } else if (!isMixedBonus) {
+      // ボーナス専用問題: ※付き肢だけを正解として扱う
+      effectiveCorrectIndices = correctIndices.filter((i) => isBonusChoice(i));
+    }
+  }
+
   const modelAnswer = (question as any)?.modelAnswer as string | undefined;
   const hasDescriptiveModel = isDescriptive && !!modelAnswer;
   const isCorrectDescriptive = hasDescriptiveModel && isDescriptiveAnswerSimilar(modelAnswer, pickedText);
+  const statutesKey = subject === '行政法' && field ? FIELD_TO_STATUTES_KEY[field] : null;
+  const statuteItemsRaw = statutesKey && (STATUTES as any)[statutesKey]
+    ? ((STATUTES as any)[statutesKey] as Array<{ title: string; content: string }>)
+    : [];
+  const statuteItems = statuteItemsRaw.length > 0 ? pickRelatedStatutes(statuteItemsRaw, text) : [];
+
+  // 肢ごとの関連条文（行政法のみ）。各肢について最大1本まで。
+  const choiceStatutes: Array<Array<{ title: string; content: string }>> = [];
+  if (statuteItemsRaw.length > 0 && Array.isArray(choices) && choices.length > 0 && subject === '行政法') {
+    for (let i = 0; i < choices.length; i++) {
+      const c = choices[i];
+      if (!c) {
+        choiceStatutes.push([]);
+        continue;
+      }
+      choiceStatutes.push(pickRelatedStatutes(statuteItemsRaw, `${text}\n${c}`, 1));
+    }
+  }
 
   // [NEW] Resolve User Selection & Validation
   const pickedIndex = pickedIndexParam ? parseInt(pickedIndexParam, 10) : -1;
@@ -109,8 +229,10 @@ export default function ResultScreen() {
     userSelection = (pickedIndex !== -1) ? [pickedIndex] : [];
   }
 
+  const answerPending = isSlotStyle ? correctSlots.length === 0 : effectiveCorrectIndices.length === 0;
+
   // Exact Match Validation
-  const sortedCorrect = [...correctIndices].sort((a, b) => a - b);
+  const sortedCorrect = [...effectiveCorrectIndices].sort((a, b) => a - b);
   const sortedUser = [...userSelection].sort((a, b) => a - b);
   const isCorrectSlots = !answerPending && correctSlots.length === pickedSlots.length && correctSlots.every((v, i) => v === pickedSlots[i]);
   const isCorrectReorder = isReorder && !answerPending && correctIndices.length === userSelection.length && correctIndices.every((v, i) => v === userSelection[i]);
@@ -126,7 +248,7 @@ export default function ResultScreen() {
     ? correctSlots.map((s, i) => `${'アイウエオ'[i] || `${i + 1}`}: ${s}`).join('\n')
     : isReorder
       ? correctIndices.map((i: number, pos: number) => `${pos + 1}. ${choices[i]}`).join('\n')
-      : correctIndices.map((i: number) => choices[i]).join('\n・');
+      : effectiveCorrectIndices.map((i: number) => choices[i]).join('\n・');
 
   // Memo State
   const [showOfficialMemo, setShowOfficialMemo] = useState(false);
@@ -339,6 +461,95 @@ export default function ResultScreen() {
         {!isDescriptive && !answerPending && correctAnswersText && (
           <ThemedText style={[styles.answerText, { color: colors.text }]}>正解: {correctAnswersText}</ThemedText>
         )}
+
+        {/* 行政法: 根拠条文。穴埋めは1本のみ表示、それ以外は肢ごと（通常時は※肢を省く、ボーナス時は全肢） */}
+        {subject === '行政法' && statuteItemsRaw.length > 0 && choices.length > 0 && (() => {
+          // 穴埋め問題: 同じ条文が繰り返すので1つだけ表示
+          if (isSlotStyle) {
+            return (
+              <ThemedView style={[styles.choiceStatuteBlock, { borderColor: colors.choiceBorder }]}>
+                <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 8 }]}>解説</ThemedText>
+                {statuteItems.length > 0 ? (
+                  statuteItems.map((item, idx) => (
+                    <ThemedView key={idx} style={styles.choiceStatuteArticle}>
+                      {(item.title || item.content) ? (
+                        <ThemedText style={[styles.choiceStatuteArticleTitle, { color: colors.text }]}>
+                          {getStatuteDisplayTitle(item, statuteItemsRaw)}
+                        </ThemedText>
+                      ) : null}
+                      {item.content ? <MarkdownText text={item.content} /> : null}
+                    </ThemedView>
+                  ))
+                ) : (
+                  <ThemedText style={[styles.choiceStatuteNote, { color: colors.subText }]}>
+                    ※ 条文モードから対応する条文を特定できませんでした。
+                  </ThemedText>
+                )}
+              </ThemedView>
+            );
+          }
+          const visibleIndices = mode === 'bonus'
+            ? choices.map((_, i) => i)
+            : choices.map((_, i) => i).filter((i) => !isBonusChoice(i));
+          if (visibleIndices.length === 0) return null;
+          // 同一根拠条文でまとめる: key -> { statute or null, indices }
+          type StatuteEntry = { title: string; content: string };
+          const groupKey = (st: StatuteEntry) => `${st.title ?? ''}\n---\n${st.content ?? ''}`;
+          const grouped = new Map<string, { statute: StatuteEntry | null; indices: number[] }>();
+          for (const idx of visibleIndices) {
+            const related = choiceStatutes[idx] || [];
+            const statute = related.length > 0 ? related[0] : null;
+            const key = statute ? groupKey(statute) : '__none__';
+            if (!grouped.has(key)) grouped.set(key, { statute, indices: [] });
+            grouped.get(key)!.indices.push(idx);
+          }
+          const groups = Array.from(grouped.entries()).map(([_, g]) => g);
+          return (
+          <ThemedView style={[styles.choiceStatuteBlock, { borderColor: colors.choiceBorder }]}>
+            <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 8 }]}>
+              解説{mode === 'bonus' ? '（ボーナス肢含む）' : ''}
+            </ThemedText>
+            {groups.map((g, gi) => {
+              const label = g.indices.map((i) => `${i + 1}`).join('. ') + '. ';
+              const choiceTexts = g.indices.map((i) => (choices[i] || '').replace(/※/g, '')).filter(Boolean);
+              return (
+                <View key={gi} style={styles.choiceStatuteItem}>
+                  <View style={styles.choiceStatuteNumRow}>
+                    <ThemedText style={[styles.choiceStatuteChoice, { color: colors.text }]}>
+                      {label}
+                    </ThemedText>
+                    <ThemedText style={[styles.choiceStatuteChoiceBody, { color: colors.text }]} numberOfLines={3}>
+                      {choiceTexts.length > 0 ? choiceTexts.join(' / ') : '—'}
+                    </ThemedText>
+                  </View>
+                  <ThemedText style={[styles.choiceStatuteLabel, { color: colors.subText }]}>
+                    根拠条文
+                  </ThemedText>
+                  {g.statute ? (
+                    <View style={styles.choiceStatuteArticle}>
+                      {(g.statute.title || g.statute.content) ? (
+                        <ThemedText style={[styles.choiceStatuteArticleTitle, { color: colors.text }]}>
+                          {getStatuteDisplayTitle(g.statute, statuteItemsRaw)}
+                        </ThemedText>
+                      ) : null}
+                      {g.statute.content ? <MarkdownText text={g.statute.content} /> : null}
+                      {g.statute.content ? (
+                        <ThemedText style={[styles.choiceStatuteNote, { color: colors.subText }]}>
+                          ※ キーワード: {g.statute.content.replace(/[\s\r\n]+/g, '').slice(0, 20)}…
+                        </ThemedText>
+                      ) : null}
+                    </View>
+                  ) : (
+                    <ThemedText style={[styles.choiceStatuteNote, { color: colors.subText }]}>
+                      ※ 条文モードから対応する条文を特定できませんでした。
+                    </ThemedText>
+                  )}
+                </View>
+              );
+            })}
+          </ThemedView>
+          );
+        })()}
         {isDescriptive && hasDescriptiveModel && (
           <ThemedText style={[styles.answerText, { color: colors.text, marginTop: 8 }]}>模範解答: {modelAnswer}</ThemedText>
         )}
@@ -379,6 +590,26 @@ export default function ResultScreen() {
           もっと深掘る！
         </ThemedText>
         <View style={!isExplainExpanded ? styles.collapsedExplain : undefined}>
+          {isExplainExpanded && statuteItems.length > 0 ? (
+            <ThemedView style={[styles.statutesBlock, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
+              <View style={styles.statutesBlockHeaderRow}>
+                <ThemedText style={[styles.statutesBlockLabelLeft, { color: colors.text }]}>根拠条文</ThemedText>
+                <ThemedText type="subtitle" style={[styles.statutesBlockTitle, { color: colors.text }]}>
+                  📜 根拠条文
+                </ThemedText>
+              </View>
+              {statuteItems.map((item, idx) => (
+                <ThemedView key={idx} style={styles.statutesItem}>
+                  {(item.title || item.content) ? (
+                    <ThemedText style={[styles.statutesItemTitle, { color: colors.text }]}>
+                      {getStatuteDisplayTitle(item, statuteItemsRaw)}
+                    </ThemedText>
+                  ) : null}
+                  {item.content ? <MarkdownText text={item.content} /> : null}
+                </ThemedView>
+              ))}
+            </ThemedView>
+          ) : null}
           <MarkdownText text={explain || ''} />
         </View>
         <Pressable
@@ -550,6 +781,94 @@ const styles = StyleSheet.create({
   },
   explainText: {
     lineHeight: 24,
+  },
+  statutesBlock: {
+    marginBottom: 16,
+    padding: 16,
+    borderWidth: 2,
+    borderRadius: 12,
+  },
+  statutesBlockHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  statutesBlockLabelLeft: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginRight: 12,
+    minWidth: 72,
+  },
+  statutesBlockTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    flex: 1,
+  },
+  statutesItem: {
+    marginBottom: 12,
+  },
+  statutesItemTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    marginBottom: 6,
+  },
+  choiceStatuteBlock: {
+    marginTop: 12,
+    marginBottom: 12,
+    padding: 12,
+    borderWidth: 1,
+    borderRadius: 12,
+  },
+  choiceStatuteHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  choiceStatuteLabelLeft: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginRight: 12,
+    minWidth: 72,
+  },
+  choiceStatuteTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    flex: 1,
+  },
+  choiceStatuteItem: {
+    marginBottom: 10,
+  },
+  choiceStatuteNumRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 4,
+    gap: 8,
+  },
+  choiceStatuteChoice: {
+    fontSize: 14,
+    fontWeight: '600',
+    minWidth: 28,
+  },
+  choiceStatuteChoiceBody: {
+    flex: 1,
+    fontSize: 14,
+  },
+  choiceStatuteLabel: {
+    fontSize: 13,
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  choiceStatuteArticle: {
+    paddingLeft: 8,
+  },
+  choiceStatuteArticleTitle: {
+    fontSize: 13,
+    fontWeight: '600',
+    marginBottom: 2,
+  },
+  choiceStatuteNote: {
+    marginTop: 4,
+    fontSize: 12,
   },
   nextButton: {
     marginTop: 12,
