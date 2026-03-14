@@ -1,12 +1,14 @@
 import { router } from 'expo-router';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, Switch, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useDescriptiveScope } from '@/src/context/DescriptiveScopeContext';
 import { Themes, ThemeType, useTheme } from '@/src/context/ThemeContext';
 
 export default function SettingsScreen() {
     const { theme, setTheme } = useTheme();
+    const { descriptiveScopeEnabled, setDescriptiveScopeEnabled } = useDescriptiveScope();
 
     const handleSelect = (t: ThemeType) => {
         setTheme(t);
@@ -15,6 +17,22 @@ export default function SettingsScreen() {
     return (
         <ThemedView style={styles.container}>
             <ThemedText type="title" style={styles.header}>設定</ThemedText>
+
+            <ThemedText type="subtitle" style={styles.sectionTitle}>記述スコープ（院機能）</ThemedText>
+            <View style={styles.list}>
+                <View style={[styles.item, styles.scopeRow]}>
+                    <View style={styles.info}>
+                        <ThemedText type="defaultSemiBold">記述スコープを有効にする</ThemedText>
+                        <ThemedText style={styles.desc}>ONにすると「問題を解く」で記述式で出題された科目（民法・行政法・記述）のみ表示します。</ThemedText>
+                    </View>
+                    <Switch
+                        value={descriptiveScopeEnabled}
+                        onValueChange={setDescriptiveScopeEnabled}
+                        trackColor={{ false: '#ccc', true: '#5A9BD5' }}
+                        thumbColor="#fff"
+                    />
+                </View>
+            </View>
 
             <ThemedText type="subtitle" style={styles.sectionTitle}>デザインテーマ</ThemedText>
 
@@ -178,5 +196,10 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 8,
         alignItems: 'center',
+    },
+    scopeRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
 });

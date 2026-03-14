@@ -3,6 +3,7 @@ import { Pressable, ScrollView, StyleSheet } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useDescriptiveScope } from '@/src/context/DescriptiveScopeContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import { SUBJECTS } from '@/src/questions';
 
@@ -18,7 +19,12 @@ const isLightBg = (hex: string) => {
 export default function SubjectsScreen() {
   const router = useRouter();
   const { colors } = useTheme();
-  const subjects = Object.keys(SUBJECTS);
+  const { descriptiveScopeEnabled } = useDescriptiveScope();
+  const allSubjects = Object.keys(SUBJECTS);
+  const descriptiveSubjectKeys = (SUBJECTS as any)['記述'] ? Object.keys((SUBJECTS as any)['記述']) : [];
+  const subjects = descriptiveScopeEnabled
+    ? ['記述', ...descriptiveSubjectKeys.filter((s: string) => s !== '記述' && allSubjects.includes(s))]
+    : allSubjects;
 
   const handlePress = (subject: string) => {
     const fields = Object.keys((SUBJECTS as any)[subject] || {});

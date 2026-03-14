@@ -1,14 +1,19 @@
+import Constants from 'expo-constants';
 import { Link, router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Image, Modal, PanResponder, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { ActivityIndicator, Animated, Image, Modal, PanResponder, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
+import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { BONUS_QUESTIONS } from '@/src/bonus_questions';
 import { useTheme } from '@/src/context/ThemeContext';
 import { RESOURCES, SUBJECTS } from '@/src/questions';
+import { explainChoiceIntent, generateDescriptiveQuestion } from '@/src/utils/geminiService';
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
 import { getChoicePrefix, hasNumberPrefix } from '@/utils/choiceNumber';
+
+const GEMINI_API_KEY = (typeof Constants?.expoConfig?.extra !== 'undefined' && (Constants.expoConfig.extra as any)?.geminiApiKey) || (typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_GEMINI_API_KEY) || (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) || '';
 
 function DraggableWordBankItem({
   value,
@@ -77,6 +82,46 @@ export default function QuestionScreen() {
   const paramField = Array.isArray(params.field) ? params.field[0] : params.field;
   const mode = Array.isArray(params.mode) ? params.mode[0] : params.mode;
   const isShuffle = (Array.isArray(params.shuffle) ? params.shuffle[0] : params.shuffle) === '1';
+  // 記述シートと同一ジャンルの分野のみ（記）表示。分野内はキーワードで細分化。
+  const DESCRIPTIVE_SCOPE_FIELDS: Record<string, string[]> = {
+    民法: ['民法総則', '民法物権', '債権総論', '債権各論'],
+    行政法: ['行政手続法', '行政不服審査法', '行政事件訴訟法', '地方自治法'],
+  };
+  /** 分野ごとの細目キーワード（問題文・選択肢のいずれかに含まれるときのみ（記）表示）。細かく指定して記述シートと同テーマに限定 */
+  const DESCRIPTIVE_SCOPE_KEYWORDS: Record<string, string[]> = {
+    行政手続法: [
+      '行政指導', '行政指導の中止', '中止を求める', '聴聞', '聴聞の通知', '名あて人', '弁明の機会', '弁明の機会の付与',
+      '申請', '許認可', '届出', '不利益処分', '命令を求める', '何人も', '意見公募', '意見公募手続', '公聴会',
+      '処分の求め', '行政手続法に規定され', '行政手続法に定め', '定義に照らして',
+    ],
+    行政不服審査法: [
+      '審査請求', '異議申立て', '再審査請求', '原処分主義', '裁決', '裁決取消', '被告は', '棄却する裁決',
+      '開発審査会', '審査会', '前置', '裁決主義',
+    ],
+    行政事件訴訟法: [
+      '取消訴訟', '無効等確認', '不作為の違法確認', '義務付け', '差止め', '当事者訴訟', '民衆訴訟', '機関訴訟',
+      '法律上の争訟', '訴え却下', '競願', '免許処分', '拒否処分', '被告として',
+    ],
+    地方自治法: [
+      '条例', '過料', '秩序罰', '行政上の秩序罰', '市長により科される', '地方自治法に定め',
+    ],
+    民法総則: [
+      '成年被後見人', '催告', '確答', '追認', '詐欺', '取消', '無権代理', '無権代理人', '行為能力', '制限行為能力',
+      '意思表示', '取り消す', '信義則',
+    ],
+    民法物権: [
+      '背信的悪意者', '登記', '対抗', '取得時効', '占有', '共有', '抵当権', '譲渡', '二重譲渡',
+      '登記の欠缺', '無権利者',
+    ],
+    債権総論: [
+      '債務不履行', '弁済', '相殺', '債権者代位', '詐害行為取消', '代位', '損害賠償',
+    ],
+    債権各論: [
+      '売買', '賃貸借', '請負', '不法行為', '不当利得', '契約', '解除', '責任',
+    ],
+  };
+  const isInDescriptiveField =
+    subject !== '記述' && subject && paramField && (DESCRIPTIVE_SCOPE_FIELDS[subject]?.includes(paramField) ?? false);
 
   const { colors, theme } = useTheme();
 
@@ -118,12 +163,14 @@ export default function QuestionScreen() {
       const isValid = hasText && (isDescriptive || hasChoices);
       if (!isValid) return false;
 
-      // 肢単位の※分離: choiceIsBonusがあればそれで判定、なければ従来のisBonus
+      // 肢単位の※分離: ※付き肢のみ除外。過去問は非※肢が1つでもあれば表示、ボーナスは※肢が1つでもあれば表示
       const cb = q.choiceIsBonus as boolean[] | undefined;
       const hasCb = cb && cb.length > 0;
       if (mode === 'bonus') {
         return hasCb ? cb.some((b: boolean) => b) : !!q.isBonus;
       } else {
+        // H列※（問題文※）または全肢※のときのみ除外。混在問題は※肢を非表示にして表示
+        if (q.isBonus && (!hasCb || cb.every((b: boolean) => b) || cb.every((b: boolean) => !b))) return false;
         return hasCb ? cb.some((b: boolean) => !b) : !q.isBonus;
       }
     });
@@ -164,14 +211,99 @@ export default function QuestionScreen() {
 
   // State for 記述式（文章入力）
   const [descriptiveAnswer, setDescriptiveAnswer] = useState('');
+  // 記述スコープ: 択一問題を記述で答えるモード
+  const [descriptiveScopeOn, setDescriptiveScopeOn] = useState(false);
+  const [scopeDescriptiveAnswer, setScopeDescriptiveAnswer] = useState('');
+
+  // 記述スコープ・教えて先生: アイコンクリック→肢クリックで効果
+  type ActionMode = 'descriptiveScope' | 'teachMe' | null;
+  const [activeActionMode, setActiveActionMode] = useState<ActionMode>(null);
+  const [scopeGeneratedQuestion, setScopeGeneratedQuestion] = useState('');
+  const [scopeGeneratedModelAnswer, setScopeGeneratedModelAnswer] = useState('');
+  const [scopeGenerateLoading, setScopeGenerateLoading] = useState(false);
+  const [scopeGenerateError, setScopeGenerateError] = useState<string | null>(null);
+  const [teachMeModalVisible, setTeachMeModalVisible] = useState(false);
+  const [teachMeContent, setTeachMeContent] = useState('');
+  const [teachMeLoading, setTeachMeLoading] = useState(false);
+  const [teachMeError, setTeachMeError] = useState<string | null>(null);
+
+  const requestTeachMe = useCallback(async (choiceText: string) => {
+    if (!GEMINI_API_KEY) {
+      setTeachMeError('APIキー未設定。.env に EXPO_PUBLIC_GEMINI_API_KEY を設定してください。');
+      setTeachMeModalVisible(true);
+      return;
+    }
+    setTeachMeError(null);
+    setTeachMeContent('');
+    setTeachMeModalVisible(true);
+    setTeachMeLoading(true);
+    try {
+      const text = question?.text || '';
+      const explain = (question as any)?.explain || '';
+      const result = await explainChoiceIntent(GEMINI_API_KEY, {
+        problemText: text,
+        choiceText,
+        explain: explain || undefined,
+      });
+      setTeachMeContent(result);
+    } catch (e: any) {
+      setTeachMeError(e?.message || '説明の取得に失敗しました。');
+    } finally {
+      setTeachMeLoading(false);
+    }
+  }, [question?.text, question?.explain]);
+
+  const requestDescriptiveScope = useCallback(async (choiceText: string) => {
+    setScopeGenerateError(null);
+    setScopeGeneratedQuestion('');
+    setScopeGeneratedModelAnswer('');
+    setScopeGenerateLoading(true);
+    if (!GEMINI_API_KEY) {
+      setScopeGenerateError('APIキー未設定。.env に EXPO_PUBLIC_GEMINI_API_KEY を設定してください。');
+      setScopeGenerateLoading(false);
+      return;
+    }
+    try {
+      const text = question?.text || '';
+      const choices = ((question as any)?.choices || []).map((c: string) => (c || '').replace(/※/g, ''));
+      const result = await generateDescriptiveQuestion(GEMINI_API_KEY, {
+        problemText: text,
+        choices,
+        selectedChoiceText: choiceText,
+      });
+      setScopeGeneratedQuestion(result.question);
+      setScopeGeneratedModelAnswer(result.modelAnswer);
+    } catch (e: any) {
+      setScopeGenerateError(e?.message || '記述問題の生成に失敗しました。');
+    } finally {
+      setScopeGenerateLoading(false);
+    }
+  }, [question?.text, question?.choices]);
 
   // Reset dimmed choices and selections when question changes
   useEffect(() => {
     setDimmedIndices([]);
     setSelectedIndices([]);
     setDescriptiveAnswer('');
+    setDescriptiveScopeOn(false);
+    setScopeDescriptiveAnswer('');
+    setScopeGeneratedQuestion('');
+    setScopeGeneratedModelAnswer('');
+    setScopeGenerateError(null);
+    setActiveActionMode(null);
     setReorderSelection([]);
   }, [questionIndex]);
+
+  const hasScopeGenerated = scopeGeneratedQuestion !== '';
+  const showScopeBlock = scopeGenerateLoading || hasScopeGenerated || !!scopeGenerateError;
+
+  // Reset scope when cancelling
+  const cancelScopeDescriptive = useCallback(() => {
+    setScopeGeneratedQuestion('');
+    setScopeGeneratedModelAnswer('');
+    setScopeDescriptiveAnswer('');
+    setScopeGenerateError(null);
+  }, []);
 
   // 並べ替え問題: 初期化（シャッフルした順序）
   useEffect(() => {
@@ -518,39 +650,43 @@ export default function QuestionScreen() {
     return list;
   }, [question, mode]);
 
-  // Shuffle choices and keep track of original index
-  const shuffledChoices = useMemo(() => {
+  // 肢単位の※フィルタ（shuffledChoices・並べ替え共通）
+  const filteredChoicesWithIndex = useMemo(() => {
     if (!question || !question.choices) return [];
-
     const cb = (question as any).choiceIsBonus as boolean[] | undefined;
     const isBonusChoice = (i: number) => (cb && i < cb.length ? cb[i] : !!(question as any).isBonus);
-    const hasBonus = cb ? cb.some((b: boolean) => b) : !!(question as any).isBonus;
-    const hasNormal = cb ? cb.some((b: boolean) => !b) : !(question as any).isBonus;
-    const isMixed = hasBonus && hasNormal;
-
-    // Map to object with original index
-    let choicesWithIndex = question.choices.map((text: string, index: number) => ({ text, originalIndex: index }));
-
-    // 肢単位の※フィルタ
-    // 通常モード: ※なし肢のみ
-    // ボーナスモード: ※付き・通常が混在する問題は全肢表示、それ以外は※付き肢のみ
+    let list = question.choices.map((text: string, index: number) => ({ text, originalIndex: index }));
     if (mode !== 'bonus') {
-      choicesWithIndex = choicesWithIndex.filter((c) => !isBonusChoice(c.originalIndex));
-    } else if (!isMixed) {
-      choicesWithIndex = choicesWithIndex.filter((c) => isBonusChoice(c.originalIndex));
+      list = list.filter((c) => !isBonusChoice(c.originalIndex));
+    } else {
+      list = list.filter((c) => isBonusChoice(c.originalIndex));
     }
-    // isMixed && mode==='bonus' → フィルタせず全肢表示
+    return list;
+  }, [question, mode]);
 
-    // シャッフルモード時は肢もランダム順に並び替え
-    if (isShuffle) {
-      for (let i = choicesWithIndex.length - 1; i > 0; i--) {
+  // Shuffle choices and keep track of original index
+  const shuffledChoices = useMemo(() => {
+    const list = [...filteredChoicesWithIndex];
+    if (isShuffle && list.length > 0) {
+      for (let i = list.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [choicesWithIndex[i], choicesWithIndex[j]] = [choicesWithIndex[j], choicesWithIndex[i]];
+        [list[i], list[j]] = [list[j], list[i]];
       }
     }
+    return list;
+  }, [filteredChoicesWithIndex, isShuffle]);
 
-    return choicesWithIndex;
-  }, [question, mode, isShuffle]);
+  // 組み合わせ問題: （ｒ）の数＝選択すべき肢数（※フィルタ後）
+  const requiredSelectCount = useMemo(() => {
+    const ans = (question as any)?.answer;
+    if (!Array.isArray(ans) || ans.length <= 1) return 0;
+    const cb = (question as any).choiceIsBonus as boolean[] | undefined;
+    const isBonusChoice = (i: number) => (cb && i < cb.length ? cb[i] : !!(question as any).isBonus);
+    const effective = mode !== 'bonus'
+      ? ans.filter((i: number) => !isBonusChoice(i))
+      : ans.filter((i: number) => isBonusChoice(i));
+    return effective.length > 0 ? effective.length : ans.length;
+  }, [question, mode]);
 
   useEffect(() => {
     if (questionIndex !== null && sidebarScrollRef.current) {
@@ -564,6 +700,16 @@ export default function QuestionScreen() {
       sidebarScrollRef.current?.scrollTo({ x: Math.max(0, idx * ITEM_WIDTH - 80), animated: true });
     }
   };
+
+  const showDescriptiveMark = useMemo(() => {
+    if (subject === '記述') return true;
+    if (!isInDescriptiveField || !paramField) return false;
+    const keywords = DESCRIPTIVE_SCOPE_KEYWORDS[paramField];
+    if (!keywords?.length) return true;
+    const text = (question?.text || '') + (Array.isArray(question?.choices) ? question.choices.join('') : '');
+    if (!text.trim()) return true;
+    return keywords.some((kw) => text.includes(kw));
+  }, [subject, isInDescriptiveField, paramField, question?.text, question?.choices]);
 
   if (!subject || !field || !question) {
     return (
@@ -727,6 +873,8 @@ export default function QuestionScreen() {
         ) : null}
 
         <ThemedView style={[styles.choices, { backgroundColor: colors.background }]}>
+          <View style={styles.choicesRow}>
+            <View style={styles.choicesBody}>
           {(tashiData || ((question as any).slots?.length > 0 && (question as any).slots?.some((s: any) => s.options))) ? (
             <>
               <Pressable
@@ -760,8 +908,79 @@ export default function QuestionScreen() {
                 <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
               </Pressable>
             </>
-          ) : ((question as any).isReorder || /並び順|ア[〜~]オ|ア～オ/.test((question as any).text || '')) && (question as any).choices?.length > 0 ? (
+          ) : showScopeBlock ? (
             <>
+              {scopeGenerateLoading ? (
+                <View style={{ padding: 24, alignItems: 'center' }}>
+                  <ActivityIndicator size="large" color={colors.primary} />
+                  <ThemedText style={{ marginTop: 12, color: colors.subText }}>記述問題を生成中…</ThemedText>
+                </View>
+              ) : scopeGenerateError ? (
+                <View>
+                  <ThemedText style={{ color: '#D32F2F', marginBottom: 8 }}>{scopeGenerateError}</ThemedText>
+                  <Pressable style={[styles.cancelSlotButton, { borderColor: colors.choiceBorder }]} onPress={cancelScopeDescriptive}>
+                    <ThemedText style={{ color: colors.subText, fontSize: 12 }}>キャンセル</ThemedText>
+                  </Pressable>
+                </View>
+              ) : (
+                <>
+                  <ThemedText style={[styles.descriptiveLabel, { color: colors.subText }]}>記述スコープ（AIが生成した問題）</ThemedText>
+                  <ThemedText style={[styles.questionText, { color: colors.text, marginBottom: 12, marginTop: 4 }]}>{scopeGeneratedQuestion}</ThemedText>
+                  <TextInput
+                    style={[
+                      styles.descriptiveInput,
+                      { borderColor: colors.choiceBorder, backgroundColor: colors.card, color: colors.text }
+                    ]}
+                    placeholder="40字程度で記述"
+                    placeholderTextColor={colors.subText || '#999'}
+                    multiline
+                    numberOfLines={4}
+                    value={scopeDescriptiveAnswer}
+                    onChangeText={setScopeDescriptiveAnswer}
+                    textAlignVertical="top"
+                  />
+                  <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
+                    <Pressable style={[styles.cancelSlotButton, { borderColor: colors.choiceBorder }]} onPress={cancelScopeDescriptive}>
+                      <ThemedText style={{ color: colors.subText, fontSize: 12 }}>キャンセル</ThemedText>
+                    </Pressable>
+                    <Pressable
+                      style={[styles.answerButton, scopeDescriptiveAnswer.trim().length === 0 && styles.answerButtonDisabled]}
+                      disabled={scopeDescriptiveAnswer.trim().length === 0}
+                      onPress={() => {
+                        router.push({
+                          pathname: '/result',
+                          params: {
+                            subject,
+                            field,
+                            questionIndex: String(questionIndex),
+                            pickedIndex: '-1',
+                            pickedText: scopeDescriptiveAnswer.trim(),
+                            totalQuestions: String(questions.length),
+                            correctCountSession: params.correctCountSession || '0',
+                            isDescriptiveScope: '1',
+                            modelAnswer: scopeGeneratedModelAnswer || '',
+                          }
+                        });
+                      }}
+                    >
+                      <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
+                    </Pressable>
+                  </View>
+                </>
+              )}
+            </>
+          ) : ((question as any).isReorder || /並び順|並べ替え|順番に選択/.test((question as any).text || '')) && filteredChoicesWithIndex.length > 0 ? (
+            <>
+              {activeActionMode === 'descriptiveScope' && (
+                <ThemedText style={[styles.descriptiveLabel, { color: colors.primary, marginBottom: 8, fontWeight: 'bold' }]}>
+                  → 記述問題を生成する肢をクリック
+                </ThemedText>
+              )}
+              {activeActionMode === 'teachMe' && (
+                <ThemedText style={[styles.descriptiveLabel, { color: colors.primary, marginBottom: 8, fontWeight: 'bold' }]}>
+                  → 説明してほしい肢をクリック
+                </ThemedText>
+              )}
               <ThemedText style={[styles.descriptiveLabel, { color: colors.subText, marginBottom: 8 }]}>
                 肢をクリックした順番に選択してください。{reorderSelection.length > 0 && ` (選択順: ${reorderSelection.map((i) => i + 1).join(' → ')})`}
               </ThemedText>
@@ -770,37 +989,49 @@ export default function QuestionScreen() {
                   <ThemedText style={{ color: colors.subText, fontSize: 12 }}>やり直す</ThemedText>
                 </Pressable>
               )}
-              {((question as any).choices as string[]).map((choice: string, idx: number) => {
-                const label = String(idx + 1);
-                const isSelected = reorderSelection.includes(idx);
-                const selectedPos = reorderSelection.indexOf(idx) + 1;
+              {filteredChoicesWithIndex.map((item: { text: string; originalIndex: number }, displayIdx: number) => {
+                const origIdx = item.originalIndex;
+                const label = String(displayIdx + 1);
+                const isSelected = reorderSelection.includes(origIdx);
+                const selectedPos = reorderSelection.indexOf(origIdx) + 1;
+                const displayText = (item.text || '').replace(/※/g, '');
                 return (
                   <Pressable
-                    key={idx}
+                    key={origIdx}
                     style={[
                       styles.reorderRow,
                       { backgroundColor: isSelected ? '#E3F2FD' : colors.choiceBg,
                         borderWidth: isSelected ? 2 : 1, borderColor: isSelected ? '#2196F3' : colors.choiceBorder }
                     ]}
                     onPress={() => {
+                      if (activeActionMode === 'descriptiveScope') {
+                        setActiveActionMode(null);
+                        requestDescriptiveScope(displayText);
+                        return;
+                      }
+                      if (activeActionMode === 'teachMe') {
+                        requestTeachMe(displayText);
+                        setActiveActionMode(null);
+                        return;
+                      }
                       setReorderSelection(prev => {
-                        if (prev.includes(idx)) return prev.filter((i) => i !== idx);
-                        if (prev.length >= ((question as any).choices?.length || 0)) return prev;
-                        return [...prev, idx];
+                        if (prev.includes(origIdx)) return prev.filter((i) => i !== origIdx);
+                        if (prev.length >= filteredChoicesWithIndex.length) return prev;
+                        return [...prev, origIdx];
                       });
                     }}
                   >
                     <ThemedText style={[styles.reorderNum, { color: colors.text }]}>{label}.</ThemedText>
                     <ThemedText style={[styles.reorderText, { color: colors.text, flex: 1 }]} numberOfLines={5}>
-                      {choice || ''}
+                      {displayText}
                     </ThemedText>
                     {isSelected && <ThemedText style={{ color: '#2196F3', fontWeight: 'bold', marginLeft: 8 }}>→{selectedPos}番目</ThemedText>}
                   </Pressable>
                 );
               })}
               <Pressable
-                style={[styles.answerButton, reorderSelection.length !== ((question as any).choices?.length || 0) && styles.answerButtonDisabled]}
-                disabled={reorderSelection.length !== ((question as any).choices?.length || 0)}
+                style={[styles.answerButton, reorderSelection.length !== filteredChoicesWithIndex.length && styles.answerButtonDisabled]}
+                disabled={reorderSelection.length !== filteredChoicesWithIndex.length}
                 onPress={() => {
                   router.push({
                     pathname: '/result',
@@ -822,6 +1053,16 @@ export default function QuestionScreen() {
             </>
           ) : comboFormatData ? (
             <>
+              {activeActionMode === 'descriptiveScope' && (
+                <ThemedText style={[styles.descriptiveLabel, { color: colors.primary, marginBottom: 8, fontWeight: 'bold' }]}>
+                  → 記述問題を生成する組合せをクリック
+                </ThemedText>
+              )}
+              {activeActionMode === 'teachMe' && (
+                <ThemedText style={[styles.descriptiveLabel, { color: colors.primary, marginBottom: 8, fontWeight: 'bold' }]}>
+                  → 説明してほしい組合せをクリック
+                </ThemedText>
+              )}
               <View style={[styles.comboTable, { borderColor: colors.choiceBorder }]}>
                 <View style={[styles.comboTableHeader, { backgroundColor: colors.card }]}>
                   <ThemedText style={[styles.comboTableHeaderCell, { color: colors.text }]}>(ア)</ThemedText>
@@ -832,6 +1073,16 @@ export default function QuestionScreen() {
                     key={idx}
                     style={[styles.comboTableRow, { borderColor: colors.choiceBorder, backgroundColor: colors.choiceBg }]}
                     onPress={() => {
+                      if (activeActionMode === 'descriptiveScope') {
+                        setActiveActionMode(null);
+                        requestDescriptiveScope(`${item.partA} ${item.partB}`);
+                        return;
+                      }
+                      if (activeActionMode === 'teachMe') {
+                        requestTeachMe(`${item.partA} ${item.partB}`);
+                        setActiveActionMode(null);
+                        return;
+                      }
                       router.push({
                         pathname: '/result',
                         params: {
@@ -896,7 +1147,24 @@ export default function QuestionScreen() {
                 <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
               </Pressable>
             </>
-          ) : shuffledChoices.map((choiceObj: { text: string; originalIndex: number }, index: number) => {
+          ) : (
+            <>
+              {activeActionMode === 'descriptiveScope' && (
+                <ThemedText style={[styles.descriptiveLabel, { color: colors.primary, marginBottom: 8, fontWeight: 'bold' }]}>
+                  → 記述問題を生成する選択肢をクリック
+                </ThemedText>
+              )}
+              {activeActionMode === 'teachMe' && (
+                <ThemedText style={[styles.descriptiveLabel, { color: colors.primary, marginBottom: 8, fontWeight: 'bold' }]}>
+                  → 説明してほしい選択肢をクリック
+                </ThemedText>
+              )}
+              {requiredSelectCount > 0 && (
+                <ThemedText style={[styles.descriptiveLabel, { color: colors.subText, marginBottom: 8 }]}>
+                  {requiredSelectCount}つ選んでください
+                </ThemedText>
+              )}
+              {shuffledChoices.map((choiceObj: { text: string; originalIndex: number }, index: number) => {
             if (!choiceObj || !choiceObj.text) return null; // Guard against null/empty choices
 
             // [NEW] Display Logic: Strip '※'
@@ -935,9 +1203,20 @@ export default function QuestionScreen() {
                 }}
                 delayLongPress={200} // Set delay specifically for web responsiveness
                 onPress={() => {
+                  if (activeActionMode === 'descriptiveScope') {
+                    setActiveActionMode(null);
+                    requestDescriptiveScope(displayText);
+                    return;
+                  }
+                  if (activeActionMode === 'teachMe') {
+                    requestTeachMe(displayText);
+                    setActiveActionMode(null);
+                    return;
+                  }
                   if (isMultiSelect) {
                     setSelectedIndices(prev => {
                       if (prev.includes(choiceObj.originalIndex)) return prev.filter(i => i !== choiceObj.originalIndex);
+                      if (prev.length >= requiredSelectCount) return prev;
                       return [...prev, choiceObj.originalIndex];
                     });
                   } else {
@@ -946,16 +1225,10 @@ export default function QuestionScreen() {
                       params: {
                         subject,
                         field,
-                        questionIndex: String(questionIndex), // Pass current index
+                        questionIndex: String(questionIndex),
                         pickedIndex: String(choiceObj.originalIndex),
-                        // correctIndices: JSON.stringify(question.answer), // Removed
-                        // text: question.text, // Removed
-                        // explain: question.explain, // Removed
-                        // memo: question.memo || '', // Removed
-                        // choices: JSON.stringify(question.choices), // Removed
                         totalQuestions: String(questions.length),
-                        correctCountSession: params.correctCountSession || '0', // Pass through or init
-                        // refId: (question as any).refId || '', // Removed (Result will lookup)
+                        correctCountSession: params.correctCountSession || '0',
                       },
                     });
                   }
@@ -970,16 +1243,50 @@ export default function QuestionScreen() {
               </Pressable>
             );
           })}
+            </>
+          )}
+            </View>
+            {((question as any)?.choices?.length > 0 || showDescriptiveMark || shuffledChoices.length > 0 || filteredChoicesWithIndex.length > 0 || (comboFormatData?.length ?? 0) > 0) ? (
+              <View style={styles.choicesMarkRow}>
+                {showDescriptiveMark ? (
+                  <ThemedText style={[styles.choicesMark, { color: colors.text }]}>（記）</ThemedText>
+                ) : null}
+                <Pressable
+                  style={[
+                    styles.scopeChip,
+                    { borderColor: colors.primary, backgroundColor: activeActionMode === 'descriptiveScope' ? colors.primary : colors.choiceBg }
+                  ]}
+                  onPress={() => setActiveActionMode((prev) => (prev === 'descriptiveScope' ? null : 'descriptiveScope'))}
+                >
+                  <ThemedText style={[styles.scopeChipText, { color: activeActionMode === 'descriptiveScope' ? '#fff' : colors.primary }]}>
+                    {activeActionMode === 'descriptiveScope' ? '記述スコープ ON' : '記述スコープ'}
+                  </ThemedText>
+                </Pressable>
+                <Pressable
+                  style={[
+                    styles.scopeChip,
+                    { borderColor: colors.primary, backgroundColor: activeActionMode === 'teachMe' ? colors.primary : colors.choiceBg }
+                  ]}
+                  onPress={() => setActiveActionMode((prev) => (prev === 'teachMe' ? null : 'teachMe'))}
+                >
+                  <ThemedText style={[styles.scopeChipText, { color: activeActionMode === 'teachMe' ? '#fff' : colors.primary }]}>
+                    {activeActionMode === 'teachMe' ? '教えて先生 ON' : '教えて先生'}
+                  </ThemedText>
+                </Pressable>
+              </View>
+            ) : null}
+          </View>
         </ThemedView>
 
-        {/* Answer Button for Multi-Select */}
+        {/* Answer Button for Multi-Select（組み合わせ問題: （ｒ）の数だけ選択必須） */}
         {(() => {
           const answer = (question as any).answer || [];
           if (Array.isArray(answer) && answer.length > 1) {
+            const canSubmit = selectedIndices.length === requiredSelectCount;
             return (
               <Pressable
-                style={[styles.answerButton, selectedIndices.length === 0 && styles.answerButtonDisabled]}
-                disabled={selectedIndices.length === 0}
+                style={[styles.answerButton, !canSubmit && styles.answerButtonDisabled]}
+                disabled={!canSubmit}
                 onPress={() => {
                   router.push({
                     pathname: '/result',
@@ -1096,6 +1403,35 @@ export default function QuestionScreen() {
               )}
 
               <Pressable style={styles.modalCloseButton} onPress={() => setResourceModalVisible(false)}>
+                <ThemedText style={{ color: '#fff' }}>閉じる</ThemedText>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+
+        {/* 教えて先生 Modal */}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={teachMeModalVisible}
+          onRequestClose={() => setTeachMeModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={[styles.modalContent, { maxHeight: '85%' }]}>
+              <ThemedText type="subtitle" style={styles.modalTitle}>教えて先生</ThemedText>
+              {teachMeLoading ? (
+                <View style={{ padding: 24, alignItems: 'center' }}>
+                  <ActivityIndicator size="large" color={colors.primary} />
+                  <ThemedText style={{ marginTop: 12, color: colors.subText }}>説明を生成中…</ThemedText>
+                </View>
+              ) : teachMeError ? (
+                <ThemedText style={{ color: '#D32F2F', padding: 16 }}>{teachMeError}</ThemedText>
+              ) : teachMeContent ? (
+                <ScrollView style={{ maxHeight: '70%' }}>
+                  <MarkdownText text={teachMeContent} />
+                </ScrollView>
+              ) : null}
+              <Pressable style={styles.modalCloseButton} onPress={() => setTeachMeModalVisible(false)}>
                 <ThemedText style={{ color: '#fff' }}>閉じる</ThemedText>
               </Pressable>
             </View>
@@ -1255,6 +1591,36 @@ const styles = StyleSheet.create({
   },
   choices: {
     gap: 12,
+  },
+  choicesRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+  },
+  choicesBody: {
+    flex: 1,
+    gap: 12,
+  },
+  choicesMarkRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginTop: 4,
+    flexWrap: 'wrap',
+  },
+  choicesMark: {
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  scopeChip: {
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderRadius: 16,
+  },
+  scopeChipText: {
+    fontSize: 12,
+    fontWeight: '600',
   },
   descriptiveLabel: {
     fontSize: 14,

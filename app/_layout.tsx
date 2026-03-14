@@ -7,6 +7,7 @@ import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { CharacterProvider } from '@/src/context/CharacterContext';
+import { DescriptiveScopeProvider } from '@/src/context/DescriptiveScopeContext';
 import { ThemeProvider as CustomThemeProvider } from '@/src/context/ThemeContext';
 import { UserProvider } from '@/src/context/UserContext';
 
@@ -38,6 +39,7 @@ export default function RootLayout() {
   return (
     <CustomThemeProvider>
       <UserProvider>
+        <DescriptiveScopeProvider>
         <CharacterProvider>
           <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
             <Stack>
@@ -50,6 +52,7 @@ export default function RootLayout() {
             <StatusBar style="auto" />
           </ThemeProvider>
         </CharacterProvider>
+        </DescriptiveScopeProvider>
       </UserProvider>
     </CustomThemeProvider>
   );

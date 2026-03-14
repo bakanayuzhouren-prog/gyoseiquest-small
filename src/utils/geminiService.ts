@@ -67,6 +67,112 @@ export const generateExplanation = async (
   }
 };
 
+/** 記述スコープ: 択一問題から記述式問題を生成 */
+export const generateDescriptiveQuestion = async (
+  apiKey: string,
+  params: { problemText: string; choices: string[]; selectedChoiceText: string }
+): Promise<{ question: string; modelAnswer: string }> => {
+  const { problemText, choices, selectedChoiceText } = params;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+  const prompt = `【指示】
+公務員試験・資格試験の択一問題を、記述式問題に変換してください。
+
+【元の問題文】
+${problemText}
+
+【選択肢】
+${choices.map((c, i) => `${i + 1}. ${c}`).join('\n')}
+
+【ユーザーが選択した肢】
+${selectedChoiceText}
+
+【出力ルール】
+1. 上記択一問題の趣旨・争点を踏まえ、同じ知識を問う「記述式の問題」を1問作成する
+2. 40字程度で答えられる形式（「〇〇とは何か、40字程度で記述せよ」など）
+3. 模範解答も作成する（選択肢の内容を要約した形で、40字前後）
+
+【出力形式】必ず次のJSONのみを1行で出力。他に説明は書かないこと。
+{"question": "記述式の問題文", "modelAnswer": "模範解答（40字前後）"}`;
+
+  const body = {
+    contents: [{ parts: [{ text: prompt }] }],
+    generationConfig: { temperature: 0.3, maxOutputTokens: 512 },
+  };
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!response.ok) {
+    const errText = await response.text();
+    throw new Error(`Gemini API Error: ${response.status} ${response.statusText} - ${errText}`);
+  }
+  const data = await response.json();
+  let rawText = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+  rawText = rawText.replace(/^```json\s*/i, '').replace(/\s*```\s*$/, '').trim();
+  let parsed: { question?: string; modelAnswer?: string };
+  try {
+    parsed = JSON.parse(rawText) as { question?: string; modelAnswer?: string };
+  } catch {
+    parsed = {};
+  }
+  return {
+    question: typeof parsed.question === 'string' ? parsed.question : '記述問題を生成できませんでした。',
+    modelAnswer: typeof parsed.modelAnswer === 'string' ? parsed.modelAnswer : selectedChoiceText,
+  };
+};
+
+/** 教えて先生: 問題・選択肢の意図説明 */
+export const explainChoiceIntent = async (
+  apiKey: string,
+  params: { problemText: string; choiceText: string; explain?: string }
+): Promise<string> => {
+  const { problemText, choiceText, explain } = params;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+  const prompt = `【指示】
+公務員試験・資格試験の専門講師として、以下の「問題文」と「選択肢」について、**深い知識**をふんだんに盛り込んだ解説を作成してください。
+
+【必須で含める内容】
+1. **問題の趣旨・争点** - 何が問われているか、法的な論点を明確に
+2. **条文・ルールの立法趣旨** - なぜその規定が存在するのか、政策目的・背景
+3. **判例の考え方** - 関連判例があれば、判旨・結論の理由を具体的に
+4. **関連概念との整理** - 似た制度との違い、区別のポイント
+5. **実務・試験での落とし穴** - よくある誤解、ひっかけの典型
+
+【問題文】
+${problemText}
+
+【選択肢】
+${choiceText}
+${explain ? `\n【参考: 既存解説】\n${explain}` : ''}
+
+【出力ルール】
+- 専門用語は **太字** で囲む
+- 600〜1000字程度で丁寧に、深掘りして説明
+- 条文番号・判例名があれば具体的に記載
+- 講師として威厳を持ち、受験生が「なるほど」と納得できるレベルで`;
+
+  const body = {
+    contents: [{ parts: [{ text: prompt }] }],
+    generationConfig: { temperature: 0.3, maxOutputTokens: 2048 },
+  };
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!response.ok) {
+    const errText = await response.text();
+    throw new Error(`Gemini API Error: ${response.status} ${response.statusText} - ${errText}`);
+  }
+  const data = await response.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text ?? '説明を取得できませんでした。';
+};
+
 /** 記述式: 部分点と分析を返す */
 export interface GradeDescriptiveRequest {
   problemText: string;
@@ -84,7 +190,7 @@ export const gradeDescriptiveAnswer = async (
   request: GradeDescriptiveRequest
 ): Promise<GradeDescriptiveResult> => {
   const { problemText, modelAnswer, userAnswer } = request;
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
   const prompt = `【指示】
 公務員試験の記述式問題です。以下の「問題文」「模範解答」「受験生の解答」を読み、受験生の解答を採点し、部分点（0〜100点）と短い分析コメントを付けてください。

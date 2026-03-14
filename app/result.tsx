@@ -125,6 +125,8 @@ export default function ResultScreen() {
     pickedText?: string; // 記述式の解答文
     pickedSlots?: string; // 多肢選択の穴埋め解答 JSON ["アの解答","イの解答",...]
     isReorder?: string; // 並べ替え問題: 1
+    isDescriptiveScope?: string; // 記述スコープで回答した: 1
+    modelAnswer?: string; // 記述スコープ時の模範解答（択一の正解肢など）
     field?: string;
     questionIndex?: string; // Current question index
     totalQuestions?: string; // NEW
@@ -137,10 +139,13 @@ export default function ResultScreen() {
   const pickedIndicesParam = Array.isArray(params.pickedIndices) ? params.pickedIndices[0] : params.pickedIndices;
   const pickedTextParam = Array.isArray(params.pickedText) ? params.pickedText[0] : params.pickedText;
   const pickedSlotsParam = Array.isArray(params.pickedSlots) ? params.pickedSlots[0] : params.pickedSlots;
+  const isDescriptiveScopeParam = Array.isArray(params.isDescriptiveScope) ? params.isDescriptiveScope[0] : params.isDescriptiveScope;
+  const modelAnswerParam = Array.isArray(params.modelAnswer) ? params.modelAnswer[0] : params.modelAnswer;
   const field = Array.isArray(params.field) ? params.field[0] : params.field;
   const mode = Array.isArray(params.mode) ? params.mode[0] : params.mode;
 
-  const isDescriptive = subject === '記述';
+  const isDescriptiveScope = isDescriptiveScopeParam === '1';
+  const isDescriptive = subject === '記述' || isDescriptiveScope;
   const isTashi = subject === '多肢選択';
   const pickedText = pickedTextParam || '';
   let pickedSlots: string[] = [];
@@ -183,17 +188,24 @@ export default function ResultScreen() {
   const isMixedBonus = hasBonusChoices && hasNormalChoices;
 
   let effectiveCorrectIndices = correctIndices;
-  if (!isSlotStyle && !isReorder && correctIndices.length > 0) {
+  if (!isSlotStyle && correctIndices.length > 0) {
     if (mode !== 'bonus') {
       // 通常モード: ※付き肢は出題から除外 → 正解判定からも除外
       effectiveCorrectIndices = correctIndices.filter((i) => !isBonusChoice(i));
-    } else if (!isMixedBonus) {
-      // ボーナス専用問題: ※付き肢だけを正解として扱う
+    } else if (!isReorder && !isMixedBonus) {
+      // ボーナス専用問題（並べ替え以外）: ※付き肢だけを正解として扱う
+      effectiveCorrectIndices = correctIndices.filter((i) => isBonusChoice(i));
+    } else if (isReorder && mode === 'bonus') {
       effectiveCorrectIndices = correctIndices.filter((i) => isBonusChoice(i));
     }
   }
 
-  const modelAnswer = (question as any)?.modelAnswer as string | undefined;
+  const modelAnswerFromQuestion = (question as any)?.modelAnswer as string | undefined;
+  const modelAnswerFromCorrectChoice =
+    isDescriptiveScope && question && Array.isArray(question.choices) && Array.isArray(question.answer)
+      ? (question.answer as number[]).map((i: number) => question.choices[i]).filter(Boolean).join(' / ')
+      : '';
+  const modelAnswer = isDescriptiveScope ? (modelAnswerParam || modelAnswerFromCorrectChoice) : modelAnswerFromQuestion;
   const hasDescriptiveModel = isDescriptive && !!modelAnswer;
   const isCorrectDescriptive = hasDescriptiveModel && isDescriptiveAnswerSimilar(modelAnswer, pickedText);
   const statutesKey = subject === '行政法' && field ? FIELD_TO_STATUTES_KEY[field] : null;
@@ -235,7 +247,7 @@ export default function ResultScreen() {
   const sortedCorrect = [...effectiveCorrectIndices].sort((a, b) => a - b);
   const sortedUser = [...userSelection].sort((a, b) => a - b);
   const isCorrectSlots = !answerPending && correctSlots.length === pickedSlots.length && correctSlots.every((v, i) => v === pickedSlots[i]);
-  const isCorrectReorder = isReorder && !answerPending && correctIndices.length === userSelection.length && correctIndices.every((v, i) => v === userSelection[i]);
+  const isCorrectReorder = isReorder && !answerPending && effectiveCorrectIndices.length === userSelection.length && effectiveCorrectIndices.every((v, i) => v === userSelection[i]);
   const isCorrect = isDescriptive && hasDescriptiveModel
     ? isCorrectDescriptive
     : isSlotStyle
@@ -247,7 +259,7 @@ export default function ResultScreen() {
   const correctAnswersText = isSlotStyle
     ? correctSlots.map((s, i) => `${'アイウエオ'[i] || `${i + 1}`}: ${s}`).join('\n')
     : isReorder
-      ? correctIndices.map((i: number, pos: number) => `${pos + 1}. ${choices[i]}`).join('\n')
+      ? effectiveCorrectIndices.map((i: number, pos: number) => `${pos + 1}. ${(choices[i] || '').replace(/※/g, '')}`).join('\n')
       : effectiveCorrectIndices.map((i: number) => choices[i]).join('\n・');
 
   // Memo State
@@ -416,17 +428,17 @@ export default function ResultScreen() {
         </ThemedView>
         {isDescriptive && !hasDescriptiveModel ? (
           <ThemedView style={{ padding: 16, backgroundColor: '#E3F2FD', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#2196F3', alignItems: 'center' }}>
-            <ThemedText type="title" style={{ color: '#1565C0', fontSize: 20 }}>📝 記述式</ThemedText>
+            <ThemedText type="title" style={{ color: '#1565C0', fontSize: 20 }}>📝 記述式{isDescriptiveScope ? '（記述スコープ）' : ''}</ThemedText>
             <ThemedText style={{ color: '#0D47A1', marginTop: 4 }}>解説を読んで自分の解答と照らし合わせてください。</ThemedText>
           </ThemedView>
         ) : isDescriptive && hasDescriptiveModel ? (
           isCorrectDescriptive ? (
             <ThemedView style={{ padding: 16, backgroundColor: '#E8F5E9', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#4CAF50', alignItems: 'center' }}>
-              <ThemedText type="title" style={{ color: '#2E7D32', fontSize: 24 }}>🎉 正解！お見事！</ThemedText>
+              <ThemedText type="title" style={{ color: '#2E7D32', fontSize: 24 }}>🎉 正解！お見事！{isDescriptiveScope ? '（記述スコープ）' : ''}</ThemedText>
             </ThemedView>
           ) : (
             <ThemedView style={{ padding: 16, backgroundColor: '#FFEBEE', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#D32F2F', alignItems: 'center' }}>
-              <ThemedText type="title" style={{ color: '#D32F2F', fontSize: 20 }}>不正解... 復習が必要だ！</ThemedText>
+              <ThemedText type="title" style={{ color: '#D32F2F', fontSize: 20 }}>不正解... 復習が必要だ！{isDescriptiveScope ? '（記述スコープ）' : ''}</ThemedText>
             </ThemedView>
           )
         ) : isSlotStyle && answerPending ? (
@@ -467,8 +479,8 @@ export default function ResultScreen() {
           // 穴埋め問題: 同じ条文が繰り返すので1つだけ表示
           if (isSlotStyle) {
             return (
-              <ThemedView style={[styles.choiceStatuteBlock, { borderColor: colors.choiceBorder }]}>
-                <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 8 }]}>解説</ThemedText>
+              <ThemedView style={[styles.choiceStatuteBlock, styles.choiceStatuteCard]}>
+                <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 10 }]}>解説</ThemedText>
                 {statuteItems.length > 0 ? (
                   statuteItems.map((item, idx) => (
                     <ThemedView key={idx} style={styles.choiceStatuteArticle}>
@@ -477,7 +489,12 @@ export default function ResultScreen() {
                           {getStatuteDisplayTitle(item, statuteItemsRaw)}
                         </ThemedText>
                       ) : null}
-                      {item.content ? <MarkdownText text={item.content} /> : null}
+                      {item.content ? (
+                        <MarkdownText
+                          text={item.content}
+                          style={{ fontSize: 17, lineHeight: 26, fontWeight: '500' }}
+                        />
+                      ) : null}
                     </ThemedView>
                   ))
                 ) : (
@@ -506,14 +523,14 @@ export default function ResultScreen() {
           const groups = Array.from(grouped.entries()).map(([_, g]) => g);
           return (
           <ThemedView style={[styles.choiceStatuteBlock, { borderColor: colors.choiceBorder }]}>
-            <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 8 }]}>
+            <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 10 }]}>
               解説{mode === 'bonus' ? '（ボーナス肢含む）' : ''}
             </ThemedText>
             {groups.map((g, gi) => {
               const label = g.indices.map((i) => `${i + 1}`).join('. ') + '. ';
               const choiceTexts = g.indices.map((i) => (choices[i] || '').replace(/※/g, '')).filter(Boolean);
               return (
-                <View key={gi} style={styles.choiceStatuteItem}>
+                <View key={gi} style={[styles.choiceStatuteItem, styles.choiceStatuteCard]}>
                   <View style={styles.choiceStatuteNumRow}>
                     <ThemedText style={[styles.choiceStatuteChoice, { color: colors.text }]}>
                       {label}
@@ -532,8 +549,13 @@ export default function ResultScreen() {
                           {getStatuteDisplayTitle(g.statute, statuteItemsRaw)}
                         </ThemedText>
                       ) : null}
-                      {g.statute.content ? <MarkdownText text={g.statute.content} /> : null}
                       {g.statute.content ? (
+                        <MarkdownText
+                          text={g.statute.content}
+                          style={{ fontSize: 17, lineHeight: 26, fontWeight: '500' }}
+                        />
+                      ) : null}
+                      {g.statute.content && field !== '行政手続法' ? (
                         <ThemedText style={[styles.choiceStatuteNote, { color: colors.subText }]}>
                           ※ キーワード: {g.statute.content.replace(/[\s\r\n]+/g, '').slice(0, 20)}…
                         </ThemedText>
@@ -586,40 +608,65 @@ export default function ResultScreen() {
           </ThemedView>
         ) : null}
 
-        <ThemedText type="subtitle" style={styles.explainTitle}>
-          もっと深掘る！
-        </ThemedText>
-        <View style={!isExplainExpanded ? styles.collapsedExplain : undefined}>
-          {isExplainExpanded && statuteItems.length > 0 ? (
-            <ThemedView style={[styles.statutesBlock, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
-              <View style={styles.statutesBlockHeaderRow}>
-                <ThemedText style={[styles.statutesBlockLabelLeft, { color: colors.text }]}>根拠条文</ThemedText>
-                <ThemedText type="subtitle" style={[styles.statutesBlockTitle, { color: colors.text }]}>
-                  📜 根拠条文
+        {!(subject === '行政法' && field === '行政手続法') ? (
+          <>
+            {isExplainExpanded ? (
+              <View>
+                <ThemedText type="subtitle" style={styles.explainTitle}>
+                  もっと深掘る！
                 </ThemedText>
+                {statuteItems.length > 0 ? (
+                  <ThemedView style={[styles.statutesBlock, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
+                    <View style={styles.statutesBlockHeaderRow}>
+                      <ThemedText style={[styles.statutesBlockLabelLeft, { color: colors.text }]}>根拠条文</ThemedText>
+                      <ThemedText type="subtitle" style={[styles.statutesBlockTitle, { color: colors.text }]}>
+                        📜 根拠条文
+                      </ThemedText>
+                    </View>
+                    {statuteItems.map((item, idx) => (
+                      <ThemedView key={idx} style={styles.statutesItem}>
+                        {(item.title || item.content) ? (
+                          <ThemedText style={[styles.statutesItemTitle, { color: colors.text }]}>
+                            {getStatuteDisplayTitle(item, statuteItemsRaw)}
+                          </ThemedText>
+                        ) : null}
+                        {item.content ? <MarkdownText text={item.content} /> : null}
+                      </ThemedView>
+                    ))}
+                  </ThemedView>
+                ) : null}
+                <MarkdownText text={explain || ''} />
               </View>
-              {statuteItems.map((item, idx) => (
-                <ThemedView key={idx} style={styles.statutesItem}>
-                  {(item.title || item.content) ? (
-                    <ThemedText style={[styles.statutesItemTitle, { color: colors.text }]}>
-                      {getStatuteDisplayTitle(item, statuteItemsRaw)}
-                    </ThemedText>
-                  ) : null}
-                  {item.content ? <MarkdownText text={item.content} /> : null}
-                </ThemedView>
-              ))}
-            </ThemedView>
-          ) : null}
-          <MarkdownText text={explain || ''} />
-        </View>
-        <Pressable
-          style={styles.expandButton}
-          onPress={() => setIsExplainExpanded(!isExplainExpanded)}
-        >
-          <ThemedText style={{ color: '#007BFF' }}>
-            {isExplainExpanded ? '▲ 閉じる' : '▼ もっと深掘る（解説を読む）'}
-          </ThemedText>
-        </Pressable>
+            ) : null}
+            <View style={styles.retryExpandRow}>
+              <Link
+                href={{
+                  pathname: '/question',
+                  params: {
+                    subject,
+                    field,
+                    index: questionIndex,
+                    correctCountSession: String(correctCountSessionCurrent),
+                    ...(mode ? { mode } : {}),
+                  },
+                }}
+                asChild
+              >
+                <Pressable style={StyleSheet.flatten([styles.retryButton, { backgroundColor: colors.accent, borderColor: colors.accent }])}>
+                  <ThemedText type="defaultSemiBold" style={{ color: '#fff', fontSize: 14 }}>もう一度この問題を解く</ThemedText>
+                </Pressable>
+              </Link>
+              <Pressable
+                style={styles.expandButton}
+                onPress={() => setIsExplainExpanded(!isExplainExpanded)}
+              >
+                <ThemedText style={{ color: '#007BFF' }}>
+                  {isExplainExpanded ? '▲ 閉じる' : '▼ もっと深掘る（解説を読む）'}
+                </ThemedText>
+              </Pressable>
+            </View>
+          </>
+        ) : null}
 
         {/* Resources Button */}
         {resourcePages.length > 0 && (
@@ -831,44 +878,56 @@ const styles = StyleSheet.create({
     minWidth: 72,
   },
   choiceStatuteTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontWeight: '700',
     flex: 1,
   },
   choiceStatuteItem: {
-    marginBottom: 10,
+    marginBottom: 12,
+  },
+  choiceStatuteCard: {
+    backgroundColor: '#D6EAF8',
+    borderColor: '#85C1E9',
+    borderWidth: 1.5,
+    borderRadius: 12,
+    padding: 14,
   },
   choiceStatuteNumRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 4,
-    gap: 8,
+    marginBottom: 6,
+    gap: 10,
   },
   choiceStatuteChoice: {
-    fontSize: 14,
-    fontWeight: '600',
-    minWidth: 28,
+    fontSize: 17,
+    fontWeight: '700',
+    minWidth: 32,
   },
   choiceStatuteChoiceBody: {
     flex: 1,
-    fontSize: 14,
+    fontSize: 16,
+    fontWeight: '600',
+    lineHeight: 24,
   },
   choiceStatuteLabel: {
-    fontSize: 13,
-    fontWeight: '600',
-    marginBottom: 4,
+    fontSize: 15,
+    fontWeight: '700',
+    marginBottom: 6,
   },
   choiceStatuteArticle: {
-    paddingLeft: 8,
+    paddingLeft: 4,
   },
   choiceStatuteArticleTitle: {
-    fontSize: 13,
-    fontWeight: '600',
-    marginBottom: 2,
+    fontSize: 15,
+    fontWeight: '700',
+    marginBottom: 4,
+    lineHeight: 22,
   },
   choiceStatuteNote: {
-    marginTop: 4,
-    fontSize: 12,
+    marginTop: 6,
+    fontSize: 13,
+    fontWeight: '500',
+    lineHeight: 18,
   },
   nextButton: {
     marginTop: 12,
@@ -1055,16 +1114,26 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  collapsedExplain: {
-    maxHeight: 150,
-    overflow: 'hidden',
-    opacity: 0.8,
-  },
-  expandButton: {
+  retryExpandRow: {
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 8,
+    justifyContent: 'space-between',
+    gap: 12,
+    marginTop: 8,
+    paddingTop: 8,
     borderTopWidth: 1,
     borderTopColor: '#eee',
-    marginTop: 4,
+  },
+  retryButton: {
+    flex: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    borderWidth: 1,
+    alignItems: 'center',
+  },
+  expandButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 8,
   },
 });

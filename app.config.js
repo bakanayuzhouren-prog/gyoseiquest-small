@@ -7,7 +7,7 @@ module.exports = {
   expo: {
     ...appJson.expo,
     extra: {
-      geminiApiKey: process.env.GEMINI_API_KEY || '',
+      geminiApiKey: process.env.GEMINI_API_KEY || process.env.EXPO_PUBLIC_GEMINI_API_KEY || '',
     },
   },
 };
