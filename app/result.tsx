@@ -19,6 +19,16 @@ const FIELD_TO_STATUTES_KEY: Record<string, string> = {
   '地方自治法': 'jichi',
 };
 
+/** 民法の分野 → 条文モード(STATUTES)のキー。もっと深掘るで全肢の根拠条文を表示 */
+const CIVIL_FIELD_TO_STATUTES_KEY: Record<string, string> = {
+  '民法総則': 'minpo_sosoku',
+  '民法物権': 'minpo_bukken',
+  '債権総論': 'minpo_saiken_soron',
+  '債権各論': 'minpo_saiken_kakuron',
+  '家族法': 'minpo_kazoku',
+  '民法総合': 'minpo_sosoku',
+};
+
 /** 第〇条・号・号内（イロハ）を遡り、「第二条（定義） 三」「第二条（定義） 四 イ」のように表示 */
 function getStatuteDisplayTitle(
   statute: { title: string; content: string },
@@ -87,6 +97,7 @@ function pickRelatedStatutes(
 import { gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
 import { getChoicePrefix, hasNumberPrefix } from '@/utils/choiceNumber';
 import { addPoints } from '@/utils/points';
+import { updateQuestionStats } from '@/utils/question-stats';
 import { incrementLoopCount } from '@/utils/progress';
 import { USER_KEY } from './login';
 
@@ -131,7 +142,9 @@ export default function ResultScreen() {
     questionIndex?: string; // Current question index
     totalQuestions?: string; // NEW
     correctCountSession?: string; // NEW
+    wrongCounts?: string; // JSON: { "0": 1, "2": 2 } 問題インデックス→間違えた回数
     mode?: string; // 'bonus' など
+    shuffle?: string;
   }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
   const paramField = Array.isArray(params.field) ? params.field[0] : params.field;
@@ -143,6 +156,13 @@ export default function ResultScreen() {
   const modelAnswerParam = Array.isArray(params.modelAnswer) ? params.modelAnswer[0] : params.modelAnswer;
   const field = Array.isArray(params.field) ? params.field[0] : params.field;
   const mode = Array.isArray(params.mode) ? params.mode[0] : params.mode;
+  const shuffleParam = Array.isArray(params.shuffle) ? params.shuffle[0] : params.shuffle;
+
+  let wrongCounts: Record<number, number> = {};
+  try {
+    const s = Array.isArray(params.wrongCounts) ? params.wrongCounts[0] : params.wrongCounts;
+    if (s) wrongCounts = JSON.parse(s) || {};
+  } catch (_) {}
 
   const isDescriptiveScope = isDescriptiveScopeParam === '1';
   const isDescriptive = subject === '記述' || isDescriptiveScope;
@@ -208,7 +228,10 @@ export default function ResultScreen() {
   const modelAnswer = isDescriptiveScope ? (modelAnswerParam || modelAnswerFromCorrectChoice) : modelAnswerFromQuestion;
   const hasDescriptiveModel = isDescriptive && !!modelAnswer;
   const isCorrectDescriptive = hasDescriptiveModel && isDescriptiveAnswerSimilar(modelAnswer, pickedText);
-  const statutesKey = subject === '行政法' && field ? FIELD_TO_STATUTES_KEY[field] : null;
+  const statutesKey =
+    subject === '行政法' && field ? FIELD_TO_STATUTES_KEY[field]
+    : subject === '民法' && field ? CIVIL_FIELD_TO_STATUTES_KEY[field]
+    : null;
   const statuteItemsRaw = statutesKey && (STATUTES as any)[statutesKey]
     ? ((STATUTES as any)[statutesKey] as Array<{ title: string; content: string }>)
     : [];
@@ -216,7 +239,7 @@ export default function ResultScreen() {
 
   // 肢ごとの関連条文（行政法のみ）。各肢について最大1本まで。
   const choiceStatutes: Array<Array<{ title: string; content: string }>> = [];
-  if (statuteItemsRaw.length > 0 && Array.isArray(choices) && choices.length > 0 && subject === '行政法') {
+  if (statuteItemsRaw.length > 0 && Array.isArray(choices) && choices.length > 0 && (subject === '行政法' || subject === '民法')) {
     for (let i = 0; i < choices.length; i++) {
       const c = choices[i];
       if (!c) {
@@ -256,12 +279,13 @@ export default function ResultScreen() {
         ? isCorrectReorder
         : !answerPending && sortedCorrect.length === sortedUser.length && sortedCorrect.every((val, index) => val === sortedUser[index]);
 
-  const correctAnswersText = isSlotStyle
-    ? correctSlots.map((s, i) => `${'アイウエオ'[i] || `${i + 1}`}: ${s}`).join('\n')
+  const stripR = (s: string) => (s || '').replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim();
+  type AnswerItem = { prefix: string; text: string };
+  const correctAnswersItems: AnswerItem[] = isSlotStyle
+    ? correctSlots.map((s, i) => ({ prefix: `${'アイウエオ'[i] || `${i + 1}`}: `, text: s }))
     : isReorder
-      ? effectiveCorrectIndices.map((i: number, pos: number) => `${pos + 1}. ${(choices[i] || '').replace(/※/g, '')}`).join('\n')
-      : effectiveCorrectIndices.map((i: number) => choices[i]).join('\n・');
-
+      ? effectiveCorrectIndices.map((i: number, pos: number) => ({ prefix: `${pos + 1}. `, text: (choices[i] || '').replace(/※/g, '') }))
+      : effectiveCorrectIndices.map((i: number) => ({ prefix: '・ ', text: stripR((choices[i] || '').replace(/※/g, '')) }));
   // Memo State
   const [showOfficialMemo, setShowOfficialMemo] = useState(false);
   const [userMemo, setUserMemo] = useState('');
@@ -309,6 +333,13 @@ export default function ResultScreen() {
   useEffect(() => {
     if (resourceModalVisible) setResourcePage(0);
   }, [resourceModalVisible]);
+
+  // 正答率を永続化（回答設定中はスキップ）
+  useEffect(() => {
+    if (!answerPending && subject && field && text) {
+      updateQuestionStats(subject, field, text, isCorrect);
+    }
+  }, [answerPending, subject, field, text, isCorrect]);
 
   // unique key for user memo: user + simple hash of question text
   useEffect(() => {
@@ -362,6 +393,12 @@ export default function ResultScreen() {
   // Update count（回答設定中の問題はカウント対象外）
   const newCorrectCount = (isCorrect && (!answerPending || (isDescriptive && hasDescriptiveModel))) ? correctCountSessionCurrent + 1 : correctCountSessionCurrent;
 
+  // 間違えた場合、wrongCounts を更新（1回=黄、2回以上=赤でサイドバー表示）
+  const updatedWrongCounts: Record<number, number> = { ...wrongCounts };
+  if (!isCorrect && !answerPending) {
+    updatedWrongCounts[questionIndex] = (wrongCounts[questionIndex] || 0) + 1;
+  }
+
   const handleNext = () => {
     // Check if we are looping (Index + 1 >= Total)
     if (totalQuestions > 0 && nextIndex >= totalQuestions) {
@@ -398,34 +435,36 @@ export default function ResultScreen() {
       <ScrollView contentContainerStyle={styles.container}>
         <ThemedText type="title" style={{ color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }}>{subject} - {field}</ThemedText>
 
-        <ThemedView style={{ marginBottom: 16 }}>
-          <ThemedText style={{ marginBottom: 8, color: colors.subText }}>あなたの回答:</ThemedText>
-          {isSlotStyle && pickedSlots.length > 0 ? (
-            <ThemedView style={[styles.descriptiveAnswerBox, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
-              {pickedSlots.map((s, i) => (
-                <ThemedText key={i} style={{ fontSize: 16, color: colors.text, lineHeight: 24, marginBottom: 4 }}>
-                  {['ア','イ','ウ','エ','オ'][i]}: {s}
-                </ThemedText>
-              ))}
-            </ThemedView>
-          ) : isDescriptive && pickedText ? (
-            <ThemedView style={[styles.descriptiveAnswerBox, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
-              <ThemedText style={{ fontSize: 16, color: colors.text, lineHeight: 24 }}>{pickedText}</ThemedText>
-            </ThemedView>
-          ) : (
-            userSelection.map((idx) => (
-              <Pressable key={idx} style={[
-                styles.choiceButton,
-                styles.choiceButtonDisabled,
-                { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder, marginBottom: 8 }
-              ]}>
-                <ThemedText style={{ fontSize: 16, color: colors.text }}>
-                  {choices[idx] ? choices[idx].replace(/※/g, '') : ''}
-                </ThemedText>
-              </Pressable>
-            ))
-          )}
-        </ThemedView>
+        {((isDescriptive && !hasDescriptiveModel) || !(isDescriptive && hasDescriptiveModel ? isCorrectDescriptive : isCorrect)) && (
+          <ThemedView style={{ marginBottom: 16 }}>
+            <ThemedText style={{ marginBottom: 8, color: colors.subText }}>あなたの回答:</ThemedText>
+            {isSlotStyle && pickedSlots.length > 0 ? (
+              <ThemedView style={[styles.descriptiveAnswerBox, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
+                {pickedSlots.map((s, i) => (
+                  <ThemedText key={i} style={{ fontSize: 16, color: colors.text, lineHeight: 24, marginBottom: 4 }}>
+                    {['ア','イ','ウ','エ','オ'][i]}: {s}
+                  </ThemedText>
+                ))}
+              </ThemedView>
+            ) : isDescriptive && pickedText ? (
+              <ThemedView style={[styles.descriptiveAnswerBox, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
+                <ThemedText style={{ fontSize: 16, color: colors.text, lineHeight: 24 }}>{pickedText}</ThemedText>
+              </ThemedView>
+            ) : (
+              userSelection.map((idx) => (
+                <Pressable key={idx} style={[
+                  styles.choiceButton,
+                  styles.choiceButtonDisabled,
+                  { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder, marginBottom: 8 }
+                ]}>
+                  <ThemedText style={{ fontSize: 16, color: colors.text }}>
+                    {choices[idx] ? choices[idx].replace(/※/g, '') : ''}
+                  </ThemedText>
+                </Pressable>
+              ))
+            )}
+          </ThemedView>
+        )}
         {isDescriptive && !hasDescriptiveModel ? (
           <ThemedView style={{ padding: 16, backgroundColor: '#E3F2FD', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#2196F3', alignItems: 'center' }}>
             <ThemedText type="title" style={{ color: '#1565C0', fontSize: 20 }}>📝 記述式{isDescriptiveScope ? '（記述スコープ）' : ''}</ThemedText>
@@ -469,13 +508,28 @@ export default function ResultScreen() {
         ) : (
           <ThemedText type="subtitle" style={{ color: '#D32F2F', marginBottom: 8 }}>不正解... 復習が必要だ！</ThemedText>
         )}
-        <ThemedText style={[styles.questionText, { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }]}>{(hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex))}{text}</ThemedText>
-        {!isDescriptive && !answerPending && correctAnswersText && (
-          <ThemedText style={[styles.answerText, { color: colors.text }]}>正解: {correctAnswersText}</ThemedText>
-        )}
+        <View style={styles.questionAnswerOuterCard}>
+          <ThemedText style={[styles.questionLabel, { color: colors.text }]}>問題文</ThemedText>
+          <View style={styles.questionCard}>
+            <ThemedText style={[styles.questionText, { color: '#212121', fontFamily: theme === 'paper' ? 'serif' : undefined, fontWeight: 'bold' }]}>{(hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex))}{text}</ThemedText>
+          </View>
+          {!isDescriptive && !answerPending && correctAnswersItems.length > 0 && (
+            <View style={styles.correctAnswersBlock}>
+              <ThemedText style={[styles.answerText, { color: '#C62828', fontWeight: 'bold' }]}>正解肢</ThemedText>
+              {correctAnswersItems.map((item, idx) => (
+                <ThemedView key={idx} style={[styles.correctAnswerCard, { borderColor: '#E57373', backgroundColor: theme === 'dark' ? 'rgba(198,40,40,0.2)' : '#FFEBEE' }]}>
+                  <View style={styles.correctAnswerRow}>
+                    <ThemedText style={[styles.correctAnswerPrefix, { color: colors.text }]}>{item.prefix}</ThemedText>
+                    <ThemedText style={[styles.answerText, styles.correctAnswerBody, { color: colors.text }]}>{item.text}</ThemedText>
+                  </View>
+                </ThemedView>
+              ))}
+            </View>
+          )}
+        </View>
 
-        {/* 行政法: 根拠条文。穴埋めは1本のみ表示、それ以外は肢ごと（通常時は※肢を省く、ボーナス時は全肢） */}
-        {subject === '行政法' && statuteItemsRaw.length > 0 && choices.length > 0 && (() => {
+        {/* 行政法・民法: 根拠条文。穴埋めは1本のみ表示、それ以外は肢ごと（通常時は※肢を省く、ボーナス時は全肢） */}
+        {(subject === '行政法' || subject === '民法') && statuteItemsRaw.length > 0 && choices.length > 0 && (() => {
           // 穴埋め問題: 同じ条文が繰り返すので1つだけ表示
           if (isSlotStyle) {
             return (
@@ -556,9 +610,27 @@ export default function ResultScreen() {
                         />
                       ) : null}
                       {g.statute.content && field !== '行政手続法' ? (
-                        <ThemedText style={[styles.choiceStatuteNote, { color: colors.subText }]}>
-                          ※ キーワード: {g.statute.content.replace(/[\s\r\n]+/g, '').slice(0, 20)}…
-                        </ThemedText>
+                        <View style={styles.keywordRow}>
+                          <ThemedText style={[styles.choiceStatuteNote, { color: colors.subText }]}>
+                            ※ キーワード: {g.statute.content.replace(/[\s\r\n]+/g, '').slice(0, 20)}…
+                          </ThemedText>
+                          <Pressable
+                            onPress={() => {
+                              // TODO: キーワードについて質問する機能
+                            }}
+                            hitSlop={12}
+                            style={[styles.infinityPressable, { backgroundColor: '#D6EAF8' }]}
+                          >
+                            <View style={styles.chainMarkContainer}>
+                              <Image
+                                source={require('@/assets/images/chain-mark.png')}
+                                style={styles.chainMarkImage}
+                                resizeMode="contain"
+                              />
+                              <ThemedText style={[styles.chainMarkLabel, { color: colors.text }]}>チャンク</ThemedText>
+                            </View>
+                          </Pressable>
+                        </View>
                       ) : null}
                     </View>
                   ) : (
@@ -647,7 +719,9 @@ export default function ResultScreen() {
                     field,
                     index: questionIndex,
                     correctCountSession: String(correctCountSessionCurrent),
+                    wrongCounts: JSON.stringify(updatedWrongCounts),
                     ...(mode ? { mode } : {}),
+                    ...(shuffleParam ? { shuffle: shuffleParam } : {}),
                   },
                 }}
                 asChild
@@ -726,7 +800,10 @@ export default function ResultScreen() {
             subject,
             field,
             index: nextIndex,
-            correctCountSession: String(newCorrectCount) // Pass updated count
+            correctCountSession: String(newCorrectCount),
+            wrongCounts: JSON.stringify(updatedWrongCounts),
+            ...(mode ? { mode } : {}),
+            ...(shuffleParam ? { shuffle: shuffleParam } : {}),
           }
         }} asChild>
           <Pressable
@@ -820,8 +897,51 @@ const styles = StyleSheet.create({
   questionText: {
     lineHeight: 28,
   },
+  questionLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    marginBottom: 8,
+  },
+  questionAnswerOuterCard: {
+    borderColor: '#424242',
+    borderWidth: 2,
+    borderRadius: 16,
+    padding: 16,
+    marginBottom: 16,
+    backgroundColor: '#FAFAFA',
+  },
+  questionCard: {
+    backgroundColor: '#E0E0E0',
+    borderColor: '#000',
+    borderWidth: 2,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+  },
   answerText: {
     fontSize: 16,
+  },
+  correctAnswersBlock: {
+    marginTop: 4,
+  },
+  correctAnswerCard: {
+    marginTop: 8,
+    padding: 12,
+    borderWidth: 1.5,
+    borderRadius: 12,
+  },
+  correctAnswerRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  correctAnswerPrefix: {
+    fontSize: 16,
+    minWidth: 36,
+    flexShrink: 0,
+  },
+  correctAnswerBody: {
+    flex: 1,
+    marginTop: 0,
   },
   explainTitle: {
     marginTop: 8,
@@ -922,6 +1042,32 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginBottom: 4,
     lineHeight: 22,
+  },
+  keywordRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 4,
+  },
+  infinityPressable: {
+    padding: 4,
+  },
+  chainMarkContainer: {
+    width: 180,
+    height: 180,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  chainMarkImage: {
+    position: 'absolute',
+    width: 180,
+    height: 180,
+  },
+  chainMarkLabel: {
+    fontSize: 11,
+    fontWeight: '700',
+    marginTop: -82,
+    zIndex: 1,
   },
   choiceStatuteNote: {
     marginTop: 6,

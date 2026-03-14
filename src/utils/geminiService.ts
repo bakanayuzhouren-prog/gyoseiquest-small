@@ -124,6 +124,63 @@ ${selectedChoiceText}
   };
 };
 
+/** 模範図: 問題文から関係図（Mermaid）を生成 */
+export const generateDiagramMermaid = async (
+  apiKey: string,
+  params: { problemText: string }
+): Promise<string> => {
+  const { problemText } = params;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+  const prompt = `【指示】
+以下の法律・資格試験の問題文を読み、登場人物（A, B, C など）の関係を Mermaid flowchart で図示してください。
+
+【問題文】
+${problemText}
+
+【厳守ルール】
+1. 必ず flowchart LR で始める（1行目）
+2. ノードIDは英数字のみ: A, B, C, D
+3. 矢印は A --> B の形式のみ。ラベルは付けない（|xxx| は使わない）
+4. 1行1本の矢印。例: A --> B
+5. 出力は Mermaid コードのみ。説明・\`\`\` は不要。
+
+【正しい例】
+flowchart LR
+  A --> B
+  B --> C
+  C --> A`;
+
+  const body = {
+    contents: [{ parts: [{ text: prompt }] }],
+    generationConfig: { temperature: 0.2, maxOutputTokens: 1024 },
+  };
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!response.ok) {
+    const errText = await response.text();
+    throw new Error(`Gemini API Error: ${response.status} ${response.statusText} - ${errText}`);
+  }
+  const data = await response.json();
+  let raw = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+  raw = raw.replace(/^```mermaid\s*/i, '').replace(/\s*```\s*$/, '').trim();
+  // 構文エラー防止: ラベル付き矢印・特殊文字を除去し、安全な形式に正規化
+  const lines = raw.split('\n').filter((l: string) => l.trim());
+  const safe: string[] = ['flowchart LR'];
+  for (const line of lines) {
+    const t = line.trim();
+    if (/^flowchart\s/i.test(t)) continue;
+    // A --> B または A -->|label| B を A --> B に簡略化
+    const m = t.match(/^([A-Za-z0-9]+)\s*-->\s*(?:\|[^|]*\|)?\s*([A-Za-z0-9]+)/) || t.match(/^([A-Za-z0-9]+)\s*-->\s*([A-Za-z0-9]+)/);
+    if (m) safe.push(`  ${m[1]} --> ${m[2]}`);
+  }
+  return safe.length > 1 ? safe.join('\n') : 'flowchart LR\n  A --> B';
+};
+
 /** 教えて先生: 問題・選択肢の意図説明 */
 export const explainChoiceIntent = async (
   apiKey: string,

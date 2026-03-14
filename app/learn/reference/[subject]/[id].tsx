@@ -103,7 +103,7 @@ export default function ReferencePage() {
                 }
                 count++;
                 Speech.speak(spokenText, {
-                    language: 'ja',
+                    language: 'ja-JP',
                     rate: 2.0,
                     onDone: speak,
                     onError: () => setIsPlaying(false),

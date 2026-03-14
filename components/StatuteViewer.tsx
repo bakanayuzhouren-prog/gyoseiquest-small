@@ -79,7 +79,7 @@ export default function StatuteViewer({ data, title, searchPlaceholder }: Statut
             const textToSpeak = applyTTSRules(`${article.title}。${article.content}`);
 
             Speech.speak(textToSpeak, {
-                language: 'ja',
+                language: 'ja-JP',
                 rate: 1.5,
                 onDone: () => setSpeakingIndex(null),
                 onError: () => setSpeakingIndex(null),

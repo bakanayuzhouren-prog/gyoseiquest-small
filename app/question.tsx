@@ -3,6 +3,7 @@ import { Link, router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Image, Modal, PanResponder, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
+import { DiagramModal } from '@/components/diagram-modal';
 import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -12,6 +13,9 @@ import { RESOURCES, SUBJECTS } from '@/src/questions';
 import { explainChoiceIntent, generateDescriptiveQuestion } from '@/src/utils/geminiService';
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
 import { getChoicePrefix, hasNumberPrefix } from '@/utils/choiceNumber';
+import { getQuestionMark, setQuestionMark, type QuestionMark } from '@/utils/question-marks';
+import { getQuestionHighlights, toggleQuestionHighlight } from '@/utils/question-highlights';
+import { getQuestionStats } from '@/utils/question-stats';
 
 const GEMINI_API_KEY = (typeof Constants?.expoConfig?.extra !== 'undefined' && (Constants.expoConfig.extra as any)?.geminiApiKey) || (typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_GEMINI_API_KEY) || (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) || '';
 
@@ -77,7 +81,7 @@ function DraggableWordBankItem({
 }
 
 export default function QuestionScreen() {
-  const params = useLocalSearchParams<{ subject?: string; field?: string; index?: string; correctCountSession?: string; mode?: string; shuffle?: string }>();
+  const params = useLocalSearchParams<{ subject?: string; field?: string; index?: string; correctCountSession?: string; wrongCounts?: string; mode?: string; shuffle?: string }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
   const paramField = Array.isArray(params.field) ? params.field[0] : params.field;
   const mode = Array.isArray(params.mode) ? params.mode[0] : params.mode;
@@ -124,6 +128,23 @@ export default function QuestionScreen() {
     subject !== '記述' && subject && paramField && (DESCRIPTIVE_SCOPE_FIELDS[subject]?.includes(paramField) ?? false);
 
   const { colors, theme } = useTheme();
+
+  // 間違えた回数（問題インデックス → 回数）。1回=黄、2回以上=赤でサイドバー表示
+  const wrongCounts = useMemo((): Record<number, number> => {
+    try {
+      const s = Array.isArray(params.wrongCounts) ? params.wrongCounts[0] : params.wrongCounts;
+      if (!s) return {};
+      const parsed = JSON.parse(s);
+      const out: Record<number, number> = {};
+      Object.keys(parsed || {}).forEach((k) => {
+        const n = parseInt(k, 10);
+        if (!isNaN(n)) out[n] = Math.max(0, parseInt(String(parsed[k]), 10) || 0);
+      });
+      return out;
+    } catch {
+      return {};
+    }
+  }, [params.wrongCounts]);
 
   const subjectData = useMemo(() => {
     const main = subject ? (SUBJECTS as any)[subject] || {} : {};
@@ -193,6 +214,23 @@ export default function QuestionScreen() {
   const [isLongText, setIsLongText] = useState(false);
 
   const question = questionIndex !== null ? questions[questionIndex] : null;
+
+  const [questionStats, setQuestionStats] = useState<{ correct: number; wrong: number } | null>(null);
+  const [questionMark, setQuestionMarkState] = useState<QuestionMark>(null);
+  const [highlightedSegments, setHighlightedSegments] = useState<Set<number>>(new Set());
+
+  useEffect(() => {
+    if (!subject || !field || !question?.text) {
+      setQuestionStats(null);
+      return;
+    }
+    getQuestionStats(subject, field, question.text).then((s) => {
+      if (s.correct + s.wrong > 0) setQuestionStats(s);
+      else setQuestionStats(null);
+    });
+    getQuestionMark(subject, field, question.text).then(setQuestionMarkState);
+    getQuestionHighlights(subject, field, question.text).then(setHighlightedSegments);
+  }, [subject, field, question?.text]);
 
   useEffect(() => {
     setIsLongText(false);
@@ -292,6 +330,7 @@ export default function QuestionScreen() {
     setScopeGenerateError(null);
     setActiveActionMode(null);
     setReorderSelection([]);
+    setDiagramModalVisible(false);
   }, [questionIndex]);
 
   const hasScopeGenerated = scopeGeneratedQuestion !== '';
@@ -392,50 +431,79 @@ export default function QuestionScreen() {
         };
         content = (
           <View style={styles.descriptiveFormatted}>
-            {paragraphs.map((para, pi) => (
-              <View
-                key={pi}
-                style={StyleSheet.flatten([
-                  styles.descriptiveParagraph,
-                  para.spacing === 'before' && { marginTop: 16 },
-                  para.spacing === 'after' && { marginBottom: 16 },
-                  para.spacing === 'both' && { marginVertical: 16 },
-                ].filter(Boolean))}
-              >
-                <ThemedText
-                  style={[
-                    styles.questionText,
-                    { color: colors.text, lineHeight: 28, fontFamily: theme === 'paper' ? 'serif' : undefined }
-                  ]}
-                >
-                  {pi === 0 && !hasNumberPrefix(text) ? `${getChoicePrefix(questionIndex)} ` : ''}
-                  {para.segments.map((seg, si) => (
-                    <ThemedText key={si} style={segmentStyle(seg)}>
-                      {seg.text}
+            {paragraphs.map((para, pi) => {
+              const isHighlighted = highlightedSegments.has(pi);
+              const handleToggleHighlight = async () => {
+                if (!subject || !field || !text) return;
+                const next = await toggleQuestionHighlight(subject, field, text, pi);
+                setHighlightedSegments(next);
+              };
+              return (
+                <Pressable key={pi} onPress={handleToggleHighlight}>
+                  <View
+                    style={StyleSheet.flatten([
+                      styles.descriptiveParagraph,
+                      para.spacing === 'before' && { marginTop: 16 },
+                      para.spacing === 'after' && { marginBottom: 16 },
+                      para.spacing === 'both' && { marginVertical: 16 },
+                      isHighlighted && { backgroundColor: '#FFF59D', padding: 8, borderRadius: 4 },
+                    ].filter(Boolean))}
+                  >
+                    <ThemedText
+                      style={[
+                        styles.questionText,
+                        { color: colors.text, lineHeight: 28, fontFamily: theme === 'paper' ? 'serif' : undefined }
+                      ]}
+                    >
+                      {pi === 0 && !hasNumberPrefix(text) ? `${getChoicePrefix(questionIndex)} ` : ''}
+                      {para.segments.map((seg, si) => (
+                        <ThemedText key={si} style={segmentStyle(seg)}>
+                          {seg.text}
+                        </ThemedText>
+                      ))}
                     </ThemedText>
-                  ))}
-                </ThemedText>
-              </View>
-            ))}
+                  </View>
+                </Pressable>
+              );
+            })}
           </View>
         );
       } else {
+        // 蛍光ペン: 行ごとにタップでハイライト切替
+        const segments = text.split(/\n/);
+        if (segments.length === 0) segments.push('');
+        const displayText = hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex);
         content = (
-          <ThemedText
-            type="title"
-            style={[
-              styles.questionText,
-              isTashiQuestion && styles.questionTextTashi,
-              isLongText && styles.questionTextSmall,
-              isTashiQuestion && isLongText && styles.questionTextTashiSmall,
-              { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined }
-            ]}
-            onTextLayout={(e) => {
-              if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
-            }}
-          >
-            {(hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex))}{text}
-          </ThemedText>
+          <View>
+            {segments.map((seg, idx) => {
+              const isHighlighted = highlightedSegments.has(idx);
+              const handleToggleHighlight = async () => {
+                if (!subject || !field || !text) return;
+                const next = await toggleQuestionHighlight(subject, field, text, idx);
+                setHighlightedSegments(next);
+              };
+              return (
+                <Pressable key={idx} onPress={handleToggleHighlight} delayLongPress={200}>
+                  <ThemedText
+                    type="title"
+                    style={[
+                      styles.questionText,
+                      isTashiQuestion && styles.questionTextTashi,
+                      isLongText && styles.questionTextSmall,
+                      isTashiQuestion && isLongText && styles.questionTextTashiSmall,
+                      { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined },
+                      isHighlighted && { backgroundColor: '#FFF59D', paddingVertical: 2, paddingHorizontal: 4, borderRadius: 4 }
+                    ]}
+                    onTextLayout={idx === 0 ? (e) => {
+                      if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
+                    } : undefined}
+                  >
+                    {idx === 0 ? displayText : ''}{seg}
+                  </ThemedText>
+                </Pressable>
+              );
+            })}
+          </View>
         );
       }
     } else {
@@ -488,22 +556,59 @@ export default function QuestionScreen() {
       );
     }
 
+    const handleMarkO = async () => {
+      const next: QuestionMark = questionMark === 'o' ? null : 'o';
+      setQuestionMarkState(next);
+      if (subject && field && text) await setQuestionMark(subject, field, text, next);
+    };
+    const handleMarkX = async () => {
+      const next: QuestionMark = questionMark === 'x' ? null : 'x';
+      setQuestionMarkState(next);
+      if (subject && field && text) await setQuestionMark(subject, field, text, next);
+    };
+
     return (
-      <ThemedView style={[
-        styles.questionContainer,
-        isTashiQuestion && styles.questionContainerTashi,
-        {
-          borderColor: colors.choiceBorder,
-          backgroundColor: isTashiQuestion ? '#f5f7fa' : '#e8e8e8',
-        }
-      ]}>
-        {isTashiQuestion ? (
-          <ThemedText style={[styles.questionMetaText, { color: colors.subText }]}>
-            {suffix.trim()}
-          </ThemedText>
-        ) : null}
-        {content}
-      </ThemedView>
+      <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
+        {/* 問題文左側: ○×マーク */}
+        <View style={styles.questionMarkColumn}>
+          <Pressable
+            onPress={handleMarkO}
+            style={[
+              styles.questionMarkButton,
+              { borderColor: colors.choiceBorder },
+              questionMark === 'o' && { backgroundColor: '#4CAF50', borderColor: '#4CAF50' }
+            ]}
+          >
+            <ThemedText style={[styles.questionMarkText, questionMark === 'o' && { color: '#fff' }]}>○</ThemedText>
+          </Pressable>
+          <Pressable
+            onPress={handleMarkX}
+            style={[
+              styles.questionMarkButton,
+              { borderColor: colors.choiceBorder },
+              questionMark === 'x' && { backgroundColor: '#F44336', borderColor: '#F44336' }
+            ]}
+          >
+            <ThemedText style={[styles.questionMarkText, questionMark === 'x' && { color: '#fff' }]}>×</ThemedText>
+          </Pressable>
+        </View>
+        <ThemedView style={[
+          styles.questionContainer,
+          isTashiQuestion && styles.questionContainerTashi,
+          { flex: 1 },
+          {
+            borderColor: colors.choiceBorder,
+            backgroundColor: isTashiQuestion ? '#f5f7fa' : '#e8e8e8',
+          }
+        ]}>
+          {isTashiQuestion ? (
+            <ThemedText style={[styles.questionMetaText, { color: colors.subText }]}>
+              {suffix.trim()}
+            </ThemedText>
+          ) : null}
+          {content}
+        </ThemedView>
+      </View>
     );
   };
 
@@ -701,6 +806,20 @@ export default function QuestionScreen() {
     }
   };
 
+  // 人の関係がある問題（A,B,C等）→ 図モード表示
+  const isDiagramEligible = useMemo(() => {
+    const text = (question?.text || '') + (Array.isArray(question?.choices) ? question.choices.join('') : '');
+    return (
+      /[A-Z][、,]?\s*[A-Z][、,]?\s*[A-Z]/.test(text) ||
+      /[A-Z]は.*[A-Z]から/.test(text) ||
+      /[A-Z]が.*[A-Z].*を/.test(text) ||
+      /保証|譲渡|借り受け|債務|債権/.test(text)
+    );
+  }, [question?.text, question?.choices]);
+
+  const [diagramModalVisible, setDiagramModalVisible] = useState(false);
+  const [diagramMode, setDiagramMode] = useState<'self' | 'model'>('self');
+
   const showDescriptiveMark = useMemo(() => {
     if (subject === '記述') return true;
     if (!isInDescriptiveField || !paramField) return false;
@@ -735,32 +854,54 @@ export default function QuestionScreen() {
             style={styles.questionSidebar}
             contentContainerStyle={styles.questionSidebarContent}
           >
-            {questions.map((_, idx) => (
-              <Pressable
-                key={idx}
-                style={[
-                  styles.questionSidebarItem,
-                  { borderColor: colors.choiceBorder, backgroundColor: colors.choiceBg },
-                  idx === questionIndex && { backgroundColor: colors.primary, borderColor: colors.primary }
-                ]}
-                onPress={() => jumpToQuestion(idx)}
-              >
-                <ThemedText
+            {questions.map((_, idx) => {
+              const wrongs = wrongCounts[idx] || 0;
+              const isActive = idx === questionIndex;
+              const bgColor = isActive
+                ? colors.primary
+                : wrongs >= 2
+                  ? '#D32F2F'
+                  : wrongs === 1
+                    ? '#FBC02D'
+                    : colors.choiceBg;
+              const borderColor = isActive ? colors.primary : wrongs >= 2 ? '#D32F2F' : wrongs === 1 ? '#FBC02D' : colors.choiceBorder;
+              const textColor = isActive ? '#fff' : wrongs >= 1 ? '#fff' : colors.text;
+              return (
+                <Pressable
+                  key={idx}
                   style={[
-                    styles.questionSidebarItemText,
-                    { color: idx === questionIndex ? '#fff' : colors.text }
+                    styles.questionSidebarItem,
+                    { borderColor, backgroundColor: bgColor }
                   ]}
+                  onPress={() => jumpToQuestion(idx)}
                 >
-                  {idx + 1}
-                </ThemedText>
-              </Pressable>
-            ))}
+                  <ThemedText
+                    style={[
+                      styles.questionSidebarItemText,
+                      { color: textColor }
+                    ]}
+                  >
+                    {idx + 1}
+                  </ThemedText>
+                </Pressable>
+              );
+            })}
           </ScrollView>
         )}
-        <ThemedText type="subtitle" style={[styles.subject, { color: colors.text, fontWeight: '800' }]}>
-          {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length || 0})` : ''}
-          {mode === 'bonus' ? ' ★ボーナスステージ★' : ''}
-        </ThemedText>
+        <View style={{ flexDirection: 'row', alignItems: 'baseline', marginBottom: 8, gap: 12 }}>
+          <ThemedText type="subtitle" style={[styles.subject, { color: colors.text, fontWeight: '800' }]}>
+            {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length || 0})` : ''}
+            {mode === 'bonus' ? ' ★ボーナスステージ★' : ''}
+          </ThemedText>
+          {questionStats && (() => {
+            const total = questionStats.correct + questionStats.wrong;
+            return (
+              <ThemedText style={{ color: colors.subText, fontSize: 14 }}>
+                正答率: {questionStats.correct}/{total}
+              </ThemedText>
+            );
+          })()}
+        </View>
 
         {renderQuestionText()}
 
@@ -901,6 +1042,9 @@ export default function QuestionScreen() {
                       pickedSlots: JSON.stringify(ans),
                       totalQuestions: String(questions.length),
                       correctCountSession: params.correctCountSession || '0',
+                      wrongCounts: JSON.stringify(wrongCounts),
+                      ...(mode ? { mode } : {}),
+                      ...(isShuffle ? { shuffle: '1' } : {}),
                     }
                   });
                 }}
@@ -957,8 +1101,11 @@ export default function QuestionScreen() {
                             pickedText: scopeDescriptiveAnswer.trim(),
                             totalQuestions: String(questions.length),
                             correctCountSession: params.correctCountSession || '0',
+                            wrongCounts: JSON.stringify(wrongCounts),
                             isDescriptiveScope: '1',
                             modelAnswer: scopeGeneratedModelAnswer || '',
+                            ...(mode ? { mode } : {}),
+                            ...(isShuffle ? { shuffle: '1' } : {}),
                           }
                         });
                       }}
@@ -1044,6 +1191,9 @@ export default function QuestionScreen() {
                       isReorder: '1',
                       totalQuestions: String(questions.length),
                       correctCountSession: params.correctCountSession || '0',
+                      wrongCounts: JSON.stringify(wrongCounts),
+                      ...(mode ? { mode } : {}),
+                      ...(isShuffle ? { shuffle: '1' } : {}),
                     }
                   });
                 }}
@@ -1092,6 +1242,9 @@ export default function QuestionScreen() {
                           pickedIndex: String(item.originalIndex),
                           totalQuestions: String(questions.length),
                           correctCountSession: params.correctCountSession || '0',
+                          wrongCounts: JSON.stringify(wrongCounts),
+                          ...(mode ? { mode } : {}),
+                          ...(isShuffle ? { shuffle: '1' } : {}),
                         }
                       });
                     }}
@@ -1140,6 +1293,9 @@ export default function QuestionScreen() {
                       pickedText: descriptiveAnswer.trim(),
                       totalQuestions: String(questions.length),
                       correctCountSession: params.correctCountSession || '0',
+                      wrongCounts: JSON.stringify(wrongCounts),
+                      ...(mode ? { mode } : {}),
+                      ...(isShuffle ? { shuffle: '1' } : {}),
                     }
                   });
                 }}
@@ -1229,6 +1385,9 @@ export default function QuestionScreen() {
                         pickedIndex: String(choiceObj.originalIndex),
                         totalQuestions: String(questions.length),
                         correctCountSession: params.correctCountSession || '0',
+                        wrongCounts: JSON.stringify(wrongCounts),
+                        ...(mode ? { mode } : {}),
+                        ...(isShuffle ? { shuffle: '1' } : {}),
                       },
                     });
                   }
@@ -1246,7 +1405,7 @@ export default function QuestionScreen() {
             </>
           )}
             </View>
-            {((question as any)?.choices?.length > 0 || showDescriptiveMark || shuffledChoices.length > 0 || filteredChoicesWithIndex.length > 0 || (comboFormatData?.length ?? 0) > 0) ? (
+            {((question as any)?.choices?.length > 0 || showDescriptiveMark || shuffledChoices.length > 0 || filteredChoicesWithIndex.length > 0 || (comboFormatData?.length ?? 0) > 0 || isDiagramEligible) ? (
               <View style={styles.choicesMarkRow}>
                 {showDescriptiveMark ? (
                   <ThemedText style={[styles.choicesMark, { color: colors.text }]}>（記）</ThemedText>
@@ -1273,6 +1432,22 @@ export default function QuestionScreen() {
                     {activeActionMode === 'teachMe' ? '教えて先生 ON' : '教えて先生'}
                   </ThemedText>
                 </Pressable>
+                {isDiagramEligible ? (
+                  <>
+                    <Pressable
+                      style={[styles.scopeChip, { borderColor: '#9C27B0', backgroundColor: colors.choiceBg }]}
+                      onPress={() => { setDiagramMode('self'); setDiagramModalVisible(true); }}
+                    >
+                      <ThemedText style={[styles.scopeChipText, { color: '#9C27B0' }]}>自分で図</ThemedText>
+                    </Pressable>
+                    <Pressable
+                      style={[styles.scopeChip, { borderColor: '#9C27B0', backgroundColor: colors.choiceBg }]}
+                      onPress={() => { setDiagramMode('model'); setDiagramModalVisible(true); }}
+                    >
+                      <ThemedText style={[styles.scopeChipText, { color: '#9C27B0' }]}>模範図</ThemedText>
+                    </Pressable>
+                  </>
+                ) : null}
               </View>
             ) : null}
           </View>
@@ -1294,10 +1469,13 @@ export default function QuestionScreen() {
                       subject,
                       field,
                       questionIndex: String(questionIndex),
-                      pickedIndex: '-1', // Placeholder
-                      pickedIndices: JSON.stringify(selectedIndices), // NEW
+                      pickedIndex: '-1',
+                      pickedIndices: JSON.stringify(selectedIndices),
                       totalQuestions: String(questions.length),
                       correctCountSession: params.correctCountSession || '0',
+                      wrongCounts: JSON.stringify(wrongCounts),
+                      ...(mode ? { mode } : {}),
+                      ...(isShuffle ? { shuffle: '1' } : {}),
                     }
                   });
                 }}
@@ -1437,6 +1615,14 @@ export default function QuestionScreen() {
             </View>
           </View>
         </Modal>
+
+        <DiagramModal
+          visible={diagramModalVisible}
+          onClose={() => setDiagramModalVisible(false)}
+          problemText={question?.text || ''}
+          mode={diagramMode}
+          questionId={subject && paramField && questionIndex !== null ? `${subject}_${paramField}_${questionIndex}` : undefined}
+        />
       </ScrollView>
     </ThemedView>
   );
@@ -1477,6 +1663,24 @@ const styles = StyleSheet.create({
   },
   subject: {
     opacity: 0.7,
+  },
+  questionMarkColumn: {
+    flexDirection: 'column',
+    gap: 6,
+    paddingTop: 4,
+  },
+  questionMarkButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 8,
+    borderWidth: 1.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  questionMarkText: {
+    fontSize: 18,
+    fontWeight: '700',
   },
   questionContainer: {
     padding: 20,
@@ -1602,11 +1806,10 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   choicesMarkRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
     gap: 8,
     marginTop: 4,
-    flexWrap: 'wrap',
   },
   choicesMark: {
     fontSize: 16,

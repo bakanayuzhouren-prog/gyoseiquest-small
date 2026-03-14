@@ -161,9 +161,10 @@ export default function LearnSubjectScreen() {
   const linkMatch = currentDisplayContent.match(/\[\[LINK:(.+?)\]\]/);
   const digDeeperUrl = linkMatch ? linkMatch[1] : null;
 
-  // Extract image tag
+  // Extract image tag（画像が imageMap に存在する場合のみ「もっと深掘る」表示）
   const imageMatch = currentDisplayContent.match(/\[\[image:(.*?)\]\]/);
   const currentImageName = imageMatch ? imageMatch[1].split(' ')[0] : null;
+  const hasValidImage = !!(currentImageName && (IMAGE_RESOURCES_MAP as any)[currentImageName]);
 
   // Remove LINK and IMAGE tags from content for display processing
   const contentToProcess = currentDisplayContent
@@ -191,7 +192,7 @@ export default function LearnSubjectScreen() {
   const hasChunks = foundQuestion?.chunks && foundQuestion.chunks.length > 0;
 
   const handleOpenDeepDive = () => {
-    if ((!digDeeperUrl && !hasChunks) || !subject) return;
+    if ((!digDeeperUrl && !hasChunks && !hasValidImage) || !subject) return;
 
     // [[LINK:/columns/...]] など URL パスの場合はそのまま遷移
     if (digDeeperUrl && digDeeperUrl.startsWith('/')) {
@@ -250,7 +251,7 @@ export default function LearnSubjectScreen() {
         await new Promise(resolve => setTimeout(resolve, 200));
 
         Speech.speak(spokenText, {
-          language: 'ja',
+          language: 'ja-JP',
           rate: playbackRate,
           onBoundary: (event: any) => {
             if (isPlaying && event.charIndex !== undefined) {
@@ -543,7 +544,7 @@ export default function LearnSubjectScreen() {
             ))}
 
             {/* Deep Dive Button (Moved inside speedContainer) */}
-            {(digDeeperUrl || hasChunks) ? (
+            {(digDeeperUrl || hasChunks || hasValidImage) ? (
               <Pressable style={styles.digDeeperButtonSmall} onPress={handleOpenDeepDive}>
                 <MaterialIcons
                   name={(digDeeperUrl === '54' && subject === '民法総則') ? "brush" : "article"}

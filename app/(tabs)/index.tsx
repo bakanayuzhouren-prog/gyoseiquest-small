@@ -82,17 +82,17 @@ export default function HomeScreen() {
             </ThemedText>
           </Pressable>
         </Link>
-        <Link href="/settings" asChild>
-          <Pressable style={buttonStyle}>
-            <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
-              ⑨設定
-            </ThemedText>
-          </Pressable>
-        </Link>
         <Link href="/constitution" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
-              ⑩憲法を学ぶ
+              ⑨憲法を学ぶ
+            </ThemedText>
+          </Pressable>
+        </Link>
+        <Link href="/settings" asChild>
+          <Pressable style={buttonStyle}>
+            <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
+              ⑩設定
             </ThemedText>
           </Pressable>
         </Link>
