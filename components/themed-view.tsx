@@ -1,5 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { View, type ViewProps } from 'react-native';
+import { StyleSheet, View, type ViewProps } from 'react-native';
 
 import { useThemeColor } from '@/hooks/use-theme-color';
 import { useTheme } from '@/src/context/ThemeContext';
@@ -19,7 +19,7 @@ export function ThemedView({ style, lightColor, darkColor, ...otherProps }: Them
         colors={['#0F172A', '#1E293B']} // Deep Navy Gradient
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        style={[{ flex: 1 }, style]}
+        style={StyleSheet.flatten([{ flex: 1 }, style])}
         {...otherProps}
       >
         {/* Gradient wrapper */}
@@ -33,7 +33,7 @@ export function ThemedView({ style, lightColor, darkColor, ...otherProps }: Them
         colors={['#0d0221', '#1a0a2e', '#0d0221']} // ダークパープル〜ネオン基調
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        style={[{ flex: 1 }, style]}
+        style={StyleSheet.flatten([{ flex: 1 }, style])}
         {...otherProps}
       >
         {/* Cyberpunk gradient */}
@@ -41,5 +41,5 @@ export function ThemedView({ style, lightColor, darkColor, ...otherProps }: Them
     );
   }
 
-  return <View style={[{ backgroundColor }, style]} {...otherProps} />;
+  return <View style={StyleSheet.flatten([{ backgroundColor }, style])} {...otherProps} />;
 }

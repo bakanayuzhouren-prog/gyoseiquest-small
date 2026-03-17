@@ -9,6 +9,16 @@ export function hasNumberPrefix(text: string): boolean {
 }
 
 /**
+ * 番号接頭辞と本文に分割。⑱を上段、問題文を下段に表示する用
+ */
+export function splitNumberPrefix(text: string): { prefix: string; body: string } {
+  const t = (text || '').trim();
+  const match = t.match(/^([\u2460-\u2473\u3251-\u325F\u32B1-\u32BF]+|\(\d+\))\s*(.*)$/s);
+  if (match) return { prefix: match[1], body: match[2].trim() };
+  return { prefix: '', body: t };
+}
+
+/**
  * 問題番号を丸数字で統一（①〜⑳、㉑〜㉟、㊱〜㊿）
  */
 export function getChoicePrefix(index: number): string {

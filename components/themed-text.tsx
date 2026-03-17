@@ -20,7 +20,7 @@ export function ThemedText({
 
   return (
     <Text
-      style={[
+      style={StyleSheet.flatten([
         { color },
         type === 'default' ? styles.default : undefined,
         type === 'title' ? styles.title : undefined,
@@ -28,7 +28,7 @@ export function ThemedText({
         type === 'subtitle' ? styles.subtitle : undefined,
         type === 'link' ? styles.link : undefined,
         style,
-      ]}
+      ])}
       {...rest}
     />
   );

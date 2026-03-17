@@ -12,10 +12,11 @@ import { useTheme } from '@/src/context/ThemeContext';
 import { RESOURCES, SUBJECTS } from '@/src/questions';
 import { explainChoiceIntent, generateDescriptiveQuestion } from '@/src/utils/geminiService';
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
-import { getChoicePrefix, hasNumberPrefix } from '@/utils/choiceNumber';
+import { getChoicePrefix, hasNumberPrefix, splitNumberPrefix } from '@/utils/choiceNumber';
 import { getQuestionMark, setQuestionMark, type QuestionMark } from '@/utils/question-marks';
 import { getQuestionHighlights, toggleQuestionHighlight } from '@/utils/question-highlights';
 import { getQuestionStats } from '@/utils/question-stats';
+import { CIVIL_PRECEDENT_IMAGES } from '@/src/civilPrecedentImages';
 
 const GEMINI_API_KEY = (typeof Constants?.expoConfig?.extra !== 'undefined' && (Constants.expoConfig.extra as any)?.geminiApiKey) || (typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_GEMINI_API_KEY) || (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) || '';
 
@@ -367,6 +368,9 @@ export default function QuestionScreen() {
   const [resourceModalVisible, setResourceModalVisible] = useState(false);
   const [resourcePage, setResourcePage] = useState(0);
 
+  // State for 判例について知る Modal（民法のみ）
+  const [precedentModalVisible, setPrecedentModalVisible] = useState(false);
+
   const sidebarScrollRef = useRef<ScrollView>(null);
   const ITEM_WIDTH = 42;
 
@@ -409,13 +413,18 @@ export default function QuestionScreen() {
     // 多肢選択: tashiData からスロットを生成（語群から選択して穴埋め）
     const effectiveSlots = interactiveSlots.length > 0 ? interactiveSlots : slots;
 
+    // バッジ用ナンバー（コンテナ直下で外枠角に表示するためここで算出）
+    const displayNum = hasNumberPrefix(text) ? splitNumberPrefix(text).prefix : getChoicePrefix(questionIndex ?? 0);
+
     let content;
     if (effectiveSlots.length === 0) {
       const isDescriptive = subject === '記述';
       const useFormatted = isDescriptive && text.length > 150;
 
       if (useFormatted) {
-        const paragraphs = formatDescriptiveText(text);
+        const { body: questionBody } = splitNumberPrefix(text);
+        const textForFormat = hasNumberPrefix(text) ? questionBody : text;
+        const paragraphs = formatDescriptiveText(textForFormat);
         const segmentStyle = (seg: TextSegment) => {
           const base = theme === 'paper' ? { fontFamily: 'serif' as const } : {};
           switch (seg.type) {
@@ -455,7 +464,6 @@ export default function QuestionScreen() {
                         { color: colors.text, lineHeight: 28, fontFamily: theme === 'paper' ? 'serif' : undefined }
                       ]}
                     >
-                      {pi === 0 && !hasNumberPrefix(text) ? `${getChoicePrefix(questionIndex)} ` : ''}
                       {para.segments.map((seg, si) => (
                         <ThemedText key={si} style={segmentStyle(seg)}>
                           {seg.text}
@@ -469,10 +477,11 @@ export default function QuestionScreen() {
           </View>
         );
       } else {
-        // 蛍光ペン: 行ごとにタップでハイライト切替
-        const segments = text.split(/\n/);
+        // ⑱等は常に上段、問題文は下段に分離（テキストに含まれる場合もgetChoicePrefixで付与する場合も同様）
+        const { body: questionBody } = splitNumberPrefix(text);
+        const displayBody = hasNumberPrefix(text) ? questionBody : text;
+        const segments = displayBody.split(/\n/);
         if (segments.length === 0) segments.push('');
-        const displayText = hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex);
         content = (
           <View>
             {segments.map((seg, idx) => {
@@ -498,7 +507,7 @@ export default function QuestionScreen() {
                       if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
                     } : undefined}
                   >
-                    {idx === 0 ? displayText : ''}{seg}
+                    {seg}
                   </ThemedText>
                 </Pressable>
               );
@@ -511,22 +520,25 @@ export default function QuestionScreen() {
       const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const pattern = new RegExp(`(${effectiveSlots.map((s: any) => escapeRegExp(s.label)).join('|')})`, 'g');
 
+      // ⑱等は常に上段、問題文は下段に分離
+      const { body: questionBody } = splitNumberPrefix(text);
+      const textForSlots = hasNumberPrefix(text) ? questionBody : text;
       // 多肢選択: テキスト内の [ ア ] 等を正規化してマッチ（全角［］も考慮）
       const normalizedText = tashiData
-        ? text.replace(/［\s*([ア-オ])\s*］/g, '[ $1 ]').replace(/\[\s*([ア-オ])\s*\]/g, '[ $1 ]')
-        : text;
+        ? textForSlots.replace(/［\s*([ア-オ])\s*］/g, '[ $1 ]').replace(/\[\s*([ア-オ])\s*\]/g, '[ $1 ]')
+        : textForSlots;
       const parts = normalizedText.split(pattern);
 
       content = (
-        <ThemedText style={[
-          styles.questionText,
-          isTashiQuestion && styles.questionTextTashi,
-          isLongText && styles.questionTextSmall,
-          isTashiQuestion && isLongText && styles.questionTextTashiSmall,
-          { lineHeight: isTashiQuestion ? 32 : 40 }
-        ]}>
-          {hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex)}
-          {parts.map((part: string, index: number) => {
+        <View>
+          <ThemedText style={[
+            styles.questionText,
+            isTashiQuestion && styles.questionTextTashi,
+            isLongText && styles.questionTextSmall,
+            isTashiQuestion && isLongText && styles.questionTextTashiSmall,
+            { lineHeight: isTashiQuestion ? 32 : 40 }
+          ]}>
+            {parts.map((part: string, index: number) => {
             const slot = effectiveSlots.find((s: any) => s.label === part);
             if (slot) {
               const selected = slotSelections[slot.label];
@@ -552,7 +564,8 @@ export default function QuestionScreen() {
               </ThemedText>
             );
           })}
-        </ThemedText>
+          </ThemedText>
+        </View>
       );
     }
 
@@ -599,14 +612,22 @@ export default function QuestionScreen() {
           {
             borderColor: colors.choiceBorder,
             backgroundColor: isTashiQuestion ? '#f5f7fa' : '#e8e8e8',
-          }
+          },
+          displayNum && { paddingTop: 0, paddingLeft: 0 },
         ]}>
-          {isTashiQuestion ? (
-            <ThemedText style={[styles.questionMetaText, { color: colors.subText }]}>
-              {suffix.trim()}
-            </ThemedText>
+          {displayNum ? (
+            <View style={[styles.questionNumBadge, { backgroundColor: colors.primary }]}>
+              <ThemedText style={styles.questionNumBadgeText}>{displayNum}</ThemedText>
+            </View>
           ) : null}
-          {content}
+          <View style={displayNum ? { paddingTop: 36, paddingLeft: 48 } : undefined}>
+            {isTashiQuestion ? (
+              <ThemedText style={[styles.questionMetaText, { color: colors.subText }]}>
+                {suffix.trim()}
+              </ThemedText>
+            ) : null}
+            {content}
+          </View>
         </ThemedView>
       </View>
     );
@@ -1138,7 +1159,7 @@ export default function QuestionScreen() {
               )}
               {filteredChoicesWithIndex.map((item: { text: string; originalIndex: number }, displayIdx: number) => {
                 const origIdx = item.originalIndex;
-                const label = String(displayIdx + 1);
+                const label = String(origIdx + 1);
                 const isSelected = reorderSelection.includes(origIdx);
                 const selectedPos = reorderSelection.indexOf(origIdx) + 1;
                 const displayText = (item.text || '').replace(/※/g, '');
@@ -1398,14 +1419,14 @@ export default function QuestionScreen() {
                   { color: colors.choiceText },
                   isDisabled && styles.choiceTextDisabled,
                   (isMultiSelect && isSelected) && { color: '#1565C0', fontWeight: 'bold' }
-                ]}>{displayText}</ThemedText>
+                ]}>{`${choiceObj.originalIndex + 1}. ${displayText}`}</ThemedText>
               </Pressable>
             );
           })}
             </>
           )}
             </View>
-            {((question as any)?.choices?.length > 0 || showDescriptiveMark || shuffledChoices.length > 0 || filteredChoicesWithIndex.length > 0 || (comboFormatData?.length ?? 0) > 0 || isDiagramEligible) ? (
+            {((question as any)?.choices?.length > 0 || showDescriptiveMark || shuffledChoices.length > 0 || filteredChoicesWithIndex.length > 0 || (comboFormatData?.length ?? 0) > 0 || isDiagramEligible || subject === '民法') ? (
               <View style={styles.choicesMarkRow}>
                 {showDescriptiveMark ? (
                   <ThemedText style={[styles.choicesMark, { color: colors.text }]}>（記）</ThemedText>
@@ -1447,6 +1468,14 @@ export default function QuestionScreen() {
                       <ThemedText style={[styles.scopeChipText, { color: '#9C27B0' }]}>模範図</ThemedText>
                     </Pressable>
                   </>
+                ) : null}
+                {subject === '民法' ? (
+                  <Pressable
+                    style={[styles.scopeChip, { borderColor: '#2E7D32', backgroundColor: colors.choiceBg }]}
+                    onPress={() => setPrecedentModalVisible(true)}
+                  >
+                    <ThemedText style={[styles.scopeChipText, { color: '#2E7D32' }]}>判例について知る</ThemedText>
+                  </Pressable>
                 ) : null}
               </View>
             ) : null}
@@ -1616,6 +1645,43 @@ export default function QuestionScreen() {
           </View>
         </Modal>
 
+        {/* 判例について知る Modal（民法のみ） */}
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={precedentModalVisible}
+          onRequestClose={() => setPrecedentModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={[styles.modalContent, { maxHeight: '90%' }]}>
+              <ThemedText type="subtitle" style={styles.modalTitle}>判例解説</ThemedText>
+              {CIVIL_PRECEDENT_IMAGES.length > 0 ? (
+                <ScrollView style={{ maxHeight: '80%' }} showsVerticalScrollIndicator>
+                  {CIVIL_PRECEDENT_IMAGES.map((item, idx) => (
+                    <View key={idx} style={{ marginBottom: 16 }}>
+                      <Image
+                        source={item.source}
+                        style={{ width: '100%', aspectRatio: 1.5, maxHeight: 500 }}
+                        resizeMode="contain"
+                      />
+                      {item.caption ? (
+                        <ThemedText style={{ marginTop: 8, color: colors.subText, fontSize: 14 }}>{item.caption}</ThemedText>
+                      ) : null}
+                    </View>
+                  ))}
+                </ScrollView>
+              ) : (
+                <ThemedText style={{ color: colors.subText, padding: 16 }}>
+                  assets/images/precedent/ に画像を追加し、src/civilPrecedentImages.ts で登録してください。
+                </ThemedText>
+              )}
+              <Pressable style={styles.modalCloseButton} onPress={() => setPrecedentModalVisible(false)}>
+                <ThemedText style={{ color: '#fff' }}>閉じる</ThemedText>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+
         <DiagramModal
           visible={diagramModalVisible}
           onClose={() => setDiagramModalVisible(false)}
@@ -1683,6 +1749,8 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   questionContainer: {
+    position: 'relative',
+    overflow: 'visible',
     padding: 20,
     borderRadius: 12,
     borderWidth: 2,
@@ -1714,6 +1782,20 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     marginBottom: 14,
     textAlign: 'center',
+  },
+  questionNumBadge: {
+    position: 'absolute',
+    top: -2,
+    left: -2,
+    zIndex: 1,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    borderRadius: 12,
+  },
+  questionNumBadgeText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: '700',
   },
   questionText: {
     fontSize: 24,
@@ -1913,6 +1995,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 4, // 3D effect at bottom
     borderColor: '#8FB3D9',
     backgroundColor: '#fff', // White background for the button itself
+    alignItems: 'flex-start',
     // Shadows for depth
     shadowColor: "#000",
     shadowOffset: {
@@ -1926,7 +2009,8 @@ const styles = StyleSheet.create({
   choiceText: {
     fontSize: 18,
     fontWeight: '400',
-    textAlign: 'center',
+    textAlign: 'left',
+    alignSelf: 'stretch',
   },
   choiceButtonDisabled: {
     backgroundColor: '#f9f9f9',

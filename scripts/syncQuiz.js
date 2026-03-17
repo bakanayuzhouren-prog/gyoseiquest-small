@@ -220,10 +220,12 @@ async function sync() {
             let potentialChunkFromF = null;
 
             // If C1-C3 are empty, OR F contains image tags, OR F is long/has structure, treat it as chunk
+            // 民法物権: F列はもっと深掘る用なのでchunkにしない
+            const useBukkenFForDeepDive = title.includes('民法物権') || title.includes('物権');
             const hasImageTag = valC4_raw.includes('[[image:');
             const hasStructure = valC4_raw.includes('1：') || valC4_raw.includes('1:');
 
-            if ((!valC1 && !valC2 && !valC3) || (valC4_raw.length > 50) || hasStructure || hasImageTag) {
+            if (!useBukkenFForDeepDive && ((!valC1 && !valC2 && !valC3) || (valC4_raw.length > 50) || hasStructure || hasImageTag)) {
                 // It's likely a chunk/explanation, not a choice
                 valC4 = '';
                 if (valC4_raw) {
@@ -372,7 +374,8 @@ async function sync() {
 
                 const choices = [];
                 const choiceIsBonus = [];
-                let explanation = valF || '';
+                const choiceExplanations = [];
+                const valExplan = (r) => (r && r[11] ? String(r[11]).trim() : '');
                 let slotAnswersFromNtoP = null;
 
                 // 語群選択問題: N,O,P,Q,S列がスロットの選択肢。各列内の（ｒ）が付いた語句そのものを正解として保持
@@ -397,11 +400,27 @@ async function sync() {
                 }
 
                 // 第1肢（行政法１はC列、通常はK列）
+                // Y列（index 24）= チャンク用ローカル画像ファイル名（例: cancel-vs-invalid.png）
+                const choiceChunkImages = [];
+                const choiceStatuteRefs = [];
+                const choiceDeepDive = [];
+                const valChunkImg = (r) => (r && r[24] ? String(r[24]).trim() : '');
+                const valStatuteRef = (r) => (r && r[8] ? String(r[8]).trim() : '');
+                // 民法物権シート: もっと深掘るがF列(index 5)。通常はM列(index 12)
+                const useBukkenDeepDiveCol = title.includes('民法物権') || title.includes('物権');
+                const valDeepDive = (r) => {
+                    const idx = useBukkenDeepDiveCol ? 5 : 12;
+                    return (r && r[idx] ? String(r[idx]).trim() : '');
+                };
                 const firstChoice = useGyosei1Layout ? valC : valK;
                 if (firstChoice) {
                     choiceIsBonus.push(/^※/.test(firstChoice));
                     if (/^※/.test(firstChoice)) isBonus = true;
                     choices.push(firstChoice.replace(/^※\s*/, '').trim() || firstChoice);
+                    choiceChunkImages.push(valChunkImg(row));
+                    choiceExplanations.push(valExplan(row));
+                    choiceStatuteRefs.push(valStatuteRef(row));
+                    choiceDeepDive.push(valDeepDive(row));
                 }
 
                 let offset = 1;
@@ -429,6 +448,10 @@ async function sync() {
                         choiceIsBonus.push(/^※/.test(choiceText));
                         if (/^※/.test(choiceText)) isBonus = true;
                         choices.push(choiceText.replace(/^※\s*/, '').trim() || choiceText);
+                        choiceChunkImages.push(valChunkImg(nextRow));
+                        choiceExplanations.push(valExplan(nextRow));
+                        choiceStatuteRefs.push(valStatuteRef(nextRow));
+                        choiceDeepDive.push(valDeepDive(nextRow));
                     }
                     offset++;
                 }
@@ -436,7 +459,16 @@ async function sync() {
                 // 肢が0件でも問題文があれば追加（プレースホルダー肢で表示可能に）
                 if (choices.length === 0 && questionText.length > 20) {
                     choices.push('（選択肢はスプレッドシートのK列で設定してください）');
+                    choiceChunkImages.push('');
+                    choiceExplanations.push('');
+                    choiceStatuteRefs.push('');
+                    choiceDeepDive.push('');
                 }
+                // choiceChunkImages / choiceExplanations / choiceStatuteRefs / choiceDeepDive を choices の長さに合わせる
+                while (choiceChunkImages.length < choices.length) choiceChunkImages.push('');
+                while (choiceExplanations.length < choices.length) choiceExplanations.push('');
+                while (choiceStatuteRefs.length < choices.length) choiceStatuteRefs.push('');
+                while (choiceDeepDive.length < choices.length) choiceDeepDive.push('');
                 if (choices.length >= 1) {
                     const correctIndices = [];
                     const cleanChoices = currentSubject === '記述'
@@ -505,6 +537,12 @@ async function sync() {
                             isReorder = true;
                         }
                     }
+                    // L列 = 解説。並べ替えでない場合のみ使用。全体解説 = F列 || L列、肢別解説 = choiceExplanations
+                    // I列 = 根拠条文。肢ごとに指定があれば優先表示
+                    const explanation = isReorder ? (valF || '') : (valF || valL || '');
+                    const finalChoiceExplanations = isReorder ? [] : choiceExplanations;
+                    const finalChoiceStatuteRefs = isReorder ? [] : choiceStatuteRefs;
+                    const finalChoiceDeepDive = isReorder ? [] : choiceDeepDive;
                     if (!isReorder && slotAnswersFromNtoP && slotAnswersFromNtoP.length > 0) {
                         finalAnswer = slotAnswersFromNtoP;
                     } else if (!isReorder && currentSubject === '多肢選択' && valR) {
@@ -566,7 +604,11 @@ async function sync() {
                         slots: slots,
                         refId: valRefId,
                         isBonus: isBonus,
-                        chunks: chunks
+                        chunks: chunks,
+                        choiceChunkImages: choiceChunkImages,
+                        choiceExplanations: finalChoiceExplanations,
+                        choiceStatuteRefs: finalChoiceStatuteRefs,
+                        choiceDeepDive: finalChoiceDeepDive
                     });
                 } else {
                     // Extract chunks for non-choice questions too

@@ -1,5 +1,5 @@
 import Constants from 'expo-constants';
-import { Link, useLocalSearchParams } from 'expo-router';
+import { Link, useLocalSearchParams, useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
@@ -7,8 +7,26 @@ import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
+import { getChunkImageSource } from '@/src/chunkImages';
+import { getDeepdiveImageSource } from '@/src/deepdiveImages';
+import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { PIN_CASES } from '@/src/pinData';
 import { RESOURCES, STATUTES, SUBJECTS } from '@/src/questions';
+
+/** シンプルなチャンク画像か（sousoku7 など -1.2.3.4 のような表記がない） */
+function isSimpleChunkImage(path: string): boolean {
+  return !!(path && path.trim() && !/-\d/.test(path.trim()));
+}
+
+/** [[image:xxx]] を解決。問題を解くモード専用: deepdive → chunk → imageMap の順で検索 */
+function resolveImageSource(key: string): number | undefined {
+  const deepdive = getDeepdiveImageSource(key);
+  if (deepdive) return deepdive;
+  const chunk = getChunkImageSource(key);
+  if (chunk) return chunk;
+  const mapped = (IMAGE_RESOURCES_MAP as Record<string, number>)[key];
+  return mapped;
+}
 
 /** 行政法の分野 → 条文モード(STATUTES)のキー。もっと深掘るで根拠条文を表示 */
 const FIELD_TO_STATUTES_KEY: Record<string, string> = {
@@ -36,6 +54,9 @@ function getStatuteDisplayTitle(
 ): string {
   const t = statute.title?.trim() || '';
   if (!t) return t;
+  // 第八百三十八条 第1項 一 等 → 第八百三十八条 第1項 と表示（号は省略）
+  const article1GouMatch = t.match(/^(第[十百千〇一二三四五六七八九十\d]+条\s*第[1１]項)\s+[一二三四五六七八九十]$/);
+  if (article1GouMatch) return article1GouMatch[1];
   if (/^第.*条/.test(t)) return t;
   const idx = fullStatutes.findIndex(
     (s) => (s.title === statute.title && s.content === statute.content)
@@ -68,6 +89,83 @@ function getStatuteDisplayTitle(
   return `${articleTitle} ${t}`;
 }
 
+/** アラビア数字を漢数字（条番号用）に変換。例: 838 → 八百三十八 */
+function toKanjiArticle(n: number): string {
+  if (n <= 0 || n >= 10000) return '';
+  const d = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+  if (n < 10) return d[n];
+  if (n < 100) return (n >= 20 ? d[Math.floor(n / 10)] : '') + (n >= 10 ? '十' : '') + (n % 10 ? d[n % 10] : '');
+  if (n < 1000) return d[Math.floor(n / 100)] + '百' + toKanjiArticle(n % 100);
+  return d[Math.floor(n / 1000)] + '千' + toKanjiArticle(n % 1000);
+}
+
+/** 単一の条文参照（例: 166条1項、724条の2）から該当条文を検索 */
+function findStatuteByRef(
+  statutes: Array<{ title: string; content: string }>,
+  ref: string
+): { title: string; content: string } | null {
+  if (!ref || !statutes.length) return null;
+  const r = ref.trim()
+    .replace(/^民法\s*/, '')
+    .replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0))
+    .trim();
+  if (!r) return null;
+  const norm = (s: string) => (s || '').replace(/\s/g, '');
+  const rn = norm(r);
+  for (const st of statutes) {
+    const t = norm(st.title || '');
+    if (t.includes(rn) || (rn.length >= 4 && t.includes(rn.slice(0, -1)))) return st;
+  }
+  const artMatch = r.match(/(\d+)条/);
+  if (artMatch) {
+    const artNum = parseInt(artMatch[1], 10);
+    const no2Match = r.match(/条の(\d+)$/);
+    const no2Suffix = no2Match ? 'の' + (parseInt(no2Match[1], 10) < 10 ? toKanjiArticle(parseInt(no2Match[1], 10)) : no2Match[1]) : '';
+    const artKanji = '第' + toKanjiArticle(artNum) + '条' + no2Suffix;
+    const artKanjiAlt = artNum >= 100 && artNum < 200 ? '第百' + toKanjiArticle(artNum % 100) + '条' + no2Suffix : null;
+    const kouMatch = r.match(/(\d+)項/);
+    const kouKanji = kouMatch ? '第' + (parseInt(kouMatch[1], 10) < 10 ? toKanjiArticle(parseInt(kouMatch[1], 10)) : kouMatch[1]) + '項' : '';
+    const kouAlt = kouMatch ? '第' + kouMatch[1] + '項' : '';
+    const kouAltFull = kouMatch && parseInt(kouMatch[1], 10) < 10
+      ? '第' + String.fromCharCode(0xFF10 + parseInt(kouMatch[1], 10)) + '項' : ''; // 全角: 第２項
+    const tryMatch = (t: string, kanji: string) =>
+      t.includes(kanji) && (!kouKanji || t.includes(kouKanji) || t.includes(kouAlt) || t.includes(kouAltFull) || (kouMatch && t.includes('第' + kouMatch[1] + '項')));
+    for (const st of statutes) {
+      const t = st.title || '';
+      if (tryMatch(t, artKanji)) return st;
+      if (artKanjiAlt && tryMatch(t, artKanjiAlt)) return st;
+    }
+    for (const st of statutes) {
+      const t = st.title || '';
+      if (t.includes(artKanji)) return st;
+      if (artKanjiAlt && t.includes(artKanjiAlt)) return st;
+    }
+  }
+  return null;
+}
+
+/** I列の根拠条文指定（167条、166条1項 等カンマ区切り可）から該当条文をすべて検索 */
+function findStatutesByRef(
+  statutes: Array<{ title: string; content: string }>,
+  ref: string
+): Array<{ title: string; content: string }> {
+  if (!ref || !statutes.length) return [];
+  const parts = ref.split(/[,、]/).map((p) => p.trim()).filter(Boolean);
+  const seen = new Set<string>();
+  const result: Array<{ title: string; content: string }> = [];
+  for (const part of parts) {
+    const found = findStatuteByRef(statutes, part);
+    if (found) {
+      const key = `${found.title}::${found.content}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        result.push(found);
+      }
+    }
+  }
+  return result;
+}
+
 function pickRelatedStatutes(
   statutes: Array<{ title: string; content: string }>,
   questionText: string,
@@ -79,6 +177,8 @@ function pickRelatedStatutes(
       .replace(/[\s。、．，,.「」『』【】［］()（）]/g, '');
   const q = norm(questionText);
   if (!q) return [];
+  // 重要フレーズ一致ボーナス（選択肢と条文の文言が一致する場合に優先）
+  const phraseBonuses = ['管理権を有しない', '親権を行う者が管理権'];
   const scored = statutes
     .map((st, idx) => {
       const t = norm(`${st.title || ''}${st.content || ''}`);
@@ -87,15 +187,37 @@ function pickRelatedStatutes(
       for (const ch of new Set(q.split(''))) {
         if (t.includes(ch)) hit++;
       }
-      const score = hit / q.length;
+      let score = hit / q.length;
+      for (const phrase of phraseBonuses) {
+        if (q.includes(phrase) && t.includes(phrase)) score += 0.4;
+      }
       return { idx, score };
     })
     .filter((s) => s.score > 0.15)
     .sort((a, b) => b.score - a.score);
   return scored.slice(0, limit).map((s) => statutes[s.idx]);
 }
+
+/** 第1項が選ばれた場合、同条の第2項を取得（チャンク用の周辺知識） */
+function getParagraph2ForChunk(
+  firstStatute: { title: string; content: string } | null,
+  all: Array<{ title: string; content: string }>
+): { title: string; content: string } | null {
+  if (!firstStatute) return null;
+  const title = firstStatute.title || '';
+  if (!/第1項|第１項/.test(title)) return null;
+  const articleMatch = title.match(/^(第[十百千〇一二三四五六七八九十\d]+条)/);
+  if (!articleMatch) return null;
+  const article = articleMatch[1];
+  return all.find(
+    (st) =>
+      (st.title || '').startsWith(article) &&
+      /第[2２]項/.test(st.title || '') &&
+      !/第[2２]項\s*[一二三四五六七八九十]/.test(st.title || '')
+  ) || null;
+}
 import { gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
-import { getChoicePrefix, hasNumberPrefix } from '@/utils/choiceNumber';
+import { getChoicePrefix, hasNumberPrefix, splitNumberPrefix } from '@/utils/choiceNumber';
 import { addPoints } from '@/utils/points';
 import { updateQuestionStats } from '@/utils/question-stats';
 import { incrementLoopCount } from '@/utils/progress';
@@ -174,6 +296,7 @@ export default function ResultScreen() {
   } catch (_) {}
 
   const { colors, theme } = useTheme();
+  const router = useRouter();
 
   // Calculate next index
   const questionIndex = params.questionIndex ? parseInt(Array.isArray(params.questionIndex) ? params.questionIndex[0] : params.questionIndex, 10) : 0;
@@ -232,15 +355,41 @@ export default function ResultScreen() {
     subject === '行政法' && field ? FIELD_TO_STATUTES_KEY[field]
     : subject === '民法' && field ? CIVIL_FIELD_TO_STATUTES_KEY[field]
     : null;
-  const statuteItemsRaw = statutesKey && (STATUTES as any)[statutesKey]
-    ? ((STATUTES as any)[statutesKey] as Array<{ title: string; content: string }>)
-    : [];
+  let statuteItemsRaw: Array<{ title: string; content: string }> = [];
+  if (statutesKey && (STATUTES as any)[statutesKey]) {
+    statuteItemsRaw = [...((STATUTES as any)[statutesKey] as Array<{ title: string; content: string }>)];
+    // 民法総則: 制限行為能力者・後見で minpo_kazoku（838条一号等）も参照
+    if (subject === '民法' && field === '民法総則' && (STATUTES as any)['minpo_kazoku']) {
+      statuteItemsRaw = [...statuteItemsRaw, ...((STATUTES as any)['minpo_kazoku'] as Array<{ title: string; content: string }>)];
+    }
+    // 民法総則: 162条・187条（取得時効・占有承継）等が minpo_bukken にあるため、併せて参照
+    if (subject === '民法' && field === '民法総則' && (STATUTES as any)['minpo_bukken']) {
+      statuteItemsRaw = [...statuteItemsRaw, ...((STATUTES as any)['minpo_bukken'] as Array<{ title: string; content: string }>)];
+    }
+    // 民法総則: 消滅時効（166条・167条・724条・724条の2）等が minpo_saiken にあるため、併せて参照
+    if (subject === '民法' && field === '民法総則') {
+      if ((STATUTES as any)['minpo_saiken_soron']) {
+        statuteItemsRaw = [...statuteItemsRaw, ...((STATUTES as any)['minpo_saiken_soron'] as Array<{ title: string; content: string }>)];
+      }
+      if ((STATUTES as any)['minpo_saiken_kakuron']) {
+        statuteItemsRaw = [...statuteItemsRaw, ...((STATUTES as any)['minpo_saiken_kakuron'] as Array<{ title: string; content: string }>)];
+      }
+    }
+  }
   const statuteItems = statuteItemsRaw.length > 0 ? pickRelatedStatutes(statuteItemsRaw, text) : [];
 
-  // 肢ごとの関連条文（行政法のみ）。各肢について最大1本まで。
+  // 肢ごとの関連条文。I列（choiceStatuteRefs）に指定があれば優先、なければ自動照合
+  const choiceStatuteRefs = (question as any)?.choiceStatuteRefs as string[] | undefined;
+  const choiceDeepDive = (question as any)?.choiceDeepDive as string[] | undefined;
   const choiceStatutes: Array<Array<{ title: string; content: string }>> = [];
   if (statuteItemsRaw.length > 0 && Array.isArray(choices) && choices.length > 0 && (subject === '行政法' || subject === '民法')) {
     for (let i = 0; i < choices.length; i++) {
+      const ref = choiceStatuteRefs?.[i]?.trim();
+      if (ref) {
+        const found = findStatutesByRef(statuteItemsRaw, ref);
+        choiceStatutes.push(found.length > 0 ? found : []);
+        continue;
+      }
       const c = choices[i];
       if (!c) {
         choiceStatutes.push([]);
@@ -282,14 +431,14 @@ export default function ResultScreen() {
   const stripR = (s: string) => (s || '').replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim();
   type AnswerItem = { prefix: string; text: string };
   const correctAnswersItems: AnswerItem[] = isSlotStyle
-    ? correctSlots.map((s, i) => ({ prefix: `${'アイウエオ'[i] || `${i + 1}`}: `, text: s }))
+    ? correctSlots.map((s, i) => ({ prefix: `${i + 1}. `, text: s }))
     : isReorder
       ? effectiveCorrectIndices.map((i: number, pos: number) => ({ prefix: `${pos + 1}. `, text: (choices[i] || '').replace(/※/g, '') }))
-      : effectiveCorrectIndices.map((i: number) => ({ prefix: '・ ', text: stripR((choices[i] || '').replace(/※/g, '')) }));
+      : effectiveCorrectIndices.map((i: number) => ({ prefix: `${i + 1}. `, text: stripR((choices[i] || '').replace(/※/g, '')) }));
   // Memo State
   const [showOfficialMemo, setShowOfficialMemo] = useState(false);
   const [userMemo, setUserMemo] = useState('');
-  const [isExplainExpanded, setIsExplainExpanded] = useState(false);
+  const [expandedChoiceIndex, setExpandedChoiceIndex] = useState<number | null>(null);
 
   // 記述式: AI部分点・分析
   const [aiGradeLoading, setAiGradeLoading] = useState(false);
@@ -442,7 +591,7 @@ export default function ResultScreen() {
               <ThemedView style={[styles.descriptiveAnswerBox, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
                 {pickedSlots.map((s, i) => (
                   <ThemedText key={i} style={{ fontSize: 16, color: colors.text, lineHeight: 24, marginBottom: 4 }}>
-                    {['ア','イ','ウ','エ','オ'][i]}: {s}
+                    {i + 1}: {s}
                   </ThemedText>
                 ))}
               </ThemedView>
@@ -457,7 +606,7 @@ export default function ResultScreen() {
                   styles.choiceButtonDisabled,
                   { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder, marginBottom: 8 }
                 ]}>
-                  <ThemedText style={{ fontSize: 16, color: colors.text }}>
+                  <ThemedText style={{ fontSize: 16, color: colors.text, textAlign: 'left', alignSelf: 'stretch' }}>
                     {choices[idx] ? choices[idx].replace(/※/g, '') : ''}
                   </ThemedText>
                 </Pressable>
@@ -511,7 +660,21 @@ export default function ResultScreen() {
         <View style={styles.questionAnswerOuterCard}>
           <ThemedText style={[styles.questionLabel, { color: colors.text }]}>問題文</ThemedText>
           <View style={styles.questionCard}>
-            <ThemedText style={[styles.questionText, { color: '#212121', fontFamily: theme === 'paper' ? 'serif' : undefined, fontWeight: 'bold' }]}>{(hasNumberPrefix(text) ? '' : getChoicePrefix(questionIndex))}{text}</ThemedText>
+            {(() => {
+              const { prefix: numPrefix, body: questionBody } = splitNumberPrefix(text);
+              const displayNum = hasNumberPrefix(text) ? numPrefix : getChoicePrefix(questionIndex);
+              const displayBody = hasNumberPrefix(text) ? questionBody : text;
+              return (
+                <>
+                  {displayNum ? (
+                    <View style={[styles.questionNumBadge, { backgroundColor: colors.primary, marginBottom: 8 }]}>
+                      <ThemedText style={styles.questionNumBadgeText}>{displayNum}</ThemedText>
+                    </View>
+                  ) : null}
+                  {displayBody ? <ThemedText style={[styles.questionText, { color: '#212121', fontFamily: theme === 'paper' ? 'serif' : undefined, fontWeight: 'bold', marginTop: 6 }]}>{displayBody}</ThemedText> : null}
+                </>
+              );
+            })()}
           </View>
           {!isDescriptive && !answerPending && correctAnswersItems.length > 0 && (
             <View style={styles.correctAnswersBlock}>
@@ -563,19 +726,33 @@ export default function ResultScreen() {
             ? choices.map((_, i) => i)
             : choices.map((_, i) => i).filter((i) => !isBonusChoice(i));
           if (visibleIndices.length === 0) return null;
-          // 同一根拠条文でまとめる: key -> { statute or null, indices }
+          // 同一根拠条文でまとめる: key -> { statutes（複数可）, indices }
           type StatuteEntry = { title: string; content: string };
-          const groupKey = (st: StatuteEntry) => `${st.title ?? ''}\n---\n${st.content ?? ''}`;
-          const grouped = new Map<string, { statute: StatuteEntry | null; indices: number[] }>();
+          const groupKey = (stats: StatuteEntry[]) =>
+            stats.length > 0 ? stats.map((s) => `${s.title ?? ''}\n---\n${s.content ?? ''}`).join('|||') : '';
+          const grouped = new Map<string, { statutes: StatuteEntry[]; indices: number[] }>();
           for (const idx of visibleIndices) {
             const related = choiceStatutes[idx] || [];
-            const statute = related.length > 0 ? related[0] : null;
-            const key = statute ? groupKey(statute) : '__none__';
-            if (!grouped.has(key)) grouped.set(key, { statute, indices: [] });
+            const key = related.length > 0 ? groupKey(related) : `__none__${idx}`;
+            if (!grouped.has(key)) grouped.set(key, { statutes: related, indices: [] });
             grouped.get(key)!.indices.push(idx);
           }
           const groups = Array.from(grouped.entries()).map(([_, g]) => g);
+          const choiceChunkImgs = (question as any)?.choiceChunkImages as string[] | undefined;
+          const simpleChunkImages = [...new Set(
+            (choiceChunkImgs || [])
+              .map((p, i) => (visibleIndices.includes(i) && isSimpleChunkImage(p) ? p.trim() : ''))
+              .filter(Boolean)
+          )].map((p) => ({ path: p, source: getChunkImageSource(p) })).filter((x) => x.source);
+          const qIdx = parseInt(String(questionIndex), 10);
+          const fallbackSousoku78 = simpleChunkImages.length === 0 && subject === '民法' && field === '民法総則' && (qIdx === 6 || qIdx === 7)
+            ? getChunkImageSource('sousoku7,8') || getChunkImageSource('minnpou/sousoku/sousoku7,8')
+            : null;
+          const footerImages = fallbackSousoku78
+            ? [{ path: 'sousoku7,8', source: fallbackSousoku78 }]
+            : simpleChunkImages;
           return (
+          <>
           <ThemedView style={[styles.choiceStatuteBlock, { borderColor: colors.choiceBorder }]}>
             <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 10 }]}>
               解説{mode === 'bonus' ? '（ボーナス肢含む）' : ''}
@@ -583,6 +760,11 @@ export default function ResultScreen() {
             {groups.map((g, gi) => {
               const label = g.indices.map((i) => `${i + 1}`).join('. ') + '. ';
               const choiceTexts = g.indices.map((i) => (choices[i] || '').replace(/※/g, '')).filter(Boolean);
+              const choiceExpls = (question as any)?.choiceExplanations as string[] | undefined;
+              const explText = g.indices
+                .map((i) => choiceExpls?.[i])
+                .filter(Boolean)
+                .join('\n\n');
               return (
                 <View key={gi} style={[styles.choiceStatuteItem, styles.choiceStatuteCard]}>
                   <View style={styles.choiceStatuteNumRow}>
@@ -593,30 +775,177 @@ export default function ResultScreen() {
                       {choiceTexts.length > 0 ? choiceTexts.join(' / ') : '—'}
                     </ThemedText>
                   </View>
+                  {explText ? (
+                    <View style={{ marginBottom: 8 }}>
+                      <MarkdownText text={explText} style={{ fontSize: 15, lineHeight: 22 }} />
+                    </View>
+                  ) : null}
                   <ThemedText style={[styles.choiceStatuteLabel, { color: colors.subText }]}>
                     根拠条文
                   </ThemedText>
-                  {g.statute ? (
-                    <View style={styles.choiceStatuteArticle}>
-                      {(g.statute.title || g.statute.content) ? (
-                        <ThemedText style={[styles.choiceStatuteArticleTitle, { color: colors.text }]}>
-                          {getStatuteDisplayTitle(g.statute, statuteItemsRaw)}
+                  {g.statutes.length > 0 ? (
+                    <>
+                      {g.statutes.map((statute, si) => (
+                        <View key={si} style={styles.choiceStatuteArticle}>
+                          {(statute.title || statute.content) ? (
+                            <ThemedText style={[styles.choiceStatuteArticleTitle, { color: colors.text }]}>
+                              {getStatuteDisplayTitle(statute, statuteItemsRaw)}
+                            </ThemedText>
+                          ) : null}
+                          {statute.content ? (
+                            <MarkdownText
+                              text={statute.content}
+                              style={{ fontSize: 17, lineHeight: 26, fontWeight: '500' }}
+                            />
+                          ) : null}
+                        </View>
+                      ))}
+                      {(g.statutes.some((s) => s.content && field !== '行政手続法') || choiceDeepDive?.[g.indices[0] ?? 0]?.trim()) ? (
+                        <View style={styles.keywordRow}>
+                          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flex: 1, justifyContent: 'flex-end' }}>
+                            {choiceDeepDive?.[g.indices[0] ?? 0]?.trim() ? (
+                              <Pressable
+                                onPress={() => {
+                                  const choiceIdx = g.indices[0] ?? 0;
+                                  const deepContent = choiceDeepDive?.[choiceIdx]?.trim() || '';
+                                  const choiceLabel = `${label}${choiceTexts.join(' / ').slice(0, 30)}…`;
+                                  router.push({
+                                    pathname: '/deepdive',
+                                    params: { content: deepContent, choiceLabel },
+                                  });
+                                }}
+                                style={[styles.deepDiveButton, { borderColor: colors.primary }]}
+                              >
+                                <ThemedText style={[styles.deepDiveButtonText, { color: colors.primary }]}>
+                                  📖 もっと深掘る
+                                </ThemedText>
+                              </Pressable>
+                            ) : (
+                              <Pressable
+                                onPress={() => setExpandedChoiceIndex((prev) => (prev === (g.indices[0] ?? -1) ? null : (g.indices[0] ?? -1)))}
+                                style={[styles.deepDiveButton, { borderColor: colors.primary }]}
+                              >
+                                <ThemedText style={[styles.deepDiveButtonText, { color: colors.primary }]}>
+                                  {expandedChoiceIndex === (g.indices[0] ?? -1) ? '▲ 閉じる' : '📖 もっと深掘る'}
+                                </ThemedText>
+                              </Pressable>
+                            )}
+                            {(() => {
+                              const choiceIdx = g.indices[0] ?? 0;
+                              let chunkImg = (question as any)?.choiceChunkImages?.[choiceIdx] || '';
+                              if (!chunkImg && subject === '民法' && field === '民法総則' && qIdx === 10 && /114条|催告/.test((g.statutes[0]?.title || '') + (g.statutes[0]?.content || '') + (choices[choiceIdx] || ''))) {
+                                chunkImg = 'minnpou/sousoku/sousoku11-2';
+                              }
+                              if (!getChunkImageSource(chunkImg)) return null;
+                              return (
+                            <Pressable
+                            onPress={() => {
+                              const p2 = getParagraph2ForChunk(g.statutes[0], statuteItemsRaw);
+                              const statuteContent = p2
+                                ? `**${getStatuteDisplayTitle(p2, statuteItemsRaw)}**\n\n${p2.content || ''}`
+                                : '';
+                              router.push({
+                                pathname: '/chunk',
+                                params: {
+                                  subject: subject || '',
+                                  field: field || '',
+                                  questionIndex: String(questionIndex),
+                                  choiceIndex: String(choiceIdx),
+                                  statuteTitle: getStatuteDisplayTitle(g.statutes[0], statuteItemsRaw),
+                                  statuteContent,
+                                  chunkImage: chunkImg,
+                                  correctCountSession: String(correctCountSessionCurrent),
+                                  wrongCounts: JSON.stringify(updatedWrongCounts),
+                                  ...(mode ? { mode } : {}),
+                                  ...(shuffleParam ? { shuffle: shuffleParam } : {}),
+                                },
+                              });
+                            }}
+                            hitSlop={12}
+                            style={[styles.infinityPressable, { backgroundColor: '#D6EAF8' }]}
+                          >
+                            <View style={styles.chainMarkContainer}>
+                              <Image
+                                source={require('@/assets/images/chain-mark.png')}
+                                style={styles.chainMarkImage}
+                                resizeMode="contain"
+                              />
+                              <ThemedText style={[styles.chainMarkLabel, { color: colors.text }]}>チャンク</ThemedText>
+                            </View>
+                          </Pressable>
+                              );
+                            })()}
+                          </View>
+                        </View>
+                      ) : null}
+                    </>
+                  ) : (
+                    <View>
+                      {choiceStatuteRefs?.[g.indices[0] ?? -1]?.trim() ? (
+                        <ThemedText style={[styles.choiceStatuteNote, { color: colors.subText }]}>
+                          指定: {choiceStatuteRefs[g.indices[0] ?? 0]}
                         </ThemedText>
                       ) : null}
-                      {g.statute.content ? (
-                        <MarkdownText
-                          text={g.statute.content}
-                          style={{ fontSize: 17, lineHeight: 26, fontWeight: '500' }}
-                        />
-                      ) : null}
-                      {g.statute.content && field !== '行政手続法' ? (
-                        <View style={styles.keywordRow}>
-                          <ThemedText style={[styles.choiceStatuteNote, { color: colors.subText }]}>
-                            ※ キーワード: {g.statute.content.replace(/[\s\r\n]+/g, '').slice(0, 20)}…
-                          </ThemedText>
+                      <ThemedText style={[styles.choiceStatuteNote, { color: colors.subText }]}>
+                        ※ 条文モードから対応する条文を特定できませんでした。
+                      </ThemedText>
+                      {choiceDeepDive?.[g.indices[0] ?? 0]?.trim() ? (
+                        <View style={[styles.keywordRow, { marginTop: 8 }]}>
+                          <View style={{ flex: 1 }} />
                           <Pressable
                             onPress={() => {
-                              // TODO: キーワードについて質問する機能
+                              const choiceIdx = g.indices[0] ?? 0;
+                              const deepContent = choiceDeepDive?.[choiceIdx]?.trim() || '';
+                              const choiceLabel = `${label}${choiceTexts.join(' / ').slice(0, 30)}…`;
+                              router.push({
+                                pathname: '/deepdive',
+                                params: { content: deepContent, choiceLabel },
+                              });
+                            }}
+                            style={[styles.deepDiveButton, { borderColor: colors.primary }]}
+                          >
+                            <ThemedText style={[styles.deepDiveButtonText, { color: colors.primary }]}>
+                              📖 もっと深掘る
+                            </ThemedText>
+                          </Pressable>
+                        </View>
+                      ) : null}
+                      {field !== '行政手続法' && subject && (subject === '民法' || subject === '行政法') && (() => {
+                        const choiceIdx = g.indices[0] ?? 0;
+                        let chunkImg = (question as any)?.choiceChunkImages?.[choiceIdx] || '';
+                        const choiceTxt = (choices[choiceIdx] || '') + (explText || '');
+                        if (!chunkImg && subject === '民法' && field === '民法総則' && /114条|催告/.test(choiceTxt)) {
+                          chunkImg = 'minnpou/sousoku/sousoku11-2';
+                        }
+                        return !!getChunkImageSource(chunkImg);
+                      })() ? (
+                        <View style={[styles.keywordRow, { marginTop: 8 }]}>
+                          <View style={{ flex: 1 }} />
+                          <Pressable
+                            onPress={() => {
+                              const choiceIdx = g.indices[0] ?? 0;
+                              let chunkImg = (question as any)?.choiceChunkImages?.[choiceIdx] || '';
+                              const choiceTxt = (choices[choiceIdx] || '') + (explText || '');
+                              if (!chunkImg && subject === '民法' && field === '民法総則' && /114条|催告/.test(choiceTxt)) {
+                                chunkImg = 'minnpou/sousoku/sousoku11-2';
+                              }
+                              const statuteTitleForChunk = /114条|催告/.test(choiceTxt) ? '無権代理（114条）・催告に対する沈黙の効果' : '関連知識';
+                              router.push({
+                                pathname: '/chunk',
+                                params: {
+                                  subject: subject || '',
+                                  field: field || '',
+                                  questionIndex: String(questionIndex),
+                                  choiceIndex: String(choiceIdx),
+                                  statuteTitle: statuteTitleForChunk,
+                                  statuteContent: '',
+                                  chunkImage: chunkImg,
+                                  correctCountSession: String(correctCountSessionCurrent),
+                                  wrongCounts: JSON.stringify(updatedWrongCounts),
+                                  ...(mode ? { mode } : {}),
+                                  ...(shuffleParam ? { shuffle: shuffleParam } : {}),
+                                },
+                              });
                             }}
                             hitSlop={12}
                             style={[styles.infinityPressable, { backgroundColor: '#D6EAF8' }]}
@@ -633,15 +962,24 @@ export default function ResultScreen() {
                         </View>
                       ) : null}
                     </View>
-                  ) : (
-                    <ThemedText style={[styles.choiceStatuteNote, { color: colors.subText }]}>
-                      ※ 条文モードから対応する条文を特定できませんでした。
-                    </ThemedText>
                   )}
                 </View>
               );
             })}
           </ThemedView>
+            {footerImages.length > 0 ? (
+              <View style={{ marginTop: 16, marginBottom: 16, paddingVertical: 12 }}>
+                {footerImages.map(({ path, source }, fi) => (
+                  <Image
+                    key={path}
+                    source={source}
+                    style={{ width: '100%', maxHeight: 600, marginBottom: fi < footerImages.length - 1 ? 12 : 0 }}
+                    resizeMode="contain"
+                  />
+                ))}
+              </View>
+            ) : null}
+          </>
           );
         })()}
         {isDescriptive && hasDescriptiveModel && (
@@ -682,32 +1020,73 @@ export default function ResultScreen() {
 
         {!(subject === '行政法' && field === '行政手続法') ? (
           <>
-            {isExplainExpanded ? (
+            {expandedChoiceIndex !== null ? (
               <View>
                 <ThemedText type="subtitle" style={styles.explainTitle}>
                   もっと深掘る！
                 </ThemedText>
-                {statuteItems.length > 0 ? (
-                  <ThemedView style={[styles.statutesBlock, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
-                    <View style={styles.statutesBlockHeaderRow}>
-                      <ThemedText style={[styles.statutesBlockLabelLeft, { color: colors.text }]}>根拠条文</ThemedText>
-                      <ThemedText type="subtitle" style={[styles.statutesBlockTitle, { color: colors.text }]}>
-                        📜 根拠条文
-                      </ThemedText>
-                    </View>
-                    {statuteItems.map((item, idx) => (
-                      <ThemedView key={idx} style={styles.statutesItem}>
-                        {(item.title || item.content) ? (
-                          <ThemedText style={[styles.statutesItemTitle, { color: colors.text }]}>
-                            {getStatuteDisplayTitle(item, statuteItemsRaw)}
-                          </ThemedText>
-                        ) : null}
-                        {item.content ? <MarkdownText text={item.content} /> : null}
-                      </ThemedView>
-                    ))}
-                  </ThemedView>
-                ) : null}
-                <MarkdownText text={explain || ''} />
+                {(() => {
+                  const deepDiveContent = choiceDeepDive?.[expandedChoiceIndex]?.trim();
+                  if (deepDiveContent) {
+                    const parts: Array<{ type: 'text' | 'image'; value: string }> = [];
+                    const re = /\[\[image:([^\]]+)\]\]/g;
+                    let lastIdx = 0;
+                    let m;
+                    while ((m = re.exec(deepDiveContent)) !== null) {
+                      if (m.index > lastIdx) {
+                        parts.push({ type: 'text', value: deepDiveContent.slice(lastIdx, m.index) });
+                      }
+                      parts.push({ type: 'image', value: m[1].trim() });
+                      lastIdx = re.lastIndex;
+                    }
+                    if (lastIdx < deepDiveContent.length) {
+                      parts.push({ type: 'text', value: deepDiveContent.slice(lastIdx) });
+                    }
+                    return (
+                      <View style={{ gap: 12 }}>
+                        {parts.map((p, i) =>
+                          p.type === 'text' ? (
+                            p.value.trim() ? (
+                              <MarkdownText key={i} text={p.value.trim()} style={{ fontSize: 16, lineHeight: 24 }} />
+                            ) : null
+                          ) : (
+                            (() => {
+                              const src = resolveImageSource(p.value);
+                              return src ? (
+                                <Image key={i} source={src} style={{ width: '100%', maxHeight: 500 }} resizeMode="contain" />
+                              ) : null;
+                            })()
+                          )
+                        )}
+                      </View>
+                    );
+                  }
+                  return (
+                    <>
+                      {statuteItems.length > 0 ? (
+                        <ThemedView style={[styles.statutesBlock, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
+                          <View style={styles.statutesBlockHeaderRow}>
+                            <ThemedText style={[styles.statutesBlockLabelLeft, { color: colors.text }]}>根拠条文</ThemedText>
+                            <ThemedText type="subtitle" style={[styles.statutesBlockTitle, { color: colors.text }]}>
+                              📜 根拠条文
+                            </ThemedText>
+                          </View>
+                          {statuteItems.map((item, idx) => (
+                            <ThemedView key={idx} style={styles.statutesItem}>
+                              {(item.title || item.content) ? (
+                                <ThemedText style={[styles.statutesItemTitle, { color: colors.text }]}>
+                                  {getStatuteDisplayTitle(item, statuteItemsRaw)}
+                                </ThemedText>
+                              ) : null}
+                              {item.content ? <MarkdownText text={item.content} /> : null}
+                            </ThemedView>
+                          ))}
+                        </ThemedView>
+                      ) : null}
+                      <MarkdownText text={explain || ''} />
+                    </>
+                  );
+                })()}
               </View>
             ) : null}
             <View style={styles.retryExpandRow}>
@@ -730,14 +1109,6 @@ export default function ResultScreen() {
                   <ThemedText type="defaultSemiBold" style={{ color: '#fff', fontSize: 14 }}>もう一度この問題を解く</ThemedText>
                 </Pressable>
               </Link>
-              <Pressable
-                style={styles.expandButton}
-                onPress={() => setIsExplainExpanded(!isExplainExpanded)}
-              >
-                <ThemedText style={{ color: '#007BFF' }}>
-                  {isExplainExpanded ? '▲ 閉じる' : '▼ もっと深掘る（解説を読む）'}
-                </ThemedText>
-              </Pressable>
             </View>
           </>
         ) : null}
@@ -893,6 +1264,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 48,
     gap: 16,
+  },
+  questionNumBadge: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    borderRadius: 12,
+  },
+  questionNumBadgeText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: '700',
   },
   questionText: {
     lineHeight: 28,
@@ -1052,6 +1434,16 @@ const styles = StyleSheet.create({
   infinityPressable: {
     padding: 4,
   },
+  deepDiveButton: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    borderWidth: 1,
+  },
+  deepDiveButtonText: {
+    fontSize: 13,
+    fontWeight: '600',
+  },
   chainMarkContainer: {
     width: 180,
     height: 180,
@@ -1130,7 +1522,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 30, // Pill shape
     backgroundColor: '#fff',
-    alignItems: 'center', // Center content
+    alignItems: 'flex-start',
   },
   choiceButtonDisabled: {
     backgroundColor: '#fff', // Keep white for result to show clearly
@@ -1277,9 +1669,5 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     alignItems: 'center',
-  },
-  expandButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 8,
   },
 });
