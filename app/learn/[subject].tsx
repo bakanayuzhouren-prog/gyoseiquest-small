@@ -9,7 +9,9 @@ import { ThemedView } from '@/components/themed-view';
 import { characterPlaceholders, defaultCharacterMap, useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
-import { LEARN_CONTENT } from '@/src/learn';
+import { resolveImageAsset } from '@/src/resolveImageAsset';
+import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_SOURCE } from '@/src/learn';
+import { setDeepdiveParams } from '@/src/deepdiveState';
 import { PIN_CASES } from '@/src/pinData';
 import { SUBJECTS } from '@/src/questions';
 import { getLearnNotes, LearnNote, saveLearnNotes } from '@/utils/learn-notes';
@@ -45,25 +47,92 @@ const getCivilPath = (articleNum: number): string => {
   return '/statutes/civil/family';
 };
 
+/** 多肢選択: LEARN_* はシート行順で「憲法ブロック→行政法ブロック」と SUBJECTS の件数に対応させてスライス */
+function sliceTashiSyncedByField<T>(
+  full: T[],
+  field: string | undefined,
+  kenLen: number,
+  gyoLen: number
+): T[] {
+  if (!field) return full;
+  if (field === '憲法') return full.slice(0, kenLen);
+  if (field === '行政法') return full.slice(kenLen, kenLen + gyoLen);
+  return full;
+}
+
 export default function LearnSubjectScreen() {
-  const params = useLocalSearchParams<{ subject?: string; index?: string }>();
+  const params = useLocalSearchParams<{ subject?: string; index?: string; field?: string }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
+  const fieldParam = Array.isArray(params.field) ? params.field[0] : params.field;
+  const tashiField = fieldParam === '憲法' || fieldParam === '行政法' ? fieldParam : undefined;
   const initialIndex = parseInt(params.index || '0', 10);
+
+  const tashiKenGyoLens = useMemo(() => {
+    const t = (SUBJECTS as any)['多肢選択'];
+    if (!t) return { ken: 0, gyo: 0 };
+    return {
+      ken: Array.isArray(t['憲法']) ? t['憲法'].length : 0,
+      gyo: Array.isArray(t['行政法']) ? t['行政法'].length : 0,
+    };
+  }, []);
+
+  const learnScopeKey =
+    subject === '多肢選択' && tashiField ? `多肢選択:${tashiField}` : subject || '';
+
   const flattenedSubjectQuestions = useMemo(() => {
     if (!subject) return [];
-    const subjectQuestions = (SUBJECTS as any)[subject];
+    let subjectQuestions = (SUBJECTS as any)[subject];
+    if (!subjectQuestions && subject === '行政法総合') {
+      subjectQuestions = (SUBJECTS as any)['行政法']?.[subject];
+    }
     if (!subjectQuestions || typeof subjectQuestions !== 'object') return [];
+    if (subject === '多肢選択' && tashiField && Array.isArray((subjectQuestions as any)[tashiField])) {
+      return (subjectQuestions as any)[tashiField] as any[];
+    }
     return Object.values(subjectQuestions).flatMap((questions: any) => Array.isArray(questions) ? questions : []);
-  }, [subject]);
+  }, [subject, tashiField]);
 
-  // 多肢選択は LEARN_CONTENT ではなく、実問題の30問をそのまま学習対象にする
+  // 多肢選択: syncLearn で「多肢選択憲法」「多肢選択行政法」シート → LEARN_CONTENT の別キー。無い場合は従来の「多肢選択」マージ＋件数スライス。
   const contentList = useMemo(() => {
     if (subject === '多肢選択') {
+      if (tashiField === '憲法') {
+        const raw = (LEARN_CONTENT as any)['多肢選択憲法'];
+        const arr = Array.isArray(raw) ? raw : raw ? [raw] : [];
+        if (arr.length > 0) return arr;
+      } else if (tashiField === '行政法') {
+        const raw = (LEARN_CONTENT as any)['多肢選択行政法'];
+        const arr = Array.isArray(raw) ? raw : raw ? [raw] : [];
+        if (arr.length > 0) return arr;
+      } else {
+        const ken = (LEARN_CONTENT as any)['多肢選択憲法'];
+        const gyo = (LEARN_CONTENT as any)['多肢選択行政法'];
+        const a = Array.isArray(ken) ? ken : [];
+        const b = Array.isArray(gyo) ? gyo : [];
+        if (a.length + b.length > 0) return [...a, ...b];
+      }
+      const rawTashi = (LEARN_CONTENT as any)['多肢選択'];
+      const fromLearnFull = Array.isArray(rawTashi) ? rawTashi : rawTashi ? [rawTashi] : [];
+      const fromLearn =
+        fromLearnFull.length > 0
+          ? sliceTashiSyncedByField(fromLearnFull, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo)
+          : [];
+      if (fromLearn.length > 0) return fromLearn;
       return flattenedSubjectQuestions.map((q: any) => q?.text || '').filter(Boolean);
     }
     const rawContent = subject ? (LEARN_CONTENT as any)[subject] : [];
-    return Array.isArray(rawContent) ? rawContent : (rawContent ? [rawContent] : []);
-  }, [subject, flattenedSubjectQuestions]);
+    let fromLearn = Array.isArray(rawContent) ? rawContent : (rawContent ? [rawContent] : []);
+    // 旧 sync: キー「民法総論」→ アプリは「民法総則」で遷移
+    if (fromLearn.length === 0 && subject === '民法総則') {
+      const legacy = (LEARN_CONTENT as any)['民法総論'];
+      fromLearn = Array.isArray(legacy) ? legacy : legacy ? [legacy] : [];
+    }
+    if (fromLearn.length > 0) return fromLearn;
+    const fallbackSubjects = ['基礎法学', '商法・会社法'];
+    if (fallbackSubjects.includes(subject || '') && flattenedSubjectQuestions.length > 0) {
+      return flattenedSubjectQuestions.map((q: any) => q?.text || '').filter(Boolean);
+    }
+    return fromLearn;
+  }, [subject, flattenedSubjectQuestions, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo]);
 
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [currentReadCount, setCurrentReadCount] = useState(1); // Counter for the 3 repeats
@@ -83,12 +152,12 @@ export default function LearnSubjectScreen() {
 
   // Stop speech when leaving screen
   useEffect(() => {
-    if (subject) {
-      const stickyList = getStickyNotes(subject);
+    if (learnScopeKey) {
+      const stickyList = getStickyNotes(learnScopeKey);
       setIsSticky(stickyList.includes(currentIndex));
-      setNotes(getLearnNotes(subject, currentIndex));
+      setNotes(getLearnNotes(learnScopeKey, currentIndex));
     }
-  }, [currentIndex, subject]);
+  }, [currentIndex, learnScopeKey]);
 
   // アンマウント時は停止しない（ページ遷移で音声を継続させるため）
   useEffect(() => {
@@ -120,7 +189,9 @@ export default function LearnSubjectScreen() {
           pathname: path as any,
           params: {
             q: articleNumStr + '条',
-            returnPath: `/learn/${subject}`,
+            returnPath: tashiField
+              ? `/learn/${subject}?field=${encodeURIComponent(tashiField)}`
+              : `/learn/${subject}`,
             returnSubject: subject,
             returnIndex: currentIndex.toString()
           }
@@ -147,24 +218,91 @@ export default function LearnSubjectScreen() {
   };
 
   // 優先モード用のリスト構成
-  const displayContentList = isPriorityMode && subject
+  const displayContentList = isPriorityMode && learnScopeKey
     ? [
-      ...contentList.filter((_, i) => getStickyNotes(subject).includes(i)),
-      ...contentList.filter((_, i) => !getStickyNotes(subject).includes(i))
+      ...contentList.filter((_, i) => getStickyNotes(learnScopeKey).includes(i)),
+      ...contentList.filter((_, i) => !getStickyNotes(learnScopeKey).includes(i))
     ]
     : contentList;
 
+  // 優先モード時に元の contentList インデックスを復元するためのマッピング
+  const displayIndexList = useMemo(() => {
+    if (isPriorityMode && learnScopeKey) {
+      const stickyList = getStickyNotes(learnScopeKey);
+      return [
+        ...contentList.map((_, i) => i).filter((i) => stickyList.includes(i)),
+        ...contentList.map((_, i) => i).filter((i) => !stickyList.includes(i)),
+      ];
+    }
+    return contentList.map((_, i) => i);
+  }, [isPriorityMode, learnScopeKey, contentList]);
+
+  const originalContentIndex = displayIndexList[currentIndex] ?? currentIndex;
+
   const currentDisplayContent = displayContentList[currentIndex] || '';
   const isLastItem = currentIndex >= displayContentList.length - 1;
+
+  // B列由来（LEARN_DEEPDIVE）。多肢選択はシート別キー優先、なければマージ「多肢選択」をスライス
+  const deepdiveTashiSlice = useMemo(() => {
+    if (subject !== '多肢選択') return null;
+    if (tashiField === '憲法') {
+      const d = (LEARN_DEEPDIVE as any)?.['多肢選択憲法'];
+      if (Array.isArray(d) && d.length > 0) return d;
+    } else if (tashiField === '行政法') {
+      const d = (LEARN_DEEPDIVE as any)?.['多肢選択行政法'];
+      if (Array.isArray(d) && d.length > 0) return d;
+    } else {
+      const ken = (LEARN_DEEPDIVE as any)?.['多肢選択憲法'];
+      const gyo = (LEARN_DEEPDIVE as any)?.['多肢選択行政法'];
+      const a = Array.isArray(ken) ? ken : [];
+      const b = Array.isArray(gyo) ? gyo : [];
+      if (a.length + b.length > 0) return [...a, ...b];
+    }
+    const full = (LEARN_DEEPDIVE as any)?.['多肢選択'];
+    const arr = Array.isArray(full) ? full : [];
+    return sliceTashiSyncedByField(arr, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo);
+  }, [subject, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo]);
+
+  const deepdiveContent: string =
+    subject === '多肢選択' && deepdiveTashiSlice
+      ? deepdiveTashiSlice[originalContentIndex] || ''
+      : (LEARN_DEEPDIVE as any)?.[subject as string]?.[originalContentIndex] || '';
+
+  const learnSourceSheetLabel = useMemo(() => {
+    if (subject === '多肢選択') {
+      if (tashiField === '憲法') {
+        const arr = (LEARN_SOURCE as any)?.['多肢選択憲法'];
+        if (Array.isArray(arr) && arr.length > 0) return arr[originalContentIndex];
+      } else if (tashiField === '行政法') {
+        const arr = (LEARN_SOURCE as any)?.['多肢選択行政法'];
+        if (Array.isArray(arr) && arr.length > 0) return arr[originalContentIndex];
+      } else {
+        const ken = (LEARN_SOURCE as any)?.['多肢選択憲法'];
+        const gyo = (LEARN_SOURCE as any)?.['多肢選択行政法'];
+        const a = Array.isArray(ken) ? ken : [];
+        const b = Array.isArray(gyo) ? gyo : [];
+        if (a.length + b.length > 0) {
+          const merged = [...a, ...b];
+          return merged[originalContentIndex];
+        }
+      }
+      const full = (LEARN_SOURCE as any)?.['多肢選択'];
+      const arr = Array.isArray(full) ? full : [];
+      const sliced = sliceTashiSyncedByField(arr, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo);
+      return sliced[originalContentIndex];
+    }
+    return (LEARN_SOURCE as any)?.[subject as string]?.[originalContentIndex];
+  }, [subject, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo, originalContentIndex]);
 
   // Extract LINK tag first if present
   const linkMatch = currentDisplayContent.match(/\[\[LINK:(.+?)\]\]/);
   const digDeeperUrl = linkMatch ? linkMatch[1] : null;
 
-  // Extract image tag（画像が imageMap に存在する場合のみ「もっと深掘る」表示）
+  // Extract image tag（deepdive / chunk / descriptive / imageMap のいずれかにあれば表示可能）
   const imageMatch = currentDisplayContent.match(/\[\[image:(.*?)\]\]/);
-  const currentImageName = imageMatch ? imageMatch[1].split(' ')[0] : null;
-  const hasValidImage = !!(currentImageName && (IMAGE_RESOURCES_MAP as any)[currentImageName]);
+  const currentImageName = imageMatch ? imageMatch[1].split(' ')[0].trim() : null;
+  const hasImageTagInCard = /\[\[image:[^\]]+\]\]/.test(currentDisplayContent);
+  const hasValidImage = !!(currentImageName && resolveImageAsset(currentImageName));
 
   // Remove LINK and IMAGE tags from content for display processing
   const contentToProcess = currentDisplayContent
@@ -180,7 +318,7 @@ export default function LearnSubjectScreen() {
   // Check for chunks in SUBJECTS
   let foundQuestion: any = null;
   if (subject === '多肢選択') {
-    foundQuestion = flattenedSubjectQuestions[currentIndex] || null;
+    foundQuestion = flattenedSubjectQuestions[originalContentIndex] || null;
   } else if (subject) {
     for (const category of Object.values(SUBJECTS as any)) {
       if ((category as any)[subject]) {
@@ -191,8 +329,28 @@ export default function LearnSubjectScreen() {
   }
   const hasChunks = foundQuestion?.chunks && foundQuestion.chunks.length > 0;
 
+  /** A列の [[image:…]] を B列（LEARN_DEEPDIVE）と結合して渡す（従来は B のみで A の画像が落ちていた） */
+  const buildMergedDeepdivePayload = (): string => {
+    const fromB = (deepdiveContent || '').trim();
+    const tagsInA = currentDisplayContent.match(/\[\[image:[^\]]+\]\]/g) || [];
+    const parts: string[] = [];
+    if (fromB) parts.push(fromB);
+    for (const tag of tagsInA) {
+      if (!fromB.includes(tag)) parts.push(tag);
+    }
+    return parts.join('\n\n');
+  };
+
   const handleOpenDeepDive = () => {
-    if ((!digDeeperUrl && !hasChunks && !hasValidImage) || !subject) return;
+    const mergedPayload = buildMergedDeepdivePayload();
+    if ((!mergedPayload && !digDeeperUrl && !hasChunks && !hasValidImage && !hasImageTagInCard) || !subject) return;
+
+    // B列＋A列の [[image:…]] を結合して「もっと深掘る」へ
+    if (mergedPayload) {
+      setDeepdiveParams(mergedPayload, '');
+      router.push({ pathname: '/deepdive' as any, params: { content: mergedPayload, choiceLabel: '' } });
+      return;
+    }
 
     // [[LINK:/columns/...]] など URL パスの場合はそのまま遷移
     if (digDeeperUrl && digDeeperUrl.startsWith('/')) {
@@ -324,8 +482,8 @@ export default function LearnSubjectScreen() {
   };
 
   const handleToggleSticky = () => {
-    if (subject) {
-      const newState = toggleStickyNote(subject, currentIndex);
+    if (learnScopeKey) {
+      const newState = toggleStickyNote(learnScopeKey, currentIndex);
       setIsSticky(newState);
     }
   };
@@ -348,25 +506,25 @@ export default function LearnSubjectScreen() {
     };
     const updated = [...notes, newNote];
     setNotes(updated);
-    if (subject) saveLearnNotes(subject, currentIndex, updated);
+    if (learnScopeKey) saveLearnNotes(learnScopeKey, currentIndex, updated);
   };
 
   const updateNoteText = (id: string, text: string) => {
     const updated = notes.map(n => n.id === id ? { ...n, text } : n);
     setNotes(updated);
-    if (subject) saveLearnNotes(subject, currentIndex, updated);
+    if (learnScopeKey) saveLearnNotes(learnScopeKey, currentIndex, updated);
   };
 
   const updateNotePosition = (id: string, x: number, y: number) => {
     const updated = notes.map(n => n.id === id ? { ...n, x, y } : n);
     setNotes(updated);
-    if (subject) saveLearnNotes(subject, currentIndex, updated);
+    if (learnScopeKey) saveLearnNotes(learnScopeKey, currentIndex, updated);
   };
 
   const updateNoteSize = (id: string, width: number, height: number) => {
     const updated = notes.map(n => n.id === id ? { ...n, width, height } : n);
     setNotes(updated);
-    if (subject) saveLearnNotes(subject, currentIndex, updated);
+    if (learnScopeKey) saveLearnNotes(learnScopeKey, currentIndex, updated);
   };
 
   const deleteNote = (id: string) => {
@@ -385,7 +543,7 @@ export default function LearnSubjectScreen() {
             text: "削除", onPress: () => {
               const updated = notes.filter(n => n.id !== id);
               setNotes(updated);
-              if (subject) saveLearnNotes(subject, currentIndex, updated);
+              if (learnScopeKey) saveLearnNotes(learnScopeKey, currentIndex, updated);
             }
           }
         ]
@@ -394,7 +552,7 @@ export default function LearnSubjectScreen() {
     }
     const updated = notes.filter(n => n.id !== id);
     setNotes(updated);
-    if (subject) saveLearnNotes(subject, currentIndex, updated);
+    if (learnScopeKey) saveLearnNotes(learnScopeKey, currentIndex, updated);
   };
 
   return (
@@ -420,7 +578,10 @@ export default function LearnSubjectScreen() {
 
           <ThemedView style={styles.headerRow}>
             <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: 'transparent' }}>
-              <ThemedText type="title">{subject} ({currentIndex + 1}/{displayContentList.length})</ThemedText>
+              <ThemedText type="title">
+                {subject}{tashiField ? `・${tashiField}` : ''}
+                {learnSourceSheetLabel === '行政代執行法' ? '（行政代執行法）' : ''} ({currentIndex + 1}/{displayContentList.length})
+              </ThemedText>
               <ThemedView style={styles.bulbContainer}>
                 {[1, 2, 3].map((num) => (
                   <MaterialIcons
@@ -544,7 +705,7 @@ export default function LearnSubjectScreen() {
             ))}
 
             {/* Deep Dive Button (Moved inside speedContainer) */}
-            {(digDeeperUrl || hasChunks || hasValidImage) ? (
+            {(deepdiveContent || digDeeperUrl || hasChunks || hasValidImage) ? (
               <Pressable style={styles.digDeeperButtonSmall} onPress={handleOpenDeepDive}>
                 <MaterialIcons
                   name={(digDeeperUrl === '54' && subject === '民法総則') ? "brush" : "article"}

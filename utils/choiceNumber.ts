@@ -18,6 +18,28 @@ export function splitNumberPrefix(text: string): { prefix: string; body: string 
   return { prefix: '', body: t };
 }
 
+/** 「1.2. A / B」または「1.2. 1,A\n2,B」形式を「１，A」改行「２，B」に変換（問題文・解説肢表示用）。「1.2.」および「1,」「2,」の重複を除去 */
+export function formatNumberedClauses(text: string): string {
+  if (!text) return text;
+  // 先頭の「1.2. 」を常に除去（単独表示のフォールバック）
+  let t = text.replace(/^1\.2\.\s*/, '').trim();
+  if (!t) return text;
+  let parts: string[];
+  if (t.includes(' / ')) {
+    parts = t.split(/\s*\/\s*/);
+  } else if (/[\n\r]\s*2[,，]/.test(t)) {
+    // 改行で区切られた「1,A\n2,B」形式（1.2.は既に除去済み）
+    parts = t.split(/\s*[\n\r]+\s*(?=2[,，])/);
+  } else {
+    return t;
+  }
+  if (parts.length !== 2) return t;
+  let a = parts[0].replace(/^1\.2\.\s*/, '').replace(/^1\.?[,，]\s*/, '').trim();
+  let b = parts[1].replace(/^2\.?[,，]\s*/, '').trim();
+  if (!a || !b) return t;
+  return `１．${a}\n\n２．${b}`;
+}
+
 /**
  * 問題番号を丸数字で統一（①〜⑳、㉑〜㉟、㊱〜㊿）
  */

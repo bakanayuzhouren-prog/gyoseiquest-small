@@ -18,6 +18,38 @@ const OUTPUT_FILE = path.join(__dirname, '../src/questions.js');
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+/** textFormatRunsから太字・赤を**text** / [[red:text]]に変換。赤字は赤字のまま、太字は太字のまま反映 */
+function applyBoldFromFormatRuns(text, cellData) {
+    if (!text) return text;
+    const runs = cellData?.textFormatRuns;
+    if (!runs?.length) return text;
+    const isRed = (fmt) => {
+        const c = fmt?.foregroundColor || fmt?.foregroundColorStyle?.rgbColor;
+        if (!c) return false;
+        const r = c.red ?? 0, g = c.green ?? 0, b = c.blue ?? 0;
+        return r > 0.35 && r >= g && r >= b && (r - Math.max(g, b)) > 0.15;
+    };
+    let out = '';
+    let lastEnd = 0;
+    for (let j = 0; j < runs.length; j++) {
+        const run = runs[j];
+        const start = run.startIndex ?? 0;
+        if (start > lastEnd) out += text.slice(lastEnd, start);
+        const end = j + 1 < runs.length ? (runs[j + 1].startIndex ?? text.length) : text.length;
+        const seg = text.slice(start, end);
+        if (seg) {
+            const bold = run.format?.bold === true;
+            const red = isRed(run.format);
+            if (bold && red) out += `[[red:${seg}]]`;
+            else if (bold) out += `**${seg}**`;
+            else out += seg;
+        }
+        lastEnd = end;
+    }
+    if (lastEnd < text.length) out += text.slice(lastEnd);
+    return out || text;
+}
+
 const SUBJECT_ORDER = [
     '基礎法学',
     '憲法',
@@ -192,6 +224,40 @@ async function sync() {
         if (!rows || rows.length <= 1) continue;
         console.log(`[DEBUG] Processing Sheet: ${title} (${rows.length} rows)`);
 
+        // M列・B列・H列のフォーマット（太字・赤）を取得
+        let mColFormatMap = {};
+        let bColFormatMap = {};
+        let hColFormatMap = {};
+        try {
+            await sleep(500);
+            const n = Math.min(rows.length + 50, 2000);
+            const gridResp = await sheets.spreadsheets.get({
+                spreadsheetId,
+                ranges: [
+                    `${title}!M2:M${n}`,
+                    `${title}!B2:B${n}`,
+                    `${title}!H2:H${n}`,
+                ],
+                includeGridData: true,
+            });
+            const targetSheet = gridResp.data.sheets?.find((s) => (s.properties?.title || '') === title);
+            const fillMap = (gridData, map) => {
+                if (!gridData?.rowData) return;
+                const startRow = gridData.startRow ?? 1;
+                gridData.rowData.forEach((rowData, idx) => {
+                    const sheetRow = startRow + idx + 1;
+                    const cell = rowData?.values?.[0];
+                    if (cell) map[sheetRow] = cell;
+                });
+            };
+            const data = targetSheet?.data || [];
+            if (data[0]) fillMap(data[0], mColFormatMap);
+            if (data[1]) fillMap(data[1], bColFormatMap);
+            if (data[2]) fillMap(data[2], hColFormatMap);
+        } catch (e) {
+            console.warn(`[WARN] 列フォーマット取得スキップ: ${e.message}`);
+        }
+
         let currentSubject = sheetDefaultSubject;
         let currentCategory = sheetDefaultCategory;
 
@@ -220,12 +286,10 @@ async function sync() {
             let potentialChunkFromF = null;
 
             // If C1-C3 are empty, OR F contains image tags, OR F is long/has structure, treat it as chunk
-            // 民法物権: F列はもっと深掘る用なのでchunkにしない
-            const useBukkenFForDeepDive = title.includes('民法物権') || title.includes('物権');
             const hasImageTag = valC4_raw.includes('[[image:');
             const hasStructure = valC4_raw.includes('1：') || valC4_raw.includes('1:');
 
-            if (!useBukkenFForDeepDive && ((!valC1 && !valC2 && !valC3) || (valC4_raw.length > 50) || hasStructure || hasImageTag)) {
+            if ((!valC1 && !valC2 && !valC3) || (valC4_raw.length > 50) || hasStructure || hasImageTag) {
                 // It's likely a chunk/explanation, not a choice
                 valC4 = '';
                 if (valC4_raw) {
@@ -242,10 +306,10 @@ async function sync() {
                 }
             }
 
-            const valC5 = row[6] ? row[6].trim() : '';
-            const valF = row[5] ? row[5].trim() : ''; // This valF is used for explanation, not choice
-            const valL = row[11] ? row[11].trim() : '';
-            const valM = row[12] ? row[12].trim() : '';
+                const valC5 = row[6] ? row[6].trim() : '';
+                const valF = row[5] ? row[5].trim() : ''; // This valF is used for explanation, not choice
+                const valL = row[11] ? row[11].trim() : '';
+                const valM = row[12] ? row[12].trim() : '';
             const valR = row[17] ? row[17].trim() : '';
             const valRefId = row[19] ? row[19].trim() : '';
             // N,O,P,Q,S列（選択肢A〜E）: 語群選択問題
@@ -281,9 +345,12 @@ async function sync() {
 
                 if (valA === '問題' || valA === '肢' || valA.startsWith('科目')) continue;
 
-                // 問題文（行政法１はB列、通常はH列）
+                // 問題文（行政法１はB列、通常はH列）。太字・赤はフォーマットから反映
                 let questionText = valProblem;
                 if (!questionText) continue;
+                const problemRow = i + 1;
+                const problemCell = useGyosei1Layout ? bColFormatMap[problemRow] : hColFormatMap[problemRow];
+                if (problemCell) questionText = applyBoldFromFormatRuns(questionText, problemCell);
 
                 // ノイズフィルタ（明らかなヘッダー行のみ除外）
                 const trimmedContent = questionText.trim();
@@ -406,11 +473,12 @@ async function sync() {
                 const choiceDeepDive = [];
                 const valChunkImg = (r) => (r && r[24] ? String(r[24]).trim() : '');
                 const valStatuteRef = (r) => (r && r[8] ? String(r[8]).trim() : '');
-                // 民法物権シート: もっと深掘るがF列(index 5)。通常はM列(index 12)
-                const useBukkenDeepDiveCol = title.includes('民法物権') || title.includes('物権');
-                const valDeepDive = (r) => {
-                    const idx = useBukkenDeepDiveCol ? 5 : 12;
-                    return (r && r[idx] ? String(r[idx]).trim() : '');
+                // もっと深掘る: 問題を解くモードはM列(index 12)のみ。太字・赤はフォーマットから反映
+                const valDeepDive = (r, rowIdx) => {
+                    const raw = r && r[12] ? String(r[12]).trim() : '';
+                    if (!raw) return '';
+                    const cellData = mColFormatMap[rowIdx];
+                    return cellData ? applyBoldFromFormatRuns(raw, cellData) : raw;
                 };
                 const firstChoice = useGyosei1Layout ? valC : valK;
                 if (firstChoice) {
@@ -420,7 +488,7 @@ async function sync() {
                     choiceChunkImages.push(valChunkImg(row));
                     choiceExplanations.push(valExplan(row));
                     choiceStatuteRefs.push(valStatuteRef(row));
-                    choiceDeepDive.push(valDeepDive(row));
+                    choiceDeepDive.push(valDeepDive(row, i + 1));
                 }
 
                 let offset = 1;
@@ -451,7 +519,7 @@ async function sync() {
                         choiceChunkImages.push(valChunkImg(nextRow));
                         choiceExplanations.push(valExplan(nextRow));
                         choiceStatuteRefs.push(valStatuteRef(nextRow));
-                        choiceDeepDive.push(valDeepDive(nextRow));
+                        choiceDeepDive.push(valDeepDive(nextRow, i + offset + 1));
                     }
                     offset++;
                 }

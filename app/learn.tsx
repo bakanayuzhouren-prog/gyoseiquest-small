@@ -12,6 +12,8 @@ import { useCallback } from 'react';
 type SubCategory = {
   label: string;
   key: string;
+  /** 多肢選択の分野（憲法 / 行政法）→ /learn/多肢選択?field= */
+  field?: string;
 };
 
 type Category = {
@@ -59,7 +61,14 @@ const CATEGORIES: Category[] = [
   },
   { id: 'commercial', label: '商法・会社法', key: '商法・会社法' },
   { id: 'knowledge', label: '基礎知識', key: '基礎知識' },
-  { id: 'multi_choice', label: '多肢選択', key: '多肢選択' },
+  {
+    id: 'multi_choice',
+    label: '多肢選択',
+    subCategories: [
+      { label: '憲法', key: '多肢選択', field: '憲法' },
+      { label: '行政法', key: '多肢選択', field: '行政法' },
+    ],
+  },
   { id: 'civil_descriptive', label: '民法記述', key: '民法記述' },
   { id: 'admin_descriptive', label: '行政法記述', key: '行政法記述' },
 ];
@@ -81,7 +90,8 @@ export default function LearnScreen() {
           }
           if (cat.subCategories) {
             cat.subCategories.forEach(sub => {
-              counts[sub.key] = getStickyNotes(sub.key).length;
+              const scope = sub.field ? `${sub.key}:${sub.field}` : sub.key;
+              counts[scope] = getStickyNotes(scope).length;
             });
           }
         });
@@ -100,8 +110,12 @@ export default function LearnScreen() {
     }
   };
 
-  const handleSubCategoryPress = (key: string) => {
-    router.push(`/learn/${key}`);
+  const handleSubCategoryPress = (sub: SubCategory) => {
+    if (sub.field) {
+      router.push({ pathname: '/learn/[subject]', params: { subject: sub.key, field: sub.field } });
+    } else {
+      router.push({ pathname: '/learn/[subject]', params: { subject: sub.key } });
+    }
   };
 
   const handleBack = () => {
@@ -120,19 +134,21 @@ export default function LearnScreen() {
       <ScrollView contentContainerStyle={styles.list}>
         {selectedCategory ? (
           <>
-            {selectedCategory.subCategories?.map((sub, index) => (
+            {selectedCategory.subCategories?.map((sub, index) => {
+              const stickyScope = sub.field ? `${sub.key}:${sub.field}` : sub.key;
+              return (
               <Pressable
-                key={sub.key}
+                key={`${sub.key}-${sub.field ?? ''}`}
                 style={[styles.subjectButton, { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder }]}
-                onPress={() => handleSubCategoryPress(sub.key)}>
+                onPress={() => handleSubCategoryPress(sub)}>
                 <ThemedText type="defaultSemiBold" style={[styles.subjectText, { color: isLightBg(colors.choiceBg) ? '#000000' : colors.choiceText }]}>
                   {index + 1} {sub.label}
-                  {stickyCounts[sub.key] > 0 && (
-                    <ThemedText style={styles.stickyBadge}> (付箋: {stickyCounts[sub.key]})</ThemedText>
+                  {stickyCounts[stickyScope] > 0 && (
+                    <ThemedText style={styles.stickyBadge}> (付箋: {stickyCounts[stickyScope]})</ThemedText>
                   )}
                 </ThemedText>
               </Pressable>
-            ))}
+            );})}
             <Pressable style={[styles.backButton, { backgroundColor: isLightBg(colors.card) ? '#e0e0e0' : colors.card }]} onPress={handleBack}>
               <ThemedText type="defaultSemiBold" style={{ color: isLightBg(colors.card) ? '#000000' : colors.text }}>戻る</ThemedText>
             </Pressable>

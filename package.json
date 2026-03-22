@@ -13,7 +13,11 @@
     "build:questions": "node scripts/convertQuestions.js",
     "sync:questions": "node scripts/syncQuiz.js",
     "sync:learn": "node scripts/syncLearn.js",
-    "sync:sheets": "node scripts/sync-spreadsheet.js"
+    "sync:sheets": "node scripts/sync-spreadsheet.js",
+    "generate:descriptive-images": "node scripts/generateDescriptiveImages.js",
+    "generate:deepdive-images": "node scripts/generateDeepdiveImages.js",
+    "sync:kenpou-deepdive": "node scripts/syncKenpouDeepdiveFromTemp.js",
+    "inject:kenpou-deepdive-tags": "node scripts/injectKenpouDeepdiveImages.js"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",

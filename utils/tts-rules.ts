@@ -1,6 +1,7 @@
 export const applyTTSRules = (text: string): string => {
     return text
         .replace(/※.*$/g, '')
+        .replace(/行政代執行法/g, 'ぎょうせいだいしっこうほう')
         .replace(/国家/g, 'こっか')
         .replace(/国会/g, 'こっかい')
         .replace(/国務/g, 'こくむ')

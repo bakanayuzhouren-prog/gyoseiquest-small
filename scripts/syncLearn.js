@@ -39,6 +39,8 @@ async function sync() {
   }
 
   const learnContent = {};
+  const learnDeepDive = {};
+  const learnSource = {};
 
   // 2. Iterate through sheets and aggregate content
   for (const sheet of sheetList) {
@@ -54,15 +56,10 @@ async function sync() {
       continue;
     }
 
-    // Temporarily disable skip for investigation
-    /*
-    if (t.includes('解説') || t.includes('資料') || t.includes('条文') || t.includes('説明')) {
-      console.log(`Skipping non-problem sheet: ${title}`);
+    // 解説資料シートはスキップ（B列がタイトルのみで、主シートのB列＝初心者向け解説と重複するため）
+    if ((t.includes('解説') || t.includes('資料')) && /（|\(/.test(t)) {
+      console.log(`Skipping 解説資料 sheet: ${title}`);
       continue;
-    }
-    */
-    if (t.includes('解説') || t.includes('資料')) {
-      console.log(`[INVESTIGATION] Processing potential source sheet: ${title}`);
     }
 
     // Debug: detailed title check for mapping issues
@@ -75,9 +72,15 @@ async function sync() {
     if (t === '民法物権') {
       sheetDefaultSubject = '民法物権';
     }
-    else if (t === '行政法総論' || t.includes('全総') || t === '行政法総合') {
+    else if (t === '行政法総合') {
+      sheetDefaultSubject = '行政法総合';
+    }
+    else if (t === '行政法総論' || t.includes('全総')) {
       sheetDefaultSubject = '行政法総論';
     }
+    // 「多肢選択憲法」「多肢選択行政法」シート — 全憲/行政総論より先（見て聞いて覚える・A列）
+    else if (t.includes('多肢選択') && t.includes('憲法')) sheetDefaultSubject = '多肢選択憲法';
+    else if (t.includes('多肢選択') && t.includes('行政法')) sheetDefaultSubject = '多肢選択行政法';
     else if (t.includes('全憲') || t.includes('憲法')) sheetDefaultSubject = '憲法';
     else if (t.includes('全手') || t.includes('行手') || t.includes('行政手続')) sheetDefaultSubject = '行政手続法';
     else if (t.includes('全審') || t.includes('行審') || t.includes('不服') || t.includes('審査')) sheetDefaultSubject = '行政不服審査法';
@@ -87,7 +90,7 @@ async function sync() {
     else if (t.includes('行政')) sheetDefaultSubject = '行政法総論';
 
     // Civil Law Mappings (Priority over General "Sou")
-    else if (t.includes('民総') || (t.includes('民法') && t.includes('総'))) sheetDefaultSubject = '民法総論';
+    else if (t.includes('民総') || (t.includes('民法') && t.includes('総'))) sheetDefaultSubject = '民法総則';
     else if (t.includes('物権') || t.includes('民物')) {
       // Guard against "Explanation/Reference" sheets taking over Bukken
       if (!t.includes('解説') && !t.includes('資料')) {
@@ -98,7 +101,7 @@ async function sync() {
     else if (t.includes('債各') || (t.includes('債権') && t.includes('各'))) sheetDefaultSubject = '債権各論';
     else if (t.includes('親族') || t.includes('相続') || t.includes('家族')) sheetDefaultSubject = '家族法';
     else if (t.includes('民法記述')) sheetDefaultSubject = '民法記述';
-    else if (t.includes('民法')) sheetDefaultSubject = '民法総論';
+    else if (t.includes('民法')) sheetDefaultSubject = '民法総則';
 
     else if (t.includes('商法') || t.includes('会社法') || t.includes('商・会')) sheetDefaultSubject = '商法・会社法';
     else if (t.includes('基礎法学')) sheetDefaultSubject = '基礎法学';
@@ -140,10 +143,19 @@ async function sync() {
     // Skip the first row (memo/header row)
     const dataRows = rows.slice(1);
 
+    // A列がIDで始まるシートは関係ないシート → スキップ（行政代執行法は例外：行政法総論に取り込む）
+    const firstValA = (dataRows[0] && dataRows[0][0]) ? String(dataRows[0][0]).trim() : '';
+    const looksLikeId = /^[a-z]{2}\d+$/i.test(firstValA) || /^[ａ-ｚＡ-Ｚ０-９]+\d+$/.test(firstValA);
+    if (looksLikeId && t !== '行政代執行法') {
+      console.log(`Skipping ID-sheet (A列=ID): ${title}`);
+      continue;
+    }
+
     // RESET currentSubject for every row to the sheet default
     let currentSubject = sheetDefaultSubject;
     let currentQuestionStartIndex = -1;
     let currentGroupHasDeepDive = false;
+    let currentGroupDeepDiveContent = '';
 
     for (let i = 0; i < dataRows.length; i++) {
       const row = dataRows[i];
@@ -161,12 +173,14 @@ async function sync() {
         else if (rawSubject.includes('行政法総合')) currentSubject = '行政法総合';
         else if (rawSubject.includes('行政法') && rawSubject.includes('記述')) currentSubject = '行政法記述';
 
-        else if (rawSubject.includes('民法総論')) currentSubject = '民法総論';
+        else if (rawSubject.includes('民法総則') || rawSubject.includes('民法総論')) currentSubject = '民法総則';
         else if (rawSubject.includes('民法物権')) currentSubject = '民法物権';
         else if (rawSubject.includes('債権総論')) currentSubject = '債権総論';
         else if (rawSubject.includes('債権各論')) currentSubject = '債権各論';
         else if (rawSubject.includes('民法') && rawSubject.includes('記述')) currentSubject = '民法記述';
 
+        else if (rawSubject.includes('多肢選択') && rawSubject.includes('憲法')) currentSubject = '多肢選択憲法';
+        else if (rawSubject.includes('多肢選択') && rawSubject.includes('行政法')) currentSubject = '多肢選択行政法';
         else if (rawSubject.includes('多肢選択')) currentSubject = '多肢選択';
         else if (rawSubject.includes('家族法')) currentSubject = '家族法';
         else if (rawSubject.includes('憲法') || rawSubject.includes('人権') || rawSubject.includes('統治')) currentSubject = '憲法';
@@ -175,35 +189,37 @@ async function sync() {
         else if (rawSubject.includes('基礎知識')) currentSubject = '基礎知識';
       }
 
-      // If we have a determined subject, add content
+      // 見て聞いて覚えるモードの問題文はA列（科目行・行政代執行法などA列がIDの場合はC列）
       if (currentSubject) {
-        let content = row[2];
+        const valA = (row[0] || '').trim();
+        const looksLikeId = /^[a-z]{2}\d+$/i.test(valA) || /^[ａ-ｚＡ-Ｚ０-９]+\d+$/.test(valA);
+        let content = row[0]; // A列＝問題文
         if (currentSubject === '民法物権') {
-          // 民法物権: A列が各肢（各エントリ）、H列は問題グループ文（コンテンツとしては不要）
-          content = row[0]; // A列（各肢）
           if (!content && row[2]) content = row[2];
-        } else {
-          if (!content && row[1]) content = row[1];
-          if (!content && row[0]) {
-            if (!row[0].startsWith('科目')) {
-              content = row[0];
-            }
-          }
+        } else if (valA.startsWith('科目') || (t === '行政代執行法' && looksLikeId)) {
+          content = row[2] || row[0] || '';
+        } else if (!content) {
+          content = row[2] || '';
         }
 
-        const valH = row[7] ? row[7].trim() : '';
-        const valA = row[0] ? row[0].trim() : '';
+        // 行政法総論シート: G列=問題, B列=初心者向け解説, K列=肢。行政代執行法・他: H列=問題
+        const useGyoseiSoronLayout = t === '行政法総論';
+        const valH = useGyoseiSoronLayout ? (row[6] ? row[6].trim() : '') : (row[7] ? row[7].trim() : '');
+
+        // 多肢選択（専用シート含む）・憲法本シート: 見て聞いて覚えるの問題文はA列起点（Hは穴埋め用のため新グループ条件に含めない）
+        const tashiLearnSubject =
+          currentSubject === '多肢選択' ||
+          currentSubject === '多肢選択憲法' ||
+          currentSubject === '多肢選択行政法';
 
         // 民法物権は H列あり＝新グループ開始（A列肢の受け皿更新）
-        // その他のシートは従来ロジックを維持
         let isNewQuestion = false;
         if (currentSubject === '民法物権') {
-          // H列あり＝新グループ開始。次にA列肢が来たときに currentQuestionStartIndex を更新する
           if (valH && valH !== '問題') isNewQuestion = true;
+        } else if (tashiLearnSubject || t === '憲法') {
+          if (valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢') isNewQuestion = true;
         } else if (t !== '憲法') {
           if (valH || (valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢')) isNewQuestion = true;
-        } else {
-          if (valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢') isNewQuestion = true;
         }
 
         if (isNewQuestion) {
@@ -217,23 +233,26 @@ async function sync() {
             currentQuestionStartIndex = learnContent[currentSubject].length;
           }
 
-          // Look ahead to see if any row in this group has a deep dive (column F)
+          // Look ahead: グループ内のB列全文を収集（複数行にまたがる場合も結合）
           let groupHasDeepDive = false;
+          const groupBContents = [];
           let j = i;
           while (j < dataRows.length) {
-            if (dataRows[j][5] && dataRows[j][5].trim()) {
+            const colVal = dataRows[j][1] ? dataRows[j][1].trim() : '';
+            if (colVal) {
               groupHasDeepDive = true;
-              break;
+              groupBContents.push(colVal);
             }
             if (j + 1 < dataRows.length) {
               const nextRow = dataRows[j + 1];
-              const nextValH = nextRow[7] ? nextRow[7].trim() : '';
+              const nextValProblem = useGyoseiSoronLayout ? (nextRow[6] ? nextRow[6].trim() : '') : (nextRow[7] ? nextRow[7].trim() : '');
               const nextValA = nextRow[0] ? nextRow[0].trim() : '';
               if (currentSubject === '民法物権') {
-                // 民法物権: 次にH列ありの行が来たら新グループ
-                if (nextValH && nextValH !== '問題') break;
+                if ((nextRow[7] || '').trim() && (nextRow[7] || '').trim() !== '問題') break;
+              } else if (tashiLearnSubject || t === '憲法') {
+                if (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢') break;
               } else if (t !== '憲法') {
-                if (nextValH || (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢')) break;
+                if (nextValProblem || (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢')) break;
               } else {
                 if (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢') break;
               }
@@ -241,9 +260,11 @@ async function sync() {
             j++;
           }
           currentGroupHasDeepDive = groupHasDeepDive;
+          currentGroupDeepDiveContent = groupBContents.join('\n\n');
         }
 
-        if (valA === '問題' || valA === '肢' || valA.startsWith('科目')) continue;
+        if (valA === '問題' || valA === '肢') continue;
+        if (valA.startsWith('科目') && !(row[2] && row[2].trim())) continue;
 
         if (content) {
           const trimmedContent = content.trim();
@@ -260,7 +281,8 @@ async function sync() {
             if (learnContent['民法物権'].length >= 105) continue;
           } else {
             // Original filters for other subjects, but relaxed for Bukken to keep Articls
-            if (currentSubject !== '民法物権') {
+            // 多肢選択系はA列そのまま採用（解説・条文などの語が本文に含まれても除外しない）
+            if (currentSubject !== '民法物権' && !tashiLearnSubject) {
               if (
                 trimmedContent.includes('条文') ||
                 trimmedContent.includes('解説') ||
@@ -279,25 +301,18 @@ async function sync() {
             }
           }
 
-          // Add LINK tag if the group has a deep dive and we have a valid index
-          if (currentGroupHasDeepDive && currentQuestionStartIndex !== -1 && !content.includes('[[LINK:')) {
-            if (currentSubject === '民法物権') {
-              // 民法物権: 各肢自身のインデックス（= push直前の length）= questions.js のインデックスと一致
-              const thisIndex = learnContent[currentSubject].length;
-              content = `${content}[[LINK:${thisIndex}]]`;
-            } else {
-              content = `${content}[[LINK:${currentQuestionStartIndex}]]`;
-            }
-          }
-
-          learnContent[currentSubject].push(content);
+          if (!learnDeepDive[currentSubject]) learnDeepDive[currentSubject] = [];
+          learnDeepDive[currentSubject].push(currentGroupHasDeepDive ? currentGroupDeepDiveContent : (row[1] ? row[1].trim() : ''));
+          learnContent[currentSubject].push(typeof content === 'string' ? content.trim() : content);
+          if (!learnSource[currentSubject]) learnSource[currentSubject] = [];
+          learnSource[currentSubject].push(title);
         }
       }
     }
   }
 
   // Write to src/learn.js
-  const fileContent = `export const LEARN_CONTENT = ${JSON.stringify(learnContent, null, 2)};`;
+  const fileContent = `export const LEARN_CONTENT = ${JSON.stringify(learnContent, null, 2)};\nexport const LEARN_DEEPDIVE = ${JSON.stringify(learnDeepDive, null, 2)};\nexport const LEARN_SOURCE = ${JSON.stringify(learnSource, null, 2)};`;
   fs.writeFileSync(OUTPUT_FILE, fileContent);
   console.log(`learn.js synced successfully to ${OUTPUT_FILE}`);
 }

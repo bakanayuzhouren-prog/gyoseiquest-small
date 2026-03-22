@@ -12,7 +12,7 @@ import { useTheme } from '@/src/context/ThemeContext';
 import { RESOURCES, SUBJECTS } from '@/src/questions';
 import { explainChoiceIntent, generateDescriptiveQuestion } from '@/src/utils/geminiService';
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
-import { getChoicePrefix, hasNumberPrefix, splitNumberPrefix } from '@/utils/choiceNumber';
+import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitNumberPrefix } from '@/utils/choiceNumber';
 import { getQuestionMark, setQuestionMark, type QuestionMark } from '@/utils/question-marks';
 import { getQuestionHighlights, toggleQuestionHighlight } from '@/utils/question-highlights';
 import { getQuestionStats } from '@/utils/question-stats';
@@ -466,7 +466,7 @@ export default function QuestionScreen() {
                     >
                       {para.segments.map((seg, si) => (
                         <ThemedText key={si} style={segmentStyle(seg)}>
-                          {seg.text}
+                          {formatNumberedClauses(seg.text)}
                         </ThemedText>
                       ))}
                     </ThemedText>
@@ -491,24 +491,39 @@ export default function QuestionScreen() {
                 const next = await toggleQuestionHighlight(subject, field, text, idx);
                 setHighlightedSegments(next);
               };
+              const hasMarkdown = /\*\*|\[\[red:/.test(seg);
               return (
                 <Pressable key={idx} onPress={handleToggleHighlight} delayLongPress={200}>
-                  <ThemedText
-                    type="title"
-                    style={[
-                      styles.questionText,
-                      isTashiQuestion && styles.questionTextTashi,
-                      isLongText && styles.questionTextSmall,
-                      isTashiQuestion && isLongText && styles.questionTextTashiSmall,
-                      { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined },
-                      isHighlighted && { backgroundColor: '#FFF59D', paddingVertical: 2, paddingHorizontal: 4, borderRadius: 4 }
-                    ]}
-                    onTextLayout={idx === 0 ? (e) => {
-                      if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
-                    } : undefined}
-                  >
-                    {seg}
-                  </ThemedText>
+                  {hasMarkdown ? (
+                    <MarkdownText
+                      text={seg}
+                      style={[
+                        styles.questionText,
+                        isTashiQuestion && styles.questionTextTashi,
+                        isLongText && styles.questionTextSmall,
+                        isTashiQuestion && isLongText && styles.questionTextTashiSmall,
+                        { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined },
+                        isHighlighted && { backgroundColor: '#FFF59D', paddingVertical: 2, paddingHorizontal: 4, borderRadius: 4 }
+                      ]}
+                    />
+                  ) : (
+                    <ThemedText
+                      type="title"
+                      style={[
+                        styles.questionText,
+                        isTashiQuestion && styles.questionTextTashi,
+                        isLongText && styles.questionTextSmall,
+                        isTashiQuestion && isLongText && styles.questionTextTashiSmall,
+                        { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined },
+                        isHighlighted && { backgroundColor: '#FFF59D', paddingVertical: 2, paddingHorizontal: 4, borderRadius: 4 }
+                      ]}
+                      onTextLayout={idx === 0 ? (e) => {
+                        if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
+                      } : undefined}
+                    >
+                      {formatNumberedClauses(seg)}
+                    </ThemedText>
+                  )}
                 </Pressable>
               );
             })}
@@ -560,7 +575,7 @@ export default function QuestionScreen() {
                   isTashiQuestion && isLongText && styles.questionTextTashiSmall
                 ]}
               >
-                {part}
+                {formatNumberedClauses(part)}
               </ThemedText>
             );
           })}
@@ -616,11 +631,11 @@ export default function QuestionScreen() {
           displayNum && { paddingTop: 0, paddingLeft: 0 },
         ]}>
           {displayNum ? (
-            <View style={[styles.questionNumBadge, { backgroundColor: colors.primary }]}>
+            <View style={[styles.questionNumBadge, { backgroundColor: isTashiQuestion ? '#f5f7fa' : '#e8e8e8', borderWidth: 2, borderColor: colors.choiceBorder }]}>
               <ThemedText style={styles.questionNumBadgeText}>{displayNum}</ThemedText>
             </View>
           ) : null}
-          <View style={displayNum ? { paddingTop: 36, paddingLeft: 48 } : undefined}>
+          <View style={displayNum ? { paddingTop: 30, paddingLeft: 42 } : undefined}>
             {isTashiQuestion ? (
               <ThemedText style={[styles.questionMetaText, { color: colors.subText }]}>
                 {suffix.trim()}
@@ -1788,14 +1803,14 @@ const styles = StyleSheet.create({
     top: -2,
     left: -2,
     zIndex: 1,
-    paddingHorizontal: 14,
-    paddingVertical: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
     borderRadius: 12,
   },
   questionNumBadgeText: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: '700',
+    color: '#2D3748',
+    fontSize: 24,
+    fontWeight: '600',
   },
   questionText: {
     fontSize: 24,
