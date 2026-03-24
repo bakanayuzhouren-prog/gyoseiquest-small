@@ -8,6 +8,7 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { CharacterProvider } from '@/src/context/CharacterContext';
 import { DescriptiveScopeProvider } from '@/src/context/DescriptiveScopeContext';
+import { LearnPlaybackProvider } from '@/src/context/LearnPlaybackContext';
 import { ThemeProvider as CustomThemeProvider } from '@/src/context/ThemeContext';
 import { UserProvider } from '@/src/context/UserContext';
 
@@ -41,6 +42,7 @@ export default function RootLayout() {
       <UserProvider>
         <DescriptiveScopeProvider>
         <CharacterProvider>
+          <LearnPlaybackProvider>
           <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
             <Stack>
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -51,6 +53,7 @@ export default function RootLayout() {
             </Stack>
             <StatusBar style="auto" />
           </ThemeProvider>
+          </LearnPlaybackProvider>
         </CharacterProvider>
         </DescriptiveScopeProvider>
       </UserProvider>

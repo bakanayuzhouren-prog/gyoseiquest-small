@@ -273,10 +273,10 @@ async function sync() {
             learnContent[currentSubject] = [];
           }
 
-          // Capping Kenpo at 230 items and avoiding leakage from other sheets
+          // Capping Kenpo at 231 items and avoiding leakage from other sheets（シート232行目相当の最終問を含む）
           if (currentSubject === '憲法') {
             if (t !== '憲法') continue; // Strict source control
-            if (learnContent['憲法'].length >= 230) continue;
+            if (learnContent['憲法'].length >= 231) continue;
           } else if (currentSubject === '民法物権') {
             if (learnContent['民法物権'].length >= 105) continue;
           } else {
@@ -308,6 +308,16 @@ async function sync() {
           learnSource[currentSubject].push(title);
         }
       }
+    }
+  }
+
+  // LEARN_DEEPDIVE が LEARN_CONTENT より短いと、末尾カードで deepdive が undefined になる
+  for (const key of Object.keys(learnContent)) {
+    const c = learnContent[key];
+    const d = learnDeepDive[key];
+    if (!Array.isArray(c) || !Array.isArray(d)) continue;
+    while (d.length < c.length) {
+      d.push('');
     }
   }
 

@@ -1,13 +1,18 @@
-import { useEffect, useState } from 'react';
-import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Stack, useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { Image, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { ChachalotAvatar } from '@/components/chachalot-avatar';
+import { MaterialIcons } from '@expo/vector-icons';
 import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
 import { useTheme } from '@/src/context/ThemeContext';
+import { mergedDeepdiveHasResolvableImage, pickLearnDeepdiveSharedImageKey } from '@/src/deepdiveLearnAutoImage';
 import { getDeepdiveParams } from '@/src/deepdiveState';
 import { LEARN_DEEPDIVE } from '@/src/learn';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
+import { CHACHALOT_SPEECH_OPTIONS } from '@/utils/chachalot-tts';
 import { applyTTSRules } from '@/utils/tts-rules';
 import * as Speech from 'expo-speech';
 
@@ -20,8 +25,18 @@ export default function DeepdiveScreen() {
   }>();
   const { colors } = useTheme();
   const router = useRouter();
+  const {
+    isPlaying: learnIsPlaying,
+    setIsPlaying: setLearnIsPlaying,
+    togglePlay: learnTogglePlay,
+    manualPrev: learnManualPrev,
+    manualNext: learnManualNext,
+    learnScreenMounted,
+  } = useLearnPlayback();
   const [content, setContent] = useState('');
   const [choiceLabel, setChoiceLabel] = useState('');
+  const [fromLearn, setFromLearn] = useState(false);
+  const fromLearnRef = useRef(false);
   useEffect(() => {
     const stored = getDeepdiveParams();
     const paramContent = params.content;
@@ -33,6 +48,8 @@ export default function DeepdiveScreen() {
     if (!raw) {
       setContent('');
       setChoiceLabel(stored.choiceLabel || fromParamLabel || '');
+      setFromLearn(stored.fromLearn);
+      fromLearnRef.current = stored.fromLearn;
       return;
     }
     if (raw.length < 150) {
@@ -45,14 +62,63 @@ export default function DeepdiveScreen() {
         }
       }
     }
+    if (raw.trim() && !mergedDeepdiveHasResolvableImage(raw)) {
+      const shared = pickLearnDeepdiveSharedImageKey(raw);
+      if (shared) raw = `[[image:${shared}]]\n\n${raw}`;
+    }
     setContent(raw);
     setChoiceLabel(stored.choiceLabel || fromParamLabel || '');
+    setFromLearn(stored.fromLearn);
+    fromLearnRef.current = stored.fromLearn;
   }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      const stored = getDeepdiveParams();
+      fromLearnRef.current = stored.fromLearn;
+      setFromLearn(stored.fromLearn);
+    }, [])
+  );
+
   const [highlightModal, setHighlightModal] = useState<{ title: string; body: string } | null>(null);
-  const [isChachalotPlaying, setIsChachalotPlaying] = useState(false);
+  const [ttsSegmentIndex, setTtsSegmentIndex] = useState(0);
+  const [isTtsPlaying, setIsTtsPlaying] = useState(false);
+  const isTtsPlayingRef = useRef(false);
+  const ttsSessionRef = useRef(0);
+  isTtsPlayingRef.current = isTtsPlaying;
+
+  const ttsSegments = useMemo(() => {
+    const textForTTS = content
+      .replace(/\[\[image:[^\]]+\]\]/g, '')
+      .replace(/\[\[section:[^\]]+\]\]/g, '')
+      .replace(/\[\[[^\]]+\]\]/g, '')
+      .trim();
+    if (!textForTTS) return [];
+    const chunks = textForTTS
+      .split(/\n{2,}/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+    if (chunks.length <= 1 && textForTTS.length > 500) {
+      const bySentence = textForTTS.split(/(?<=[。．!！?？])\s+/).map((s) => s.trim()).filter(Boolean);
+      return bySentence.map((s) => applyTTSRules(s)).filter((s) => s.trim());
+    }
+    return chunks.map((s) => applyTTSRules(s)).filter((s) => s.trim());
+  }, [content]);
 
   useEffect(() => {
-    return () => { Speech.stop(); };
+    setTtsSegmentIndex(0);
+  }, [content]);
+
+  useEffect(() => {
+    return () => {
+      if (isTtsPlayingRef.current) {
+        ttsSessionRef.current += 1;
+        Speech.stop();
+      } else if (!fromLearnRef.current) {
+        ttsSessionRef.current += 1;
+        Speech.stop();
+      }
+    };
   }, []);
 
   const parts: Array<{ type: 'text' | 'image'; value: string }> = [];
@@ -102,28 +168,62 @@ export default function DeepdiveScreen() {
     setHighlightModal({ title, body });
   };
 
-  const handleChachalotToggle = () => {
-    if (isChachalotPlaying) {
-      Speech.stop();
-      setIsChachalotPlaying(false);
-      return;
-    }
-    const textForTTS = content
-      .replace(/\[\[image:[^\]]+\]\]/g, '')
-      .replace(/\[\[section:[^\]]+\]\]/g, '')
-      .replace(/\[\[[^\]]+\]\]/g, '')
-      .trim();
-    if (!textForTTS) return;
-    const spokenText = applyTTSRules(textForTTS);
-    if (!spokenText.trim()) return;
-    setIsChachalotPlaying(true);
-    Speech.speak(spokenText, {
-      language: 'ja-JP',
-      rate: 1.0,
-      onDone: () => setIsChachalotPlaying(false),
-      onError: () => setIsChachalotPlaying(false),
+  const stopTts = () => {
+    ttsSessionRef.current += 1;
+    Speech.stop();
+    setIsTtsPlaying(false);
+  };
+
+  const speakFromIndex = (index: number, chain: boolean) => {
+    if (index < 0 || index >= ttsSegments.length) return;
+    const session = ttsSessionRef.current;
+    setTtsSegmentIndex(index);
+    setIsTtsPlaying(true);
+    const line = ttsSegments[index];
+    Speech.speak(line, {
+      ...CHACHALOT_SPEECH_OPTIONS,
+      onDone: () => {
+        if (session !== ttsSessionRef.current) return;
+        if (chain && index + 1 < ttsSegments.length) {
+          speakFromIndex(index + 1, true);
+        } else {
+          setIsTtsPlaying(false);
+        }
+      },
+      onStopped: () => {
+        if (session !== ttsSessionRef.current) return;
+        setIsTtsPlaying(false);
+      },
+      onError: () => {
+        if (session !== ttsSessionRef.current) return;
+        setIsTtsPlaying(false);
+      },
     });
   };
+
+  const handleChachalotToggle = () => {
+    if (isTtsPlaying) {
+      stopTts();
+      return;
+    }
+    if (ttsSegments.length === 0) return;
+    if (fromLearn) {
+      setLearnIsPlaying(false);
+    }
+    speakFromIndex(0, true);
+  };
+
+  const handleBack = () => {
+    if (isTtsPlaying) {
+      stopTts();
+    } else if (!fromLearn) {
+      stopTts();
+    }
+    router.back();
+  };
+
+  /** 見て聞いて覚える（学習）画面と連携するミニプレイヤー */
+  const showLinkedPlayer = fromLearn && !!content;
 
   return (
     <>
@@ -181,37 +281,77 @@ export default function DeepdiveScreen() {
           ) : (
             <ThemedText style={{ color: colors.subText }}>表示する内容がありません。</ThemedText>
           )}
-          <View style={[styles.buttonRow, { marginTop: 24 }]}>
-            {content ? (
-              <Pressable
-                style={[styles.chachalotButton, { borderColor: colors.primary }]}
-                onPress={handleChachalotToggle}
-              >
-                <Image source={CHACHALOT_IMG} style={styles.chachalotIcon} resizeMode="contain" />
-                <ThemedText style={[styles.chachalotButtonText, { color: colors.primary }]}>
-                  {isChachalotPlaying ? '停止' : 'おしえてちゃちゃロット'}
-                </ThemedText>
+          <View style={[styles.footerBar, { marginTop: 24 }]}>
+            <View style={styles.footerLeft}>
+              {content ? (
+                <Pressable
+                  style={[styles.chachalotButton, { borderColor: colors.primary }]}
+                  onPress={handleChachalotToggle}
+                >
+                  <ChachalotAvatar source={CHACHALOT_IMG} size={36} active={isTtsPlaying} />
+                  <ThemedText style={[styles.chachalotButtonText, { color: colors.primary }]}>
+                    {isTtsPlaying ? '停止' : 'おしえてちゃちゃロット'}
+                  </ThemedText>
+                </Pressable>
+              ) : null}
+              <Pressable style={[styles.backButton, { backgroundColor: colors.accent }]} onPress={handleBack}>
+                <ThemedText style={styles.backButtonText}>解説ページに戻る</ThemedText>
               </Pressable>
+            </View>
+            {showLinkedPlayer ? (
+              <View style={styles.footerLearnPlayer}>
+                <View
+                  style={[styles.miniPlayer, { borderColor: colors.choiceBorder, backgroundColor: colors.background }]}
+                >
+                  <Pressable
+                    style={({ pressed }) => [
+                      styles.miniPlayerBtn,
+                      pressed && styles.miniPlayerBtnPressed,
+                      !learnScreenMounted && styles.miniPlayerBtnDisabled,
+                    ]}
+                    onPress={learnManualPrev}
+                    disabled={!learnScreenMounted}
+                    accessibilityLabel="前へ（学習カード）"
+                  >
+                    <MaterialIcons
+                      name="skip-previous"
+                      size={22}
+                      color={!learnScreenMounted ? colors.subText : colors.text}
+                    />
+                  </Pressable>
+                  <Pressable
+                    style={({ pressed }) => [styles.miniPlayerBtn, pressed && styles.miniPlayerBtnPressed]}
+                    onPress={learnTogglePlay}
+                    accessibilityLabel={learnIsPlaying ? '一時停止' : '再生'}
+                  >
+                    <MaterialIcons
+                      name={learnIsPlaying ? 'pause' : 'play-arrow'}
+                      size={26}
+                      color={colors.primary}
+                    />
+                  </Pressable>
+                  <Pressable
+                    style={({ pressed }) => [
+                      styles.miniPlayerBtn,
+                      pressed && styles.miniPlayerBtnPressed,
+                      !learnScreenMounted && styles.miniPlayerBtnDisabled,
+                    ]}
+                    onPress={learnManualNext}
+                    disabled={!learnScreenMounted}
+                    accessibilityLabel="次へ（学習カード）"
+                  >
+                    <MaterialIcons
+                      name="skip-next"
+                      size={22}
+                      color={!learnScreenMounted ? colors.subText : colors.text}
+                    />
+                  </Pressable>
+                </View>
+              </View>
             ) : null}
-            <Pressable
-              style={[styles.backButton, { backgroundColor: colors.accent }]}
-              onPress={() => { Speech.stop(); router.back(); }}
-            >
-              <ThemedText style={styles.backButtonText}>解説ページに戻る</ThemedText>
-            </Pressable>
           </View>
         </ThemedView>
       </ScrollView>
-
-      {isChachalotPlaying ? (
-        <ThemedView style={[styles.chachalotBar, { borderTopColor: colors.choiceBorder, backgroundColor: colors.background }]}>
-          <Image source={CHACHALOT_IMG} style={styles.chachalotBarAvatar} resizeMode="contain" />
-          <ThemedText style={[styles.chachalotBarText, { color: colors.text }]}>読み上げ中…</ThemedText>
-          <Pressable onPress={handleChachalotToggle} style={[styles.chachalotStopButton, { backgroundColor: colors.accent }]}>
-            <ThemedText style={styles.chachalotStopText}>停止</ThemedText>
-          </Pressable>
-        </ThemedView>
-      ) : null}
 
       <Modal visible={!!highlightModal} transparent animationType="fade">
         <Pressable style={styles.modalOverlay} onPress={() => setHighlightModal(null)}>
@@ -237,11 +377,53 @@ export default function DeepdiveScreen() {
 const styles = StyleSheet.create({
   scroll: { flex: 1 },
   content: { flex: 1, padding: 20 },
-  buttonRow: {
+  footerBar: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    gap: 12,
+    width: '100%',
+  },
+  footerLeft: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 12,
     alignItems: 'center',
+    flex: 1,
+    minWidth: 0,
+  },
+  /** 見て聞いて覚えると連動するミニプレイヤー（フッター右下・ボタン列の横） */
+  footerLearnPlayer: {
+    flexShrink: 0,
+    alignSelf: 'flex-end',
+  },
+  miniPlayer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 12,
+    borderWidth: 1,
+    paddingVertical: 4,
+    paddingHorizontal: 4,
+    gap: 0,
+    ...Platform.select({
+      ios: { shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.08, shadowRadius: 2 },
+      android: { elevation: 2 },
+      web: { boxShadow: '0 1px 4px rgba(0,0,0,0.06)' },
+    }),
+  },
+  miniPlayerBtn: {
+    paddingVertical: 8,
+    paddingHorizontal: 6,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  miniPlayerBtnPressed: {
+    opacity: 0.7,
+  },
+  miniPlayerBtnDisabled: {
+    opacity: 0.45,
   },
   chachalotButton: {
     flexDirection: 'row',
@@ -251,10 +433,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     gap: 8,
-  },
-  chachalotIcon: {
-    width: 32,
-    height: 32,
   },
   chachalotButtonText: {
     fontSize: 15,
@@ -269,38 +447,6 @@ const styles = StyleSheet.create({
   backButtonText: {
     color: '#fff',
     fontSize: 16,
-    fontWeight: 'bold',
-  },
-  chachalotBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderTopWidth: 1,
-    gap: 12,
-    ...Platform.select({
-      ios: { shadowColor: '#000', shadowOffset: { width: 0, height: -2 }, shadowOpacity: 0.1, shadowRadius: 4 },
-      android: { elevation: 8 },
-      web: { boxShadow: '0 -2px 10px rgba(0,0,0,0.05)' },
-    }),
-  },
-  chachalotBarAvatar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-  },
-  chachalotBarText: {
-    flex: 1,
-    fontSize: 15,
-  },
-  chachalotStopButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 10,
-  },
-  chachalotStopText: {
-    color: '#fff',
-    fontSize: 14,
     fontWeight: 'bold',
   },
   modalOverlay: {

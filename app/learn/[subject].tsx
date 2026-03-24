@@ -1,14 +1,17 @@
 import { applyTTSRules } from '@/utils/tts-rules';
 import { Link, router, useLocalSearchParams } from 'expo-router';
 import * as Speech from 'expo-speech';
-import { useEffect, useMemo, useState } from 'react';
-import { Alert, Image, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Alert, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
+import { LexiconText, stripLexiconMarkupForPlain } from '@/components/lexicon-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { characterPlaceholders, defaultCharacterMap, useCharacter } from '@/src/context/CharacterContext';
+import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
+import { mergedDeepdiveHasResolvableImage, pickAutoLearnDeepdiveImageKey } from '@/src/deepdiveLearnAutoImage';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
 import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_SOURCE } from '@/src/learn';
 import { setDeepdiveParams } from '@/src/deepdiveState';
@@ -137,18 +140,32 @@ export default function LearnSubjectScreen() {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [currentReadCount, setCurrentReadCount] = useState(1); // Counter for the 3 repeats
   const [readCount, setReadCount] = useState(0); // Cumulative total count (optional, but keep for UI)
-  const [playbackRate, setPlaybackRate] = useState(2.0); // Default speed
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [spokenIndex, setSpokenIndex] = useState(0);
+  const {
+    isPlaying,
+    setIsPlaying,
+    playbackRate,
+    setPlaybackRate,
+    spokenIndex,
+    setSpokenIndex,
+    setLearnScreenMounted,
+    registerManualNav,
+    togglePlay,
+  } = useLearnPlayback();
   const [isSticky, setIsSticky] = useState(false);
   const [isPriorityMode, setIsPriorityMode] = useState(false);
   const [notes, setNotes] = useState<LearnNote[]>([]);
   const [isCharacterModalVisible, setIsCharacterModalVisible] = useState(false);
+  const [dictionaryEntry, setDictionaryEntry] = useState<{ word: string; def: string } | null>(null);
 
   const { characterMap, updateCharacterName, applyCharacterNames } = useCharacter();
 
 
   const { theme, colors } = useTheme();
+
+  useEffect(() => {
+    setLearnScreenMounted(true);
+    return () => setLearnScreenMounted(false);
+  }, [setLearnScreenMounted]);
 
   // Stop speech when leaving screen
   useEffect(() => {
@@ -268,6 +285,12 @@ export default function LearnSubjectScreen() {
       ? deepdiveTashiSlice[originalContentIndex] || ''
       : (LEARN_DEEPDIVE as any)?.[subject as string]?.[originalContentIndex] || '';
 
+  const deepdiveColumnArr: string[] = useMemo(() => {
+    if (subject === '多肢選択' && deepdiveTashiSlice) return deepdiveTashiSlice;
+    const raw = subject ? (LEARN_DEEPDIVE as any)[subject] : [];
+    return Array.isArray(raw) ? raw : [];
+  }, [subject, deepdiveTashiSlice]);
+
   const learnSourceSheetLabel = useMemo(() => {
     if (subject === '多肢選択') {
       if (tashiField === '憲法') {
@@ -338,7 +361,17 @@ export default function LearnSubjectScreen() {
     for (const tag of tagsInA) {
       if (!fromB.includes(tag)) parts.push(tag);
     }
-    return parts.join('\n\n');
+    let merged = parts.join('\n\n');
+    if (merged.trim() && !mergedDeepdiveHasResolvableImage(merged)) {
+      const autoKey = pickAutoLearnDeepdiveImageKey(
+        originalContentIndex,
+        fromB,
+        deepdiveColumnArr,
+        contentList as string[]
+      );
+      if (autoKey) merged = `[[image:${autoKey}]]\n\n${merged}`;
+    }
+    return merged;
   };
 
   const handleOpenDeepDive = () => {
@@ -347,7 +380,7 @@ export default function LearnSubjectScreen() {
 
     // B列＋A列の [[image:…]] を結合して「もっと深掘る」へ
     if (mergedPayload) {
-      setDeepdiveParams(mergedPayload, '');
+      setDeepdiveParams(mergedPayload, '', { fromLearn: true });
       router.push({ pathname: '/deepdive' as any, params: { content: mergedPayload, choiceLabel: '' } });
       return;
     }
@@ -380,6 +413,35 @@ export default function LearnSubjectScreen() {
     });
   };
 
+  const handleManualNext = useCallback(() => {
+    setIsPlaying(false);
+    if (isLastItem) {
+      addPoints(1);
+      alert('学習完了！ +1ポイント');
+      router.back();
+    } else {
+      setCurrentIndex(currentIndex + 1);
+      setCurrentReadCount(1);
+      setSpokenIndex(0);
+    }
+  }, [isLastItem, currentIndex, addPoints, router, setIsPlaying, setSpokenIndex]);
+
+  const handleManualPrev = useCallback(() => {
+    setIsPlaying(false);
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      setCurrentReadCount(1);
+      setSpokenIndex(0);
+    }
+  }, [currentIndex, setIsPlaying, setSpokenIndex]);
+
+  useEffect(() => {
+    registerManualNav({
+      manualPrev: handleManualPrev,
+      manualNext: handleManualNext,
+    });
+  }, [registerManualNav, handleManualPrev, handleManualNext]);
+
   // Continuous Playback Effect
   useEffect(() => {
     if (isPlaying && currentDisplayContent) {
@@ -391,11 +453,9 @@ export default function LearnSubjectScreen() {
           ? currentDisplayContent.split('※')[0]
           : currentDisplayContent;
 
-        // Strip [[LINK...]], [[image...]], etc. patterns
-        let processedText = currentMainText.replace(/\[\[.*?\]\]/g, '');
-
-        // Apply character name replacements
-        processedText = applyCharacterNames(processedText);
+        // [[dict:語::説明]] は読み上げでは語だけ。他の [[...]] は除去
+        const basePlainForSync = stripLexiconMarkupForPlain(currentMainText).replace(/\[\[.*?\]\]/g, '');
+        let processedText = applyCharacterNames(basePlainForSync);
 
         const spokenText = applyTTSRules(processedText);
 
@@ -419,7 +479,7 @@ export default function LearnSubjectScreen() {
           onDone: () => {
             if (!isPlaying) return;
 
-            setSpokenIndex(currentMainText.length);
+            setSpokenIndex(basePlainForSync.length);
             // Wait even less after completion for tighter feedback
             setTimeout(() => {
               if (currentReadCount < 3) {
@@ -451,35 +511,6 @@ export default function LearnSubjectScreen() {
       Speech.stop();
     }
   }, [isPlaying, currentDisplayContent, playbackRate, currentReadCount, isLastItem, currentIndex, addPoints, router]);
-
-
-  // Manual Navigation (Next)
-  const handleManualNext = () => {
-    setIsPlaying(false); // Stop auto-play
-    if (isLastItem) {
-      addPoints(1);
-      alert('学習完了！ +1ポイント');
-      router.back();
-    } else {
-      setCurrentIndex(currentIndex + 1);
-      setCurrentReadCount(1);
-      setSpokenIndex(0);
-    }
-  };
-
-  // Manual Navigation (Previous)
-  const handleManualPrev = () => {
-    setIsPlaying(false); // Stop auto-play
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-      setCurrentReadCount(1);
-      setSpokenIndex(0);
-    }
-  };
-
-  const handleTogglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
 
   const handleToggleSticky = () => {
     if (learnScopeKey) {
@@ -626,12 +657,14 @@ export default function LearnSubjectScreen() {
 
           <ThemedView style={styles.contentContainer}>
 
-            <ThemedText style={styles.content}>
-              <ThemedText style={[styles.content, { color: colors.primary, fontWeight: 'bold' }]}>
-                {applyCharacterNames(mainText.substring(0, spokenIndex))}
-              </ThemedText>
-              {applyCharacterNames(mainText.substring(spokenIndex))}
-            </ThemedText>
+            <LexiconText
+              text={mainText}
+              lineStyle={styles.content}
+              readStyle={{ color: colors.primary, fontWeight: 'bold' }}
+              spokenIndex={spokenIndex}
+              applyNames={applyCharacterNames}
+              onDictionaryPress={(word, def) => setDictionaryEntry({ word, def })}
+            />
             {basisText ? (
               <Pressable onPress={handleBasisPress}>
                 <ThemedText style={[styles.basisText, { color: '#007BFF', textDecorationLine: 'underline' }]}>
@@ -677,7 +710,7 @@ export default function LearnSubjectScreen() {
 
             <Pressable
               style={[styles.playButton, isPlaying ? styles.stopButton : styles.startButton]}
-              onPress={handleTogglePlay}
+              onPress={togglePlay}
             >
               <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>
                 {isPlaying ? '■ 停止' : '▶ 再生'}
@@ -774,6 +807,49 @@ export default function LearnSubjectScreen() {
         ))}
 
         {/* Character Settings Modal */}
+        <Modal
+          visible={dictionaryEntry !== null}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setDictionaryEntry(null)}
+        >
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'rgba(0,0,0,0.45)',
+              padding: 24,
+            }}
+          >
+            <ThemedView
+              style={{
+                maxWidth: 420,
+                width: '100%',
+                maxHeight: '70%',
+                padding: 20,
+                borderRadius: 14,
+                backgroundColor: colors.card,
+              }}
+            >
+              <ThemedText type="subtitle" style={{ marginBottom: 10, color: '#007BFF' }}>
+                {dictionaryEntry?.word}
+              </ThemedText>
+              <ScrollView style={{ maxHeight: 320 }} showsVerticalScrollIndicator>
+                <ThemedText style={{ lineHeight: 26, fontSize: 16 }}>
+                  {dictionaryEntry?.def?.trim()}
+                </ThemedText>
+              </ScrollView>
+              <Pressable
+                style={{ marginTop: 16, backgroundColor: colors.primary, padding: 12, borderRadius: 8, alignItems: 'center' }}
+                onPress={() => setDictionaryEntry(null)}
+              >
+                <ThemedText style={{ color: '#fff', fontWeight: 'bold' }}>閉じる</ThemedText>
+              </Pressable>
+            </ThemedView>
+          </View>
+        </Modal>
+
         {isCharacterModalVisible && (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' }]}>
             <ThemedView style={{ width: '80%', padding: 20, borderRadius: 10, backgroundColor: colors.card, maxHeight: '80%' }}>
