@@ -18,17 +18,47 @@ const OUTPUT_FILE = path.join(__dirname, '../src/questions.js');
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-/** textFormatRunsから太字・赤を**text** / [[red:text]]に変換。赤字は赤字のまま、太字は太字のまま反映 */
-function applyBoldFromFormatRuns(text, cellData) {
+function getForegroundRgb(fmt) {
+    return fmt?.foregroundColor || fmt?.foregroundColorStyle?.rgbColor;
+}
+
+function rgbToHex6(c) {
+    if (!c) return null;
+    const R = Math.round(Math.min(255, Math.max(0, (c.red ?? 0) * 255)));
+    const G = Math.round(Math.min(255, Math.max(0, (c.green ?? 0) * 255)));
+    const B = Math.round(Math.min(255, Math.max(0, (c.blue ?? 0) * 255)));
+    return R.toString(16).padStart(2, '0') + G.toString(16).padStart(2, '0') + B.toString(16).padStart(2, '0');
+}
+
+function isNeutralColor(c) {
+    if (!c) return true;
+    const r = c.red ?? 0, g = c.green ?? 0, b = c.blue ?? 0;
+    const max = Math.max(r, g, b);
+    if (max < 0.07) return true;
+    const min = Math.min(r, g, b);
+    if (max - min < 0.07 && max < 0.42) return true;
+    return false;
+}
+
+function isRedColor(c) {
+    if (!c) return false;
+    const r = c.red ?? 0, g = c.green ?? 0, b = c.blue ?? 0;
+    return r > 0.35 && r >= g && r >= b && (r - Math.max(g, b)) > 0.15;
+}
+
+/** タグ終端と衝突しないようエスケープ */
+function escapeForColorTag(seg) {
+    return seg.replace(/\[\[\/c\]\]/g, '［［/c］］');
+}
+
+/**
+ * textFormatRuns から **太字** / [[red:x]] / [[c:#RRGGBB]]x[[/c]] / [[c:#RRGGBB&b]]x[[/c]] を生成。
+ * スプレッドシートの文字色・太字をアプリの MarkdownText で再現する。
+ */
+function applyTextFormatRuns(text, cellData) {
     if (!text) return text;
     const runs = cellData?.textFormatRuns;
     if (!runs?.length) return text;
-    const isRed = (fmt) => {
-        const c = fmt?.foregroundColor || fmt?.foregroundColorStyle?.rgbColor;
-        if (!c) return false;
-        const r = c.red ?? 0, g = c.green ?? 0, b = c.blue ?? 0;
-        return r > 0.35 && r >= g && r >= b && (r - Math.max(g, b)) > 0.15;
-    };
     let out = '';
     let lastEnd = 0;
     for (let j = 0; j < runs.length; j++) {
@@ -36,18 +66,41 @@ function applyBoldFromFormatRuns(text, cellData) {
         const start = run.startIndex ?? 0;
         if (start > lastEnd) out += text.slice(lastEnd, start);
         const end = j + 1 < runs.length ? (runs[j + 1].startIndex ?? text.length) : text.length;
-        const seg = text.slice(start, end);
+        let seg = text.slice(start, end);
         if (seg) {
             const bold = run.format?.bold === true;
-            const red = isRed(run.format);
-            if (bold && red) out += `[[red:${seg}]]`;
-            else if (bold) out += `**${seg}**`;
+            const fg = getForegroundRgb(run.format);
+            const red = fg && isRedColor(fg);
+            const neutral = !fg || isNeutralColor(fg);
+            const hex = fg && !neutral && !red ? rgbToHex6(fg) : null;
+            if (red) {
+                const e = seg.replace(/\]\]/g, '］］');
+                out += `[[red:${e}]]`;
+            } else if (hex) {
+                const e = escapeForColorTag(seg);
+                if (bold) out += `[[c:#${hex}&b]]${e}[[/c]]`;
+                else out += `[[c:#${hex}]]${e}[[/c]]`;
+            } else if (bold) out += `**${seg}**`;
             else out += seg;
         }
         lastEnd = end;
     }
     if (lastEnd < text.length) out += text.slice(lastEnd);
     return out || text;
+}
+
+/** 後方互換 */
+function applyBoldFromFormatRuns(text, cellData) {
+    return applyTextFormatRuns(text, cellData);
+}
+
+/** 1-based シート行 → 列の cellData で書式を付与 */
+function formatCellText(text, colMap, sheetRow1Based) {
+    if (text == null || text === '') return '';
+    const s = String(text).trim();
+    if (!s) return '';
+    const cell = colMap[sheetRow1Based];
+    return cell ? applyTextFormatRuns(s, cell) : s;
 }
 
 const SUBJECT_ORDER = [
@@ -224,10 +277,14 @@ async function sync() {
         if (!rows || rows.length <= 1) continue;
         console.log(`[DEBUG] Processing Sheet: ${title} (${rows.length} rows)`);
 
-        // M列・B列・H列のフォーマット（太字・赤）を取得
+        // 主要列のフォーマット（文字色・太字）を取得 — values の H/K/L と行番号を対応させる
         let mColFormatMap = {};
         let bColFormatMap = {};
         let hColFormatMap = {};
+        let kColFormatMap = {};
+        let lColFormatMap = {};
+        let cColFormatMap = {};
+        let fColFormatMap = {};
         try {
             await sleep(500);
             const n = Math.min(rows.length + 50, 2000);
@@ -237,6 +294,10 @@ async function sync() {
                     `${title}!M2:M${n}`,
                     `${title}!B2:B${n}`,
                     `${title}!H2:H${n}`,
+                    `${title}!K2:K${n}`,
+                    `${title}!L2:L${n}`,
+                    `${title}!C2:C${n}`,
+                    `${title}!F2:F${n}`,
                 ],
                 includeGridData: true,
             });
@@ -254,6 +315,10 @@ async function sync() {
             if (data[0]) fillMap(data[0], mColFormatMap);
             if (data[1]) fillMap(data[1], bColFormatMap);
             if (data[2]) fillMap(data[2], hColFormatMap);
+            if (data[3]) fillMap(data[3], kColFormatMap);
+            if (data[4]) fillMap(data[4], lColFormatMap);
+            if (data[5]) fillMap(data[5], cColFormatMap);
+            if (data[6]) fillMap(data[6], fColFormatMap);
         } catch (e) {
             console.warn(`[WARN] 列フォーマット取得スキップ: ${e.message}`);
         }
@@ -442,7 +507,10 @@ async function sync() {
                 const choices = [];
                 const choiceIsBonus = [];
                 const choiceExplanations = [];
-                const valExplan = (r) => (r && r[11] ? String(r[11]).trim() : '');
+                const valExplanWithFmt = (r, sheetRow) => {
+                    const raw = r && r[11] ? String(r[11]).trim() : '';
+                    return raw ? formatCellText(raw, lColFormatMap, sheetRow) : '';
+                };
                 let slotAnswersFromNtoP = null;
 
                 // 語群選択問題: N,O,P,Q,S列がスロットの選択肢。各列内の（ｒ）が付いた語句そのものを正解として保持
@@ -484,9 +552,16 @@ async function sync() {
                 if (firstChoice) {
                     choiceIsBonus.push(/^※/.test(firstChoice));
                     if (/^※/.test(firstChoice)) isBonus = true;
-                    choices.push(firstChoice.replace(/^※\s*/, '').trim() || firstChoice);
+                    const firstRowNum = i + 1;
+                    let fc = firstChoice;
+                    if (useGyosei1Layout) {
+                        if (cColFormatMap[firstRowNum]) fc = applyTextFormatRuns(fc, cColFormatMap[firstRowNum]);
+                    } else if (kColFormatMap[firstRowNum]) {
+                        fc = applyTextFormatRuns(fc, kColFormatMap[firstRowNum]);
+                    }
+                    choices.push(fc.replace(/^※\s*/, '').trim() || fc);
                     choiceChunkImages.push(valChunkImg(row));
-                    choiceExplanations.push(valExplan(row));
+                    choiceExplanations.push(valExplanWithFmt(row, firstRowNum));
                     choiceStatuteRefs.push(valStatuteRef(row));
                     choiceDeepDive.push(valDeepDive(row, i + 1));
                 }
@@ -515,11 +590,17 @@ async function sync() {
                     if (choiceText) {
                         choiceIsBonus.push(/^※/.test(choiceText));
                         if (/^※/.test(choiceText)) isBonus = true;
+                        const contRowNum = i + offset + 1;
+                        if (useGyosei1Layout) {
+                            if (cColFormatMap[contRowNum]) choiceText = applyTextFormatRuns(choiceText, cColFormatMap[contRowNum]);
+                        } else if (kColFormatMap[contRowNum]) {
+                            choiceText = applyTextFormatRuns(choiceText, kColFormatMap[contRowNum]);
+                        }
                         choices.push(choiceText.replace(/^※\s*/, '').trim() || choiceText);
                         choiceChunkImages.push(valChunkImg(nextRow));
-                        choiceExplanations.push(valExplan(nextRow));
+                        choiceExplanations.push(valExplanWithFmt(nextRow, contRowNum));
                         choiceStatuteRefs.push(valStatuteRef(nextRow));
-                        choiceDeepDive.push(valDeepDive(nextRow, i + offset + 1));
+                        choiceDeepDive.push(valDeepDive(nextRow, contRowNum));
                     }
                     offset++;
                 }
@@ -607,7 +688,10 @@ async function sync() {
                     }
                     // L列 = 解説。並べ替えでない場合のみ使用。全体解説 = F列 || L列、肢別解説 = choiceExplanations
                     // I列 = 根拠条文。肢ごとに指定があれば優先表示
-                    const explanation = isReorder ? (valF || '') : (valF || valL || '');
+                    const explRow = i + 1;
+                    const explanation = isReorder
+                        ? formatCellText(valF, fColFormatMap, explRow)
+                        : formatCellText(valF, fColFormatMap, explRow) || formatCellText(valL, lColFormatMap, explRow);
                     const finalChoiceExplanations = isReorder ? [] : choiceExplanations;
                     const finalChoiceStatuteRefs = isReorder ? [] : choiceStatuteRefs;
                     const finalChoiceDeepDive = isReorder ? [] : choiceDeepDive;
@@ -668,7 +752,7 @@ async function sync() {
                         isReorder: isReorder,
                         explain: explanation || questionText, // Fallback to text if explanation empty
                         wordBank: finalWordBank,
-                        memo: valM,
+                        memo: valM ? formatCellText(valM, mColFormatMap, i + 1) : '',
                         slots: slots,
                         refId: valRefId,
                         isBonus: isBonus,
@@ -713,9 +797,13 @@ async function sync() {
                     }
 
                     const modelAnswerForDescriptiveOnly = currentSubject === '記述' ? (row[10] ? row[10].trim() : '') : undefined;
+                    const explRowNoChoices = i + 1;
+                    const explanationNoChoices =
+                        formatCellText(valF, fColFormatMap, explRowNoChoices) ||
+                        formatCellText(valL, lColFormatMap, explRowNoChoices);
                     questionsData[currentSubject][currentCategory].push({
                         text: questionText,
-                        explain: explanation || questionText, // Use question text as explanation fallback
+                        explain: explanationNoChoices || questionText, // Use question text as explanation fallback
                         chunks: chunks,
                         ...(modelAnswerForDescriptiveOnly !== undefined && { modelAnswer: modelAnswerForDescriptiveOnly })
                     });

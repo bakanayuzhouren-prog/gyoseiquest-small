@@ -102,7 +102,11 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/92-230': require('@/assets/images/deepdive/kenpou/92-230.png'),
   'kenpou/93-230': require('@/assets/images/deepdive/kenpou/93-230.png'),
   'kenpou/94-230': require('@/assets/images/deepdive/kenpou/94-230.jpg'),
-  'kenpou/99-230': require('@/assets/images/deepdive/kenpou/99-230.png')
+  'kenpou/99-230': require('@/assets/images/deepdive/kenpou/99-230.png'),
+  'learn/minnpou/54-105-1': require('@/assets/images/deepdive/learn/minnpou/54-105-1.png'),
+  'learn/minnpou/54-105-2': require('@/assets/images/deepdive/learn/minnpou/54-105-2.png'),
+  'learn/minnpou/54-105-3': require('@/assets/images/deepdive/learn/minnpou/54-105-3.png'),
+  'learn/minnpou/54-105-4': require('@/assets/images/deepdive/learn/minnpou/54-105-4.png')
 };
 
 export function getDeepdiveImageSource(filename: string): number | undefined {
@@ -113,17 +117,4 @@ export function getDeepdiveImageSource(filename: string): number | undefined {
   if (exact) return exact as number;
   const byBase = Object.keys(DEEPDIVE_IMAGES).find((k) => k === base || k.endsWith('/' + base));
   return byBase ? (DEEPDIVE_IMAGES[byBase] as number) : undefined;
-}
-
-/** 見て聞いて覚えるのカード番号（1始まり）に対応する deepdive 画像キー（kenpou/N-230 または N-230 接尾辞付きファイル名） */
-export function resolveKenpouProblemImageKey(oneBased: number): string | undefined {
-  if (oneBased < 1) return undefined;
-  const keys = Object.keys(DEEPDIVE_IMAGES);
-  const exactKey = `kenpou/${oneBased}-230`;
-  if (keys.includes(exactKey)) return exactKey;
-  const re = new RegExp(`^kenpou/${oneBased}-230($| |-)`);
-  const hits = keys.filter((k) => re.test(k));
-  if (hits.length === 0) return undefined;
-  hits.sort();
-  return hits[0];
 }

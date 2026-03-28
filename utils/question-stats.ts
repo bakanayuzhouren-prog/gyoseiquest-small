@@ -23,6 +23,11 @@ function simpleHash(str: string): string {
   return Math.abs(h).toString(36);
 }
 
+/** 非表示フィルタなどで question-stats と同一の問題文ハッシュを使う */
+export function getQuestionTextHash(questionText: string): string {
+  return simpleHash(questionText);
+}
+
 function buildKey(subject: string, field: string, questionText: string): string {
   return `${PREFIX}${subject}|${field}|${simpleHash(questionText)}`;
 }
@@ -30,6 +35,8 @@ function buildKey(subject: string, field: string, questionText: string): string 
 export interface QuestionStats {
   correct: number;
   wrong: number;
+  /** 直近の連続正解回数（不正解で 0 にリセット） */
+  consecutiveCorrect: number;
 }
 
 export async function getQuestionStats(
@@ -40,14 +47,15 @@ export async function getQuestionStats(
   try {
     const key = buildKey(subject, field, questionText);
     const val = await AsyncStorage.getItem(key);
-    if (!val) return { correct: 0, wrong: 0 };
+    if (!val) return { correct: 0, wrong: 0, consecutiveCorrect: 0 };
     const parsed = JSON.parse(val);
     return {
       correct: Math.max(0, parseInt(parsed.correct, 10) || 0),
       wrong: Math.max(0, parseInt(parsed.wrong, 10) || 0),
+      consecutiveCorrect: Math.max(0, parseInt(parsed.consecutiveCorrect, 10) || 0),
     };
   } catch {
-    return { correct: 0, wrong: 0 };
+    return { correct: 0, wrong: 0, consecutiveCorrect: 0 };
   }
 }
 
@@ -75,8 +83,10 @@ export async function updateQuestionStats(
     const current = await getQuestionStats(subject, field, questionText);
     if (isCorrect) {
       current.correct += 1;
+      current.consecutiveCorrect = (current.consecutiveCorrect ?? 0) + 1;
     } else {
       current.wrong += 1;
+      current.consecutiveCorrect = 0;
     }
     await AsyncStorage.setItem(key, JSON.stringify(current));
   } catch (e) {

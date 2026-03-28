@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Alert, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { LexiconText, stripLexiconMarkupForPlain } from '@/components/lexicon-text';
+import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { characterPlaceholders, defaultCharacterMap, useCharacter } from '@/src/context/CharacterContext';
@@ -130,7 +131,7 @@ export default function LearnSubjectScreen() {
       fromLearn = Array.isArray(legacy) ? legacy : legacy ? [legacy] : [];
     }
     if (fromLearn.length > 0) return fromLearn;
-    const fallbackSubjects = ['基礎法学', '商法・会社法'];
+    const fallbackSubjects = ['基礎法学'];
     if (fallbackSubjects.includes(subject || '') && flattenedSubjectQuestions.length > 0) {
       return flattenedSubjectQuestions.map((q: any) => q?.text || '').filter(Boolean);
     }
@@ -836,9 +837,12 @@ export default function LearnSubjectScreen() {
                 {dictionaryEntry?.word}
               </ThemedText>
               <ScrollView style={{ maxHeight: 320 }} showsVerticalScrollIndicator>
-                <ThemedText style={{ lineHeight: 26, fontSize: 16 }}>
-                  {dictionaryEntry?.def?.trim()}
-                </ThemedText>
+                {dictionaryEntry?.def ? (
+                  <MarkdownText
+                    text={dictionaryEntry.def.trim()}
+                    style={{ fontSize: 16, lineHeight: 26, color: colors.text }}
+                  />
+                ) : null}
               </ScrollView>
               <Pressable
                 style={{ marginTop: 16, backgroundColor: colors.primary, padding: 12, borderRadius: 8, alignItems: 'center' }}

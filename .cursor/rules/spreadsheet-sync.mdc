@@ -53,6 +53,11 @@ alwaysApply: true
 - 画像と文章を混在可能。`[[image:xxx]]` で画像を埋め込み。xxx は **deepdiveImages**（`assets/images/deepdive/`）を優先、次に chunkImages・imageMap。
 - 問題を解くモード専用画像は `assets/images/deepdive/` に配置し、`node scripts/generateDeepdiveImages.js` で再生成。
 
+### もっと深掘る（アプリ表示・`app/deepdive.tsx`）
+
+- **番号見出し**（`1.` `2.` `１．` `1：`、行頭の `①`〜`⑩` 等）の**直前は必ず改行**とする。`normalizeDeepdiveFlowText` でスプレッドシートの折り返しを詰めるときも、当該改行は消さず、必要なら `preInsertNewlinesForNumberedSections` と同系のルールで**番号の前に改行を入れ直す**。
+- **「。」のあとに改行**（`。」` 直後など引用括弧に接するときは除く）も維持する。カード分割（`splitIntoCards`）と矛盾させないこと。
+
 ## 解説（L列）
 
 - **L列（index 11）** = 解説。並べ替え問題でない場合に使用。
@@ -71,6 +76,11 @@ alwaysApply: true
 
 - **A列（index 0）** = 学習項目。見て聞いて覚えるモードのコンテンツは **A列のみ** を参照する。H列（問題）は使わない。
 - `node scripts/syncLearn.js` で LEARN_CONTENT に反映。
+
+### 見て聞いて覚える・深掘り画像のファイル名（`N-M` 形式）
+
+- `assets/images/deepdive/learn/` 配下などに置く深掘り用画像で、ファイル名が **`N-M` または `N-M-連番`**（例: `54-105-1.png`）のとき、**先頭の `N` を当該科目の問番号（1始まり）とみなす**。
+- **B列（もっと深掘る）** や `LEARN_DEEPDIVE` に `[[image:…]]` を書くときは、**必ず N 問目のスロット**に配置する。`-105` など2つ目以降の数字はメモ・元シート行番号などの識別用であり、**配置の基準は先頭の N のみ**。
 
 ### 多肢選択（見て聞いて覚える専用シート）
 

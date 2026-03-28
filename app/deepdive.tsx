@@ -18,6 +18,43 @@ import * as Speech from 'expo-speech';
 
 const CHACHALOT_IMG = require('@/assets/images/characters/chachalot.png');
 
+/** 番号見出し行の直前（preInsert と同系）。`4.**見出し` のようにドット直後が ** でも潰さない */
+const NEWLINE_BEFORE_NUM_HEAD =
+  /\n(?=\s*(?:(?:[1-9][0-9]?|[１-９][０-９]?)[\.．:：\uFF1A]\s*(?:\*\*|＊＊)?|[①②③④⑤⑥⑦⑧⑨⑩]))/g;
+
+/** 文中の「N.」の前に改行を入れるときの N. 側（スペースなしで ** が続くケースを含む） */
+const HALFWD_NUM_HEAD_TOKEN = /[1-9][0-9]?[\.．:：\uFF1A]\s*(?:\*\*|＊＊|[^\s\n　])/;
+const FULLWD_NUM_HEAD_TOKEN = /[１-９][０-９]?[\.．:：\uFF1A]\s*(?:\*\*|＊＊|[^\s\n　])/;
+
+/** スプレッドシート由来の途中改行を詰め、空行のみ段落区切りとする。「。」のあと改行＋番号見出しの前は必ず改行を維持 */
+function normalizeDeepdiveFlowText(s: string): string {
+  const t = s.replace(/\r\n/g, '\n').trim();
+  if (!t) return s;
+  const PARA_PROTECT = '\uE000';
+  return t
+    .split(/\n{2,}/)
+    .map((block) => {
+      let b = block.trim();
+      b = b.replace(NEWLINE_BEFORE_NUM_HEAD, PARA_PROTECT);
+      b = b.replace(/[ \t]*\n[ \t]*/g, ' ').replace(/[ \u3000]{2,}/g, ' ');
+      b = b.replace(new RegExp(PARA_PROTECT, 'g'), '\n');
+      b = b
+        .replace(new RegExp(`([^\\n])(${HALFWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
+        .replace(new RegExp(`([^\\n])(${FULLWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
+        .replace(/([^\n])([①②③④⑤⑥⑦⑧⑨⑩])/g, '$1\n$2');
+      b = b.replace(/。(?!\n)(?![」』）])/g, '。\n');
+      return b
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .join('\n');
+    })
+    .filter(Boolean)
+    .join('\n\n');
+}
+
+const CARD_NUM_ONLY_TITLE = /^(?:[1-9][0-9]?|[１-９][０-９]?)[\\.．:：\uFF1A]\s*$/;
+
 export default function DeepdiveScreen() {
   const params = useLocalSearchParams<{
     content?: string;
@@ -140,19 +177,48 @@ export default function DeepdiveScreen() {
     }
   }
 
-  /** 番号付きセクション（1. 2. 3. 等、または 1：2： 等）で分割してカード化 */
+  /**
+   * 改行のない長文でも「2. 」「3．」の前に改行を入れる（問題を解くモードの M 列深掘り向け）。
+   * 学習の辞典 deepdive（reference）と同系のルール＋全角数字対応。
+   */
+  const preInsertNewlinesForNumberedSections = (raw: string): string =>
+    raw
+      .replace(/\\n/g, '\n')
+      .replace(/([^\n])(【[^】]{1,30}】)/g, '$1\n$2')
+      .replace(new RegExp(`([^\\n])(${HALFWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
+      .replace(new RegExp(`([^\\n])(${FULLWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
+      .replace(/([^\n])([①②③④⑤⑥⑦⑧⑨⑩])/g, '$1\n$2')
+      .replace(/([^\n])([■💡])/g, '$1\n$2');
+
+  /** 番号付きセクション（1. 2. 3. ／ １． ／ 1： 等）で分割してカード化 */
   const splitIntoCards = (text: string): string[] => {
-    const sections = text.split(/(?:\n|^)(?=\d+[\.．：:]\s?)/).filter(Boolean);
-    return sections.length >= 2 ? sections : [text];
+    const prepared = preInsertNewlinesForNumberedSections(text.trim());
+    const head = '(?:[1-9][0-9]?|[１-９][０-９]?)[\\.．:：\uFF1A]\\s*';
+    let sections = prepared.split(new RegExp(`(?:\\n|^)(?=${head})`, 'm')).map((s) => s.trim()).filter(Boolean);
+    if (sections.length >= 2) return sections;
+    sections = prepared
+      .split(new RegExp(`(?<=[\\s\\u3000。．!！?？])(?=${head})`))
+      .map((s) => s.trim())
+      .filter(Boolean);
+    return sections.length >= 2 ? sections : [prepared.trim() || text.trim()];
   };
 
-  /** カードの1行目をタイトル、残りを本文に分離 */
+  /** カードの1行目をタイトル、残りを本文に分離（「2.」のみの行は本文にまとめて変な改行を防ぐ） */
   const splitCardTitle = (cardText: string): { title: string; body: string } => {
-    const firstNewline = cardText.indexOf('\n');
-    if (firstNewline >= 0) {
-      return { title: cardText.slice(0, firstNewline).trim(), body: cardText.slice(firstNewline).trim() };
+    const trimmed = cardText.trim();
+    const firstNewline = trimmed.indexOf('\n');
+    if (firstNewline < 0) {
+      return { title: trimmed, body: '' };
     }
-    return { title: cardText.trim(), body: '' };
+    const title = trimmed.slice(0, firstNewline).trim();
+    const body = trimmed.slice(firstNewline + 1).trim();
+    if (CARD_NUM_ONLY_TITLE.test(title)) {
+      return { title: '', body: normalizeDeepdiveFlowText(trimmed) };
+    }
+    return {
+      title,
+      body: body ? normalizeDeepdiveFlowText(body) : '',
+    };
   };
 
   const cardStyle = {
@@ -244,8 +310,17 @@ export default function DeepdiveScreen() {
                       const { title, body } = splitCardTitle(cardText);
                       return (
                         <ThemedView key={j} style={cardStyle}>
-                          {title ? <ThemedText style={{ fontSize: 16, lineHeight: 24, color: colors.text, fontWeight: 'bold', marginBottom: body ? 8 : 0 }}>{title}</ThemedText> : null}
-                          {body ? <MarkdownText text={body} style={{ fontSize: 16, lineHeight: 24, color: colors.text }} onHighlightPress={handleHighlightPress} /> : null}
+                          {title ? (
+                            <ThemedText style={{ fontSize: 16, lineHeight: 24, color: colors.text, marginBottom: body ? 8 : 0 }}>{title}</ThemedText>
+                          ) : null}
+                          {body ? (
+                            <MarkdownText
+                              text={body}
+                              style={{ fontSize: 16, lineHeight: 24, color: colors.text }}
+                              onHighlightPress={handleHighlightPress}
+                              uniformWeight
+                            />
+                          ) : null}
                         </ThemedView>
                       );
                     })}
@@ -272,8 +347,17 @@ export default function DeepdiveScreen() {
                 const { title, body } = splitCardTitle(cardText);
                 return (
                   <ThemedView key={j} style={cardStyle}>
-                    {title ? <ThemedText style={{ fontSize: 16, lineHeight: 24, color: colors.text, fontWeight: 'bold', marginBottom: body ? 8 : 0 }}>{title}</ThemedText> : null}
-                    {body ? <MarkdownText text={body} style={{ fontSize: 16, lineHeight: 24, color: colors.text }} onHighlightPress={handleHighlightPress} /> : null}
+                    {title ? (
+                      <ThemedText style={{ fontSize: 16, lineHeight: 24, color: colors.text, marginBottom: body ? 8 : 0 }}>{title}</ThemedText>
+                    ) : null}
+                    {body ? (
+                      <MarkdownText
+                        text={body}
+                        style={{ fontSize: 16, lineHeight: 24, color: colors.text }}
+                        onHighlightPress={handleHighlightPress}
+                        uniformWeight
+                      />
+                    ) : null}
                   </ThemedView>
                 );
               })}
@@ -360,7 +444,7 @@ export default function DeepdiveScreen() {
               <>
                 <ThemedText style={[styles.highlightModalTitle, { color: colors.primary }]}>{highlightModal.title}</ThemedText>
                 <ScrollView style={{ maxHeight: 300 }} showsVerticalScrollIndicator>
-                  <MarkdownText text={highlightModal.body} style={{ fontSize: 15, lineHeight: 24, color: colors.text }} />
+                  <MarkdownText text={highlightModal.body} style={{ fontSize: 15, lineHeight: 24, color: colors.text }} uniformWeight />
                 </ScrollView>
                 <Pressable style={[styles.highlightModalClose, { backgroundColor: colors.accent }]} onPress={() => setHighlightModal(null)}>
                   <ThemedText style={styles.highlightModalCloseText}>閉じる</ThemedText>

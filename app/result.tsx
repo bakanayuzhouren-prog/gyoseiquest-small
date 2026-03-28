@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 import { Link, useLocalSearchParams, useRouter } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { MarkdownText } from '@/components/markdown-text';
@@ -13,7 +13,7 @@ import { setDeepdiveParams } from '@/src/deepdiveState';
 import { getDeepdiveImageSource } from '@/src/deepdiveImages';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { PIN_CASES } from '@/src/pinData';
-import { RESOURCES, STATUTES, SUBJECTS } from '@/src/questions';
+import { RESOURCES, STATUTES } from '@/src/questions';
 
 /** シンプルなチャンク画像か（sousoku7 など -1.2.3.4 のような表記がない） */
 function isSimpleChunkImage(path: string): boolean {
@@ -275,7 +275,14 @@ function getParagraph2ForChunk(
 import { gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
 import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitNumberPrefix } from '@/utils/choiceNumber';
 import { addPoints } from '@/utils/points';
-import { updateQuestionStats } from '@/utils/question-stats';
+import { getHiddenHashes, peekHiddenHashesSync } from '@/utils/question-hidden';
+import {
+  filterHiddenFromQuestions,
+  filterQuizQuestionsByMode,
+  getMergedSubjectData,
+  pickQuestionsForField,
+} from '@/utils/quiz-question-pipeline';
+import { getQuestionTextHash, updateQuestionStats } from '@/utils/question-stats';
 import { incrementLoopCount } from '@/utils/progress';
 import { USER_KEY } from './login';
 
@@ -358,9 +365,26 @@ export default function ResultScreen() {
   const questionIndex = params.questionIndex ? parseInt(Array.isArray(params.questionIndex) ? params.questionIndex[0] : params.questionIndex, 10) : 0;
   const nextIndex = questionIndex + 1;
 
-  // LOOKUP DATA FROM SUBJECTS
-  const subjectData = subject ? (SUBJECTS as any)[subject] : {};
-  const questions = field && subjectData[field] ? subjectData[field] : [];
+  const [hiddenHashes, setHiddenHashes] = useState<Set<string>>(() => {
+    if (subject && field) {
+      const p = peekHiddenHashesSync(subject, field);
+      if (p) return new Set(p);
+    }
+    return new Set();
+  });
+
+  useEffect(() => {
+    if (!subject || !field) return;
+    getHiddenHashes(subject, field).then(setHiddenHashes);
+  }, [subject, field]);
+
+  const questions = useMemo(() => {
+    const subjectData = getMergedSubjectData(subject);
+    const { targetQuestions } = pickQuestionsForField(subjectData, field);
+    const filtered = filterQuizQuestionsByMode(targetQuestions, subject, mode);
+    return filterHiddenFromQuestions(filtered, hiddenHashes, getQuestionTextHash);
+  }, [subject, field, mode, hiddenHashes]);
+
   const question = questions[questionIndex] || null;
   const isReorder = params.isReorder === '1' || (question as any)?.isReorder;
 
@@ -411,6 +435,7 @@ export default function ResultScreen() {
     subject === '行政法' && field ? FIELD_TO_STATUTES_KEY[field]
     : subject === '民法' && field ? CIVIL_FIELD_TO_STATUTES_KEY[field]
     : subject === '多肢選択' && field ? TASHI_FIELD_TO_STATUTES_KEY[field]
+    : subject === '商法・会社法' ? 'sho_kai'
     : null;
   let statuteItemsRaw: Array<{ title: string; content: string }> = [];
   if (statutesKey && (STATUTES as any)[statutesKey]) {
@@ -439,7 +464,7 @@ export default function ResultScreen() {
   const choiceStatuteRefs = (question as any)?.choiceStatuteRefs as string[] | undefined;
   const choiceDeepDive = (question as any)?.choiceDeepDive as string[] | undefined;
   const choiceStatutes: Array<Array<{ title: string; content: string }>> = [];
-  if (statuteItemsRaw.length > 0 && Array.isArray(choices) && choices.length > 0 && (subject === '行政法' || subject === '民法' || subject === '多肢選択')) {
+  if (statuteItemsRaw.length > 0 && Array.isArray(choices) && choices.length > 0 && (subject === '行政法' || subject === '民法' || subject === '多肢選択' || subject === '商法・会社法')) {
     for (let i = 0; i < choices.length; i++) {
       const ref = choiceStatuteRefs?.[i]?.trim();
       if (ref) {
@@ -752,8 +777,8 @@ export default function ResultScreen() {
           )}
         </View>
 
-        {/* 行政法・民法・多肢選択: 根拠条文。穴埋めは1本のみ表示、それ以外は肢ごと（通常時は※肢を省く、ボーナス時は全肢） */}
-        {(subject === '行政法' || subject === '民法' || subject === '多肢選択') && statuteItemsRaw.length > 0 && choices.length > 0 && (() => {
+        {/* 行政法・民法・多肢選択・商法・会社法: 根拠条文・もっと深掘る（M列）。穴埋めは1本のみ表示、それ以外は肢ごと */}
+        {(subject === '行政法' || subject === '民法' || subject === '多肢選択' || subject === '商法・会社法') && statuteItemsRaw.length > 0 && choices.length > 0 && (() => {
           // 穴埋め問題: 同じ条文が繰り返すので1つだけ表示
           if (isSlotStyle) {
             return (
@@ -1183,8 +1208,19 @@ export default function ResultScreen() {
                 }}
                 asChild
               >
-                <Pressable style={StyleSheet.flatten([styles.retryButton, { backgroundColor: colors.accent, borderColor: colors.accent }])}>
-                  <ThemedText type="defaultSemiBold" style={{ color: '#fff', fontSize: 14 }}>もう一度この問題を解く</ThemedText>
+                <Pressable
+                  style={StyleSheet.flatten([
+                    styles.retryButton,
+                    {
+                      backgroundColor: colors.card,
+                      borderColor: colors.subText,
+                      borderWidth: 1.5,
+                    },
+                  ])}
+                >
+                  <ThemedText type="defaultSemiBold" style={{ color: colors.subText, fontSize: 12 }}>
+                    もう一度この問題を解く
+                  </ThemedText>
                 </Pressable>
               </Link>
             </View>
@@ -1217,15 +1253,6 @@ export default function ResultScreen() {
           </Link>
         )}
 
-        <ThemedText type="subtitle" style={{ marginTop: 20 }}>My Memo (余白)</ThemedText>
-        <TextInput
-          style={styles.userMemoInput}
-          multiline
-          placeholder="ここに自分用のメモを残せます（他ユーザーには見えません）"
-          value={userMemo}
-          onChangeText={saveUserMemo}
-        />
-
         <Link href={{
           pathname: '/question',
           params: {
@@ -1239,12 +1266,25 @@ export default function ResultScreen() {
           }
         }} asChild>
           <Pressable
-            style={StyleSheet.flatten([styles.nextButton, { backgroundColor: colors.accent, borderColor: colors.accent }])}
+            style={StyleSheet.flatten([
+              styles.nextButton,
+              styles.nextButtonPrimary,
+              { backgroundColor: colors.primary, borderColor: colors.primary, marginTop: 20 },
+            ])}
             onPress={handleNext}
           >
             <ThemedText type="defaultSemiBold" style={{ color: '#fff', textAlign: 'center' }}>次の問題へ</ThemedText>
           </Pressable>
         </Link>
+
+        <ThemedText type="subtitle" style={{ marginTop: 20 }}>My Memo (余白)</ThemedText>
+        <TextInput
+          style={styles.userMemoInput}
+          multiline
+          placeholder="ここに自分用のメモを残せます（他ユーザーには見えません）"
+          value={userMemo}
+          onChangeText={saveUserMemo}
+        />
 
         <Link href="/subjects" replace asChild>
           <Pressable style={StyleSheet.flatten([styles.nextButton, { backgroundColor: '#fff', borderColor: '#5A9BD5', borderWidth: 2 }])}>
@@ -1537,6 +1577,11 @@ const styles = StyleSheet.create({
     borderColor: '#5A9BD5',
     backgroundColor: '#E9F2FB',
   },
+  /** 結果画面「次の問題へ」：メイン導線としてやや大きめのタップ領域 */
+  nextButtonPrimary: {
+    paddingVertical: 16,
+    paddingHorizontal: 18,
+  },
   descriptiveAnswerBox: {
     padding: 16,
     borderWidth: 2,
@@ -1710,9 +1755,10 @@ const styles = StyleSheet.create({
     borderTopColor: '#eee',
   },
   retryButton: {
-    flex: 1,
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    alignSelf: 'flex-start',
+    maxWidth: '88%',
+    paddingVertical: 7,
+    paddingHorizontal: 11,
     borderRadius: 8,
     borderWidth: 1,
     alignItems: 'center',

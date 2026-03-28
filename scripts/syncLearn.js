@@ -19,6 +19,44 @@ const OUTPUT_FILE = path.join(__dirname, '../src/learn.js');
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+/**
+ * C列「青文字検索」: セル全体で最初の1つの / だけが区切り。
+ * 左＝青文字にする語、右＝クリック時の説明（改行・「1/2」など本文中の / を含めてよい）
+ */
+function parseLexiconPairsFromCell(valC) {
+  if (!valC || !String(valC).trim()) return [];
+  const s = String(valC).replace(/^\uFEFF/, '');
+  const idx = s.indexOf('/');
+  if (idx < 0) return [];
+  const word = s.slice(0, idx).trim();
+  const def = s.slice(idx + 1).replace(/^\s+/, '');
+  if (!word || !def) return [];
+  return [{ word, def }];
+}
+
+function escapeDictSegment(seg) {
+  return String(seg).replace(/\]\]/g, '］］');
+}
+
+/** 本文中に表示語があれば最初の1箇所を [[dict:…]] に差し替え。無ければ末尾にタグを追加 */
+function applyLexiconColumn(text, valC) {
+  const pairs = parseLexiconPairsFromCell(valC);
+  if (pairs.length === 0) return text;
+  let out = text;
+  for (const { word, def } of pairs) {
+    const w = escapeDictSegment(word);
+    const d = escapeDictSegment(def);
+    const tag = `[[dict:${w}::${d}]]`;
+    const pos = out.indexOf(word);
+    if (pos >= 0) {
+      out = out.slice(0, pos) + tag + out.slice(pos + word.length);
+    } else {
+      out = out + (out.length && !/\n$/.test(out) ? '\n' : '') + tag;
+    }
+  }
+  return out;
+}
+
 async function sync() {
   const spreadsheetId = process.env.SHEET_ID;
   console.log(`Syncing from spreadsheet: ${spreadsheetId}`);
@@ -110,6 +148,12 @@ async function sync() {
       sheetDefaultSubject = '基礎知識';
     }
 
+    // 商法・会社法: 見て聞いて覚えるは未連携（問題を解く・もっと深掘るは syncQuiz のみ）
+    if (sheetDefaultSubject === '商法・会社法') {
+      console.log(`Skipping learn sync (quiz/deepdive via syncQuiz only): ${title}`);
+      continue;
+    }
+
     let range = `${title}!A:Z`;
     let response;
     for (let attempt = 1; attempt <= 3; attempt++) {
@@ -192,14 +236,26 @@ async function sync() {
       // 見て聞いて覚えるモードの問題文はA列（科目行・行政代執行法などA列がIDの場合はC列）
       if (currentSubject) {
         const valA = (row[0] || '').trim();
+        const valBTrim = row[1] ? row[1].trim() : '';
+        const minpoSheetBodyInB =
+          currentSubject === '民法総則' ||
+          currentSubject === '家族法' ||
+          currentSubject === '債権各論' ||
+          currentSubject === '債権総論';
         const looksLikeId = /^[a-z]{2}\d+$/i.test(valA) || /^[ａ-ｚＡ-Ｚ０-９]+\d+$/.test(valA);
+        // A列＝本文。B列＝深掘り。C列＝青文字検索（用語/説明）。旧C列以降は1列ずつ繰り下がり（本文フォールバックはD列=index3）
         let content = row[0]; // A列＝問題文
         if (currentSubject === '民法物権') {
-          if (!content && row[2]) content = row[2];
+          if (!content && row[3]) content = row[3];
         } else if (valA.startsWith('科目') || (t === '行政代執行法' && looksLikeId)) {
-          content = row[2] || row[0] || '';
+          content = row[3] || row[0] || '';
         } else if (!content) {
-          content = row[2] || '';
+          content = row[3] || '';
+        }
+        let usedBAsMainBody = false;
+        if (minpoSheetBodyInB && !(content && String(content).trim()) && valBTrim) {
+          content = row[1];
+          usedBAsMainBody = true;
         }
 
         // 行政法総論シート: G列=問題, B列=初心者向け解説, K列=肢。行政代執行法・他: H列=問題
@@ -219,7 +275,13 @@ async function sync() {
         } else if (tashiLearnSubject || t === '憲法') {
           if (valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢') isNewQuestion = true;
         } else if (t !== '憲法') {
-          if (valH || (valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢')) isNewQuestion = true;
+          if (
+            valH ||
+            (valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢') ||
+            (minpoSheetBodyInB && !valA && valBTrim)
+          ) {
+            isNewQuestion = true;
+          }
         }
 
         if (isNewQuestion) {
@@ -252,7 +314,14 @@ async function sync() {
               } else if (tashiLearnSubject || t === '憲法') {
                 if (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢') break;
               } else if (t !== '憲法') {
-                if (nextValProblem || (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢')) break;
+                const nextValB = nextRow[1] ? nextRow[1].trim() : '';
+                if (
+                  nextValProblem ||
+                  (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢') ||
+                  (minpoSheetBodyInB && !nextValA && nextValB)
+                ) {
+                  break;
+                }
               } else {
                 if (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢') break;
               }
@@ -264,7 +333,7 @@ async function sync() {
         }
 
         if (valA === '問題' || valA === '肢') continue;
-        if (valA.startsWith('科目') && !(row[2] && row[2].trim())) continue;
+        if (valA.startsWith('科目') && !(row[3] && String(row[3]).trim())) continue;
 
         if (content) {
           const trimmedContent = content.trim();
@@ -282,7 +351,11 @@ async function sync() {
           } else {
             // Original filters for other subjects, but relaxed for Bukken to keep Articls
             // 多肢選択系はA列そのまま採用（解説・条文などの語が本文に含まれても除外しない）
-            if (currentSubject !== '民法物権' && !tashiLearnSubject) {
+            // [[dict:…::…]] の説明文に「解説」「説明」が入りがちなので、辞典タグ付き行は除外しない
+            const valCLex = row[2] != null ? String(row[2]).trim() : '';
+            const hasLexiconTag =
+              trimmedContent.includes('[[dict:') || parseLexiconPairsFromCell(valCLex).length > 0;
+            if (currentSubject !== '民法物権' && !tashiLearnSubject && !hasLexiconTag) {
               if (
                 trimmedContent.includes('条文') ||
                 trimmedContent.includes('解説') ||
@@ -302,14 +375,27 @@ async function sync() {
           }
 
           if (!learnDeepDive[currentSubject]) learnDeepDive[currentSubject] = [];
-          learnDeepDive[currentSubject].push(currentGroupHasDeepDive ? currentGroupDeepDiveContent : (row[1] ? row[1].trim() : ''));
-          learnContent[currentSubject].push(typeof content === 'string' ? content.trim() : content);
+          const deepPush = usedBAsMainBody
+            ? (row[0] && String(row[0]).trim() ? String(row[0]).trim() : '')
+            : currentGroupHasDeepDive
+              ? currentGroupDeepDiveContent
+              : row[1]
+                ? row[1].trim()
+                : '';
+          learnDeepDive[currentSubject].push(deepPush);
+          const valCLexPush = row[2] != null ? String(row[2]).trim() : '';
+          const contentFinal = applyLexiconColumn(trimmedContent, valCLexPush);
+          learnContent[currentSubject].push(typeof contentFinal === 'string' ? contentFinal : String(contentFinal));
           if (!learnSource[currentSubject]) learnSource[currentSubject] = [];
           learnSource[currentSubject].push(title);
         }
       }
     }
   }
+
+  learnContent['商法・会社法'] = [];
+  learnDeepDive['商法・会社法'] = [];
+  learnSource['商法・会社法'] = [];
 
   // LEARN_DEEPDIVE が LEARN_CONTENT より短いと、末尾カードで deepdive が undefined になる
   for (const key of Object.keys(learnContent)) {

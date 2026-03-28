@@ -1,21 +1,28 @@
 import Constants from 'expo-constants';
 import { Link, router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Image, Modal, PanResponder, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, Animated, Image, Modal, PanResponder, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { DiagramModal } from '@/components/diagram-modal';
 import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { BONUS_QUESTIONS } from '@/src/bonus_questions';
 import { useTheme } from '@/src/context/ThemeContext';
-import { RESOURCES, SUBJECTS } from '@/src/questions';
+import { RESOURCES } from '@/src/questions';
 import { explainChoiceIntent, generateDescriptiveQuestion } from '@/src/utils/geminiService';
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
 import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitNumberPrefix } from '@/utils/choiceNumber';
 import { getQuestionMark, setQuestionMark, type QuestionMark } from '@/utils/question-marks';
 import { getQuestionHighlights, toggleQuestionHighlight } from '@/utils/question-highlights';
-import { getQuestionStats } from '@/utils/question-stats';
+import { getHiddenHashes, hideQuestionByHash } from '@/utils/question-hidden';
+import {
+  filterHiddenFromQuestions,
+  filterQuizQuestionsByMode,
+  getMergedSubjectData,
+  pickQuestionsForField,
+  shuffleQuestionsCopy,
+} from '@/utils/quiz-question-pipeline';
+import { getQuestionStats, getQuestionTextHash } from '@/utils/question-stats';
 import { CIVIL_PRECEDENT_IMAGES } from '@/src/civilPrecedentImages';
 
 const GEMINI_API_KEY = (typeof Constants?.expoConfig?.extra !== 'undefined' && (Constants.expoConfig.extra as any)?.geminiApiKey) || (typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_GEMINI_API_KEY) || (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) || '';
@@ -147,68 +154,32 @@ export default function QuestionScreen() {
     }
   }, [params.wrongCounts]);
 
-  const subjectData = useMemo(() => {
-    const main = subject ? (SUBJECTS as any)[subject] || {} : {};
-    const bonus = subject ? (BONUS_QUESTIONS as any)[subject] || {} : {};
-    const merged = { ...main };
-    Object.keys(bonus).forEach((k) => {
-      merged[k] = [...(merged[k] || []), ...bonus[k]];
-    });
-    return merged;
-  }, [subject]);
+  const subjectData = useMemo(() => getMergedSubjectData(subject), [subject]);
 
-  const { field, questions } = useMemo(() => {
+  const { field, baseQuestions } = useMemo(() => {
     const fields = Object.keys(subjectData);
     if (fields.length === 0) {
-      return { field: null, questions: [] };
+      return { field: null, baseQuestions: [] as any[] };
     }
-
-    let targetQuestions = [];
-    let selectedField = null;
-
-    // If field is specified and valid, use it
-    if (paramField && fields.includes(paramField)) {
-      selectedField = paramField;
-      targetQuestions = subjectData[paramField] || [];
-    } else {
-      // Otherwise pick random
-      selectedField = fields[Math.floor(Math.random() * fields.length)];
-      targetQuestions = subjectData[selectedField] || [];
+    const { field: selectedField, targetQuestions } = pickQuestionsForField(subjectData, paramField);
+    let list = filterQuizQuestionsByMode(targetQuestions, subject, mode);
+    if (isShuffle && list.length > 0) {
+      list = shuffleQuestionsCopy(list);
     }
-
-    // Filter based on mode AND validate structure
-    targetQuestions = targetQuestions.filter((q: any) => {
-      const hasText = q && typeof q === 'object' && q.text;
-      const hasChoices = Array.isArray(q?.choices) && q.choices.length > 0;
-      const isDescriptive = subject === '記述';
-      // 記述式: textのみでOK。 選択式: text + choices 必須
-      const isValid = hasText && (isDescriptive || hasChoices);
-      if (!isValid) return false;
-
-      // 肢単位の※分離: ※付き肢のみ除外。過去問は非※肢が1つでもあれば表示、ボーナスは※肢が1つでもあれば表示
-      const cb = q.choiceIsBonus as boolean[] | undefined;
-      const hasCb = cb && cb.length > 0;
-      if (mode === 'bonus') {
-        return hasCb ? cb.some((b: boolean) => b) : !!q.isBonus;
-      } else {
-        // H列※（問題文※）または全肢※のときのみ除外。混在問題は※肢を非表示にして表示
-        if (q.isBonus && (!hasCb || cb.every((b: boolean) => b) || cb.every((b: boolean) => !b))) return false;
-        return hasCb ? cb.some((b: boolean) => !b) : !q.isBonus;
-      }
-    });
-
-    // シャッフルモード：問題をランダム順に並び替え
-    if (isShuffle && targetQuestions.length > 0) {
-      const arr = [...targetQuestions];
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return { field: selectedField, questions: arr };
-    }
-
-    return { field: selectedField, questions: targetQuestions };
+    return { field: selectedField, baseQuestions: list };
   }, [subjectData, paramField, mode, isShuffle]);
+
+  const [hiddenHashes, setHiddenHashes] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    if (!subject || !field) return;
+    getHiddenHashes(subject, field).then(setHiddenHashes);
+  }, [subject, field]);
+
+  const questions = useMemo(
+    () => filterHiddenFromQuestions(baseQuestions, hiddenHashes, getQuestionTextHash),
+    [baseQuestions, hiddenHashes]
+  );
 
   // State for current question index
   const [questionIndex, setQuestionIndex] = useState<number | null>(null);
@@ -216,7 +187,11 @@ export default function QuestionScreen() {
 
   const question = questionIndex !== null ? questions[questionIndex] : null;
 
-  const [questionStats, setQuestionStats] = useState<{ correct: number; wrong: number } | null>(null);
+  const [questionStats, setQuestionStats] = useState<{
+    correct: number;
+    wrong: number;
+    consecutiveCorrect: number;
+  } | null>(null);
   const [questionMark, setQuestionMarkState] = useState<QuestionMark>(null);
   const [highlightedSegments, setHighlightedSegments] = useState<Set<number>>(new Set());
 
@@ -225,10 +200,7 @@ export default function QuestionScreen() {
       setQuestionStats(null);
       return;
     }
-    getQuestionStats(subject, field, question.text).then((s) => {
-      if (s.correct + s.wrong > 0) setQuestionStats(s);
-      else setQuestionStats(null);
-    });
+    getQuestionStats(subject, field, question.text).then(setQuestionStats);
     getQuestionMark(subject, field, question.text).then(setQuestionMarkState);
     getQuestionHighlights(subject, field, question.text).then(setHighlightedSegments);
   }, [subject, field, question?.text]);
@@ -372,7 +344,10 @@ export default function QuestionScreen() {
   const [precedentModalVisible, setPrecedentModalVisible] = useState(false);
 
   const sidebarScrollRef = useRef<ScrollView>(null);
+  const questionSessionRef = useRef('');
   const ITEM_WIDTH = 42;
+
+  const questionSessionKey = `${subject || ''}|${paramField || ''}|${mode || ''}|${isShuffle ? '1' : '0'}`;
 
   // Reset slots when question changes
   useEffect(() => {
@@ -648,17 +623,24 @@ export default function QuestionScreen() {
     );
   };
 
-  // Initialize strictly when questions change (e.g. subject selection)
+  // 科目・分野・モード変更時は index をリセット。非表示で件数だけ変わったときはクランプのみ
   useEffect(() => {
     if (questions.length > 0) {
-      // Start from param 'index' if provided, otherwise 0
       const initialIndex = params.index ? parseInt(Array.isArray(params.index) ? params.index[0] : params.index, 10) : 0;
-      // Validate index range
-      setQuestionIndex(initialIndex >= 0 && initialIndex < questions.length ? initialIndex : 0);
+      if (questionSessionRef.current !== questionSessionKey) {
+        questionSessionRef.current = questionSessionKey;
+        setQuestionIndex(initialIndex >= 0 && initialIndex < questions.length ? initialIndex : 0);
+      } else {
+        setQuestionIndex((prev) => {
+          if (prev === null) return 0;
+          if (prev >= questions.length) return Math.max(0, questions.length - 1);
+          return prev;
+        });
+      }
     } else {
       setQuestionIndex(null);
     }
-  }, [questions, params.index]); // Re-run if params.index changes
+  }, [questions.length, params.index, questionSessionKey]);
 
   const goToNext = () => {
     if (questions.length === 0 || questionIndex === null) return;
@@ -842,6 +824,33 @@ export default function QuestionScreen() {
     }
   };
 
+  const handleHideThisQuestion = useCallback(() => {
+    if (!subject || !field || !question?.text || questionIndex === null) return;
+    const h = getQuestionTextHash(question.text);
+    Alert.alert(
+      'この問題を非表示',
+      '今後、このステージではこの問題が出題されません。ステージ選択の「非表示を解除」ですべて元に戻せます。',
+      [
+        { text: 'キャンセル', style: 'cancel' },
+        {
+          text: '非表示にする',
+          style: 'destructive',
+          onPress: async () => {
+            await hideQuestionByHash(subject, field, h);
+            setHiddenHashes((prev) => new Set([...prev, h]));
+            const newLen = questions.length - 1;
+            setQuestionIndex((prev) => Math.min(prev ?? 0, Math.max(0, newLen - 1)));
+          },
+        },
+      ]
+    );
+  }, [subject, field, question?.text, questionIndex, questions.length]);
+
+  const canOfferHideQuestion =
+    (questionStats?.consecutiveCorrect ?? 0) >= 5 &&
+    !!question?.text &&
+    !hiddenHashes.has(getQuestionTextHash(question.text));
+
   // 人の関係がある問題（A,B,C等）→ 図モード表示
   const isDiagramEligible = useMemo(() => {
     const text = (question?.text || '') + (Array.isArray(question?.choices) ? question.choices.join('') : '');
@@ -866,7 +875,33 @@ export default function QuestionScreen() {
     return keywords.some((kw) => text.includes(kw));
   }, [subject, isInDescriptiveField, paramField, question?.text, question?.choices]);
 
-  if (!subject || !field || !question) {
+  if (!subject || !field) {
+    return (
+      <ThemedView style={styles.container}>
+        <ThemedText type="title">問題が見つかりません</ThemedText>
+        <ThemedText>科目一覧から選択し直してください。</ThemedText>
+        <Pressable style={styles.backButton} onPress={() => router.replace('/')}>
+          <ThemedText type="defaultSemiBold">科目一覧へ</ThemedText>
+        </Pressable>
+      </ThemedView>
+    );
+  }
+
+  if (baseQuestions.length > 0 && questions.length === 0) {
+    return (
+      <ThemedView style={styles.container}>
+        <ThemedText type="title">表示できる問題がありません</ThemedText>
+        <ThemedText style={{ marginBottom: 16 }}>
+          このステージの問題がすべて非表示になっています。ステージ選択で「非表示を解除」してください。
+        </ThemedText>
+        <Pressable style={styles.backButton} onPress={() => router.back()}>
+          <ThemedText type="defaultSemiBold">ステージ選択へ戻る</ThemedText>
+        </Pressable>
+      </ThemedView>
+    );
+  }
+
+  if (questions.length === 0 || questionIndex === null || !question) {
     return (
       <ThemedView style={styles.container}>
         <ThemedText type="title">問題が見つかりません</ThemedText>
@@ -924,19 +959,35 @@ export default function QuestionScreen() {
             })}
           </ScrollView>
         )}
-        <View style={{ flexDirection: 'row', alignItems: 'baseline', marginBottom: 8, gap: 12 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', marginBottom: 8, gap: 10 }}>
           <ThemedText type="subtitle" style={[styles.subject, { color: colors.text, fontWeight: '800' }]}>
             {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length || 0})` : ''}
             {mode === 'bonus' ? ' ★ボーナスステージ★' : ''}
           </ThemedText>
           {questionStats && (() => {
             const total = questionStats.correct + questionStats.wrong;
+            if (total <= 0) return null;
             return (
               <ThemedText style={{ color: colors.subText, fontSize: 14 }}>
                 正答率: {questionStats.correct}/{total}
               </ThemedText>
             );
           })()}
+          {canOfferHideQuestion ? (
+            <Pressable
+              onPress={handleHideThisQuestion}
+              style={{
+                paddingHorizontal: 12,
+                paddingVertical: 6,
+                borderRadius: 16,
+                borderWidth: 1,
+                borderColor: colors.choiceBorder,
+                backgroundColor: colors.card,
+              }}
+            >
+              <ThemedText style={{ fontSize: 13, fontWeight: '600', color: colors.text }}>この問題を非表示</ThemedText>
+            </Pressable>
+          ) : null}
         </View>
 
         {renderQuestionText()}

@@ -1,11 +1,12 @@
 import { Link, useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { Modal, Pressable, StyleSheet, View } from 'react-native';
+import { Alert, Modal, Pressable, StyleSheet, View } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
+import { unhideAllInField } from '@/utils/question-hidden';
 import { debugForceUnlock, hasSeenBonusReveal, isBonusUnlocked, markBonusRevealSeen } from '@/utils/progress';
 
 const isLightBg = (hex: string) => {
@@ -69,11 +70,23 @@ export default function StageSelectScreen() {
         }
     };
 
+    const handleUnhideAll = async () => {
+        if (!subject || !field) {
+            Alert.alert('非表示を解除', '分野が指定されていません。');
+            return;
+        }
+        await unhideAllInField(subject, field);
+        Alert.alert('非表示を解除', 'このステージで非表示にした問題が、再び出題されるようになりました。');
+    };
+
     return (
         <ThemedView style={styles.container}>
             <View style={styles.titleRow}>
                 <Pressable onPress={handleDebugUnlock} style={{ flex: 1 }}>
                     <ThemedText type="title">{displayTitle}</ThemedText>
+                </Pressable>
+                <Pressable style={styles.unhideButton} onPress={handleUnhideAll}>
+                    <ThemedText style={styles.unhideText}>非表示を解除</ThemedText>
                 </Pressable>
                 <Pressable
                     style={styles.shuffleButton}
@@ -164,6 +177,21 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         gap: 12,
+    },
+    unhideButton: {
+        paddingHorizontal: 12,
+        paddingVertical: 8,
+        borderRadius: 20,
+        borderWidth: 1.5,
+        borderColor: '#607D8B',
+        backgroundColor: 'transparent',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    unhideText: {
+        color: '#607D8B',
+        fontWeight: 'bold',
+        fontSize: 13,
     },
     shuffleButton: {
         paddingHorizontal: 14,
