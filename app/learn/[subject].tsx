@@ -1,8 +1,8 @@
 import { applyTTSRules } from '@/utils/tts-rules';
 import { Link, router, useLocalSearchParams } from 'expo-router';
 import * as Speech from 'expo-speech';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Alert, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Alert, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { LexiconText, stripLexiconMarkupForPlain } from '@/components/lexicon-text';
 import { MarkdownText } from '@/components/markdown-text';
@@ -14,7 +14,7 @@ import { useTheme } from '@/src/context/ThemeContext';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { mergedDeepdiveHasResolvableImage, pickAutoLearnDeepdiveImageKey } from '@/src/deepdiveLearnAutoImage';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
-import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_SOURCE } from '@/src/learn';
+import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_SOURCE } from '@/src/learn';
 import { setDeepdiveParams } from '@/src/deepdiveState';
 import { PIN_CASES } from '@/src/pinData';
 import { SUBJECTS } from '@/src/questions';
@@ -150,7 +150,6 @@ export default function LearnSubjectScreen() {
     setSpokenIndex,
     setLearnScreenMounted,
     registerManualNav,
-    togglePlay,
   } = useLearnPlayback();
   const [isSticky, setIsSticky] = useState(false);
   const [isPriorityMode, setIsPriorityMode] = useState(false);
@@ -160,8 +159,39 @@ export default function LearnSubjectScreen() {
 
   const { characterMap, updateCharacterName, applyCharacterNames } = useCharacter();
 
+  /** TTS の onDone / onBoundary が「前の発話」から遅延して走り、カードや読了がずれるのを防ぐ */
+  const ttsUtteranceIdRef = useRef(0);
+  const isPlayingRef = useRef(isPlaying);
+  const currentIndexRef = useRef(currentIndex);
+  const currentReadCountRef = useRef(currentReadCount);
+  const displayListLenRef = useRef(0);
+  /** await 後も最新のカード本文・速度を参照（クロージャずれ防止） */
+  const currentDisplayContentRef = useRef('');
+  const playbackRateRef = useRef(playbackRate);
+  const applyCharacterNamesRef = useRef(applyCharacterNames);
 
   const { theme, colors } = useTheme();
+
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
+  useEffect(() => {
+    currentIndexRef.current = currentIndex;
+  }, [currentIndex]);
+  useEffect(() => {
+    currentReadCountRef.current = currentReadCount;
+  }, [currentReadCount]);
+
+  /**
+   * 手動で次へ・前へ・シーク・停止するときに同期的に呼ぶ。
+   * isPlayingRef / ttsUtteranceIdRef は useEffect の後でしか state と同期しないため、
+   * その前に onDone が走ると旧セッションの speakRepeat が続き「前の問題の音声だけ」になる。
+   */
+  const killLearnTtsPlayback = useCallback(() => {
+    ttsUtteranceIdRef.current += 1;
+    isPlayingRef.current = false;
+    Speech.stop();
+  }, []);
 
   useEffect(() => {
     setLearnScreenMounted(true);
@@ -257,7 +287,14 @@ export default function LearnSubjectScreen() {
 
   const originalContentIndex = displayIndexList[currentIndex] ?? currentIndex;
 
+  useEffect(() => {
+    displayListLenRef.current = displayContentList.length;
+  }, [displayContentList.length]);
+
   const currentDisplayContent = displayContentList[currentIndex] || '';
+  currentDisplayContentRef.current = currentDisplayContent;
+  playbackRateRef.current = playbackRate;
+  applyCharacterNamesRef.current = applyCharacterNames;
   const isLastItem = currentIndex >= displayContentList.length - 1;
 
   // B列由来（LEARN_DEEPDIVE）。多肢選択はシート別キー優先、なければマージ「多肢選択」をスライス
@@ -291,6 +328,32 @@ export default function LearnSubjectScreen() {
     const raw = subject ? (LEARN_DEEPDIVE as any)[subject] : [];
     return Array.isArray(raw) ? raw : [];
   }, [subject, deepdiveTashiSlice]);
+
+  /** F列解説（LEARN_DEEPDIVE と同じキー・インデックスで並ぶ） */
+  const learnFExplainColumnArr: string[] = useMemo(() => {
+    if (subject === '多肢選択' && deepdiveTashiSlice) {
+      if (tashiField === '憲法') {
+        const raw = (LEARN_F_EXPLAIN as any)?.['多肢選択憲法'];
+        if (Array.isArray(raw) && raw.length > 0) return raw;
+      } else if (tashiField === '行政法') {
+        const raw = (LEARN_F_EXPLAIN as any)?.['多肢選択行政法'];
+        if (Array.isArray(raw) && raw.length > 0) return raw;
+      } else {
+        const ken = (LEARN_F_EXPLAIN as any)?.['多肢選択憲法'];
+        const gyo = (LEARN_F_EXPLAIN as any)?.['多肢選択行政法'];
+        const a = Array.isArray(ken) ? ken : [];
+        const b = Array.isArray(gyo) ? gyo : [];
+        if (a.length + b.length > 0) return [...a, ...b];
+      }
+      const full = (LEARN_F_EXPLAIN as any)?.['多肢選択'];
+      const arr = Array.isArray(full) ? full : [];
+      return sliceTashiSyncedByField(arr, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo);
+    }
+    const raw = subject ? (LEARN_F_EXPLAIN as any)[subject] : [];
+    return Array.isArray(raw) ? raw : [];
+  }, [subject, deepdiveTashiSlice, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo]);
+
+  const learnFExplainText = (learnFExplainColumnArr[originalContentIndex] || '').trim();
 
   const learnSourceSheetLabel = useMemo(() => {
     if (subject === '多肢選択') {
@@ -328,6 +391,22 @@ export default function LearnSubjectScreen() {
   const hasImageTagInCard = /\[\[image:[^\]]+\]\]/.test(currentDisplayContent);
   const hasValidImage = !!(currentImageName && resolveImageAsset(currentImageName));
 
+  const learnAutoImageKey = useMemo(
+    () =>
+      subject
+        ? pickAutoLearnDeepdiveImageKey(
+            originalContentIndex,
+            (deepdiveContent || '').trim(),
+            deepdiveColumnArr,
+            contentList as string[],
+            subject
+          )
+        : undefined,
+    [subject, originalContentIndex, deepdiveContent, deepdiveColumnArr, contentList]
+  );
+
+  const learnAutoImageResolved = !!(learnAutoImageKey && resolveImageAsset(learnAutoImageKey));
+
   // Remove LINK and IMAGE tags from content for display processing
   const contentToProcess = currentDisplayContent
     .replace(/\[\[LINK:.+?\]\]/g, '')
@@ -346,7 +425,7 @@ export default function LearnSubjectScreen() {
   } else if (subject) {
     for (const category of Object.values(SUBJECTS as any)) {
       if ((category as any)[subject]) {
-        foundQuestion = (category as any)[subject]?.[currentIndex];
+        foundQuestion = (category as any)[subject]?.[originalContentIndex];
         break;
       }
     }
@@ -368,20 +447,43 @@ export default function LearnSubjectScreen() {
         originalContentIndex,
         fromB,
         deepdiveColumnArr,
-        contentList as string[]
+        contentList as string[],
+        subject
       );
-      if (autoKey) merged = `[[image:${autoKey}]]\n\n${merged}`;
+      if (autoKey && resolveImageAsset(autoKey)) merged = `[[image:${autoKey}]]\n\n${merged}`;
+    } else if (!merged.trim()) {
+      const autoKey = pickAutoLearnDeepdiveImageKey(
+        originalContentIndex,
+        fromB,
+        deepdiveColumnArr,
+        contentList as string[],
+        subject
+      );
+      if (autoKey && resolveImageAsset(autoKey)) merged = `[[image:${autoKey}]]`;
     }
     return merged;
   };
 
   const handleOpenDeepDive = () => {
     const mergedPayload = buildMergedDeepdivePayload();
-    if ((!mergedPayload && !digDeeperUrl && !hasChunks && !hasValidImage && !hasImageTagInCard) || !subject) return;
+    if (
+      (!mergedPayload &&
+        !digDeeperUrl &&
+        !hasChunks &&
+        !hasValidImage &&
+        !hasImageTagInCard &&
+        !learnAutoImageResolved) ||
+      !subject
+    )
+      return;
 
     // B列＋A列の [[image:…]] を結合して「もっと深掘る」へ
     if (mergedPayload) {
-      setDeepdiveParams(mergedPayload, '', { fromLearn: true });
+      setDeepdiveParams(mergedPayload, '', {
+        fromLearn: true,
+        fExplain: learnFExplainText,
+        learnSubject: subject,
+      });
       router.push({ pathname: '/deepdive' as any, params: { content: mergedPayload, choiceLabel: '' } });
       return;
     }
@@ -415,6 +517,7 @@ export default function LearnSubjectScreen() {
   };
 
   const handleManualNext = useCallback(() => {
+    killLearnTtsPlayback();
     setIsPlaying(false);
     if (isLastItem) {
       addPoints(1);
@@ -425,16 +528,26 @@ export default function LearnSubjectScreen() {
       setCurrentReadCount(1);
       setSpokenIndex(0);
     }
-  }, [isLastItem, currentIndex, addPoints, router, setIsPlaying, setSpokenIndex]);
+  }, [isLastItem, currentIndex, addPoints, router, setIsPlaying, setSpokenIndex, killLearnTtsPlayback]);
 
   const handleManualPrev = useCallback(() => {
+    killLearnTtsPlayback();
     setIsPlaying(false);
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
       setCurrentReadCount(1);
       setSpokenIndex(0);
     }
-  }, [currentIndex, setIsPlaying, setSpokenIndex]);
+  }, [currentIndex, setIsPlaying, setSpokenIndex, killLearnTtsPlayback]);
+
+  const handleLearnTogglePlay = useCallback(() => {
+    if (isPlaying) {
+      killLearnTtsPlayback();
+      setIsPlaying(false);
+    } else {
+      setIsPlaying(true);
+    }
+  }, [isPlaying, setIsPlaying, killLearnTtsPlayback]);
 
   useEffect(() => {
     registerManualNav({
@@ -444,74 +557,110 @@ export default function LearnSubjectScreen() {
   }, [registerManualNav, handleManualPrev, handleManualNext]);
 
   // Continuous Playback Effect
+  // currentReadCount を依存に含めない（含めると毎リピートで effect が再実行され stop/speak が競合し表示と音声がずれる）
   useEffect(() => {
-    if (isPlaying && currentDisplayContent) {
-      const speakCurrent = async () => {
-        await Speech.stop();
-        setSpokenIndex(0);
+    if (!isPlaying || !currentDisplayContent.trim()) {
+      ttsUtteranceIdRef.current += 1;
+      Speech.stop();
+      return;
+    }
 
-        const currentMainText = currentDisplayContent.includes('※')
-          ? currentDisplayContent.split('※')[0]
-          : currentDisplayContent;
+    const sessionId = ++ttsUtteranceIdRef.current;
+    let cancelled = false;
 
-        // [[dict:語::説明]] は読み上げでは語だけ。他の [[...]] は除去
+    const run = async () => {
+      await Speech.stop();
+      if (cancelled || sessionId !== ttsUtteranceIdRef.current) return;
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      if (cancelled || sessionId !== ttsUtteranceIdRef.current) return;
+
+      const speakRepeat = (repeatNum: number) => {
+        if (cancelled || sessionId !== ttsUtteranceIdRef.current || !isPlayingRef.current) return;
+
+        const raw = currentDisplayContentRef.current;
+        const currentMainText = raw.includes('※') ? raw.split('※')[0] : raw;
         const basePlainForSync = stripLexiconMarkupForPlain(currentMainText).replace(/\[\[.*?\]\]/g, '');
-        let processedText = applyCharacterNames(basePlainForSync);
-
+        const processedText = applyCharacterNamesRef.current(basePlainForSync);
         const spokenText = applyTTSRules(processedText);
 
         if (!spokenText.trim()) {
-          console.log("Empty spoken text, stopping");
+          console.log('Empty spoken text, stopping');
+          killLearnTtsPlayback();
           setIsPlaying(false);
           return;
         }
 
-        // Small delay to ensure previous speech is fully stopped and engine is ready
-        await new Promise(resolve => setTimeout(resolve, 200));
+        const plainLen = processedText.length;
+        const ttsLen = spokenText.length;
+        const rate = playbackRateRef.current;
+
+        setCurrentReadCount(repeatNum);
+        setSpokenIndex(0);
 
         Speech.speak(spokenText, {
           language: 'ja-JP',
-          rate: playbackRate,
+          rate,
           onBoundary: (event: any) => {
-            if (isPlaying && event.charIndex !== undefined) {
-              setSpokenIndex(event.charIndex);
+            if (cancelled || sessionId !== ttsUtteranceIdRef.current) return;
+            if (!isPlayingRef.current || event.charIndex === undefined) return;
+            let idx = event.charIndex;
+            if (ttsLen > 0 && plainLen !== ttsLen) {
+              idx = Math.min(plainLen, Math.round((event.charIndex / ttsLen) * plainLen));
+            } else {
+              idx = Math.min(plainLen, event.charIndex);
             }
+            setSpokenIndex(idx);
           },
           onDone: () => {
-            if (!isPlaying) return;
+            if (cancelled || sessionId !== ttsUtteranceIdRef.current) return;
+            if (!isPlayingRef.current) return;
 
-            setSpokenIndex(basePlainForSync.length);
-            // Wait even less after completion for tighter feedback
+            setSpokenIndex(plainLen);
             setTimeout(() => {
-              if (currentReadCount < 3) {
-                setCurrentReadCount(prev => prev + 1);
-                setReadCount(prev => prev + 1);
-              } else {
-                if (isLastItem) {
-                  setIsPlaying(false);
-                  addPoints(1);
-                  alert('学習完了！ +1ポイント');
-                  router.back();
-                } else {
-                  setCurrentIndex(prev => prev + 1);
-                  setCurrentReadCount(1);
-                  setReadCount(prev => prev + 1);
-                }
+              if (cancelled || sessionId !== ttsUtteranceIdRef.current) return;
+              if (!isPlayingRef.current) return;
+
+              if (repeatNum < 3) {
+                setReadCount((prev) => prev + 1);
+                speakRepeat(repeatNum + 1);
+                return;
               }
-            }, 50); // Reduced from 100ms
+
+              setReadCount((prev) => prev + 1);
+              const idx = currentIndexRef.current;
+              const len = displayListLenRef.current;
+              const last = len > 0 && idx >= len - 1;
+              if (last) {
+                setIsPlaying(false);
+                addPoints(1);
+                alert('学習完了！ +1ポイント');
+                router.back();
+              } else {
+                setCurrentIndex(idx + 1);
+                setCurrentReadCount(1);
+              }
+            }, 50);
           },
           onError: (e) => {
-            console.log("TTS Error:", e);
+            console.log('TTS Error:', e);
+            if (cancelled || sessionId !== ttsUtteranceIdRef.current) return;
+            killLearnTtsPlayback();
             setIsPlaying(false);
           },
         });
       };
 
-      speakCurrent();
-    } else {
+      speakRepeat(1);
+    };
+
+    run();
+
+    return () => {
+      cancelled = true;
+      ttsUtteranceIdRef.current += 1;
       Speech.stop();
-    }
-  }, [isPlaying, currentDisplayContent, playbackRate, currentReadCount, isLastItem, currentIndex, addPoints, router]);
+    };
+  }, [isPlaying, currentDisplayContent, playbackRate, currentIndex, addPoints, router, killLearnTtsPlayback]);
 
   const handleToggleSticky = () => {
     if (learnScopeKey) {
@@ -521,6 +670,7 @@ export default function LearnSubjectScreen() {
   };
 
   const handleTogglePriorityMode = () => {
+    killLearnTtsPlayback();
     setIsPriorityMode(!isPriorityMode);
     setCurrentIndex(0);
     setCurrentReadCount(1);
@@ -600,6 +750,7 @@ export default function LearnSubjectScreen() {
             currentIndex={currentIndex}
             totalCount={displayContentList.length}
             onSeek={(index) => {
+              killLearnTtsPlayback();
               setIsPlaying(false);
               setCurrentIndex(index);
               setCurrentReadCount(1);
@@ -657,7 +808,6 @@ export default function LearnSubjectScreen() {
           </ThemedView>
 
           <ThemedView style={styles.contentContainer}>
-
             <LexiconText
               text={mainText}
               lineStyle={styles.content}
@@ -711,7 +861,7 @@ export default function LearnSubjectScreen() {
 
             <Pressable
               style={[styles.playButton, isPlaying ? styles.stopButton : styles.startButton]}
-              onPress={togglePlay}
+              onPress={handleLearnTogglePlay}
             >
               <ThemedText type="defaultSemiBold" style={{ color: '#fff' }}>
                 {isPlaying ? '■ 停止' : '▶ 再生'}
@@ -739,7 +889,7 @@ export default function LearnSubjectScreen() {
             ))}
 
             {/* Deep Dive Button (Moved inside speedContainer) */}
-            {(deepdiveContent || digDeeperUrl || hasChunks || hasValidImage) ? (
+            {(deepdiveContent || digDeeperUrl || hasChunks || hasValidImage || learnAutoImageResolved || hasImageTagInCard) ? (
               <Pressable style={styles.digDeeperButtonSmall} onPress={handleOpenDeepDive}>
                 <MaterialIcons
                   name={(digDeeperUrl === '54' && subject === '民法総則') ? "brush" : "article"}
@@ -1385,23 +1535,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 8,
     backgroundColor: '#007BFF',
-  },
-  questionImage: {
-    width: '100%',
-    height: 220,
-    marginTop: 16,
-    borderRadius: 8,
-  },
-  imageContainer: {
-    width: '100%',
-    aspectRatio: 1.5,
-    backgroundColor: '#f5f7fa',
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#e2e8f0',
-    marginBottom: 20,
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

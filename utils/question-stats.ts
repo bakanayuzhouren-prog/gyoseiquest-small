@@ -37,6 +37,67 @@ export interface QuestionStats {
   wrong: number;
   /** 直近の連続正解回数（不正解で 0 にリセット） */
   consecutiveCorrect: number;
+  /** 誤答リスト表示用（最新の問題文プレビュー） */
+  previewText?: string;
+}
+
+/** AsyncStorage キー qstats_{subject}|{field}|{hash} を分解 */
+export function parseQuestionStatsStorageKey(key: string): { subject: string; field: string; textHash: string } | null {
+  if (!key.startsWith(PREFIX)) return null;
+  const rest = key.slice(PREFIX.length);
+  const parts = rest.split('|');
+  if (parts.length < 3) return null;
+  const textHash = parts[parts.length - 1]!;
+  const field = parts[parts.length - 2]!;
+  const subject = parts.slice(0, -2).join('|');
+  return { subject, field, textHash };
+}
+
+export interface WrongQuestionListEntry {
+  subject: string;
+  field: string;
+  textHash: string;
+  wrong: number;
+  correct: number;
+  previewText: string;
+}
+
+/** wrong > 0 の問題のみ（誤答問題リスト用） */
+export async function getAllWrongQuestionEntries(): Promise<WrongQuestionListEntry[]> {
+  try {
+    const keys = (await AsyncStorage.getAllKeys()).filter((k) => k.startsWith(PREFIX));
+    if (keys.length === 0) return [];
+    const pairs = await AsyncStorage.multiGet(keys);
+    const out: WrongQuestionListEntry[] = [];
+    for (const [key, raw] of pairs) {
+      if (!raw) continue;
+      const parsed = parseQuestionStatsStorageKey(key);
+      if (!parsed) continue;
+      let stats: QuestionStats;
+      try {
+        stats = JSON.parse(raw);
+      } catch {
+        continue;
+      }
+      const wrong = Math.max(0, parseInt(String(stats.wrong), 10) || 0);
+      if (wrong <= 0) continue;
+      const correct = Math.max(0, parseInt(String(stats.correct), 10) || 0);
+      const previewText = (stats.previewText && String(stats.previewText).trim()) || '（問題文プレビューなし・タップで解く）';
+      out.push({
+        subject: parsed.subject,
+        field: parsed.field,
+        textHash: parsed.textHash,
+        wrong,
+        correct,
+        previewText,
+      });
+    }
+    out.sort((a, b) => b.wrong - a.wrong || b.correct - a.correct);
+    return out;
+  } catch (e) {
+    console.error('getAllWrongQuestionEntries', e);
+    return [];
+  }
 }
 
 export async function getQuestionStats(
@@ -53,6 +114,7 @@ export async function getQuestionStats(
       correct: Math.max(0, parseInt(parsed.correct, 10) || 0),
       wrong: Math.max(0, parseInt(parsed.wrong, 10) || 0),
       consecutiveCorrect: Math.max(0, parseInt(parsed.consecutiveCorrect, 10) || 0),
+      previewText: typeof parsed.previewText === 'string' ? parsed.previewText : undefined,
     };
   } catch {
     return { correct: 0, wrong: 0, consecutiveCorrect: 0 };
@@ -87,6 +149,10 @@ export async function updateQuestionStats(
     } else {
       current.wrong += 1;
       current.consecutiveCorrect = 0;
+    }
+    const qt = (questionText || '').trim();
+    if (qt) {
+      current.previewText = qt.length > 400 ? `${qt.slice(0, 400)}…` : qt;
     }
     await AsyncStorage.setItem(key, JSON.stringify(current));
   } catch (e) {

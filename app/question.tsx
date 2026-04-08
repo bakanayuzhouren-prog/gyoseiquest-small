@@ -811,6 +811,12 @@ export default function QuestionScreen() {
     return effective.length > 0 ? effective.length : ans.length;
   }, [question, mode]);
 
+  /** 肢の組合せを選ぶ定型（「誤っているものをすべて」型とは区別） */
+  const isCombinationChoicePrompt = useMemo(() => {
+    const t = (question as any)?.text || '';
+    return /の組合せはどれ|組み合わせはどれ|組合せはどれか|組合せはどれ。|当てはまるものの組合せ/.test(t);
+  }, [question]);
+
   useEffect(() => {
     if (questionIndex !== null && sidebarScrollRef.current) {
       sidebarScrollRef.current.scrollTo({ x: Math.max(0, questionIndex * ITEM_WIDTH - 80), animated: true });
@@ -973,6 +979,11 @@ export default function QuestionScreen() {
               </ThemedText>
             );
           })()}
+          {questionStats && questionStats.wrong > 0 ? (
+            <ThemedText style={{ color: '#F9A825', fontSize: 13 }}>
+              累計誤答 {questionStats.wrong}回（メニュー③誤答問題リスト）
+            </ThemedText>
+          ) : null}
           {canOfferHideQuestion ? (
             <Pressable
               onPress={handleHideThisQuestion}
@@ -1404,7 +1415,7 @@ export default function QuestionScreen() {
               )}
               {requiredSelectCount > 0 && (
                 <ThemedText style={[styles.descriptiveLabel, { color: colors.subText, marginBottom: 8 }]}>
-                  {requiredSelectCount}つ選んでください
+                  {isCombinationChoicePrompt ? '２つ以上選んでね' : '１つ若しくは複数選んでください'}
                 </ThemedText>
               )}
               {shuffledChoices.map((choiceObj: { text: string; originalIndex: number }, index: number) => {

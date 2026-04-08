@@ -24,7 +24,7 @@ export const defaultCharacterMap: CharacterMap = {
     '父': 'J',
     '母': 'K',
     // '子': 'L',
-    '兄弟姉妹': 'M',
+    '兄弟姉妹': '兄弟姉妹',
     '祖父母': 'N',
     '小原': 'O',
     '小田': 'P',
@@ -63,7 +63,12 @@ export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         try {
             const savedMap = await AsyncStorage.getItem('characterMap');
             if (savedMap) {
-                setCharacterMap(JSON.parse(savedMap));
+                const parsed = JSON.parse(savedMap) as CharacterMap;
+                // Legacy migration: stop collapsing 兄弟姉妹 -> M in learn display.
+                if (parsed['兄弟姉妹'] === 'M') {
+                    parsed['兄弟姉妹'] = '兄弟姉妹';
+                }
+                setCharacterMap(parsed);
             }
         } catch (error) {
             console.error('Failed to load character map', error);
@@ -95,8 +100,15 @@ export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         Object.entries(defaultCharacterMap).forEach(([original, defaultValue]) => {
             const userReplacement = characterMap[original];
             const replacement = userReplacement || defaultValue;
-            // Global replace
-            const regex = new RegExp(original, 'g');
+            // 「父母」を二重に壊さない（父→J・母→K が連続で JK になるのを防ぐ）
+            let regex: RegExp;
+            if (original === '父') {
+                regex = /父(?![母])/g;
+            } else if (original === '母') {
+                regex = /(?<!父)母/g;
+            } else {
+                regex = new RegExp(original.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+            }
             processedText = processedText.replace(regex, replacement);
         });
         return processedText;

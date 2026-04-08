@@ -1,9 +1,10 @@
-
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
-import { LEARN_CONTENT } from '@/src/learn';
+import { pickAutoLearnDeepdiveImageKey } from '@/src/deepdiveLearnAutoImage';
+import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/learn';
+import { resolveImageAsset } from '@/src/resolveImageAsset';
 import { SUBJECTS } from '@/src/questions';
 import { applyTTSRules } from '@/utils/tts-rules';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -14,6 +15,30 @@ import { useEffect, useState } from 'react';
 import { Dimensions, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 // @ts-ignore
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
+
+/** deepdive / chunk / imageMap を含めて参照（民法物権 learn/bukken 等） */
+function getReferenceImageSource(key: string): number | undefined {
+  const k = key.trim().split(/\s+/)[0];
+  if (!k) return undefined;
+  const resolved = resolveImageAsset(k);
+  if (resolved) return resolved;
+  return (IMAGE_RESOURCES_MAP as Record<string, number>)[k];
+}
+
+/** 本文先頭の連続する [[image:…]] を抜き出し、ヘッダー直下のヒーロー表示用に使う */
+function stripLeadingImageTags(text: string): { images: string[]; rest: string } {
+  const images: string[] = [];
+  let t = text.replace(/^\uFEFF?/, '');
+  const tagAtStart = /^\[\[image:([^\]]+)\]\]\s*/;
+  for (;;) {
+    const u = t.trimStart();
+    const m = tagAtStart.exec(u);
+    if (!m) break;
+    images.push(m[1].trim().split(/\s+/)[0]);
+    t = u.slice(m[0].length);
+  }
+  return { images, rest: t.trimStart() };
+}
 
 export default function ReferencePage() {
     const { subject, id, originSubject, originId, originIndex } = useLocalSearchParams();
@@ -57,6 +82,25 @@ export default function ReferencePage() {
         explainText = learnImageMatches.join('\n') + '\n\n' + explainText;
     }
 
+    // B列深掘り＋問番号からの自動画像（民法物権 learn/minnpou/bukken/N-110 等）。最上部に置くため本文より先に付与
+    const ddArr = (LEARN_DEEPDIVE as any)[subjectName];
+    const lcArr = (LEARN_CONTENT as any)[subjectName];
+    if (Array.isArray(ddArr) && ddArr.length > 0) {
+        const autoKey = pickAutoLearnDeepdiveImageKey(
+            questionIndex,
+            (ddArr[questionIndex] || '').trim(),
+            ddArr,
+            Array.isArray(lcArr) && lcArr.length === ddArr.length ? lcArr : undefined,
+            subjectName
+        );
+        if (autoKey && resolveImageAsset(autoKey)) {
+            const tag = `[[image:${autoKey}]]`;
+            if (!explainText.includes(tag)) {
+                explainText = `${tag}\n\n${explainText}`;
+            }
+        }
+    }
+
     // Override for Agency Personation Diagram (Workaround for large questions.js)
     if (subjectName === '民法総則' && questionIndex === 54) {
         explainText = "[[image:agency_diagram]]";
@@ -64,6 +108,8 @@ export default function ReferencePage() {
     if (subjectName === '民法総則' && questionIndex === 55) {
         explainText = "[[big:復代理人の引渡義務（民法107条2項）]]\n\n[[bold:【1. 復代理人の選任】]]\n[[image:chachalot:本人]] [[arrow:right]] [[image:pitchi:代理人]] [[arrow:right]] [[image:task:復代理人]]\n\n[[bold:【2. 目的物の受領】]]\n[[image:task:復代理人]] [[gift_arrow:left]] [[image:king_kachadokuro:相手方]]\n\n[[bold:【3. 本人または代理人への引渡し】]]\n[[image:chachalot:本人]] [[gift_arrow:left:or]] [[image:task:復代理人]] [[gift_arrow:right:or]] [[image:pitchi:代理人]]\nどちらかに渡せば義務を履行したことになります。\n\n[[big:【結論】]]\n[[marker:復代理人は、本人、代理人のいずれかに目的物を引き渡せば、引渡義務を履行したことになります。]]";
     }
+
+    const { images: leadingImageKeys, rest: explainTextForCards } = stripLeadingImageTags(explainText);
 
     // Mini Player State
     const [isPlaying, setIsPlaying] = useState(false);
@@ -319,7 +365,7 @@ export default function ReferencePage() {
                                 }
                                 if (lineParts.length === 1 && lineParts[0].type === 'image') {
                                     const part = lineParts[0];
-                                    const imageSource = (IMAGE_RESOURCES_MAP as any)[part.content];
+                                    const imageSource = getReferenceImageSource(part.content);
                                     if (imageSource) {
                                         return (
                                             <View key={lineIndex} style={{ width: '100%', alignItems: 'center', marginVertical: 15 }}>
@@ -355,7 +401,7 @@ export default function ReferencePage() {
                                                 case 'bold': return <ThemedText key={partIndex} style={[styles.line, { color: mainTextCol }]}>{part.content}</ThemedText>;
                                                 case 'marker': return <ThemedText key={partIndex} style={[styles.line, styles.markerText]}>{part.content}</ThemedText>;
                                                 case 'image':
-                                                    const img = (IMAGE_RESOURCES_MAP as any)[part.content];
+                                                    const img = getReferenceImageSource(part.content);
                                                     if (img) {
                                                         const isLargeImage = part.content.includes('rigid_constitution') || part.content.includes('flexible_constitution');
                                                         const size = isLargeImage ? 150 : 70;
@@ -413,7 +459,20 @@ export default function ReferencePage() {
                         <ThemedText style={styles.titleText}>{foundQuestion.title}</ThemedText>
                     </ThemedView>
                 )}
-                {renderContent(explainText)}
+                {leadingImageKeys.map((imgKey, hi) => {
+                    const src = getReferenceImageSource(imgKey);
+                    if (!src) return null;
+                    return (
+                        <View key={`hero-img-${hi}-${imgKey}`} style={{ width: '100%', marginBottom: 16 }}>
+                            <Image
+                                source={src}
+                                style={{ width: '100%', maxHeight: 480, borderRadius: 12 }}
+                                resizeMode="contain"
+                            />
+                        </View>
+                    );
+                })}
+                {renderContent(explainTextForCards)}
             </ScrollView>
 
             <Pressable

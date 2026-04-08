@@ -78,6 +78,7 @@ async function sync() {
 
   const learnContent = {};
   const learnDeepDive = {};
+  const learnFExplain = {};
   const learnSource = {};
 
   // 2. Iterate through sheets and aggregate content
@@ -200,6 +201,7 @@ async function sync() {
     let currentQuestionStartIndex = -1;
     let currentGroupHasDeepDive = false;
     let currentGroupDeepDiveContent = '';
+    let currentGroupFExplain = '';
 
     for (let i = 0; i < dataRows.length; i++) {
       const row = dataRows[i];
@@ -243,6 +245,9 @@ async function sync() {
           currentSubject === '債権各論' ||
           currentSubject === '債権総論';
         const looksLikeId = /^[a-z]{2}\d+$/i.test(valA) || /^[ａ-ｚＡ-Ｚ０-９]+\d+$/.test(valA);
+        // 行政法総論シート: G列=問題。それ以外の通常シート: H列=問題（syncQuiz と同じ列）
+        const useGyoseiSoronLayout = t === '行政法総論';
+        const valH = useGyoseiSoronLayout ? (row[6] ? row[6].trim() : '') : (row[7] ? row[7].trim() : '');
         // A列＝本文。B列＝深掘り。C列＝青文字検索（用語/説明）。旧C列以降は1列ずつ繰り下がり（本文フォールバックはD列=index3）
         let content = row[0]; // A列＝問題文
         if (currentSubject === '民法物権') {
@@ -257,10 +262,15 @@ async function sync() {
           content = row[1];
           usedBAsMainBody = true;
         }
-
-        // 行政法総論シート: G列=問題, B列=初心者向け解説, K列=肢。行政代執行法・他: H列=問題
-        const useGyoseiSoronLayout = t === '行政法総論';
-        const valH = useGyoseiSoronLayout ? (row[6] ? row[6].trim() : '') : (row[7] ? row[7].trim() : '');
+        // 民法総則・債権・家族: A〜B・Dが空で H 列だけに本文がある行も取り込む（見て聞いて覚えると問題を解くの兼用シート向け）
+        if (
+          minpoSheetBodyInB &&
+          !(content && String(content).trim()) &&
+          valH &&
+          valH !== '問題'
+        ) {
+          content = useGyoseiSoronLayout ? row[6] : row[7];
+        }
 
         // 多肢選択（専用シート含む）・憲法本シート: 見て聞いて覚えるの問題文はA列起点（Hは穴埋め用のため新グループ条件に含めない）
         const tashiLearnSubject =
@@ -295,9 +305,10 @@ async function sync() {
             currentQuestionStartIndex = learnContent[currentSubject].length;
           }
 
-          // Look ahead: グループ内のB列全文を収集（複数行にまたがる場合も結合）
+          // Look ahead: グループ内のB列・F列（解説）全文を収集（複数行にまたがる場合も結合）
           let groupHasDeepDive = false;
           const groupBContents = [];
+          const groupFContents = [];
           let j = i;
           while (j < dataRows.length) {
             const colVal = dataRows[j][1] ? dataRows[j][1].trim() : '';
@@ -305,6 +316,8 @@ async function sync() {
               groupHasDeepDive = true;
               groupBContents.push(colVal);
             }
+            const colF = dataRows[j][5] ? String(dataRows[j][5]).trim() : '';
+            if (colF) groupFContents.push(colF);
             if (j + 1 < dataRows.length) {
               const nextRow = dataRows[j + 1];
               const nextValProblem = useGyoseiSoronLayout ? (nextRow[6] ? nextRow[6].trim() : '') : (nextRow[7] ? nextRow[7].trim() : '');
@@ -330,6 +343,7 @@ async function sync() {
           }
           currentGroupHasDeepDive = groupHasDeepDive;
           currentGroupDeepDiveContent = groupBContents.join('\n\n');
+          currentGroupFExplain = groupFContents.join('\n\n');
         }
 
         if (valA === '問題' || valA === '肢') continue;
@@ -351,7 +365,8 @@ async function sync() {
           } else {
             // Original filters for other subjects, but relaxed for Bukken to keep Articls
             // 多肢選択系はA列そのまま採用（解説・条文などの語が本文に含まれても除外しない）
-            // [[dict:…::…]] の説明文に「解説」「説明」が入りがちなので、辞典タグ付き行は除外しない
+            // [[dict:…::…]] の説明文に「解説」が入りがちなので、辞典タグ付き行は除外しない
+            // 「説明」は除外キーに含めない（説明義務・説明して等の本文まで落ちるため）
             const valCLex = row[2] != null ? String(row[2]).trim() : '';
             const hasLexiconTag =
               trimmedContent.includes('[[dict:') || parseLexiconPairsFromCell(valCLex).length > 0;
@@ -359,8 +374,7 @@ async function sync() {
               if (
                 trimmedContent.includes('条文') ||
                 trimmedContent.includes('解説') ||
-                trimmedContent.includes('資料') ||
-                trimmedContent.includes('説明')
+                trimmedContent.includes('資料')
               ) {
                 if (i > 10) continue;
               }
@@ -383,6 +397,17 @@ async function sync() {
                 ? row[1].trim()
                 : '';
           learnDeepDive[currentSubject].push(deepPush);
+          const fPush = usedBAsMainBody
+            ? row[5]
+              ? String(row[5]).trim()
+              : ''
+            : currentGroupHasDeepDive
+              ? currentGroupFExplain
+              : row[5]
+                ? String(row[5]).trim()
+                : '';
+          if (!learnFExplain[currentSubject]) learnFExplain[currentSubject] = [];
+          learnFExplain[currentSubject].push(fPush);
           const valCLexPush = row[2] != null ? String(row[2]).trim() : '';
           const contentFinal = applyLexiconColumn(trimmedContent, valCLexPush);
           learnContent[currentSubject].push(typeof contentFinal === 'string' ? contentFinal : String(contentFinal));
@@ -395,6 +420,7 @@ async function sync() {
 
   learnContent['商法・会社法'] = [];
   learnDeepDive['商法・会社法'] = [];
+  learnFExplain['商法・会社法'] = [];
   learnSource['商法・会社法'] = [];
 
   // LEARN_DEEPDIVE が LEARN_CONTENT より短いと、末尾カードで deepdive が undefined になる
@@ -405,10 +431,15 @@ async function sync() {
     while (d.length < c.length) {
       d.push('');
     }
+    if (!learnFExplain[key]) learnFExplain[key] = [];
+    const f = learnFExplain[key];
+    while (f.length < c.length) {
+      f.push('');
+    }
   }
 
   // Write to src/learn.js
-  const fileContent = `export const LEARN_CONTENT = ${JSON.stringify(learnContent, null, 2)};\nexport const LEARN_DEEPDIVE = ${JSON.stringify(learnDeepDive, null, 2)};\nexport const LEARN_SOURCE = ${JSON.stringify(learnSource, null, 2)};`;
+  const fileContent = `export const LEARN_CONTENT = ${JSON.stringify(learnContent, null, 2)};\nexport const LEARN_DEEPDIVE = ${JSON.stringify(learnDeepDive, null, 2)};\nexport const LEARN_F_EXPLAIN = ${JSON.stringify(learnFExplain, null, 2)};\nexport const LEARN_SOURCE = ${JSON.stringify(learnSource, null, 2)};`;
   fs.writeFileSync(OUTPUT_FILE, fileContent);
   console.log(`learn.js synced successfully to ${OUTPUT_FILE}`);
 }

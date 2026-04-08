@@ -40,59 +40,66 @@ export default function HomeScreen() {
             </ThemedText>
           </Pressable>
         </Link>
+        <Link href="/wrong-answers" asChild>
+          <Pressable style={buttonStyle}>
+            <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
+              ③誤答問題リスト
+            </ThemedText>
+          </Pressable>
+        </Link>
         <Link href="/chat" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
-              ③質問する
+              ④質問する
             </ThemedText>
           </Pressable>
         </Link>
         <Link href="/pin" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
-              ④ピンと図
+              ⑤ピンと図
             </ThemedText>
           </Pressable>
         </Link>
         <Link href="/statutes" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
-              ⑤条文
+              ⑥条文
             </ThemedText>
           </Pressable>
         </Link>
         <Link href="/ranking" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
-              ⑥全国ランキング
+              ⑦全国ランキング
             </ThemedText>
           </Pressable>
         </Link>
         <Link href="/avatar" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
-              ⑦アバター
+              ⑧アバター
             </ThemedText>
           </Pressable>
         </Link>
         <Link href="/meta" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
-              ⑧メタ空間
+              ⑨メタ空間
             </ThemedText>
           </Pressable>
         </Link>
         <Link href="/constitution" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
-              ⑨憲法を学ぶ
+              ⑩憲法を学ぶ
             </ThemedText>
           </Pressable>
         </Link>
         <Link href="/settings" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
-              ⑩設定
+              ⑪設定
             </ThemedText>
           </Pressable>
         </Link>

@@ -77,6 +77,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -128,6 +138,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -207,6 +224,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -275,6 +302,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -326,6 +362,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -394,7 +437,8 @@ export const SUBJECTS = {
         ],
         "choiceExplanations": [],
         "choiceStatuteRefs": [],
-        "choiceDeepDive": []
+        "choiceDeepDive": [],
+        "choiceDeepDiveBeginner": []
       },
       {
         "text": "次の文章は、最高裁判所の判例（百里基地訴訟）の一節である。空欄［ ］に当てはまる文章として、妥当なものはどれか。\n憲法九八条一項は、憲法が国の最高法規であること、すなわち、憲法が成文法の国法形式として最も強い形式的効力を有し、憲法に違反するその余の法形式の全部又は一部はその違反する限度において法規範としての本来の効力を有しないことを定めた規定であるから、同条項にいう「国務に関するその他の行為」とは、同条項に列挙された法律、命令、詔勅と同一の性質を有する国の行為、言い換えれば、公権力を行使して法規範を定立する国の行為を意味し、したがって、行政処分、裁判などの国の行為は、個別的・具体的ながら公権力を行使して法規範を定立する国の行為であるから、かかる法規範を定立する限りにおいて国務に関する行為に該当するものというべきであるが、国の行為であっても、私人と対等の立場で行う国の行為は、右のような法規範の定立を伴わないから憲法九八条一項にいう「国務に関するその他の行為」に該当しないものと解すべきである。……原審の適法に確定した事実関係のもとでは、本件売買契約は、［　　］ （最三小判平成元年6月20日民集43巻6号385頁）",
@@ -445,6 +489,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -501,6 +552,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -568,6 +626,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -619,6 +685,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -680,6 +753,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -731,6 +811,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -792,6 +879,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -843,6 +937,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -904,6 +1005,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -960,6 +1068,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -1046,6 +1162,17 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -1102,6 +1229,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -1153,6 +1287,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -1232,6 +1373,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -1283,6 +1431,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -1344,6 +1499,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -1400,6 +1562,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -1451,6 +1620,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -1514,6 +1690,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -1565,6 +1748,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -1626,6 +1816,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -1677,6 +1874,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -1738,6 +1942,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -1789,6 +2000,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -1850,6 +2068,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -1901,6 +2126,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -1962,6 +2194,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -2013,6 +2252,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -2104,6 +2350,18 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -2160,6 +2418,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -2211,6 +2476,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -2273,6 +2545,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -2324,6 +2603,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -2392,6 +2678,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -2449,6 +2743,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -2538,6 +2840,17 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -2595,6 +2908,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -2646,6 +2966,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -2713,6 +3040,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -2764,6 +3099,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -2825,6 +3167,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -2876,6 +3225,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -2937,6 +3293,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -2988,6 +3351,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -3053,6 +3423,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -3109,6 +3486,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -3156,6 +3540,12 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -3216,6 +3606,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -3260,6 +3657,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -3317,6 +3717,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -3369,6 +3776,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -3434,6 +3848,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -3491,6 +3912,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -3542,6 +3970,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -3624,6 +4059,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -3679,6 +4124,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -3720,6 +4168,11 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           ""
@@ -3784,6 +4237,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -3863,6 +4324,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -3912,6 +4380,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -3982,6 +4453,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -4038,6 +4518,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -4084,6 +4571,12 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -4144,6 +4637,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -4228,6 +4729,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -4280,6 +4791,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -4358,6 +4876,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -4422,6 +4947,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -4473,6 +5006,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -4535,6 +5075,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -4586,6 +5133,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -4648,6 +5202,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -4731,6 +5293,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -4782,6 +5354,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -4844,6 +5423,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -4913,6 +5500,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -4970,6 +5565,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -5039,6 +5642,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -5090,6 +5701,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -5151,6 +5769,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -5192,6 +5817,11 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           ""
@@ -5248,6 +5878,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -5330,6 +5967,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -5381,6 +6028,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -5456,6 +6110,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -5507,6 +6170,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -5582,6 +6252,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -5641,6 +6320,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -5710,6 +6397,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -5761,6 +6456,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -5837,6 +6539,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -5899,6 +6610,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -5950,6 +6669,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -6011,6 +6737,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -6064,6 +6797,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -6139,6 +6879,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -6196,6 +6945,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -6264,6 +7021,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -6322,6 +7087,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -6369,6 +7141,12 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -6443,6 +7221,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -6494,6 +7281,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -6555,6 +7349,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -6606,6 +7407,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -6667,6 +7475,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -6718,6 +7533,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -6779,6 +7601,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -6830,6 +7659,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -6922,6 +7758,18 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -6973,6 +7821,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -7046,6 +7901,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -7110,6 +7974,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       }
     ],
@@ -7163,6 +8035,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -7229,6 +8108,15 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -7311,6 +8199,17 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -7418,6 +8317,19 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -7495,6 +8407,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -7546,6 +8468,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -7650,6 +8579,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -7706,6 +8645,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -7757,6 +8703,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -7825,6 +8778,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -7876,6 +8837,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -7958,6 +8926,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -8021,6 +8999,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -8078,6 +9064,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -8161,6 +9155,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -8224,6 +9228,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -8280,6 +9292,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -8331,6 +9350,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -8398,6 +9424,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -8454,6 +9488,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -8505,6 +9546,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -8569,6 +9617,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -8620,6 +9675,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -8682,6 +9744,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -8734,6 +9803,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -8795,6 +9871,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -8846,6 +9929,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -8911,6 +10001,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -8968,6 +10065,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -9044,6 +10149,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -9095,6 +10209,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -9156,6 +10277,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -9203,6 +10331,12 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -9263,6 +10397,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -9314,6 +10455,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -9397,6 +10545,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -9444,6 +10599,12 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -9505,6 +10666,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -9580,6 +10749,16 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -9665,6 +10844,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -9731,6 +10920,16 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -9829,6 +11028,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -9880,6 +11088,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -9959,6 +11174,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -10029,6 +11254,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -10080,6 +11314,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -10141,6 +11382,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -10197,6 +11445,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -10248,6 +11503,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -10323,6 +11585,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -10374,6 +11645,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -10442,6 +11720,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -10493,6 +11779,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -10561,6 +11854,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -10612,6 +11913,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -10673,6 +11981,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -10724,6 +12039,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -10798,6 +12120,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -10849,6 +12180,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -10931,6 +12269,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -10982,6 +12327,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -11079,6 +12431,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -11130,6 +12491,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -11188,6 +12556,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -11266,6 +12641,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -11329,6 +12711,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -11380,6 +12770,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -11463,6 +12860,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -11531,6 +12935,12 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -11588,6 +12998,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -11639,6 +13056,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -11712,6 +13136,12 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -11763,6 +13193,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -11836,6 +13273,12 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -11887,6 +13330,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -11948,6 +13398,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -11999,6 +13456,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -12068,6 +13532,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -12124,6 +13596,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -12175,6 +13654,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -12243,6 +13729,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -12299,6 +13793,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -12350,6 +13851,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -12455,6 +13963,19 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -12506,6 +14027,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -12580,6 +14108,16 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -12665,6 +14203,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -12722,6 +14270,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -12798,6 +14354,15 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -12849,6 +14414,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -12920,6 +14492,16 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -13006,6 +14588,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -13057,6 +14646,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -13119,6 +14715,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -13201,6 +14805,17 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "岐阜県恵那市には地域自治区がある（市町村が条例で定める）",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
           "",
           "",
           "",
@@ -13294,6 +14909,17 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -13345,6 +14971,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -13434,6 +15067,17 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -13497,6 +15141,15 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -13581,6 +15234,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -13643,6 +15306,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -13690,6 +15361,12 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -13745,6 +15422,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -13806,6 +15490,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -13857,6 +15548,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -13937,6 +15635,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -13993,6 +15698,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -14044,6 +15756,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -14127,6 +15846,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -14178,6 +15904,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -14239,6 +15972,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -14295,6 +16035,14 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -14378,6 +16126,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -14429,6 +16187,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -14530,6 +16295,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -14581,6 +16356,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -14644,6 +16426,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -14695,6 +16484,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -14756,6 +16552,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -14807,6 +16610,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -14868,6 +16678,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -14919,6 +16736,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -14980,6 +16804,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15036,6 +16867,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15087,6 +16925,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -15160,6 +17005,12 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15228,6 +17079,12 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15275,6 +17132,12 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -15357,6 +17220,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15413,6 +17283,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15464,6 +17341,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -15556,6 +17440,16 @@ export const SUBJECTS = {
           "1. 結論：身内による「甘いチェック」を防ぐ民法第850条には、後見監督人になれない人（欠格事由）が明確に定められています。民法 第850条：後見人の配偶者、直系血族及び兄弟姉妹は、後見監督人となることができない。後見監督人の役割は、後見人が不正をしていないか、本人のために正しく財産管理を行っているかを監督することです。もし後見人の奥さんや親、兄弟が監督人になってしまうと、「身内だから」という理由でチェックが甘くなるリスクがあるため、法律で一律に禁止されています。2. なぜこの3グループなのか？法律が特に警戒しているのは、後見人と**「利害関係が近すぎる」**人々です。配偶者： 家計が同じであることが多く、後見人が財産を使い込んでも黙認する恐れがある。直系血族（親や子）： 感情的な結びつきが強く、客観的な監督が期待しにくい。兄弟姉妹： 同様に、不正を見逃したり共謀したりするリスクを排除できない。このルールにより、後見監督人には通常、弁護士、司法書士、社会福祉士などの専門家や、信頼できる第三者が選任されることになります。3. 【整理】後見監督人のポイント試験対策として、監督人に関する知識をセットで整理しておきましょう。項目内容選任の要否必須ではなく、家裁が「必要があると認めるとき」に選任する（任意）。主な職務後見人の事務の監督、財産目録作成への立ち会い、急迫の事情がある場合の必要な処分。利益相反後見人と本人の利益が衝突する場合、監督人が本人を代表する。欠格事由後見人の配偶者・直系血族・兄弟姉妹はNG（今回のポイント）。4. 試験対策のアドバイス行政書士試験では、この「監督人の欠格事由」を、**「後見人本人の欠格事由（847条）」**と混ぜて出題されることがあります。後見人になれない人： 未成年者、破産者、本人に対して訴訟をした人など。監督人になれない人： 上記の人々に加えて、**「後見人の身内」**が追加される。「監督人は、後見人よりもさらに『クリーンな第三者性』が求められる」というイメージで持っておくと、ひっかけ問題に強くなります！",
           "1. 結論：保佐開始に本人の同意は「不要」民法第11条の規定により、家庭裁判所は、本人や配偶者、四親等内の親族などの請求があれば、本人の同意がなくても保佐開始の審判をすることができます。これは、保佐が必要な状態（精神上の障害により事理を弁識する能力が著しく不十分な状態）にある人を保護することを優先しているためです。2. 【超重要】「開始」と「代理権」の同意を区別せよここで混乱してはいけないのが、**「開始の審判」と「代理権付与の審判」**での同意の要否です。保佐制度はこの2つの組み合わせがパズルのようになっています。審判の内容本人の同意は必要か？理由保佐開始の審判不要本人の保護を優先するため。保佐人に代理権を与える審判必要本人の自己決定権への介入が深いため。試験対策のアドバイス：「補助」は開始も代理権もすべてに同意が必要ですが、「保佐」は**「開始は勝手にできるけど、代理権（オプション）を付けるときだけは本人の承諾がいる」**という中間の立ち位置にあります。3. なぜ「補助」と「保佐」で差があるのか？「事理を弁識する能力（判断能力）」のレベルの違いが反映されています。保佐（著しく不十分）：自分の財産を守るための判断がかなり難しくなっているため、本人が嫌がっても「取り消し」ができるガードマン（保佐人）を付ける必要があります。補助（不十分）：判断能力の衰えが比較的軽微なため、本人の「まだ一人でやりたい」という意思を最大限尊重します。だから開始にも同意を求めます。4. 【整理】開始の審判における「同意」のまとめこの表をそのまま覚えておけば、開始に関する問題は全問正解できます。制度本人の判断能力開始の審判に同意は？後見欠くのが常況不要保佐著しく不十分不要（今回の問題）補助不十分必要",
           "1. 結論：裁判所は「自分の判断」で動ける民法第849条の2に基づき、家庭裁判所は、本人や親族などからの請求（申立て）があるときはもちろん、**「職権（裁判所独自の判断）」**によっても、後見監督人を選任することができます。「職権」でできる、ということは、たとえ親族や後見人が「監督人なんていらないよ」と言っていても、裁判所が「このケースは管理が複雑だから、プロの目が必要だ」と判断すれば、強制的に選任できることを意味します。2. 法人（会社や団体）も監督人になれる意外に見落としがちですが、成年後見人や後見監督人は、**「法人（ほうじん）」**が務めることも可能です。実務上の例： 弁護士法人、司法書士法人、社会福祉協議会、NPO法人など。メリット： 個人と違い「病気や死亡」のリスクが少なく、組織として安定した監督が期待できるため、最近では法人後見や法人監督も増えています。3. 【整理】後見監督人の選任まとめこれまでの知識とあわせて、監督人の「選任」に関する3つのルールを脳内のデータベースに格納しておきましょう。項目ルール覚え方のコツ選任は必須か？任意（必要があると認めるとき）監督人は「オプション」装備。選任の方法は？請求 または 職権裁判所が勝手に決めてもOK。なれるのは誰？自然人 または 法人会社（法人）でもOK。なれないのは誰？後見人の配偶者・直系血族・兄弟姉妹身内による「お手盛り」は禁止。4. 試験対策のアドバイスこの問題のひっかけパターンとしては、**「後見監督人の選任は、本人、配偶者、四親等内の親族、後見人の請求がある場合に限られる」**といったものが出ます。「〜に限られる」とあれば、今回の「職権（裁判所が勝手にできる）」というルールを思い出して、迷わず**「×」**と判定してください。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15665,6 +17559,21 @@ export const SUBJECTS = {
           "1. 結論：彼らは「法的メッセージ」を受け取れない未成年者や成年被後見人に対して、「あの契約、追認するのか取り消すのかハッキリしてくれ！」と催告（メッセージ）を送っても、法律上は**「最初から何も送らなかったのと同じ（無効）」**とみなされます。彼らは「自分で判断して返事をする能力」がないと法律で決められているため、そんな相手に催告をすること自体、相手方（あなた）のミスショットだ、という扱いです。2. 【超重要】「保佐・補助」との違いをデバッグ！ここが行政書士試験で最も狙われる、点差がつくポイントです。催告の相手催告の効果沈黙した場合の結果未成年者・成年被後見人無効（効果なし）何も起きない（以前のまま）被保佐人・被補助人有効取り消したとみなされるなぜこの差があるのか？未成年・後見： 判断能力が「欠けている」または「未熟」すぎるため、メッセージをぶつけること自体が不適切だと考えます。保佐・補助： 「ある程度の判断はできる」人たちです。そのため、本人に「保護者のハンコをもらってきてね」と催告することは有効とされ、無視した場合は（安全のために）「取消」という結果になります。3. 正しい送り先は？未成年者や成年被後見人と取引をしてしまった相手方は、誰に催告をすればいいのでしょうか？**法定代理人（親権者・後見人）**に対して送るのが正解です。保護者に送って「1ヶ月以上」返事がなければ、今度は一転して**「追認（有効）」**したものとみなされます。覚え方のコツ：未成年者や成年被後見人は、いわば「底の抜けたポスト」です。そこに手紙（催告）を入れても届きません。手紙は必ず、横にいる「管理権のある保護者（親など）」に渡さなければならない、とイメージしましょう。4. 試験対策のアドバイス問題文で「制限行為能力者」とひとまとめにされている場合は注意してください。「すべての制限行為能力者に対する催告は効果がない」→ ×（保佐・補助には効果があるため）「未成年者・成年被後見人に対する催告は効果がない」→ ○（今回のケース）この「誰に送ればどうなるか」のパズルは、模試でも本試験でも非常に高い確率で出題されます。",
           "1. 結論：任意後見の場合、制限行為能力者にはなりませんこの問題が指しているのは、正確には**「任意後見制度（にんいこうけんせいど）」**のことです。成年後見制度には大きく分けて2つのルートがありますが、代理権の「中身」と「本人のステータス」の関係は以下のようになっています。制度の種類代理権の発生取消権（同意権）制限行為能力者になるか？法定後見（後見・保佐・補助）審判により発生あり（※後見は取消権のみ）なる（○）任意後見契約により発生なし（×）ならない（×）2. なぜ「制限行為能力者」にならないのか？（デバッグ）「制限行為能力者」とは、簡単に言うと**「自分一人でやった契約を、後から取り消すことができる人」**のことです。これは本人が不利益を被らないための強力な保護です。法定後見： 判断能力が不十分な人を法律で強制的に守るため、本人に「取消権」というバリアを張ります。だから制限行為能力者になります。任意後見： あくまで本人と後見人の間の「契約（代理権を与えますという約束）」に基づきます。この契約には「本人の行為を取り消す権利」まで含めることはできないとされています。つまり、任意後見人が付いても、本人の契約する能力は制限されません。本人が自分一人で高額な買い物をしても、任意後見人はそれを**「制限行為能力」を理由に取り消すことはできない**のです。3. 試験対策のポイント問題文に**「代理権のみ付与」という言葉が出てきたら、それは「取消権（同意権）がない」**と言い換えて読んでください。取消権がない ＝ 本人の行為を縛らない ＝ 制限行為能力者ではない行政書士試験では、「成年後見人が選任されれば、本人は必ず制限行為能力者となる」といったひっかけ問題が出ることがあります。その際は、この「任意後見」という例外を思い出して「×」と判断してください。4. 補足：任意後見から法定後見への切り替えもし、任意後見を利用している人の判断能力がさらに低下し、どうしても「取消権」による保護が必要になった場合は、任意後見を終了させて「法定後見」へ切り替える（移行する）手続きを検討することになります。",
           "1. 結論：自分を守る必要がある人は、他人の守護者になれない民法第847条第1号には、後見人の欠格事由（なれない人）として、真っ先に**「未成年者」**が挙げられています。未成年者自身が「制限行為能力者」として保護を受ける立場にある以上、他人の財産や権利を完璧に管理・代行することを期待するのは酷であり、リスクが高いと判断されているためです。2. 【整理】後見人になれない「5つのグループ」試験対策として、第847条に定められた「後見人のNGリスト」をデバッグして整理しましょう。番号後見人になれない人理由のニュアンス1未成年者（今回のポイント）自身が保護されるべき立場だから。2家庭裁判所で解任された人過去に後見人として不適当なことをしたから。3破産者（復権していない人）自分の財産管理すら失敗しているから。4本人に対して訴訟をした人本人と対立関係にあり、利益を害する恐れがあるから。5行方の知れない人そもそも事務が行えないから。3. 未成年後見人と成年後見人の共通ルールこの欠格事由は、**「未成年後見人」と「成年後見人」**の両方に適用されます。未成年後見人： 親がいない子供のガードマン。成年後見人： 判断能力が不十分な大人のガードマン。どちらの場合も、「未成年者が後見人になること」は法律でブロックされています。4. 試験対策のアドバイス行政書士試験では、これら「なれない人」のリストの中に、**「法人はなれない」や「以前に本人の親族であった者はなれない」**といった、もっともらしい嘘の選択肢を混ぜてくることがあります。法人はなれる： 以前デバッグした通り、弁護士法人や社会福祉協議会などもOKです。欠格事由は限定的： 847条に書かれている項目（未成年、破産者、解任された者など）以外は、原則としてなれる可能性があります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15722,6 +17631,13 @@ export const SUBJECTS = {
           "1. 結論：清算前は分割請求できない民法上の組合（民法第667条以下）において、その財産は組合員の**「合有（ごうゆう）」**に属すると考えられています。組合員はそれぞれの持分（シェア）を持ってはいますが、民法第676条第2項により、**「清算前（組合が解散して後片付けをする前）に、組合財産の分割を求めることはできない」**と明確に禁止されています。したがって、問題文の「いつでも……分割を請求することができる」という部分は誤りです。2. なぜ「いつでも分割」してはいけないのか？組合は、特定の事業を行うためにみんなでお金や労力を出し合っている組織です。もし組合員が「急にお金が必要になったから、組合の土地の私の持ち分だけ分けてくれ！」といつでも自由に言えるようにしてしまうと、組合の事業が成り立たなくなってしまいます。普通の共有： 個人の自由が優先されるため、いつでも分割OK。組合（合有）： **「事業の継続」**という団体の目的が優先されるため、事業が終わる（清算）までは分割がロックされます。3. 【重要】持分に関するもう一つの制限分割ができないだけでなく、**持分の処分（売却）**についても制限があります。組合員が自分の持分を誰かに勝手に売ったとしても、そのことを組合や、組合と取引した第三者に対抗（主張）することはできません（民法676条1項）。「見ず知らずの人が突然組合のメンバー（持分保持者）として入ってくる」ことを防ぎ、メンバー間の信頼関係を守るためのルールです。4. 【決定版】共有・合有・総有の比較表行政書士試験でこの3つが混ざって出されたら、このマトリックスを脳内で展開してください。財産関係団体例持分（シェア）分割請求共有共同相続、数人で共同購入あり（自由）いつでも自由合有民法上の組合あり（制限あり）清算前は不可総有権利能力なき社団なし一切不可試験対策のアドバイス：「組合」と来たら、**「持分はあるけど、辞める（清算）までは分割できない」**と覚えましょう。",
           "1. 結論：報酬は「特約」がなければ発生しない民法における組合の業務執行については、**「委任（いにん）」**の規定が準用されます（民法671条）。委任のルール（民法648条1項）では、**「特約がない限り、報酬を請求することができない」**とされています。つまり、あらかじめ「これくらいの報酬を支払います」という合意（特約）がない限り、当然に報酬をもらえるわけではありません。2. なぜ「当然」ではないのか？組合は、メンバー全員が共通の目的のために「出資」し、「共同の事業」を行う組織です。共同事業の性質： 業務執行も事業の一部であり、基本的には自分の事業を自分でやっているという側面があります。利益配分との区別： 頑張った分は「報酬」としてではなく、事業が成功した後の**「利益の分配」**として受け取るのが本来の形であると考えられているためです。3. 【整理】業務執行組合員の権利と義務報酬以外にも、間違えやすいポイントをデバッグして整理しましょう。項目ルール覚え方のコツ報酬特約がない限り、無報酬。デフォルトは「奉仕」。費用（立替金）当然に請求できる。自分の腹を痛める必要はない。辞任正当な理由があれば辞められる。勝手投げ出しはNG。解任正当な理由＋他の組合員の全員一致。クビにするのはハードル高い。4. 試験対策のアドバイス行政書士試験では、**「報酬（労力の対価）」と「費用（実際にかかったお金）」**の区別を狙ってきます。報酬： 特約が必要（当然にはもらえない）。費用（支出した代金や利息）： 特約がなくても当然に請求できる（民法650条）。「業務執行のために自腹を切ったお金」は返してもらえますが、「自分の労働に対するお給料」はあらかじめ決めておかないともらえない、と区別しておきましょう。",
           "1. 結論：内部の制限は「外の人」には見えない判例（最判昭38.5.31）は、民法上の組合において、組合規約などで業務執行組合員の代理権に制限を設けても、その制限は善意かつ無過失の第三者には対抗（主張）できないとしています。つまり、組合内で「Aさんは100万円以上の契約は勝手にできない」と決めていても、それを知らず、かつ知らないことに落ち度がない取引相手に対しては、組合側は「あの契約は無効だ」とは言えません。2. なぜ「善意無過失」まで求められるのか？通常、業務執行権限を持つ組合員は、対外的にも組合を代表する権限（代理権）を持っていると推定されます（民法670条の2第2項）。取引の安全： 相手方からすれば、「業務執行者」という肩書きがある以上、当然その仕事に関する権限があると考えます。内部の細かい契約書（組合契約）をすべてチェックしなければならないとすると、スムーズな取引ができません。権利の外観： 権限があるように見える「外見」を信じた人を守るべきですが、もし相手方が制限を知っていた（悪意）、あるいは注意すれば気付けた（過失）場合には、そこまで守る必要はないと考えられています。3. 【整理】「代表」と「代理」の制限に関するルール以前デバッグした「法人の理事」のケースとあわせて整理すると、より理解が深まります。団体制限を対抗できる相手根拠・考え方一般法人（理事）悪意の第三者登記されている事項（代表権の制限）は、善意でも過失があれば対抗できる場合がある。組合（業務執行者）悪意 または 有過失の第三者組合契約は通常登記されないため、相手方が善意無過失なら保護される。試験対策のアドバイス：行政書士試験では、この「善意」だけでいいのか「無過失」まで必要なのかというディテールがよく問われます。組合の代理権制限については、**「善意無過失（知らないし、落ち度もない）」**というセットで覚えておきましょう。4. 補足：もし相手方が「知っていた（悪意）」ら？もし取引の相手方が、「Aさんは100万円以上の契約には他のメンバーのハンコが必要なんだよね」と知っていた場合は、組合側は堂々と「この契約は無効だ（無権代理だ）」と主張して、契約を白紙に戻すことができます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15778,6 +17694,13 @@ export const SUBJECTS = {
           "1. 結論：やむを得ない事由がある脱退は「絶対」民法第678条第2項には、「組合員は、……やむを得ない事由があるときは、いつでも脱退することができる」と定められています。判例は、この規定を「組合員の自由を保障するための強行法規的（きょうこうほうきてき）な性質を持つ」と判断しています。したがって、契約で「どんな理由があっても辞められない」と縛っても、その約定は無効となります。2. なぜ「強行法規（絶対守るべきルール）」なのか？もし「やむを得ない事由（病気、破産、遠方への移住など）」があっても辞められない、という契約が有効になってしまうと、どうなるでしょうか。人格的自由の侵害： 本人の意思に反して、無限責任を負う組合という組織に一生縛り付けることになり、個人の自由を不当に制限します。公序良俗違反： そのような過酷な拘束は、社会通念上許されない（民法90条違反）と考えられます。そのため、組合員の「脱退の自由」のうち、特にこの「やむを得ない事由による脱退」だけは、特約で奪うことができない聖域とされています。3. 【整理】「任意脱退」のルールをデバッグ！試験では、以下の2つのパターンの違いがよく問われます。パターン原則のルール特約での制限期間の定めがない場合いつでも脱退OK（6ヶ月前の予告）制限できる（予告期間を延ばす等）期間の定めがある場合原則、脱退できないその通り（期間中は拘束される）やむを得ない事由ありいつでも脱退OK（今回のケース）制限不可（特約は無効）ポイント：「元気で特に理由もないなら、契約期間中は頑張れ（制限OK）」と言えますが、「どうしても辞めなきゃいけない事情がある人（やむを得ない事由）まで縛り付けるな」というのが民法のスタンスです。4. 試験対策のアドバイス行政書士試験では、以下のようなひっかけに注意してください。「組合員の脱退に関する規定はすべて強行法規である」→ ×（やむを得ない事由がある場合だけが強行法規的です）「やむを得ない事由があっても、組合員全員の同意がなければ脱退できないとする特約は有効である」→ ×（本人の意思だけで脱退できる権利を奪えません）「組合は入るのは簡単（契約）、出るのは事情次第（強行法規で保護）」とイメージしておきましょう。",
           "1. 結論：判断の基準は「契約成立時」\n民法第90条（公序良俗）に反するかどうかの判断は、原則として**「契約が締結された時点」**の社会情勢や国民の道徳観を基準にします。\n\n理由： 契約を結んだ後に社会の価値観が変わったからといって、後出しジャンケンで「あの時の契約はやっぱり無効だ」とひっくり返せてしまうと、法的取引の安定性が失われてしまうからです。\n\n2. なぜ「その後」の変化は影響しないのか？\n例えば、契約した当時は適法で道徳的にも問題がなかった行為が、数年後に新しい法律ができたり、社会の通念が厳しくなったりして「公序良俗違反」とされるようになったとします。\n\n契約成立時： ホワイト（有効）\n\n現在： ブラック（無効とされる内容）\n\nこの場合でも、契約した瞬間にホワイトだったのであれば、その契約は有効なままです。これを「法律不遡及（ほうりつふそきゅう）の原則」に近い考え方で、当時の当事者の信頼を守るためにそのように運用されています。\n\n3. 【注意】例外的なケース\n基本は「成立時」ですが、判例（最判昭26.11.27など）では、契約成立時には公序良俗に反していなかったとしても、その後の事情の変化によって、契約の内容をそのまま実現させることが著しく正義に反するような場合には、例外的に無効や権利行使の制限（信義則など）が検討されることもあります。\n\nしかし、行政書士試験の短答式対策としては、原則通り**「判断基準は契約成立時である」**というフレーズを正解として覚えておくのが得策です。\n\n4. 試験対策のアドバイス\n「公序良俗」の問題で「いつの時点の公序か？」と問われたら、迷わず**「成立時（締結時）」**を選んでください。\n\nひっかけ： 「裁判の口頭弁論終結時（裁判の最後）の公序による」といった選択肢は**×**です。",
           "これは日本の労働判例史において非常に重要な**「日産自動車事件（最判昭56.3.24）」**の判旨をベースにした問題ですね。「公序良俗（90条）」が、会社の中のルール（就業規則）にどのようにストップをかけるのか、そのロジックをデバッグしましょう。1. 結論：性別のみを理由とする差別は「アウト」最高裁は、憲法14条（法の下の平等）の趣旨や、当時の社会情勢に照らし、「女子であることを理由として男子より低年齢で退職させることは、合理的理由がない限り、公序良俗に反して無効である」と判断しました。民法90条の役割： 私企業（会社）と労働者の契約であっても、あまりに差別的で不当な内容は、公序良俗違反というフィルターを通して無効化されます。2. 「合理的理由」は認められるのか？会社側は「女性は体力が劣る」「家庭責任があるから貢献度が低い」といった主張をしましたが、裁判所は以下のように一蹴しました。個別の能力差： 「女性だから」という一括りの決めつけではなく、個々の能力には個人差がある。業務への影響： 事務職などにおいて、女性が男性より5年も早く能力が衰えるという客観的な根拠はない。したがって、性別だけを理由に定年に差をつけることは「合理的理由がない」とされ、現在ではこのルールは完全に定着しています（男女雇用機会均等法でも明文化されています）。3. 【整理】公序良俗と憲法の関係（間接適用）ここが行政書士試験の「憲法」と「民法」がリンクする面白いポイントです。憲法の直接適用はしない： 憲法（14条など）は本来、国と個人の関係を律するものです。会社と社員という「私人間（しじんかん）」の関係に、憲法をそのまま持ち出すことは原則としてしません。民法90条を仲介させる： 憲法の精神を「公序良俗」という言葉に読み込ませて、間接的にプライベートな契約をチェックします。これを**「間接適用説」**と呼びます。4. 試験対策のアドバイス公序良俗（90条）の判例問題では、「何が有効で、何が無効か」という仕分けが重要です。内容結論男女別定年制（今回）無効（90条違反）他人の訴訟の資金援助をして、勝訴時に多額の報酬を得る約束無効（司法の潔白を害する）不倫関係を解消する際の手切金の支払い有効（公序良俗に反しない）ギャンブルの借金を返す約束無効（公序良俗に反する）覚え方のコツ：「現代の感覚で見て、あからさまに人権を無視していたり、社会を腐敗させるような契約」は、民法90条が発動して無効になる、とイメージしておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15863,6 +17786,17 @@ export const SUBJECTS = {
           "1. 結論：失踪宣告に検察官の出番はない民法の条文を比較すると、その違いが一目瞭然です。不在者の財産管理（25条）：利害関係人 または 検察官 の請求失踪宣告（30条）：利害関係人 の請求（※検察官の記載なし）2. なぜ「失踪宣告」には検察官がいないのか？法律が検察官（＝国家・公益の代表者）に「口出しを許すかどうか」は、その制度がどれくらい「プライベートなことか」で決まります。財産管理（25条）： 財産が放置されることは社会的な損失であり、債権者などの利害も絡みます。そのため、特定の親族がいなくても検察官が「公益のために」介入できるようになっています。失踪宣告（30条）： 失踪宣告は、人を法律上「死亡」させる手続きです。これにより「結婚が解消（離婚と同じ状態）」されたり、「相続が開始」されたりします。デバッグ： 赤の他人である国家（検察官）が、「あの人はもう死んだことにしましょう」と他人の家庭事情や身分関係を強制的に終わらせるのは、個人の尊重の観点からやりすぎだと考えられているのです。3. 【整理】検察官の登場シーン・マトリックス民法総則で「検察官が請求できるもの」と「できないもの」を整理しておくと、迷いが消えます。制度検察官の請求理由（イメージ）後見・保佐・補助の開始できる本人を保護し、社会の混乱を防ぐため。不在者の財産管理できる財産の放置（空き家化など）を防ぐため。失踪宣告できない「人の死」を国家が決めるのは、私生活への過剰介入だから。4. 試験対策のアドバイス試験では、**「利害関係人（配偶者や相続人、債権者など）」**の定義も重要です。ひっかけ： 「事実上の離婚状態にある配偶者」や「次順位の相続人（上の順位の人が生きている場合）」は、利害関係人に含まれないとする判例があります。ポイント： 「その人が死んだとみなされることで、直接的に法的利益を得る人」だけが請求できる、と覚えておきましょう。",
           "1. 結論：二人の「善意」が揃って初めてバリアが張られる失踪宣告によって一度は「死んだ」ことになり、相続が起きて売買が行われた場合、後で本人が生きて帰ってきても、**「当事者双方が善意」**であれば、その取引は有効なままとなります。判断基準のマトリックス相続人（売り手）をB、第三者（買い手）をCとした場合、土地を返さなくていいのは一番上のケースだけです。相続人B第三者C取引の結果土地の返還義務善意善意有効なし（返さなくてよい）善意悪意無効あり（返さなければならない）悪意善意無効あり（返さなければならない）悪意悪意無効あり（返さなければならない）2. なぜ「二人とも善意」が必要なのか？民法第32条1項には「その取消しは、失踪の宣告後その取消し前に善意でした行為の効力に影響を及ぼさない」と書かれています。判例・通説では、契約というものは「二人（売り手と買い手）」でするものなので、その行為が「善意でした行為」と言えるためには、当事者全員が善意である必要があるとデバッグされています。もしB（相続人）が悪意だったら： 本人が生きていると知りながら売ったBを保護する必要はありません。もしC（買い手）が悪意だったら： 本人が生きていると知っていて買ったCを保護する必要もありません。どちらか一方でも「嘘」や「確信犯」が混じっていたら、本人の権利（土地を返してもらう権利）を優先させよう、というバランス調整です。3. 土地を返さなきゃいけない場合、いくら返せばいい？もしBやCが悪意で、土地をAに返さなければならない場合、さらに「お金（不当利得）」の問題が出てきます。ここで第32条第2項が登場します。現に利益を受けている限度（現存利益）で返還：失踪宣告を信じて遺産を受け取った人（B）が、その宣告が取り消された場合、「今手元に残っている分だけ」返せばいいというルールです。デバッグポイント：生活費に使ってしまった ＝ 自分の財布から出すはずのお金が浮いた ＝ 現存利益あり（返さなきゃダメ）ギャンブルや豪遊で使い果たした ＝ 跡形もない ＝ 現存利益なし（返さなくていい）※試験ではこの「生活費は現存利益に含まれる」という点がよく出ます。4. 試験対策のアドバイス行政書士試験では、この財産問題に加えて、もう一つのドラマ**「再婚」**についても問われます。再婚のケース： 前妻（または夫）と再婚相手の双方が善意であれば、失踪宣告が取り消されても再婚は有効です（前婚は復活しません）。ひっかけ： 「一方が悪意」であれば、再婚は重婚となり、前婚が復活するというのが通説的な見解です。",
           "1. 結論：善意の相続人は「今ある分」だけでいい民法第32条第2項は、「失踪の宣告によって直接に財産を得た者は、その宣告が取り消されたときは、**現に利益を受けている限度（現存利益）**において、その財産を返還する義務を負う」と定めています（善意の場合）。自分は悪くない（本人が生きていると知らなかった）のに、一度もらったものを「全額返せ」と言われるのは酷なので、**「手元に残っている分だけで勘弁してあげる」**という、相続人Bを保護するルールです。2. 【超重要】「現存利益」の中身をデバッグ！行政書士試験で最も狙われるのが、この「何が手元に残っているとみなされるか」という基準です。お金の使い道現存利益（返還義務）理由生活費・借金の返済あり（返さなきゃダメ）本来自分の財布から出すべきお金が「浮いた」ため、利益が残っているとみなされます。遊興費・ギャンブルなし（返さなくてよい）無駄遣いして跡形もなく消えてしまったため、利益は残っていないとみなされます。災害で滅失したなし（返さなくてよい）物自体が消えてしまったため。受験生の落とし穴：「生活費に使ったからもう無い」は通用しません。**「生活費＝プラス（利益あり）」「パチンコ＝ゼロ（利益なし）」**という、直感とは逆のロジックをしっかり押さえておきましょう。3. もし「悪意（生きてるのを知ってた）」だったら？もし相続人Bが「実はAさん、あっちの街で元気に暮らしてるらしいよ」と知っていた（悪意）場合は、この優遇ルールは適用されません。返還範囲： 受け取った財産のすべて（全部の利益）に利息をつけて返さなければなりません。さらに、Aに損害があればその賠償も必要になります（民法704条の悪意の受益者のルールに準じます）。4. 前回の「対・第三者（32条1項）」との違いここを混同しないように整理しておきましょう。32条1項（前段・後段）： 「そもそも土地をAに返さなきゃいけないか？」という所有権の決着。（B・C双方が善意なら、土地はCのものになる）32条2項（今回）： 「返さないといけない場合に、どれくらい返せばいいか？」という金額・範囲の決着。（Bが善意なら、手元の利益だけでいい）"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15936,6 +17870,15 @@ export const SUBJECTS = {
           "1. 結論：当事者の「片方」だけが善意では足りない失踪宣告が取り消された場合、その間の取引を有効にするためには、売買契約の当事者である**「相続人（売り手）」と「第三者（買い手）」の両方が善意である必要があります。これを学説・判例上、「双方善意説（そうほうぜんいせつ）」**と呼びます。今回のケースでは、相続人Bは善意ですが、**第三者Cが悪意（生存を知っていた）**であるため、この売買契約は保護されません。したがって、所有権移転の効果は否定され、甲土地は戻ってきたAに返還しなければなりません。2. なぜ「双方」の善意が必要なのか？（デバッグ）民法第32条第1項ただし書には「善意でした行為」としか書かれておらず、「誰が」善意であるべきか明記されていません。しかし、以下のような理由から「双方」が基準となります。公平の観点： 第三者Cが「Aさんは実は生きている」と知っていながら土地を買った場合、そんなCを保護する必要はありません。取引の性質： 売買契約はBとCの共同作業です。その「行為」が善意と言えるためには、関わったメンバー全員がクリーンであるべきだ、と考えられています。本人の保護： 失踪宣告の取消しは、本人の権利を復活させる強力な手続きです。これに対抗して取引を有効にするには、それ相応の「完璧な善意（両者とも知らないこと）」が求められるのです。3. 【整理】誰が善意なら土地は守られるか？相続人Bと第三者Cの組み合わせで、土地が誰のものになるか整理しましょう。相続人B第三者C取引の結果土地の行方善意善意有効第三者Cのもの善意悪意無効本人Aに戻る（今回のケース）悪意善意無効本人Aに戻る悪意悪意無効本人Aに戻る4. 試験対策のアドバイス行政書士試験では、この「双方善意」のルールを**「相続人さえ善意であれば、第三者が悪意でも有効である」**という形でひっかけてくるのが定番中の定番です。ポイント： 「片方でも悪意がいれば、本人Aの勝ち（土地は戻る）」と覚えておきましょう。関連知識： 土地がCのものになった場合（双方善意）、BはAに対して「現存利益（手元に残っている代金）」を返せばよい、という第32条2項のルールに繋がります。",
           "1. 結論：相続の「パス」を発生させないためのルール\n本来、相続は「亡くなった瞬間に生存している人」に対して発生します。しかし、親子が飛行機事故などで同時に亡くなり、どちらが1秒でも長く生きていたか証明できない場合、相続関係が迷宮入りしてしまいます。\n\nそこで法律は、**「とりあえず同時に亡くなったことにしましょう」**と推定します。\n\n2. 【超重要】同時死亡だと「相続」はどうなる？\nここが試験で最も問われる実務的なポイントです。\n\n「同時に死亡した者同士の間には、相続が発生しない」\n\n例えば、父Aと子Bが同時に死亡したと推定された場合：\n\nAからBへの相続： 発生しません（BはAの死亡時に生きていない扱い）。\n\nBからAへの相続： 発生しません（AはBの死亡時に生きていない扱い）。\n\n代襲相続（だいしゅうそうぞく）はできる！\nただし、ここが面白いところですが、子Bにさらに孫Cがいた場合、孫Cが「子Bの代わり」として父Aの財産を相続すること（代襲相続）は可能です。\n\n3. 「推定（すいてい）」と「みなす」の違い\n失踪宣告（死亡したものとみなす）の時と、言葉の強さを比較してデバッグしましょう。\n\n失踪宣告（31条）： 死亡したものとみなす。\n→ 反証（実は生きてた！）があっても、審判を取り消さない限り効果は消えない（強力）。\n\n同時死亡（32条の2）： 死亡したものと推定する。\n→ 「実はBの方が10分長く生きていた」という客観的な証拠（医師の診断書など）が出てくれば、裁判なしでその推定を覆すことができます（比較的柔軟）。\n\n4. 試験対策のアドバイス\n行政書士試験では、以下のような「ひっかけ」に注意してください。\n\n「どちらが先に死んだか不明なときは、年長者が先に死亡したものとみなされる」→ ×（そんなルールはありません。一律に「同時」です）\n\n「同時死亡と推定された者同士の間でも、遺留分は認められる」→ ×（相続自体が発生しないので、遺留分も何もありません）",
           "1. 結論：必ず「利害関係人の請求」が必要民法第30条は、失踪宣告の要件として「利害関係人の請求により」と定めています。裁判所が自らの権限（職権）で宣告を行うことは法律上認められていません。2. なぜ「職権」が認められないのか？失踪宣告は、ある人の法律関係を「死亡」という形で強制的に終了させる、非常にインパクトの強い制度だからです。私的自治の原則： 誰を死んだことにするか、それによって相続を発生させるかといった身分上の問題は、本来、その家族や直接影響を受ける人たち（利害関係人）が判断すべきことです。国家の過剰介入の防止： 国家（裁判所や検察官）が個人の生死を勝手に決めることは、個人の尊厳を侵す恐れがあるため、介入できないようになっています。3. 【整理】「請求権者」の比較（再確認）以前デバッグした「不在者の財産管理」と比較すると、その違いがより鮮明になります。制度利害関係人の請求検察官の請求裁判所の職権不在者の財産管理（25条）ありありなし失踪宣告（30条）ありなしなし不在者の財産管理は、管理人がいなくて財産が放置されるという「社会的な困りごと」を解決するため、検察官（公益の代表者）も口を出せます。しかし、失踪宣告は「家族や相続のデリケートな問題」なので、検察官すらも口を出せません。ましてや裁判所の職権などは、検討の余地もありません。4. 試験対策のアドバイス行政書士試験では、以下のような記述が「×」の選択肢として登場します。「不在者の生死が7年間明らかでないときは、家庭裁判所は、職権で失踪の宣告をすることができる」→ ×「検察官の請求により、家庭裁判所は失踪の宣告をすることができる」→ ×これらの「誰が言えるのか」という部分は、条文の主語を正確に読み取るパズルです。「失踪宣告 ＝ 利害関係人のみ」と、脳内の辞書をアップデートしておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -15997,6 +17940,13 @@ export const SUBJECTS = {
           "1. 結論：建物賃借人は「土地」の第三者ではない最高裁の判例（最判昭57.9.21）は、このケースにおいて**「建物の賃借人は、土地の虚偽表示における『第三者』には当たらない」**と判断しています。理由： 虚偽表示の目的（対象）になったのは「土地」です。一方で、この人が借りたのは「建物」です。結論： 土地と建物は別物なので、土地の嘘を信じて建物を借りたとしても、土地そのものについて直接の利害関係を持ったとは言えません。したがって、地主Aは善意の建物賃借人Cに対しても、「Bとの土地譲渡は嘘だったから、土地を返せ（＝建物を壊して出ていけ）」と主張することができてしまいます。2. 「第三者（94条2項）」の定義をデバッグ！試験で迷わないために、94条2項で守られる「第三者」の正確な定義を確認しておきましょう。虚偽表示の「第三者」とは：虚偽表示によって作られた外観を信じて、その「目的物」について直接の、新たな法的利害関係を持った人のこと。今回のケースで「目的物」は土地です。登場人物行為の内容94条2項の「第三者」か？土地の譲受人Bから土地を買い取った○ 当たる（土地に利害関係あり）土地の抵当権者Bから土地を担保に取った○ 当たる（土地に利害関係あり）建物の賃借人Bが建てた「建物」を借りた× 当たらない（建物は土地と別物）3. なぜ建物賃借人は守られないのか？（背景）「建物を借りただけなのに、追い出されるなんてかわいそう！」と思うかもしれません。しかし、もしこれを守ってしまうと、土地の真の所有者Aの権利が、本人の関わっていない「建物の賃貸借」によって不当に制限されることになってしまいます。日本の民法は**「土地と建物は完全に別個の不動産」**という大原則を貫いているため、このような厳しい結論になります。4. 試験対策のアドバイスこの判例は、以下の「守られる人（当たる）」と「守られない人（当たらない）」の対比でよく出題されます。守られる（第三者に当たる）：仮装譲受人から、その土地を買い受けた者。仮装譲受人の債権者で、その土地を差し押さえた者。守られない（第三者に当たらない）：仮装譲受人が建てた建物を借りた者（今回のケース）。仮装譲受人の単なる「一般債権者」（まだ差し押さえをしていない人）。覚え方のコツ：「嘘の対象（土地）そのものに手を突っ込んだか？」をチェックしてください。「建物」という隣の箱に手を突っ込んだだけでは、土地の第三者としては認められない、とイメージしましょう。",
           "1. 結論：債権の譲受人は「第三者」にあたる仮装の（＝嘘の）売買契約によって発生した「代金債権」を、何も知らずに（善意で）買い取った人（譲受人）は、94条2項の「第三者」に含まれます。したがって、善意の譲受人Cは、買主Bに対して「代金を支払え」と主張することができます。2. なぜ「第三者」に含まれるのか？（デバッグ）94条2項の「第三者」の定義を思い出してみましょう。「虚偽表示から生じた法律関係を基礎として、新たな利害関係に入った者」今回のケースを時系列で整理します。虚偽表示： AとBが嘘の売買契約をした。外観の発生： 「BはAに代金を払う義務がある」という嘘の債権が生まれた。新たな利害関係： Cが「その債権、僕に売ってよ」と登場し、代金を払って債権を譲り受けた。Cは、A・Bが作り出した「嘘の債権」を信じて、自分のお金を出して新しい法律関係（債権譲渡）に入っています。まさに**「保護すべき第三者」の典型例**です。3. 【超重要】「債権」にまつわる「第三者」のひっかけここが行政書士試験で最も受験生を悩ませるポイントです。次の2つの違いを完璧にデバッグしてください。ケース登場人物結論（第三者か？）今回のケース仮装債権の譲受人○ 第三者にあたる（新しく登場したから）ひっかけケース債権の仮装譲渡における債務者× 第三者にあたらないなぜ「債務者」は第三者じゃないの？例えば、AがBに対して本当に100万円の債権を持っていたとします。Aが「Cに譲渡したことにしよう」と嘘をついた場合、債務者Bは「誰に払うか」が変わるだけで、「100万円払う」という立場は最初から何も変わっていません。新しく利害関係を持ったわけではないので、Bは保護される「第三者」には含まれない、というのが判例のスタンスです。4. 試験対策のアドバイス「債権」と「94条2項」がセットで出てきたら、主語が誰かを1秒でチェックしてください。主語が「譲受人」： 嘘の債権を信じて買った人。新顔なので**「第三者」！**主語が「債務者」： もともと借金があった人。新顔じゃないので**「第三者じゃない」！**",
           "1. 結論：借主は「お金をもらっていない」と言い逃れできない民法第94条2項のパワーは強力です。「虚偽表示による無効は、善意の第三者に対抗できない」というルールは、単に「嘘の合意」だけでなく、その嘘によって作り出された**「債権があるという外観」すべて**に適用されます。本来のルール： 書面によらない金銭消費貸借は、お金を渡して初めて成立する（要物契約：587条）。お金を渡していないなら契約は成立していません。94条2項の適用： 貸主Aと借主Bがグルになって「お金を貸し借りしたことにしよう」と嘘の契約（外観）を作った場合、それを信じて債権を買い取った善意のCに対しては、Bは**「実は契約が成立していなかった（お金をもらっていない）」という反論すら封じられます。**2. なぜ借主Bは守られないのか？（デバッグ）「お金をもらっていないのに返さなきゃいけないなんて、借主Bがかわいそうでは？」と思うかもしれません。しかし、民法はこう考えます。自業自得（帰責性）： 借主Bは、お金をもらっていないのに「借りました」という嘘の契約書や外観を作ることに協力しています。取引の安全： その嘘の外観を信じて、自分のお金を出して債権を買い取ったC（善意の第三者）を保護しなければ、世の中の取引（債権譲渡など）が怖くてできなくなってしまいます。したがって、「嘘の外観を作ったB」よりも「それを信じた善意のC」を勝たせるのが民法の決着です。3. 【整理】この問題の「罠」を見破るポイントこの問題には、受験生を惑わす要素が2つ入っています。惑わせポイントデバッグ（正解の視点）「金銭が交付されていない」通常なら契約不成立だが、虚偽表示のケースでは、この「不成立」という事実を善意のCにぶつけることはできない。「書面でする消費貸借等を除く」2020年改正で「書面による貸借」は合意だけで成立するようになりました。わざわざ「除く」とあるのは、「要物性（お金の交付が必要）」という原則を意識させて混乱させるための枕詞です。ポイント：どんなに「契約の前提（お金の交付）」が欠けていても、**「虚偽表示」と「善意の第三者」のセットが出てきたら、第三者が勝つ（対抗できない）**と判断してほぼ間違いありません。4. 試験対策のアドバイス行政書士試験では、このように「契約の成立要件（587条）」と「意思表示の欠陥（94条）」をミックスした問題が出されます。ひっかけ： 「金銭の交付が契約の成立要件である以上、交付がなければ債権は発生せず、第三者が善意であっても権利を行使できない」→ ×対策： 94条2項の「第三者」は、その取引が「有効か無効か」だけでなく、「存在するかしないか（不成立）」という点についても、善意であれば保護されると覚えておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -16065,6 +18015,15 @@ export const SUBJECTS = {
           "1. 結論：善意の譲受人Dは「第三者」として最強民法第94条2項の「第三者」とは、虚偽表示によって作り出された外観を信じて、新たに直接の利害関係を持った人を指します。今回のケースを整理すると：虚偽表示： AとBがグルになって、「Aの債権はBのものになった」という嘘の形（外観）を作った。新たな利害関係： Dが「Bさんは債権を持っているんだな」と信じて、自分のお金を出してその債権を買い取った。Dは、AとBが作り出した嘘の法律関係を信じて、新しく取引に加わった「新顔」です。そのため、94条2項の保護を受ける「第三者」にバッチリ当てはまります。2. 【デバッグ】「債務者C」と「譲受人D」の決定的な違いここが行政書士試験で最も狙われるポイントです。同じ「債権」に絡む人でも、保護されるかどうかが分かれます。登場人物立ち位置94条2項の「第三者」か？譲受人D（今回）新しく債権を買った人○ 当たる（保護される）債務者Cもともと借金があった人× 当たらない（保護されない）なぜ「債務者C」は第三者じゃないの？債務者Cは、AとBが嘘をつく前から「借金を返す」という義務を負っていました。AからBへ嘘の譲渡が行われても、Cの「返さなきゃいけない」という立場に変化はありません（新たな利害関係が生じていない）。そのため、Cは94条2項の「第三者」には当たらず、AはCに対して「Bへの譲渡は嘘だったから、俺に返せ」と言うことができます。3. 判例のスタンスをチェックこの結論は、大審院時代からの古い判例（大判大5.3.11）で確立されています。「嘘の債権譲渡によって生まれた『譲受人という外観』を信じて債権を譲り受けた者は、94条2項の第三者として保護される」という理屈です。4. 試験対策のアドバイス「債権譲渡」と「虚偽表示」がセットで出たら、「誰が」善意なのかに注目してください。「譲受人（D）」が善意： 94条2項が発動し、Aは無効を言えない（Dの勝ち）。「債務者（C）」が善意： 94条2項では守られませんが、別のルール（478条：債権の準占有者への弁済など）で、Bに払っちゃった場合は免責される可能性があります。今回の問題は、譲受人Dについての記述なので、文句なしに「正しい」となります。",
           "1. 結論：転々譲渡されても「善意」がいればストップ！\n民法第94条2項の「第三者」には、仮装譲受人（B）から直接買った人（C）だけでなく、そのCからさらに買った人（D：転得者）、さらにその先のEさん……と、あとに続くすべての人が含まれます。\n\n2. 【超重要】「絶対的構成」という最強のバリア\nここで行政書士試験に必ず出る、**「誰が善意なら誰が勝つか」**のロジックを整理します。実務や判例では「絶対的構成（ぜったいてきこうせい）」という考え方が取られています。\n\nパターンA：途中に「善意」が一人でも入った場合\nA（嘘）→ B（嘘）→ C（善意）→ D（悪意）\n\nこの場合、Dの勝ちです。\n\nデバッグ： Cが善意だった瞬間に、土地の権利は「ホワイト（有効）」に確定します。これを「遮断（しゃだん）効果」と言ったりします。一度白くなったものは、そのあと悪意のDが買っても白いままです。Dを守るというより、**「有効に買ったCが、誰にでも自由に売れる権利」**を守るためのルールです。\n\nパターンB：直後の人が悪意で、その先が善意の場合\nA（嘘）→ B（嘘）→ C（悪意）→ D（善意）\n\nこの場合、Dの勝ちです。\n\nデバッグ： Cが悪意でも、D自身が善意であれば、Dは「94条2項の第三者」として直接保護されます。\n\n結論：\nAから見て、自分以降の登場人物の中に一人でも善意の人がいれば、Aはもう土地を取り戻せないと覚えておきましょう。\n\n3. 「第三者」の要件を最終チェック\n94条2項の第三者として認められるための「3つのNO」をデバッグします。\n\n無過失は不要： 「善意（知らない）」であれば、「うっかり（過失）」があっても守られます。\n\n登記は不要： 自分が第三者だとAに主張するために、登記を備えている必要はありません。\n\n対抗関係ではない： Aと第三者は「どっちが先に登記したか」の競争（177条）をする関係ではないからです。\n\n4. 試験対策のアドバイス\n「転得者（てんとくしゃ）」という言葉が出てきたら、反射的に**「この人も第94条2項の『第三者』に含まれる！」**と判断してください。\n\nひっかけ： 「第三者とは、仮装譲受人から直接譲り受けた者に限られる」→ ×\n\nひっかけ： 「転得者が保護されるためには、前の譲受人も善意でなければならない」→ ×",
           "1. 結論：転抵当権者も「新顔」として保護される民法第94条2項の「第三者」とは、虚偽表示によって作られた外観を信じて、新たに直接の法的利害関係を持った人を指します。今回のケースを整理しましょう。虚偽表示： AとBがグルになって、Aの土地にB名義の「嘘の抵当権」を設定した。外観の発生： 登記簿上に「BはAの土地を担保に取っている」という嘘の権利（外観）が現れた。新たな利害関係： Cが「Bさんの持っている抵当権は本物だ」と信じて、Bにお金を貸す際、その抵当権をさらに担保に取った（転抵当）。Cは、A・Bが作り出した「嘘の抵当権」を信じて、自分のお金を出して新しい法律関係に入っています。したがって、Cが善意であれば「第三者」として保護され、AはCに対して抵当権の無効を主張できません。2. 「転抵当（てんていとう）」とは何か？（デバッグ）言葉が難しいですが、仕組みはシンプルです。抵当権： 不動産を借金のカタにすること。転抵当： 「抵当権という権利」を、さらに借金のカタにすること。（民法376条）Bが持っている「Aからお金を返してもらう権利（＋抵当権）」を、Cに対する借金の担保に差し入れるイメージです。Cは「Bの抵当権」という価値を信じて取引しているので、それが嘘だった場合に救済されるのは当然の帰結といえます。3. 【整理】94条2項の「第三者」バリエーションこれまでにデバッグしてきた「第三者」のリストに、今回のケースも加えておきましょう。虚偽表示の内容新しく登場した人（第三者）保護されるか土地の仮装譲渡土地を買った人、抵当権を設定した人○ 当たる土地の仮装譲渡仮装譲受人が建てた建物を借りた人× 当たらない仮装の抵当権設定その抵当権を転抵当した人（今回）○ 当たる仮装の債権譲渡その債権をさらに譲り受けた人○ 当たる判例のポイント：非常に古い判例（大判大4.8.7）ですが、現在でもこの考え方が維持されています。「転抵当権者」という言葉が出たら、反射的に**「抵当権を信じて新しく加わった人＝第三者！」**と判断してOKです。4. 試験対策のアドバイス行政書士試験では、この「転抵当権者」のように、一見すると関係が遠そうな登場人物を混ぜて受験生を揺さぶってきます。解法のコツ： 「その人は、嘘によって作られた『権利』や『物』に、直接自分のお金を注ぎ込んだか？」を考えてください。注ぎ込んでいれば、それは保護すべき「第三者」です。ひっかけ： 「転抵当権者は、仮装譲渡の直接の当事者ではないため、94条2項の第三者には当たらない」→ ×（直接の買い手である必要はありません）"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -16127,6 +18086,14 @@ export const SUBJECTS = {
           "1. 結論：税金の勘違いも「取消し」の対象になる\n本来、税金がいくらかかるか、どちらが払うかといった事情は、契約そのものの内容ではなく、契約を結ぶに至った「動機（理由）」にすぎません。\n\nしかし、判例はこのケースにおいて、「税金がかからないこと」が契約の重要な前提（基礎）となっており、それが相手方にも伝わっていたのであれば、錯誤による取消しを認めると判断しました。\n\n2. 【デバッグ】なぜ「黙示の表示」で足りるのか？\n現在の民法第95条では、このような「動機の錯誤（基礎事情の錯誤）」で取り消すための条件を2つ定めています。\n\n基礎事情の錯誤（95条1項2号）： その事情が契約の基礎とされていたこと。\n\n表示の要件（95条2項）： その事情が相手方に表示されていたこと。\n\nここで重要なのは、**「表示」は口に出してはっきり言わなくてもよい（黙示的でもよい）**という点です。\n\n今回のケース： 夫婦ともに「妻が税金を払うもの」と思い込んでおり、夫も「自分に課税されないこと」を前提に話を進めていました。このような状況であれば、あえて言葉にしなくても「課税されないことが前提だよね」という意思が相手（妻）に伝わっていた（＝黙示の表示があった）とみなされます。\n\n3. なぜ「重要な内容」と言えるのか？\n財産分与は、離婚後の生活を支えるための大切な清算です。もし夫に多額の譲渡所得税がかかると知っていたら、夫は「その分、妻に渡す不動産の価値を調整しよう」と考えたはずです。\n\nこのように、「税金の負担がどちらにあるか」が、その契約をするかどうかの意思決定に決定的な影響を与える場合には、それは単なる動機を超えて、契約の「重要な内容」に含まれると判断されます。\n\n4. 試験対策のアドバイス\n行政書士試験では、錯誤の「表示要件」について以下のようなひっかけが出ます。\n\nひっかけ： 「動機の錯誤により契約を取り消すためには、その動機が**明示的に（はっきりと）**表示されていなければならない。」\n\nデバッグ： ×（間違い）。今回の判例のように、周囲の状況からにじみ出ているような**「黙示的」な表示でもOK**です。",
           "1. 結論：商品の「中身」や「質」は契約の核心\n民法第95条において、契約を取消すためには、その錯誤が「法律行為の目的及び取引上の社会通念に照らして重要であること」が必要です。\n\nジャム事件のあらまし\n事実： 買主（債権者）が「JAS規格の1級品であるイチゴジャム」だと思い込んで売買契約（および和解契約）を結びましたが、実際にはそれ以下の品質のものでした。\n\n判決： 種類や品質の取り違えは、通常、契約を結ぶかどうかの意思決定に決定的な影響を与えるため、**「重要（要素の錯誤）」**にあたると判断されました。\n\n2. 【デバッグ】「重要」と言えるための2つのハードル\n単に本人が「勘違いしたんだ！」と言い張るだけでは足りません。裁判所は以下の2つの視点でチェックします。\n\n主観的重要性：\nもし勘違いしていなければ、本人（表意者）はその契約をしなかったといえるか？\n\n客観的重要性：\n普通の一般人であっても、もし勘違いを知っていたらその契約はしなかったといえるか？\n\nポイント：\nジャムの種類や品質は、価格や転売の可否に直結します。本人が「嫌だ」と思うだけでなく、世間一般から見ても「それは大問題だよね」と認められたため、この判決が出ました。\n\n3. 【改正ポイント】2020年以降の「錯誤」の呼び方\n現在の民法では、このジャムの件は以下のどちらに分類されるかを整理しておくと、記述式試験などでも役立ちます。\n\n内容の錯誤（95条1項1号）：\n「ジャムA」を「ジャムB」と書き間違えた場合。\n\n動機の錯誤（基礎事情の錯誤）（95条1項2号）：\n「このジャムは高品質（JAS1級）だ」と思い込んで契約した場合。\n\nジャム事件は、現在のルールでは**「動機の錯誤（基礎事情の錯誤）」にあたります。そのため、取り消すためには「高品質であることを前提にしていること」が相手に表示されている必要**があります（95条2項）。\n\n4. 試験対策のアドバイス\n行政書士試験では、この「ジャム事件」をヒントに、以下のようなひっかけが出される可能性があります。\n\nひっかけ： 「商品の品質に関する錯誤は、単なる動機の錯誤にすぎないため、いかなる場合も取消すことはできない。」\n\nデバッグ： ×（間違い）。今回の判例の通り、それが契約の基礎となっており、重要であれば取消せます。",
           "1. 結論：存在しない債務を保証するのは「根本的な勘違い」「空クレジット」とは、実際には商品の売買やサービスの提供がないのに、書類上だけでクレジット契約（割賦販売契約など）を結ぶことを指します。保証人が「この人はちゃんと商品を買ったんだな、その代金を保証しよう」と信じて契約した場合、その**前提となる売買自体が空っぽ（空）であれば、それは契約の核心部分に関する錯誤であり、「重要（要素の錯誤）」**にあたります。2. なぜ「重要」と言い切れるのか？（デバッグ）保証契約には**「附従性（ふじゅうせい）」**という大原則があります。附従性： 主たる債務（元の借金）がなければ、保証債務も存在しないという性質。保証人は、主たる債務が存在することを前提にハンコを押します。「空クレジット」の場合、そもそも保証すべき対象（主たる債務）が幽霊のような存在です。そんな幽霊のために自分の財産をリスクにさらすというのは、誰がどう見ても「もし知っていたら絶対に契約しなかった」と言えるため、重要性が認められます。3. 【整理】試験で問われる「重要性」の境界線これまでにデバッグしてきた「保証」に関する錯誤の重要性を比較してみましょう。錯誤の対象重要性（取消しの可否）理由主たる債務の存否（空クレジット）○ 重要（取消し可）保証の「根っこ」がないから。売買契約の偽装○ 重要（取消し可）上記と同じ。取引が嘘だから。他の保証人の有無× 原則として重要でない自分の負担割合の期待にすぎないから。4. 改正民法（95条2項）のフィルターを通す行政書士試験の記述式などで狙われるポイントですが、この「空クレジット」は現在の民法では**「動機の錯誤（基礎事情の錯誤）」**に分類されます。取消しの条件：「このクレジット契約は、適正な売買に基づいたものですよね？」という事情が、契約の基礎とされており、かつそれが**相手方（クレジット会社など）に表示（黙示でも可）**されている必要があります。実務上のポイント：通常、クレジット会社が用意した書面で保証契約を結ぶ以上、「売買があること」は共通の前提として表示されているとみなされるのが一般的です。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -16188,6 +18155,13 @@ export const SUBJECTS = {
           "🏛 承諾の効力発生時期：発信主義から「到達主義」へ以前の民法（旧法）では、取引の迅速性を重視して「手紙を出した瞬間に契約成立！」というルール（発信主義）を採用していました。しかし、現代ではメールやSNSなど通信手段が発達したため、その必要がなくなり、**原則どおり「届いた時に効力が出る」**というルールに統一されました。現在のルール（民法 第97条1項）意思表示は、相手方に到達した時からその効力を生じます。これは「申込み」であっても「承諾」であっても同じです。項目旧法（改正前）新法（現在）原則到達主義到達主義隔地者間の承諾発信主義（出した時）到達主義（届いた時）契約成立のタイミング承諾の通知を発信した時承諾の通知が到達した時💡 なぜルールが変わったのか？（改正の趣旨）通信手段の発達： 昔のように「手紙が届くまでに何日もかかる」という時代ではなくなったため、わざわざ例外（発信主義）を作る必要がなくなりました。合理性： 「出したけれど届かなかった（郵便事故）」というリスクを、通知を送った側（承諾者）が負うのが合理的であると考えられました。ルールの統一： すべての意思表示を「到達主義」に一本化することで、法的な判断をシンプルにしました。⚠️ 試験対策上の注意問題文にある「取引の迅速性が損なわれることになるから〜」という理由は、まさに旧法時代の理屈です。試験でこの手の文章が出てきたら、**「それは古い！今は迅速性よりも、相手に届いたかどうかを重視する『到達主義』だ！」**と即座に判断できるようになっておきましょう。",
           "1. 原則：意思表示の効力（第97条3項）\nまず、一般的な意思表示（通知など）についてのルールです。\n\nルール： 通知を発信した後に、表意者が「死亡」したり「制限行為能力者」になったりしても、その意思表示の効力には影響しません。\n\n趣旨： 出した瞬間に手は離れているので、その後の本人の状態は関係ないという考え方です。\n\n2. 例外：契約の「申込み」の場合（第526条）\nここが問題の核心です。契約の「申込み」に限っては、相手方を保護しつつ、申込み側の意思を尊重する特別なルールがあります。\n\n以下のいずれかに該当する場合、申込みは**「効力を有しない」**（＝死文化する）ことになります。\n\n反対の意思表示： 申込者が「自分が死んだりボケたりしたら、この話はナシにしてくれ」とあらかじめ伝えていた場合。\n\n相手方の悪意： 承諾する側が、承諾の通知を出すまでに、申込者が制限行為能力者になった（または死亡した）事実を知っていた場合。\n\n3. なぜ「取り消すことができる」では間違いなのか？\nここが行政書士試験で最も注意すべき「言葉の定義」の罠です。\n\n「取り消すことができる」： いったん契約が有効に成立したが、後から無効にできる状態。\n\n「効力を有しない」： そもそも申込みが無効になるので、承諾しても契約そのものが成立しない。\n\n問題文のケース（相手方が事実を知りつつ承諾した）では、第526条により申込みが消滅しているため、承諾しても契約は成立しません。成立していないものは「取消し」ようがありませんよね。\n\n💡 試験対策のポイント\n第97条3項（一般原則）： 影響を受けない。\n\n第526条（申込みの例外）： 相手が「知っていた」なら、申込みは**「無効（効力なし）」**。\n\n「取消し」と「無効（不成立）」は、法律用語として明確に区別して覚えておきましょう。",
           "この記述は、結論から言うと**「正しい（◯）」ですが、試験対策としてはその後に続く「例外」**までセットで覚えておく必要があります。\n\nこれは民法第97条第4項の**「受領能力（じゅりょうのうりょく）」**に関するルールです。\n\n🏛 受領能力のルール（民法 第97条第4項）\n意思表示は相手に届く（到達する）ことで効力を発揮しますが、受け取る側に「その内容を正しく理解する能力」がない場合、一方的に「届いたから効力発生だ！」とするのは相手に酷です。そのため、以下のようなルールになっています。\n\n1. 原則：対抗できない（届いたことにできない）\n意思表示を受けた時に、相手方が以下の状態だった場合、表意者（送った側）はその意思表示の到達を主張できません。\n\n意思無能力者（判断能力がない状態）\n\n制限行為能力者（未成年者・成年被後見人など）\n\n【注意！】 制限行為能力者の中でも、被保佐人と被補助人は、原則として受領能力があるとされています（条文に明記されているのは「未成年者」と「成年被後見人」です）。ここがひっかけポイントとして出やすいです。\n\n2. 例外：到達を主張できる場合\n以下の状況になれば、さかのぼって「届いたこと」にできます。\n\n法定代理人が知ったとき：\n親権者や成年後見人が、その通知が届いたことを知った後は、表意者も「届きましたよね」と主張できるようになります。\n\n本人が能力を回復した後に知ったとき：\n未成年者が成人に達した後や、成年被後見人が回復して取り消しが解かれた後に、本人が通知の内容を知った場合です。\n\n💡 ここが試験に出る！「対抗できない」の意味\n「対抗できない」とは、あくまで**「表意者の側から」**は言えないという意味です。\n\n表意者（送った側）から： 「もう届いたから、契約は成立（または取消）だ！」とは言えない。\n\n相手方（受けた側）から： 「私は能力がなかったけど、この通知は自分に有利だから、届いたことにしたい！」と主張するのは自由です。\n\nこれは、あくまで能力が不十分な人を保護するための規定だからです。\n\nまとめ\n未成年者・成年被後見人に送った場合、本人が受け取っただけでは効力が発生しない。\n\n**法定代理人（親など）**が知れば、そこから効力が発生する。\n\n被保佐人・被補助人には受領能力があるので、本人が受け取れば効力が発生する（ここが一番の狙われどころです）。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -16293,6 +18267,20 @@ export const SUBJECTS = {
           "1. 結論：復代理権は「代理権」に依存している復代理権は、代理人が自分に与えられた権限の範囲内で、さらに他人に権限を分け与えたものです。そのため、大元である「代理権」が消滅すれば、それに付随して復代理権も当然に消滅します。なぜ消滅するのか？（付随性）復代理人は「本人の代理人」ではありますが、その権限のソース（源泉）は代理人が持っている権限にあります。イメージ： 親会社（代理権）が倒産すれば、その子会社（復代理権）も事業を継続できなくなる、という関係に似ています。2. 【デバッグ】消滅のパターンを整理どんな時に「根っこ」が枯れて、復代理権が消えるのかを整理しましょう（民法第111条など）。消滅の原因復代理権はどうなる？理由本人の死亡消滅する代理権そのものが消えるため。代理人の死亡消滅する代理人の地位が消え、復代理権の根拠がなくなるため。代理人が破産消滅する任意代理の場合、信頼関係が崩れるため（法定代理は別）。代理人の後見開始消滅する任意代理の場合、判断能力に問題が出るため（法定代理は別）。ポイント：復代理人本人が死亡したり破産したりした場合も、当然その人の復代理権は消滅しますが、それとは別に**「大元の代理人がどうにかなった場合」も連動して消える**のがこのルールの特徴です。3. 【注意】復代理人は「誰の」代理人か？ここが試験で最も狙われる「言葉の罠」です。よくある誤解： 「復代理人は、代理人の代理人である」 → ×正しい定義： 「復代理人は、本人の代理人である」 → ○「本人の代理人」なのに、なぜ「代理人の都合」で権限が消えてしまうのか？それは、復代理人を選んだのは本人ではなく代理人であり、本人は**「代理人が責任を持ってコントロールしていること」を前提に**復代理人を認めているからです。4. 試験対策のアドバイス行政書士試験では、以下のような記述が正誤問題として出されます。ひっかけ： 「復代理人は本人の代理人であるから、代理人の代理権が消滅しても、復代理人の代理権は当然には消滅しない。」デバッグ： ×（間違い）。本人の代理人という地位であっても、権限の由来は代理人にあるので、連動して消滅します。",
           "1. 結論：復代理人は「本人のアバター」民法第106条第1項には、こう書かれています。「復代理人は、その権限内の行為について、本人を代表する。」復代理人は、代理人によって選ばれますが、選ばれた瞬間から代理人と並んで**「本人のために」**直接的な権限を行使します。代理人の下請けとして動くのではなく、本人とダイレクトにつながる立場になるため、代理人と「同等の立場」で本人を代理すると言えます。2. 【デバッグ】代理人と復代理人の「共通点」と「相違点」「同等」といっても、すべてが同じわけではありません。整理して混乱を防ぎましょう。比較項目代理人復代理人誰を代理するか本人本人（代理人ではない！）相手方への効果本人に直接帰属する本人に直接帰属する義務の内容本人に対して善管注意義務を負う本人に対して代理人と同一の義務を負う（106条2項）権限の源（ソース）本人（または法律）代理人の権限ここが「同等」ではないポイント！立場は同等ですが、**「権限の範囲」**については親子関係のような制約があります。復代理人の権限は、代理人の権限を超えることはできません。代理人の権限が消滅すれば、復代理人の権限も道連れで消滅します（以前デバッグした通りですね）。3. 【超頻出】「代理人の代理人」という罠行政書士試験で最も狙われるひっかけの選択肢がこれです。× 誤り： 「復代理人は代理人の代理人であるから、代理人の名において代理行為を行う。」○ 正解： 「復代理人は本人の代理人であるから、本人の名において代理行為を行う。」覚え方のコツ：復代理人は「代理人の身代わり」ではなく、**「追加のアバター」**です。本人の名前で契約を結ぶからこそ、その効果が直接本人に届くのです。4. 試験対策のアドバイス「同等の立場」という言葉に惑わされないでください。これは**「本人や第三者との関係において、代理人と同様の権利・義務を持つ」**という意味で使われます。記述式対策： 「復代理人は、その権限内において本人を代理し、本人及び第三者に対して代理人と同一の権利を有し、義務を負う」というフレーズを書けるようにしておくと完璧です。",
           "1. 結論：中継地点（代理人）に返せばミッション完了復代理人は、本人に対して直接「受け取った物を引き渡す義務」を負っています（民法106条2項）。しかし、現実的には自分を指名した「代理人」に対して物を引き渡せば、本人に対する義務も果たしたものとみなされます。なぜ「本人」に直接返さなくてもいいの？指揮系統の尊重： 復代理人は、代理人の監督下で動いています。自分に指示を出した代理人に報告・納品するのは、業務の流れとして自然です。二重払いの防止： 代理人に渡したのに、さらに本人からも「俺にも直接よこせ」と言われてしまうと、復代理人の負担が大きすぎます。2. 【デバッグ】注意すべき「義務」のバトンタッチここが試験で混乱しやすいポイントです。復代理人が代理人に物を渡した後の「義務の所在」を整理しましょう。復代理人の義務： 消滅する。（代理人に渡した時点で、本人への責任も果たしたことになる）代理人の義務： 消滅しない。（代理人は、復代理人から受け取った物を、責任を持って本人に届けなければならない）ポイント：復代理人は「中継地点」に荷物を置けばOKですが、代理人はその荷物を最終目的地（本人）まで届ける「アンカー」としての責任を依然として負い続けています。3. 【整理】代理・復代理の義務関係マトリックス106条2項の「代理人と同一の義務を負う」という言葉を具体的にデバッグします。項目代理人の義務復代理人の義務善管注意義務本人に対して負う本人に対して負う報告義務本人に対して負う本人及び代理人に対して負う受取物引渡義務本人に対して負う本人に対して負う（代理人への引渡しで消滅）4. 試験対策のアドバイス行政書士試験では、この判例をベースに以下のような「ひっかけ」が出ることがあります。ひっかけ： 「復代理人は、本人に対して直接義務を負うため、代理人に金銭を引き渡したとしても、本人に対する引渡し義務は消滅しない。」デバッグ： ×（間違い）。判例により、代理人への引渡しで義務は消滅します。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -16354,6 +18342,13 @@ export const SUBJECTS = {
           "これは「無権代理」と「即時取得」という、民法の2つの重要な制度がぶつかる非常に高度なひっかけ問題です。受験生が最も間違えやすいポイントの一つですので、しっかり整理しましょう。1. 結論：無権代理に即時取得は適用されない結論から言うと、無権代理によって結ばれた契約を根拠にして、即時取得（民法192条）が成立することはありません。たとえ相手方Cが「Bにはちゃんと代理権がある」と信じて（善意）、そう信じたことに落ち度がなかった（無過失）としても、即時取得によって所有権を手に入れることはできないのです。2. なぜ即時取得できないのか？（超重要）即時取得という制度が何を「カバー」してくれるのかを考えると、答えが見えてきます。即時取得がカバーするもの： 売り手に**「所有権（処分権限）」がないこと**。即時取得がカバーしないもの： そもそも**「契約自体」が有効に成立していないこと**。具体的な理屈即時取得が成立するためには、前提として**「有効な取引行為（売買契約など）」**が存在しなければなりません。無権代理の場合： Bは「Aの代理人」として契約していますが、実際には代理権がないため、この契約は本人Aに効果が帰属しません。つまり、契約自体が「宙ぶらりん（不確定無効）」な状態です。取引のキズ： 即時取得は「契約はバッチリ有効だけど、売主に権利がなかった」というキズは治してくれますが、「そもそも契約が成立していない」というキズまでは治してくれません。判例のスタンス：「代理権がないこと」を信じた人を救済するのは、192条（即時取得）の役割ではなく、**表見代理（109条〜112条）**の役割であると考えています。3. 【比較】ここが試験に出る！「即時取得ができるケース」と「できないケース」を並べると一目瞭然です。ケースCは即時取得できるか？理由Bが「これは俺の物だ」と嘘をついて売ったできる（○）取引（売買契約）自体は有効だから。Bが「Aの代理人だ」と嘘をついて売ったできない（×）そもそも契約（効果帰属）が有効ではないから。4. 救済策：Cはどうすればいい？即時取得が使えないとなると、買主Cさんは泣き寝入りするしかないのでしょうか？いいえ、Cさんには別の武器が用意されています。表見代理を主張する： Bに代理権があると信じるに足りる「正当な理由」があれば、本人Aに責任を負わせることができます。無権代理人の責任追及（117条）： Bに対して損害賠償などを請求します。この「権利のキズ」と「意思表示（契約）のキズ」の区別ができるようになると、民法の点数は一気に安定します！",
           "これは2020年の民法大改正によって結論が180度変わった、現代の行政書士試験において**極めて重要な「改正ポイント」**です。古い参考書や知識で解いていると、確実にはまってしまう罠ですね。\n\n1. 結論：相手方に「過失」があっても請求できる場合がある\n民法第117条（無権代理人の責任）の問題です。\n\n原則として、相手方（C）に過失がある場合、無権代理人（B）に対して責任追及はできません。しかし、現在の民法には**重要な「ただし書き（例外）」**があります。\n\n無権代理人が「自分に代理権がないこと」を知っていた（悪意）場合、相手方に過失があっても、相手方は責任追及ができる。\n\n今回の問題文では、Bが「Aの代理人と偽って」とあります。これはBが自分の無権代理について「悪意」であることを示しています。そのため、たとえCに過失があっても、CはBに対して履行または損害賠償を請求できるのです。\n\n2. なぜルールが変わったのか？\nこの改正の裏には、「どっちがより悪いか？」という比較の視点があります。\n\n改正前： 相手方に少しでも過失があれば、無権代理人に責任を問えませんでした。\n\n現在： 相手方に過失があったとしても、「騙すつもりでやった無権代理人（悪意）」の方が圧倒的に悪いので、相手方を保護して責任を取らせるべきだ、と考えます。\n\n科学的根拠や論理的な一貫性を重視するなら、「悪意の加害者を、過失のある被害者よりも優先して守る必要はない」というバランス感覚ですね。\n\n3. 【重要】整理：117条の責任を追及できないケース\n試験対策として、逆に「どんなときに責任追及できないか」を整理するとスッキリします。以下のいずれかに該当すると、Bに責任は問えません。\n\n相手方が悪意（無権代理だと知っていた）のとき。\n\n相手方が過失で知らなかったとき。\n\n※ただし、無権代理人が悪意なら、過失があってもOK（今回のポイント）。\n\n※相手方が重過失の場合は、無権代理人が「善意」でない限り請求不可。\n\n無権代理人が制限行為能力者（未成年者など）だったとき。\n\n4. 試験合格へのアドバイス\n行政書士試験では、この問題のように**「〜の場合であっても、〜することができない」**という言い切りの形（全否定）で、例外の知識を問うてくるのが定番です。\n\n特にこの「117条の改正点」は、試験作成者が受験生の「アップデート度合い」を測るために好んで使います。",
           "法人の理事の代表権に加えられた制限が、どのような場合に外部の相手方に対して有効になるかという、法人法・民法の重要論点ですね。1. 結論：制限を知っている以上、保護されない民法第37条（または一般社団法人法第77条4項）には、以下のような規定があります。民法第37条：理事の代表権に加えた制限は、善意の第三者に対抗することができない。今回のケースでは、買主Cは「理事会の承認が必要である」という定款の定め（制限）を知っていました。 つまり、Cは法律上の**「悪意」**（事情を知っていること）に該当します。条文上、保護されるのは「善意（知らない）」の第三者に限られているため、たとえ「承認を得ていると過失なく信じていた」としても、原則として法人はその契約の無効（対抗）を主張できます。2. なぜ「過失がない」だけではダメなのか？ここが「表見代理」のルールと混同しやすいポイントです。「善意」の定義： この規定における善意とは、**「代表権に制限があること自体を知らない」**ことを指します。調査義務： 制限があることを知っている（悪意）のであれば、相手方は「本当に承認が出たのか」を議事録などで確認すべき立場にあります。法人の保護： 定款という法人の根本ルールを知りながら、それを軽視して取引した相手方よりも、法人の内部秩序（理事会承認）を守ることを優先します。したがって、制限を知っているCに対しては、法人は「理事会の承認がないから、この契約は認めない」と言うことができます。3. 【重要】試験対策：会社法との違いに注意！行政書士試験では、ここが株式会社（会社法）の話になると結論が変わるため、非常にひっかけ問題が作りやすい部分です。比較項目一般の法人（民法・一般社団法など）株式会社（代表取締役の行為）制限の性質代表権そのものの制限内部的な意思決定（362条）相手方の要件「善意」であればOK「悪意または重過失」でなければOK今回のケース制限を知っているので無効重過失がなければ有効※株式会社の場合、代表取締役は強力な包括的権限を持っているため、内部手続（ボード承認）が漏れていても、相手方が「知らない、または知らないことに重い過失がない」限り、取引は有効になります（取引の安全をより重視します）。4. 覚え方のコツプログラミングの条件分岐のように整理すると覚えやすいですよ！Step 1: 相手方が制限を**知っている（悪意）**か？Yes → 法人の勝ち（契約は無効）No（善意） → 相手方の勝ち（契約は有効）今回の問題は「知っていたとしても」とあるので、その時点で Step 1 により「無効」という分岐に入ります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -16452,6 +18447,20 @@ export const SUBJECTS = {
           "1. 結論：本心があるなら「なかったこと」にしない本来、身分行為（婚姻、養子縁組など）は、その届出の瞬間に真実の意思がなければ無効です。しかし、後から「やっぱりこの関係でいこう」という合意が生まれた場合、判例は追認を認め、届出の時にさかのぼって有効にするというスタンスを取っています。① 無効な代諾養子縁組（だいだくようしえんぐみ）15歳未満の子に代わって法定代理人が行う養子縁組ですが、例えば代理権のない人が勝手に行った場合などは本来無効です。デバッグ： しかし、子が15歳に達した後に「このまま親子でいたい」と追認すれば、縁組の時にさかのぼって有効になります。② 無断で出された婚姻届（判例：最判昭45.10.20）内縁の妻（または夫）が、相手に無断で婚姻届を出してしまった場合、出した瞬間は「合意がない」ので無効です。デバッグ： その後、相手が「まあ、もう届出しちゃったし、このまま夫婦としてやっていこう」と認め（追認し）、夫婦の実態が継続していれば、届出の時にさかのぼって有効になります。2. なぜ「さかのぼって（遡及的に）」有効になるのか？ここが財産法との大きな違いであり、試験で狙われるポイントです。財産法（119条など）： 無効な行為を追認しても、原則として「追認した時から」将来に向かって有効になるだけです。家族法（判例）： 「届出をした時（過去）」にさかのぼって有効になります。なぜ家族法だけ特別なの？（身分関係の安定）もし「追認した時から有効」にしてしまうと、それまでの数年間が「法律上は他人（または愛人関係）」になってしまい、その間に生まれた子供の嫡出性や、相続関係がめちゃくちゃになってしまいます。身分関係を安定させるために、**「最初からずっと夫婦（親子）だったことにしよう！」**という魔法をかけるのが判例の知恵です。3. 【整理】追認が認められるための条件ただ「認めます」と言えばいいわけではなく、以下のセットが必要です。追認時に「身分意思（本当に家族になる気）」があること。身分関係の実態（実際に夫婦・親子として暮らしていること）があること。4. 試験対策のアドバイス「身分行為の追認」と「財産行為の追認」の違いを1秒でデバッグしてください。比較項目財産行為（売買など）身分行為（婚姻・縁組）追認の効果原則として将来に向かって有効**さかのぼって（遡及して）**有効理由取引の安全身分関係の安定（実態に合わせる）ポイント：行政書士試験では、「身分行為の追認は、将来に向かってのみその効力を生ずる」という選択肢がよく出ますが、これは**「×」**です。",
           "1. 結論：養子縁組も追認で「最初から」有効になる本来、養子縁組も届出の瞬間に「親子になろう」という合意がなければ無効です。しかし、勝手に届出が出された場合などでも、その後に親子としての実態ができ、当事者が「これでいこう」と認めれば、追認が認められます。判例のスタンス： 婚姻と同様、養子縁組についても追認によって、**届出の時にさかのぼって（遡及して）**有効になります（最判昭27.12.23など）。2. なぜ「追認」を認める必要があるのか？（デバッグ）もし追認を認めないと、何年も親子として暮らしてきた実績があっても、法律上はずっと「他人」のままになってしまいます。不都合な点： 相続が発生したときに「実はあの時の届出は無効だったから、あなたは相続人じゃない」と後出しジャンケンで言われてしまうと、身分関係が崩壊してしまいます。解決策： 判例は、**「実態（親子として暮らしている）」と「意思（追認）」**が揃ったなら、過去の不備を洗い流して、最初から親子だったことにしよう、という判断を下します。3. 【重要】財産法と家族法の「追認」比較ここが試験で最も狙われるポイントです。同じ「無効な行為の追認」でも、ルールが全く異なります。比較項目財産法（民法119条）家族法（婚姻・養子縁組）追認の効果原則として**「将来」**に向かって有効（＝新しい契約をしたとみなす）**「過去（届出時）」**にさかのぼって有効キーワード遡及効（さかのぼる効果）なし遡及効（さかのぼる効果）あり4. 試験対策のアドバイス「養子縁組」や「婚姻」に関する問題で、「一度無効となったものは、その後に当事者が追認しても有効となることはない」という選択肢はすべて**「×」**です。また、「将来に向かってのみ有効となる」というひっかけも多いので、必ず**「届出の時にさかのぼって」**というフレーズをセットで覚えておいてください。",
           "1. 結論：117条の盾はあっても、709条の矛からは逃げられない\n未成年者が勝手に代理人として振る舞った（無権代理）場合、相手方は「契約を守れ！」とか「損害を賠償しろ！」と攻めたくなりますが、民法はルールを分けて考えています。\n\n① 117条（無権代理人の責任）が適用されない理由\n民法117条2項1号には、はっきりと**「代理人として契約をした者が行為能力を有しなかったときは、適用しない」と書かれています。\nこれは、未成年者がうっかり（あるいは出来心で）無権代理をしてしまったときに、契約上の重い責任を負わせて人生を台無しにしないための「強力な盾」**です。\n\n② 709条（不法行為責任）が認められる理由\nしかし、この盾は「契約上の責任」に対するものであり、「悪いことをして他人に損害を与えた責任」まで免除するものではありません。\nもし未成年者が、相手を積極的にだましたり、重大な落ち度（故意・過失）で損害を与えたりしたのであれば、それは不法行為として**「損害賠償」**をしなければなりません。\n\n2. 【デバッグ】不法行為責任を追及するための「条件」\nただし、どんな未成年者でも訴えられるわけではありません。以下のパズルが揃う必要があります。\n\n故意・過失： 相手をだます意図があった、あるいは注意すれば防げたこと。\n\n責任能力（せきにんのうりょく）： 自分のしたことの良し悪しを判断できる能力があること（通常、12歳前後以上）。\n\nポイント： 117条が適用されない「行為能力」とは別物です！\n\n3. なぜこの「二段構え」になっているのか？\n民法の哲学をデバッグすると、こうなります。\n\n117条を止める理由： 「契約」という法的な縛りからは未成年者を守る。\n\n709条を認める理由： 「嘘をついて人を傷つける」という反社会的な行為には、年齢に関わらず責任を取らせる（もちろん責任能力がある場合に限る）。\n\nもし709条すら認めないと、「未成年者なら何をしても許される」という極端な話になってしまい、取引の安全が完全に崩壊してしまうからです。\n\n4. 試験対策のアドバイス\n行政書士試験では、この「117条はダメだが709条はアリ」という切り分けが、正誤問題でよく狙われます。\n\nひっかけ： 「未成年者が無権代理をした場合、いかなる場合も損害賠償責任を負うことはない。」\n\nデバッグ： ×（間違い）。117条の責任は負わないが、不法行為（709条）の責任を負う可能性は残っています。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -16514,6 +18523,13 @@ export const SUBJECTS = {
           "1. 結論：自分から仕掛けておいて「金払え」は通らない\nこのケースでは、違約金を支払う条件（＝Bが禁止行為をすること）を、受取人であるAがわざと（第三者Cを使って）引き起こしています。\n\nこのように、条件が成就することで利益を受ける当事者が、不正にその条件を成就させた場合、相手方はその条件が**「成就しなかったもの」**とみなすことができます（民法130条2項）。\n\nしたがって、Bは違約金の支払義務を負いません。\n\n2. 条文のロジック（民法130条の2段構え）\nこの条文は、スポーツマンシップのような「信義則」をルール化したものです。\n\n1項（邪魔をした場合）： 条件が叶うと損をする人が、邪魔をして叶わないようにした。\n\n→ 相手方は**「条件は叶った！」**と言える。\n\n2項（無理やり叶わせた場合）： 条件が叶うと得をする人が、ずるい手を使って無理やり叶わせた。\n\n→ 相手方は**「条件は叶っていない！」**と言える。（今回のケース）\n\n3. 【試験対策】ここがポイント！\n行政書士試験では、かつては1項（妨害）の知識だけで足りましたが、現在は**2項（誘発・成就）**もしっかり狙われます。\n\nキーワードは「信義則に反して」：\n単に条件が叶ったのではなく、そこに「ずるい意図」や「不当な働きかけ」があったかどうかが判断の分かれ目です。今回の問題文にある「誘発した」という表現は、まさにこれに該当します。\n\n4. 覚え方のコツ\n「条件」の単元は、プログラミングの if 文に例えるとスッキリします。\n\n本来の if 条件：if (B_does_prohibited_act)\n\nAの不正：外部からフラグを無理やり true に書き換えた。\n\n民法のガード：「その書き換えは無効。元々の false として扱う」\n\n「自分でマッチを擦っておいて、火事になったから保険金をくれというのはナシ」という理屈で覚えるのが一番スムーズです。\n\n「条件と期限」の分野も、これでかなり細かい枝葉まで網羅できましたね。このあたりは「誰が得をして、誰がずるいことをしたか」という視点を持つと、初見の問題でも正解を導き出しやすくなります",
           "これは民法第130条1項（条件の成就の妨害）の基本原則に対する、非常に重要な**「例外（判例）」**を問う問題です。行政書士試験では、「原則」を知っている人ほど引っかかる高度な知識問題ですね。\n\n1. 結論：農地法上の許可は「別格」\n通常、誰かがズルをして条件が叶わないように邪魔をしたら、民法130条によって「条件は叶ったもの」とみなされます。しかし、農地の売買における「行政（知事など）の許可」については、このルールが適用されません。\n\n判例（最判昭36.5.26）は、たとえ売主がわざと許可申請を妨害したとしても、「条件が成就した（＝許可が下りて所有権が移転した）」とみなすことはできないとしています。\n\n2. なぜ「みなされることはない」のか？（論理のデバッグ）\nなぜ、ズルをした売主を有利にさせるような結論になるのでしょうか？それには、この条件の「性質」が関係しています。\n\n① 「法定条件」であること\n通常の条件（例：試験に受かったら車をあげる）は、当事者が勝手に決めた「任意の条件」です。\n一方、農地売買の許可は、**農地法という法律が「これがないと契約は無効だ」と決めている「法定条件（ほうていじょうけん）」**です。\n\n② 公共の利益の保護\n農地法が許可制にしているのは、「農地が勝手に潰されないように、行政が厳しくチェックする」という公共の目的があるからです。\nもし民法130条を適用して「許可があったもの」とみなしてしまうと、行政のチェックを通さずに所有権が移転してしまうことになり、農地法の目的が果たせなくなってしまいます。\n\n判例のスタンス：\n「当事者間のズルい・ズルくないというレベルの話」よりも、「行政が農地を守るという公的なルール」を優先する、という判断です。\n\n3. 救済策：買主はどうすればいい？\n「条件成就とみなされない」のであれば、買主は泣き寝入りするしかないのでしょうか？\n実務上、買主には以下の選択肢が残されています。\n\n協力義務の履行請求： 売主に対して「ちゃんと許可申請に協力しろ」と裁判で訴える。\n\n損害賠償請求： 協力しないせいで契約がポシャった場合、その損害を賠償させる。\n\nつまり、「いきなり所有権を手に入れる（条件成就）」ことはできないけれど、別の方法で売主を追い詰めることはできる、という構成になっています。\n\n4. 【試験対策】整理のポイント\nこの問題が出たときは、頭の中で以下のフローチャートを走らせてください。\n\nStep 1：条件を邪魔したか？\n\nYes → 原則：130条で「成就」とみなす。\n\nStep 2：それは「農地の許可（法定条件）」か？\n\nYes → 例外：130条は適用されない（成就とみなさない）。\n\n「法定条件には130条の類推適用の余地がない」というフレーズで覚えておくと、記述式試験などでも役立ちますよ！",
           "一見すると「成功したら」という条件に見えますが、判例（大判大4.3.24）は、いわゆる「出世払い」について**「停止条件」ではなく「不確定期限（ふかくていきげん）」**であると解釈しています。1. 結論：成功しなくても「いつかは返さなきゃいけない」「不確定期限」として扱われる場合、借主Bは、社会的な成功を収めたときはもちろん、**「成功しないことが確定したとき（例えば挫折した、破産した、死亡したなど）」**にも、返済義務を負うことになります。つまり、結果がどうあれ「お金を返す」という義務自体は免れることができません。2. なぜ「条件」ではなく「期限」なのか？もしこれを「停止条件（成功しない限り払わなくていい）」としてしまうと、貸主Aにとって非常に不利な結果になります。契約の性質： これは「金銭消費貸借契約（借金）」です。借金の本質は「借りたものを返す」ことにあります。贈与との区別： もし「成功しなかったら返さなくていい」のであれば、それはもはや借金ではなく「（条件付きの）贈与」になってしまいます。当事者の意思の合理的な解釈： 貸主Aが「出世払いでいいよ」と言ったのは、「今は苦しいだろうから、余裕ができるまで待ってあげるよ（返済時期を猶予する）」という趣旨だと考えるのが自然です。決して「出世できなかったら踏み倒していいよ」とまでは思っていないはずだ、と判断されます。3. 【整理】「条件」と「不確定期限」の違いここが試験で最も問われるポイントです。項目停止条件（もし〜なら）不確定期限（いつかは〜）発生するかどうか不確実（発生しないこともある）必ず発生する（時期だけが不明）叶わなかった場合義務は発生しないその時点で期限が到来し、義務が発生する出世払いの扱い採用されないこちらが採用される覚え方のコツ：条件： 「YES」か「NO」か決まっていない。期限： 「いつ」かは分からないが、必ず「その時」が来る。出世払いの場合、「成功した時」だけでなく「成功の可能性が消えた時」も、法的には「期限が来た」とみなされます。4. 試験対策としての視点行政書士試験では、この「出世払い」のキーワードが出たら、即座に**「不確定期限 ＝ 成功しなくても支払義務あり」**というロジックに結びつけてください。また、不確定期限の**「履行遅滞（いつから遅延損害金が発生するか）」**についても、あわせて押さえておくと完璧です。不確定期限の履行遅滞： 債務者Bが、その期限が到来したことを**「知った時」、または期限到来後に「履行の請求を受けた時」**のいずれか早い時から遅滞となります（民法412条2項）。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -16570,6 +18586,13 @@ export const SUBJECTS = {
           "１６２条２項"
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -16660,6 +18683,17 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -16741,6 +18775,17 @@ export const SUBJECTS = {
           "1. 結論：担保物権は「おまけ」の権利留置権や先取特権は、それ自体が独立して動く権利ではなく、あくまで**「本体（被担保債権：貸したお金など）」にくっついている「おまけ」**です。① 取得時効はなぜ「×」？留置権： 「他人の物を預かっていて、代金を払ってくれるまで返さない」という状態です。「この留置権を20年使い続けて、時効でゲットしよう！」という発想は法律上ありません。物を持っている事実は「占有権」として時効に関係しますが、留置権そのものを時効取得することはできません。先取特権： 法律が「給料や葬儀費用などは優先的に払ってもらえる」と決めている権利です。これも時効で手に入れる性質のものではありません。② 消滅時効はなぜ「×」？ここが少しトリッキーですが、試験で狙われるポイントです。権利そのものは消えない： 留置権や先取特権だけが、単独で「20年経ったから消滅！」となることはありません。ただし（附従性）： 本体の借金（被担保債権）が時効で消えれば、おまけである留置権や先取特権も道連れで消えます。2. 【デバッグ】留置権ならではの「超重要ルール」行政書士試験で「時効×留置権」といえば、必ずと言っていいほど出題される条文があります。民法第300条：留置権の行使は、債権の消滅時効の進行を妨げない。これ、めちゃくちゃ重要です。状況： 壊れた時計を修理して、「修理代を払うまで返さない（留置権）」と言ってずっと持っている。罠： 「時計を預かっているんだから、修理代の時効も止まっているだろう」と安心していると、時計を握りしめたまま修理代の時効（通常5年）が完成してしまいます。結論： 修理代（本体）が時効で消えたら、留置権（おまけ）も消えて、時計をタダで返さなければならなくなります。3. 【整理】時効の対象になる権利・ならない権利今回のデバッグ結果をリストに加えましょう。権利の種類取得時効消滅時効覚え方所有権○ あり× なし自分の物は最強。地上権・地役権○ あり○ あり20年使わないと消える。留置権・先取特権× なし× なし本体（借金）の時効に連動するだけ。抵当権× なし× なし債務者との関係では、本体と同時。4. 試験対策のアドバイス「留置権が消滅時効にかかる」という選択肢を見たら、すぐに**「おまけだけの単独消滅はない！」**とツッコミを入れてください。ポイント： 「留置権そのものが消える」のではなく「被担保債権が消えたから、結果的に留置権も使えなくなる」というのが正しい論理の順序です。",
           "1. 結論：ゲットはできるが、勝手に消えはしない「質権」という権利の性質を時効のルールに当てはめると、以下のようになります。① 取得時効は「○（アリ）」民法第163条（所有権以外の財産権の取得時効）に基づき、質権も時効によって手に入れることができます。例： 誰かから物を預かって、「これは借金のカタ（質権）として預かっているんだ」という意思を持って、平穏・公然と使い（占有し）続ければ、10年または20年で質権を時効取得できる可能性があります。② 消滅時効は「×（独立してはナシ）」ここがポイントです。質権そのものが、本体の借金とは無関係に「20年経ったから消滅！」となることはありません。理由： 質権は**「附従性（ふじゅうせい）」**が非常に強く、本体の借金（被担保債権）が生きている限り、質権だけが先に時効で消えることはないと考えられています。抵当権との違い： 抵当権には「債務者・抵当権設定者との関係では、債務と同時でないと時効にかからない」という明文規定（396条）がありますが、質権も同様の理屈で運用されます。2. 【デバッグ】「質権」ならではの強力なバリア質権が消滅時効にかかりにくい（失わない）のには、もう一つ物理的な理由があります。占有の継続： 質権は、相手から物を取り上げて自分の手元に置いておく権利です。時効の更新（承認）： 物を預けっぱなしにしているということは、債務者が「まだ借金を返していません（だから預けたままです）」と黙って認めている（承認している）ようなものです。これにより、本体の借金の時効も進みにくくなります。3. 【整理】物権と時効の「GET & LOST」マトリックスこれで、これまでデバッグしてきた物権の時効関係がすべて出揃いました！権利の種類取得時効 (GET)消滅時効 (LOST)覚え方のコツ所有権○ あり× なし自分の物は最強。地上権・地役権○ あり○ あり20年使わないと消える。留置権・先取特権× なし× なし法律で勝手に発生するから。質権○ あり× なし財産権としてGETはできるが、おまけなので単独では消えない。4. 試験対策のアドバイス行政書士試験では、「質権が消滅時効にかかる」という選択肢が出たら、**「おまけ（担保物権）が本体（借金）より先に消えることはない！」**と判断してください。注意点： もちろん、本体の借金が時効で消えれば、質権も道連れで消えます。これは「質権の消滅時効」ではなく「附従性による消滅」と呼びます。ここを区別できれば完璧です。",
           "1. 結論：抵当権は「単独でGET」はできない抵当権は、物を手元に置いておく権利（占有）ではなく、登記簿上のデータとして存在する権利です。そのため、「抵当権を行使する意思をもって占有し続ける」という状態が物理的にあり得ないため、抵当権そのものを時効でGET（取得時効）することはできないというのが通説的見解です。2. 結論：でも「単独でLOST」することはある（396条・397条）ここが試験で最も狙われる、非常にトリッキーな「消滅」のルールです。① 債務者・設定者との関係（396条）債務者（お金を借りた人）や抵当権設定者（家を担保に入れた人）に対しては、**「本体の借金が消えない限り、抵当権だけが先に時効で消えることはない」**と決められています。理由： 「借金は返してないけど、20年経ったから抵当権だけ消してよ！」という自分勝手な理屈を認めないためです。② 第三者との関係（397条）ここが「例外」の部分です。債務者でも設定者でもない「第三者」が、その不動産を時効取得（10年または20年占有）した場合は、抵当権は消滅します。3. 【整理】抵当権の消滅時効マトリックス誰が「時効だ！」と叫んでいるかによって、結果が変わります。誰が主張するか本体の借金（債権）がある場合結論債務者・設定者抵当権だけ時効で消したい！× できない（396条）第三者（不法占拠者など）20年住んだから抵当権ごと俺の物！○ 消滅する（397条）後順位抵当権者先順位の抵当権を時効で消したい！× できない（判例）デバッグポイント：抵当権は**「本体（借金）と運命を共にする」のが原則ですが、「全くの他人が土地を乗っ取った（時効取得した）時だけは、一緒に消えてしまう」**という、非常にドラマチックな消滅の仕方をします。4. 試験対策のアドバイス行政書士試験では、396条のフレーズがそのまま出題されます。重要フレーズ： 「抵当権は、債務者及び抵当権設定者に対しては、その担保する債権と同時でなければ、時効によって消滅しない。」ひっかけ： 「抵当権は、債務者に対しても、20年行使しなければ単独で消滅時効にかかる。」→ ×（間違い）。債務者に対しては、本体とセットでないと消えません。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -16798,6 +18843,13 @@ export const SUBJECTS = {
           "1. 結論：受益者は時効を援用「できる」判例（最判昭63.6.9）によれば、詐害行為取消権の被告となる**受益者（E）**は、債権者（A）が持つ債務者（B）への債権（被保全債権：甲債権）について、消滅時効を援用することができます。問題文にある「利益は反射的なものにすぎないため、援用することができない」という部分は、判例の考え方と真っ向から対立するため間違いとなります。2. なぜ「反射的」ではなく「直接的」なのか？時効を援用できるのは、時効によって「直接に利益を受ける者（正当な利益を有する者）」に限られます。Eの立場： 債権者Aから「その不動産を返せ！（詐害行為取消権）」と訴えられている当事者です。甲債権が消えたら？： AがBに対して持っている「甲債権」が時効で消えてしまえば、Aは詐害行為取消権を行使する根拠（保全すべき債権）を失います。そうなれば、Eはせっかく手に入れた不動産を返さなくて済むようになります。このように、Eにとって「甲債権が消えること」は、自分の所有権を守るための死活問題です。したがって、これは単なるラッキー（反射的利益）ではなく、法律上守られるべき**「直接の利益」**であると判断されます。3. 【比較】援用できるかどうかの境界線以前の「後順位抵当権者」などと比較して整理すると、より理解が深まります。登場人物援用の可否理由（イメージ）受益者 (E)できる (○)訴えられていて、負けると物を奪われるから。保証人・物上保証人できる (○)支払いや差押えを免れるから。後順位抵当権者できない (×)先順位がいなくなって順位が上がるのは「反射的なラッキー」に過ぎないから。4. 行政書士試験での注意点この問題、実は**「2020年の民法改正」の際にも議論されたポイント**です。現在の民法145条の括弧書きには、援用権者の例として「保証人、物上保証人、第三取得者」が挙げられていますが、「受益者」という言葉は明記されていません。しかし、条文の最後にある**「その他時効の完成について正当な利益を有する者」**の中に、この受益者が含まれるというのが通説・判例の確固たる立場です。「条文に名前がないからダメ」というひっかけに合わないよう、「直接影響を受けるかどうか」のロジックで判断してください。",
           "1. 結論：順位が上がるのは「ラッキー」にすぎない判例（最判昭24.10.21、最判平11.10.21）によれば、後順位抵当権者は、先順位の債権が消滅することによって「自分の抵当権の順位が繰り上がる」という利益を受けますが、これは法律上の直接的な利益ではなく、単なる**「反射的利益（はんしゃてきりえき）」**にすぎないとされています。そのため、民法第145条にいう「時効の完成について正当な利益を有する者」には該当せず、時効を援用することはできません。2. なぜ「受益者」はOKで「後順位抵当権者」はNGなのか？ここが一番混乱しやすいポイントです。論理を整理（デバッグ）してみましょう。受益者（詐害行為の相手方）：債権者に訴えられており、負けると**「今持っている自分の財産（所有権）」**を奪われます。だから、守るための直接的な利益があります。後順位抵当権者：先順位がいてもいなくても、自分の抵当権はもともと「2番手」として成立しています。先順位がいなくなれば順位が上がって配当が増えるかもしれませんが、それは**「プラスアルファの儲け」**にすぎず、今ある権利が奪われるわけではありません。覚え方のコツ：「今の自分の持ち物を守るための必死な抵抗（保証人、物上保証人、受益者）」は認められるけれど、**「他人の時効を利用して、自分の取り分を増やそうとする棚ぼた」**は認められない、というイメージです。3. 【重要】時効の援用権者リスト（完全版）これで主要なメンバーが出揃いました。以下の対比で頭の中のデータベースを更新しておきましょう。援用できる（直接の利益あり）援用できない（反射的利益のみ）債務者本人後順位抵当権者（今回のポイント）保証人・連帯保証人一般債権者物上保証人不法占拠者第三取得者（抵当権付き物件の購入者）抵当不動産の賃借人（判例）詐害行為の受益者4. 試験対策のヒントこの問題は、選択肢の中で「物上保証人」や「受益者」と並べて出題されることが多いです。「順位が上がるんだから利益はあるじゃないか」という直感に頼ると間違えてしまうため、**「後順位抵当権者 ＝ 反射的利益 ＝ 援用NG」**というセットを、例外のない固定ルールとして暗記してしまうのが得策です。時効の「援用権者」に関する論点は、これでほぼ網羅できましたね！非常に高い精度で整理できていると思います。",
           "1. 結論：第三取得者は「正当な利益」の塊抵当権がついた不動産を買い取った（または譲り受けた）人のことを**「第三取得者」**と呼びます。このGさんは、借金（甲債権）が時効で消えれば、自分の持ち物である不動産から抵当権を消すことができます。もし時効を主張できなければ、自分の家や土地が競売にかけられて失われてしまうかもしれません。これは「反射的なラッキー」などではなく、自分の所有権を守るための**「直接的かつ切実な利益」**です。そのため、民法第145条でも援用権者としてハッキリ認められています。2. なぜ「後順位抵当権者」と結論が分かれるのか？ここが混乱のポイントですが、**「今持っている権利を奪われるかどうか」**というデバッグ視点を持つとスッキリします。第三取得者 (G) の場合：すでにその物件の「所有権」を持っています。時効を援用できないと、「今ある所有権」を失う（競売される）リスクがあります。→ だから、必死の抵抗（援用）が認められる。後順位抵当権者 (F) の場合：先順位がいてもいなくても、自分の「2番手」という立場は変わりません。時効を援用できなくても、「今ある権利（2番手の地位）」を失うわけではありません。→ だから、順位を上げようとする欲張り（援用）は認められない。3. 【整理】時効の援用ができる・できない（最終確認）これまでの知識を一つのテーブルにマッピングして、脳内のデータベースを完成させましょう。援用できる（直接の利益あり）援用できない（反射的利益のみ）債務者本人後順位抵当権者保証人・連帯保証人一般債権者物上保証人不法占拠者第三取得者（今回のG）抵当不動産の賃借人詐害行為の受益者4. 試験合格へのアドバイス「第三取得者」という言葉が出てきたら、**「その物件をいま持っている人」**と脳内変換してください。自分の持ち物を守るために戦うのは、民法上もっとも「正当な利益」がある状態です。逆に「後順位〜」と出たら「順位上げを狙うハイエナ（失礼！）」というイメージで、利益は反射的だと判断すれば、このシリーズの問題で失点することはありません。時効の援用権者シリーズ、ついに全パターン制覇ですね！本当にお疲れ様です。この論点は、行政書士試験の民法において、短答式でも記述式でも非常に「おいしい（得点しやすい）」部分です。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       }
     ],
@@ -16834,6 +18886,10 @@ export const SUBJECTS = {
           {
             "label": "【要点解説】区分地上権（地下・空間の利用）\r\n1. 根拠条文\r\n結論：可能（区分地上権）\r\n工作物を所有するため、地下または空中の特定の層を目的として地上権を設定することができます。これを一般に区分地上権と呼びます。\r\n\r\n根拠条文：民法269条の2第1項\r\n\r\n「地下又は空中の特定の層を目的として、工作物を所有するため、地上権を設定することができる。この場合においては、設定行為で、地上権の行使のためにその土地の利用に制限を加えることができる。」\r\n\r\n趣旨\r\n土地の所有権は、正当な利益の存する限度において「その土地の上下に及ぶ（民法207条）」のが原則です。しかし、地下鉄やS架橋のように、土地の表面を使わずに「特定の部分」だけを利用したいニーズに応えるために認められています。\r\n\r\n2. 具体例\r\n地下の利用：\r\n\r\n地下鉄のトンネルを通すため、地下20メートルから30メートルの範囲に区分地上権を設定する。\r\n\r\n空中の利用：\r\n\r\nS圧電線を張るため、またはモノレールの軌道を設置するため、地上15メートルから25メートルの範囲に区分地上権を設定する。\r\n\r\n建物の上にさらに別の建物を建てる（空中権の利用）。\r\n\r\n3. 過去問の急所（ひっかけ対策）\r\n行政書士試験において、区分地上権で問われやすいポイントは以下の3点です。\r\n\r\n範囲の特定\r\n\r\nポイント： 区分地上権を設定するには、「上下の範囲」を数値（標Sや深さなど）で具体的に定めなければなりません。\r\n\r\nひっかけ： 「範囲を定めずに空中のみを目的として設定できる」→ ×（範囲の特定が必須）\r\n\r\n第三者の承諾（民法269条の2第2項）\r\n\r\nポイント： すでにその土地に利用権（賃借権や抵当権など）を持っている人がいる場合、その人たちの全員の承諾がなければ、区分地上権を設定することはできません。\r\n\r\nひっかけ： 「過半数の承諾があればよい」や「抵当権者の承諾は不要」→ ×（全員の承諾が必要）\r\n\r\n目的の限定\r\n\r\nポイント： 区分地上権は**「工作物を所有するため」**に限定されます。\r\n\r\nひっかけ： 「竹木を植栽するために区分地上権を設定できる」→ ×（樹木を植えるための区分地上権は認められません。通常の地上権との違いです）\r\n\r\n4. 周辺知識\r\n通常の地上権との比較や、登記の実務に関する知識です。\r\n\r\n比較項目\t通常の地上権\t区分地上権\r\n目的\t工作物の所有・竹木の所有\t工作物の所有のみ\r\n利用範囲\t土地全体（上下に及ぶ）\t特定の層（地下または空中）\r\n土地の利用制限\t特になし（全面的利用）\t設定行為で制限可能（例：地表に重い建物を建てない等）\r\n第三者の承諾\t不要（所有者との合意で可）\t既登利害関係人全員の承諾が必要\r\n【実務上のTips】\r\n地下鉄を通す際などに、土地所有者に支払われる対価（地代）は、通常の地上権よりも安くなるのが一般的です。土地の表面の利用が阻害されない度合いがSいためです。",
             "options": ""
+          },
+          {
+            "label": "２６９条の第２項１項",
+            "options": ""
           }
         ],
         "refId": "",
@@ -16863,11 +18919,11 @@ export const SUBJECTS = {
           ""
         ],
         "choiceStatuteRefs": [
-          "",
-          "",
-          "",
-          "",
-          "",
+          "２６９条の第２項１項",
+          "最半大１３．１０．７",
+          "最判昭５４．２．１５",
+          "大判大５．３．１１",
+          "２８３条",
           "",
           ""
         ],
@@ -16879,6 +18935,15 @@ export const SUBJECTS = {
           "1. 結論：黙ってこっそり使うのはNG地役権を時効取得するためには、以下の2つの条件を同時に満たす必要があります。継続的（けいぞくてき）：一時的な利用ではなく、常にその権利が行使されている状態であること。外形上認識することができる（がいけいじょうにんしきすることができる）：客観的に見て「あ、ここは地役権として使われているな」と誰でもわかる状態であること。なぜこんなに厳しいのか？もしこのルールがなければ、地主の知らない間に勝手に土地を横切られて、「20年通ったから、ここは今日から俺の道だ（地役権取得）！」と主張されてしまいます。地主からすれば、**「そんなの聞いてないし、気づかなかったから文句の言いようもなかったよ」**となってしまいますよね。そのため、地主が「おや、あいつ勝手に道を作って通ってるな。文句を言わなきゃ」と気づけるチャンス（外形上の認識）を与えているのです。2. 【超重要】通行地役権の「通路の開設」行政書士試験で最も狙われるのが、この「外形上認識できる」の具体例である**通行地役権（つうこうちえきけん）**です。単に他人の土地を歩いているだけでは、時効取得は認められません。判例（最判昭30.12.26）では、さらに以下の条件を求めています。通路の開設（つうろのかいせつ）：要役地（得をする側の土地）の所有者が、自ら通路を設置したことが必要です。ダメな例：ただの獣道（けものみち）を通っている。地主が自分たちのために作った道をついでに通っている。「自分で砂利を敷いたり、舗装したりして道を作った」という事実があって初めて、地主に対して「私はここを権利として使うつもりですよ」という宣戦布告（外形上の認識）になり、時効のカウントが始まります。3. 【整理】時効取得できる地役権・できない地役権このルールを当てはめると、取得の難易度が見えてきます。地役権の種類取得時効の可能性理由通行地役権○ あり通路を自分で作れば「継続・外形」を満たす。引水地役権○ あり常に水が流れる管などを設置すれば満たす。眺望地役権× ほぼ不可能「景色を見る」という行為は外形上わからず、継続性も判定しにくいため。4. 試験対策のアドバイス「地役権の時効取得」というキーワードが出たら、即座に**「283条：継続・外形」と「通路の開設（自作）」**をセットで思い出してください。ひっかけ： 「通行地役権は、他人の土地を長期間通行し続ければ、通路を開設していなくても時効取得できる。」デバッグ： ×（間違い）。通路の開設（外形上の認識）が必須です。",
           "1. 結論：言葉（合意）だけで権利は動く\n民法第176条にはこう書かれています。\n\n「物権の設定及び移転は、当事者の意思表示のみによって、その効力を生ずる。」\n\nつまり、特約（特別な約束）がない限り、以下のタイミングで所有権は移転します。\n\n× お金を払ったときではない\n\n× 物を受け取ったときではない\n\n× 登記（名義変更）をしたときではない\n\n○ 「買います」「売りましょう」という契約が成立した瞬間\n\n2. 【デバッグ】「不特定物」の場合はどうなる？\n「このリンゴをください」という特定された物（特定物）なら契約時に移転しますが、大量生産品などの**「不特定物（ふとくていぶつ）」**の場合は少しルールが追加されます。\n\nルール： どの品物を渡すかが決まった時（特定された時）に移転する。\n\n例： ネット通販で「この型番のテレビを一台ください」と注文した場合、契約時ではなく、倉庫で発送のために「これだ！」と商品がピックアップされた瞬間に所有権が移転します。\n\n3. 「契約時」だと何が困るのか？（対抗要件の重要性）\n「契約だけで所有権が移るなら、登記や引き渡しは何のためにあるの？」という疑問が湧きますよね。ここが試験で最も重要な「二段構え」の構造です。\n\n当事者間（売主と買主）：\n契約した瞬間に「俺の物だ！」と言える。\n\n第三者（他の人）：\n登記や引き渡し（対抗要件）がないと、「俺の物だ！」と主張できない。\n\nイメージ：\nAさんがBさんに土地を売り、直後にCさんにも二重に売った場合。Bさんは契約した瞬間に所有権を得ますが、Cさんに勝つためには「先に登記（不動産）」や「引き渡し（動産）」を済ませておく必要があります。\n\n4. 試験対策のアドバイス\n「原則として」という言葉に注意してください。実務や試験問題では、以下のような「特約」がついているケースが非常に多いです。\n\n所有権留保（しょゆうけんりゅうほ）： 「代金を完済した時に所有権が移転する」という約束。\n\n引渡時移転： 「品物を届けた時に所有権が移転する」という約束。\n\nこれらがある場合は、そちらの約束が優先されます。問題文に「特約がない限り」や「原則として」とあれば、**「契約時（意思表示時）」**が正解となります。",
           "1. 結論：契約した瞬間に「物」は動く民法第176条は、物権（所有権など）がいつ移転するかについて、以下のように定めています。「物権の設定及び移転は、当事者の意思表示のみによって、その効力を生ずる。」つまり、特別な約束（特約）がない限り、以下の行為は不要です。代金の支払い： お金を払っていなくても、契約すれば所有権は移ります。物の引き渡し： 商品を受け取っていなくても、契約すれば所有権は移ります。登記（名義変更）： 不動産の名義を変えていなくても、契約すれば所有権は移ります。「買います」「売りましょう」という合意（意思表示）があった瞬間に、目に見えない所有権という権利が、売主から買主へとワープするイメージです。2. 【デバッグ】「いつ移るか」の例外パターン原則は「意思表示の瞬間」ですが、現実にはそういかないケースが2つあります。パターン所有権が移るタイミング理由特定物（一点物）契約が成立した瞬間対象がはっきり決まっているから。不特定物（在庫品など）「特定」された瞬間どの品物を渡すか決まるまでは、権利の移しようがないから。特約がある場合特約で定めた瞬間「代金を全額払った時」などの約束（所有権留保）があれば、それが優先される。例： ネットショップで「この型番のテレビを一台」と注文した場合、注文時ではなく、倉庫で発送のために「これだ！」と商品がピックアップ（特定）された時に所有権が移ります。3. なぜ「登記」や「引き渡し」が必要なの？ここで多くの受験生が混乱します。「意思だけで移るなら、なぜ登記や引き渡しが大事なの？」という疑問です。民法は、ここを**「二段構え」**で考えています。当事者間（売主 vs 買主）：176条（意思主義）。契約だけで「僕の物だ！」と言えます。第三者に対して（買主 vs 他の誰か）：177条・178条（対抗要件）。登記や引き渡しがないと、「これは僕の物だから返して」と他人に主張（対抗）できません。**「身内（当事者）には口約束でOK、他人（第三者）には証拠（登記など）が必要」**と整理するとスッキリします。4. 試験対策のアドバイス「物権の移転」という言葉が出てきたら、まずは**「原則＝意思表示のみ（176条）」**であることを前提に問題文を読んでください。ひっかけ： 「不動産の所有権の移転は、登記をしなければ、当事者間においてもその効力を生じない。」デバッグ： ×（間違い）。当事者間では、登記がなくても契約（意思表示）だけで効力を生じます。登記が必要なのは「第三者に対抗するため」です。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -16908,6 +18973,10 @@ export const SUBJECTS = {
           {
             "label": "1. 根拠（条文・判例）結論：請求できる抵当権の効力が及んでいる動産が、抵当不動産（建物など）から無断で搬出された場合、抵当権者は、その占有者に対して**「元の場所に戻すこと」**を請求できます。根拠条文：民法370条（抵当権の範囲）抵当権は、抵当不動産に「付加して一体となった物（付加一体物）」にも及びます。建物に備え付けられた畳、建具、備え付けの設備（動産）などがこれに該当します。根拠判例：最判昭32.12.27（最重要）判示： 「抵当不動産から分離搬出された物件に対しても、抵当権の効力は及ぶ。抵当権者は、抵当権に基づく物権的請求権として、その物件を元の備置場所に復帰させることを請求できる。」論理のポイント抵当権は、不動産の「価値」を把握する権利です。価値の一部である動産が勝手に持ち出されることは、抵当権の侵害にあたります。そのため、担保価値を維持するために元に戻すよう求める権利（物権的妨害排除・予防請求権）が認められています。2. 具体例状況：A銀行がBさんの自宅に抵当権を設定した。Bさんが借金の返済に困り、自宅に備え付けられていたS価なシステムキッチンやバスタブを勝手に取り外し、リサイクル業者Cに売却するために搬出した。結果：A銀行はCに対して、「そのキッチンとバスタブをBさんの家に戻せ」と請求できます。3. 過去問の急所（ひっかけ対策）行政書士試験において、この論点で狙われる「ひっかけ」は主に2点です。「即時取得」というストッパーポイント： 搬出された動産を、事情を知らない第三者が過失なく買い取った場合、**即時取得（民法192条）**が成立します。ひっかけ： 「いかなる場合でも、抵当権者は搬出された動産を取り戻すことができる。」正解：×（即時取得されたら、抵当権の効力は消滅し、取り戻せなくなります）「誰に」戻すのかポイント： 原則として「抵当権者の手元」ではなく、**「もとの場所（抵当不動産）」**に戻すよう請求します。発展： ただし、不動産の所有者（設定者）が適切に管理できないような特殊な事情がある場合は、直接「自分（抵当権者）に引き渡せ」と言える場合もあります（最判T7.3.10参照）。4. 周辺知識（セットで覚えるべき知識）項目内容抵当権の追及権目的物が場所を移動しても、抵当権の効力が追いかけていく性質のこと。ただし、動産の場合は即時取得に弱い。付加一体物と従物判例は、370条の「付加一体物」だけでなく「従物」にも抵当権が及ぶとしています（最判昭44.3.28）。明認方法との関係搬出されたのが樹木の場合、立木法や明認方法によって「独立した不動産」として扱われているかどうかが重要になります。暗記用まとめカード原則： 持ち出された動産も、抵当権のターゲットのまま。権利： 「元に戻せ！」と言える（物権的請求権）。限界： 善意・無過失の第三者が買ったら負け（即時取得）。",
             "options": ""
+          },
+          {
+            "label": "最判平６．２．８",
+            "options": ""
           }
         ],
         "refId": "",
@@ -16933,8 +19002,8 @@ export const SUBJECTS = {
           ""
         ],
         "choiceStatuteRefs": [
-          "",
-          "",
+          "最判平６．２．８",
+          "最判昭３５．６．１７",
           "",
           "",
           ""
@@ -16945,6 +19014,13 @@ export const SUBJECTS = {
           "1. 結論：建物と「中身」は運命共同体\n工場抵当法に基づき、工場の建物に抵当権を設定すると、その建物の中に備え付けられた機械や器具（動産）にも抵当権の効力が及びます。\n\nなぜ動産までセットにするのか？\n工場から機械を抜き取ってしまうと、建物だけでは工場として機能せず、担保としての価値がガタ落ちしてしまうからです。そのため、法律によって**「建物と機械はセットで一つの担保」**として扱われます。\n\n2. 【デバッグ】勝手な持ち出しに対する「防御策」\n抵当権者に無断で機械が持ち出された場合、それは抵当権という権利に対する「侵害」にあたります。\n\n抵当権者の権利： 抵当権者は、物権的請求権（妨害排除請求権）に基づき、**「その機械を元の場所（工場内）に戻せ！」**と請求することができます（最判昭32.12.27）。\n\nポイント： 「自分のところに持ってこい」と請求するのではなく、**「元の備付場所に戻せ」**という「原状回復」を求めるのが基本です。\n\n3. 【重要】唯一の負けパターン「即時取得」\n記述にある通り、抵当権者が取り戻せなくなる唯一のケースが**「第三者の即時取得（民法192条）」**です。\n\n状況： 持ち出された機械を、事情を知らない第三者が「普通の機械だ」と信じて（善意・無過失で）買い取ってしまった場合。\n\n結果： 第三者の権利が優先され、抵当権は消滅してしまいます。抵当権者はもう「戻せ」とは言えません。\n\n4. 試験対策のアドバイス\n行政書士試験では、この「工場抵当」と「即時取得」の組み合わせがよく出題されます。\n\nひっかけ： 「搬出された動産については、いかなる場合も抵当権の効力が及ばなくなる。」\n\nデバッグ： ×（間違い）。即時取得されない限り、効力は及び続けますし、取り戻すことも可能です。",
           "1. 原則：抵当権者は「出て行け」とは言えないそもそも抵当権は、不動産の「占有（住んだり使ったりすること）」を債務者に残したまま、その「価値（お金）」だけを担保に取る権利です。そのため、設定者（所有者）が誰に貸そうが、原則として抵当権者が文句を言う筋合いはありません。2. デバッグ：例外として「妨害排除」が認められる条件しかし、その賃貸借が**「抵当権を嫌がらせするために使われている」となれば話は別です。判例では、以下のパズルが揃ったときに妨害排除請求**を認めています。抵当権設定「後」にされた賃貸借であること。競売手続を妨害する目的が認められること。占有によって、適正な価格で売れる（交換価値の実現）ことが妨げられ、優先弁済が困難になること。つまり、**「あんたが居座っているせいで、競売で安く買い叩かれて、貸したお金が返ってこないじゃないか！」**という状態であれば、抵当権の「価値を掴むパワー」を使って排除できる、ということです。3. 【一歩先へ】「自分に明け渡せ」と言えるか？ここがさらなる試験ポイントです。通常、妨害排除は「所有者に返せ」と言うのが基本ですが、別の判例（最判平17.3.10）ではこう言っています。「所有者がちゃんと管理していないなら、抵当権者は『自分（抵当権者）に直接明け渡せ』と請求できる。」悪い占有者を追い出しても、所有者がまた別の悪い奴を入れちゃうかもしれないからです。そのため、抵当権者が「一旦俺が預かる！」と言える道が開かれました。4. 【整理】抵当権の妨害排除まとめ占有者の状態妨害排除できるか理由正当な賃借人× できない抵当権設定後の賃貸借でも、妨害目的がなければ有効。競売妨害目的の占有者○ できる不動産の交換価値を侵害しているから。不法占拠者（ヤクザ等）○ できるそもそも権原がないため、価値を下げているなら排除可能。",
           "1. 結論：名前だけの所有者は「撤去義務」を負わない判例は、所有権留保付きで売られた動産（トラックや建設機械など）が他人の土地を不法に占拠していても、売主（所有権留保者）は、原則としてその動産を撤去する義務を負わないとしています。なぜ「所有者」なのに義務がないのか？「所有権留保」という仕組みの正体をデバッグすると、以下のようになります。形式的な所有権： 売主が持っているのは、代金を完済してもらうための「担保（カタ）」としての権利にすぎません。実質的な支配： その物を現実に使い、どこに置くかを決め、管理しているのは**「買主」**です。判例は、**「その物を現実に支配・管理して、土地を侵害しているのは買主であって、担保のために名前だけ所有者になっている売主ではない」**と判断しました。2. 【デバッグ】「弁済期の前後」も関係ない記述には「弁済期到来の前後を問わず」とありますが、これも間違いのポイントです。弁済期前： 当然、売主には物を引き揚げる権利すらありません（まだ買主が使う権利があるため）。弁済期後（代金延滞中）： 代金が払われず、売主が「担保権を行使して引き揚げる権利」を得たとしても、「引き揚げる権利があること」と「撤去する義務があること」は別問題です。売主が実際にその物を自分の管理下に置かない限り、依然として「土地を侵害している主体」は買主であるとみなされます。3. 【整理】建物収去ケースとの決定的な違い以前デバッグした「建物の登記名義人」のケースと混乱しやすいので、表で整理しましょう。比較対象責任を負う理由結論建物の登記名義人登記という「公の見た目」を作った責任があるから。義務あり（○）動産の所有権留保者所有権はあくまで「担保目的」であり、実態がないから。義務なし（×）ポイント：建物は「登記」という強力な公示があるため、外見を信じた土地所有者を守る必要があります。一方、動産の所有権留保は外からは見えにくく、土地所有者が「売主の所有権」を信頼して放置を許したわけではないため、実態（買主の管理責任）が優先されます。4. 試験対策のアドバイス行政書士試験では、この「所有権留保者の撤去義務」は、物権的請求権の相手方のひっかけ問題として非常に優秀な（＝間違えやすい）素材です。ひっかけ： 「所有権留保者は、所有権を有している以上、土地所有者からの撤去請求を拒むことはできない。」デバッグ： ×（間違い）。担保目的の所有権にすぎないため、原則として拒めます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -17020,11 +19096,20 @@ export const SUBJECTS = {
         "choiceDeepDive": [
           "1. 結論：原則は「現在の所有者（C）」が相手土地所有者Aが「建物を壊して土地を返せ！」と言える相手は、原則として**「その建物を壊す権限（処分権限）を持っている人」、つまり現在の建物所有者であるC**です。なぜB「のみ」ではないのか？侵害の継続： Bが不法に建てたのは事実ですが、現在進行形で土地を占拠し、Aの所有権を侵害し続けているのは、現在の持ち主であるCです。壊す権利： BはすでにCに建物を売ってしまっているので、勝手に壊す権利（処分権限）を失っています。AがBに「壊せ」と言っても、Bは「もう俺の物じゃないから壊せないよ」という状態です。したがって、Aは現在所有者であるCに対して収去を求めるのが基本ルールです。2. 【復習】Bを訴えられるのは「例外」以前のデバッグで見た「B（前所有者）を訴えられるケース」は、あくまで以下の条件が揃った時の例外的な追加ルールです。Bが自分の意思で建物登記をしていた。Cに譲渡したのに、登記名義がBのまま残っている。この場合、Aは「登記名義人であるB」を相手にすることもできますが、それはあくまでAを助けるためのオプションであって、B「のみ」に限定されるわけではありません。Aは実体上の所有者であるCを訴えることも当然できます。3. 【整理】「誰を訴えるか」の優先順位試験で迷わないように、優先順位を整理しましょう。パターン訴えることができる相手理由原則C（現在の所有者）実際に今、土地を占拠しているから。登記がBにある場合B（登記名義人） もOK登記という「見た目」を信じたAを守るため。今回の記述の「バグ」：「AはBに対してのみ……求めることができる」という部分が間違いです。正しくは「原則としてCに対して求めるべきであり、登記が残っていればBに対しても求められる」となります。4. 試験対策のアドバイス行政書士試験では、この「のみ」や「いかなる場合も」といった限定的な言葉がひっかけのサインです。解法のコツ： 「不法占拠した本人（B）」よりも、「今現在、居座っているヤツ（C）」を捕まえるのが民法の基本だと考えてください。Bへの請求は、あくまで登記という証拠が残っている時の「救済策」です。",
           "1. 結論：条件付きで「直接の明渡し」が認められる抵当権者は、一定の条件下では、占有者に対して**「自分（抵当権者）に対して直接不動産を明け渡せ」**と請求することが可能です。したがって、記述の「常にできない」という部分が間違いとなります。2. 【デバッグ】なぜ「直接」言えるようになったのか？以前の判例では、「所有者に返せ」と言うのが限界でした。しかし、それでは不十分なケースが出てきたのです。従来の限界： 「不法占拠者を追い出しても、所有者がやる気がない（あるいは占有者とグルである）場合、またすぐに別の不法占拠者が入ってしまう」という問題がありました。これでは抵当権の価値（交換価値）を守りきれません。判例の進化（最判平17.3.10）： 「抵当不動産の所有者において抵当権に対する妨害を排除し、適正な管理をすることが期待できない場合」には、抵当権の効力として、直接自己への明渡しを求めることができると判断されました。つまり、「本来の持ち主がちゃんと管理してくれないなら、一時的に俺（抵当権者）が預かる！」という論理です。3. 【整理】妨害排除請求の「二段階」試験で狙われる、妨害排除請求のレベル分けを整理しましょう。請求の内容認められるための条件結論占有を解くこと（排除）競売を妨害する目的があり、交換価値の実現が妨げられるとき。○ 認められる自分への直接明渡し上記に加え、**「所有者による適正な管理が期待できない」**とき。○ 認められる4. 試験対策のアドバイス行政書士試験では、この「自分への直接明渡し」の可否が、正誤問題の「最後のひっかけ」としてよく使われます。解法のコツ： 「常にできない」「いかなる場合も認められない」という断定的な表現が出てきたら、この2005年（平成17年）の判例を思い出して「×」と判断してください。セットで覚える： 抵当権のパワーは「価値を掴むこと」ですが、その価値を守るためには「物理的な占有の排除」や「自分への引渡し」まで、実力行使が認められる範囲が広がっている、とイメージしておきましょう。",
-          "占有訴権とは、事実上その物を支配している状態（「占有」といいます）を保護するための権利です。「正当な所有者かどうか（本権があるか）」は問わず、今持っているという状態を誰かが無理やり乱したときに、それを取り戻したり、妨害をやめさせたりするための裁判上の権利です。民法上、占有訴権には以下の3種類があります。1. **占有回収の訴え**（せんゆうかいしゅうのうったえ）（民法200条）占有者が、その占有を「奪われた」ときに、その物の返還と損害賠償を請求する訴えです。どんなとき？：泥棒にバッグを盗まれた。他人が勝手に自分の土地にフェンスを立てて、土地を占拠した。（重要）騙されて渡した（詐取）や、遺失（置き忘れ）の場合は、「奪われた」とは言えないため、この訴えは使えません。強奪や窃盗など、意思に反して持っていかれた場合です。誰に対して？：占有を奪った本人。その物を持っている人（ただし、善意の特定承継人（盗品と知らずに買った人など）には原則として請求できません）。期間制限：占有を奪われた時から1年以内に提起しなければなりません。2. **占有保持の訴え**（せんゆうほじのうったえ）（民法198条）占有者が、その占有を「妨害された」ときに、その妨害の停止と損害賠償を請求する訴えです。どんなとき？：自分の土地に他人が勝手に資材を置いている。隣の家から騒音や悪臭がひどく、自分の家での生活（占有）が妨害されている。期間制限：妨害が存在する間、または妨害が止んでから1年以内。（例外）工事によって妨害が生じている場合、着手から1年経過、または工事完成後は提起できません。3. **占有保全の訴え**（せんゆうほぜんのうったえ）（民法199条）占有者が、その占有を「妨害されるおそれ」があるときに、その妨害の予防、または損害賠償の担保を請求する訴えです。まだ実害は出ていないが、危険が迫っている状態です。どんなとき？：隣の家の塀が今にも崩れそうで、自分の土地に倒れてきそうだ。隣で工事が始まったが、このままだと自分の家が傾くおそれがある。何を請求できる？：「予防（倒れてこないように補強して）」か「担保（もし倒れて壊れたときのための保証金を積んで）」のどちらかを選んで請求します（「または」）。期間制限：妨害のおそれがある間はいつでも。（例外）工事の場合は保持の訴えと同様の制限があります。⒋**まとめとポイント訴えの種類状態**（要件）請求内容期間制限占有回収奪われた（強奪など）返還 ＋ 損害賠償奪われた時から1年占有保持妨害されている妨害停止 ＋ 損害賠償妨害終了から1年占有保全妨害のおそれ予防 または 担保おそれがある間重要なポイント（「本権の訴え」との関係）：占有訴権の裁判では、「私は本当の所有者だ」という主張（本権の主張）はできません。裁判所は「どちらに正当な権利があるか」ではなく、「どちらが直前まで占有していて、それを誰が乱したか」という事実だけを審査します。これにより、たとえ泥棒であっても、自分が盗んだ物をさらに別の泥棒に盗まれたら、その別の泥棒に対して「占有回収の訴え」を起こして取り戻すことが（理論上）可能です。これは、自力で物を取り戻す「自力救済」を禁止し、社会の秩序を守るための仕組みです。",
+          "占有訴権とは、事実上その物を支配している状態（「占有」といいます）を保護するための権利です。「正当な所有者かどうか（本権があるか）」は問わず、今持っているという状態を誰かが無理やり乱したときに、それを取り戻したり、妨害をやめさせたりするための裁判上の権利です。民法上、占有訴権には以下の3種類があります。1. 占有回収の訴え（せんゆうかいしゅうのうったえ）（民法200条）占有者が、その占有を「奪われた」ときに、その物の返還と損害賠償を請求する訴えです。どんなとき？：泥棒にバッグを盗まれた。他人が勝手に自分の土地にフェンスを立てて、土地を占拠した。（重要）騙されて渡した（詐取）や、遺失（置き忘れ）の場合は、「奪われた」とは言えないため、この訴えは使えません。強奪や窃盗など、意思に反して持っていかれた場合です。誰に対して？：占有を奪った本人。その物を持っている人（ただし、善意の特定承継人（盗品と知らずに買った人など）には原則として請求できません）。期間制限：占有を奪われた時から1年以内に提起しなければなりません。2. 占有保持の訴え（せんゆうほじのうったえ）（民法198条）占有者が、その占有を「妨害された」ときに、その妨害の停止と損害賠償を請求する訴えです。どんなとき？：自分の土地に他人が勝手に資材を置いている。隣の家から騒音や悪臭がひどく、自分の家での生活（占有）が妨害されている。期間制限：妨害が存在する間、または妨害が止んでから1年以内。（例外）工事によって妨害が生じている場合、着手から1年経過、または工事完成後は提起できません。3. 占有保全の訴え（せんゆうほぜんのうったえ）（民法199条）占有者が、その占有を「妨害されるおそれ」があるときに、その妨害の予防、または損害賠償の担保を請求する訴えです。まだ実害は出ていないが、危険が迫っている状態です。どんなとき？：隣の家の塀が今にも崩れそうで、自分の土地に倒れてきそうだ。隣で工事が始まったが、このままだと自分の家が傾くおそれがある。何を請求できる？：「予防（倒れてこないように補強して）」か「担保（もし倒れて壊れたときのための保証金を積んで）」のどちらかを選んで請求します（「または」）。期間制限：妨害のおそれがある間はいつでも。（例外）工事の場合は保持の訴えと同様の制限があります。⒋まとめとポイント訴えの種類状態（要件）請求内容期間制限占有回収奪われた（強奪など）返還 ＋ 損害賠償奪われた時から1年占有保持妨害されている妨害停止 ＋ 損害賠償妨害終了から1年占有保全妨害のおそれ予防 または 担保おそれがある間重要なポイント（「本権の訴え」との関係）：占有訴権の裁判では、「私は本当の所有者だ」という主張（本権の主張）はできません。裁判所は「どちらに正当な権利があるか」ではなく、「どちらが直前まで占有していて、それを誰が乱したか」という事実だけを審査します。これにより、たとえ泥棒であっても、自分が盗んだ物をさらに別の泥棒に盗まれたら、その別の泥棒に対して「占有回収の訴え」を起こして取り戻すことが（理論上）可能です。これは、自力で物を取り戻す「自力救済」を禁止し、社会の秩序を守るための仕組みです。",
           "1. 結論：対抗要件が「通行手形」になる賃借人が、不法占有者に対して賃借権に基づいて直接「出て行け（妨害排除）」「返せ（返還請求）」と言うためには、原則として対抗要件（登記や建物の引き渡しなど）を備えていることが必要です。なぜ「対抗要件」が必要なのか？（民法605条の4）改正前の民法では判例で認められていたルールですが、現在は民法第605条の4に明文化されています。対抗要件がある場合： 賃借権が「公に認められた強い権利」となるため、不法占有者に対して直接「返せ！」と言えます。対抗要件がない場合： 不法占有者に対して、賃借権そのものを根拠にして直接返還を求めることはできません。2. 【デバッグ】「対抗要件がない」なら詰みなのか？記述が「誤り」なのは、「対抗要件を具備しているか否かを問わず」という部分です。しかし、対抗要件がなくても不法占有者を追い出す方法は他に2つあります。ここが試験での「ひっかけ」の宝庫です。債権者代位権（さいけんしゃだいいけん）の行使（423条）：所有者（大家さん）が持っている「所有権に基づく返還請求権」を、賃借人が代わりに使う方法です。これなら対抗要件がなくてもOKです。占有回収の訴え（200条）：すでにその部屋に住んでいたのに追い出された場合などは、占有権に基づいて返還を求められます。これも対抗要件は関係ありません。3. 【整理】賃借人の武器マトリックス「不法占有者、出て行け！」と言いたい時のルート整理です。請求のルート対抗要件の要否備考（条文・判例）賃借権に基づく直接請求○ 必要民法605条の4（改正で明文化）債権者代位権による行使× 不要大家さんの権利を「借りる」イメージ。占有訴権（占有回収等）× 不要「現に占有していた」という事実が必要。今回の記述のバグ：「賃借権に基づいて（直接）請求する」という文脈においては、対抗要件は必須です。記述は「否かを問わず」としているため、そこが間違いとなります。4. 試験対策のアドバイス行政書士試験では、**「直接言えるのか？（賃借権に基づくのか）」それとも「代位行使なのか？」**という言葉の使い分けを厳しくチェックしてください。**「直接」や「賃借権に基づき」**という言葉があれば、**対抗要件（605条の4）**をセットで思い出す。「代位して」という言葉があれば、対抗要件は不要。",
           "1. 結論：登記名義人は「収去義務」を免れない\nたとえEがFに建物を売却して、所有権がFに移っていたとしても、登記がE名義のまま放置されているのであれば、土地所有者Dは登記名義人であるEに対して建物の収去（取り壊し）を求めることができます。\n\n2. 【デバッグ】なぜ「元オーナー」のEが訴えられるのか？\n「もう自分の物じゃない」というEの言い分よりも、**「登記簿を信じて行動する土地所有者D」**の利益が優先されます。\n\n外観への責任： Eは自ら「自己所有名義」で登記を行いました。これにより、外部に対して「私がこの建物の所有者です」という看板を掲げたことになります。\n\n土地所有者の負担軽減： もし「実は売りました」という裏側の事情がすべて通ってしまうと、土地所有者は真の所有者を突き止めるまで延々と裁判ができなくなります。\n\n判例のロジック： 自らの意思で登記名義人となった者は、たとえ所有権を譲渡した後でも、特段の事情がない限り、登記名義人であることを理由に収去義務を否定することはできないとされています。\n\n3. 【整理】Eが逃げられる「特段の事情」とは？\n記述には出てきませんが、Eが義務を免れるケースもごく稀にあります（デバッグの例外処理）。\n\n登記が自分の意思でない場合： 勝手に名前を使われて登記された場合など。\n\nFがすでに登記を備えた場合： もしF名義に書き換わっていれば、当然Eはもう責任を負いません。\n\n逆に言えば、**「自分で登記した」「まだ名義が残っている」**という2点が揃えば、Eはチェックメイトです。\n\n4. 試験対策のアドバイス\nこの論点は、以前解いた**「未登記建物の譲渡（Eは責任を負わない）」**のケースと対比させて出題されるのが鉄板です。\n\n登記あり： 名義人が責任を負う（本問）。\n\n登記なし（未登記）： 名義という「看板」がないので、実態（今の持ち主）を叩くしかない。\n\n「看板（登記）を出したなら、店を畳んだ後も看板を下ろすまで責任を負え」というイメージで覚えておきましょう。",
           "1. 無権利者からの譲受人は「第三者」ではない民法177条で「登記がないと対抗できない相手（第三者）」とは、単に「当事者以外の人」ではなく、**「登記の欠缺（けんけつ：欠けていること）を主張する正当な利益を有する者」**を指します（大連判大7.12.15）。デバッグ： A所有の土地を、何ら権利のないBが勝手にCに売った場合、Cは「無権利者から譲り受けた者」です。結論： この場合、真の所有者Aは、自分の登記がなくてもCに対して「それは俺の土地だ！」と主張できます。なぜなら、Cはそもそも正当な権利を持っていないため、Aの登記がないことを責める立場（正当な利益）にないからです。2. 背信的悪意者からの「善意転得者」は救われるここが「背信的悪意者」理論の最も面白い、そして試験で狙われるポイントです。① 背信的悪意者の基本（A→B、A→C）AがBに土地を売り、Bが登記をしていない間に、Cが「Bを困らせてやろう」という悪意を持ってAから二重に買い、先に登記を備えた場合。Cは単なる悪意者を超えた「背信的悪意者」として、177条の「第三者」から除外されます。つまり、Bは登記がなくてもCに勝てます。② 転得者（D）が登場した場合（C→D）では、その「悪党C」から、何も知らない善意のDが土地を買い取った場合はどうなるでしょうか？結論： Dが背信的悪意者でない限り、Dは**「正当な第三者」**として復活します。理由： 「背信性」という汚れは、その人個人の主観的な問題です。判例（最判平8.10.29）は、背信的悪意者からの転得者の成否は、その転得者自身が背信的悪意者にあたるかどうかで個別に判断するとしています。したがって、Dが善意（または単なる悪意）であれば、Dは自分の登記を武器に、先に買っていたBに対して「俺の土地だ」と主張できるようになります。3. 【整理】177条の「第三者」に含まれるか？相手方の属性177条の「第三者」か？登記なしの相手に勝てるか？無権利者× 含まれない勝てない（登記なしでOK）不法占拠者× 含まれない勝てない（登記なしでOK）背信的悪意者× 含まれない勝てない（登記なしでOK）単なる悪意者○ 含まれる勝てる（登記が必要）善意の転得者○ 含まれる勝てる（登記が必要）4. 試験対策のアドバイス「背信的悪意者」からの転得者の問題が出たら、**「悪の連鎖は断ち切れる」**と覚えてください。ひっかけ： 「背信的悪意者から譲り受けた者は、その者自身が善意であっても、前主の背信性を引き継ぐため、登記なくして第一譲受人に対抗できない。」デバッグ： ×（間違い）。転得者は独自に判断されます。",
           "1. 結論：「後」はすべて「早い者勝ち」「取消後」であれ「解除後」であれ、共通しているのは、**「復帰的物権変動」**という考え方です。状況： AがBに土地を売り、BがさらにCに売った。その後、AがBとの契約を「取り消し」または「解除」した。理屈： Aから見れば「Bから自分に土地が戻ってくる（復帰）」。Cから見れば「Bから自分に土地が来た」。つまり、Bを起点として、AとCの両方に土地が流れている「二重譲渡」と同じ状態になります。ルール： 二重譲渡なら、勝負を決めるのは**登記（177条）**です。だから「要登記」となります。2. 「解除前」の第三者に登記が必要な理由ここが少し特殊です。民法545条1項ただし書には「第三者の権利を害することはできない」とありますが、判例はここに**「ただし、登記を備えている者に限る」**という条件を付け加えました。理由： 解除によって「タダ」で権利を取り戻そうとするAと、対価を払って買ったC。どちらも守るべきですが、不動産取引の安全のためには、登記という公の看板を出しているCを優先しましょう、というバランス感覚です。3. 【デバッグ】「取消前」だけはルールが違う！記述にはありませんが、ここが最大の「ひっかけ」ポイントなのでセットで覚えておきましょう。タイミング詐欺取消（96条）解除（545条）前の第三者善意無過失なら勝てる（登記不要）登記があれば勝てる（善意・悪意不問）後の第三者登記が早いほうが勝つ登記が早いほうが勝つ注意！：詐欺による「取消前」の第三者は、登記の有無ではなく**「善意・無過失」という主観的な条件で保護されます。一方、「解除前」の第三者は、「登記」**という客観的な条件で保護されます。4. 試験対策のアドバイス「取消後・解除前・解除後」ときたら「登記！」と反射的に思い出せるようにしておけば、正誤問題の8割は即答できます。覚え方の呪文：「後はどっちも登記。解除は前も登記。詐欺の前だけ善意無過失。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -17092,6 +19177,13 @@ export const SUBJECTS = {
           "1. 結論：Bは「Aの持分」しか取得できない甲土地がAとEの共有（例えば半分ずつ）である場合、Aが勝手に「全部俺の物だ」と嘘の登記をしてBに売ったとしても、Bが手に入れられるのは**「Aがもともと持っていた持分（半分）」だけ**です。Eの持分については、Bがどれだけ善意・無過失であっても、原則として取得することはできません。2. 【デバッグ】なぜ「善意・無過失のB」は救われないのか？前回のケース（CとA）では、Cが「自分から」Aの名義にしていました。しかし、今回のケースでは、Eは**「Aに無断で」**名義を書き換えられています。真の所有者（E）の視点： Eは何も悪いことをしていません。勝手にAが嘘の登記をしただけです。それなのに「取引の安全」のためにEの権利を奪ってしまうのは、あまりに酷です。判例のバランス（最判昭38.2.22等）： 民法94条2項（虚偽表示）のルールを適用してBを救うためには、**「真の所有者にも、嘘の外観を作った責任（落ち度）があること」**が必要です。今回はEが無断でやられた被害者なので、Bの「信頼」よりも、Eの「権利」が優先されます。3. 【整理】「名義貸し」vs「勝手に名義変更」試験で最も狙われる「Bが全部取得できるか」の分かれ道です。状況真の所有者の関与B（善意無過失）の取得範囲理由名義を貸した（前回）自ら嘘の登記を許した全部取得できる自分のせい（自業自得）だから。無断でされた（今回）全く関与していないAの持分のみ取得Eを守る必要があるから。4. 試験対策のアドバイス行政書士試験では、この「共有」と「相続」が絡んだ問題がよく出ます。ひっかけのパターン： 「相続人の一人が勝手に単独登記をして第三者に売却した場合、第三者が善意無過失であれば、他の相続人は自己の持分を第三者に対抗できない。」デバッグ： ×（間違い）。他の相続人（E）は、登記がなくても自分の持分をBに対して主張できます。「登記がなければ対抗できない（177条）」というルールは、有効な取引が重なった時（二重譲渡など）の話であり、そもそも無権限で売られた場合には適用されません。",
           "1. 結論：仮登記に「対抗力」はない民法177条が定める「登記をしなければ第三者に対抗できない」というルールの「登記」とは、原則として**本登記（ほんとうき）**を指します。仮登記の状態： まだ「予約」の状態です。この段階では、第三者に対して「自分が所有者だ！」と主張するパワー（対抗力）は持っていません。本登記のF： Fは正式な手続きで本登記を備えています。この時点では、正式な「看板（本登記）」を出しているFの方が、予約だけのBよりも優先されます。したがって、BがFに勝つためには、仮登記を本登記にランクアップさせる必要があります。2. 【デバッグ】仮登記の真の力は「順位のキープ」「じゃあ仮登記なんて意味ないの？」と思うかもしれませんが、そうではありません。仮登記には**「順位保全的効力（じゅんいほぜんてきこうりょく）」**という強力な効果があります。予約席の確保： Bは「1番」という順位を仮登記で押さえています。後出しのF： Fが後から本登記をしても、Fの順位は「2番」になります。本登記への切り替え： Bが後から本登記（本登記の実行）をすると、その効力は仮登記をした「1番」の時点に遡ります。Fの脱落： 1番のBが本登記をすれば、2番のFは「お引き取りください（登記の抹消）」という運命になります。ポイント：Bが本登記を「するまでは」Fに勝てませんが、Bが本登記を「すれば」遡ってFを蹴散らすことができます。記述は「本登記をしない限り対抗できない」としているため、正しいといえます。3. 【整理】仮登記と本登記のパワーバランス状態第三者への対抗力特徴B：仮登記のみ× なし順位を予約しているだけ。まだ「所有者」として名乗れない。F：本登記あり○ あり現在の正式な所有者として扱われる。B：本登記完了◎ 最強仮登記の時点に順位が遡り、後から来たFを排除できる。4. 試験対策のアドバイスこの論点では、**「仮登記の段階では対抗力がない」という点と、「本登記をすれば順位が遡る」**という二段構えをしっかり区別してください。ひっかけ： 「所有権移転の仮登記を備えた者は、その後に本登記を備えた第三者に対して、当然に所有権の取得を対抗できる。」デバッグ： ×（間違い）。「当然に」ではなく、自分も本登記をしなければ勝てません。",
           "1. 結論：看板（登記）を出している以上、責任は免れない\nたとえGが建物を第三者に売却していても、G名義の登記が残っている限り、新しい土地所有者BはGに対して「建物を壊して出て行け」と言うことができます。\n\nなぜGを訴えられるのか？\n自業自得のルール： Gは自らの意思で「所有権保存登記」をしました。これは世間に対して「私がこの建物の責任者です」という看板を出したのと同じです。\n\n土地所有者（B）の保護： Bは登記簿を見て「今の責任者はGだな」と判断して裁判の準備をします。もし、裏側で勝手に売買されたことを理由に「私はもう所有者じゃない」という反論を許してしまうと、Bは真の所有者を探し続ける「終わりのない鬼ごっこ」を強いられてしまいます。\n\n判例のロジック： 自らの意思で登記名義人となった者は、建物を譲渡した後も、登記名義が残っている限り、土地所有者からの収去請求を拒むことはできません。\n\n2. 【デバッグ】土地所有者が代わっても同じ？\n今回の記述では、土地が「AからBへ」売却されています。\n\nポイント： 建物の収去請求権は、土地の所有権に付随するものです。Bが正当に土地の所有権を取得したのであれば、前オーナーAが持っていた「邪魔な建物をどかせ」という権利もBが引き継ぎます。\n\n結論： Bは「現在の土地所有者」として、登記名義人であるGを追い詰めることができます。\n\n3. 【整理】建物収去請求のターゲット固定\nこの論点は、問題文の設定（A, B, C...）が変わっても、以下のフローチャートで一発解決できます。\n\n建物登記はあるか？\n\nある： 登記名義人を訴えられる（今回のケース）。\n\nない： 現在の実質的所有者を訴えるしかない。\n\n登記名義人は自分の意思で登記したか？\n\nはい： 譲渡後でも責任を負う（今回のケース）。\n\nいいえ： （勝手に名義を使われた等）なら責任を負わない。\n\n4. 試験対策のアドバイス\n行政書士試験では、この「建物収去の相手方」の問題は、物権変動の中でも**「得点源」**です。\n\nひっかけのパターン： 「実質的な所有権が移転している以上、たとえ登記名義が残っていても、旧所有者に対して収去を求めることはできない。」\n\nデバッグ： ×（間違い）。登記名義が残っているなら、旧所有者（名義人）を叩けます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -17158,10 +19250,17 @@ export const SUBJECTS = {
           "1. 結論：さらに占有を続ければ「登記なし」で勝てる時効完成後に現れた第三者（E）に対して、Bは「先に登記された」ことで一度は敗北します。しかし、Eが登記をした時点を「新たな起算点」として、そこから再び時効期間（20年など）占有を継続した場合、BはEに対して登記なくして所有権を主張できます（最判昭36.7.15）。2. なぜ「登記なし」で逆転できるのか？（デバッグ）このパズルの肝は、**「誰に対して時効を主張しているか」**という点にあります。第1ラウンド（負け）： Bは「A」に対して時効が完成しましたが、その後から来た「E」に登記で先を越されました。これは「二重譲渡」と同じ対抗関係なので、登記のないBは負けます。第2ラウンド（勝ち）： Eが登記を備えた後、Bはさらに占有を続けました。この第2ラウンドにおけるBの時効は、「現在のオーナーであるE」に対して進行しています。つまり、第2ラウンド終了時点では、BとEは「直接の当事者（時効を主張する側と、される側）」の関係になります。「完成前の第三者」の時と同じ理屈で、直接の相手方に権利を主張するのに登記は不要なのです。3. 【整理】時効と登記の「粘り勝ち」マトリックス場面状況Bが勝つための条件理由完成「前」にE登場19年目にEが買った登記不要BとEは最初から当事者の関係。完成「後」にE登場21年目にEが買った要登記（早い者勝ち）Aを起点とした二重譲渡の関係。【今回】時効の再取得Eの登記後、さらに占有登記不要改めてEとの間で当事者の関係になった。4. 試験対策のアドバイス行政書士試験では、この「時効の再取得」は応用問題として出題されます。ひっかけ： 「一度登記を備えた第三者に対しては、その後さらに時効期間占有を継続したとしても、時効取得を対抗することはできない。」デバッグ： ×（間違い）。再度の時効取得が認められます。注意点： 第2ラウンドの占有期間中に、さらに別の「F」が登場した場合は、また「完成前・後」の理屈でリセットされることになります。",
           "1. 結論：粘り強い占有は「抵当権」すら消し去る時効完成後に設定された抵当権であっても、その登記後にさらにBが時効期間（20年など）占有を継続すれば、Bは抵当権の負担のない**「真っさらな所有権」**を時効取得します。その結果、Fの抵当権は消滅します。2. なぜ抵当権が消えるのか？（デバッグ）このパズルのポイントは、「時効取得は**原始取得（げんししゅとく）**である」という原則にあります。原始取得とは： 前の持ち主から権利を譲り受ける（承継取得）のではなく、法律の力で「新しく権利がゼロから発生する」ことです。第2ラウンドの開始： Fが抵当権を設定した時点を「新たな起算点」として第2の時効がスタートします。Bはこの間、「抵当権という制限がない状態」を目指して占有を続けているとみなされます。時効の完成： 20年が経過した瞬間、Bは「誰の制約も受けない完全な所有権」を新たに手に入れます。古い権利（Aの所有権やFの抵当権）は、Bの新しい権利に上書きされて消えてしまうのです。3. 【整理】時効と抵当権のサバイバルレース時系列状況結論時効完成「前」に抵当権設定Bの占有中にFが抵当権をつけた時効完成により、当然に抵当権は消滅する。時効完成「後」に抵当権設定完成後、Bの登記前にFがつけたBは抵当権付きの土地を認めるしかない（Fの勝ち）。【今回】さらに占有継続Fの登記後、さらに20年占有Bが**「再取得」**し、抵当権は消滅する（Bの逆転勝ち）。4. 試験対策のアドバイスこの論点で唯一の逃げ道が、記述にある**「特段の事情」**です。特段の事情とは： 例えば、BがFに対して「抵当権があるのは分かってます、利息の支払いを待ってやってください」などと口出しした場合です。これは抵当権の存在を認めている（承認している）ことになるため、時効によって抵当権を消すことはできなくなります。問題文の読み方： 行政書士試験では「原則として」や「特段の事情がない限り」という言葉が添えられている場合、判例通りの結論（消滅する）を選べばOKです。",
           "1. 結論：後出しのGには登記で勝負時効が完成した後に登記を備えたGに対して、Bが登記なくして「俺の土地だ」と言えないのは、すでにお伝えした通り「二重譲渡」と同じ理屈です。2. 【デバッグ】なぜ起算点を勝手に選んではいけないのか？もしBが「占有を開始した日を自由に選べる」としたら、以下のような**「禁じ手」**が可能になってしまいます。Bの悪巧み：「本当は21年前に占有を始めた（＝時効完成後にGが来た）けど、嘘をついて『15年前に始めた』ことにしよう。そうすれば、Gは『時効完成前』に現れた人になるから、俺は登記がなくても勝てるぞ！」このように、Bが起算点を操作して**「完成後の第三者」を「完成前の第三者」に仕立て上げる**ことを防ぐため、判例（最判昭35.7.27）は以下のルールを定めています。「時効の起算点は、占有開始の時であり、時効援用者が任意に選択することはできない。」3. 【整理】起算点の固定と登記の要否このルールによって、BとGの立ち位置が固定されます。項目ルール理由起算点の選択× 不可第三者（G）の利害を不当に害さないため。対抗関係の判定実態の占有開始時からカウント誰が「完成前」で誰が「完成後」かを客観的に決める。BがGに勝つ方法Gよりも先に登記をする完成後の第三者に対しては、登記の早い者勝ち。4. 試験対策のアドバイス行政書士試験では、この「起算点の任意選択不可」というフレーズがそのまま正誤問題として出題されます。例外（参考まで）：土地の所有者に変動がない（第三者が現れていない）場合に限り、起算点を多少ずらして主張しても認められることがありますが、第三者が現れた瞬間に、起算点はガチガチに固定されると覚えてください。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
-        "text": "動産物権変動に関する次の記述のうち、民法等の規定および判例に照らし、妥当なものはどれか。",
+        "text": "動産物権変動に関する次の記述のうち、民法等の規定および判例に照らし、妥当でないものはどれか。",
         "choices": [
           "Aは自己所有の甲機械をBに譲渡したが、その引渡しをしないうちにAの債権者であるCが甲機械に対して差押えを行った。この場合において、Bは、差押えに先立って甲機械の所有権を取得したことを理由として、Cによる強制執行の不許を求めることはできない。",
           "Dは自己所有の乙機械をEに賃貸し、Eはその引渡しを受けて使用収益を開始したが、Dは賃貸借期間の途中でFに対して乙機械を譲渡した。FがEに対して所有権に基づいて乙機械の引渡しを求めた場合には、Eは乙機械の動産賃借権をもってFに対抗することができないため、D・F間において乙機械に関する指図による占有移転が行われていなかったとしても、EはFの請求に応じなければならない。",
@@ -17230,6 +19329,14 @@ export const SUBJECTS = {
           "1. 結論：単なる「占有の継続」だけでは足りない動産の譲渡担保において、占有改定が対抗要件（178条の「引渡し」）として認められるのはその通りですが、「Jが持ち続けているという事実」だけをもって、自動的に占有改定があったと認められるわけではありません。なぜ「事実」だけではダメなのか？（民法183条）占有改定が成立するためには、民法第183条により、**「自己の占有を今後は他人のためにする」という意思表示（合意）**が必要です。条文のデバッグ（183条）： 「占有者が、以後本人のためにその物を占有する意思を表示したときは、本人は、これによって占有権を取得する。」今回のバグ： 記述では「直接占有を継続している事実をもって……認められる」としています。しかし、法的には「占有している事実」ではなく、**「今後はKさんのために預かります」というJとKの間の合意（意思の合致）**があって初めて、占有改定が成立します。2. 【デバッグ】譲渡担保でなぜ「占有改定」が使われるのか？譲渡担保は、借金のカタに物を渡す（所有権を移す）けれど、債務者はそのままその物を使って商売を続けたい、というニーズから生まれた仕組みです。債権者Kのメリット： 所有権を自分に移し、対抗要件（引渡し）を備えて、他の債権者に取られないようにしたい。債務者Jのメリット： 機械を使い続けて、利益を上げて借金を返したい。解決策： 「現物はJの手元にあるけれど、法的にはKに引き渡したことにする（占有改定）」という合意を結ぶことで、両者のニーズを満たします。このとき、契約書の中に**「譲渡後、JはKのために本件機械を保管するものとする」**といった条項（占有改定の合意）を含めるのが実務上の定石です。3. 【整理】引渡しの「事実」と「合意」の区別引渡しの種類成立のポイント現実の引渡し物を実際に「手渡した」という事実。占有改定「今後はあなたの代わりに持ちます」という合意（意思表示）。今回の記述のバグ：「占有を継続しているという物理的な状態（事実）」と、「占有改定という法的な行為（合意）」を混同している点が間違いです。4. 試験対策のアドバイス行政書士試験では、「～の事実をもって、当然に～とみなされる」といった、プロセスを省略して結論に結びつける選択肢は要注意です。解法のコツ： 「占有改定」という言葉が出たら、必ず**「意思表示」または「合意」**というキーワードがセットになっているか確認してください。「占有の継続」という事実だけでは、対抗要件としてのパワーは生まれません。",
           "1. 結論：「中身」が入れ替わっても効力は続く\n集合動産譲渡担保では、個々の動産ではなく、**「種類・場所・量的範囲」で特定された一つの「集合物」**を一つの塊として担保に取ります。\n\n一度、占有改定によって対抗要件（引渡し）を備えてしまえば、その後で古い在庫が売れて出ていき、新しい在庫が入ってきたとしても、その新しい中身に対しても対抗要件の効力が当然に及びます。\n\nしたがって、記述の「新たにその構成部分となった動産についても……効力が及ぶ」という部分は、判例の考え方通りで正しいといえます。\n\n2. 【デバッグ】なぜ「自動的」に及ぶのか？\n通常の動産譲渡であれば、新しい物が入ってくるたびに「引渡し」の手続きをしなければなりませんが、集合動産では以下のように考えます。\n\n「箱」を担保に取る： 担保の対象は、個々のリンゴではなく「この倉庫にあるリンゴ全部」という一つの「箱（集合物）」です。\n\n看板の効力： 占有改定という対抗要件は、この「箱」全体に対して立てられた看板のようなものです。\n\n流動性の肯定： 集合物としての同一性（種類・場所・量が一定であること）が保たれている限り、新しく「箱」の中に入ってきたリンゴは、入った瞬間にその看板の効力下に置かれることになります。\n\n3. 【整理】集合動産譲渡担保の成立要件\n試験で問われる、この担保が有効になるための3つの「特定」を整理しましょう。\n\n種類： 何の集まりか？（例：〇〇社製のテレビ）\n\n所在場所： どこにあるか？（例：〇〇営業所の第1倉庫内）\n\n量的範囲： どのくらいか？（例：保管されているもの一切）\n\nこれらが明確であれば、中身が日々入れ替わる「流動的」な在庫であっても、一つの担保として有効に成立し、対抗要件も維持されます。\n\n4. 試験対策のアドバイス\n行政書士試験では、この「集合動産」の理論が、**「物権法定主義（物権は法律で決まったものしか作れない）」**との関係で出題されることがあります。\n\nポイント： 本来、民法には「集合物」を一つの物権の対象とする規定はありませんが、判例は「慣習」や「社会的な必要性」を認めて、これを有効としています。\n\nひっかけ： 「集合物の中身が入れ替わった場合、改めて占有改定の意思表示をしなければ、新しく入った物について対抗要件を主張できない。」\n\nデバッグ： ×（間違い）。最初の一回で、後の新入りにも効力が及びます。",
           "1. 結論：単に預かっている人は「第三者」ではない動産の譲渡において、引渡しを受けていない新しいオーナーが「返せ」と言ったとき、相手が「単なる預かり人（受寄者）」であれば、新オーナーは引渡し（対抗要件）がなくても自分の所有権を主張して、返還を求めることができます。なぜ「引渡し」がなくても勝てるのか？民法178条で守られる「第三者」とは、**「登記や引渡しがないことを主張する正当な利益を有する者」**を指します。受寄者（預かり人）の立場： 預かっている人は、元のオーナーの代わりに持っているだけで、その物に対して自分独自の権利（使っていい権利など）を持っているわけではありません。結論： 持ち主が誰であれ「預かったものを返す」のが仕事なので、新オーナーに対して「君はまだ引渡しを受けていないから、本物とは認めないぞ！」と文句を言う資格（正当な利益）がないのです。2. 【整理】「賃借人」vs「受寄者」の違い試験で最も狙われる境界線をデバッグして整理しましょう。相手方の属性「第三者」にあたるか引渡し（対抗要件）は必要か理由動産賃借人○ あたる必要「借りて使う権利」という独自の利益があるから。受寄者（預かり人）× あたらない不要単に持ち主の代わりに持っているだけだから。不法占拠者・泥棒× あたらない不要そもそも正当な権利が全くないから。3. 試験対策のアドバイス行政書士試験の物権変動では、**「誰が『正当な利益を持つ第三者』で、誰がそうでないのか」**という仕分けが頻出です。解法のポイント：「その物が売れたことで、自分の持っている権利に影響が出る人」だけが、対抗要件（引渡し）を要求できる強い立場になれる、とイメージしてください。単なる「保管係」や「泥棒」には、そんな強い態度は許されません。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -17327,12 +19434,24 @@ export const SUBJECTS = {
           "1. 結論：即時取得は「契約の不備」までは直せない即時取得が成立するためには、前提として**「有効な取引行為（売買契約など）」**が存在しなければなりません。即時取得というルールが解決してくれるのは、あくまで「売り手が本当の持ち主ではなかった（無権利だった）」という点だけです。契約そのものに致命的なバグ（瑕疵）がある場合、即時取得でそれを上書きすることはできません。2. 【デバッグ】なぜこれらのケースは対象外なのか？ご提示いただいた4つのケースは、すべて**「取引（契約）そのものが成立していない、あるいは取り消しうる」**状態です。制限行為能力（未成年など）：未成年者が親の同意なく売った場合、その契約自体を取り消せます。即時取得は「有効な契約」が前提なので、取り消されたら魔法は消えます。意思表示上の瑕疵（詐欺・強迫）：騙されたり脅されたりして結んだ契約は取り消せます。これも契約の土台が崩れるため、即時取得は発動しません。意思の不存在（心裡留保・虚偽表示・錯誤）：そもそも「売る」という有効な意思がなかった（あるいは重大な勘違いがあった）場合、契約は無効・取り消しとなります。無権代理（むけんだいり）：勝手に代理人を名乗った者との取引は、本人に対して効力を生じません。この場合も「有効な取引」とはみなされません。ポイント：即時取得は**「契約は完璧だけど、売り手が無権利者だった」**という場合にのみ、その欠陥を埋めるパッチ（修正プログラム）として機能します。3. 【整理】即時取得ができること・できないことカテゴリ具体的な不備即時取得でカバーできる？権利の不備売り手が泥棒だった、借り物だった○ カバーできる（魔法発動）能力の不備売り手が未成年者だった× できない意思の不備詐欺にあった、勘違い（錯誤）した× できない代理権の不備無権代理人だった× できない4. 試験対策のアドバイス行政書士試験では、**「無権代理」と「無権利者」**をわざと混同させる問題が出ます。ひっかけ： 「Aから時計を預かっていたBが、Aの代理人と偽ってCに売却した場合、Cは即時取得により所有権を取得できる。」デバッグ： ×（間違い）。これは「無権代理」の問題です。無権代理は即時取得の対象外なので、Cは所有権を取得できません（表見代理が成立しない限り）。正しい例： 「Aから時計を預かっていたBが、自分のものだと嘘をついてCに売却した場合……」なら、即時取得の検討に入ります。",
           "1. 即時取得（民法192条）理由： 真の所有者の権利を奪うという強力な「魔法」を発動させるには、第3者から見て「占有が移った」とはっきりわかる外観上の変化が必要です。結論： 占有改定は見た目が変わらないため、即時取得の要件である「占有を始めた」には含まれません（最判昭35.2.11）。2. 質権（民法344条・345条）理由： 質権は「物を人質に取って、債務者に心理的プレッシャーを与える」のが本質です。結論： 債務者の手元に置いたままにする占有改定を許すと、プレッシャーにならないため、法律（345条）でハッキリ禁止されています。3. 不法原因給付（民法708条）理由： 賭博の負け分や愛人契約の対価など、不法な理由で物を渡した場合、返還請求ができなくなります。この「給付（渡し切り）」が完了したと言えるには、終局的な利益の移転が必要です。結論： 占有改定だけでは「終局的な移転」があったとは言えず、給付は未完了とみなされます。つまり、まだ占有改定の段階なら、返還請求が（不法原因給付を理由に）ブロックされることはありません。【整理】占有改定の「○と×」一覧表試験で狙われる「占有改定が有効か否か」の境界線です。制度占有改定でOK？覚え方のコツ動産譲渡の対抗要件○ 有効178条の原則。契約で決まる。譲渡担保の対抗要件○ 有効使い続けながら借りるための制度だから。即時取得の成立× 無効真の所有者を犠牲にするなら、見た目を変えろ。質権の成立× 無効（禁止）相手に返したら「人質」にならない。先取特権の消滅○ 消滅する取引の安全重視。買主が占有改定で買っても先取特権は消える。不法原因給付の完了× 未完了まだ「渡し切った」とは認めない。試験対策のアドバイスこの3つのセットは、短答式試験で「占有改定の可否」を問う問題が出た際の必勝パターンです。特に不法原因給付は、動産物権変動の文脈だけでなく「不当利得」の分野でも顔を出します。「占有改定ではまだ『給付』じゃないから、返せと言える（708条の適用を受けない）」という理屈をセットで押さえておきましょう。",
           "1. 結論：即時取得の効力を一時的にストップさせる即時取得は「取引の安全」のために、真の所有者から権利を奪う強力なルールですが、盗まれたり落としたりした人（被害者・遺失主）にとってはあまりに過酷です。そこで民法は、**「盗難や紛失から2年間」**に限り、被害者が占有者に対して「返してくれ」と言える救済策を用意しています。デバッグのポイント：2年間の数え方起算点（いつから）： 占有者がその物を買った時ではなく、**「盗難または遺失の時」**からカウントします。対象： 盗品（泥棒に盗られたもの）や遺失物（うっかり落としたもの）が対象です。※詐欺で騙し取られたものや、自分で預けたものは含まれません（後述）。2. 【超重要】「代価（お金）」を払う必要がある場合（194条）試験で最も狙われるのが、この193条の続きにある194条のルールです。通常、被害者は「タダで返せ」と言えますが、占有者が以下の場所で購入した場合は、「占有者が支払った代価」を被害者が弁償しなければなりません。競売（オークションなど）公の市場その物と同種の物を販売する商人（時計店やリサイクルショップなど）ポイント：普通のお店で買った人を守るため、「返してほしければ、その人が払った分のお金は被害者が肩代わりしてね」という公平なルールになっています。3. 【整理】即時取得と193条の関係まとめ状況192条（即時取得）の原則193条（盗品等の特則）所有権の移転引渡しを受けた瞬間にBへ。2年間はAが取り戻せる権利を持つ。対象となる物全ての動産盗品・遺失物のみ（詐欺・横領は対象外）。返還の対価（そもそも返さなくてよい）原則は無償。194条の場所で買ったなら有償。4. 試験対策のアドバイスこの論点では、**「詐欺（さぎ）」や「横領（おうりょう）」**が混じっていないか注意してください。ひっかけ： 「AがBに騙し取られた時計（詐欺）を、Cが即時取得した場合、Aは2年以内であればCに回復を請求できる。」デバッグ： ×（間違い）。詐欺は自分の意思で渡してしまっているため、193条の「盗品・遺失物」には当たりません。この場合、即時取得が完全に成立し、Aは取り戻せません。また、**「2年間の間の所有権は誰にあるのか？」**という判例（最判昭61.4.11）も重要です。結論： 回復請求をするまでは占有者に所有権がありますが、請求した瞬間に被害者へ戻ります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
         "text": "占有権に関する次の記述のうち、民法の規定および判例に照らし、妥当でないものはどれか。",
         "choices": [
-          "Aが所有する動産甲（以下「甲」という。）の保管をAから委ねられ占有しているBが、甲を自己の物と称してCに売却した場合、甲に対するCの即時取得の成立要件について、占有開始におけるCのT穏、公然、善意および無過失は推定される。",
+          "Aが所有する動産甲（以下「甲」という。）の保管をAから委ねられ占有しているBが、甲を自己の物と称してCに売却した場合、甲に対するCの即時取得の成立要件について、占有開始におけるCの平穏、公然、善意および無過失は推定される。",
           "Aが所有する乙土地（以下「乙」という。）をBが20年以上にわたって占有し、所有権の取得時効の成否が問われる場合、Aが、Bによる乙の占有が他主占有権原に基づくものであることを証明しない限り、Bについて他主占有事情が証明されても、Bの所有の意思が認められる。",
           "Aが所有する丙土地（以下「丙」という。）を無権利者であるBがCに売却し、Cが所有権を取得したものと信じて丙の占有を開始した場合、Aから本権の訴えがないときは、Cは、丙を耕作することによって得た収穫物を取得することができる。",
           "Aが所有する動産丁（以下「丁」という。）を保管することをBに寄託し、これに基づいてBが丁を占有していたところ、丁をCに盗取された場合、Bは、占有回収の訴えにより、Cに対して丁の返還を請求することができる。",
@@ -17399,6 +19518,14 @@ export const SUBJECTS = {
           "1. 結論：直接占有者であるBは訴えることができる民法第200条第1項には、以下のように定められています。「占有者がその占有を奪われたときは、占有回収の訴えにより、その物の返還及び損害の賠償を請求することができる。」今回のケースでは、BはAから寄託（預かり）を受けて現実に物を預かっている**「直接占有者」**です。直接占有者も立派な「占有者」ですので、占有回収の訴えを起こす資格があります。2. 【デバッグ】「奪われた」かどうかが運命の分かれ目占有回収の訴えで最も重要なポイントは、占有者の意思に反して占有が奪われたかどうか（占有の侵奪）です。今回のケース（盗取）：CがBから「盗み取った」ことは、Bの意思に完全に反しています。これは「侵奪（しんだつ）」にあたるため、占有回収の訴えが認められます。【比較】詐欺（さぎ）の場合：もしBがCに騙されて、自ら「どうぞ」と丁を渡してしまった場合。この場合は「奪われた」ことにはならないため、たとえ詐欺であっても占有回収の訴えは認められません（最判大11.11.27）。3. 【整理】誰が・誰に対して訴えられるのか？登場人物訴えを起こせるか？理由B（直接占有者）○ できる目の前で盗まれた本人だから。A（間接占有者）○ できる寄託者として「間接占有」を持っているから。注意点：相手方についてBは泥棒Cに対しては訴えられますが、もしCがその物を善意のDさんに売ってしまった場合、原則としてDさんに対しては訴えることができません（200条2項）。占有回収の訴えは、侵奪者の「特定承継人（買った人など）」には届かないという弱点があります。4. 試験対策のアドバイス行政書士試験では、以下の3つの「占有の訴え」を混同しないように整理するのがコツです。占有回収の訴え： 奪われたときに「返せ」（本問）。占有保持の訴え： 邪魔されているときに「やめろ」。占有保全の訴え： 邪魔されそうなときに「予防しろ」。特に、今回の「回収の訴え」については**「1年以内（除斥期間）」**に訴えを起こさなければならないという期限のルールも非常によく狙われます（201条3項）。",
           "1. 結論：倉庫業者などを介した「頭越しの引渡し」民法第184条には、以下のように定められています。代理人（B）によって占有をする場合において、本人がその代理人に対して以後は第三者（C）のためにその物を占有すべきことを命じ、その第三者がこれを承諾したときは、その第三者は、占有権を取得する。今回のケースに当てはめると：Aの指示： 保管者Bに対して「今後はCさんのために持っててね」と命じる。Cの承諾： 新しいオーナーCが「分かりました、Bさんに預けたままにしておきます」と承諾する。結果： これだけで、現物はBの手元にあるまま、法的な「引渡し」が完了します。2. 【デバッグ】「誰の承諾」が必要か？この論点には、非常に間違いやすい「ひっかけポイント」が潜んでいます。C（譲受人）の承諾： 必要です（条文に明記）。B（保管者・代理人）の承諾： 不要です。Bさんは単に預かっているだけの人なので、オーナー同士（AとC）が「持ち主が変わったよ」と決めて指示を出せば、それに従う義務があります。Bさんが「えー、Cさんのために預かるのは嫌だ！」と拒否しても、引渡しの効力自体には影響しません。3. 【整理】動産引渡し「4兄弟」の最終確認これまで何度もデバッグしてきた「引渡し」の方法を一覧で総復習しましょう。引渡しの名称状態の変化即時取得は可能？現実の引渡しAからCへ、現物を手渡す。○ できる簡易の引渡しすでにCが持っている状態で、Aが「あげる」と言う。○ できる占有改定Aが持ったまま、「今後はCのために預かるね」と言う。× できない指図による占有移転Bが持ったまま、Aの指示とCの承諾で完了させる。○ できるポイント：「指図による占有移転」は、占有改定と違って第三者（B）が関与するため、外部から見たときの「所有権が移った」という客観性が比較的高いとみなされ、即時取得も認められます。4. 試験対策のアドバイス行政書士試験では、この184条の「承諾」を**「B（代理人）の承諾が必要」**と書き換えてひっかけてくるパターンが非常に多いです。解法のコツ：「新しいオーナー（C）は『いいよ』と言わなきゃいけないけれど、預かってるだけの人（B）は命令に従うだけなので『いいよ』と言う権利はない」と整理しておきましょう。",
           "1. 結論：10年の時効を狙うなら「無過失」は自力で証明民法第162条第2項の「10年の取得時効」を主張する場合、以下の5つの要件が必要ですが、「無過失」だけは法律で推定されません。所有の意思： 推定される（186条1項）平穏： 推定される（186条1項）公然： 推定される（186条1項）善意： 推定される（186条1項）無過失： 推定されない！（自分で立証が必要）したがって、時効のメリットを受けたい占有者は、「自分に落ち度がなかったこと」を示す証拠を自ら裁判所に提出しなければなりません。2. 【デバッグ】なぜ「即時取得」と違うのか？ここが試験で最も狙われるポイントです。即時取得（192条）： 判例により、無過失も推定されます。占有者は何もしなくても4点セット（平穏・公然・善意・無過失）が揃った状態からスタートできます。取得時効（162条）： 無過失は推定されません。なぜ差があるのか？即時取得は「一瞬の取引」を守るためのルールなので、スピード重視で推定の範囲を広げています。一方、取得時効は「10年という長い年月」をかけて権利を奪うものです。10年もあれば、どこかのタイミングで「自分の土地じゃないかも？」と気づくチャンスがあるはずだ、と考えられるため、スタート地点での「無過失」については厳格に本人の立証を求めているのです。3. 【整理】立証責任の対比表「どっちが証明するの？」をパズル形式でまとめました。要件取得時効（10年）即時取得（192条）平穏・公然・善意相手方が「否定」を立証相手方が「否定」を立証所有の意思相手方が「否定」を立証（不要）無過失本人が「肯定」を立証相手方が「否定」を立証ポイント：取得時効において、「無過失」は**「推定されない＝自分で証明」**ということを、頭のキャッシュに強く書き込んでおいてください。4. 試験対策のアドバイス行政書士試験では、「民法186条1項により、無過失も推定される」という選択肢が頻出ですが、これは**×（間違い）**です。解法のコツ：問題が「即時取得（動産）」か「取得時効（不動産）」かを確認する。取得時効なら「無過失だけは自力！」と思い出す。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -17471,6 +19598,14 @@ export const SUBJECTS = {
           "1. 結論：費用は面積に関係なく「折半」民法第226条は、境界に設けられた囲障の設置や保存の費用について、以下のように定めています。民法226条： 「囲障の設置及び保存の費用は、相隣者が等しい割合で負担する。」なぜ「面積の割合」ではないのか？行政書士試験では、ここを「土地の価格に応じて」や「土地の面積に応じて」と書き換えてひっかけてくるのが定番のパターンです。デバッグ： 塀は両方の土地の境界にあるものであり、どちらか一方が広い土地を持っているからといって、塀の恩恵をより多く受けているとは限りません。そのため、法律はシンプルに**「半分ずつ（等しい割合）」**と決めています。2. 【整理】境界にある障壁（塀）のルールこのエリアのパズルを完成させるための3つのポイントを整理しましょう。共有の推定（229条）： 境界線上にある塀や溝などは、どちらか一方の所有物である証拠がない限り、共有と推定されます。設置・保存費用の負担（226条）： 別段の慣習や約定がない限り、**等しい割合（折半）**で負担します。例外（特則）： もし一方が「もっと豪華な高い塀にしたい！」と言い出した場合は、その増した分の費用は言い出した方が負担しなければなりません（227条）。3. 【デバッグ】「共有」のルールの違いに注意！ここが一番の混乱ポイントです。通常の「共有」のルールと比較してみましょう。項目一般的な共有物（253条）境界の囲障（226条）費用の負担持分（シェア）の割合に応じる等しい割合（折半）通常の共有（例えば、3人で出し合って買った別荘など）であれば、持分が多い人がたくさん費用を払うのがルールですが、境界の塀は「等しい割合」という特別ルールが適用されます。4. 試験対策のアドバイス行政書士試験の「相隣関係」の問題で数字や割合が出てきたら、まず疑ってかかってください。解法のコツ：「土地の面積が100坪と10坪の隣同士でも、その間の塀を直すお金は50:50！」という極端な例をイメージしておくと、「面積の割合」というひっかけに反応しやすくなります。",
           "1. 結論：隣人は「直接の雨だれ」を拒否できる民法第218条には、以下のように明記されています。民法218条： 「土地の所有者は、直接に雨水を隣地に注ぐ構造の屋根その他の工作物を設けてはならない。」したがって、隣人Bは雨水が注がれることを受忍（我慢）する必要はなく、Aに対して「雨樋をつける」や「屋根の形状を変える」などの対策を求めることができます。2. 【デバッグ】「自然の流水」との違い（214条）ここが試験での最大のひっかけポイントです。自然の流水（214条）：高い土地から低い土地へ、雨水が自然に流れていく場合、低い土地の所有者はこれを妨げてはいけません（受忍義務があります）。工作物による流水（218条）：今回のように「屋根」という人工的な工作物によって、特定の場所に雨水を集中させて隣地に落とす行為は禁止されています。ポイント：「自然現象として流れてくるもの」は我慢が必要ですが、「人間が作った物のせいで降ってくるもの」は我慢しなくてよい、という区別です。3. 【整理】相隣関係の「水」をめぐるルール状況受忍義務（我慢）根拠条文自然に流れてくる水○ ある214条屋根から直接落ちる水× ない（設置禁止）218条（本問）水流が塞がれて損害が出る× ない（疎通工事可）220条4. 試験対策のアドバイス行政書士試験では、「自然の流水（214条）」のルールを「工作物（屋根）」に適用させて、「隣人はこれを妨げてはならない」と記述してくるパターンが非常に多いです。解法のコツ：問題文に**「工作物」「屋根」「直接に」**というキーワードがあれば、即座に218条を思い浮かべ、「我慢しなくていい（設置禁止）」と判定してください。",
           "1. 結論：自然の摂理には逆らえない民法第214条には、以下のように定められています。民法214条： 「土地の所有者は、隣地から自然に流れて来る水を妨げてはならない。」高い土地から低い土地へ、雨水や湧水が地形に従って自然に流れていく場合、低い土地の所有者は盛り土をしたり壁を作ったりして、その流れをブロックしてはいけません。つまり、低い土地の人は「水が流れてくることを我慢（受忍）する義務」があるのです。2. 【デバッグ】「自然」か「人工」かの境界線試験で問われるのは、常に「どこまでが我慢の範囲内か」という境界線です。状況受忍義務（我慢）理由（デバッグポイント）自然の流水（214条）○ ある重力に従って流れるのは自然現象だから。工作物による流水（218条）× ない屋根などで人工的に特定の場所に注ぐのはNG。流水を妨げる行為× できない下の土地の人が堰き止めると、上の土地が浸水するから。もし水流が詰まってしまったら？（215条）もし大雨や地震で水路が詰まり、下の土地に水が流れなくなって上の土地が浸水しそうになったら、上の土地の所有者は、自分の費用で下の土地の水路を掃除したり修理したりすることができます。3. 試験対策のアドバイス行政書士試験では、この「214条（自然）」と「218条（屋根・人工）」を入れ替えて、**「いかなる理由であれ、隣地に雨水を注いではならない」**といった極端な選択肢を出してくることがあります。解法のコツ：「水が流れる原因は、『お天道様（自然）』か『人間（屋根）』か」をチェックしてください。お天道様が原因なら我慢、人間が原因なら文句を言える、というシンプルな仕分けで正解にたどり着けます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -17490,7 +19625,7 @@ export const SUBJECTS = {
           false
         ],
         "answer": [
-          0,
+          1,
           4
         ],
         "isReorder": false,
@@ -17538,6 +19673,13 @@ export const SUBJECTS = {
           "1. 結論：通知は「義務」ではない民法260条は、共有物の分割に利害関係人が参加する権利について定めていますが、共有者に対して「自分たちから通知しなければならない」という義務までは課していません。正しいルールの仕組み（民法260条）参加の権利： 共有物について権利を持つ者（賃借人Fや抵当権者など）は、自分の費用で分割協議に参加することができます。対抗できないケース： Fが**「私も分割協議に参加したい！」と請求したにもかかわらず**、A・B・Cがそれを無視して分割を強行した場合には、その分割の結果をFに対抗することができません。今回のバグ：記述では「通知をしないときは、対抗することができない」としていますが、正しくは**「参加の請求があったのに参加させなかったときは、対抗することができない」**です。Fから何もアクションがなければ、通知しなくても分割はFに対して有効です。2. 【デバッグ】なぜ「Fの請求」がトリガーなのか？共有物の分割は、あくまで所有者（A・B・C）の自由な合意が基本です。賃借人Fの立場： 分割によって土地の区画が変わったり、新しい家主（地主）が誰になるかは大きな関心事です。そのため、法律は「自分から手を挙げれば参加できるよ」というチャンスを与えています。共有者の立場： 誰が利害関係人かをすべて把握して通知して回るのは大変な負担です。そのため、「参加したい人が自分から言ってくるのを待てばよい」というスタンスをとっています。3. 【整理】分割協議への参加パズル項目ルール共有者の通知義務なし（自分たちだけで始めてOK）。利害関係人の参加可能（自ら費用を払って参加を申し出る）。対抗できなくなる条件参加請求を無視して分割を行ったとき。分割の効力原則として有効。無視した場合はFにだけ「無効だ」と言われる可能性がある。4. 試験対策のアドバイス行政書士試験では、この民法260条の**「参加の請求」の有無**を入れ替えてひっかけてくるのが定番です。解法のコツ：「利害関係人は**『自分から手を挙げる（参加請求）』必要がある」\r\n「共有者に『お知らせ（通知）』の義務はない**」この2点をセットでデバッグしておけば、この論点は完璧です。",
           "1. 結論：分割方法は裁判所の裁量裁判による共有物の分割（民法258条）において、どの方法を採るかは裁判所が決定します。記述にある「全面的価格賠償」は有力な選択肢の一つではありますが、絶対的なルールではありません。裁判分割の3つのパターン（令和3年改正後）現物分割： 土地をチョキチョキと切り分けて、それぞれ単独所有にする。価格賠償（賠償分割）： 特定の人が全部もらい、他の人にお金を払う（本問のケース）。競売分割（代金分割）： 競売にかけて、売れたお金を分ける（現物分割が難しい場合など）。2. 【デバッグ】「全面的価格賠償」が認められる条件判例（最判平8.10.31）によれば、全面的価格賠償が認められるには以下のハードルを越える必要があります。共有物の性質や利用状況から、現物分割が適当ではないこと。その物を取得する人に、**支払能力（お金）**があること。価格が適正に評価されていること。今回のケースでは、Aが建物を持って住んでいるという事情は、全面的価格賠償を後押しする大きな要因にはなりますが、それだけで**「他の方法は禁止」とはなりません。** 例えば、土地が広大で切り分けても価値が下がらないなら、現物分割が選ばれる可能性も十分にあります。3. 【整理】共有物分割の「改正パッチ」令和3年の法改正により、条文の優先順位が整理されました。以前の運用改正後の条文（258条）まず「現物分割」を検討し、ダメなら「競売」。価格賠償は判例上の運用。**「現物分割」または「価格賠償」**を同列に検討できるようになった。競売は最終手段。現物分割が困難、または価値を著しく減少させるおそれがあるときに「競売」を命じる。ポイント：最新のルールでは「現物分割」と「価格賠償」は裁判所の判断で柔軟に選べるようになっています。ただし、「競売」だけは今も「現物・賠償が難しいときのバックアップ」という立ち位置です。4. 試験対策のアドバイス行政書士試験では、「全面的価格賠償」という言葉の定義と、それが「判例によって認められた手法である」ということがよく問われます。解法のコツ：「特定の事情（居住しているなど）があるからといって、裁判所の選択肢を一つに絞り込む記述」が出てきたら、高確率で×（間違い）だと判定してください。法律は「諸般の事情を考慮して」という余白を常に残しています。",
           "1. 結論：国よりも「仲間の共有者」が優先される民法第255条には、以下のように定められています。民法255条： 「共有者の一人が、その持分を放棄したとき、又は死亡して相続人がないときは、その持分は、他の共有者に帰属する。」通常、相続人のいない財産は最終的に「国庫（こっこ）」、つまり国のものになります（民法959条）。しかし、共有関係にある物については、国が割り込んでくるよりも、残された共有者の持分を増やすほうがスムーズだと考えられています。2. 【デバッグ】「特別縁故者（とくべつえんごしゃ）」との優先順位ここが行政書士試験で最も狙われる**「超重要パッチ」**です。実は、共有者に帰属する前に、一人だけチェックしなければならない登場人物がいます。判例（最判平1.3.31）によれば、優先順位は以下の通りです。相続人： もちろん最優先。特別縁故者（958条の2）： 内縁の妻や、生前身の回りの世話をしていた人など。裁判所が認めれば、持分が分与されます。他の共有者（255条）： 特別縁故者がいない（または分与されなかった）場合に、ようやく出番が回ってきます。国庫（959条）： 共有関係がある場合、国庫には行きません（共有者が優先）。ポイント：「国庫」と「他の共有者」を戦わせたら、「他の共有者」の勝ちです。ただし、その前に「特別縁故者」という伏兵がいることだけは覚えておいてください。3. 【整理】持分が「浮いた」ときの行方ケース持分の行き先根拠相続人がいる相続人へ相続の原則相続人がおらず、特別縁故者がいる特別縁故者へ（裁判所の判断）958条の2相続人も特別縁故者もいない他の共有者へ255条（本問）共有物ではなく、相続人も縁故者もない国庫へ959条4. 試験対策のアドバイス行政書士試験では、この255条のルールを**「国庫に帰属する」と書き換えて**ひっかけてくるのが王道パターンです。解法のコツ：「共有は、仲間内でのつながりが強い。だから、外（国）に出さずに仲間（共有者）で分ける！」というイメージを持っておくと、国庫帰属のひっかけに惑わされなくなります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -17567,7 +19709,8 @@ export const SUBJECTS = {
           true
         ],
         "answer": [
-          0
+          1,
+          4
         ],
         "isReorder": false,
         "explain": "1. 根拠（条文・法理）結論：Cは、売主Bに対する損害賠償請求権を担保するために、真の所有者Aに対して建物を留置することはできません。留置権が成立するためには、債権がその物に関して生じたものである（牽連性がある）必要がありますが、他人物売買の債務不履行による損害賠償にはこれが認められません。根拠法理：他人物売買における牽連性の否定Cの損害賠償請求権は、Bとの契約から生じた「個人的な権利（債権）」に過ぎず、建物という「物」そのものに付着した負担ではありません。公平の観点：もしここで留置権を認めると、真の所有者Aは、自分が関与していないB・C間の契約トラブルのせいで自分の物を取り戻せなくなります。これは所有権の侵害であり、著しく公平を欠くと判断されています。2. 具体例とメカニズム現状： Bが「自分の持ち物だ」と称してAの土地をCに売ったが、結局BはAから土地を取得できなかった。AがCに「返せ」と要求している。登場人物の相関：引渡し請求権者：A（真の所有者）被担保債権の債務者：B（嘘をついた、あるいは約束を守れなかった売主）不成立のロジック：Cは「Bから損害賠償をもらうまで意地でも返さない」と粘る。しかし、Aは「私は君に売っていないし、Bの借金を肩代わりする義理もない」と突っぱねる。裁判所はAを支持します。Cの怒りの矛先（債権）は「Bという人間」に向いているべきで、「Aの建物」に向けられるべきではないからです。3. 過去問の急所（ここが狙われる！）行政書士試験では、**「修繕費」**を支出した場合との対比が最も狙われます。ケース請求権の内容留置権の成否理由他人物売買の損害賠償契約違反の賠償× 成立しない債務者と請求者が別人。牽連性なし。有益費・必要費の支出建物の修繕費◯ 成立する物の価値自体を高めた費用だから。ひっかけのパターン：「他人物売買の買主Cは、売主Bから目的物の所有権を取得できない場合、Bに対する損害賠償請求権を保全するために、真の所有者Aからの建物引渡し請求を拒むことができる」→ ×（誤り）4. 周辺知識（事務管理としての費用請求）もしCがAの建物だと知らずに、善意で「屋根を修理した」場合は話が変わります。修理代（費用償還）： 修理代については、Aに対しても「事務管理（702条）」や「占有者による費用の償還（196条）」として請求できる可能性があります。この場合の留置権： 修理代（物に関して生じた債権）であれば、その支払いが終わるまでAに対しても留置権を主張できる余地があります。暗記のポイント：「契約のエラー（賠償金）は本人（B）にだけ。建物のメンテ（修理代）は世界（A）に言える。」受験生へのアドバイス「債務者と請求者のズレ」という視点は、実務的にも試験的にも非常に強力なデバッグ手法です。エンジニア的な視点で見れば、他人物売買のエラー（不履行）は「B-C間のプロトコル（契約）」の問題であり、オブジェクト（建物）の「物理層（修理代）」の問題ではありません。Aという外部ユーザーがオブジェクトの正当な所有権を主張してアクセスしてきた場合、B-C間のセッションエラーを理由にアクセスをブロック（留置）することはできない、と整理しておきましょう。",
@@ -17634,6 +19777,18 @@ export const SUBJECTS = {
           "1. 結論：協議（話し合い）が前提共有物の分割は、まず共有者全員での**協議（話し合い）**を行うのが原則です。しかし、どうしても話し合いで解決できない場合に限り、裁判所に助けを求めることができます。裁判所に請求できる2つのケース協議が調わないとき：話し合いはしたけれど、分割の方法（誰がどこを取るか、いくら払うか等）について意見がまとまらない場合です。協議をすることができないとき：共有者の一部が海外にいて連絡がつかない、行方不明である、あるいは重度の認知症などで意思表示ができない、といった物理的・法的に話し合いのテーブルに着けない場合です。2. 【デバッグ】裁判所が選ぶ3つの分割方法裁判所は、共有者の希望や物の性質を考え、以下のいずれかの方法で分割を命じます（民法258条2項・3項）。現物分割（げんぶつぶんかつ）： 土地を境界線で切り分けるなど、物理的に分ける。賠償分割（ばいしょうぶんかつ）： 特定の人が全部を取得し、他の人に持分相当のお金を払う（全面的価格賠償）。競売分割（けいばいぶんかつ）： 競売にかけて、売ったお金をみんなで分ける。※現物で分けると価値が著しく下がる場合や、現物分割が難しいときの「最終手段」です。3. 【整理】令和3年改正の重要パッチ令和3年の法改正（令和5年4月施行）により、裁判による分割のルールがより使いやすくアップデートされました。項目旧来の運用改正後のルール価格賠償の地位判例上の運用だった。条文（258条2項）に明記され、現物分割と同列に検討できるようになった。所在不明者がいる場合全員を相手に裁判が必要で大変だった。所在不明者の持分を他の共有者が取得・譲渡できる特別な簡略手続きが新設された。4. 試験対策のアドバイス行政書士試験では、裁判分割の「前提条件」がよく問われます。ひっかけ： 「共有者は、いつでも直ちに裁判所に対して共有物の分割を請求することができる。」デバッグ： ×（間違い）。まずは「協議」を試みる必要があり、協議ができない・まとまらないというハードルを越えなければ裁判には進めません。また、**「遺産分割」**との違いにも注意してください。共有物の分割請求には期限がありません（いつでもできる）。ただし、特約で**「5年を超えない範囲」で分割を禁止**することは可能です（256条1項）。",
           "1. 結論：まずは「現物・賠償」、ダメなら「競売」裁判所が分割を命じる際、基本的には共有物の価値を最大限に残す方法を優先します。第1ステップ：現物分割 または 賠償分割（258条2項）裁判所は、まず以下の2つの方法を検討します。これらは同列の優先順位です。現物分割： 土地を2つに切り分けるように、物理的に分ける。賠償分割（価格賠償）： 誰か1人が物を引き継ぎ、他の人に持分相当のお金を払う。※令和3年の改正により、条文上もこの「お金で解決」する方法が、現物分割と並ぶ主要な選択肢として明記されました。第2ステップ：競売分割（258条3項）上記の「現物」も「賠償」も難しい場合に、初めて採用される最終手段です。条件： 「現物で分割することができないとき」または「分割によって価値が著しく減少するおそれがあるとき」。内容： 競売にかけて現金化し、その現金を山分けする。2. 【デバッグ】なぜ「競売」は最後なのか？競売は、市場価格よりも安く売れてしまうリスク（競売ディスカウント）があるため、共有者にとって経済的な損失になる可能性が高いからです。裁判所は「共有者の誰かがお金を払ってでも引き取りたいと言っているか（賠償分割）」や「切り分けても価値が下がらないか（現物分割）」をまず粘り強く検討し、どうしても解決できない時の「投げ出し」策として競売を選びます。3. 【整理】裁判分割の3つのルート方法優先順位特徴（デバッグポイント）現物分割優先土地など、物理的に分けやすいものに適している。賠償分割優先建物など、壊せないものに適している（改正で強化）。競売分割最終手段誰も引き取れず、分けることもできない時の「現金化」。4. 試験対策のアドバイス行政書士試験では、**「現物分割が原則であり、価格賠償（賠償分割）は例外である」**というひっかけが出ることがあります。解法のコツ：「令和3年の改正パッチにより、**現物と賠償はダブルエース（同列）**になった！」と覚えてください。「まずは現物かお金で解決を図り、最悪のケースだけ競売」という2段階構造を意識すれば、このパズルは完璧です。",
           "1. 地上権（民法265条〜）期間：制限なし（永久もOK）理由： 地上権は非常に強力な「物権（ぶっけん）」であり、民法上、最長期間の制限がありません。判例（大判明36.11.16）でも、「永久無限」の地上権設定は有効とされています。ポイント： 「この土地に建物がある限りずっと」といった設定も可能です。2. 賃借権（民法604条）期間：最長50年理由： 以前は最長20年でしたが、2020年（令和2年）の民法改正により、土地・建物の活用の実態に合わせて50年に延長されました。ポイント： 50年を超える契約を結んでも、法律上は50年に短縮されます。なお、更新は可能です。3. 永小作権（民法278条）期間：20年以上 〜 50年以下理由： 小作人（借り手）を保護するために「短すぎてもダメ（最低20年）」、かつ土地を縛りすぎないために「長すぎてもダメ（最高50年）」という、上下両方のガードレールが設けられています。ポイント： 設定行為で期間を定めなかった場合は、慣習がなければ30年となります。【整理】期間のパズル比較表試験で狙われる「期間の数字」を一気にデバッグしましょう。権利の種類最短期間最長期間覚え方のコツ地上権制限なし制限なし（永久可）物権の中で最強の自由度。賃借権制限なし50年改正で20年から50年にパワーアップ！永小作権20年50年上下からサンドイッチされている。試験対策のアドバイス行政書士試験では、この**「地上権は永久OK」と「永小作権は50年まで」の対比**が非常によく出題されます。ひっかけ： 「地上権の存続期間は、50年を超えることができない。」デバッグ： ×（間違い）。50年の制限があるのは「賃借権」と「永小作権」です。また、借地借家法が適用される「借地権」になると、また別の数字（30年など）が登場しますが、民法上の原則としては上記の数字がパズルのピースとなります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -17730,6 +19885,18 @@ export const SUBJECTS = {
           "1. 結論：自分の責任の範囲内なら、勝手にできる質権者は、設定者（借り手）の承諾を得なくても、自分の責任において質物をさらに質に入れることができます。これを責任転質と呼びます。なぜ承諾が不要なのか？質権者は、現実にその物を「占有」しており、その物から優先的に弁済を受ける権利（物権）を持っています。この自分の権利の範囲内であれば、それをどう活用しようが自由である、というのが民法のスタンスです。2. 【デバッグ】「自由」の代償は非常に重い承諾なしに勝手に転質ができる代わりに、質権者には非常に厳しいペナルティが課されます。不可抗力による損害も賠償（348条）：転質をした場合、質権者は「転質をしなければ起こらなかったであろう損害」について、たとえ不可抗力（地震や火災など）であっても責任を負わなければなりません。権利の範囲： 自分の持っている元の債権額や期間を超えて転質することはできません（自分の持ち物ではないため）。3. 【整理】「承諾転質」vs「責任転質」転質には2つのパターンがあります。試験でのひっかけポイントを整理しましょう。項目責任転質（348条）承諾転質（298条2項準用）設定者の承諾不要（本問）必要責任の重さ極めて重い（不可抗力も責任を負う）通常の善管注意義務転質の範囲自分の債権額の範囲内に限定承諾があれば範囲を超えてもOK4. 試験対策のアドバイス行政書士試験では、**「転質をするには、設定者の承諾を得なければならない」**という誤った記述がよく出題されます。解法のコツ：「質権は、物をガッチリ握っている強い権利（物権）。だから、『勝手に転売ならぬ転質』はOK！ ただし、何かあったら**『全責任（不可抗力含む）』**を取れ！」とイメージしておくと、ルールのバランスが理解しやすくなります。",
           "1. 結論：現在は「弁済期前でも流質OK」旧法（以前の民法349条）では、質権者が「お金を返せなかったら、この質物をそのまま俺の物にするよ」という契約（流質契約）を弁済期前に結ぶことを禁止していました。しかし、最新の民法ではこの禁止規定（349条）が廃止されました。改正後の新ルール流質契約の解禁： 弁済期前であっても、「返せなければ質物を没収する」という約束を自由に結ぶことができます。清算（せいさん）義務の導入： ただし、没収して「はい、おしまい」ではありません。質権者は、質物の時価と債務額の差額を計算し、余った分は債務者に返さなければならないという「清算」がセットで義務付けられました。2. 【デバッグ】なぜ禁止されていたルールが解禁されたのか？長年、流質が禁止されていたのは「弱みにつけ込んで、安い担保で高い物を奪う」のを防ぐためでした（例：1万円貸して、10万円の時計を奪う）。しかし、現代の取引では以下のような理由から改正されました。商法の特則との統一： 以前から商売の間では流質が認められており（旧商法515条）、民法だけ禁止し続けるのは非効率でした。清算の仕組み： 「差額を現金で返せ」というルールさえ徹底すれば、債務者が損をすることはないため、禁止し続ける必要がなくなりました。3. 【整理】「旧ルール」vs「新ルール」対比表項目旧ルール（改正前）新ルール（2026年現在）弁済期前の流質契約原則として禁止（349条）有効（禁止規定の廃止）商事質（商売の質）例外的に有効だった民法の新ルールに統合質権者の義務－清算義務（差額を返すこと）4. 試験対策のアドバイス行政書士試験を受験される際、古い過去問やテキストを使っていると、この「流質禁止」が当たり前のように載っています。しかし、**今の試験で「流質予約は禁止されている」と出たら、答えは「×（誤り）」**です。解法のコツ：「令和の改正で、質屋さんのルールもアップデートされた。『流質はOK、でもお釣り（清算金）は返してね』」と覚えておけば、最新の改正問題にも対応できます。",
           "1. 結論：オーナーの許可があれば「有効活用」OK留置権は、あくまで「お金を払ってくれるまで返さない」という権利であり、その物の所有権は依然として債務者（オーナー）にあります。そのため、勝手に使ったり貸したりすることはできませんが、オーナーが「いいよ」と言えば、賃貸や担保に供することが可能になります。「承諾」なしでできる唯一の例外試験で最も狙われるのは、承諾がいらない**「保存に必要な使用」**です。例： 留置している建物が傷まないように掃除をしたり、最低限の換気をしたりする行為。これらは物の価値を守るための行為なので、オーナーの許可なく自由に行えます。2. 【デバッグ】もし勝手に貸したりしたら？もし、債務者の承諾を得ずに勝手に他人に貸したり、自分の借金の担保に入れたりした場合は、**「義務違反（善管注意義務違反）」**となります。ペナルティ： 債務者から**「留置権の消滅請求（298条3項）」**を食らうことになります。ポイント： 何度もデバッグしてきた通り、違反した瞬間に「自動的に」消えるのではなく、債務者の**「消えろ！」という意思表示**によって消滅します。3. 【整理】留置物のアクション・マトリックスアクション債務者の承諾備考保存に必要な使用不要物の価値を維持するため。通常の「使用」必要承諾なしは消滅請求の対象。「賃貸」に出す必要承諾があれば家賃収入を得られる。「担保」に入れる必要留置権そのものではなく、物を担保にする場合。果実の収取不要収取した果実（賃料等）は債権に充当できる（297条）。4. 試験対策のアドバイス行政書士試験では、この「承諾」の有無を**「地役権」や「質権」のルールと混ぜて**聞いてくることがあります。解法のコツ：「留置権は、あくまで**『預かっているだけ』。だから、保存以外で動かすなら、『持ち主の許可』**が絶対条件！」この基本原則を軸に据えておけば、どんなひっかけ問題にもブレずに対応できます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -17796,6 +19963,13 @@ export const SUBJECTS = {
           "1. 結論：真の所有者Cは「赤の他人」このケースでは、売主Aと買主Bの間で勝手にCの建物の売買が行われました。民法上、他人の物を売ること自体は有効ですが、AがCから権利を取得できなかった以上、Bの手に所有権は渡りません。デバッグの核心：なぜ「繋がらない」のか？BがAに対して持つ「損害賠償請求権」は、あくまで「Aが約束を守れなかった」という二人の間の契約違反から生じたものです。判例のロジック（最判昭26.11.8）： この賠償金は建物そのものから生じたわけではなく、Aの債務不履行によって生じたもの。したがって、建物との**「牽連性（けんれんせい）」は認められません。**真の所有者保護： 全く関係のないCさんにしてみれば、「AとBが勝手に俺の物で商売して失敗したからといって、なぜ俺が建物を返してもらえないんだ？」という話になります。Cさんに対して留置権を主張させるのは、あまりにも不公平です。2. 【デバッグ】これまでの「ダメなケース」三羽ガラス留置権の「牽連性」が否定され、試験で「行使できない」という結論になる代表的な3つのパズルを整理しましょう。ケース債権の内容結論理由二重譲渡第1買主の損害賠償× できない売主の裏切り行為（個人的事情）だから。他人物売買（本問）買主の損害賠償× できない真の所有者Cには関係ない話だから。敷金返還請求賃借人の敷金× できない建物から生じたのではなく、単なる「預け金」だから。共通するデバッグポイント：「建物そのものから生まれた費用（修理代など）」ではない、契約上のトラブルによるお金については、建物との絆が弱いとみなされ、留置権という強力なシールドは発動しません。3. 【整理】「できるケース」との決定的な違いもし、Bがこの建物の「雨漏りを修理」していたらどうなるでしょうか？修理代（必要費・有益費）： これは「建物そのもの」にかかったお金です。この場合は、たとえ相手が真の所有者Cであっても、「修理代を払うまで返さない！」という留置権が認められる可能性があります。（※占有が不法でないことが条件）今回の問題は「損害賠償（契約の失敗）」の話なので、留置権は認められない、という切り分けが重要です。4. 試験対策のアドバイス行政書士試験では、**「損害賠償請求権を被担保債権として〜」というフレーズが出てきたら、9割以上の確率で答えは「×（留置権は使えない）」**になります。解法のコツ：「契約の失敗による慰謝料や賠償金（損害賠償）は、物に対する絆（牽連性）がゼロ！ だから留置権の武器は装備できない！」と覚えておきましょう。",
           "1. 結論：不法占有者には「武器（留置権）」は与えられない民法は、公平の観点から留置権を認めていますが、**「不法に居座っている人」**にまでその強力なシールドを与えることは不公平だと考えます。今回のタイムラインをデバッグしてみましょう。賃料不払いにより契約解除： この瞬間に、Bが建物を占有する正当な権限（賃借権）は消滅します。その後の占有： 解除を知りながら居座り続ける占有は、法律上「不法占有」となります。有益費の支出： ここが重要です。 不法占有の状態になってからお金をかけたとしても、それをもとに「払うまで返さない（留置権）」と主張することはできません。2. 【比較デバッグ】「解除前」ならどうなる？もし、費用を支出したタイミングが解除の「前」であれば、結論は180度変わります。支出のタイミング留置権の成否理由契約解除「前」○ 行使できる支出した時点では「正当な占有者」だったから。契約解除「後」× 行使できない支出した時点ですでに**「不法占有者」**だったから。判例のロジックでは、たとえ支出した時は「解除前」であっても、その後の解除が**「賃料不払いなどの賃借人の過失」によるものである場合は、結局のところ不当に占有を継続しているのと変わらないとして、留置権を否定する傾向があります。しかし、試験対策としては、まずこの「解除の前後」**を明確な基準として押さえておくのが正解への近道です。3. 【整理】なぜ留置権が否定されるのか民法295条2項の趣旨は、「不法な占有を助長しないこと」にあります。もし解除後に居座っているBに留置権を認めてしまうと、Bは「わざと高いリフォーム（有益費）をして、その代金を請求することで、実質的にいつまでもタダで居座り続ける」という悪用ができてしまいます。これを防ぐため、不法占有による債権には留置権という「人質（物）を取る権利」を認めないことにしています。4. 試験対策のアドバイス行政書士試験では、「有益費償還請求権（お金を返せと言う権利）」そのものと、「留置権（建物を返さないと言う権利）」を混同させるひっかけが出ることがあります。お金（償還請求権）は認められる： Bが建物の価値を高めたなら、その分のお金は請求できます。建物（留置権）は認められない： しかし、それを理由に「居座ること」は許されません。「不法占有者は、お金は請求できても、建物は即刻返さなければならない」と覚えておきましょう。",
           "1. 結論：敷金は「最後のお楽しみ（精算）」最高裁判所の判例（最判昭48.7.17）は、敷金返還請求権について、留置権も同時履行の抗弁権もダブルで否定しています。理由①：留置権が使えない理由（牽連性の欠如）留置権が認められるためには、債権が「その物に関して生じたもの」である必要があります。敷金の正体： 賃料不払いや建物の損害を担保するために、大家さんに「預けているだけ」のお金です。判定： 建物そのものから発生した費用（修理代など）とは違い、単なる契約上の「保証金」に過ぎないため、建物との絆（牽連性）が認められません。理由②：同時履行の抗弁権が使えない理由（先履行義務）通常、契約が終われば「お返し」は同時ですが、敷金は例外です。順番が大事： 敷金がいくら返ってくるかは、**「建物を明け渡して、中を確認した後」**でないと確定しません（修繕費などを差し引くため）。判定： まず店借人が**「先に建物を明け渡す（先履行）」**必要があり、大家さんの「敷金返還」とは同時進行にはなりません。2. 【デバッグ】「有益費（修理代）」との決定的な違いここを混ぜるとパズルが崩れます。賃借人が持っている「お金を返せ」という権利でも、中身によって武器が使えるかどうかが変わります。請求権の内容留置権同時履行理由有益費・必要費（修理代）○ できる○ できる建物そのものにかかったお金だから。敷金返還請求権（本問）× できない× できない単なる「預け金」であり、明け渡しが先だから。3. 【整理】タイムラインのデバッグ試験で迷わないための順序図です。賃貸借契約の終了建物の明渡し（賃借人の義務が先！） ← ここで「敷金返して」と粘るのはNG大家さんによる損害チェック・精算残額があれば、敷金の返還4. 試験対策のアドバイス行政書士試験では、**「敷金」ときたら「何もできない（×）」**と反射的に結びつけても良いくらい、この「否定」の結論は強力です。解法のコツ：「敷金は、建物をきれいに返した後の**『お釣り』**のようなもの。お釣りをもらう前に、まず品物（建物）を返さなきゃいけないから、居座るための武器にはならない！」とイメージしておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -17862,6 +20036,13 @@ export const SUBJECTS = {
           "1. 結論：売買の先取特権に「逆転劇」はない不動産売買の先取特権は、たとえ売買契約と同時に正しく登記（340条）をしたとしても、すでにその不動産に設定されていた抵当権を追い抜くことはできません。デバッグのポイント：民法339条の限定民法339条が「先に登記された抵当権に優先する」と認めているのは、以下の2つだけです。不動産保存の先取特権不動産工事の先取特権今回のバグ（ひっかけ）：**「不動産売買」**の先取特権はこの特例に含まれていません。そのため、登記の前後という原則通りのルールが適用されます。つまり、先に登記されている抵当権には勝てません。2. 【なぜ？】売買だけ仲間外れにされる理由なぜ「保存」や「工事」は優先され、「売買」は優先されないのか、そのロジックをデバッグしましょう。保存・工事の場合： これらの行為は、不動産の「価値を維持・増加」させます。先にいた抵当権者にとっても、不動産の価値が上がることはメリットがあるため、「上がった分くらいは、先に工事した人に返してあげよう」という理屈が通ります。売買の場合： 単に持ち主が変わっただけで、不動産自体の価値が上がるわけではありません。先に融資して抵当権を付けていた人が、後から行われた売買の事情で順位を下げられるのは不条理だ、と民法は考えます。3. 【整理】不動産先取特権の「優先順位」パズル試験で混乱しやすい3つの不動産先取特権をまとめました。種類登記のタイミング（337〜340条）既存の抵当権に優先するか不動産保存保存行為完了後、直ちに○ 優先する不動産工事工事着手前に予算額を○ 優先する不動産売買売買契約と同時に× 優先しない（登記順）4. 試験対策のアドバイス行政書士試験の担保物権の問題では、「保存・工事」＝「スーパー優先権（抵当権に勝つ）」、**「売買」＝「普通の順位（登記順）」**という境界線が非常によく狙われます。解法のコツ：「不動産三兄弟のうち、『保存』と『工事』は抵当権を追い越せる特急券を持っている。でも、**『売買』は各駅停車（登記順）**しか持っていない」とイメージしておけば、優先順位のパズルで迷うことはなくなります。",
           "1. 結論：登記があれば「どこまでも追いかける」不動産先取特権は、あらかじめ登記をしておくことで、その不動産が第三者（買主など）に売却されたとしても、その新しい所有者に対して「この不動産を競売にかけます」と主張することができます。これを「追及力」と呼びます。デバッグのポイント：登記の役割対抗力： 登記は「この不動産には先取特権という担保が付いていますよ」ということを世の中に知らせる看板のようなものです。第三者の立場： その登記があることを知って（あるいは知ることができた状態で）買った第三者は、後から先取特権を行使されても文句は言えません。2. 【整理】「追及力」がなくなるタイミング「どこまでも追いかける」と言っても、パズルには一つだけ**「終了ボタン」**が存在します（民法333条）。民法333条： 先取特権は、債務者がその目的である動産（不動産）をその第三取得者に引き渡した後は、行使することができない。「あれ？さっきと言っていることが違うのでは？」と思うかもしれませんが、ここが重要です。登記がある場合： 登記があれば、引渡しを受けた第三者に対しても優先順位を保ったまま行使できます。登記がない場合： 第三者に引き渡されてしまうと、もう追いかけることはできません。今回の問題文には**「登記をした後」**という超重要なピースが入っているため、追及力はバッチリ有効になります。3. 【比較】先取特権と抵当権の共通点この「登記があれば第三者にも文句なしに言える」という性質は、担保物権の王様である**抵当権（ていとうけん）**と全く同じです。項目先取特権（不動産）抵当権登記の必要性必要（337条〜340条）必要追及力○ あり（登記があれば）○ あり性質法律上当然に発生（法定）契約で発生（約定）4. 試験対策のアドバイス行政書士試験では、この「登記の有無」と「第三者への行使」の関係が、物権法全体を通じた大きなテーマになります。解法のコツ：「不動産先取特権に登記という**『GPS』**を付けたなら、その不動産が誰の手に渡っても（第三者に売却されても）、債権者は居場所を突き止めて競売にかけることができる！」とイメージしておけば、追及力のパズルは完璧です。",
           "1. 結論：不動産先取特権には「1位・2位・3位」がある\n不動産先取特権が同じ不動産の上でぶつかった場合、債権額の割合（按分）で分けるのではなく、法律が決めた順番に従って、上の順位の人が全額持っていき、余りがあれば次の人がもらう、という階層構造になっています。\n\n民法331条1項が定める順位\n不動産保存の先取特権（1位）\n\n不動産工事の先取特権（2位）\n\n不動産売買の先取特権（3位）\n\n今回のバグ：\n記述にある「保存」と「工事」がぶつかった場合、「保存」が1位、「工事」が2位となり、保存の先取特権者が優先的に弁済を受けます。「割合に応じて（按分）」とはなりません。\n\n2. 【デバッグ】なぜ「保存」が最強なのか？\nなぜこの順番になっているのか、そのロジックを理解するとパズルが覚えやすくなります。\n\n1位：保存（レスキュー）\n不動産が壊れたり、失われたりするのを防ぐ行為です。これがなければ、不動産そのものがなくなっていたかもしれません。「みんなの担保を守ってくれた」功績が最も大きいため、1等賞です。\n\n2位：工事（バリューアップ）\n新しい価値を付け加える行為です。不動産をより良くしてくれたので、保存の次にご褒美が与えられます。\n\n3位：売買\n単なる所有権の移転です。不動産の価値を維持・向上させたわけではないので、この3つの中では最下位となります。\n\n3. 【整理】「按分（あんぶん）」になるケース\n逆に、どのような場合に「債権額の割合に応じて（按分）」弁済を受けるのか、混同を避けるためにデバッグしておきましょう。\n\n按分になる場合：\n**「同じ順位」**の先取特権が複数ある場合です。\n（例：二人の業者が同時に「不動産保存」の先取特権を持っている場合など）\n\n順位がつく場合：\n**「異なる種類」**の先取特権がぶつかる場合（今回のケース）や、先取特権と抵当権がぶつかる場合です。\n\n4. 試験対策のアドバイス\n行政書士試験では、この「保存 ＞ 工事 ＞ 売買」という呪文のような順番が非常によく出題されます。\n\n解法のコツ：\n「不動産先取特権の三兄弟は、**『保・工・売（ほ・こう・ばい）』**の順で偉い！」\nとリズムで覚えてしまいましょう。\n\n「割合に応じて」というフレーズは、一見公平で正解っぽく見えますが、民法にはこのように「早い者勝ち」や「功績順」というシビアな順位付けが多々あります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -17934,6 +20115,14 @@ export const SUBJECTS = {
           "1. 結論：承諾なしで「当然に」使ってOK民法第356条により、不動産質権者は、その不動産の用法に従って自ら使用したり、他人に貸して賃料を得たりすること（収益）ができます。ここがポイント： この権利は法律によって直接与えられているため、設定者（オーナー）の承諾を得る必要はありません。2. 【デバッグ】なぜ「勝手に使っていい」のか？「他人の物を勝手に使うなんて、ずいぶん強気な権利だな」と感じるかもしれませんが、これには民法ならではの**「等価交換（トレードオフ）」**が隠されています。質権者が得られるもの質権者が失うもの（負担）不動産の使用・収益権利息の請求権（原則不可：358条）(住んだり貸したりできる)(お金を貸した利息は取れない)管理費用の負担（357条）(固定資産税や修繕費は質権者持ち)つまり、**「利息をもらわない代わりに、その不動産を自由に使って利益を出しなさい」**という、利息代わりの運用を認める仕組みになっているのです。3. 【整理】「不動産質権」vs「抵当権」の対比試験で最も混同しやすい「使うのは誰か？」という点をデバッグしましょう。不動産質権： 貸した人（質権者）が使う。（だから利息は取れない）抵当権： 借りた人（設定者）がそのまま使う。（だから利息が取れる）注意！：設定者の承諾が必要になるのは、質権者が**「さらに誰かに質に入れる（転質）」**場合や、特別な契約変更をする場合です。自分での使用収益には不要と覚えておきましょう。4. 試験対策のアドバイス行政書士試験では、この「不動産質権は利息が取れない代わりに使える」という基本セットを逆にしてひっかけてくるのが定番です。解法のコツ：「不動産質権者は、大家さんのようなもの。**『利息の代わりに家賃（収益）で稼ぐ』**から、大家さんにいちいち許可を取る必要はない！」とイメージしておけば、承諾の要否で迷うことはありません。",
           "1. 結論：譲渡できる権利なら「質入れ」OK質権の対象は、形のある「物」に限定されません。これを権利質と呼びます。どんな権利が対象になるか？指名債権： 「AさんがBさんに100万円返してもらう権利」など。知的財産権： 特許権、著作権など。株式： 会社の株など。デバッグの条件（362条2項）：ただし、どんな権利でもいいわけではありません。**「譲渡することができる権利」**である必要があります。例えば、「生活保護を受ける権利」などは譲渡できないため、質権を設定することはできません。2. 【デバッグ】権利質をどうやって「握る」のか？質権の基本は「要物性（物を引き渡すこと）」でしたが、目に見えない権利の場合はどうするのでしょうか。原則： その権利を譲渡するのと同じ方法で行います（364条など）。指名債権の場合： 「質権を設定しました」ということを、債務者（お金を返す人）に通知するか、債務者が承諾する必要があります。証書がある場合： 債権の証書（借用書など）があるときは、その**証書を交付（引き渡し）**することが成立要件になります（363条）。3. 【整理】質権の対象マトリックス質権のパズルを、対象物ごとに整理しましょう。対象種類主なルール動産動産質実際に物を渡す。占有を続けるのが対抗要件。不動産不動産質実際に渡す。登記が対抗要件。使用収益ができる。権利（債権等）権利質譲渡と同じ方法で設定。通知・承諾等が必要。4. 試験対策のアドバイス行政書士試験では、この「権利質」のなかでも、特に**「債権」を質に入れた後の回収方法**がよく狙われます。直接取り立て： 質権者は、質権の目的となった債権を、自分の債権の範囲内で直接取り立てることができます（366条）。例：AがBに貸した100万円を担保に、BがCに持つ200万円の債権に質権を設定。もしBが返さないなら、Aは直接Cから100万円を回収できます。「物」だけでなく「権利」という無形の財産も、立派な担保のピースになるという点を押さえておきましょう。",
           "1. 結論：動産質権は「預かっているだけ」動産質権者は、原則として設定者（オーナー）の承諾を得なければ、質物を使用したり、他人に貸したり、さらに担保に入れたりすることはできません。なぜか？： 動産質権の目的は、物を手元に置いて相手に心理的プレッシャーを与えること（留置的効力）にあり、その物から利益を得ることまでは予定されていないからです。2. 【デバッグ】「不動産質権」との決定的な違い行政書士試験で最も受験生を混乱させる「対比パズル」を整理しましょう。ここを間違えると命取りになります。項目動産質権（時計など）不動産質権（土地など）使用・収益承諾が必要（原則不可）承諾不要（原則できる）利息の請求できる原則できない（管理費と相殺）管理費用設定者（オーナー）が払う質権者（貸した人）が払う覚え方のコツ：動産： 「利息は取るけど、勝手に使うな！」不動産： 「利息は取らないけど、勝手に使うぞ！」という「利益の取り方」のトレードオフが成立しています。3. 【例外】承諾がなくても「使っていい」場合動産質権であっても、唯一の例外として承諾なしで使用できるケースがあります。保存に必要な使用：例えば、預かっている機械が錆びつかないように定期的に動かしたり、高級な時計の動作を確認したりする行為です。これは「物の価値を守るため」なので、わざわざ許可を取らなくてもOKです。4. 試験対策のアドバイス問題文を読んだ際、まず主語が**「動産」か「不動産」か**を猛烈な勢いでチェックしてください。解法のコツ：「動産（小物）は預かっているだけだから、『勝手に使うのはNG』。不動産（大物）は管理が大変だから、『利息の代わりに使ってヨシ！』」と、管理コストと利息の関係で紐付けておくと、どっちがどっちだったか迷わなくなります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18035,6 +20224,18 @@ export const SUBJECTS = {
           "1. 結論：転付命令には「逆転不可」のタイムリミットがある物上代位のルールである「払渡し又は引渡し」の前に差し押さえなければならない（民法304条）という点において、転付命令は非常にシビアなルールを持っています（最判平10.1.30）。デバッグのポイント：転付命令の「遡及効（そきゅうこう）」送達： 裁判所から第三債務者（テナントなど）に転付命令が届きます。確定： その後、不服申し立て期間を経て命令が「確定」します。効果： 命令が確定すると、**「送達された時」に遡って、お金が支払われたのと同じ効果（弁済効）**が発生します。つまり、転付命令が第三債務者に届いてしまった（送達された）後は、たとえまだ「確定」前であっても、抵当権者が後から割り込んで差し押さえることはできません。確定した瞬間に、過去に遡って「もう支払いは終わったもの」として扱われるからです。2. 【比較】「債権譲渡」と「転付命令」の決定的な違いここが試験で最も混同しやすい、物上代位の「最終防衛線」の違いです。出来事タイムリミット（いつまでに差し押さえるか）理由債権譲渡現実の「支払い」が完了するまで譲渡だけでは「支払い」ではないから。転付命令「第三債務者への送達」まで確定すると送達時に遡って「支払い」になるから。ポイント：債権譲渡は「名義が変わるだけ」なので、お金が動く前なら間に合います。転付命令は「裁判所による強制決済」なので、通知が届いた時点で事実上のチェックメイトとなります。3. 【整理】もし送達後に差し押さえたらどうなる？もし抵当権者が「送達」と「確定」の間のわずかな期間に差し押さえをしても、その後に転付命令が確定してしまえば、抵当権者の差し押さえは**「空振り（無効）」**に終わります。デバッグ結果： 転付命令が第三者に届く前にアクションを起こさなければ、抵当権の魔法（物上代位）は解けてしまうということです。4. 試験対策のアドバイス行政書士試験では、この「送達時までに～」という表現が正確な知識として問われます。解法のコツ：「転付命令は**『予約された支払い』**。一旦予約（送達）されたら、後から割り込み（差し押さえ）はできない。予約が入る前に横取りしなきゃいけない！」とイメージしておけば、債権譲渡との違いを迷わず判断できます。",
           "1. 結論：価値が下がれば「今すぐ」文句が言える抵当権の本質は、不動産の「交換価値（いくらで売れるか）」をガッチリ掴んでおくことです。そのため、不動産が壊されたり、価値を不当に下げられたりした場合は、実行を待たずして損害賠償を求めることが認められています（最判昭45.1.22等）。デバッグの重要ポイント：2つの武器の使い分け抵当権者が「邪魔だ！」と感じたときに取れるアクションは2つあります。武器の種類アクションの内容目的物権的請求権「壊すのをやめろ」「出ていけ」価値の減少を食い止める損害賠償請求「減った価値の分、金を払え」減った価値をお金で補う2. 【条件のデバッグ】いつでも請求できるわけではない「少しでも傷がついたら即賠償！」というわけにはいきません。賠償請求が認められるには、以下の「バグチェック（成立要件）」をクリアする必要があります。残存価値の不足： 不動産を壊された結果、残った価値では**「借金を全額返してもらえない（被担保債権を満足させられない）」**状態になっている必要があります。担保の余力があるならNG：例えば、1億円の価値がある土地に、1,000万円の抵当権を付けている場合。少し壊されて価値が9,000万円になったとしても、まだ1,000万円は十分に回収できるので、原則として損害賠償までは認められません。3. 【整理】誰に対して請求できるか？このパズルは「相手」によって少しニュアンスが変わります。設定者（オーナー）： 自分の家だからといって勝手にボロボロにして価値を下げれば、抵当権者への不法行為になります。第三者： 全く関係ない人が勝手に建物を壊したり、木を切り倒したりした場合も、抵当権者はその第三者に対して賠償請求ができます。4. 試験対策のアドバイス行政書士試験では、**「抵当権が実行される前であっても〜」**というフレーズが正誤の分かれ目になります。解法のコツ：「抵当権は不動産の価値を見守る**『監視カメラ』**のようなもの。実行（録画の再生）前であっても、目の前で価値が壊されている（リアルタイムの被害）なら、即座に賠償という通報ができる！」とイメージしておきましょう。",
           "1. 結論：留置権は「握るだけ」の権利だから物上代位性とは、担保に取っている物が火事で燃えたり壊れたりしたときに、代わりに支払われる「保険金」や「賠償金」を横取りできる性質のことです。留置権にこれが認められない理由は、留置権の目的が**「優先弁済（売ってお金に換えること）」ではなく、「留置（物を返さずに心理的プレッシャーを与えること）」にあるから**です。抵当権などの場合： 物が持つ「交換価値（お金としての価値）」を掴んでいます。だから、物が形を変えて「お金（保険金）」になっても、それを追いかけます。留置権の場合： 「物を手元に置くこと」そのものが武器です。物が滅失（消滅）してしまったら、もう「握っておく物」がないため、その瞬間に権利も消えてしまいます。2. 【整理】担保物権の「4つの性質」デバッグ担保物権（留置権・先取特権・質権・抵当権）が共通して持つべき4つの性質を、留置権がどこまで持っているか確認しましょう。性質内容留置権抵当権・質権など付随性借金が消えれば担保も消える○○随伴性債権が移れば担保も付いていく○○不可分性全部返すまで全部の物を握れる○○物上代位性保険金などを横取りできる×○ポイント：留置権は、この4つのうち**「物上代位性」だけを持っていない**、という点が試験で最も狙われる特徴です。3. 【デバッグ】もし留置権に物上代位を認めたら？もし留置権に物上代位を認めてしまうと、法律のバランスが崩れてしまいます。留置権には「登記」がありません。誰が持っているか外から分かりにくい留置権者が、いきなり「その保険金は俺のものだ！」と物上代位を始めたら、他の債権者は予測不能なダメージを受けてしまいます。だから民法は、強力な優先権を持たない留置権には、物上代位という「変身後の追跡機能」を与えていないのです。4. 試験対策のアドバイス行政書士試験では、**「留置権、先取特権、質権、抵当権のすべてに物上代位性が認められる」**といった全肯定のひっかけ問題がよく出ます。解法のコツ：「留置権はアナログな権利。**『実物を持っていてナンボ』**の世界。実物がなくなってデジタルな『お金（保険金）』に化けてしまったら、もう手出しはできない！」とイメージしておけば、物上代位の有無で迷うことはありません。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18098,6 +20299,14 @@ export const SUBJECTS = {
           "1. 結論：オーナーが管理できるなら「直接自分へ」は欲張りすぎ抵当権を妨害するような占有者がいる場合、抵当権者は「その占有をやめろ（妨害排除）」と言うことはできます。しかし、建物を「直接自分（抵当権者）に明け渡せ」とまで言うには、もう一段階厳しい条件が必要です。デバッグの核心：なぜ「×」なのか？問題文にある**「A（オーナー）において……適切に維持管理することが期待できるとき」**という部分がバグの正体です。原則： 抵当権者は、まずオーナーAに対して「ちゃんと管理しろ」と言うべきです。Aが管理できる状態なら、占有者Cを追い出した後は、建物はAに返されるべきです。直接明け渡しの条件： 抵当権者が「俺に直接渡せ」と言えるのは、**「オーナーAが適切に維持管理することが期待できない」**という事情がある場合に限られます。2. 【整理】妨害排除請求の「2段階」パズル試験で狙われる「どこまで言えるか」のステップを整理しましょう。請求の内容認められる条件占有を解け（出ていけ）実行を妨害する目的があり、交換価値の実現が妨げられている場合。「直接自分に」明け渡せ上記に加え、**「設定者（オーナー）が適切に維持管理できない」**場合。ポイント：抵当権者はあくまで「お金を貸している人」であって、「建物の管理者」ではありません。オーナーがしっかりしているなら、オーナーに管理を任せるのが民法のルールです。3. 【デバッグ】「不当な占有」の具体例判例が認めた「妨害」とは、単に住んでいることではなく、以下のようなケースを指します。競売の手続きを遅らせるためにわざと居座る。「暴力団関係者が住んでいる」と噂を流して、入札価格を暴落させようとする。こうした悪質なケースでは、抵当権という「価値を掴む権利」が侵害されているとして、妨害排除というカウンターが認められます。4. 試験対策のアドバイス行政書士試験では、この**「所有者による維持管理が可能か否か」**という条件を、あえて「可能であっても～」と逆転させて聞いてくるのが定番のひっかけです。解法のコツ：「抵当権者が『建物のカギを俺に渡せ！』と直接要求できるのは、**『オーナーが頼りにならない（維持管理が期待できない）』**ときだけの最終手段！」とイメージしておきましょう。",
           "1. 結論：原則として「転貸賃料」には届かない抵当権者は、所有者（債権者）Aが受け取る「賃料」には物上代位できますが、借り手CがさらにFに貸して得た**「転貸賃料」には、原則として物上代位権を行使することができません。**デバッグの核心：なぜ「転貸」はダメなのか？このパズルを解くカギは、**「誰の権利か」**という点にあります。所有者の権利ではない： 転貸賃料は、抵当権の設定者（オーナーA）ではなく、「賃借人（借り手C）」が自分のビジネス（転貸）として得ている独立したお金です。賃借人の地位の尊重： 抵当権はあくまで「不動産の価値」を掴むものです。もし転貸賃料まで差し押さえられるとなると、抵当権と直接関係のない賃借人Cの経済活動を不当に侵害することになってしまいます。判例のスタンス： 民法304条がいう「賃料」とは、原則として債務者（所有者）自身が受けるべきものを指します。2. 【整理】物上代位の「OK・NG」境界線試験で狙われる「賃料」関連の境界線を整理しましょう。項目物上代位の可否理由通常の賃料（AがCから取る）○ できる抵当不動産から生じる「果実」の変形だから。転貸賃料（CがFから取る）× 原則できない今回のバグ。 賃借人Cの固有の権利だから。火災保険金○ できる建物が「滅失」して形を変えたものだから。3. 【デバッグ】例外的に「OK」になる「特段の事情」記述に「特段の事情がない限り」とありますが、逆に言えば**「特段の事情」があれば認められる**ということです。具体的には以下のようなケースです。不当な回避： 抵当権者による賃料差し押さえを逃れるために、形だけ身内やダミー会社に安く貸し（賃貸借）、そこから高い賃料で転貸（転貸借）させるような、実質的に「所有者が転貸賃料を手にしているのと変わらない」とみなされる悪質なケース。しかし、通常の健全な転貸借であれば、抵当権者は転貸賃料には手を出せません。4. 試験対策のアドバイス行政書士試験では、「転貸賃料にも物上代位できる」という、もっともらしいひっかけが頻出です。解法のコツ：「抵当権の魔法（物上代位）は、**『オーナー（設定者）の財布』**までしか届かない！ **『借り手の財布（転貸賃料）』**は別次元なので、魔法はかからない！」とイメージしておけば、この判例問題を確実に得点源にできます。",
           "1. 結論：手放さなくていい抵当権、手放すべき質権両者の最大の違いは、担保に入れる物を「自分で使い続けられるか、相手に渡さなければならないか」という点にあります。① 抵当権：占有を移転しない（諾成契約）ルール： 抵当権は、物を相手に渡す必要がありません。メリット： 例えば、住宅ローンを組んでも、その家に住み続けながら返済ができます。工場に抵当権を設定しても、機械を動かして利益を出し、そのお金で借金を返せます。公示の方法： 物を渡さない代わりに、**「登記（とうき）」**によって「この家には担保がついているぞ」と世の中に知らせます。② 質権：占有を移転しなければならない（要物契約）ルール： 質権は、目的物を債権者に引き渡すことで効力が生じます（民法344条）。デメリット： 質入れしている間は、その物を使えません。機能： 物を人質（物質）として取り上げることで、「返さないとこれが戻ってこないぞ」という心理的プレッシャー（留置的効力）を与えます。2. 【整理】抵当権 vs 質権 デバッグ・テーブル試験で問われる決定的な違いをマトリックスで整理しましょう。項目抵当権質権占有の移転不要（自分で使える）必要（相手に預ける）成立要件合意のみ（諾成契約）合意 ＋ 引渡し（要物契約）対象物不動産など（登記できるもの）動産・不動産・権利留置的効力なしあり（返済まで返さない）3. 【深掘り】なぜ抵当権は「登記」できるもの限定？抵当権は「物を渡さない」ため、パッと見では担保に入っているかどうかが分かりません。もし誰でも自由に抵当権を設定できてしまうと、何も知らない第三者がその不動産を買ったときに、「実は担保に入っていました、競売にかけます」と言われて大損害を受けてしまいます。そのため、抵当権は不動産のように「登記」という公的な記録でチェックできるものにしか認められていないのです。4. 試験対策のアドバイス行政書士試験では、**「質権は、目的物を設定者に占有させたまま設定できる」**というひっかけ（×）がよく出ます。解法のコツ：「質（しち）は**『人質（ひとじち）』と同じ。手元に確保しておかなければ意味がない！ 抵当権は『登記』**という看板があるから、手元に置かなくてOK！」とイメージしておけば、要物性の有無で迷うことはありません。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18174,6 +20383,16 @@ export const SUBJECTS = {
           "1. 結論：極度額の「枠」の中なら無制限普通の抵当権の場合、利息や遅延損害金（不履行による損害賠償）は、後順位者がいると「最後の2年分」までしか優先されませんでした。しかし、根抵当権（元本確定前）においては、「極度額（きょくどがく）」という枠の範囲内であれば、利息や損害賠償が何年分たまっていようが、その全額を優先的に回収できます（民法398条の3第1項）。なぜ根抵当権は「全部」OKなのか？予測可能性： 根抵当権にはあらかじめ「極度額」が登記されています。後順位者の覚悟： 後順位者は、登記簿を見た時点で「この不動産からは、最大でこの金額（極度額）までは先に持っていかれるんだな」と覚悟して並んでいます。結論： 枠さえ守られているなら、その中身が元本だろうが、10年分の利息だろうが、後順位者の不利益にはならない（予測の範囲内）と判断されるため、2年分の制限は解除されています。2. 【比較デバッグ】抵当権 vs 根抵当権（確定前）試験で最も入れ替えられやすい「範囲」のパズルを整理しましょう。項目普通の抵当権根抵当権（確定前）利息・損害金最後の2年分まで極度額に収まれば「全額」理由後順位者を守るため極度額という「枠」があるから登記の項目債権額、利息、損害金など極度額3. 【要注意】確定した後の「再起動」に注意以前のデバッグでも触れましたが、根抵当権のこの「全額OK」という特権は、元本が確定した瞬間に失われます。元本確定後： 普通の抵当権と同じように、利息や損害金は**「最後の2年分」**に制限されます（民法398条の3第2項）。つまり： 「極度額内なら何年分でも全額」と言えるのは、あくまで元本確定前の特権です。4. 試験対策のアドバイス行政書士試験では、**「根抵当権においても、損害賠償は最後の2年分に限られる」**というひっかけ（×）が本当によく出ます。解法のコツ：「根抵当権は**『極度額という財布』**の中身であれば、元本も利息も損害金も、全部一括で飲み込む強力な権利！」とイメージしておきましょう。",
           "1. 結論：利害関係人がいても承諾は「一切不要」元本確定前であれば、**「債権の範囲」や「債務者」**を変更する際、後順位抵当権者はもちろん、その他のいかなる第三者の承諾も得る必要はありません（民法398条の4）。デバッグの核心：なぜ誰も文句を言えないのか？根抵当権には、あらかじめ**「極度額（きょくどがく）」**という枠が設定され、登記されています。枠の中の入れ替え： 後順位者やその他の第三者は、登記を見た時点で「この不動産からは、最大でこの金額（極度額）までは先に持っていかれる」と覚悟しています。影響がない： 枠の中で「売買代金」を「貸付金」に入れ替えたり、債務者を変更したりしても、極度額という「箱の大きさ」が変わらない限り、後順位者の取り分が減ることはありません。結論： 第三者の利益を害さないため、当事者（根抵当権者と設定者）だけの合意で自由に変更できるのです。2. 【整理】承諾の「要・不要」デバッグ表根抵当権の変更パズルで、承諾が必要なケースと不要なケースを対比させましょう。変更したい項目第三者の承諾理由債権の範囲不要極度額（枠）の範囲内での変更だから。債務者不要同上。元本確定期日不要同上。極度額（枠そのもの）必要枠が広がると後順位者の取り分が減るから（398条の5）。3. 【要注意】「承諾」は不要だが「登記」は必須記述のもう一つのポイント、対抗要件についてもデバッグしておきましょう。登記の期限： 債権の範囲や債務者の変更は、元本が確定する前に登記をしなければなりません（398条の4第2項）。もし遅れたら： 確定前に登記を怠ると、その変更は「なかったもの」とみなされます。4. 試験対策のアドバイス行政書士試験では、**「債務者の変更には、後順位抵当権者の承諾が必要である」**といったひっかけが頻出です。解法のコツ：「根抵当権は、**極度額という『箱のサイズ』**を大きくしない限り、中身をどう詰め替えようが（債権範囲・債務者の変更）、周りの人（第三者）に断る必要はない！」とイメージしておけば、この手の問題で迷うことはありません。",
           "1. 結論：登記が「効力発生」の絶対条件根抵当権において、債権の範囲や債務者を変更する場合、民法第398条の4第2項により、「元本の確定前」に登記をしなかったときは、その変更をしなかったものとみなされます。デバッグの核心：なぜ「みなされる」という強い表現なのか？通常の不動産取引（売買など）では、登記は「第三者に対抗するため」のものですが、根抵当権の変更においては**「変更そのものの効力を発生させるため」**に登記が必要です。バグの例： 銀行と設定者が「今日から貸付金も担保に入れよう」と合意しても、登記をしないまま元本が確定してしまったら、その合意は法律上「無かったこと」になり、貸付金は担保されません。2. 【整理】「元本確定前」の変更パズル・ルール根抵当権の機動性を維持するため、以下のセットで覚えておきましょう。項目ルールデバッグポイント承諾の要否不要後順位者などの承諾は一切いりません。変更のタイミング確定前に限る確定した後は、中身の入れ替えは不可能です。登記の役割効力発生要件登記をしないと、当事者間でも無効です。3. 【深掘り】なぜ「確定前」に登記が必要？根抵当権は、元本が確定した瞬間に「その時までに発生していた債権」をガッチリ固定します。もし確定後に「実は一ヶ月前に中身を変更する合意をしてたんです」という後出しジャンケンを認めてしまうと、固定されたはずの債権範囲が揺らいでしまい、後順位者や他の債権者が大混乱してしまいます。そのため、**「変更したいなら、フタ（確定）が閉まる前に登記簿に載せて、世の中に示しておきなさい」**という厳しいルールになっています。4. 試験対策のアドバイス行政書士試験では、**「債権の範囲の変更は、当事者の合意があれば、確定後に登記してもその効力を生ずる」**というひっかけ（×）が頻出です。解法のコツ：「根抵当権の変更は、**『フタ（確定）が閉まる前のタイムセール』**と同じ！ 合意するだけでなく、確定前にレジ（登記）を通さないと、商品は手に入らない（変更は無効）！」とイメージしておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18230,6 +20449,13 @@ export const SUBJECTS = {
           "1. 結論：合意があれば「箱ごと」譲れる根抵当権が元本確定前である場合、根抵当権者（B）は、設定者（A）の承諾を得ることで、その根抵当権を丸ごと第三者（E）に譲り渡すことができます（民法398条の12第1項）。デバッグの核心：なぜ「承諾」が必要なのか？以前デバッグした「債権譲渡」の場合、債権だけが移動して根抵当権（箱）は付いていきませんでした。しかし、今回は**「根抵当権という箱（地位）そのもの」**を譲る手続きです。債務者にとっての重要性： 根抵当権は「誰と取引するか」という信頼関係に基づいています。勝手に知らない人が根抵当権者（新しい取引相手）になってしまうと困るため、設定者（オーナー）の承諾が絶対条件となっています。第三者の承諾は不要： 一方で、後順位抵当権者などの承諾は不要です。極度額という「枠」が変わらない限り、彼らに不利益はないからです。2. 【整理】「確定前」にできる処分のパズル根抵当権の「地位」をいじる手続きは、主に以下の3種類です。いずれも**「設定者の承諾」**がカギになります。処分の種類内容条件譲渡（全部譲渡）Bが持っている根抵当権を、完全にEに譲り渡す。設定者（A）の承諾一部譲渡Bが根抵当権の一部をEに分け与え、B・Eの共有にする。設定者（A）の承諾分割譲渡1つの根抵当権を2つに分け、一方はB、他方はEが持つ。設定者（A）の承諾3. 【デバッグ】「普通の抵当権」との決定的な違い普通の抵当権では、債権と切り離して「抵当権だけ」を譲渡することはできません（随伴性があるため）。しかし、根抵当権は確定するまでは「債権と切り離された独立した枠」として扱われるため、このように**「枠そのものの売買」**のような柔軟な運用が可能になっています。4. 試験対策のアドバイス行政書士試験では、**「根抵当権の譲渡には、後順位抵当権者の承諾が必要である」というひっかけ（×）や、逆に「設定者の承諾は不要である」**というひっかけ（×）がよく出ます。解法のコツ：「根抵当権の譲渡は、『お店（取引の場）のオーナーチェンジ』。利用客（後順位者）の許可はいらないけれど、契約相手（設定者）のOKは絶対必要！」とイメージしておきましょう。",
           "1. 結論：確定後は「実額＋α」まで削れる民法第398条の21第1項により、元本確定後であれば、設定者（A）は根抵当権者（B）に対して、極度額を以下の合算額まで減らしてくれ！と一方的に請求できます。① 現に存する債務の額（今回のケースでは確定した6,000万円）② 今後2年間に生じる利息・遅延損害金デバッグの核心：なぜ「2年分」を足すのか？「今の借金と同じ6,000万円まで減らせばいいじゃないか」と思うかもしれませんが、競売の手続きには時間がかかります。その間に利息や遅延損害金は増え続けます。根抵当権者が損をしないよう、**「手続きにかかる期間（約2年分）の利息」というバッファ（ゆとり）**を認めているのです。2. 【整理】なぜ減額請求という権利があるのか？このパズルを解くカギは、**「不動産の担保余力」**にあります。問題点： 借金が6,000万円しかないのに、極度額（枠）が1億円のまま放置されていると、その不動産には「あと4,000万円分の担保がついている」ように見えます。デメリット： これではオーナーAが、他の銀行から2番目の抵当権でお金を借りようとしても、「枠がいっぱいだ」と断られてしまいます。解決策： 確定して「新しい借金」がもう発生しないのであれば、枠を小さくして不動産の価値を解放してあげよう、というのがこのルールの目的です。3. 【比較】変更 vs 減額請求「極度額」を動かすときのルールをデバッグしておきましょう。種類タイミング第三者（後順位者）の承諾性質合意による変更いつでも必要（枠が広がると困る人がいるため）契約（話し合い）減額請求（398条の21）確定後不要（枠が狭まって困る人はいないため）形成権（一方的な権利）4. 試験対策のアドバイス行政書士試験では、**「元本確定前であっても、債務を全額弁済すれば減額請求ができる」**というひっかけ（×）がよく出ます。解法のコツ：「減額請求は、根抵当権が**『定年退職（確定）』**して、もう借金が増えないことが確定してから使える権利。現役バリバリ（確定前）の時は、枠をキープしておく必要がある！」とイメージしておきましょう。",
           "1. 結論：借金が極度額を超えていても「極度額」で縁を切れるこのパズルの肝は、借金（1億2,000万円）が極度額（1億円）をオーバーしている点にあります。通常、債務者本人が根抵当権を消そうと思えば、借金全額（1億2,000万円）を返さなければなりません。しかし、土地を買ったり地上権を得たりした第三者（F）は、「極度額（1億円）」さえ払えば、根抵当権を消してくれ！と請求できるルールになっています。デバッグの核心：なぜ「極度額」だけでいいのか？第三者の予測可能性： 登記簿には「極度額1億円」と書いてあります。Fさんはそれを見て、「最悪でも1億円払えばこの土地はクリーンになるな」と信じて地上権を取得しました。オーバー分は無視してOK： 実際の借金がいくら膨らんでいようと、第三者に対しては「登記された金額」までしか責任を負わせない、というのが登記制度の信頼を守るためのロジックです。2. 【整理】「消滅請求」ができる人と条件誰でもこの魔法が使えるわけではありません。項目内容備考使える人第三取得者（所有権・地上権などを得た人）債務者・設定者本人は使えません。タイミング元本確定後に限る確定前はいくらになるか未定なので使えません。金額極度額（＋確定後の利息などは不要）登記された「枠」の金額で足ります。ポイント：債務者本人は「全額返せ」と言われますが、第三者は「極度額でOK」という、「誰が請求するか」による格差が試験でよく狙われます。3. 【比較】「抵当権消滅請求」との違い普通の抵当権にも似た制度がありますが、ルールが少し異なります。普通の抵当権： 「その不動産の**今の価値（時価）**を払うから消して」と交渉する（抵当権消滅請求）。根抵当権： 「登記されている極度額を払うから消して」と請求する（根抵当権消滅請求）。根抵当権の方が、金額が「極度額」とはっきり決まっている分、シンプルに設計されています。4. 試験対策のアドバイス行政書士試験では、**「元本確定前であっても消滅請求ができる」というひっかけや、「債務者本人も極度額を払えば消滅請求ができる」**というひっかけ（×）が鉄板です。解法のコツ：「消滅請求は、**後から来たお客さん（第三取得者）を守るための制度。確定して金額の天井が見えた後に、『登記に書いてある上限額（極度額）』**を叩きつけて、担保を外してもらう権利！」とイメージしておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18293,6 +20519,14 @@ export const SUBJECTS = {
           "1. 結論：根抵当権は「極度額」を1円も超えられない根抵当権において、優先弁済を受けられる金額には極度額という絶対的な天井があります。たとえ元本が確定して「普通の抵当権」に近い状態になったとしても、あるいは「最後の2年分の利息」であっても、極度額を超えて優先弁済を受けることは一切できません（民法398条の3第1項）。デバッグの核心：普通の抵当権との違いここが最大の混乱ポイントです。普通の抵当権： 登記された「元本」とは別に、利息や損害金を「最後の2年分」まで優先的に取ることができます。根抵当権： 「元本」「利息」「損害金」をすべてひとまとめにして、その合計が「極度額」に収まる範囲でしか優先されません。2. 【整理】「2年分」という言葉のひっかけこのパズルには、受験生を惑わせる「2年分」という言葉の使い方が2種類あります。状況ルール元本確定前極度額に収まるなら、利息は何年分でも全額担保される。元本確定後普通の抵当権と同じく「2年分」という時間制限がかかる。ただし、極度額の枠内であることが大前提。つまり、元本確定後は「2年分という時間制限」と「極度額という金額制限」のダブルの制約を受けることになります。記述のように「極度額を超えても～」となることは絶対にありません。3. 試験対策のアドバイス行政書士試験では、**「根抵当権は、元本確定後、極度額を超えても2年分の利息を担保する」**というひっかけが非常に多いです。解法のコツ：「根抵当権にとって、極度額は**『絶対の器（うつわ）』**。中身が元本だろうが利息だろうが、器から溢れた分は一切認められない！」とイメージしておけば、このひっかけを回避できます。",
           "1. 結論：確定するまで「箱」と「中身」は連動しない普通の抵当権であれば、借金を譲り渡すと担保である抵当権もセットで付いていきます。しかし、根抵当権が元本確定前である場合、このルール（随伴性）が完全にストップしています（民法398条の7第1項）。デバッグの核心：なぜDは行使できないのか？箱（根抵当権）の持ち主： 元本確定前の根抵当権は、特定の債権ではなく「将来にわたる取引全体」をカバーするための**「枠（箱）」**です。中身（債権）の移動： Bさんが個別の債権をDさんに譲渡しても、根抵当権という「箱」はBさんの手元に残ったままです。Dさんに付いていくことはありません。結果： Dさんは、対抗要件（通知など）を備えて「債権」そのものは手に入れましたが、担保である「根抵当権」は持っていないため、土地を競売にかけたりすることはできません。2. 【整理】「元本確定前」の移動パズル試験で狙われる「移動」に関するルールをデバッグしておきましょう。出来事根抵当権はどうなる？理由債権譲渡（今回）譲受人に移転しない随伴性が否定されているから。債務引受引受人の債務に及ばない根抵当権は「特定の債務者」との取引を担保するものだから。代位弁済弁済者に移転しない債権譲渡と同じロジックです。3. 【深掘り】いつになれば連動するのか？この「随伴性」が復活する（普通の抵当権と同じようになる）のは、元本が確定した後です。元本が確定すると、その瞬間に箱の中に入っていた債権がガッチリ固定されます。その後に債権を譲渡した場合は、その債権と一緒に根抵当権も移動することになります。4. 試験対策のアドバイス行政書士試験では、**「債権譲渡の通知があれば、元本確定前であっても根抵当権は随伴する」**というひっかけが鉄板です。解法のコツ：「確定前の根抵当権は、中身（債権）に興味がない**『ドライな箱』**。中身が外に出されても、箱はびくとも動かず元の場所（根抵当権者）に留まる！」とイメージしておきましょう。",
           "1. 結論：手続き（対抗要件）を整えても「行使できない」根抵当権が元本確定前である限り、たとえ債権譲渡について債務者Aの承諾を得たり、確定日付のある証書による通知を送ったりといった「対抗要件」を完璧に整えたとしても、根抵当権は譲受人Eに移転しません。したがって、Eが根抵当権を行使することは不可能です（民法398条の7第1項）。2. デバッグの核心：なぜ「手続き」をしてもダメなのか？このパズルを解くカギは、根抵当権の「性格」にあります。普通の抵当権： 借金（債権）にピタリと吸着している。借金が移動すれば、磁石のように付いていく。確定前の根抵当権： 借金とは切り離された、ただの「空の枠（箱）」。中身の借金が譲渡されて外に出ても、箱は元の根抵当権者Bの手元に残ったまま動かない。「確定日付付きの証書」というのは、あくまで「債権そのものを譲り受けたこと」を証明する道具にすぎません。根抵当権という**「箱」を動かす魔法の杖にはならない**のです。3. 【整理】「確定前」と「確定後」の決定的違い試験で混乱しないよう、随伴性のスイッチが入るタイミングを整理しましょう。タイミング債権譲渡に伴う根抵当権の移動理由元本確定前移転しない随伴性が否定されているから（ドライな関係）。元本確定後移転する随伴性が復活するから（ベタベタな関係）。4. 試験対策のアドバイス行政書士試験では、「確定日付」や「対抗要件」といったもっともらしい法律用語を並べて、「そこまでやったなら行使できそう」と思わせる問題がよく出ます。解法のコツ：「元本確定前という言葉を見たら、耳をふさげ！ 周囲でどんな手続き（通知や承諾）が行われようと、確定前の根抵当権は絶対に動かない頑固者だ！」とイメージしておけば、どんなひっかけにも対応できます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18349,6 +20583,13 @@ export const SUBJECTS = {
           "1. 結論：商売を止めないための「処分権限」集合動産譲渡担保は、倉庫内の在庫などを「まとめて1つの塊」として担保にするものです。この場合、債務者Bには**「通常の営業の範囲内」**であれば、その中の商品を自由に売却し、新しい商品と入れ替える権限が認められています。デバッグの核心：なぜ売ってもいいのか？もし商品の販売（処分）を禁止してしまうと、以下のようなバグが発生します。ビジネスの停止： 商品を売ってお金を作らないと、借金を返すことができません。担保の死文化： 倉庫の中身が固定されてしまうと、新しい在庫も入らなくなり、商売そのものが成り立たなくなります。そのため、判例上も「通常の営業」として商品を販売し、その代わりに新しい在庫を補充するという**「入れ替え」**を前提とした運用が認められています。2. 【整理】「処分権限」の境界線何でもかんでも売っていいわけではありません。処分の種類認められるか理由通常の販売○ 認められる借金返済の原資を作るための営業活動だから。在庫の全量一括売却× 認められない担保そのものを消滅させてしまう行為（背信行為）だから。不当に安い価格での処分× 認められない通常の営業の範囲を超えているとみなされる。3. 【重要】売却された商品の「担保権」はどうなる？Bが商品を顧客に売却した場合、その商品についていた譲渡担保権は**「消滅」します。\n買主は「担保がついているかもしれない」とビクビクせずに商品を買うことができます（取引の安全）。その代わり、Bが新しく仕入れてきた商品には自動的に**担保の効力が及び、バランスが保たれる仕組みになっています。4. 試験対策のアドバイス行政書士試験では、**「譲渡担保の目的物は、債権者の承諾がなければ1個たりとも処分することができない」**というひっかけ（×）がよく出ます。解法のコツ：「集合動産譲渡担保は、**『流れるプールの水』**を担保にしているようなもの。一部が流れていっても（販売）、また新しい水が入ってくる（補充）ことで、プール全体の価値（担保価値）が保たれていればOK！」とイメージしておきましょう。",
           "1. 結論：先に「占有改定」した譲渡担保権が勝つたとえCが「売買代金を払ってもらっていない」という強力な理由（動産売買先取特権）を持っていても、それより前にAが占有改定によって譲渡担保権の対抗要件を備えていた場合、Cはもはやその商品に対して先取特権を行使することができなくなります。デバッグの核心：なぜCは負けるのか？（民法333条）このパズルを解くカギは、民法333条の**「追求権の制限」**にあります。ルール： 先取特権は、債務者がその目的物を第三者に**「引き渡した」**後は、その物に対して行使することができなくなります。占有改定も「引渡し」： 判例は、この333条の「引渡し」には、現実の引渡しだけでなく**「占有改定」も含まれる**と判断しました。結果： Aが占有改定を受けた時点で、法律上はCの先取特権の手が届かない場所へ商品が行ってしまった（引渡しが完了した）とみなされるため、Cは負けてしまうのです。2. 【整理】「先取特権 vs 譲渡担保」の勝敗表どちらが勝つかは、単純に**「タイミング（スピード勝負）」**で決まります。状況勝者理由先にAが占有改定を済ませていた譲渡担保権者A民法333条により先取特権が消滅（追求不能）するため。先にCが差押え等をしていた先取特権者C譲渡担保が成立する前に権利を確定させているため。3. 試験対策のアドバイス行政書士試験では、**「占有改定は333条の『引渡し』に含まれないため、先取特権が優先する」**というひっかけ（×）がよく出ます。解法のコツ：「先取特権は、相手が**『引渡し（占有改定含む）』**という防壁を張る前に捕まえなければならない！ 一度占有改定の壁が作られると、先取特権というビームは届かなくなる！」とイメージしておけば、判例の結論を迷わずに導き出せます。",
           "1. 結論：所有権留保がある場合、Aは「当然には」勝てない\nたとえAが占有改定によって対抗要件を備えていたとしても、その商品が「代金を完済するまで所有権はDにある」という所有権留保付きで仕入れられたものであった場合、AはDに対して譲渡担保権を当然に主張することはできません。\n\n2. デバッグの核心：なぜ「先取特権」の時と違うのか？\n先ほどの動産先取特権（Cのケース）と何が違うのか、そのロジックを修正しましょう。\n\n先取特権の場合： 所有権はすでに「B」に移っています。Bが持ち主だからこそ、AはBから担保の設定を受けることができました。\n\n所有権留保（D）の場合： 代金を完済するまで、商品の持ち主は依然として**「売主のD」**です。Bはまだ持ち主（所有者）になっていません。\n\nバグの正体：\nBは「自分のものでない物（Dのもの）」を勝手にAに担保として差し入れたことになります。自分の物でない以上、原則としてAに担保権を与えることはできません。\n\n3. 【整理】Aが勝てる唯一の道は「即時取得」\nAがDに勝つためには、**「即時取得（そくじしゅとく）」**を成立させるしかありません。しかし、ここで大きな壁があります。\n\n即時取得の要件： 平穏・公然・善意・無過失で「引渡し」を受けること。\n\n占有改定の限界： 判例上、「占有改定」による引渡しでは即時取得は成立しないとされています。\n\n結論： Aは占有改定しか受けていないため、即時取得ができず、真の所有者であるDには勝てない（譲渡担保権を主張できない）という結果になります。\n\n4. 試験対策のアドバイス\n行政書士試験では、この「先取特権（勝てる）」と「所有権留保（負ける）」の対比が最高ランクの難問として出題されます。\n\n解法のコツ：\n\n相手が「先取特権」なら： Aの勝ち！（占有改定で先取特権をシャットアウトできるから）\n\n相手が「所有権留保」なら： Aの負け！（占有改定では即時取得ができず、Dの所有権を奪えないから）"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       }
     ],
@@ -18407,6 +20648,13 @@ export const SUBJECTS = {
           "■ 根拠条文（民法419条1項）\n\n民法第419条（金銭債務の特則）\n\n金銭の給付を目的とする債務の不履行という損害賠償の額は、法定利率によって定める。ただし、約定利率が法定利率を超えるときは、約定利率による。\n\n■ 周辺知識：金銭債務の不履行の3つの特則\n金銭債務は世の中で最も基本的な債務であるため、通常の不履行とは異なる3つの強力な特則があります。\n\n損害の証明不要： 債権者は、損害の発生や具体的な額を証明しなくてよい。\n\n不可抗力による免責不可： 「お金を用意できなかったこと」にやむを得ない事情（天災など）があっても、債務者は責任を免れることができない。\n\n利率の最低保障： 本肢の通り、最低でも法定利率分は請求できる。\n\n■ 関連する過去問の視点\n過去問では、以下のようなポイントが組み合わされて出題されます。\n\n「約定利率 ＞ 法定利率」の場合： 約定利率が優先される。\n\n「約定利率 ＜ 法定利率」の場合： 法定利率が適用される（本肢）。\n\n「損害の証明」との関係： 「法定利率を超える損害が発生したことを証明すれば、それ以上の請求ができるか？」という問いに対し、特約がない限り**「できない」**とするのが通説・判例です。法定利率（または約定利率）が損害賠償の定額として機能するためです。\n\n💡 受験生へのアドバイス\n金銭債務の遅延損害金は、**「法定利率 or 約定利率のどっちか高い方！」**と覚えてしまいましょう。債権者にとって有利な方が選ばれるというイメージを持っておくと、試験本番で「どっちだったかな？」と迷わずに済みますよ！",
           "■ 根拠条文（民法404条1項、419条1項）民法404条1項： 利息（遅延損害金を含む）を生ずべき債務の利率は、その最初の時点における法定利率によります。不法行為の特則（判例）： 不法行為に基づく損害賠償債務は、催告を要せず、**損害発生と同時（不法行為時）**に遅滞に陥ります。■ 周辺知識：発生時期の比較（重要！）受験生が混乱しやすい「遅滞の起算点」を整理しましょう。債務の種類遅滞に陥る時期利率の基準時不法行為不法行為の時（即時）不法行為時確定期限ある債務期限が到来した時期限到来時不確定期限ある債務期限到来を知った時 または 催告を受けた時のいずれか早い方左記の時点期限の定めのない債務催告を受けた時催告時■ 関連する過去問の視点中間利息控除との整合性： 不法行為による将来の逸失利益を計算する際の「中間利息控除」に用いる利率も、不法行為時の法定利率によります（民法722条1項が準用する417条の2第1項）。特別法との関係： 自動車損害賠償保障法などの特別法が適用される場合でも、利率に関しては民法の規定が適用されるのが原則です。💡 受験生へのアドバイス不法行為は「被害者救済」の側面が強いため、加害者に「いつから遅滞になるか」を知らせる催告を待つ必要がない、というロジックを理解しましょう。**「不法行為＝発生と同時に遅滞＝その時の利率で固定」**というセットで覚えておけば、民法改正絡みの問題も怖くありません！",
           "■ 根拠条文（民法417条の2 第1項）\n\n民法第417条の2（中間利息の控除）\n\n将来取得すべき利益についての損害賠償の額を定める場合において、その利益を取得すべき時までの利息相当額を控除するときは、その損害賠償の請求権が生じた時点における法定利率によらなければならない。\n\n■ 周辺知識：なぜ「請求権が生じた時点」なのか？\n中間利息控除の利率をどの時点にするかは、改正前は判例によって「年5％（当時の法定利率）」とされていました。しかし、現在は法定利率が変動制（現在は年3％）となったため、計算の基準日を明確にする必要が生じました。\n\n不法行為の場合： 不法行為の時\n\n債務不履行の場合： 債務不履行の時\n（これらが「損害賠償請求権が生じた時点」となります）\n\nこれにより、裁判の決着が数年後になっても、適用される利率は「事故や事件が起きたあの時」の利率で固定されるため、公平性が保たれます。\n\n■ 関連する過去問の視点\n\nホフマン式・ライプニッツ式： かつての試験では計算方法の名前が重要でしたが、現在の民法では「法定利率による控除」が明文化されたため、**「どの時点の法定利率か」**という点が最重要のキーワードになっています。\n\n不法行為への準用： この417条の2の規定は、不法行為（722条1項）においても準用されます。行政書士試験では、不法行為の事例問題の一部として「利率はいつのものか？」と問われる可能性が高いです。\n\n💡 受験生へのアドバイス\n将来もらう1,000万円を「今」もらうなら、運用益が出る分、少し減らして渡すのが公平ですよね。その「減らす割合（利率）」は、**「トラブルが発生したその瞬間の利率」**でロックされる、とイメージしてください。「判決が出た時の利率」というひっかけに注意しましょう！"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18463,6 +20711,13 @@ export const SUBJECTS = {
           "■ 根拠条文（民法407条）\n\n民法第407条（選択権の行使）\n\n前条の選択権は、相手方に対する意思表示によって行使する。\n\n前項の意思表示は、相手方の承諾を得なければ、撤回することができない。\n\n■ 周辺知識：第三者が選択権を持つ場合\n特約によって第三者に選択権を与えた場合、ルールが少し異なります。\n\n行使先： 第三者が選択するときは、債務者および債権者の両方に対して意思表示を行います。\n\n撤回の制限： 第三者が一度選択の意思表示をした後は、やはり勝手に撤回することはできません。この場合は債務者と債権者「両方」の承諾が必要と解されています。\n\n■ 関連する過去問の視点：遡及効（411条）との連動\n選択が行われた後の効果についても、過去問ではセットで問われます。\n\n遡及効（そきゅうこう）： 選択によって「これに決めた！」となった場合、その債権は**「最初から」**その給付だったものとみなされます。\n\n第三者の権利： ただし、最初からそうだったことにすると、その間に発生した第三者の権利を害するおそれがあるため、「第三者の権利を害することはできない」という制限がつきます（民法411条但書）。\n\n💡 受験生へのアドバイス\n民法には「一度言ったことは、相手がOKしない限り取り消せない」というルールが他にもあります（解除の意思表示など）。\n選択債権においても、**「意思表示＝到達＝確定」**という流れをイメージしましょう。相手方が「Aが来ると思って準備していたのに、直前でBに変えられた！」という被害に遭わないためのルールだと考えれば、納得しやすいはずです。",
           "■ 根拠条文（民法410条1項）\n\n民法第410条\n\n債権の目的である給付の中に、当初から不能であるもの又は後に不能となったものがあるときは、その債権は、その残存する給付について存在する。\n\n■ 周辺知識：特定されることの効果\n「残存するものに特定される」とは、以下のような状態を指します。\n\n選択権者が「あっち（不能になった方）がいい！」と言っても認められない。\n\n選択権者が何もしなくても、債権の内容は自動的に残ったものに確定する。\n\nもし残ったものが一つだけなら、それはもはや選択債権ではなく、通常の「特定物債権（または種類債権の特定後）」と同じ状態になる。\n\n■ 関連する過去問の視点：410条の構造\n試験対策としては、以下のフローチャートを頭に入れておきましょう。\n\n原則： 一部不能 ＝ 残存するものに特定（410条1項）\n\n例外： 選択権のない当事者の過失で不能になった場合 ＝ 特定しない（410条2項）\n\n⇒ この例外のときだけ、不能になったものをあえて「選択」することが可能になります。\n\n💡 受験生へのアドバイス\n民法の問題では、「選べる（権利）」のか「決まってしまう（効果）」のかの区別が命です。\n過失がない場合、選択肢が消滅して道が一本になるイメージを持ってください。一本道になったら「選ぶ」ことはできませんよね。**「過失なし＝特定（自動）」、「相手に過失あり＝選択（自由）」**とセットで脳内にインストールしましょう！",
           "■ 根拠条文（民法409条1項）\n\n民法第409条（第三者の選択権）\n\n第三者が選択をすべき場合には、その選択は、債権者又は債務者に対する意思表示によってする。\n\n■ 周辺知識：なぜ「又は」に変わったのか？\n改正の背景には、第三者にとって「両方に伝えなければならない」という負担を軽減し、手続きを円滑にする狙いがあります。\n\n通知の相手： 債権者、債務者のどちらか一人に言えば、それで選択が確定します。\n\nその後の処理： 意思表示を受けた当事者は、もう一方の当事者にその内容を伝えるのが一般的ですが、法律上の効力としては「一方への通知」で完成します。\n\n■ 関連する過去問の視点：改正点としての重要性\n行政書士試験をはじめとする法務試験では、「改正されたばかりの箇所」は非常に狙われやすいです。\n\nひっかけのパターン： 未だに「債務者及び債権者の両方に対して行わなければならない」という肢が出ることがありますが、現在は「×（誤り）」となります。\n\n撤回の制限： 第三者が（いずれか一方に）意思表示をした後は、やはり勝手に撤回することはできません。\n\n💡 受験生へのアドバイス\n「昔は両方だったけれど、今はどっちか片方でよくなった！」と、改正の歴史とセットで記憶してしまいましょう。\n民法の勉強では、お手元のテキストや六法が「最新（令和2年以降の改正対応）」であるかを常に意識することが大切です。特にこの409条1項は、私のようについ「昔の知識」で間違えてしまう人が多い難所ですので、今のうちに正確に上書きしておきましょう！"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18525,6 +20780,14 @@ export const SUBJECTS = {
           "■ 根拠条文（民法415条1項、および判例・解釈）\n\n民法第415条（債務不履行による損害賠償）\n\n債務者がその債務の本旨に従った履行をしないとき（略）は、債権者は、これによって生じた損害の賠償を請求することができる。ただし、その債務の不履行が（略）債務者の責めに帰することができない事由によるものであるときは、この限りでない。\n\n※判例上、この「債務者の責めに帰することができない事由」といえるためには、本人だけでなく履行補助者にも過失がないことが必要です。\n\n■ 周辺知識：責任の範囲の拡張\nなぜ本人の過失がなくても責任を負うのか、その理由は「公平」の観点にあります。\n\n活動領域の拡大： 補助者を使ってビジネスの規模を広げている以上、そこから生じるリスクも債務者が引き受けるべきである。\n\n債権者の信頼： 債権者は「契約の相手方（債務者）」が責任を持って遂行することを期待しており、内部で誰を使っているかは関係がない。\n\n■ 関連する過去問の視点\n行政書士試験では、以下のような表現で「正しい肢」として登場します。\n\n「履行補助者の過失は、信義則上、債務者自身の過失と同視される。」\n\n「債務者が履行のために使用する者の過失によって履行不能となった場合、債務者はその責めを免れることができない。」\n\nひっかけの排除： 「選任・監督について相当の注意をしていれば免責される」という選択肢があれば、それは不法行為（使用者責任）の知識との混同を狙った誤りです。\n\n💡 受験生へのアドバイス\nこの論点は、**「チーム債務者の連帯責任」とイメージしましょう。\n債務者が「自分はしっかり指示した。やったのはバイトのAくんだから自分は悪くない」という言い訳は、契約の世界では通用しません。「履行補助者を使ったなら、その一挙手一投足に責任を持つ」**のが民法のルールです。この「無過失責任」に近い厳しさが、債務不履行責任の特徴です。",
           "■ 根拠条文（民法536条1項）\n\n民法第536条（債務者の責めに帰すべき事由によらない履行不能）\n\n当事者双方の責めに帰することができない事由によって債務を履行することができなくなったときは、債権者は、反対給付の履行を拒むことができる。\n\n■ 周辺知識：危険負担と「解除」の関係\n改正民法において、危険負担は「解除」のルールと密接に関係しています。\n\n履行拒絶権（536条1項）： 支払いを一時的にストップできる権利です。\n\n解除権（542条1項1号）： 契約そのものを白紙に戻したい場合は、債務者の過失がなくても（不可抗力でも）無催告で解除が可能です。\n\n併用の流れ： 実務上は、まず代金の支払いを拒み（536条）、その後契約を解除して（542条）拘束から完全に逃れる、というステップを踏みます。\n\n■ 関連する過去問の視点：例外パターン\n過去問では、以下の「拒めない（債権者がリスクを負う）」パターンがひっかけで出されます。\n\n債権者の責めに帰すべき事由（536条2項）： 買主の不注意で商品が壊れた場合、買主は代金の支払いを拒めません。\n\n受領遅滞中の不可抗力（413条の2 第2項）： 債権者が受け取りを遅らせている間に、不可抗力（地震など）で履行不能になった場合も、債権者は代金の支払いを拒めなくなります。\n\n💡 受験生へのアドバイス\n「危険負担」を理解するコツは、**「誰が泣き寝入りするか」を考えることです。\n原則として、物がなくなったら「代金をもらえない売主」が泣き寝入りします（＝債務者主義）。\nただし、「買主（債権者）が受け取りをグズグズしていた時（受領遅滞）」**に起きた事故については、民法は「それは買主が責任を取りなさい」と厳しくなります。この「受領遅滞中の特則」は記述式でも要注意のキーワードですよ！",
           "■ 根拠条文（民法413条の2 第2項）\n\n民法第413条の2（履行の提供後又は受領遅滞後の履行不能）\n2. 債権者が債務の履行を受けることを拒絶し、又は受けることができない場合において、履行の提供があった時以後に、当事者双方の責めに帰することができない事由によってその債務の履行が不能となったときは、その不履行は、債権者の責めに帰すべき事由によるものとみなす。\n\n■ 周辺知識：この規定のメリット（債務者の救済）\n「債権者のせいにされる」ことによって、以下のような効果が生じます。\n\n損害賠償： 債務者は、債権者に対して損害賠償を請求されることがなくなります（むしろ、費用がかさんでいれば債権者に請求できる可能性があります）。\n\n反対給付の履行拒絶不可（536条2項）： 債権者は「物が届かないから代金は払わない（危険負担）」と言えなくなります。つまり、債権者は物をもらえないのに代金だけは全額支払わなければならなくなります。\n\n■ 過去問の例（行政書士試験：令和3年 問31 肢5）\n\n「債権者が債務の履行を受けることを拒んでいる間に、当事者双方の責めに帰することができない事由によってその債務の履行が不能となったときは、その不履行は、債権者の責めに帰すべき事由によるものとみなされる。」\n（答え：○）\n\nこの過去問は、条文の文言をそのまま問う形となっており、改正民法の知識を直接確認する良問です。\n\n💡 受験生へのアドバイス\n「ズルズル受け取りを延ばしていた債権者に、天罰が下る！」というイメージで覚えましょう。\n通常、不可抗力なら「代金支払いを拒める（危険負担）」のが原則ですが、**「受領遅滞」＋「履行の提供」**というセットが揃った瞬間に、そのバリアが消滅し、債権者がすべてを背負い込むことになります。この「条件のセット」を意識させることが、民法お化けへの近道です！"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18595,6 +20858,15 @@ export const SUBJECTS = {
           "■ 根拠条文（民法413条の2第2項、536条2項）\n\n民法第413条の2（履行の提供後又は受領遅滞後の履行不能）\n2. 債権者が債務の履行を受けることを拒絶し、又は受けることができない場合において、履行の提供があった時以後に、当事者双方の責めに帰することができない事由によってその債務の履行が不能となったときは、その不履行は、債権者の責めに帰すべき事由によるものとみなす。\n\n民法第536条（債務者の責めに帰すべき事由によらない履行不能）\n2. 債権者の責めに帰すべき事由によって債務を履行することができなくなったときは、債権者は、反対給付の履行を拒むことができない。\n\n■ 周辺知識：改正前との違い\n2020年の改正前は、このようなケースを「債権者主義（債権者がリスクを負い、債務が消滅する）」という言葉で説明していましたが、現在は**「債権者の帰責事由」に一元化**されました。これにより、債権者は物をもらえないにもかかわらず、代金だけは全額支払わなければならないという結論が、より明確な論理で導き出されるようになりました。\n\n■ 関連する過去問の視点\n行政書士試験では、以下のような「限定」や「ひっかけ」に注意が必要です。\n\n「履行の提供」が前提： 債務者が何の準備もしていないうちに不可抗力で滅失した場合は、原則どおり「債務者（売主など）」が代金をもらえないというリスクを負います。\n\n「拒むことができない」の表現： これを「代金債務は消滅する」や「損害賠償を請求できる」と入れ替えて問われることがあります。正解は、**「反対給付（代金など）の義務が残る（拒めない）」**です。\n\n💡 受験生へのアドバイス\nアプリの開発において、この論点は「3段構えのフローチャート」として図解すると非常に喜ばれます。\n\n「ちゃんと持っていったか？（履行の提供）」\n\n「相手がグズグズしたか？（受領遅滞）」\n\n「その後に天災が起きたか？（不可抗力）」\nこの3つが揃えば、債権者は代金を払わなければなりません。\n受験生には**「受け取らないことによる最大のリスク移転」**として印象付けましょう。",
           "■ 根拠条文（民法413条の2第2項、543条）\n\n民法第413条の2（履行の提供後又は受領遅滞後の履行不能）\n2. 債権者が（略）受領を拒絶し（略）た場合において、（略）当事者双方の責めに帰することができない事由によってその債務の履行が不能となったときは、その不履行は、債権者の責めに帰すべき事由によるものとみなす。\n\n民法第543条（債権者の責めに帰すべき事由による解除権の制限）\n債務の不履行が債権者の責めに帰すべき事由によるものであるときは、債権者は、前二条（解除）の規定による解除をすることができない。\n\n■ 周辺知識：債権者が失う「3つの武器」\n受領遅滞中に不可抗力で履行不能になった場合、債権者は「債権者のせい」とみなされるため、以下の権利をすべて失います。\n\n解除権： 契約を白紙にできない（本肢）。\n\n追完請求権（補修請求）： 直せと言えない。\n\n代金減額請求権： 安くしろと言えない。\n\n履行拒絶権（危険負担）： 支払いを拒めない（前問の内容）。\n\n■ 関連する過去問の視点\n行政書士試験の過去問（令和3年 問31 肢5など）では、前半部分の「帰責事由とみなされる」点までがよく問われますが、今後はその先の**「だから解除できない」**という帰結までを問う、より実戦的な問題が増えることが予想されます。\n\n**「催告しても解除できないか？」**という問いに対しても、帰責事由が債権者にある以上、催告の有無にかかわらず解除は認められません。\n\n対比知識： 債務者に帰責事由がない場合（例：単なる自然災害）、債権者は解除はできますが、損害賠償は請求できません。 しかし、本肢のように「債権者に帰責事由がある（とみなされる）」場合は、解除すらできないという、より厳しい状況になります。\n\n💡 受験生へのアドバイス\n「債権者がグズグズしていたせいで起きた不運は、すべて債権者が背負い込む」とイメージしましょう。\n民法は、公平の観点から「自分のせいで履行できなくなったのに、契約を白紙にして逃げることは許さない」という厳しいスタンスを取ります。\n**「受領遅滞 ＝ 債権者はもう解除できない」**という公式を脳にインストールすれば、長文の事例問題でも迷わず正解を選べるようになります！",
           "■ 根拠条文（民法419条2項）\n\n民法第419条（金銭債務の特則）\n2. 前項の損害賠償については、債権者は、損害の証明をすることを要しない。\n\n■ 周辺知識：金銭債務の3つの特則\n金銭債務には、行政書士試験の受験生にとって必須となる3つの強力な特則があります。\n\n損害の証明不要： 本肢の通り、証拠がなくても法定利率分（または約定利率分）を請求できます。\n\n不可抗力による免責不可： 「天災で支払えなかった」といった言い訳は通用しません。金銭債務は常に履行が可能であるとみなされるためです（419条3項）。\n\n利率の最低保障： 特約がなくても法定利率（現在は年3％）が適用されます。もし特約で定めた約定利率が法定利率より高い場合は、その高い方の利率が適用されます（419条1項）。\n\n■ 関連する過去問の視点\n行政書士試験の過去問では、以下のポイントがよく問われます。\n\n「実損が法定利率を超えている場合」： もし法定利率以上の損害が発生していたとしても、特約がない限り、債権者はその実損額を証明して追加請求することはできません。 法定利率が損害賠償の「定額」として機能するためです。\n\n過失相殺： 債権者に落ち度がある場合、裁判所は損害賠償の責任や額を定める際にそれを考慮することができますが、「債務者に過失がないこと」は免責の理由になりません。\n\n💡 受験生へのアドバイス\n「お金は特殊なもの」という感覚を養いましょう。\n行政書士試験向けのアプリ開発において、この「金銭債務の特則」は、通常の債務不履行（415条）との比較で非常に問題にしやすく、かつ受験生が混乱しやすい部分です。「損害の証明不要」「不可抗力での免責なし」という、債権者にとって非常に有利なルールがセットになっていることを強調しましょう！"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18679,6 +20951,14 @@ export const SUBJECTS = {
           "■ 根拠条文（民法412条3項）民法第412条（履行期と履行遅滞）3. 債務の履行について期限を定めなかったときは、債務者は、履行の請求を受けた時から遅滞の責任を負う。■ 周辺知識：履行遅滞の起算点まとめ（決定版）混乱しやすい4つのパターンをここで完全に整理しましょう。期限の種類遅滞の起算点（いつから遅刻？）備考確定期限期限が到来した時1月1日なら1月2日から遅滞。不確定期限知った時 または 請求を受けた時いずれか早い時。期限の定めなし履行の請求（催告）を受けた時本肢のケース。不法行為不法行為の時（損害発生時）例外。催告なしで即遅滞。■ 関連する実務上のポイント請求の方法： 実務上は「いつ請求したか」を証拠として残すため、内容証明郵便などで請求することが一般的です。消費貸借の特則： 期限の定めのない「お金の貸し借り（消費貸借）」の場合、催告後すぐに遅滞になるのではなく、「相当の期間」を経過した後から遅滞になります（591条1項）。ここも非常に重要なひっかけポイントです。💡 アドバイス「期限がないなら、言われるまでセーフ」とイメージしましょう。確定期限は「カレンダーでバレているからアウト」、不確定期限は「知るか言われるかしたらアウト」、そして期限なしは「言われたらアウト」というグラデーションになっています。この中で**不法行為だけが「やった瞬間に即アウト」**という非常に厳しいルールになっている点も併せて記憶しておくと、多肢選択式や記述式でのミスがなくなります。",
           "■ 根拠条文（民法412条2項）\n\n民法第412条（履行期と履行遅滞）\n2. 債務の履行について不確定期限があるときは、債務者は、その期限の到来を知った時、又は期限の到来後に履行の請求を受けた時のいずれか早い時から遅滞の責任を負う。\n\n■ ポイント：なぜ「いずれか早い時」なのか？\n不確定期限（例：「父が死亡した時」など、いつか必ず来るが時期が不明なもの）において、債務者を保護しつつ債権者の権利も確保するための工夫です。\n\n知った時： 債務者が気づいたなら、当然履行すべきである。\n\n請求を受けた時： 債務者が気づいていなくても、債権者が「期限が来たから払って」と伝えたなら、その事実を突きつけられた以上、遅滞を認めても公平である。\n\n■ 関連する過去問の視点\n行政書士試験の過去問では、以下のような限定的な表現が「×」として出題されます。\n\n「債務者が期限の到来を知らなければ、履行の請求を受けても遅滞の責任を負わない。」（誤り）\n\n「期限が到来した時に当然に遅滞の責任を負う。」（誤り：これは確定期限のルール）\n\n💡 受験生へのアドバイス\n「気づくか、言われるか、早い方！」とリズムで記憶しましょう。\n行政書士試験の合格を目指す学習において、この「不確定期限」のルールは、「確定期限（到来した時）」や「期限の定めなし（請求を受けた時）」と混同しやすい難所です。\nアプリの解説では、「債務者の主観（知った）」だけでなく「債権者のアクション（請求）」もスイッチになることを強調すると、正解率がぐっと上がります！",
           "■ 根拠条文（民法415条1項但書）\n\n民法第415条（債務不履行による損害賠償）\n\n債務者がその債務の本旨に従った履行をしないとき（略）は、債権者は、これによって生じた損害の賠償を請求することができる。ただし、その債務の不履行が（略）債務者の責めに帰することができない事由によるものであるときは、この限りでない。\n\n■ 周辺知識：立証責任の分配\n裁判において、どちらが何を証明する必要があるのかを整理しましょう。\n\n債権者（請求する側）が証明すること：\n\n契約が成立していること。\n\n債務者が履行していない（または不完全である）こと。\n\n損害が発生し、その額がいくらであるか。\n\n債務者（逃れる側）が証明すること：\n\n不履行が自分のせいではないこと（帰責事由の不在）。\n\n■ 関連する過去問の視点\n行政書士試験の過去問では、以下のような「逆」の表現でひっかけが作られます。\n\n「債権者が、債務者に過失があることを立証しなければならない」： これは誤りです。不法行為（709条）では被害者が加害者の過失を証明する必要がありますが、債務不履行では債務者が無過失を証明しなければなりません。\n\n不法行為との違い： この「立証責任がどちらにあるか」という点が、債務不履行責任と不法行為責任を区別する最大の特徴の一つです。\n\n💡 受験生へのアドバイス\n「契約を守らなかったのだから、言い訳（無過失の証明）は守らなかった本人がしなさい」という民法の合理的な考え方をイメージしましょう。\n債権者は「届いていない」と言えば十分で、債務者が「地震のせいで届けられなかった」などと証明して初めて、責任を免れることができます。**「債務不履行 ＝ 債務者が無実を証明する」**と覚えておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18747,6 +21027,15 @@ export const SUBJECTS = {
           "■ 根拠条文（民法423条の3）\n\n民法第423条の3（債権者への支払い又は引渡し）\n債権者は、債務者の権利を行使する場合において、その債務者の権利の目的が金銭の支払い又は動産の引渡しであるときは、第三債務者に対し、その支払い又は引渡しを自己に対してすることを求めることができる。\n\n■ 周辺知識：直接引渡しを認める理由\n本来、代位行使によって得られた財産は一度債務者の手元に戻すべきですが、それでは債務者が再びその財産を隠したり消費したりする恐れがあります。\n\n事実上の優先弁済： 直接受け取った債権者は、債務者に対して持っている自分の債権と、受け取った物を返すべき義務を「相殺」させることで、他の債権者に先んじて実質的な回収を図ることができます。\n\n不動産の場合： 不動産については「登記」という制度があるため、登記名義は債務者に移すよう求めることになりますが、占有（鍵の引渡しなど）については債権者自身への引渡しを求めることができると解されています。\n\n■ 関連する過去問の視点\n\n「金銭に限定されるか」： 本肢のように「動産」も含まれます。\n\n「債務者に引き渡すよう求めなければならない」： このような限定は誤りです。債権者の利便性を考慮し、直接受領が認められています。\n\n💡 アドバイス\n「お金と動産は、直接受け取ってOK！」と覚えましょう。\nわざわざ債務者を経由させる手間を省き、債権者が確実に回収できるルートを民法が用意してくれています。このルールは次に続く「詐害行為取消権」における原状回復のルールとも共通点があるため、セットで理解しておくと非常に効率的です。",
           "■ 根拠条文（民法423条の5）\n\n民法第423条の5（債務者の権利の行使等）\n債権者が債務者の権利を行使した場合であっても、債務者は、その権利について、自ら取立てその他の処分をすることを妨げられない。この場合においては、相手方も、その権利について、債務者に対して履行をすることを妨げられない。\n\n■ 周辺知識：大改正のポイント\n改正前の民法では、債権者が代位権を行使し、それを債務者に通知（または債務者が知った）した後は、債務者はその権利を処分できないとされていました（旧423条2項）。しかし、現在は以下の理由からルールが変更されています。\n\n債務者の管理権の尊重： 債権者代位権はあくまで「債務者の財産を維持（保存）」するための制度であり、債務者からその権利自体を完全に取り上げる（差押えのような状態にする）のは行き過ぎであると考えられました。\n\n相手方（第三債務者）の保護： 債務者の相手方は、本来の契約相手である債務者に対して支払いを行えば、それで義務を果たしたことになります。\n\n■ 関連する過去問の視点\n行政書士試験の対策アプリ開発においても、この「改正による逆転」は非常に強力なひっかけ問題になります。\n\n「債務者は、債権者が代位権を行使した後は、その権利を放棄したり譲渡したりすることができない」： このような肢は、現在は**「×（誤り）」**です。\n\n相手方の支払い： 債務者の相手方（第三債務者）が、代位行使してきた債権者ではなく、本来の債務者に支払った場合も、その支払いは有効となります。\n\n💡 受験生へのアドバイス\n「代位権は『予約』でも『差押え』でもない！」と覚えましょう。\n行政書士試験の合格を目指す上で、この423条の5は、改正前の知識（処分禁止）を持っている人をふるい落とすための絶好のポイントです。\n債権者が勝手に代位行使を始めたとしても、債務者は「それは俺の権利だ！」と言って自分で取り立てに行ける、という債務者の権利の強さをイメージしてください。",
           "■ 根拠条文（民法423条の5 後段）\n\n民法第423条の5（債務者の権利の行使等）\n債権者が債務者の権利を行使した場合であっても、（略）相手方も、その権利について、債務者に対して履行をすることを妨げられない。\n\n■ 周辺知識：もし相手方が債務者に支払ったら？\nもし相手方が、代位行使してきた債権者ではなく、本来の債務者に支払った場合、以下のようになります。\n\n相手方の債務消滅： 相手方は正当な相手に支払ったので、義務から解放されます。\n\n代位権の消滅： そもそも「代位する対象の権利」が消えてしまうため、債権者はもはや代位権を行使できなくなります。\n\n■ 関連する過去問の視点：差押えとの決定的な違い\n行政書士試験において、この論点は**「差押え（さしおさえ）」**との比較で非常によく狙われます。\n\n債権者代位権： 相手方は債務者に支払ってOK。\n\n差押え（民事執行法）： 裁判所から「支払うな」という命令が出るため、債務者に支払ってはダメ（支払っても債権者に対抗できない）。\n\n💡 受験生へのアドバイス\n「代位権は、あくまで債務者の代わりに『呼び鈴』を鳴らしているだけ」とイメージしましょう。\n呼び鈴を鳴らしたのが債権者であっても、中から出てきた相手方が、本来の家主（債務者）に荷物を渡すのは自由です。\n\n行政書士試験向けのアプリ開発において、この**「代位権 vs 差押え」の対比表**を作成すると、受験生の混乱を一気に解消できます。代位権は「差押え」ほど強力な拘束力を持たない、というパワーバランスを意識させましょう！"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -18801,6 +21090,13 @@ export const SUBJECTS = {
           "■ 根拠条文（民法423条2項）\n\n民法第423条（債権者代位権の要件等）\n2. 債権者は、その債権の期限が到来しない間は、裁判上の代位によらなければ、債務者の権利を行使することができない。ただし、保存行為は、この限りでない。\n\n■ 保存行為の具体的な例\n試験対策として、保存行為に該当する以下の代表的な例をセットで覚えておきましょう。\n\n登記の申請： 第三債務者から債務者への所有権移転登記など。\n\n時効の完成猶予・更新： 債務者の権利が時効で消滅するのを防ぐ行為。\n\n保存登記： 債務者が所有している未登記不動産の表示の登記など。\n\n債権の取立て： すでに期限が来ている債権を取り立てること（※ただし、これについては議論がありますが、一般に保存行為に含まれると解されています）。\n\n■ 関連知識：もう一つの例外「裁判上の代位」\n条文にある通り、保存行為以外であっても、**裁判所の許可（裁判上の代位）**を得れば、期限前であっても代位権を行使することが可能です。\n「期限前なら絶対にできない」というひっかけ問題には、この「保存行為」と「裁判上の代位」の2つの例外を思い出すことで対応できます。\n\n💡 学習のポイント\n「原則は期限後、例外（保存・裁判所）は期限前OK」という階層構造で整理しましょう。\n特に「登記の申請」が保存行為にあたるという点は、不動産が絡む事例問題でよく登場します。「債務者が登記をしない間に、さらに別の誰かに二重譲渡されるリスクを防ぐための緊急避難的な行為」とイメージすると、なぜ期限前でも許されるのかが理解しやすくなります。",
           "■ 根拠条文（民法423条1項）\n\n民法第423条（債権者代位権の要件等）\n\n債権者は、自己の債権を保全するため必要があるときは、債務者に属する権利（以下「債務者の権利」という。）を行使することができる。（略）\n\n■ 周辺知識：代位行使できる形成権の具体例\n試験対策として、代位できる主な形成権をリストアップしておきましょう。\n\n取消権： 詐欺、強迫、錯誤などによる取消し。\n\n解除権： 相手方の債務不履行に基づく契約解除。\n\n選択権： 選択債権において債務者が選択権を持っている場合。\n\n買戻権： 不動産の買戻しに関する権利。\n\n■ 注意点：一身専属権は除外される\nいくら形成権であっても、**「一身専属権（本人の意思が尊重されるべき権利）」**は代位できません。\n\n例： 夫婦間の契約取消権（754条）、離婚による財産分与請求権（原則）、遺留分侵害額請求権（行使の意思を表明する前）などは、代位行使の対象外です。\n\n💡 学習のアドバイス\n「債務者のサイフを膨らませる（または減るのを防ぐ）権利なら、原則として代位OK！」とイメージしましょう。\n行政書士試験の学習において、「形成権」という言葉が出てきたら「一方的な意思表示で結果が出る強い権利」と翻訳してください。\n債務者がその「強い権利」を放置して財産を危うくしているなら、債権者が横から手を出して（代位して）その権利を使ってもいい、というのが民法の考え方です。",
           "■ 根拠条文（民法423条1項 但書）民法第423条（債権者代位権の要件等）（略）ただし、債務者の一身に専属する権利及び差押えを禁じられた権利は、この限りでない。■ 一身専属権の仕分け（試験頻出）権利の種類代位行使の可否理由・ポイント確定前の慰謝料請求権× 不可行使するかどうかの判断を本人の意思に任せるべき（一身専属）。確定後の慰謝料請求権○ 可能すでに「ただの金銭債権」になっているため、財産性が高い。夫婦間の契約取消権× 不可夫婦仲に他人が介入すべきではない（一身専属）。遺留分侵害額請求権× 不可行使の意思を表明する前は、一身専属権とされる（判例）。■ 関連する過去問の視点行政書士試験では、**「遺留分侵害額請求権（旧：遺留分減殺請求権）」**の代位可否が非常に狙われます。判例は、遺留分権利者がその行使の意思を表明して、客観的な財産権となった後でなければ、債権者代位の対象にはならないとしています。💡 受験生へのアドバイス「お金の問題」なのか「心・プライバシーの問題」なのかで判断しましょう。民法は、債権者の利益（お金の回収）を大切にしますが、それ以上に「個人の尊厳やプライバシー（心）」を優先します。「まだ具体的な金額になっていない慰謝料」＝「心の問題」なので、債権者は手を出せない、と覚えるのがコツです！",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
           "",
           ""
         ]
@@ -18874,6 +21170,16 @@ export const SUBJECTS = {
           "■ 連帯債務の効力一覧表区分事由他の債務者への影響根拠条文絶対効 (4つのみ)弁済・相殺・供託など及ぶ（債務が消滅・減少する）441条但書更改及ぶ（新しい債務に書き換わる）438条相殺（援用）及ぶ（相殺した分だけ消滅する）439条1項混同及ぶ（弁済したものとみなされる）440条相対効 (原則)履行の請求及ばない（他の人の時効は止まらない）441条免除及ばない（他の人の債務は減らない）441条時効（完成）及ばない（他の人の債務は減らない）441条受領遅滞・過失など及ばない441条■ 周辺知識：相殺の特殊なルール（439条2項）連帯債務者の一人（A）が債権者に対して反対債権を持っているが、A自身が相殺を援用しない場合、他の債務者（B）は、Aの負担部分の限度で**「支払いを拒む（履行拒絶）」**ことができます。これは絶対効そのものではありませんが、非常に重要な対抗手段です。■ 実務的なポイント：特約による絶対効民法441条但書により、債権者と債務者が「誰か一人に起きたことは全員に及ぼす」という**別段の合意（特約）**をした場合には、相対効の事由（請求や免除など）であっても絶対効を持たせることができます。試験では「原則として」なのか「特約がない限り」なのか、文言に注意しましょう。💡 受験生へのアドバイス「絶対効は『ベコサコ（弁済・更改・相殺・混同）』の4つだけ！」と呪文のように暗記しましょう。行政書士試験の対策において、この4つ以外の「請求」「免除」「時効」はすべて相対効だと割り切ってしまうのが得策です。改正前の知識（免除や時効が絶対効だった頃）を問うひっかけ問題に遭遇しても、この表の4つを思い出せば迷うことはありません。",
           "■ 連帯債務の効力一覧表区分事由他の債務者への影響根拠条文絶対効 (4つのみ)弁済・相殺・供託など及ぶ（債務が消滅・減少する）441条但書更改及ぶ（新しい債務に書き換わる）438条相殺（援用）及ぶ（相殺した分だけ消滅する）439条1項混同及ぶ（弁済したものとみなされる）440条相対効 (原則)履行の請求及ばない（他の人の時効は止まらない）441条免除及ばない（他の人の債務は減らない）441条時効（完成）及ばない（他の人の債務は減らない）441条受領遅滞・過失など及ばない441条■ 周辺知識：相殺の特殊なルール（439条2項）連帯債務者の一人（A）が債権者に対して反対債権を持っているが、A自身が相殺を援用しない場合、他の債務者（B）は、Aの負担部分の限度で**「支払いを拒む（履行拒絶）」**ことができます。これは絶対効そのものではありませんが、非常に重要な対抗手段です。■ 実務的なポイント：特約による絶対効民法441条但書により、債権者と債務者が「誰か一人に起きたことは全員に及ぼす」という**別段の合意（特約）**をした場合には、相対効の事由（請求や免除など）であっても絶対効を持たせることができます。試験では「原則として」なのか「特約がない限り」なのか、文言に注意しましょう。💡 受験生へのアドバイス「絶対効は『ベコサコ（弁済・更改・相殺・混同）』の4つだけ！」と呪文のように暗記しましょう。行政書士試験の対策において、この4つ以外の「請求」「免除」「時効」はすべて相対効だと割り切ってしまうのが得策です。改正前の知識（免除や時効が絶対効だった頃）を問うひっかけ問題に遭遇しても、この表の4つを思い出せば迷うことはありません。",
           "■ 連帯債務の効力一覧表区分事由他の債務者への影響根拠条文絶対効 (4つのみ)弁済・相殺・供託など及ぶ（債務が消滅・減少する）441条但書更改及ぶ（新しい債務に書き換わる）438条相殺（援用）及ぶ（相殺した分だけ消滅する）439条1項混同及ぶ（弁済したものとみなされる）440条相対効 (原則)履行の請求及ばない（他の人の時効は止まらない）441条免除及ばない（他の人の債務は減らない）441条時効（完成）及ばない（他の人の債務は減らない）441条受領遅滞・過失など及ばない441条■ 周辺知識：相殺の特殊なルール（439条2項）連帯債務者の一人（A）が債権者に対して反対債権を持っているが、A自身が相殺を援用しない場合、他の債務者（B）は、Aの負担部分の限度で**「支払いを拒む（履行拒絶）」**ことができます。これは絶対効そのものではありませんが、非常に重要な対抗手段です。■ 実務的なポイント：特約による絶対効民法441条但書により、債権者と債務者が「誰か一人に起きたことは全員に及ぼす」という**別段の合意（特約）**をした場合には、相対効の事由（請求や免除など）であっても絶対効を持たせることができます。試験では「原則として」なのか「特約がない限り」なのか、文言に注意しましょう。💡 受験生へのアドバイス「絶対効は『ベコサコ（弁済・更改・相殺・混同）』の4つだけ！」と呪文のように暗記しましょう。行政書士試験の対策において、この4つ以外の「請求」「免除」「時効」はすべて相対効だと割り切ってしまうのが得策です。改正前の知識（免除や時効が絶対効だった頃）を問うひっかけ問題に遭遇しても、この表の4つを思い出せば迷うことはありません。",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
           "",
           "",
           ""
@@ -18967,6 +21273,15 @@ export const SUBJECTS = {
           "",
           "",
           "■ 根拠条文（民法470条2項）民法第470条（併存的債務引受の要件及び効果）2. 併存的債務引受は、債権者と引受人となる者との契約によってすることができる。■ 周辺知識：成立パターンの比較債務引受には「併存的」と「免責的（元の債務者が抜ける）」があり、それぞれ成立方法が異なります。種類契約の当事者成立の要件併存的債権者 ＋ 引受人二者の合意で即座に成立。併存的債務者 ＋ 引受人債権者が引受人に対して承諾した時に成立。免責的債権者 ＋ 引受人債権者が債務者に通知した時に成立。免責的債務者 ＋ 引受人債権者の承諾が必要。■ 関連する効果：連帯債務の関係併存的債務引受が成立すると、引受人は債務者と連帯して債務を負うことになります（470条1項）。つまり、先ほど学習した「連帯債務の絶対効・相対効」のルールが、この二者の間にも適用されることになります。💡 受験生へのアドバイス「債権者にとってプラスになる話は、債権者が決められる」と覚えましょう。併存的債務引受は、債務者が増えるだけなので債権者に損はありません。だから債権者と引受人の二者だけでOKです。一方、免責的債務引受（債務者が入れ替わる）は、債権者にとって「お金のない人に代わられたら困る」ため、必ず債権者の関与が必要になります。この「誰が得をして、誰がリスクを負うか」という視点で覚えるのがコツです！"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -19035,6 +21350,15 @@ export const SUBJECTS = {
           "■ 根拠条文（民法491条）\n\n民法第491条（費用、利息及び元本を支払うべき場合の充当）\n\n債務者が一個又は数個の債務について元本のほか利息及び費用を支払うべき場合において、弁済をする者がその債務の全部を消滅させるのに足りない給付をしたときは、これを順次に費用、利息及び元本に充当しなければならない。\n\n（略：前条（488条）の規定は前項の場合に準用する）\n\n条文上は「しなければならない」とありますが、これは「弁済者（債務者）が勝手に指定して変更することはできない」という意味であり、債権者と債務者が納得して合意するのであれば、順序の変更は有効です（任意規定）。\n\n■ 周辺知識：488条（指定充当）との違い\n行政書士試験で混乱しやすいのが、**「種類が同じ複数の債務（例：5月分の家賃と6月分の家賃）」**との違いです。\n\n同じ種類の複数債務（488条）： 払う人が「こっちの債務に充てて！」と指定できます。\n\n費用・利息・元本（491条）： 払う人が勝手に「元本から先に減らして！」と指定することはできません。必ず「費用→利息→元本」の順になります（合意がない限り）。\n\n💡 受験生へのアドバイス\n「債務者のわがまま（単独の指定）は通らないが、二人の約束（合意）なら通る」と覚えましょう。\n行政書士試験の学習において、民法の条文が「強行規定（合意でも変えられない）」なのか「任意規定（合意で変えられる）」なのかを見極めるのは非常に重要です。この491条は、債務者が自分に都合よく元本を先に減らすのを防ぐためのものですが、債権者が「いいよ」と言えば元本から減らしても問題ない、という理屈です。",
           "■ 根拠条文（民法488条）\n\n民法第488条（弁済の充当の指定）\n\n（略）\n\n弁済をする者が前項の規定による指定をしないときは、弁済を受領する者は、その受領の時に、その弁済を充当すべき債務を指定することができる。\n\n第二項の規定による指定に対して弁済をする者が直ちに異議を述べたときは、前条の規定（法定充当）に従って、その弁済を充当する。\n\n■ 周辺知識：異議が出た後はどうなる？\n債務者が異議を述べたことで債権者の指定が無効になった場合は、次に控えている「法定充当（489条）」のルールに従って、機械的に（弁済期が近いもの等から）充当されることになります。\n\n💡 受験生へのアドバイス\n「主導権は 債務者 → 債権者 → ダメなら法律（法定充当）」という流れを覚えましょう！\n行政書士試験の学習において、この「直ちに異議を述べたとき」という条件は、記述式でもキーワードになりやすい部分です。\n第50問で学習した「費用・利息・元本」の場合は合意がなければ順序変更不可でしたが、今回の「複数の債務」の場合は、一方が指定し、もう一方が沈黙（または承諾）すれば決まるという、ルールの違いを対比させて整理しておくのが合格への近道です。",
           "■ 根拠条文（民法482条）\n\n民法第482条（代物弁済）\n債務者が、債権者の承諾を得て、その負担した給付に代えて他の給付をしたときは、その給付は、弁済と同一の効力を有する。\n\n■ 周辺知識：なぜ「登記」が必要なのか？\n代物弁済は、債権者に「確実に」価値を移転させることが目的です。\n\n動産の場合： 引渡し（占有の移転）が必要です。\n\n不動産の場合： 対抗要件である「登記」を備えて初めて、債権者は第三者に対して完璧な所有権を主張できる（＝有効な給付を受けた）ことになります。そのため、登記が完了するまでは元の債務は消えずに残っているという扱いになります。\n\n■ 関連する過去問の視点\n行政書士試験では、以下のようなひっかけに注意が必要です。\n\n「所有権移転の意思表示をした時に、当然に債務は消滅する」： これは誤りです。\n\n「登記に必要な書類を交付しただけで債務は消滅する」： これも原則として誤りです。判例は「登記の完了」まで求めています。\n\n💡 受験生へのアドバイス\n「債権者が100％安心できる状態（登記完了）になるまでは、借金は消えない！」とイメージしましょう。\n「あげるよ」という約束（契約）自体は意思表示だけで成立しますが、この問題で問われているのは**「債務がいつ消滅するか」**という点です。\n不動産を渡す側の債務者が「登記は後でね」と言いながら、その間に別の誰かに売ってしまう（二重譲渡）リスクを考えると、債権者を守るために「登記完了＝債務消滅」という厳しいラインを引いているのだと理解しましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -19115,6 +21439,17 @@ export const SUBJECTS = {
           "■ 根拠条文（民法513条）\n\n民法第513条（更改）\n当事者が従前の債務に代えて、次に掲げるものを内容とする契約をしたときは、従前の債務は、更改によって消滅する。\n一　債務の要素の変更\n二　債務者の交代\n三　債権者の交代\n\n■ 周辺知識：担保の引き継ぎ（518条）\n更改によって旧債務が消滅すると、それに付随していた保証や抵当権も原則として消滅します。\nこれらを引き継ぐには、更改の当事者間（および担保提供者）の合意が必要です。改正前は債権者が一方的に「引き継ぐぞ」と宣言できましたが、現在は**「合意」**がキーワードですので注意しましょう。\n\n■ 例外：更改契約自体の無効・取消し\nもし、更改契約そのものが詐欺などで取り消されたり、無効であったりした場合には、そもそも「古い債務を消して新しい債務を作る」という合意自体がなかったことになるため、古い債務は残っていることになります。\n\n💡 受験生へのアドバイス\n「更改は、過去を断ち切って生まれ変わる『転生』のようなもの」とイメージしましょう。\n一度生まれ変わってしまったら、新しい人生（新債務）がうまくいかなかったからといって、前の人生（旧債務）に戻ることはできません。\n試験では「旧債務の復活」や「担保権の当然の承継」を肯定する肢がよく出ますが、更改は非常にドライで強力な制度なので、原則として**「復活しない」「引き継がない（合意がない限り）」**と覚えておくのが正解への鉄則です。",
           "■ 根拠条文（民法511条）\n\n民法第511条（差押えを受けた債権を払戻債権とする相殺の禁止）\n\n差押えを受けた債権の第三債務者は、差押え後に取得した債権をもって相殺をもって差押債権者に対抗することができない。\n\n前項の規定にかかわらず、差押え後に取得した債権が差押え前の原因に基づいて生じたものであるときは、第三債務者は、相殺をもって差押債権者に対抗することができる。ただし、第三債務者が差押え後に他人の債権を取得したときは、この限りでない。\n\n■ 具体例で理解する：保証人のケース\n\n差押え前： AがBにお金を貸し、CがBの保証人になった（原因の発生）。\n\n差押え： Dが、AのBに対する貸金債権を差し押さえた。\n\n差押え後： CがBに代わってAに返済し、Bに対する「求償権（債権）」を手に入れた。\n\n結論： Cはこの求償権を使って、Bに対する自分の別債務と相殺できます。求償権を取得したのは差押え後ですが、その「原因（保証契約）」は差押え前にあったからです。\n\n■ 「他人の債権を取得」が禁止される理由\nもし、差押え後に「原因が差押え前にある他人の債権」を安く買い取って相殺できるとすると、差押債権者の取り分を不当に奪うことができてしまいます（相殺の買いあさり防止）。\n\n💡 受験生へのアドバイス\n「差押え前に『タネ（原因）』があったなら、後で芽が出た（債権取得）としても相殺OK！」と覚えましょう。\n行政書士試験の学習において、この511条2項は、旧民法での判例法理が明文化されたものです。\n試験でチェックすべきは以下の3点です。\n\n原因は差押え前か？（前なら原則OK）\n\n債権取得は差押え後か？（後でも原因が前ならOK）\n\n自ら発生させたか、他人から買ったか？（他人から買ったならNG）\nこの3ステップで判断すれば、どんな複雑な事例問題も確実に正解できます！",
           "■ 根拠条文（民法508条）\n\n民法第508条（時効により消滅した債権を自働債権とする相殺）\n時効によって消滅した債権がその消滅以前に相殺に適するようになっていたときは、その債権者は、相殺をすることができる。\n\n■ 周辺知識：相殺適状の判断ポイント\n試験で注意すべきは、**「いつ相殺適状になったか」**です。\n\n○ 相殺できる： 時効が完成する「前」に、両方の債権が弁済期にあった場合。\n\n× 相殺できない： 自働債権が時効で消えた「後」に、受働債権（相手の債権）が発生したり弁済期が来たりした場合。\n\n■ 関連する過去問の視点\n行政書士試験では、以下のような記述が「×」として出題されます。\n\n「時効によって消滅した債権は、いかなる場合も自働債権として相殺することはできない。」\n\n「受働債権の時効が完成した場合には、相殺することはできない。」（※自働債権の時効が問題になるので、文脈を読み違えないようにしましょう）\n\n💡 受験生へのアドバイス\n「昔、両方とも生きていた時期（相殺適状）があるなら、今片方が死んで（時効消滅）いても相殺OK！」と覚えましょう。\n行政書士試験の学習において、この508条は「債権者の期待を裏切らないための救済措置」と理解しておくと、記憶が安定します。\n特にアプリ開発のロジックとしては、「時効完成日」と「受働債権の弁済期」の前後関係をチェックさせる問題を作ると、非常に質の高いトレーニングになります！"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -19174,6 +21509,14 @@ export const SUBJECTS = {
           "■ 根拠条文（民法505条2項）\n\n民法第505条（相殺の要件等）\n2. 前項の規定は、当事者が反対の意思を表示した場合には、適用しない。ただし、その意思表示は、善意の第三者に対抗することができない。\n\n条文上は「善意の第三者」とだけありますが、判例・通説および改正後の解釈として、債権譲渡の制限規定（466条）とのバランスから、**「悪意又は重過失」**の者には対抗できる（＝譲受人が善意・無重過失の時だけ債務者は負ける）と解されています。\n\n■ 周辺知識：債権譲渡制限（466条）との比較\n行政書士試験では、この2つが非常に混同しやすいため整理が必要です。\n\n譲渡制限特約（466条）： 「譲渡するな」という約束。\n\n悪意・重過失の譲受人にも譲渡自体は有効。\n\nただし、債務者は履行を拒絶できる。\n\n相殺禁止特約（505条）： 「相殺するな」という約束。\n\n悪意・重過失の譲受人には、特約を対抗できる（＝相殺を阻止できる）。\n\n■ 関連する過去問の視点\n「譲受人が単なる過失（軽過失）で特約を知らなかった場合」はどうなるでしょうか？\nこの場合、譲受人は「善意」として保護されるため、債務者は特約を対抗できません。「重過失」までいかないと債務者は勝てないというラインをしっかり意識しましょう。\n\n💡 受験生へのアドバイス\n「民法は、うっかり屋さん（軽過失）には優しいが、わざと（悪意）や、あまりに不注意な人（重過失）には厳しい」とイメージしましょう。\n債権を譲り受けるときは、その債権にどんなルール（特約）がついているか確認するのが普通です。それを怠った「重過失」の人は、債務者の「相殺したくない」という期待を裏切ってまで保護されない、という理屈です。",
           "■ 根拠条文（民法509条1号）民法第509条（不法行為等により生じた債権を自働債権とする相殺の禁止）次に掲げる債務の債務者は、相殺をもって債権者に対抗することができない。悪意による不法行為に基づく損害賠償の債務（略）■ 周辺知識：不法行為における相殺の整理前問（第45問）の生命・身体の侵害と併せて、以下の表を頭に叩き込みましょう。不法行為の内容加害者からの相殺（自働債権：貸金等 / 受働債権：不法行為）悪意（害意）あり× 禁止生命・身体の侵害（過失含む）× 禁止単純な過失による物損○ 可能※いずれの場合も、被害者側から「私は賠償金をもらう代わりに借金を消します」と相殺を提案することは可能です。💡 受験生へのアドバイス「不法行為による相殺禁止は、加害者の『やったもん勝ち』を防ぐためのルール」とイメージしましょう。特に「悪意」がある場合は、物損であっても相殺が禁止されます。試験では**「受働債権（不法行為）」と「自働債権（貸金）」の関係性が問われますが、「不法行為をした側（債務者）からの相殺は、被害者（債権者）に現実の支払いをさせるために封じられている」**と理解しておけば、どちらがどちらの債権を持っていても迷わなくなります。",
           "■ 根拠条文（民法509条2号）民法第509条（不法行為等により生じた債権を自働債権とする相殺の禁止）次に掲げる債務の債務者は、相殺をもって債権者に対抗することができない。悪意による不法行為に基づく損害賠償の債務人の生命又は身体の侵害による損害賠償の債務（前号に掲げるものを除く。）■ 周辺知識：相殺ができるかどうかの仕分け試験対策として、誰からの相殺がNGなのかを整理しましょう。損害賠償の種類加害者（債務者）側からの相殺被害者（債権者）側からの相殺悪意（わざと）による不法行為× 禁止○ 可能生命・身体の侵害（過失も含む）× 禁止○ 可能物損（過失によるもの）○ 可能○ 可能※被害者側から「私はお金をもらう代わりに、あなたへの借金を帳消しにします」と相殺を提案することは、被害者本人の自由なので認められています。💡 受験生へのアドバイス「被害者に現ナマ（現金）を届けさせる！」という民法の優しさをイメージしましょう。わざわざ治療が必要な人に対して、「あんたも俺に借金あるでしょ？ だから払わないよ」と言わせないのがこのルールの本質です。試験では**「自働債権（自分からぶつける債権）」と「受働債権（相手からぶつけられる債権）」という言葉で混乱させにきますが、「加害者の持つ債権を自働債権とする相殺はダメ（＝加害者側からの相殺はダメ）」**とシンプルに覚えておきましょう。",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
           "",
           "",
           ""
@@ -19243,6 +21586,16 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -19325,6 +21678,16 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -19387,6 +21750,14 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       }
     ],
@@ -19416,7 +21787,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "同時履行の抗弁権に関する次の記述のうち、民法の規定および判例に照らし、妥当なものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠条文：民法121条の2、533条類推適用（または121条の2第3項）取消しの効果（民法121条）取り消された行為は、初めから無効であったものとみなされます。原状回復義務（民法121条の2第1項）無効な行為に基づき給付を受けた者は、相手方を原状に復させる義務を負います。同時履行の準用（判例・改正民法）かつては判例（最判昭22.11.25等）で認められていたルールですが、現在の実務・解釈上、無効や取消しによる原状回復義務には民法533条（同時履行の抗弁権）の規定が準用されます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：ここが試験に出る！受験生が混乱しやすい「同時履行」の代表例を整理しましょう。項目関係備考詐欺・錯誤による取消し同時履行公平の観点から、一方が返すまでもう一方も拒める。解除による原状回復同時履行民法546条で明文化されている。弁済と受取証書の交付同時履行お金と領収書は引き換え（民法486条）。弁済と債権証書の返還同時履行ではない証書（借用書）の返還は、弁済が先（判例）。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック（類似の論点）【平成23年度 第27問 肢4】（一部改変）「売買契約が解除された場合、当事者双方が負担する原状回復義務は同時履行の関係に立つが、契約が無効となった場合の当事者双方の不当利得返還義務は、同時履行の関係には立たない。」→ 答え：×解除（546条）だけでなく、無効・取消しの場合も公平の観点から同時履行の関係に立ちます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「契約がなかったことになるなら、お互い同時に返しなさいよ。片方だけ先に返して、相手が返してくれなかったら損でしょ？」という**「公平の精神」**が民法の根底にあります。「取消し・無効・解除」は、セットで「元通り（原状回復）にする時は同時！」と覚えてしまいましょう。",
+        "memo": "1. 根拠条文・判例根拠条文民法121条の2 第1項（原状回復義務）無効な行為に基づく債務の履行として給付を受けた者は、相手方を原状に復させる義務を負う。（1. 基本的な具体例（売買契約のケース）\nこれが最もポピュラーな例です。\n状況: AさんがBさんに中古車を100万円で売りました。Aさんは車を引き渡し、Bさんは100万円を支払いました。\n無効・取消しの原因: 後日、この契約が「公序良俗違反」で無効だったり、「詐欺」を理由に取り消されたりしたとします。\n原状回復の内容:\nAさんの義務: 受け取った100万円をBさんに返す。\nBさんの義務: 受け取った車をAさんに返す。）民法533条（同時履行の抗弁）双務契約の当事者の一方は、相手方がその債務の履行（履行の提供を含む。）をするまでは、自己の債務の履行を拒むことができる。民法546条（契約の解除と同時履行）第533条の規定は、前条（解除による原状回復）の場合について準用する。根拠となる判例最高裁判例（昭和28年6月16日）詐欺を理由とする取消しによって生じる双方の原状回復義務（代金返還義務と目的物返還義務）についても、民法533条（同時履行の抗弁権）が類推適用されるとしています。2. なぜこのルールが存在するのか（趣旨）このルールの根拠は、一言で言えば**「公平（信義則）」**です。公平の原則: 契約が取り消された以上、両者は「契約がなかった状態」に戻る必要があります。このとき、片方だけが先に返し、もう一方が返さないという状態は不公平です。履行の確保: 「相手が返してくれるなら、こちらも返す」という牽連性（結びつき）を持たせることで、双方が確実に原状回復を行うよう促す心理的・法的なプレッシャーを与えています。詐欺師であっても「公平」は適用される: 詐欺を働いたことは非難されるべきですが、それは損害賠償などの別枠で解決すべき問題です。原状回復という「清算」の場面においては、法は感情的な制裁よりも、経済的な決済の公平性を優先します。3. 関連知識のまとめ同時履行の抗弁権が「認められるケース」と「認められないケース」の比較は、試験で非常によく狙われます。【重要】同時履行が「認められる」主なケース場面内容取消・無効詐欺、錯誤、制限行為能力などによる取消後の原状回復（今回のケース）解除契約解除に伴う双方の原状回復義務（民法546条）弁済と受取証書お金を返すことと、領収書をもらうこと請負仕事の目的物の引き渡しと、報酬の支払い【重要】同時履行が「認められない」主なケース（要注意！）場面理由弁済と抵当権抹消債務の弁済が先。抵当権抹消は、完済後に行われる付随的な手続きに過ぎないため。弁済と債権証書返還債務の弁済が先。借用証書の返還は、領収書（受取証書）と違い、後からでも良いため。敷金返還と建物明渡し建物の明渡しが先。明渡しの際に損害があるか確認してから敷金を計算する必要があるため。この問題の攻略ポイント選択肢1は、「詐欺を行った悪い奴には権利を与えない」という道徳的な感情を揺さぶる「ひっかけ」です。民法は**「悪い奴かどうか」よりも「清算の公平性」を重視する**場面があることを意識しておくと、この種の問題に強くなります。",
         "slots": [],
         "refId": "",
         "isBonus": true,
@@ -19446,12 +21817,20 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠条文：民法121条の2、533条類推適用（または121条の2第3項）取消しの効果（民法121条）取り消された行為は、初めから無効であったものとみなされます。原状回復義務（民法121条の2第1項）無効な行為に基づき給付を受けた者は、相手方を原状に復させる義務を負います。同時履行の準用（判例・改正民法）かつては判例（最判昭22.11.25等）で認められていたルールですが、現在の実務・解釈上、無効や取消しによる原状回復義務には民法533条（同時履行の抗弁権）の規定が準用されます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：ここが試験に出る！受験生が混乱しやすい「同時履行」の代表例を整理しましょう。項目関係備考詐欺・錯誤による取消し同時履行公平の観点から、一方が返すまでもう一方も拒める。解除による原状回復同時履行民法546条で明文化されている。弁済と受取証書の交付同時履行お金と領収書は引き換え（民法486条）。弁済と債権証書の返還同時履行ではない証書（借用書）の返還は、弁済が先（判例）。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック（類似の論点）【平成23年度 第27問 肢4】（一部改変）「売買契約が解除された場合、当事者双方が負担する原状回復義務は同時履行の関係に立つが、契約が無効となった場合の当事者双方の不当利得返還義務は、同時履行の関係には立たない。」→ 答え：×解除（546条）だけでなく、無効・取消しの場合も公平の観点から同時履行の関係に立ちます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「契約がなかったことになるなら、お互い同時に返しなさいよ。片方だけ先に返して、相手が返してくれなかったら損でしょ？」という**「公平の精神」**が民法の根底にあります。「取消し・無効・解除」は、セットで「元通り（原状回復）にする時は同時！」と覚えてしまいましょう。",
-          "■ 根拠条文・判例造作代金と造作物の引渡し（民法533条類推）造作（エアコンや畳など）自体の売買が成立したとみなされるため、その「モノ」と「お金」は引き換え（同時履行）になります。造作代金と家屋の明渡し（最判昭29.1.14）最高裁は「建物の返還義務と造作代金の支払義務は、発生原因が別（建物の賃貸借と、造作の売買）であるため、同時履行の関係には立たない」としています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：ここが試験の落とし穴！受験生が最も間違えやすいのは、**「留置権（りゅうちけん）」**との組み合わせです。造作代金で「建物」を留置できるか？答え：できない。造作（エアコン等）は建物の一部であっても、建物自体の価値を高める「有益費」とは区別されます。造作代金をもらえないからといって、「建物」に居座る（留置する）ことは認められません。比較項目同時履行の関係留置権の成否敷金返還 ⇔ 家屋明渡し×（明渡しが先）×（留置できない）有益費償還 ⇔ 家屋明渡し×（明渡しが先）◯（留置できる！）造作代金 ⇔ 家屋明渡し×（明渡しが先）×（留置できない）　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第32問 肢3】「建物の賃借人が建物に付加した造作の買取代金の支払を受けるまで、当該建物を留置することができる旨の特約は、特段の事情のない限り、有効である。」→ 答え：◯本来、造作代金で建物は留置できませんが、特約で認めることは自由です（任意規定）。「原則はダメだが特約はアリ」という行政書士試験好みの引っかけです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「エアコン代を払ってくれないから、家を返さない！」というのは、家主にとってあまりに酷ですよね？家という「大きな資産」の返還を、造作という「小さな代金」を理由に拒むことはできない、とイメージさせると納得感が生まれます。",
-          "■ 根拠条文・判例：民法622条の2第1項敷金の定義と返還時期（民法622条の2）2020年の民法改正により明文化されました。敷金返還請求権が発生するのは、**「賃貸借が終了し、かつ、賃貸物の返還を受けたとき」**です。判例の考え方（最判昭48.2.2）敷金は「明け渡しまでに生じた一切の債権（未払賃料や修繕費など）」を担保するものです。そのため、実際に明け渡されるまで、返すべき金額がいくらになるか確定しません。 だから「先に返せ」とは言えないのです。　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：同時履行の「ある・なし」総まとめ試験で混乱を招く「建物明渡し」にまつわる関係を整理しました。債務の組み合わせ同時履行か？理由・ポイント家屋明渡し ⇔ 敷金返還×（明渡しが先）敷金は「明渡しまでの債務」を引くためのものだから。家屋明渡し ⇔ 受領済賃料の返還×（明渡しが先）敷金と同様の理屈です。家屋明渡し ⇔ 賃貸借解除による原状回復◯解除に伴うお互いの原状回復は同時履行（546条）。注意！契約が「解除」された場合の建物返還と代金返還は同時履行ですが、**「敷金」に関しては、解除の場合であっても「明渡しが先」**になります。ここが受験生を惑わす「お化け」ポイントです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成29年度 第31問 肢ア】「賃貸借契約の終了に伴う賃借人の家屋明渡債務と、賃代人の敷金返還債務とは、特別の約定のない限り、同時履行の関係に立つ。」→ 答え：×判例・改正民法の超定番知識です。**「明渡しが先！」**と反射的に答えられるようにしておく必要があります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「敷金は、最後の最後まで家主さんが握っている『人質（金質）』」だと教えましょう。鍵を返して、中をチェックして、未払いがないか確認して初めて「はい、残りのお金です」と返される。この**「最後のご精算」**というイメージを持てば、同時履行ではない（＝後回しである）ことが納得できます。",
-          "■ 根拠条文：民法633条\n報酬の支払時期（民法633条） 報酬は、仕事の目的物の引渡しと同時に、支払わなければなりません。\n\n同時履行の適用 引渡しを要する場合、請負人が目的物を引き渡そうとしない限り、注文者は「お金はまだ払わない」という同時履行の抗弁権（533条）を主張できます。\n\n引渡しを要しない場合 例えば「庭の草むしり」のように引渡しを伴わない請負の場合は、仕事の「完成後」に直ちに報酬を支払う必要があります。\n\n■ 周辺知識：ここが試験に出る！\n受験生を「民法お化け」にするために、以下の2点をセットで覚えさせてください。\n\n「完成」と「引渡し」は別物 建物建築などの場合、完成していても鍵を渡して中に入れる状態（引渡し）にしない限り、報酬支払との同時履行にはなりません。\n\n目的物に「契約不適合（欠陥）」があった場合（重要！） もし仕事の目的物に修補が必要な欠陥があった場合、注文者は、「修補が終わるまで」または「損害賠償を支払ってくれるまで」、報酬の支払いを拒絶できます。これも同時履行の関係です。\n\n■ 関連過去問チェック\n【平成24年度 第32問 肢2】 「仕事の目的物の引渡しを要する場合、特約のない限り、報酬の支払義務と目的物の引渡し義務は同時履行の関係に立つ。」\n\n→ 答え：◯ 引渡しを要する場合は「引渡し」と「報酬」がセットです。\n\n【類題】 「請負人が仕事を完成させない間は、注文者は報酬の支払いを拒むことができる。」\n\n→ 答え：◯ そもそも仕事が完成していなければ、同時履行以前に報酬債務の期限が到来していません。\n\n💡 受験生へのアドバイス\n請負の基本は**「後払い」です。そして、形があるものを作るなら、「物と引き換えに金」**が商売の鉄則です。 「完成したから金くれ！」と言われても、「いや、まずその家を渡して（引渡し）くれないと、こっちも払えないよ」と注文者が言えるのは、ごく自然な感覚ですよね？この感覚を大切にするよう伝えてください。",
-          "■ 根拠条文・判例：民法533条、最判昭34.5.14\n同時履行の抗弁権（民法533条） 相手方がその債務の履行（または履行の提供）をするまでは、自分の債務の履行を拒むことができます。\n\n判例の考え方 同時履行の抗弁権を完全に消滅させるためには、相手方の履行の提供が**「継続」**していなければなりません。 過去に一度提供があったという事実だけでは、その後に提供がなくなれば、抗弁権は復活（正確には失われない）します。\n\n■ 周辺知識：整理して覚える「2つの壁」\n受験生には、**「受領遅滞」と「同時履行の抗弁権」**を分けて考えさせるとスッキリします。\n\n受領遅滞の壁（一度の提供でOK） 売主が一度提供すれば、受け取らなかった買主は「受領遅滞」に陥り、それ以降の保管費用などを負担することになります。また、売主側の注意義務も軽減されます。\n\n同時履行の壁（継続が必要） しかし、「お金を払え」と裁判で訴えるには、売主は**「今、いつでも渡せる状態で持っています」**という提供の継続が必要です。\n\n■ 関連過去問チェック\n【平成26年度 第29問 肢5】（一部改変） 「双務契約の当事者の一方は、相手方が一度履行の提供をした以上、その後相手方が履行の提供を継続しなくても、自己の義務の履行を拒むことはできない。」\n\n→ 答え：× 過去問でもズバリ問われています。「継続」していなければ、拒むことができます。\n\n💡 受験生へのアドバイス\n「『昨日持ってきたでしょ！だから今日はお金だけ先に払ってよ！』という言い分は、民法では通用しない」と教えましょう。 あくまで**「今、目の前で引き換えにできるか」**が同時履行の本質です。 「一度の提供で、相手を遅刻扱い（受領遅滞）にはできるけど、自分の義務を免れる（抗弁権を消滅させる）まではできないよ」という2段階の区別が「民法お化け」への鍵です。",
+          "1. 根拠条文・判例根拠条文民法121条の2 第1項（原状回復義務）無効な行為に基づく債務の履行として給付を受けた者は、相手方を原状に復させる義務を負う。（1. 基本的な具体例（売買契約のケース）\nこれが最もポピュラーな例です。\n状況: AさんがBさんに中古車を100万円で売りました。Aさんは車を引き渡し、Bさんは100万円を支払いました。\n無効・取消しの原因: 後日、この契約が「公序良俗違反」で無効だったり、「詐欺」を理由に取り消されたりしたとします。\n原状回復の内容:\nAさんの義務: 受け取った100万円をBさんに返す。\nBさんの義務: 受け取った車をAさんに返す。）民法533条（同時履行の抗弁）双務契約の当事者の一方は、相手方がその債務の履行（履行の提供を含む。）をするまでは、自己の債務の履行を拒むことができる。民法546条（契約の解除と同時履行）第533条の規定は、前条（解除による原状回復）の場合について準用する。根拠となる判例最高裁判例（昭和28年6月16日）詐欺を理由とする取消しによって生じる双方の原状回復義務（代金返還義務と目的物返還義務）についても、民法533条（同時履行の抗弁権）が類推適用されるとしています。2. なぜこのルールが存在するのか（趣旨）このルールの根拠は、一言で言えば**「公平（信義則）」**です。公平の原則: 契約が取り消された以上、両者は「契約がなかった状態」に戻る必要があります。このとき、片方だけが先に返し、もう一方が返さないという状態は不公平です。履行の確保: 「相手が返してくれるなら、こちらも返す」という牽連性（結びつき）を持たせることで、双方が確実に原状回復を行うよう促す心理的・法的なプレッシャーを与えています。詐欺師であっても「公平」は適用される: 詐欺を働いたことは非難されるべきですが、それは損害賠償などの別枠で解決すべき問題です。原状回復という「清算」の場面においては、法は感情的な制裁よりも、経済的な決済の公平性を優先します。3. 関連知識のまとめ同時履行の抗弁権が「認められるケース」と「認められないケース」の比較は、試験で非常によく狙われます。【重要】同時履行が「認められる」主なケース場面内容取消・無効詐欺、錯誤、制限行為能力などによる取消後の原状回復（今回のケース）解除契約解除に伴う双方の原状回復義務（民法546条）弁済と受取証書お金を返すことと、領収書をもらうこと請負仕事の目的物の引き渡しと、報酬の支払い【重要】同時履行が「認められない」主なケース（要注意！）場面理由弁済と抵当権抹消債務の弁済が先。抵当権抹消は、完済後に行われる付随的な手続きに過ぎないため。弁済と債権証書返還債務の弁済が先。借用証書の返還は、領収書（受取証書）と違い、後からでも良いため。敷金返還と建物明渡し建物の明渡しが先。明渡しの際に損害があるか確認してから敷金を計算する必要があるため。この問題の攻略ポイント選択肢1は、「詐欺を行った悪い奴には権利を与えない」という道徳的な感情を揺さぶる「ひっかけ」です。民法は**「悪い奴かどうか」よりも「清算の公平性」を重視する**場面があることを意識しておくと、この種の問題に強くなります。",
+          "1. 根拠となる判例最高裁判例（昭和29年7月22日）判例は、賃借人が造作買取請求権を行使しても、その代金の支払いがあるまで**「建物の明渡しを拒むことはできない」**としています。同時履行の抗弁権（533条）について: 造作代金の支払いと同時履行の関係に立つのは「造作の引き渡し」であり、「建物の明渡し」ではない。留置権（295条）について: 造作代金債権は「建物に関して生じた債権」とは言えないため、建物に留置権を認めることはできない。2. なぜこのルールが存在するのか（趣旨）このルールの背景には、「建物」と「造作」の価値のアンバランスさと、対象物の独立性があります。対象が別物である: 「造作（エアコン、畳、建具など）」は建物に付けられた付属物ですが、法律上は建物そのものとは別の独立した財産として扱われます。したがって、造作のお金を払わないからといって、より価値の大きい「建物本体」を占拠し続けるのは、公平の観点から行き過ぎであると考えられています。不公平の回避: もし明渡しを拒めるとすると、賃借人はごくわずかな造作代金（例：数万円のエアコン代）を理由に、高額な家賃が発生する建物全体をいつまでも使い続けることができてしまいます。これは賃貸人にとって酷な結果となるため、認められていません。3. 関連知識のまとめ試験対策として、最も混同しやすい**「費用償還請求権」**との違いを表にまとめました。ここを整理するだけで正答率がグッと上がります。【比較】造作代金 vs 必要費・有益費項目造作買取請求権（借地借家法33条）費用償還請求権（民法608条：必要費・有益費）内容エアコン、畳、建具など（独立性あり）雨漏り修理、壁の塗り替え（建物と一体化）建物の明渡し拒否できないできる（留置権が発生する）理由建物とは「別の物」に関する債権だから建物「そのもの」にかけたお金だから攻略のヒント**「造作」という言葉が出たら「明渡し拒否はNG」**と瞬時に判断できるようにしましょう。逆に、**「必要費（修理代）」や「有益費（価値を高めるリフォーム）」なら「明渡し拒否はOK（留置権）」**です。",
+          "1. 根拠となる判例最高裁判例（昭和48年7月17日）判例は、建物の明渡しと敷金の返還義務について、**「建物の明渡しが先履行（さきりこう）である」**としています。つまり、同時履行の関係にはありません。結論: 賃借人は、敷金を返してもらうまで「家を空けません」と言うことはできません。先に家を空ける（明け渡す）義務があります。2. なぜこのルールが存在するのか（趣旨）なぜ「同時」ではなく、家を空けるのが「先」なのでしょうか？ それは、敷金の「担保」としての性質に理由があります。敷金は「清算」のためのもの: 敷金は、家を借りている間に発生した「未払い家賃」や、退去時の「修繕費用（クリーニング代など）」を差し引くための担保金です。空けてみないと金額が決まらない: 大家さんは、借主が家を空けて中身を確認した後でないと、「壁に穴はないか？」「掃除は必要か？」をチェックできません。金額が確定してから返すのが合理的: 部屋の中をチェックし、差し引くべき金額を確定させた「後」でなければ、大家さんはいくら返すべきか分かりません。そのため、法律上「明渡しが先」とされているのです。3. 関連知識のまとめ「明渡しと同時履行になるかどうか」の区別は、試験で非常によく出ます。以下の表で整理して覚えましょう。【重要】建物の明渡しとの関係相手方の義務同時履行になるか？結論敷金の返還ならない（×）明渡しが先。 敷金は後でいい。造作代金の支払いならない（×）明渡しが先。 前の設問の通り。費用償還（修理代）なる（○）留置権で拒める。 修理代をもらうまで居座れる。試験対策のワンポイント行政書士試験では、**「敷金」ときたら「明渡しが先！」**と、反射的に答えられるようにしておくのがコツです。大家さんの立場になって考え、「部屋を空けてもらって中を確認しないと、敷金からいくら引けばいいか分からないでしょ？」とイメージしておくと、暗記に頼らずに思い出せます。",
+          "1. 根拠条文\n民法633条（報酬の支払時期）\n報酬は、仕事の目的物の引渡しと同時に、支払わなければならない。ただし、物の引渡しを要しないときは、第624条第1項（報酬の支払時期）の規定を準用する。\n\n※第624条第1項（雇用契約の準用）は「仕事をした後」に支払うという後払いの原則です。\n\n2. なぜこのルールが存在するのか（趣旨）\n請負契約は双務契約（互いに義務を負う契約）であり、公平の観点から同時履行の関係にあります。\n\n「物」を受け取って初めて満足する: 注文者にとって、請負人が「家を建て終わりました（完成）」と言っても、鍵をもらって中に入れなければ（引渡し）意味がありません。\n\n不公平の回避: もし「完成したから先に金を払え」と言えるなら、注文者は金を払ったのに物が手元に来ないというリスクを負わされます。これを防ぐため、**「物を渡すなら、金を払う」**というバーターの関係を法律が強制しています。\n\n3. 関連知識のまとめ（請負の同時履行）\n請負契約における同時履行のポイントは、以下の3つのパターンで整理すると完璧です。\n\n① 物の引渡しが「必要」な場合（家、洋服の仕立てなど）\n同時履行の関係: 「目的物の引渡し」 ↔ 「報酬の支払い」\n\nしたがって、引渡しを受けるまでは、注文者は報酬の支払いを拒むことができます。\n\n② 物の引渡しが「不要」な場合（講演、清掃、修理など）\n後払いの関係: 仕事が「完成」した後に、報酬を支払います。\n\nこの場合、厳密には「同時」ではなく、まず仕事の完成が先決となります。\n\n③ 目的物に「欠陥（契約不適合）」がある場合\n同時履行の関係: 「修補（直し）や損害賠償」 ↔ 「報酬の支払い」\n\nもし完成した物に欠陥があった場合、注文者は「直してくれるまで（または損害賠償を払うまで）、報酬の全部（または一部）を払わない」と言うことができます。\n\nこの問題の攻略ポイント\n選択肢4の誤りは、**「目的物の引渡しに先立って報酬の支払を求めることができ」という部分です。\n法律上、引渡しが必要なケースでは、引渡しと報酬支払いはあくまで「セット（同時）」**です。どちらかが先ということはありません。",
+          "1. 根拠となる判例最高裁判例（昭和34年3月2日）判例は、「双務契約の当事者の一方が、一度履行の提供をしたとしても、それが継続されない限り、相手方の同時履行の抗弁権は消滅しない」と判示しています。結論: 売主が一度「車を持ってきた」としても、その後に車を引っ込めてしまったなら、買主は再び「車をくれるまでお金は払いません」と言い返すことができます。2. なぜこのルールが存在するのか（趣旨）このルールは、同時履行の抗弁権の本質である**「公平（信義則）」と「リスク回避」**に基づいています。引換え関係の維持: 同時履行の抗弁権は、「お金を払うのと引き換えに、物をもらう」という双務契約のバランスを守るためのものです。売主が一度提供しただけで、その後提供をやめてしまったのに「一度は見せたんだから先に金を払え」と言えるのは、買主にとってあまりにリスクが大きく不公平です。「履行の提供」の形骸化を防ぐ: もし一度の提供で抗弁権が消えてしまうなら、売主は一瞬だけ物を見せてすぐに持ち帰り、その後で「さあ、先に金を払え」と迫ることができてしまいます。これでは抗弁権による債務者の保護が全く機能しなくなります。3. 関連知識のまとめこの論点を深く理解するために、**「どうすれば相手の抗弁権を完全に消せるのか？」**という対比知識を整理しましょう。【重要】相手の抗弁権を消滅させる方法売主が、買主の「お金を払わない」という言い訳を封じるためには、以下のいずれかが必要です。方法内容提供を継続する常に「いつでも渡せる状態」を維持し、相手に催促し続ける。供託（きょうたく）する法務局などに目的物を預け、法的に履行を完了（またはそれに準ずる状態に）する。これにより、売主の義務は消滅するため、相手は抗弁できなくなります。受領遅滞（じゅりょうちたい）との関係相手が受け取りを拒否した場合（受領遅滞）、提供した側は「自分の義務を果たそうとした」ことにはなりますが、それだけで相手の同時履行の抗弁権まで完全に奪えるわけではない、というのが試験上の最大の注意点です。4. 行政書士試験における整理今回の問題（選択肢1〜5）を通して、同時履行の抗弁権の全体像が見えてきたかと思います。1（詐欺取消）: 悪い奴であっても、清算は公平に（同時履行○）。2（造作買取）: 物が別物（造作と建物）なら、明渡し拒否は不可（同時履行×）。3（敷金返還）: 部屋を空けないと金額が決まらないから、明渡しが先（同時履行×）。4（請負）: 引渡しが必要な仕事なら、引渡しと報酬はセット（同時履行○）。5（提供の継続）: 一度見せただけではダメ。セットの状態を維持すべし（同時履行○）。この「同時履行の関係にあるかどうか」の判別は、**「どっちを先にさせるのが公平か？」**という視点を持つと、丸暗記に頼らず現場で判断できるようになります。",
           "■ 根拠条文・理論：民法533条（存在効果）\n同時履行の抗弁権の「存在効果」 同時履行の抗弁権は、それを持っているだけで（実際に行使すると口に出さなくても）、履行しないことが違法ではなくなります。これを「存在効果」と呼びます。\n\n履行遅滞の要件 債務不履行（履行遅滞）に基づく損害賠償を請求するには、その遅れが「違法」である必要があります。しかし、抗弁権がある状態での不履行は違法ではないため、損害賠償請求は認められません。\n\n■ 周辺知識：相手を「履行遅滞」に陥らせる方法\n売主が買主に対して「遅延損害金を払え！」と言いたいのであれば、以下のステップを踏まなければなりません。\n\n自己の債務の履行の提供 売主が商品を持っていく、あるいは「準備はできているからいつでも受け取ってくれ」と通知する。\n\n抗弁権の消滅 これにより買主の同時履行の抗弁権が（一時的に）消滅します。\n\n履行遅滞の発生 この状態でも買主がお金を払わなければ、初めて「履行遅滞」となり、損害賠償（遅延損害金）が発生します。\n\n■ 関連過去問チェック\n【平成20年度 第28問 肢エ】（一部改変） 「双務契約の当事者の一方は、相手方の債務の履行期が到来していても、自己の債務の履行の提供をしない限り、相手方に対して履行遅滞の責任を問うことはできない。」\n\n→ 答え：◯ まさに本問と同じ論点です。「提供なし ＝ 責任問えない」という図式を叩き込む必要があります。\n\n💡 受験生へのアドバイス\n「お互い様」の精神を強調しましょう。 「自分も宿題をやっていないのに、友達が宿題を忘れたことを先生にチクる（損害賠償請求する）ことはできないよ」というイメージです。 相手を「悪者（履行遅滞）」にしたいなら、まずは自分が「やるべきことをやった（履行の提供）」という潔白な状態にならなければならない、と伝えると記憶に残りやすくなります。\n\n「存在効果」という言葉は少し難しいですが、「持っているだけでバリアを張っている状態」と説明すると喜ばれます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -19482,7 +21861,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "AがBに対して電器製品を売却する旨の売買契約（両債務に関する履行期日は同一であり、AがBのもとに電器製品を持参する旨が約されたものとする。以下、「本件売買契約」という。）に関する次の記述のうち、民法の規定および判例に照らし、誤っているものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠条文・判例：民法533条、最判昭34.5.14（再掲）\n履行の提供の継続（必須知識） 同時履行の抗弁権を消滅させて、相手に「NO」と言わせないようにするためには、一度の提供では足りず、「請求するその時」にも提供が継続されている必要があります。\n\n本問のケース\n\n1回目：売主が持参（提供あり）→ 買主が払わない（履行遅滞・受領遅滞の発生）\n\n2回目：売主が手ぶらで請求（提供なし）→ 買主は「今、スイッチ2がないなら払わない」と言える（抗弁権の行使）\n\n■ 周辺知識：ここが試験の急所！\n受験生が「民法お化け」になるために、「遅延損害金」と「代金支払」を分けて整理させましょう。\n\n代金の支払について 後日の請求時に売主が手ぶらなら、買主は「今、引き換えじゃないなら払わない」と拒めます（代金支払拒絶OK）。\n\n遅延損害金について 1回目の持参時に買主が払えなかった事実は消えません。そのため、1回目の持参時から、後日の請求時（または現実に支払う時）までの**「遅延損害金」は発生し続けます。**\n\nポイント： 「本体の代金」は今手ぶらなら拒めるが、「遅刻料（遅延損害金）」からは逃げられない、というバランスです。\n\n■ 関連過去問チェック\n【平成26年度 第29問 肢5】（再確認） 「相手方が一度履行の提供をした以上、その後相手方が履行の提供を継続しなくても、自己の義務の履行を拒むことはできない。」\n\n→ 答え：× スイッチ2の例えと同じです。提供が継続されていないなら、拒むことができます。\n\n💡 受験生へのアドバイス\n「同時履行の抗弁権は、ゾンビのように何度でも蘇る」と教えましょう。 一度倒した（提供した）と思っても、売主が商品を引っ込めて手ぶらになった瞬間、買主の元に抗弁権がムクムクと蘇ります。 「今、この瞬間に、引き換えにできるか？」。これが同時履行の抗弁権のすべてです。",
+        "memo": "1. 根拠条文\n民法533条（同時履行の抗弁）\n双務契約の当事者の一方は、相手方がその債務の履行（履行の提供を含む。）をするまでは、自己の債務の履行を拒むことができる。\n\n民法412条（履行期と履行遅滞）\n債務者が履行期に遅れた場合に「履行遅滞」となりますが、同時履行の抗弁権がある間は、「違法性」がないため、遅滞にはならない（存在効果）と解されています。\n\n2. なぜこのルールが存在するのか（趣旨）\nこのルールは、**「相手がやるべきことをやっていないのに、こちらだけ遅れたと責められるのは不当だ」**という考えに基づいています。\n\n抗弁権の存在効果: 同時履行の抗弁権がある場合、たとえ履行期日が過ぎても、相手が「履行の提供」をしてくるまでは、債務を履行しないことが「正当な権利の行使」とみなされます。\n\n「違法性」の阻却: 損害賠償責任が発生するためには、履行しないことが「違法」でなければなりません。しかし、抗弁権がある状態での不履行は違法ではないため、損害賠償（遅延損害金など）を請求することはできないのです。\n\n3. 関連知識のまとめ\nこの論点を攻略するために、**「相手の抗弁権を奪って、履行遅滞にするための条件」**を整理しましょう。\n\n相手を履行遅滞に陥らせるには？\nA（売主）がB（買主）に対して「期限を過ぎたから損害賠償を払え！」と言うためには、まずA自身が「履行の提供」をしなければなりません。\n\n持参債務（今回のケース）: Aが電器製品をBの家まで持っていき、「はい、持ってきましたよ（受け取ってください）」と言う必要があります。\n\n抗弁権の切断: Aが適切に提供したにもかかわらずBが払わなかった場合、そこで初めてBの抗弁権が消滅（切断）し、Bは「履行遅滞」となります。\n\n注意：言葉だけの提供（口頭の提供）でいい場合\n原則は「現実に持っていく（現実の提供）」が必要ですが、例外的に「準備はできているから受け取りに来い」と言うだけで足りる場合があります（民法493条但書）。\n\n相手があらかじめ「受け取らない」と言っている場合\n\n相手の協力（代金準備など）がないと履行できない場合\n\nこの問題の攻略ポイント\n選択肢1は、**「Aが提供していない以上、Bに抗弁権が残っているので、Bは遅滞にはならない（＝損害賠償も負わない）」**という、民法の基本原則をそのまま述べています。",
         "slots": [],
         "refId": "",
         "isBonus": true,
@@ -19518,14 +21897,24 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠条文・判例：民法533条、最判昭34.5.14（再掲）\n履行の提供の継続（必須知識） 同時履行の抗弁権を消滅させて、相手に「NO」と言わせないようにするためには、一度の提供では足りず、「請求するその時」にも提供が継続されている必要があります。\n\n本問のケース\n\n1回目：売主が持参（提供あり）→ 買主が払わない（履行遅滞・受領遅滞の発生）\n\n2回目：売主が手ぶらで請求（提供なし）→ 買主は「今、スイッチ2がないなら払わない」と言える（抗弁権の行使）\n\n■ 周辺知識：ここが試験の急所！\n受験生が「民法お化け」になるために、「遅延損害金」と「代金支払」を分けて整理させましょう。\n\n代金の支払について 後日の請求時に売主が手ぶらなら、買主は「今、引き換えじゃないなら払わない」と拒めます（代金支払拒絶OK）。\n\n遅延損害金について 1回目の持参時に買主が払えなかった事実は消えません。そのため、1回目の持参時から、後日の請求時（または現実に支払う時）までの**「遅延損害金」は発生し続けます。**\n\nポイント： 「本体の代金」は今手ぶらなら拒めるが、「遅刻料（遅延損害金）」からは逃げられない、というバランスです。\n\n■ 関連過去問チェック\n【平成26年度 第29問 肢5】（再確認） 「相手方が一度履行の提供をした以上、その後相手方が履行の提供を継続しなくても、自己の義務の履行を拒むことはできない。」\n\n→ 答え：× スイッチ2の例えと同じです。提供が継続されていないなら、拒むことができます。\n\n💡 受験生へのアドバイス\n「同時履行の抗弁権は、ゾンビのように何度でも蘇る」と教えましょう。 一度倒した（提供した）と思っても、売主が商品を引っ込めて手ぶらになった瞬間、買主の元に抗弁権がムクムクと蘇ります。 「今、この瞬間に、引き換えにできるか？」。これが同時履行の抗弁権のすべてです。",
-          "■ 根拠条文：民法493条但書原則：現実に提供せよ（493条本文）履行の提供は、原則として「現実」に、かつ「債務の本旨に従って」しなければなりません（例：スイッチ2を相手の家まで持っていく）。例外：口頭の提供で足りる場合（493条但書）債権者（買主）があらかじめ受領を拒んでいるとき債務の履行に債権者の行為（協力）が必要なときこの場合、**「履行の準備をしたことを通知してその受領を催告」**すれば、有効な「履行の提供」となります。■ 周辺知識：相手の拒絶が「もっと激しい」場合は？受験生が「民法お化け」になるために、さらに一歩踏み込んだ判例知識を授けましょう。買主の拒絶レベル売主がすべきこと効果単に受領拒絶口頭の提供（準備完了の通知）売主は履行遅滞を免れる強固な受領拒絶提供すら不要（判例：最判昭32.6.5）売主は履行遅滞を免れる※「契約そのものを否定している」「絶対に受け取らないと断言している」といった強固な拒絶がある場合は、口頭の提供（通知）すら無意味なので、それすら不要というのが判例の立場です。■ 関連過去問チェック【令和2年度 第29問 肢1】「債権者があらかじめその受領を拒んでいるときは、債務者は、履行の準備をしたことを通知してその受領を催告すれば、履行の提供をしたことになる。」→ 答え：◯近年の改正後も変わらない、超重要・基礎知識です。💡 受験生へのアドバイス「民法は、無意味なパフォーマンスを求めない」と伝えてください。「いらない！」と怒鳴っている人の玄関までスイッチ2を持っていくのは、もはや火に油を注ぐようなものです。だから、「準備はできたよ。あとは君次第だよ」という連絡（通知）さえ入れれば、売主は法的バリアを張ることができるのです。",
-          "■ 根拠条文：民法541条\n履行遅滞による解除権（民法541条） 当事者の一方がその債務を履行しない場合、相手方が相当の期間を定めてその履行を催告し、その期間内に履行がないときは、相手方は契約の解除をすることができます。\n\n解除の要件と同時履行 双務契約（売買など）では、自分が提供をしない限り相手は「履行遅滞」になりません。本問では売主が「持参」しているため、このハードルをクリアしています。\n\n■ 周辺知識：解除までの「3ステップ」を叩き込む！\n受験生には、以下の流れをセットで覚えさせましょう。\n\n履行の提供（売主がスイッチ2を持っていく） → 買主の「同時履行の抗弁権」を奪い、買主を「履行遅滞」にさせる。\n\n相当期間の催告（「1週間以内に払え」と通知する） → いきなり解除は不可。ワンチャンス（猶予）を与える必要がある。\n\n解除の意思表示（「期限を過ぎたので解除する」と伝える） → 期間内に支払いがなければ、解除権を行使できる。\n\n注意：軽微な不履行（541条但書） 債務の不履行が「契約及び取引上の社会通念に照らして軽微であるとき」は、解除できません。例えば、スイッチ2の代金が3万円で、2万9990円まで払っているようなケースです。\n\n■ 関連過去問チェック\n【平成25年度 第28問 肢5】（一部改変） 「双務契約の当事者の一方は、相手方が履行期を徒過しても、自己の債務の履行の提供をすることなく、催告をして契約を解除することはできない。」\n\n→ 答え：◯ 解除したければ、まずは自分の提供が必須。本問のスイッチ2持参はこの要件を満たしています。\n\n💡 受験生へのアドバイス\n「解除は、相手を『逃げ場のない悪者』にしてから行う最終兵器」だと教えましょう。\n\n提供して抗弁権を奪い（悪者にする）\n\n催告してチャンスを与え（最後通牒）\n\nそれでもダメなら解除！ この手順を踏まないと、せっかくの解除も無効になってしまいます。",
-          "■ 根拠・判例：最判昭32.6.5（および信義則）判例のロジック相手方が債務の履行を受けることを拒絶し、かつ、自己の債務を履行しない意思が明確であると認められる場合には、債務者（売主）が履行の提供をしなくても、債権者（買主）は履行遅滞の責めを免れることはできません。なぜ提供が不要か？「どうやっても受け取らない、払わない」と断言している相手に対して、形式的な提供を要求するのは、**信義則（民法1条2項）**に反し、無意味なパフォーマンスを強いることになるからです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：提供の要否「3つのステージ」受験生が整理しやすいよう、相手の態度に応じた売主のタスクをまとめました。買主（債権者）の態度売主に求められる提供のレベル損害賠償請求の可否通常（受け取る気がある）現実の提供（持参）提供すれば請求可あらかじめ拒絶している口頭の提供（準備通知）通知すれば請求可拒絶の意思が強固・明確提供不要何もしなくても請求可■ 関連過去問チェック【平成21年度 第29問 肢5】（類題）「債務の履行について債権者の協力が必要な場合において、債権者がその協力を拒む意思が明確であるときは、債務者は、履行の提供をしなくても、履行をしないことによって生ずる責任を免れる。」→ 答え：◯「責任を免れる」側（債務者）の視点ですが、理屈は本問と同じです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は、絶対に話が通じない相手にまで『丁寧な挨拶（提供）』を強要しない」と教えましょう。「払う気はない！」とドアを閉ざしている相手に対しては、売主が心の中で「よし、準備はできているぞ」と思っているだけで、法的には買主を「悪者（履行遅滞）」として扱うことができます。ただし、**実務や記述式試験では「提供が必要なのが原則」**ですので、この「強固な拒絶」というフレーズがある時だけ例外が発動する、という点に注意させましょう。",
-          "■ 根拠条文：民法542条1項2号無催告解除（民法542条）本来、解除には「催告（541条）」が必要ですが、次に掲げる場合には催告なしで即解除できます。債務の全部の履行が不能であるとき（1号）債務者がその債務の全部の履行を拒絶する意思を明確に表示したとき（2号）定期行為（クリスマスケーキなど）で時期を逃したとき（4号） など改正のポイント以前は判例で認められていたルールですが、改正により「やる気がない奴を待つ必要はない」という理屈が法律に明記されました。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：一部だけの拒絶ならどうなる？ここが試験で狙われる「お化け」ポイントです。拒絶の範囲解除の可否条件全部の拒絶全部解除OK催告不要（542条1項2号）一部の拒絶一部解除OK催告不要。残った部分では契約目的が達せられないなら全部解除も可（542条1項3号）ひっかけに注意！試験では「一部を拒絶した場合でも、常に全部を無催告で解除できる」という選択肢が出ることがあります。一部拒絶の場合は、原則として「その拒絶された部分」だけが無催告解除の対象です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和3年度 第28問 肢4】「債務者がその債務の全部の履行を拒絶する意思を明確に表示したときは、債権者は、相当の期間を定めてその履行を催告することなく、直ちに契約の解除をすることができる。」→ 答え：◯改正直後の試験で早速出題されています。条文の文言そのままの知識が問われます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『やらない』と言い切っている相手に、猶予（催告）を与えるのは時間の無駄」と教えましょう。催告の目的は、相手に「最後のリマインド」をすることです。でも、相手が自ら「絶対にやらない」と宣言しているなら、そのリマインドには何の意味もありません。だから、債権者はすぐに次のステップ（契約を白紙に戻して他を探すなど）に進めるようになっています。",
-          "■ 根拠条文：民法542条1項1号、543条無催告解除（民法542条1項1号）債務の全部の履行が不能であるときは、催告をすることなく、直ちに契約の解除をすることができます。帰責事由は不要（民法543条）ここが最大のポイントです。 債務不履行による解除は、債務者（売主）に過失（落ち度）がなくても認められます。条文（要旨）：解除権の行使は、債務者に帰責事由がないときであっても、妨げられない。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：改正前との違いと「危険負担」受験生が混乱する原因は「危険負担」との関係です。整理してあげましょう。項目改正前（旧法）現在の民法（改正後）売主の過失なしで滅失買主は代金を払わねばならなかった（特定物ドグマ）買主は代金の支払を拒絶できる（536条1項）契約の解除売主に過失がないなら解除できなかった売主に過失がなくても解除できる（543条）なぜ「過失なし」で解除できるのか？解除の目的は、相手を責めることではなく**「拘束力から解き放たれること」**だからです。「商品が（地震などで）手に入らないことが確定したのに、いつまでも契約に縛っておくのはおかしい」という考え方に基づいています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和4年度 第28問 肢ア】「債務の履行が不能であるときは、債権者は、当該履行不能が債務者の責めに帰すべき事由によるものでないときであっても、直ちに契約の解除をすることができる。」→ 答え：◯改正民法のど真ん中の知識です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『損害賠償』は怒りの鉄拳だが、『解除』はサヨナラの挨拶だ」と教えましょう。相手に落ち度があるなら、パンチ（損害賠償請求）を食らわせる。相手に落ち度がなくても、物が届かないなら「じゃあ、この話はなかったことに（解除）」と言って、別の店に買いに行く権利を認める。これが現代民法のスマートなバランスです。",
-          "■ 根拠：判例法理（最判昭27.4.25 等）原則（民法541条）本来、義務違反（履行遅滞など）があれば、まず「催告（チャンスを与えること）」をしてからでないと解除できません。信頼関係破壊の法理による修正しかし、判例は「賃貸借は当事者相互の信頼を基礎とするもの」と考えます。例えば、無断で他人に家を貸した（無断転貸）としても、それが「背信的行為と認めるに足りない特段の事情」があるなら解除を認めない一方で、逆に**「信頼関係が木っ端微塵に壊れた」といえる状況なら、催告という形式的な手続きを飛ばして解除できる**としています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：背信的行為の具体例受験生が「どの程度の裏切りなら無催告でいけるのか？」をイメージできるよう整理しましょう。状況催告の要否判例の傾向数ヶ月の賃料滞納原則：必要1〜2ヶ月程度なら催告が必要。著しい賃料滞納（半年〜）無催告解除OK信頼関係が完全に壊れたとみなされる。無断転貸（他人に貸した）無催告解除OK612条2項により、原則として無催告解除が可能。建物の著しい損壊・用法違反無催告解除OK注意しても直さない、あるいは破壊が深刻な場合。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成28年度 第27問 肢5】（一部改変）「賃借人が賃貸人の承諾なく賃借権を譲渡した場合であっても、それが賃貸人に対する背信的行為と認めるに足りない特段の事情があるときは、賃貸人は、無断譲渡を理由に契約を解除することはできない。」→ 答え：◯本問の「逆」のパターンですが、セットで覚えるべき知識です。「背信性」がなければ解除できないし、「背信性が著しい」なら無催告でいける、という表裏一体の関係です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「賃貸借契約は、いわば『結婚生活』のようなもの」だと例えてください。ちょっとした喧嘩（1回の家賃遅れ）なら、「次は気をつけてね」という催告（話し合い）が必要です。しかし、浮気（無断転貸）や暴力（建物の損壊）など、「もう顔も見たくない！今後一緒にやっていくなんて無理！」というレベルの裏切りがあれば、話し合い（催告）なんて時間の無駄。即、離婚（解除）ができる。この「信頼関係の有無」が、解除のルールを左右する基準になります。",
-          "■ 根拠条文・判例：民法121条の2、545条3項、最判昭51.2.13原状回復義務の原則（民法545条）契約を解除したとき、各当事者は相手方を原状に復させる義務を負います。不当利得の返還（民法121条の2）契約が解除されると、最初から契約がなかったことになります。すると、買主が目的物を占有して使っていたことは「法律上の原因がない」ことになり、その利益を返還する義務が生じます。判例の考え方他人物売買であっても、売主と買主の間の「原状回復」のルールは同じです。**「売主が本当の所有者かどうか」は関係なく、**契約当事者間でお互いを契約前の状態に戻す必要があるため、買主は使用利益を売主に返還すべきとされています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：金銭を返す側の「利息」とセットで覚える！解除の原状回復は、**「お互い、得たものは全部吐き出す」**のがフェアです。側返すもの（元本・現物）プラスアルファで返すもの売主（お金を返却）受領した代金受領時からの「利息」（545条2項）買主（物を返却）引き渡された目的物受領時からの「使用利益」（判例）ポイント：売主は「代金 ＋ 利息」を返し、買主は「目的物 ＋ 使用利益（家賃相当など）」を返す。これで「チャラ」にするのが民法の公平性です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第28問 肢5】（類題）「不動産の買主が、解除までの間にその不動産を第三者に賃貸して賃料を得ていた場合、売主に対し、当該賃料を返還しなければならない。」→ 答え：◯自分で使っていた場合だけでなく、他人に貸して得た収益（果実）も、原則として返還の対象になります。　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「解除されたら、タイムマシンで契約前に戻ると思え！」と教えましょう。契約前の状態に戻るなら、「タダで物を使っていた期間」があってはおかしいですよね？「他人の物だったんだから、売主に返すのは変じゃない？」と迷う受験生には、「これは所有者との関係ではなく、あくまで『売買契約をした二人の間の精算』なんだよ」と伝えると納得感が出ます。"
+          "1. 根拠条文\n民法533条（同時履行の抗弁）\n双務契約の当事者の一方は、相手方がその債務の履行（履行の提供を含む。）をするまでは、自己の債務の履行を拒むことができる。\n\n民法412条（履行期と履行遅滞）\n債務者が履行期に遅れた場合に「履行遅滞」となりますが、同時履行の抗弁権がある間は、「違法性」がないため、遅滞にはならない（存在効果）と解されています。\n\n2. なぜこのルールが存在するのか（趣旨）\nこのルールは、**「相手がやるべきことをやっていないのに、こちらだけ遅れたと責められるのは不当だ」**という考えに基づいています。\n\n抗弁権の存在効果: 同時履行の抗弁権がある場合、たとえ履行期日が過ぎても、相手が「履行の提供」をしてくるまでは、債務を履行しないことが「正当な権利の行使」とみなされます。\n\n「違法性」の阻却: 損害賠償責任が発生するためには、履行しないことが「違法」でなければなりません。しかし、抗弁権がある状態での不履行は違法ではないため、損害賠償（遅延損害金など）を請求することはできないのです。\n\n3. 関連知識のまとめ\nこの論点を攻略するために、**「相手の抗弁権を奪って、履行遅滞にするための条件」**を整理しましょう。\n\n相手を履行遅滞に陥らせるには？\nA（売主）がB（買主）に対して「期限を過ぎたから損害賠償を払え！」と言うためには、まずA自身が「履行の提供」をしなければなりません。\n\n持参債務（今回のケース）: Aが電器製品をBの家まで持っていき、「はい、持ってきましたよ（受け取ってください）」と言う必要があります。\n\n抗弁権の切断: Aが適切に提供したにもかかわらずBが払わなかった場合、そこで初めてBの抗弁権が消滅（切断）し、Bは「履行遅滞」となります。\n\n注意：言葉だけの提供（口頭の提供）でいい場合\n原則は「現実に持っていく（現実の提供）」が必要ですが、例外的に「準備はできているから受け取りに来い」と言うだけで足りる場合があります（民法493条但書）。\n\n相手があらかじめ「受け取らない」と言っている場合\n\n相手の協力（代金準備など）がないと履行できない場合\n\nこの問題の攻略ポイント\n選択肢1は、**「Aが提供していない以上、Bに抗弁権が残っているので、Bは遅滞にはならない（＝損害賠償も負わない）」**という、民法の基本原則をそのまま述べています。",
+          "1. 原則：同時履行の抗弁権と履行遅滞の関係（選択肢1）【結論】売主Aが商品を持参（履行の提供）していない限り、買主Bが代金を支払わなくても**「履行遅滞（損害賠償責任）」は発生しません。**根拠条文：民法533条・412条同時履行の抗弁権には**「存在効果」**と呼ばれる強力な効力があります。存在効果: 実際に「払いません」と口に出して主張しなくても、その権利を持っているだけで、履行しないことが「違法」ではなくなります。結果: 違法性がないため、履行期日を過ぎても「履行遅滞」による損害賠償（遅延損害金）は発生しません。なぜこのルールがあるのか（趣旨）双務契約（売買など）は、互いの債務が「対価」の関係にあります。相手が自分の義務を果たそうとしないのに、こちら側だけ「遅れたから罰金を払え」と言われるのは、**「公平の原則」**に反するからです。2. 応用：履行の提供の「継続」が必要か（選択肢2）【結論】過去に一度履行の提供があったとしても、現在の請求時に提供が継続されていない限り、同時履行の抗弁権は消滅しません。 つまり、買主Bは再び支払いを拒むことができます。根拠判例：最高裁（昭和34年3月2日）この判例は、試験において「超」がつくほどの重要判例です。「双務契約において、当事者の一方が一度履行の提供をして相手方を受領遅滞（履行遅滞）に陥らせたとしても、その後に再度履行を求める際には、改めて履行の提供をしなければならない」なぜこのルールがあるのか（趣旨）「抜き打ち」の防止: 一度提供しただけで相手の抗弁権を永久に奪えるとしたら、売主は一瞬だけ商品を見せて持ち帰り、その後、商品を渡さずに「先に金を払え、さもなくば賠償金を払え」と迫ることが可能になります。引換え関係の維持: 買主にとって、商品を確実に受け取れる保証（提供）がない状態でお金を払わされるのは、あまりに大きなリスクだからです。3. 受験生が整理しておくべき「3つの状態」同時履行の抗弁権をめぐる攻防を、以下の表で整理して記憶しましょう。売主Aのアクション買主Bの状態Bの抗弁権Bの遅滞責任提供していない準備すらしていないあり発生しない今まさに提供中準備できていないなし（切断）発生する過去に提供したが、今は手ぶら準備できていないあり（復活）発生中（※注）（※注）ここが重要です。昨日の提供により「昨日の分の遅滞責任」は発生しますが、今日の請求に対しては、Bは抗弁権を使って「今日の支払」を拒めます。4. 関連知識：相手を「履行遅滞」に追い込む方法（民法493条）相手の抗弁権を消滅させ、確実に損害賠償を請求するためには「履行の提供」が必要ですが、その方法には2種類あります。現実の提供: 今回のケース。商品を持って相手の家に行く。口頭の提供（通知）： 相手があらかじめ受領を拒んでいる場合や、代金の準備が必要な場合。「準備はできているから、すぐ受け取れ」と通知するだけでOK。【総括：試験対策アドバイス】行政書士試験の記述式・多肢選択式でも狙われるポイントは、**「公平の観点から、引換え関係を維持させる」**という民法の基本姿勢です。「一度やればOK」という考え方は、民法の「公平」という理念には馴染みません。**「今、商品を渡せる状態にあるか？」**を常に自問自答することで、同時履行に関するほとんどの問題は正解に導けます。",
+          "1. 根拠条文民法493条（履行の提供の方法）履行の提供は、現実にしなければならない。ただし、債権者があらかじめその受領を拒み、又は債務の履行について債権者の行為を要するときは、履行の準備をしたことを通知してその受領を催告すれば足りる。民法492条（履行の提供の効果）債務者は、履行の提供の時から、債務を履行しないことによって生ずべき責任を免れる。2. なぜこのルールが存在するのか（趣旨）法律は、**「協力しない相手に対して、無駄な手間を強いることはしない」**という合理的なスタンスを取っています。無駄な労力の削減: 相手（買主B）が「絶対受け取らない！」と宣言しているのに、わざわざ重い電器製品をトラックに積んで持参させるのは、時間と労力の無駄（経済的な損失）です。誠実な債務者の保護: Aは「渡す準備」を整えて通知しています。これは自分の義務を果たす誠実な姿勢を見せていると言えます。それなのに「実際に持ってきていないから遅刻だ！」と責められるのは、あまりに不公平です。責任の転換: この通知（口頭の提供）を行った時点で、責任の所在は「渡さないA」から「受け取らないB」へと移ります。3. 関連知識のまとめ（試験で狙われる提供の2パターン）「履行の提供」には、以下の2つの形があることを完璧に整理してください。提供の種類必要なアクション認められるケース現実の提供商品を相手の家まで持参する原則（相手が拒んでいない場合）口頭の提供準備完了を通知し、受領を促す① 相手があらかじめ受領を拒絶している② 相手の協力（代金の用意等）が必要4. この問題のポイント：責任の所在今回のケースでは、Bがあらかじめ受領を拒んでいます。そこでAは民法493条但書に従い、「準備はできているから受け取れ」という通知（口頭の提供）を行いました。Aの効果: 有効な履行の提供をしたことになるため、民法492条により履行遅滞の責任を免れます。Bの状態: Aが提供をした以上、Bは「同時履行の抗弁権」を失っています（切断されています）。したがって、Bが「物をもらっていない」と文句を言うことは許されません。結論Aは法的にやるべきことを果たしているため、BはAに対して損害賠償を請求することはできません。（＝選択肢3は正しい）受験生へのアドバイス「持参債務（持っていく義務）」であっても、相手が拒絶しているなら「口頭」で十分という例外は、記述式試験でもキーワードとして書かされる可能性がある重要ポイントです。「現実の提供」と「口頭の提供」、それぞれの成立要件をセットで覚えておきましょう。",
+          "1. 根拠条文民法493条（履行の提供の方法）履行の提供は、現実にしなければならない。ただし、債権者があらかじめその受領を拒み、又は債務の履行について債権者の行為を要するときは、履行の準備をしたことを通知してその受領を催告すれば足りる。民法492条（履行の提供の効果）債務者は、履行の提供の時から、債務を履行しないことによって生ずべき責任を免れる。2. なぜこのルールが存在するのか（趣旨）法律は、**「協力しない相手に対して、無駄な手間を強いることはしない」**という合理的なスタンスを取っています。無駄な労力の削減: 相手（買主B）が「絶対受け取らない！」と宣言しているのに、わざわざ重い電器製品をトラックに積んで持参させるのは、時間と労力の無駄（経済的な損失）です。誠実な債務者の保護: Aは「渡す準備」を整えて通知しています。これは自分の義務を果たす誠実な姿勢を見せていると言えます。それなのに「実際に持ってきていないから遅刻だ！」と責められるのは、あまりに不公平です。責任の転換: この通知（口頭の提供）を行った時点で、責任の所在は「渡さないA」から「受け取らないB」へと移ります。3. 関連知識のまとめ（試験で狙われる提供の2パターン）「履行の提供」には、以下の2つの形があることを完璧に整理してください。提供の種類必要なアクション認められるケース現実の提供商品を相手の家まで持参する原則（相手が拒んでいない場合）口頭の提供準備完了を通知し、受領を促す① 相手があらかじめ受領を拒絶している② 相手の協力（代金の用意等）が必要4. この問題のポイント：責任の所在今回のケースでは、Bがあらかじめ受領を拒んでいます。そこでAは民法493条但書に従い、「準備はできているから受け取れ」という通知（口頭の提供）を行いました。Aの効果: 有効な履行の提供をしたことになるため、民法492条により履行遅滞の責任を免れます。Bの状態: Aが提供をした以上、Bは「同時履行の抗弁権」を失っています（切断されています）。したがって、Bが「物をもらっていない」と文句を言うことは許されません。結論Aは法的にやるべきことを果たしているため、BはAに対して損害賠償を請求することはできません。（＝選択肢3は正しい）受験生へのアドバイス「持参債務（持っていく義務）」であっても、相手が拒絶しているなら「口頭」で十分という例外は、記述式試験でもキーワードとして書かされる可能性がある重要ポイントです。「現実の提供」と「口頭の提供」、それぞれの成立要件をセットで覚えておきましょう。",
+          "1. 根拠となる判例最高裁判例（昭和30年11月17日）この判例は、今回のケースのように「相手（買主B）が支払わない意思を明確に示している」場合、どのようなルールになるかを明示しています。判旨： 買主に「代金支払の意思がまったくない」と認められる場合には、売主Aは、口頭の提供（準備完了の通知と受領の催告）すら不要で、直ちにBの履行遅滞（損害賠償責任）を追及できる。結論： 本肢の「通知して受領を催告しなければ……問うことができない」という部分は、判例の考えに反するため、誤りとなります。2. なぜこのルールが存在するのか（趣旨）法律は、**「無意味な儀式を強要しない」**という合理性を重んじます。口頭の提供が「形骸化」している： 本来、口頭の提供（通知）は、相手に「さあ、受け取る準備をしてください」と促すためのものです。しかし、Bが「絶対に払わない！」と明確に拒絶している以上、Aが「準備できたから払って」と通知したところで、Bの態度が変わる見込みはありません。不当な負担の解消： 相手が断固拒否しているのに、法律上の要件を満たすためだけに通知の手続きを踏ませるのは、誠実な売主Aにとって酷であり、時間とコストの無駄です。信義則： 自分の義務を果たす意思が全くないBが、「Aから通知が来ていないから、俺はまだ遅滞じゃない（損害賠償は払わない）」と主張するのは、あまりに自分勝手（信義則違反）であると考えられます。3. 受験生が整理すべき「履行の提供」の3段階試験対策として、履行の提供の要件が「相手の態度」によってどう軽減されていくかを3段階で暗記しましょう。買主Bの態度売主Aが必要なアクション根拠① 通常時（何も言わない）現実の提供（商品を持参する）493条本文② あらかじめ受領拒否口頭の提供（準備完了の通知）493条但書③ 支払拒絶の意思が強固何もしなくてよい（直ちに遅滞に）判例（昭30.11.17）4. 試験でのひっかけパターンこの論点において、試験センターが受験生を迷わせる典型的な「ひっかけ」は以下の通りです。ひっかけ1： 「Bが拒絶していても、493条但書により口頭の提供は不可欠である」対策： 今回の問題がこれに当たります。「明確な拒絶」がある場合は、但書の通知すら不要になる、と覚えましょう。ひっかけ2： 「Bが拒絶しているなら、Aは準備すらしていなくても損害賠償を請求できる」対策： これは**×**です。通知は不要ですが、A自身に「いつでも渡せる準備（履行能力）」があることは前提条件として必要です。【総括：受験生へのメッセージ】民法493条但書の「口頭の提供」は条文知識ですが、そこからさらに踏み込んだこの「判例の例外」は、行政書士試験の択一式で非常に正答率が分かれるポイントです。**「相手が100%拒否しているなら、こっちは通知すら省いていい（ショートカットOK）」**とイメージしてください。",
+          "1. 根拠条文民法166条1項（消滅時効の起算点）消滅時効は、次に掲げる場合には、その時から進行する。債権者が権利を行使することができることを知った時権利を行使することができる時判例・通説は、同時履行の抗弁権が付いていることは、この「権利を行使することができる時」を妨げる**「法的障害」には当たらない**としています。2. なぜこのルールが存在するのか（趣旨）一見すると、「相手が履行するまで拒めるのだから、まだ権利を行使できないのでは？」と思えるかもしれません。しかし、以下の理由から時効は進みます。自ら提供すればいつでも行使できる： 売主は、自分から商品を提供（または提供の提供）をしさえすれば、いつでも相手に代金を請求できます。つまり、**「自分の意思一つで権利を行使できる状態」**にあるため、放置すれば時効にかかるのが公平です。放置の防止（法的安定性）： もし抗弁権がある間は時効が進まないとしてしまうと、お互いが何もせずに放置した場合、その債権が永久に消滅しないことになってしまいます。これでは「永続した事実状態を尊重する」という時効制度の目的が果たせません。3. 関連知識：受験生が混乱する「履行遅滞」との違いここが試験で最も受験生を悩ませるポイントです。「履行遅滞」と「消滅時効」では、抗弁権の影響が真逆になります。項目抗弁権の影響結論履行遅滞（ペナルティ）影響する抗弁権がある間は、遅れても**「履行遅滞」にはならない。**（相手を責められない）消滅時効（カウントダウン）影響しない抗弁権があっても、「時効」は進む。（自分の権利が消えていく）覚え方のコツ**相手を責める（履行遅滞）**には、まず自分がやるべきことをやる必要がある（＝提供が必要）。**自分の権利を守る（時効中断）**には、相手に抗弁権があろうがなかろうが、裁判上の請求などの手続きをする必要がある。4. 他の「起算点」との比較（整理用）行政書士試験の直前期に役立つ、消滅時効の起算点まとめです。確定期限あり（例：4月1日）： 期限が到来した時から進行。不確定期限あり（例：誰かが死んだ時）： 期限が到来した時から進行。期限の定めなし： 債権が発生した時から直ちに進行。返還時期の定めなき消費貸借（借金）： 契約成立から「相当期間」経過後ではなく、直ちに進行（※判例）。受験生へのアドバイス「同時履行の抗弁権」の問題が出たら、頭の中で**【遅滞責任は止まるが、時効は進む】**という二段構えのフレーズを唱えてください。",
+          "1. 原則：なぜ相殺できないのか（趣旨）相殺が禁止される最大の理由は、**「相手方が持っている同時履行の抗弁権を、一方的に奪ってはいけないから」**です。具体例で考えるAの債権（自働債権）： Bに車を売った代金債権（ただし、車はまだ渡していない）。Bの債権（受働債権）： Aにお金を貸している債権。ここで、Aが自分から「相殺しよう」と言ったとします。もし相殺を認めると、BはAに貸していたお金を回収できなくなる代わりに、Aへの代金支払義務も消えます。しかし、Bには本来**「車をくれるまで、代金は払わないぞ！」という抗弁権があったはずです。Aが一方的に相殺してしまうと、Bは「車をもらっていないのに、代金を（相殺という形で）支払わされた」**ことになり、正当な防御手段を奪われてしまいます。2. 覚え方のコツ：「自働」と「受働」の区別試験では、「自働債権」と「受働債権」のどちらに抗弁権がついている場合に相殺できないのか、という点が非常によく入れ替えられて出題されます。項目抗弁権がついている側相殺の可否理由パターン①自働債権（自分から仕掛ける方）不可（×）相手の抗弁権を勝手に奪うことになるから（不当）。パターン②受働債権（相手から仕掛けられる方）可能（○）自分が持っている抗弁権を「いらない」と捨てるのは自由だから（適当）。【合格者の頭の中】「自働債権（自分から）＋ 抗弁権 ＝ 相手が困るからダメ」「受働債権（相手から）＋ 抗弁権 ＝ 自分が損するだけだからOK」と整理するのが鉄則です。3. 【超重要】例外：相殺ができるケース原則として禁止されているこのルールですが、**「同一の契約（双務契約）から生じた互いの債権」**であれば、例外的に相殺ができるという判例があります。例： 同一の売買契約において、Aの代金債権と、Bの（目的物に欠陥があったことによる）損害賠償債権を相殺する場合。理由： どちらも同じ契約から出たものなので、まとめて清算してしまった方が当事者双方にとって簡便であり、公平に反しないからです。4. 関連知識の整理：相殺が禁止される他のケース相殺の禁止（505条）は、今回の抗弁権以外にも頻出ポイントがあります。セットで記憶しましょう。不法行為による債権（509条）： * 悪意による不法行為や、人の生命・身体の侵害による損害賠償請求権を受働債権とする相殺は禁止。（被害者を保護し、現金の支払いを受けさせるため）差押えを受けた債権（511条）：差押え「後」に取得した債権では相殺できない。受験生へのアドバイス相殺の問題を解くときは、まず**「どっちの債権が自働（仕掛ける側）か？」**を問題文に大きく書き込んでください。「自働債権に抗弁権アリ ＝ 相手のガードを無視する攻撃 ＝ 反則負け！」というイメージを持っておくと、本番の緊張感の中でもケアレスミスを防げます。",
+          "1. 根拠と「存在効果」の意味根拠民法533条（同時履行の抗弁）判例の考え方: 同時履行の抗弁権を有している間は、たとえ履行期日が過ぎても、債務を履行しないことが「違法」ではないとされます。「存在効果」とは？通常、権利は「私はこの権利を使います！」と相手に伝えて初めて効果が出るものが多いですが、同時履行の抗弁権は違います。主張しなくてもOK: 裁判外では、口に出して「抗弁権を使います」と言わなくても、権利を持っているだけで履行遅滞の責任（損害賠償など）を免れます。これを「存在効果」と言います。2. なぜこのルールが存在するのか（趣旨）このルールの根拠は、一貫して**「公平（信義則）」**にあります。牽連性（けんれんせい）： 双務契約（売買など）では、互いの義務は「セット」です。相手が動かないのに自分だけが動かなければならない、あるいは遅れたからといって罰金を払わされるのは不当だからです。不当な利益の防止： もし抗弁権があっても遅滞責任が生じるとしたら、売主はわざと商品を持っていかずに待ち、買主から「遅延損害金（利息）」を巻き上げることができてしまいます。これを防ぐためのバリアです。3. 【最重要】「履行遅滞」と「消滅時効」の対比表行政書士試験で最もミスが出やすいのが、これら2つの関係性です。ここを完璧に区別することが合格への近道です。比較項目同時履行の抗弁権の影響結論履行遅滞（責任）影響する（バリアになる）抗弁権がある間は、遅滞にならない。（損害賠償は不要）消滅時効（期間）影響しない（進む）抗弁権があっても、時効は進行する。（権利は消えていく）4. 相手を「履行遅滞」にするには？（抗弁権の切断）自分が「相手が遅れているから損害賠償を請求したい！」と思った場合、どうすればいいでしょうか？答えは、**「履行の提供（りこうのていきょう）」**をすることです。アクション： 「はい、私は準備万端ですよ（車を持ってきましたよ／通知しましたよ）」とアピールします。効果： これにより、相手の同時履行の抗弁権を一時的に奪う（切断する）ことができます。結果： この瞬間から、相手は「履行遅滞」に陥り、あなたは遅延損害金を請求できるようになります。受験生へのアドバイス「同時履行の抗弁権」という言葉を見たら、頭の中に**「強力な守備バリア」**をイメージしてください。このバリアは、**「相手を責めるとき（遅滞責任）」**には最強の盾になります。しかし、**「自分の権利を守るとき（時効）」**には、バリアの中に閉じこもっていると、外の時間はどんどん進んで権利が腐って（時効消滅して）しまいます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -19554,7 +21943,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "債務不履行を理由とする契約の解除に関する次の記述のうち、民法の規定および判例に照らし、妥当なものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠条文：民法541条但書\n原則：催告による解除（541条本文） 債務者が履行しない場合、相当の期間を定めて催告し、その期間内に履行がなければ解除できます。\n\n例外：解除の制限（541条但書） 「ただし、その期間を経過した時における債務の不履行がその契約及び取引上の社会通念に照らして軽微であるときは、この限りでない（解除できない）」と規定されています。\n\n■ 周辺知識：何をもって「軽微」と判断するか？\n受験生が混乱しないよう、判断のポイントを整理しましょう。\n\n「金額」だけで決まるわけではない 例えば、1,000万円の売買で残り1万円が未払いの場合、金額比率（0.1%）としては軽微に見えます。\n\n「契約の目的」が重要 しかし、その1万円が「特注品の肝心なパーツ代」であり、それがないと契約した意味がないような場合は、軽微とはみなされない可能性があります。\n\n社会通念での判断 付随的な義務（例えば、商品の説明書の送付が遅れただけ等）の不履行も、一般的には「軽微」と判断されやすいです。\n\n■ 関連過去問チェック\n【令和3年度 第28問 肢3】 「債務の不履行がその契約及び取引上の社会通念に照らして軽微であるときは、債権者は、相当の期間を定めてその履行を催告し、その期間内に履行がないときであっても、契約の解除をすることができない。」\n\n→ 答え：◯ 本問と同じく、改正民法の新設規定をストレートに問う問題です。\n\n💡 受験生へのアドバイス\n「解除は『最終手段（核兵器）』」だと教えましょう。 相手が99%義務を果たしているのに、残りの1%を理由に契約を全部白紙に戻してしまうのは、相手にとって酷すぎるし、社会全体の経済的損失も大きいです。 「ちょっとしたミスで、積み上げた契約を壊すことは許さないよ」という民法の優しさと厳しさのバランスを伝えてください。",
+        "memo": "1. 根拠条文民法542条1項（催告によらない解除）次に掲げる場合には、債権者は、前条の催告をすることなく、直ちに契約の解除をすることができる。2. 債務者がその債務の全部の履行を拒絶する意思を明確に示したとき。2. なぜこのルールが存在するのか（趣旨）法律は、**「無意味なステップを省略して、債権者を早く解放する」**という合理的な判断を下しています。催告の無意味さ： 本来、催告（「いついつまでにやってください」という最後通牒）は、債務者に「最後にもう一度チャンスを与える」ためのものです。しかし、債務者が自ら「絶対にやりません！」と宣言している場合、チャンスを与えても時間が過ぎるだけで、結果が変わる見込みはありません。債権者の早期救済： 債務者が拒絶しているのに、債権者に「相当の期間」を待たせるのは酷です。債権者は契約をさっさと解除して、他の業者に頼んだり、損害賠償を請求したりする次のステップへ進めるようにすべきです。3. 関連知識のまとめ（催告が「不要」なケース）行政書士試験では、**「催告が必要（541条）」か「催告が不要（542条）」**かの区別が非常に頻繁に問われます。以下の表で「催告がいらないケース」を整理しましょう。【重要】無催告解除ができる主なケース（民法542条）ケース内容のポイント履行不能債務の全部（または一部）が物理的・法的にできなくなった。明確な拒絶（今回のケース） 債務者が「絶対にやらない」と明言した。定期行為の遅延クリスマスケーキや結婚式の衣装など、その時でないと意味がない契約で、期限を過ぎた。不能の予見催告をしても、契約の目的を達するほどの履行がされる見込みがないことが明らかなとき。4. 試験対策のワンポイント：一部拒絶の場合今回の問題は「全部」の拒絶でしたが、「一部」の拒絶についても知っておくと完璧です。一部拒絶（542条1項3号）： 債務の一部が不能になったり、一部の拒絶を明確にした場合でも、**「残った部分だけでは契約の目的を達成できない」**のであれば、全部を無催告で解除できます。攻略のヒント問題文に**「拒絶する意思を明確に示した」というキーワードが出てきたら、反射的に「即座に（催告なしで）解除OK！」**と判断できるようにしておきましょう。",
         "slots": [],
         "refId": "",
         "isBonus": true,
@@ -19587,17 +21976,26 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠条文：民法541条但書\n原則：催告による解除（541条本文） 債務者が履行しない場合、相当の期間を定めて催告し、その期間内に履行がなければ解除できます。\n\n例外：解除の制限（541条但書） 「ただし、その期間を経過した時における債務の不履行がその契約及び取引上の社会通念に照らして軽微であるときは、この限りでない（解除できない）」と規定されています。\n\n■ 周辺知識：何をもって「軽微」と判断するか？\n受験生が混乱しないよう、判断のポイントを整理しましょう。\n\n「金額」だけで決まるわけではない 例えば、1,000万円の売買で残り1万円が未払いの場合、金額比率（0.1%）としては軽微に見えます。\n\n「契約の目的」が重要 しかし、その1万円が「特注品の肝心なパーツ代」であり、それがないと契約した意味がないような場合は、軽微とはみなされない可能性があります。\n\n社会通念での判断 付随的な義務（例えば、商品の説明書の送付が遅れただけ等）の不履行も、一般的には「軽微」と判断されやすいです。\n\n■ 関連過去問チェック\n【令和3年度 第28問 肢3】 「債務の不履行がその契約及び取引上の社会通念に照らして軽微であるときは、債権者は、相当の期間を定めてその履行を催告し、その期間内に履行がないときであっても、契約の解除をすることができない。」\n\n→ 答え：◯ 本問と同じく、改正民法の新設規定をストレートに問う問題です。\n\n💡 受験生へのアドバイス\n「解除は『最終手段（核兵器）』」だと教えましょう。 相手が99%義務を果たしているのに、残りの1%を理由に契約を全部白紙に戻してしまうのは、相手にとって酷すぎるし、社会全体の経済的損失も大きいです。 「ちょっとしたミスで、積み上げた契約を壊すことは許さないよ」という民法の優しさと厳しさのバランスを伝えてください。",
-          "■ 根拠条文：民法598条1項借主による返還（民法598条1項）借主は、いつでも借用物の返還をすることができます。これは、期間の定めがあるかどうかに関わりません。対照的な貸主のルール（民法597条、598条2項）貸主側からは「いつでも」とはいきません。期間の定めがある場合：期間満了まで待つのが原則。目的の定めがある場合：その目的に従った使用が終わるまで待つのが原則。何も決めていない場合：いつでも返還請求できる。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：賃貸借との決定的な違い受験生が最も混乱するのは、「貸主からの解除」と「賃貸借との比較」です。項目使用貸借（タダ）賃貸借（有料）借主からの解除いつでもOK原則、期間内は不可（解約権の留保が必要）貸主からの解除期間・目的があれば制限あり正当事由が必要（借地借家法）死亡による終了借主の死亡で終了する（597条3項）借主が死んでも相続される義務の程度善管注意義務善管注意義務重要ポイント：使用貸借は「貸主の好意」で成り立っているため、借主が死んだら契約は終わります。 一方で、借主は恩恵を受けている立場なので、いつでも返せるという特権（？）があります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第31問 肢3】（一部改変）「使用貸借契約において、返還の時期の定めがある場合であっても、借主は、いつでも解約の申し入れをすることができる。」→ 答え：◯本問と同じ知識です。賃貸借のルール（期間内解約の制限）と混同させようとする定番の引っかけです。　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『タダより高いものはない』というが、民法では『タダなら返すのは自由』」と教えましょう。親切で貸してくれている貸主に対し、「返したい」と言っている借主を無理やり縛り付けておく必要はない、という理屈です。ただし、**「借主が死んだら終わり」**という点は、賃貸借との最大の違いとしてセットで叩き込んでください。相続の計算問題などでここを知らないと致命傷になります！",
-          "■ 根拠条文：民法616条の2賃貸借の終了（民法616条の2）「賃借物の全部が滅失その他の事由により使用及び収益をすることができなくなったときは、賃貸借は、これによって終了する」と明記されました。改正のポイント改正前は、不可抗力で滅失した場合にどうなるか明文がありませんでしたが、現在は「使えないなら終わり」というルールが確定しています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：一部だけ使えなくなった場合は？ここが試験で最も狙われる「お化け」ポイントです。「全部」と「一部」を比較して覚えさせましょう。状況賃料（おカネ）契約の存続全部滅失支払い不要当然終了一部滅失当然に減額される（611条1項）原則存続（目的達成不能なら借主から解除可）重要：賃料の減額について改正前は「減額を請求できる」でしたが、現在は「当然に（自動的に）減額される」となっています。「請求しなきゃ安くならない」という引っかけ選択肢には要注意です！　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和3年度 第31問 肢ア】「賃借物の全部が滅失その他の事由により使用及び収益をすることができなくなったときは、賃貸借は、それによって終了する。」→ 答え：◯改正後の条文知識をストレートに問う問題です。　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「賃貸借契約の魂は『貸して、使う』ことにある」と教えましょう。物がなくなって「使う」ことが不可能になれば、契約という器の中身（魂）が消えたことになります。だから、わざわざ「やめます」と言わなくても、契約そのものが消滅するのです。あわせて、**「全部なら終了、一部なら値引き」**というリズムで暗記させると、混乱がなくなります。",
-          "■ 根拠条文：民法641条注文者による任意解除（民法641条）請負人が仕事を完成しない間は、注文者は、いつでも損害を賠償して契約の解除をすることができます。なぜ注文者だけ？請負契約は「仕事の完成」を目的としています。もし注文者にとってその仕事が途中で不要になった場合（例：建てる予定の家がいらなくなった）、無理に完成させても社会的な無駄が生じます。そのため、注文者にだけ「損害を払えばやめられる」という特権が与えられています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：ここが試験のひっかけポイント！受験生が「民法お化け」になるために、解除の「主体」と「時期」を整理させましょう。項目注文者からの解除請負人からの解除完成前いつでも可（損害賠償が必要）原則不可（債務不履行等が必要）完成後原則不可（契約不適合があっても解除不可の場合あり※）不可※注意：仕事が完成した後の解除（559条、541条）かつては「建物等の完成後は解除できない」という規定がありましたが、現在は削除されています。ただし、建物のような巨大な工作物の場合、完成後の解除は「軽微な不履行」とみなされ、解除が制限される可能性が極めて高いです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成29年度 第32問 肢4】「請負人が仕事を完成しない間は、注文者は、いつでも損害を賠償して契約の解除をすることができる。」→ 答え：◯まさに条文通りの知識です。「請負人」と「注文者」を入れ替えて出すのが定番の引っかけパターンです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「注文者は『お客様』なので、お金を払えばわがままが言える」と教えましょう。「やっぱりこの工事いらない！」と言えるのはお金を払う側だけです。逆に、請負人は「仕事を引き受けたプロ」なので、途中で勝手に放り出す（損害を払ってやめる）ことは許されない、とイメージさせると主語の間違いがなくなります。",
-          "■ 根拠条文：民法651条1項解除の自由（民法651条1項）「委任は、各当事者がいつでもその解除をすることができる」と規定されています。なぜ「いつでも」なのか？委任契約は、お互いの**「強い信頼関係」**の上に成り立っています。「この人に頼みたい（委任者）」「この人のために働きたい（受任者）」という気持ちがなくなったのに、無理やり契約に縛り付けておくのは、事務処理の質を下げ、双方にとって不利益だからです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：解除できるが「損害賠償」が必要なケース「いつでも解除できる」からといって、相手に迷惑をかけてもいいわけではありません。ここが試験で狙われます！損害賠償が必要な2つのパターン（651条2項）相手方に不利な時期に解除したとき委任者の利益を目的とする委任において、受任者が解除したとき※ただし書きの重要性！ただし、**「やむを得ない事由」**があるときは、上記の時期や目的であっても、損害賠償をせずに解除できます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 比較表：請負 vs 委任（任意解除のルール）受験生が最も混乱するポイントを整理しました。契約類型いつでも解除できる人条件請負注文者のみ損害を賠償すればOK委任双方（委任者・受任者）原則自由（不利な時期などは賠償が必要）■ 関連過去問チェック【平成28年度 第32問 肢4】「委任契約においては、当事者の一方が相手方に不利な時期に委任の解除をしたときは、その解除がやむを得ない事由によるものであっても、相手方に対してその損害を賠償しなければならない。」→ 答え：×**「やむを得ない事由」**がある場合は、不利な時期であっても賠償は不要です。ここが「民法お化け」への分岐点です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「委任は『恋愛』、請負は『仕事』」と教えましょう。委任（恋愛）は、どちらかの気持ちが冷めたら「いつでも」別れを切り出せます。ただし、結婚式の直前（不利な時期）に別れるなら慰謝料（損害賠償）を払いなさい、というルールです。請負（仕事）は、プロとして「完成」を約束しているので、請負人から勝手にやめることはできません。",
-          "■ 根拠条文：民法657条の2第2項・第3項原則（諾成契約化）：現在の民法では、物を渡さなくても「預かります」「お願いします」という合意だけで寄託契約は成立します（657条）。受寄者による解除（657条の2第2項）：無報酬の受寄者は、寄託物を受け取るまでは、いつでも契約の解除ができます。書面による例外（657条の2第3項）：ただし、**「書面による寄託」**については、この任意解除の規定は適用されません。つまり、書面で約束した以上は、たとえタダであっても、受け取る前に勝手に解除することはできなくなります。　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：寄託者（預ける人）はどうなの？「預ける側」と「預かる側」でルールが違うのが面白いところです。当事者受け取る前の解除（無報酬）受け取った後の返還請求寄託者（預ける人）いつでも解除OK（書面でもOK）いつでも返還請求OK（662条）受寄者（預かる人）原則解除OK（※書面なら不可）やむを得ない事由が必要（663条）ポイント：預ける側（寄託者）は常に最強です。書面があろうがなかろうが、いつでも「やっぱりやめた」と言えますし、預けた後も「今すぐ返して」と言えます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【類題】「無報酬の寄託において、受寄者は、寄託物を受け取った後であっても、いつでも理由を問わず契約を解除して寄託物を返還することができる。」→ 答え：×預かった後は、期間の定めがない場合でも、受寄者から返すには「やむを得ない事由」が必要です（663条2項）。「受け取る前」と「受け取った後」でルールが変わります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『タダで預かる』という親切心への逃げ道」と教えましょう。「いいよ、タダで預かってあげるよ」と軽く言ったものの、やっぱり面倒になった場合、物を預かる前ならキャンセルを認めてあげよう、というのが民法の配慮です。しかし、「書面」を書くということはそれなりの覚悟があるはず。その場合は「親切心だから」という言い訳（解除）を封じる、という理屈です。",
-          "■ 根拠条文：民法550条書面によらない贈与の撤回（民法550条本文）書面によらない贈与は、各当事者が撤回（解除）することができます。これは「うっかり口を滑らせた」ケースを保護するためです。履行完了による制限（民法550条但書）ただし、**「履行の終わった部分」**については撤回できません。すでにあげてしまったものを「やっぱり返せ」とは言えない、というルールです。　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「履行が終わった」とはどの時点か？試験では「何をもって履行完了とするか」が具体的に問われます。ここが受験生の腕の見せ所です。目的物の種類履行が終わったとみなされる時（判例）動産（時計、車など）引渡し（手渡した）があったとき。不動産（土地、建物）引渡し または 移転登記 のいずれかがあったとき。重要ポイント：不動産の場合、登記がまだでも「鍵を渡して引越しが終わった（引渡し）」のであれば、もう撤回はできません。逆に、まだ住んでいなくても「名義を変えた（登記）」なら、それで履行完了です。　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成25年度 第30問 肢1】「書面によらない贈与において、不動産の受贈者が当該不動産の所有権移転登記を受けたときは、当該不動産の引渡しを受けていなくても、当該贈与の撤回をすることができない。」→ 答え：◯判例（最判昭40.3.26）の知識を問う超定番問題です。「登記か引渡しのどちらか早い方」と覚えましょう。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『書面』はハンコと同じ重みがある」と教えましょう。書面がある場合： 指切りげんまんと同じ。履行前でも後でも、勝手にやめる（撤回）ことはできません。書面がない場合： まだ渡していないなら「やっぱり冗談！」と言えます。でも、「実際に渡す」という行動まで起こしたなら、それは書面を書いたのと同じくらい本気だったとみなされ、もう後戻りはできません。"
+          "1. 根拠条文民法542条1項（催告によらない解除）次に掲げる場合には、債権者は、前条の催告をすることなく、直ちに契約の解除をすることができる。2. 債務者がその債務の全部の履行を拒絶する意思を明確に示したとき。2. なぜこのルールが存在するのか（趣旨）法律は、**「無意味なステップを省略して、債権者を早く解放する」**という合理的な判断を下しています。催告の無意味さ： 本来、催告（「いついつまでにやってください」という最後通牒）は、債務者に「最後にもう一度チャンスを与える」ためのものです。しかし、債務者が自ら「絶対にやりません！」と宣言している場合、チャンスを与えても時間が過ぎるだけで、結果が変わる見込みはありません。債権者の早期救済： 債務者が拒絶しているのに、債権者に「相当の期間」を待たせるのは酷です。債権者は契約をさっさと解除して、他の業者に頼んだり、損害賠償を請求したりする次のステップへ進めるようにすべきです。3. 関連知識のまとめ（催告が「不要」なケース）行政書士試験では、**「催告が必要（541条）」か「催告が不要（542条）」**かの区別が非常に頻繁に問われます。以下の表で「催告がいらないケース」を整理しましょう。【重要】無催告解除ができる主なケース（民法542条）ケース内容のポイント履行不能債務の全部（または一部）が物理的・法的にできなくなった。明確な拒絶（今回のケース） 債務者が「絶対にやらない」と明言した。定期行為の遅延クリスマスケーキや結婚式の衣装など、その時でないと意味がない契約で、期限を過ぎた。不能の予見催告をしても、契約の目的を達するほどの履行がされる見込みがないことが明らかなとき。4. 試験対策のワンポイント：一部拒絶の場合今回の問題は「全部」の拒絶でしたが、「一部」の拒絶についても知っておくと完璧です。一部拒絶（542条1項3号）： 債務の一部が不能になったり、一部の拒絶を明確にした場合でも、**「残った部分だけでは契約の目的を達成できない」**のであれば、全部を無催告で解除できます。攻略のヒント問題文に**「拒絶する意思を明確に示した」というキーワードが出てきたら、反射的に「即座に（催告なしで）解除OK！」**と判断できるようにしておきましょう。",
+          "1. 根拠条文民法542条1項1号（無催告解除）次に掲げる場合には、債権者は、前条の催告をすることなく、直ちに契約の解除をすることができる。債務の全部の履行が不能であるとき。民法543条（債務者の攻めに帰すべき事由がない場合の解除）債務の不履行が債務者の責めに帰することができない事由によるものであるときであっても、前二条（催告解除・無催告解除）の規定による解除をすることを妨げない。2. なぜこのルールが存在するのか（趣旨）改正後の民法では、解除という制度の役割を**「債務者を罰すること」ではなく「債権者を契約の拘束から解放すること」**と定義し直しました。契約目的の不達： 家が火事で燃えてしまった（不可抗力による滅失）場合、売主Aが悪いかどうかに関わらず、買主Bは「家を手に入れる」という契約の目的を絶対に達成できません。拘束からの解放： 目的が達成できないことが確定しているのに、買主Bにいつまでも「代金を払う義務（契約の拘束）」を負わせ続けるのは不当です。たとえ売主に落ち度（帰責事由）がなくても、買主は契約を白紙に戻して、他で家を探すなどの次の行動に移れるようにすべきだ、と考えられています。3. 関連知識のまとめ：改正前後の「解除」と「危険負担」ここは試験で非常に狙われる「改正の目玉」です。以下の表で、「不可抗力で物が壊れた時」の買主の武器を整理しましょう。項目旧民法（改正前）新民法（現在）解除の可否不可（売主に過失が必要）可能（過失がなくてもOK）危険負担の扱い買主が代金を払う義務あり（債権者主義）買主は代金の支払を拒める（536条1項）損害賠償不可（売主に過失が必要）不可（これは今も同じ。過失が必要）【合格者の重要ポイント】「解除」は売主の過失がなくてもできる。「損害賠償」は売主の過失がないとできない。この「解除と損害賠償の切り分け」が、令和以降の試験の肝です。4. 試験対策のワンポイント：唯一解除できないケースただし、買主Bが解除できない例外が一つだけあります。民法543条但書： その履行不能が**「債権者（買主B）の責めに帰すべき事由」**によるものであるときは、買主から解除することはできません。例： 買主が引渡し前に勝手に家に入り込んでタバコの不始末で燃やしてしまった場合。自業自得なので、この場合は解除できません。受験生へのアドバイス「不可抗力の履行不能 ＝ 解除できない」という選択肢は、**「旧民法時代のひっかけ」**です。現在の民法では、**「物がなくなった以上、誰が悪いかは関係ない。契約は終わりにできる！」**とシンプルに覚えてください。この「解除権の発生に帰責事由は不要」という原則は、記述式での「解除できるか？」という問いに対しても自信を持って「できる」と答えるための必須知識です。",
+          "1. 根拠となる判例最高裁判例（昭和28年7月28日 他多数）判例は、賃貸借契約のような継続的な信頼関係を基礎とする契約において、**「賃借人の行為が賃貸人に対する著しい背信行為（裏切り）にあたり、もはや信頼関係が破壊されて契約の継続が著しく困難になった」と認められる場合には、賃貸人は催告をすることなく（無催告で）**直ちに契約を解除できるとしています。結論： 設問の「催告しなければ……解除することができない」という部分は、この判例法理に反するため、誤りとなります。2. なぜこのルールが存在するのか（趣旨）民法の原則（541条）では「まずは催告（チャンスを与える）」がルールですが、なぜ賃貸借では「いきなり解除」が許されるのでしょうか。催告の無意味さ： 「信頼関係が破壊された」という状態は、単にうっかり支払いを忘れたといったレベルではなく、人間関係の根底が崩れた状態を指します。そんな相手に「態度を改めて」と催告したところで、もはやまともな契約関係の継続は期待できないため、催告というステップを省くことが認められます。賃貸人の保護： 賃貸借は自分の大切な財産（建物）を他人に使わせる契約です。それを著しく不当な方法で使われ、信頼を裏切られた大家さんに、なお「チャンスを与えて我慢しろ」と強いるのは酷であると考えられています。3. 関連知識のまとめ：解除の3パターン行政書士試験では、賃貸借の解除について以下の3つのグラデーションを理解しておくことが合格への鍵です。賃借人の不誠実さ催告の要否判例のスタンス① 軽微な違反解除不可多少の遅れや違反程度では、信頼関係は壊れていないとして解除を認めない。② 通常の不履行催告が必要1〜2ヶ月の賃料不払いなど。まずは「払え」と催告し、それでもダメなら解除。③ 著しい背信行為催告不要（即解除）（今回のケース） 無断転貸や著しい用法違反。信頼が壊れたら即レッドカード。4. 試験での重要ポイント：無断転貸とのリンクこの「信頼関係破壊の法理」が最もよく登場するのは、**「無断転貸（むだんてんたい）」**の場面です。条文（612条）： 大家に無断でまた貸ししたら、大家は解除できる。判例： 無断転貸があっても、それが「大家に対する背信行為と認めるに足りない特段の事情（例：実の息子に住ませた等）」がある場合は、大家は解除できない。攻略のアドバイス「解除」というキーワードが出たときは、常に**「信頼関係が壊れているか？」**を判断基準にしてください。壊れている ＝ 催告なしで解除OK壊れていない ＝ 解除不可、または催告が必要この「信頼関係破壊の法理」は、記述式試験で「なぜ催告なしに解除できるのか？」といった理由を問う問題でも頻出です。",
+          "1. 根拠となる判例最高裁判例（昭和51年2月25日）判例は、他人物売買において契約が解除された場合であっても、買主は売主に対し、目的物の返還とともに、「使用利益」を返還する義務を負うと判示しています。結論： 設問の「使用利益の返還義務を負わない」という部分は、この判例の考え方に反するため、誤りとなります。2. なぜこのルールが存在するのか（趣旨）「売主が本当の持ち主ではない（他人物売買）」という特殊な状況でも、なぜ使用利益を返さなければならないのでしょうか。その理由は、契約解除における**「公平な清算」**にあります。原状回復の徹底： 契約が解除されると、当事者は「契約が最初からなかった状態」に戻す義務を負います（民法545条1項）。買主が目的物を使っていた場合、その「使ったことによる得（使用利益）」は、本来買主の手元に残るべきものではありません。「得」の公平な分配： 売主が代金を返還する際には、受け取った時からの「利息」を付けて返さなければなりません（民法545条2項）。これに対し、買主だけが「目的物を無料で使い放題だった」という利益を保持し続けるのは、双務契約の清算として不公平です。売主の権限は関係ない： たとえ売主が所有権を持っていなかったとしても、買主が目的物を占有し、使用できたのは「売主との契約」があったからです。その契約が白紙になった以上、その契約に基づいて得た利益はすべて吐き出すのが、原状回復の基本的な考え方です。3. 関連知識のまとめ：原状回復の中身契約解除の場面で、それぞれが「何を返すべきか」を整理しておきましょう。試験ではここがセットで問われます。【重要】解除による原状回復（民法545条）返還するもの具体的な内容根拠受領した「金銭」利息を付けて返還する。民法545条2項受領した「物」そのままの状態で返還する。民法545条1項「果実・使用利益」使用料相当額を返還する。民法545条3項・判例4. 試験対策のワンポイント：ひっかけのパターンこの論点では、以下のような「ひっかけ」に注意してください。ひっかけ： 「他人物売買において、真の所有者から返還請求を受けた場合、買主は売主に対して使用利益を返す必要はない」対策： これも**×**です。真の所有者との関係は別途解決すべき問題であり、解除した売主との契約関係においては、依然として使用利益の返還義務が生じる、というのが判例のスタンスです。攻略のアドバイス「解除」という言葉が出たら、**「お互いに、もらったもの（利息や使用利益も含む）を全部出し合って、完全にゼロの状態に戻す」**とイメージしてください。「他人物だから」という理由は、この「ゼロに戻す作業」を止める理由にはなりません。",
+          "1. 根拠条文民法541条（催告による解除）当事者の一方がその債務を履行しない場合において、相手方が相当の期間を定めてその履行の催告をし、その期間内に履行がないときは、相手方は、契約の解除をすることができる。ただし、その期間を経過した時における債務の不履行がその契約及び取引上の社会通念に照らして軽微であるときは、この限りでない。2. なぜこのルールが存在するのか（趣旨）このルールは、民法の基本原則である**「信義則（しんぎそく）」と「権利濫用の禁止」**を具体化したものです。不均衡の是正: 例えば、1,000万円の売買契約において、買主が999万円まで支払ったのに、残りの1万円の遅れを理由に契約をすべて白紙に戻せるとしたらどうでしょうか。買主が受けるダメージが、不履行の程度に対してあまりに大きすぎます。経済的合理性: ほとんど完成している取引を、ごくわずかな不備で解消してしまうのは、社会全体の経済活動としても非効率です。嫌がらせ解除の防止: わずかな落ち度を揚げ足取りのように使って契約を終わらせようとする行為を制限し、取引の安全を守る役割があります。3. 関連知識のまとめ：解除ができるかどうかの境界線試験対策として、「解除が認められるケース」と「制限されるケース」を整理しておきましょう。【重要】債務不履行による解除の可否不履行の程度催告の有無解除の可否ポイント全部不履行・重大催告あり可能（○）原則的なルール（541条本文）一部不履行（軽微）催告あり不可（×）（今回のケース） 541条但書による制限全部不能・明確な拒絶催告不要可能（○）無催告解除（542条）4. 試験でのひっかけポイント行政書士試験では、以下の2点に注意して問題文を読み取ってください。「軽微」の判断時期: 「催告をした時」ではなく、**「催告期間が経過した時」**の状態で判断されます。催告中に買主が頑張って大部分を支払ったのであれば、期間終了時に「軽微」となっていれば解除はできません。損害賠償との違い: 契約の解除は制限されますが、不足している代金の請求や、遅れたことに対する損害賠償（遅延損害金）の請求までは制限されません。攻略のアドバイス「軽微な不履行 ＝ 解除NG」というルールは、改正前は判例で認められていたものが、改正によって条文にしっかり書き込まれたものです。「契約を終わらせるというのは、最終手段（ラストリゾート）である」という民法の考え方をイメージしておくと、このルールの妥当性がスッと腑に落ちるはずです。",
+          "1. 善管注意義務（ぜんかんちゅういぎむ）特定物を引き渡す義務がある人は、引き渡すまでその物をしっかり管理しなければなりません。根拠（民法400条）：債務者は、引き渡しを終えるまで、**「善良な管理者の注意（善管注意義務）」**をもってその物を保存しなければなりません。ポイント：「自分の物と同じくらいの注意」では足りません。プロとして、あるいは社会通念上要求される高いレベルの注意力が求められます。もし中古住宅の引き渡し前に、売主が不注意で窓を割ってしまったら、善管注意義務違反となります。2. 現状引渡し（げんじょうひきわたし）のルール特定物の引き渡しについて、条文には少し紛らわしい表現があります。根拠（民法483条）：特定物の引き渡しが目的であるときは、債務者は、その引き渡しをすべき時の**「現状」**でその物を引き渡さなければなりません。【注意！】受験生が最も間違えるポイント「現状で渡せばいい」という言葉を、「壊れたまま渡して責任を免れる」という意味だと誤解しないでください。改正後のルール： 契約で「雨漏りがない」と約束したなら、たとえ特定物であっても、雨漏りした状態で渡せば**「契約不適合責任（562条〜）」**を負います。483条の真意： 「別の物を持ってくることはできない（その物自体を渡せ）」という意味に過ぎません。3. 特定物と不特定物（種類物）の比較試験では、**「中古車・中古不動産（特定物）」と、「新品のビール10ケース・新車（不特定物／種類物）」**の違いがよく問われます。項目特定物（中古不動産など）不特定物（新品の量産品など）代わりの物きかない。 その物自体を渡す。きく。 同じ型番の別物でOK。保存義務契約時から善管注意義務が発生。特定（「これにする」と決める）するまで発生しない。滅失した場合履行不能になり、解除の問題へ。別の在庫がある限り、履行不能にはならない。4. なぜ「中古不動産」が特定物なのか（趣旨）不動産は、隣り合った土地であっても「日当たり」「道路への接し方」「地歴」がすべて異なります。そのため、「代わりに隣の土地を渡します」というわけにはいきません。このように**「替えがきかない」**という性質が、特定物というルールの出発点になっています。試験対策アドバイス行政書士試験の記述式で「特定物」という言葉を使う際は、**「世界に一つしかない個性を備えた物」**というイメージを常に持ってください。今回の「同時履行の抗弁権」や「解除」の議論においても、特定物の不動産が滅失（火事で消失）したのか、それとも代わりのきく商品が届かないのかで、法律構成が微妙に変わってきます。",
+          "1. 根拠条文民法542条1項3号（無催告解除：一部）次に掲げる場合には、債権者は、催告をすることなく、直ちに契約の解除をすることができる。3. 債務の一部の履行が不能であるとき、又は債務者がその一部の履行を拒絶する意思を明確に示したとき。2. なぜこのルールが存在するのか（趣旨）このルールのキーワードは**「時間の節約」と「契約の合理化」**です。無駄な催告の排除: 100個注文したうちの20個が火事で燃えた（一部不能）、あるいは「20個は絶対に渡さない」と拒絶された場合、その20個分について「早く持ってこい」と催告するのは、時間の無駄でしかありません。残った部分の維持: 債権者にとって、「80個分は欲しいけれど、ダメな20個分の代金は払いたくない」というニーズがあります。一部解除を認めることで、契約全体を壊さずに、ダメな部分だけをスマートに切り捨てることができます。3. 【超重要】「全部解除」にランクアップする条件ここが試験で最も狙われる**「ひっかけ」ポイントです。「一部」がダメになったとき、「契約全部」をいきなり解除できるケース**があります。民法542条2項1号・2号債務の一部の履行が不能である場合において、残存する部分のみでは契約をした目的を達することができないとき。債務者がその一部の履行を拒絶する意思を明確に示した場合において、残存する部分のみでは契約をした目的を達することができないとき。例： 結婚式のウェディングドレスの「上下セット」を注文したが、上のパーツだけが届かない（一部不能・拒絶）。判断： 下のパーツだけあっても結婚式には出られません（契約の目的が達せられない）。結論： この場合、たとえ不履行が一部であっても、契約全部を無催告で解除できます。4. 関連知識の整理：一部解除と代金減額請求「一部がダメになった」という場面では、解除の他に**「代金減額請求（だいきんげんがくせいきゅう）」**という武器も登場します。制度使う場面性格一部解除 (542条)「その部分をなかったことにしたい」債務不履行の一般ルール代金減額請求 (563条)「足りない分、安くしてほしい」契約不適合責任の特則行政書士試験では、これらは「どちらかを選んで使える」関係にあると理解しておけばOKです。受験生へのアドバイス「一部解除」を判断する試験問題では、必ず以下の2ステップで考えてください。ステップ1： その部分は「不能」か「明確な拒絶」か？ → Yesなら、その部分だけ無催告解除OK。ステップ2： 残りの部分だけで、当初の目的は達成できるか？ → No（無理）なら、全部を無催告解除OK。「一部だから催告が必要」というひっかけに惑わされないよう、「不能と拒絶は即レッドカード（一部でも全部でも）」と覚えておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
-        "text": "契約の解除等に関する次のア～オの記述のうち、民法の規定および判例に照らし、妥当でないものの組合せはどれか。",
+        "text": "契約の解除等に関する次の記述のうち、民法の規定および判例に照らし、妥当でないものの組合せはどれか。",
         "choices": [
           "使用貸借契約においては、期間や使用収益の目的を定めているか否かにかかわらず、借主は、いつでも契約の解除をすることができる。",
           "賃貸借契約は、期間の定めがある場合であっても、賃借物の全部が滅失その他の事由により使用及び収益をすることができなくなったときには、当該賃貸借契約は終了する。",
@@ -19628,34 +22026,13 @@ export const SUBJECTS = {
         ],
         "answer": [
           2,
-          3
+          4
         ],
         "isReorder": false,
-        "explain": "契約の解除等に関する次のア～オの記述のうち、民法の規定および判例に照らし、妥当でないものの組合せはどれか。",
+        "explain": "契約の解除等に関する次の記述のうち、民法の規定および判例に照らし、妥当でないものの組合せはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠・判例：最判昭31.11.23「書面」のハードルは低い判例は、「贈与者が自己の財産を無償で与えるという意思が、書面によって確実に看取しうる程度の記載」があれば足りるとしています。不要な要素日付・押印： 不要です。目的物の詳細： 具体的に特定できれば、多少の省略があってもOKです。宛名： 第三者宛の手紙の中で「あいつにこれをやる」と書いてあっても、書面と認められたケースがあります（受贈者に直接送る必要もありません）。　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：ここが試験の急所！受験生が「民法お化け」になるために、他の「書面」が必要なケースと比較させましょう。項目贈与の書面遺言書（自筆）保証契約日付・押印不要（意思がわかればOK）必須（ないと無効）不要（書面自体は必須）趣旨軽率な贈与の防止偽造防止・確実な意思慎重な判断の促しポイント：贈与の書面は、「後で『冗談だった』と言い逃れさせないための証拠」というニュアンスが強いです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成28年度 第31問 肢2】「書面による贈与における書面は、贈与者が受贈者に対して直接に宛てたものであることを要しない。」→ 答え：◯判例（最判昭28.1.20）の知識です。自分から第三者に宛てた手紙や、親族間の合意書などでも「書面」になり得ます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は、形よりも『本気度』を見る」と教えましょう。「ハンコがないから無効だ！」と叫んでも、本人の筆跡で「あげます」と書いたメモがあれば、民法は「君、本気で書いたよね？」と逃がしてくれません。一方で、試験でよく出る**「自筆証書遺言」は、日付や押印が一つ欠けただけで無効**になります。この「贈与はゆるい、遺言はきつい」というコントラストを強調してください。",
-        "slots": [
-          {
-            "label": "ア",
-            "options": ""
-          },
-          {
-            "label": "イ",
-            "options": ""
-          },
-          {
-            "label": "ウ",
-            "options": ""
-          },
-          {
-            "label": "エ",
-            "options": ""
-          },
-          {
-            "label": "オ",
-            "options": ""
-          }
-        ],
+        "memo": "1. 根拠条文民法598条1項（使用貸借の解除）借主は、何時（いつ）でも、契約の解除をすることができる。この条文には「期間の定めがある場合を除く」といった制限がありません。したがって、期間を決めていても、目的を決めていても、借主はいつでも「返します」と言って契約を終わらせることができます。2. なぜこのルールが存在するのか（趣旨）このルールの根拠は、使用貸借が**「無償（タダ）」**であるという点にあります。借主に義務を強いない： タダで物を借りる行為は、借主にとって利益があるだけです。もし「期間を決めたからには最後まで借り続けろ」と強制すると、借主にとっては不要になった物を持ち続け、管理し続けなければならないという「負担」になってしまいます。貸主への不利益が少ない： 借主が「もう要らないから返したい」と言うことは、貸主にとっては「自分の物が予定より早く手元に戻ってくる」ということであり、通常は損害が発生しません。3. 【最重要】貸主側との比較（試験の超頻出ポイント）行政書士試験で本当に怖いのは、**「貸主（貸す側）」**からの解除ルールとの混同です。貸主からは「いつでも」とはいきません。貸主からの解除・終了ルール（民法597条・598条2項）契約の定め貸主から解除・終了できるタイミング期間の定めあり期間が満了したとき。期間なし・目的ありその目的を達成したとき（または達成に足りる期間が経過したとき）。期間なし・目的なしいつでも解除できる。（特例）借主が死んだとき（597条3項）、または借主が背信行為をしたとき。4. 賃貸借契約との違い「お金を払って借りる」賃貸借契約の場合、借主（賃借人）であっても期間の定めがあるなら、原則として「いつでも解除」はできません（特約がない限り）。使用貸借（タダ）： 借主はいつでもOK。賃貸借（有料）： 借主も期間に縛られる。この「無償か有償か」によるルールの違いを意識することが、正答への近道です。受験生へのアドバイス「使用貸借の借主」は、民法の中で最も甘やかされている（保護されている）存在の一人です。**「タダで借りてるんだから、返したい時はいつでも返していいよ」**というイメージを持ってください。",
+        "slots": [],
         "refId": "",
         "isBonus": true,
         "chunks": [],
@@ -19702,18 +22079,32 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠・判例：最判昭31.11.23「書面」のハードルは低い判例は、「贈与者が自己の財産を無償で与えるという意思が、書面によって確実に看取しうる程度の記載」があれば足りるとしています。不要な要素日付・押印： 不要です。目的物の詳細： 具体的に特定できれば、多少の省略があってもOKです。宛名： 第三者宛の手紙の中で「あいつにこれをやる」と書いてあっても、書面と認められたケースがあります（受贈者に直接送る必要もありません）。　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：ここが試験の急所！受験生が「民法お化け」になるために、他の「書面」が必要なケースと比較させましょう。項目贈与の書面遺言書（自筆）保証契約日付・押印不要（意思がわかればOK）必須（ないと無効）不要（書面自体は必須）趣旨軽率な贈与の防止偽造防止・確実な意思慎重な判断の促しポイント：贈与の書面は、「後で『冗談だった』と言い逃れさせないための証拠」というニュアンスが強いです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成28年度 第31問 肢2】「書面による贈与における書面は、贈与者が受贈者に対して直接に宛てたものであることを要しない。」→ 答え：◯判例（最判昭28.1.20）の知識です。自分から第三者に宛てた手紙や、親族間の合意書などでも「書面」になり得ます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は、形よりも『本気度』を見る」と教えましょう。「ハンコがないから無効だ！」と叫んでも、本人の筆跡で「あげます」と書いたメモがあれば、民法は「君、本気で書いたよね？」と逃がしてくれません。一方で、試験でよく出る**「自筆証書遺言」は、日付や押印が一つ欠けただけで無効**になります。この「贈与はゆるい、遺言はきつい」というコントラストを強調してください。",
-          "■ 根拠条文・判例：民法554条、最判昭47.5.25死因贈与への準用（民法554条）「贈与者の死亡によって効力を生ずる贈与については、その性質に反しない限り、遺言に関する規定を準用する」とされています。遺言の撤回自由（民法1022条）遺言は、遺言者が生きている間はいつでも自由に撤回できます（最終意思の尊重）。判例の考え方死後に効力が生じるという点では死因贈与も遺言も同じです。そのため、死ぬ間際まで「やっぱりあげるのをやめた」と言える自由を認めるべき（遺言の規定を準用すべき）とされています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：ただし「負担付」の場合は要注意！ここが試験で差がつくポイントです。何でもかんでも撤回できるわけではありません。死因贈与の種類撤回の可否（判例）理由普通の死因贈与いつでも撤回OK遺言と同じく最終意思を尊重する。負担付死因贈与（※）原則、撤回できない受贈者がすでに義務を果たしている場合、撤回を認めるのは不公平だから（最判昭57.4.30）。※負担付死因贈与の例：「死ぬまで介護してくれたら家をあげる」という約束で、受贈者が実際に長年介護を続けてきた場合。この場合、贈与者は「やっぱりやーめた」と勝手に撤回することはできません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成22年度 第31問 肢5】（一部改変）「死因贈与は、遺言による遺贈の規定が準用されるため、贈与者は、いつでも遺言の方式によらずにこれを取り消すことができる。」→ 答え：◯死因贈与は「契約」なので、取り消す（撤回する）時に「遺言の方式（公正証書など）」を守る必要はありません。意思表示だけでOKです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「死因贈与は、契約の皮を被った『遺言』である」と教えましょう。普通の贈与は「書面があれば逃げられない」のが原則ですが、死ぬ時の約束だけは別腹です。「人間、死ぬ直前まで考えが変わるものだよね」という民法の人間味が、この「いつでも撤回OK」というルールを作っています。ただし、「介護を頑張った人（負担付）」を裏切ることは許さない、という信義則のブレーキもセットで覚えさせてください。",
-          "■ 根拠条文：民法553条、541条双務契約の規定の準用（民法553条）「負担付贈与については、この節（贈与）に定めるもののほか、その性質に反しない限り、双務契約に関する規定を準用する」とされています。債務不履行解除（民法541条）双務契約の規定が準用される結果、相手が義務（負担）を履行しないときは、相当の期間を定めて催告し、それでも履行されなければ解除ができるという「普通の解除ルール」が適用されます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：普通の贈与との「2大違い」！受験生が「民法お化け」になるために、普通の贈与（無償）と負担付贈与（対価性あり）の違いを整理させましょう。項目普通の贈与負担付贈与解除のルール書面がなければいつでも可（550条）債務不履行（不履行）があれば可（553条）担保責任原則、負わない（551条1項）負担の限度で、売主と同じ責任を負う（551条2項）重要ポイント：普通の贈与は「書面があるかないか」が解除の鍵でしたが、負担付贈与は「相手が約束を守ったかどうか」が鍵になります。たとえ書面があっても、相手が負担を無視するなら解除できるのです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第30問 肢5】（類題）「負担付贈与において、受贈者がその負担である義務の履行を怠ったときは、贈与者は、当該贈与契約が書面によるものであっても、その解除をすることができる。」→ 答え：◯まさにこの知識です。書面の有無に関わらず、不履行があれば解除できるという点が「双務契約の準用」の肝です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「負担付贈与は、名前は『贈与』だけど、中身は『バーター取引』だ」と教えましょう。「家をあげる代わりに、死ぬまで面倒を見てね」という約束は、もはや純粋なプレゼントではありません。お互いに義務を負う（双務）関係だからこそ、相手がサボれば「じゃあ、あげるのもやめる！」という解除が認められるのです。",
-          "■ 根拠・判例：最判昭57.4.30原則（554条・1022条の準用）：通常の死因贈与であれば、遺言の規定が準用されるため、贈与者は「いつでも自由に」撤回できるのが原則です。判例による修正（信義則・公平）：しかし、負担付死因贈与において、受贈者がすでにその負担を履行した場合、贈与者に自由な撤回を認めると、受贈者の努力が無に帰してしまいます。これはあまりに不公平（信義則に反する）であるため、判例は**「特段の事情がない限り、撤回権の行使は認められない」**と判示しました。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「書面によらない贈与」との違い受験生が混乱しがちな「550条（書面によらない贈与）」との対比を整理しましょう。贈与のタイプ履行「前」の撤回履行「後」の撤回書面によらない贈与自由（550条本文）不可（550条但書）死因贈与（通常）自由（1022条準用）ー（死亡で効力発生のため）負担付死因贈与自由原則、不可（判例）ポイント：「履行が終わったなら、もう後戻りはさせない」というルールは、普通の贈与（550条）にも、この判例法理にも共通する民法の鉄則です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第32問 肢4】（類題）「負担付死因贈与の受贈者がその負担である義務を履行したとしても、贈与者は、特段の事情のない限り、当該死因贈与を撤回することができる。」→ 答え：×判例の結論を真っ向から否定する典型的な「バツ肢」です。「履行した受贈者は守られる」と覚えておけば即答できます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『頑張った人』を裏切らない」と教えましょう。「家をくれると言うから10年も介護したのに、最後に『やっぱりやめた』と言われる」……そんな悲劇を民法は許しません。「負担（義務）」を果たした以上、それはもう「契約」としての重みがMAXに達しているため、贈与者のわがまま（撤回権）にブレーキがかかるのです。",
-          "■ 根拠条文：民法536条1項債務者の危険負担（民法536条1項）「当事者双方の責めに帰することができない事由によって債務を履行することができなくなったときは、債権者は、反対給付の履行を拒むことができる」と明記されています。改正のポイント（重要！）以前は「代金債務が消滅する」という考え方でしたが、現在は「債務は消滅しないが、支払いを拒絶できる（抗弁権が発生する）」という構成に変わりました。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：解除との「二段構え」で覚える！不可抗力で商品（スイッチ2など）が燃えてしまった場合、買主には2つの選択肢があります。買主が取れる行動効果メリット履行拒絶（536条）支払いを拒むだけ。契約は存続。とりあえずお金を払わずに様子見ができる。契約解除（542条）契約を白紙にする。契約自体を終わらせて、他で買うことができる。ひっかけに注意：債権者の帰責事由（536条2項）もし、買主のせいで商品が壊れた（債権者に帰責事由がある）場合は、買主は代金の支払いを拒むことができません。当然ですよね。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和2年度 第29問 肢3】「当事者双方の責めに帰することができない事由によって債務を履行することができなくなったときは、債権者は、反対給付の履行を拒むことができる。」→ 答え：◯改正後の条文そのものの知識を問う問題です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『物が届かないなら、金は払わない』という当たり前の感覚を大事に！」と伝えましょう。大昔の民法（改正前）には、「家が火事で燃えても、買主は代金を払わなきゃいけない」という恐ろしいルール（特定物に関する物権者の危険負担）がありましたが、今は廃止されました。今は「届かないなら払わなくていい（履行拒絶）」「届かないなら契約をやめる（解除）」のどちらも選べる、買主に優しいルールになっています。",
-          "■ 根拠条文：民法562条、563条履行の追完請求（民法562条）引き渡された目的物が「種類、品質、数量」に関して契約内容に適合しない場合、買主は売主に対し、修理、代替物の引渡し、または不足分の引渡しを請求できます。代金減額請求（民法563条）買主が相当の期間を定めて追完を催告し、その期間内に追完がない場合に、その不適合の程度に応じて代金の減額を請求できます。損害賠償・解除（民法564条）追完請求や代金減額請求をしたとしても、別途、損害賠償請求や契約の解除をすることを妨げません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：4つの武器の「順序」と「性質」受験生が整理しやすいよう、買主が持っている「4本の剣」を分類しましょう。武器行使の条件帰責事由（売主の落ち度）① 追完請求契約内容と違うとき不要（なくても言える）② 代金減額請求催告しても直らないとき（※）不要（なくても言える）③ 契約解除催告しても直らないとき不要（なくても言える）④ 損害賠償契約内容と違うとき必要（売主に落ち度が必要！）（※）無催告で減額できる場合：追完が不能なときや、売主が「絶対に直さない」と明言しているときは、催告なしでいきなり減額請求が可能です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和3年度 第29問 肢3】「買主が売主に対し履行の追完を催告したが、その期間内に履行の追完がないときは、買主は、その不適合の程度に応じて、代金の減額を請求することができる。」→ 答え：◯「催告 → 減額」というステップを問う、改正後の基本知識です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『損害賠償』だけが特殊な武器だ」と教えましょう。「直して」「安くして」「やめる（解除）」の3つは、売主に落ち度がなくても言えます。なぜなら、契約通りの物が届いていないという「結果」だけで十分だからです。しかし、「損害賠償（お金をよこせ）」だけは、売主に落ち度（過失）がないとパンチを食らわせることができません。 この区別は超重要です。",
-          "■ 根拠条文：民法563条、564条代金減額請求（563条1項）買主が相当の期間を定めて履行の追完の催告をし、その期間内に履行の追完がない場合に、初めて「代金の減額」を請求できます。無催告で減額できる場合（563条2項：例外）以下の場合は、催告なしで直ちに減額請求が可能です。追完が不能なとき。売主が追完を拒絶する意思を明確に示したとき。損害賠償・解除との関係（564条）追完請求や代金減額請求権の行使は、損害賠償の請求や解除権の行使を妨げません。 これらは並行して、あるいは直ちに行うことが可能です。　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：武器の「種類」と「発動条件」を整理！受験生が混乱しないよう、買主が持つ4つの武器の特性を一覧表で示します。権利特徴催告の要否売主の帰責事由① 追完請求直して／代わりを頂戴不要（直ちに可）不要② 代金減額安くして原則、必要不要③ 契約解除契約を白紙にする原則、必要不要④ 損害賠償お金で解決不要（直ちに可）必要！　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和3年度 第29問 肢3】（一部改変）「買主が売主に対し履行の追完を催告したが、その期間内に履行の追完がないときは、買主は、その不適合の程度に応じて代金の減額を請求することができる。」→ 答え：◯「まずは催告」という代金減額請求の基本プロセスを問う問題です。　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『安くして（減額）』は、売主にチャンスを与えてから！」と教えましょう。売主からすれば、「直せば満額もらえるはずだったのに、いきなり勝手に安くされる」のは酷です。だから「まずは直すチャンス（催告）をあげる」のが民法の優しさです。一方で「損害賠償」は、契約違反によって現実に発生したマイナスを埋めるもの。これはチャンス云々の話ではないので、直ちに行使できるのです。",
-          "■ 根拠条文：民法562条2項、563条3項追完請求の制限（562条2項）不適合が「買主の責めに帰すべき事由」によるものであるときは、買主は追完請求（直して、代わりをよこせ）をすることができません。代金減額請求の制限（563条3項）同様に、不適合が「買主の責めに帰すべき事由」によるものであるときは、買主は代金減額請求をすることもできません。解除の制限（543条）一般原則として、債権者（買主）のせいで履行ができない場合は、解除も認められません。■ 周辺知識：「誰のせいか」で変わる結論受験生が整理しやすいよう、不適合の原因（誰に落ち度があるか）による権利の有無をまとめましょう。不適合の原因追完・減額・解除損害賠償売主の過失あり◯ 可能◯ 可能不可抗力（双方過失なし）◯ 可能× 不可（売主に過失がないため）買主の過失あり× 不可× 不可ポイント：「追完・減額・解除」の3点セットは、売主に過失がなくても（不可抗力でも）行使できます。しかし、「買主に過失がある」場合だけは、一転して何も言えなくなるという点が、試験で最も狙われるひっかけポイントです。　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和4年度 第29問 肢5】（類題）「目的物の不適合が買主の責めに帰すべき事由によるものであるときであっても、買主は、その不適合を理由として契約の解除をすることができる。」→ 答え：×自分のせいで壊れたのに「不適合だから解約する！」というのは認められません。解除も減額も同じ理屈でブロックされます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『自分で壊しておいて文句を言うな』という、民法以前の常識」を強調してください。民法562条や563条の権利は、あくまで「売主が契約通りの物を渡せなかった」という売主側の不備に対する救済策です。買主が落としたり、間違った使い方をしたりして生じた不適合についてまで売主に責任を取らせるのは、あまりに不公平ですよね。この「誰のせいでそうなったのか？」という視点は、民法全体を通じた超重要チェックポイントです。",
-          "■ 根拠条文：民法566条\n通知の期間制限（民法566条） 「種類または品質」に関する不適合については、買主がその不適合を知った時から1年以内にその旨を売主に通知しないときは、買主はその不適合を理由として、追完請求、代金減額請求、損害賠償請求および解除をすることができません。\n\n通知で足りる（判例の考え方を明文化） 1年以内にすべきことは「通知（お知らせ）」だけでOKです。裁判を起こしたり、具体的な計算を終えて請求したりすることまでは求められていません。\n\n■ 周辺知識：ここが試験に出る「3つの罠」！\n受験生を惑わすポイントを3つに整理しました。\n\n① 「数量」や「権利」の不適合は期間制限なし\nこの「1年以内の通知」という厳しいルールが適用されるのは、**「種類」と「品質」**の不適合だけです。 「数量が足りない（100個のはずが80個だった）」や「他人の物だった（権利の不適合）」については、この1年制限はありません。普通の消滅時効（知った時から5年など）にかかるだけです。\n\n② 売主が悪意・重過失なら期間制限なし\n売主が、渡す時に「あ、これ腐ってる（品質不適合）けど黙っておこう」と知っていた場合、そんな売主を保護する必要はありません。この場合、買主が1年以内に通知しなくても、売主は責任を免れません。\n\n③ 通知の後の時効\n1年以内に通知をしても、その後ずっと放置していいわけではありません。通知をした後も、通常の債権と同じく**「知った時から5年、引渡しから10年」**という消滅時効（166条1項）のルールは別途適用されます。\n\n■ 関連過去問チェック\n【令和4年度 第29問 肢3】 「売主が種類または品質に関して契約の内容に適合しない目的物を買主に引き渡した場合、買主がその不適合を知った時から1年以内にその旨を売主に通知しないときは、買主は、売主に対し、その不適合を理由として履行の追完を請求することができない。」\n\n→ 答え：◯ 「1年以内に通知しないと、追完請求できなくなる」という正しい知識を問う問題です。\n\n💡 受験生へのアドバイス\n「1年以内にするのは『とりあえずの電話』でいい！」と教えましょう。 「ここ、壊れてますよ！」と1年以内に伝えることさえできれば、具体的な損害額の計算や、裁判の準備はその後ゆっくり（時効の範囲内で）進めても大丈夫なのです。\n\nまずは**「種類・品質は知ってから1年以内にチクる（通知）」**というリズムで覚えさせましょう！",
-          "■ 根拠条文：民法594条1項（使用貸借）、616条（賃貸借による準用）使用貸借の用法遵守（594条1項）「借主は、契約又は目的物の性質によって定まった用法に従い、その物の使用及び収益をしなければならない」と定められています。賃貸借への準用（616条）この594条1項の規定は、賃貸借契約にも準用されています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：義務に違反したらどうなる？「民法お化け」を目指すなら、義務に違反した時のペナルティまでセットで整理しましょう。項目違反時のペナルティ解除権（594条3項）貸主は、借主が用法に違反した場合、直ちに契約を解除できます。損害賠償（600条）用法違反によって損害が出た場合、貸主は賠償請求ができます（返還から1年以内）。信頼関係破壊賃貸借の場合、著しい用法違反は「信頼関係の破壊」とみなされ、無催告解除の理由になります。ひっかけに注意：勝手に他人に貸すのは？用法遵守義務の一環として、借主は**「貸主の承諾なしに、第三者に使用・収益させること」**も禁止されています（594条2項）。これも使用貸借・賃貸借共通のルールです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第31問 肢2】（一部改変）「使用貸借において、借主は、契約又は目的物の性質によって定まった用法に従い、その物の使用及び収益をしなければならず、これに違反した場合には、貸主は契約の解除をすることができる。」→ 答え：◯本問と同じく、用法遵守義務とその違反による解除権を問う基本問題です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『借りた時の約束』を重んじる」と教えましょう。「住むために貸した部屋を勝手に店舗にする」「耕すために貸した畑に勝手に建物を建てる」……これらは、貸主が「この用途なら貸してもいい」と思った前提を崩す裏切り行為です。「タダで借りているから少しは自由にさせてよ」という甘えは通用しません。むしろ**「タダで借りているからこそ、より一層ルールを守って大切に使わなければならない」**という感覚が大切です。",
-          "■ 根拠条文：民法595条1項（使用貸借）、608条1項（賃貸借）使用貸借のルール（595条1項）「借主は、借用物の通常の必要費を負担する」とされています。タダで借りている以上、電球の交換代やちょっとした修繕費くらいは自分で出しなさい、という理屈です。賃貸借のルール（608条1項）「賃借人は、賃借物について賃貸人の負担に属する必要費を支出したときは、賃貸人に対し、直ちにその償還を請求することができる」とされています。賃料を払っている以上、家を維持する費用はオーナーが持つべきだからです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「必要費」と「有益費」の仕分け受験生が混乱しないよう、費用の種類による「返してもらえるタイミング」を整理しましょう。費用の種類内容返還請求のタイミング（賃貸借）必要費維持・保存に不可欠（雨漏り修理、水道修理など）直ちに（支出した瞬間）有益費物をグレードアップ（最新エアコン、断熱材など）契約終了時（価値が上がっている場合のみ）注意！使用貸借の場合（595条2項）使用貸借でも「特別の必要費（大修理など）」や「有益費」については、貸主から返してもらうことができます。あくまで借主負担なのは「通常の」必要費だけです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和3年度 第31問 肢ウ】「賃借人は、賃借物について賃貸人の負担に属する必要費を支出したときは、賃貸人に対し、直ちにその償還を請求することができる。」→ 答え：◯条文の文言そのままですが、これが「有益費」と入れ替えられたり、「直ちに」が「終了時」と入れ替えられたりして出題されます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『お礼（賃料）』を払っていないなら、維持費くらいは自分で出しなさい」と教えましょう。友達からタダで自転車を借りているなら、パンク修理代（必要費）くらいは自分で出すのがマナー（使用貸借）。レンタサイクルでお金を払っているなら、壊れたらお店の責任で直してもらうのが当然（賃貸借）。この感覚があれば、595条と608条を暗記する必要はなくなります。",
-          "■ 根拠条文：民法599条1項（使用貸借）、621条（賃貸借による準用）\n収去の権利と義務（民法599条1項） 「借主は、借用物を受け取った後にこれに附属させた物がある場合において、借用物を返還するときは、その附属させた物を収去する義務を負う」と規定されています。\n\n収去権（民法599条2項） 同時に、借主は「附属させた物を収去することができる」という権利も持っています。\n\n■ 周辺知識：壊さずに返さなければならない\n「自分のものだから持っていく！」のは自由ですが、それで借りたものをボロボロにしてはいけません。\n\n原状回復の義務 原則として、借りた時と同じ状態に戻して返さなければなりません（自然損耗や経年劣化は除きます）。\n\n分離不能な場合 もし、付けたものが建物と一体化してしまって、取り外すと建物を大きく傷つけるような場合は、収去が制限されたり、別の精算（有益費償還請求など）の話になったりします。\n\n■ 関連過去問チェック\n【令和4年度 第31問 肢エ】 「賃借人は、賃借物を受け取った後にこれに附属させた物がある場合において、賃借物を返還するときは、その附属させた物を収去する義務を負うが、附属させた物を収去することができないときは、その所有権は賃貸人に帰属する。」\n\n→ 答え：◯（前半部分） 改正によって「収去義務」が明文化されたことを問う内容です。\n\n💡 受験生へのアドバイス\n「『自分で付けたエアコンは、自分で外して持っていけ』が民法のルール」だと教えましょう。\n\n貸主からすれば、「勝手に付けたものを置いていかれても困る（ゴミになるかもしれない）」から、収去義務があります。\n\n借主からすれば、「高いお金で付けたんだから持っていきたい」から、収去権があります。\n\nこの「義務でもあり、権利でもある」というセットの感覚が、改正民法を理解するポイントです。"
+          "1. 根拠条文民法598条1項（使用貸借の解除）借主は、何時（いつ）でも、契約の解除をすることができる。この条文には「期間の定めがある場合を除く」といった制限がありません。したがって、期間を決めていても、目的を決めていても、借主はいつでも「返します」と言って契約を終わらせることができます。2. なぜこのルールが存在するのか（趣旨）このルールの根拠は、使用貸借が**「無償（タダ）」**であるという点にあります。借主に義務を強いない： タダで物を借りる行為は、借主にとって利益があるだけです。もし「期間を決めたからには最後まで借り続けろ」と強制すると、借主にとっては不要になった物を持ち続け、管理し続けなければならないという「負担」になってしまいます。貸主への不利益が少ない： 借主が「もう要らないから返したい」と言うことは、貸主にとっては「自分の物が予定より早く手元に戻ってくる」ということであり、通常は損害が発生しません。3. 【最重要】貸主側との比較（試験の超頻出ポイント）行政書士試験で本当に怖いのは、**「貸主（貸す側）」**からの解除ルールとの混同です。貸主からは「いつでも」とはいきません。貸主からの解除・終了ルール（民法597条・598条2項）契約の定め貸主から解除・終了できるタイミング期間の定めあり期間が満了したとき。期間なし・目的ありその目的を達成したとき（または達成に足りる期間が経過したとき）。期間なし・目的なしいつでも解除できる。（特例）借主が死んだとき（597条3項）、または借主が背信行為をしたとき。4. 賃貸借契約との違い「お金を払って借りる」賃貸借契約の場合、借主（賃借人）であっても期間の定めがあるなら、原則として「いつでも解除」はできません（特約がない限り）。使用貸借（タダ）： 借主はいつでもOK。賃貸借（有料）： 借主も期間に縛られる。この「無償か有償か」によるルールの違いを意識することが、正答への近道です。受験生へのアドバイス「使用貸借の借主」は、民法の中で最も甘やかされている（保護されている）存在の一人です。**「タダで借りてるんだから、返したい時はいつでも返していいよ」**というイメージを持ってください。",
+          "1. 根拠条文民法616条の2（賃借物の全部滅失等による賃貸借の終了）賃借物の全部が滅失その他の事由により使用及び収益をすることができなくなったときは、賃貸借は、これによって終了する。2. なぜこのルールが存在するのか（趣旨）賃貸借契約の本質は、**「お金を払って、物を使わせてもらう」**という点にあります。契約目的の消滅： 借りている建物が地震や火災で跡形もなく消えてしまった（全部滅失）場合、大家さんは「使わせる義務」を果たせませんし、借り主も「使う権利」を行使できません。当然終了（自動終了）： 目的物がこの世に存在しない以上、契約を維持する意味が全くありません。そのため、わざわざ「解除します」という意思表示（手続き）をしなくても、**「物がなくなった瞬間に、契約も自動的に終わる」**というルールにしています。期間の定めの有無は無関係： 「あと3年借りる契約だった」としても、家がなければ借りようがありません。契約期間の約束よりも、物理的な不可能が優先されます。3. 関連知識のまとめ：試験で狙われる「全部」と「一部」の差行政書士試験では、この「全部ダメになった時」と「一部だけダメになった時」の処理の違いが、非常によく対比で出題されます。【重要比較】賃借物の滅失・使用不能状況契約への影響賃料（家賃）への影響全部滅失（616条の2）当然に（自動で）終了支払義務も当然に消滅一部滅失（611条）存続（解除は条件付き）当然に（自動で）減額される一部滅失の場合の注意点（611条）賃料の当然減額： 改正前は「減額を請求できる」でしたが、現在は**「（その割合に応じて）当然に減額される」**となっています。請求しなくても、法律上勝手に安くなります。一部滅失による解除： 残った部分だけでは、借りた目的が達成できない（例：店舗の半分が壊れて営業不能）場合に限り、借り主から解除できます。受験生へのアドバイス「建物が消えた ＝ 契約も消えた」と、非常にシンプルに考えてOKです。ただし、一点だけ注意してください。建物がなくなって契約が終了しても、もしそれが「借り主のタバコの不始末」のせいであれば、契約は終わりますが、借り主は大家さんに対して**「損害賠償責任」**を負うことになります（善管注意義務違反）。「契約が消えること」と「損害賠償を払うこと」は別問題、と整理しておきましょう。",
+          "1. 根拠条文民法641条（注文者による契約の解除）請負人が仕事を完成しない間は、注文者は、いつでも損害を賠償して契約の解除をすることができる。2. なぜこのルールが存在するのか（趣旨）このルールは、**「不要なものを作らせない（経済的合理性）」と「請負人の損をさせない（公平）」**のバランスの上に成り立っています。注文者の便宜： 請負契約は「注文者のため」にされるものです。途中で気が変わったり、事情が変わってその仕事の結果（建物やシステムなど）が不要になった場合、無理やり完成させても社会的な資源の無駄になります。そのため、理由を問わず解除を認めています。請負人の保護： ただし、請負人は仕事を完成させて報酬を得るつもりで準備しています。いきなり解除された請負人が損をしないよう、注文者には**「損害（かかった費用 ＋ 得られるはずだった利益）」**を賠償することを義務付けています。完成後の制限： 仕事が完成した後は、請負人の義務は果たされています。ここから先は、完成した物を引き取り、報酬を支払うフェーズです。完成した後に「やっぱり要らないから解除（白紙）」という、この強力な解除権を認める必要はないため、641条は適用されなくなります。3. 関連知識のまとめ：完成後の解除はどうなる？仕事が「完成した後」に契約を解除したい場合、641条の「いつでも解除」ではなく、別のルールが適用されます。【重要】仕事完成後の解除（契約不適合責任）完成した物に**欠陥（契約不適合）**があった場合、解除できるかどうかのルールは以下の通りです。状況解除の可否重大な欠陥がある解除できる。（契約の目的が達成できない場合）欠陥が軽微である解除できない。（修補請求や損害賠償、代金減額で対応）（旧法との違い）以前は「建物」については解除できませんでしたが、現在は建物であっても、重大な欠陥があれば解除が可能です。4. 試験対策のワンポイント：一部完成と報酬（634条）令和2年の改正で追加された、非常に重要な条文もセットで覚えましょう。民法634条： 仕事が完成する前に解除された（または不能になった）場合でも、「すでに出来上がっている部分」が注文者にとって利益になるなら、請負人はその割合に応じて報酬を請求できます。例： 家の骨組みまで出来上がったところで解除された場合、その骨組みが無駄にならないなら、そこまでの代金は払わなければなりません。受験生へのアドバイス「請負の注文者は最強（いつでも解除できる）」と思われがちですが、試験では**「完成前か後か」**のチェックを忘れないでください。問題文に「仕事を完成しているか否かにかかわらず」とあれば、それは高確率で「ひっかけ」です。",
+          "1. 根拠条文民法651条1項（委任の解除）委任は、各当事者がいつでもその解除をすることができる。この条文により、委任者（頼む側）からも、受任者（引き受ける側）からも、理由を問わずいつでも契約を終わらせることができます。2. なぜこのルールが存在するのか（趣旨）このルールの根拠は、委任契約が**「高度な信頼関係」**の上に成り立っているという点にあります。相互信頼の原則: 委任は「この人なら信頼できる」という個人の資質を重視する契約です。もし信頼が揺らいだ場合、無理に契約を続けさせても良い結果（適切な事務処理）は生まれません。強制の不適当: 気が進まない受任者に無理やり仕事をさせたり、不信感を抱いた委任者に無理やり任せ続けたりするのは、双方にとって不幸であり、経済的にもマイナスです。無償が原則であった名残り: 歴史的に委任は「友人同士の助け合い（無償）」から始まったため、やめたい時はいつでもやめられるという自由が認められてきました。3. 関連知識のまとめ：解除に伴う「損害賠償」「いつでも解除できる」からといって、相手に迷惑をかけてもいいわけではありません。ここが試験での「ひっかけ」ポイントです。【重要】損害賠償が必要になるケース（651条2項）以下のケースで解除した側は、相手の損害を賠償しなければなりません（ただし、やむを得ない事由がある場合を除く）。相手方に不利な時期に解除したとき： 例：明日の裁判の準備を終えた弁護士を、前日にいきなり解任する場合。受任者の利益をも目的とする委任を解除したとき： 例：債権回収を任せ、その回収金から報酬を得る約束をしている場合。【注意！】 損害を賠償すれば、解除自体は有効です。「損害賠償をしないと解除できない」わけではありません。4. 「委任」と「請負」の解除ルールの比較前回の設問とセットで、以下の違いを完璧に暗記してください。比較項目委任 (Mandate)請負 (Work Contract)誰が解除できる？双方（委任者・受任者）注文者のみいつまでできる？いつでも仕事の完成前まで理由が必要？不要不要損害賠償は？不利な時期等の場合のみ常に必要受験生へのアドバイス「委任は、お互いにいつでもサヨナラできる」と覚えてください。行政書士試験では、**「受任者（引き受けた側）からもいつでも解除できる」**という点が、請負（請負人からは基本解除できない）との大きな違いとして狙われます。これで今回の「解除」に関する選択肢4つが揃いました。1（使用貸借）: 借主はいつでもOK（妥当）2（賃貸借）: 全部滅失なら自動終了（妥当）3（請負）: 完成後でもいつでも……はダメ（妥当でない）4（委任）: 双方がいつでもOK（妥当）「妥当でないもの」を選ぶ問題であれば、選択肢3が正解となりますね。",
+          "1. 根拠条文民法657条の2 第4項（書面による寄託等）前項の規定にかかわらず、無報酬の受寄者は、寄託物を受け取るまで、**いつでも契約の解除をすることができる。**ただし、受領を怠ったことによって寄託者に損害が生じたときは、その賠償をしなければならない。※第3項では、通常の（報酬がある）寄託について「相当の期間を定めて催告し、その期間内に引き渡さないときは解除できる」と定めていますが、第4項は無報酬の場合の特例を認めています。2. なぜこのルールが存在するのか（趣旨）このルールの根拠は、**「タダで引き受けた人の負担を軽くする」**という配慮にあります。無報酬＝サービス精神： 無報酬の寄託は、預かる側にとっては何の利益もありません。それなのに、預ける側（寄託者）がいつまでも物を持ってこないような状況で、ずっと「預かる義務」に縛られ続けるのは、受寄者にとってあまりに酷です。「いつでも」のセット： 条文上「いつでも解除できる」となっているため、引き渡しの時期（期限）が過ぎているかどうかに関わらず、物を実際に受け取る前であれば、受寄者は一方的に「やっぱりやめます」と言える強力な権利を持っています。書面による重み： 書面で契約した以上、本来は「引き渡しを受ける権利」も「預かる義務」も確定していますが、それでも「無報酬」であれば、受け取り前なら解除を認めるという、弱者（ボランティア精神のある人）保護の姿勢が表れています。3. 関連知識のまとめ：寄託の3つのパターン試験対策として、寄託契約の成立と解除のルールを整理しておきましょう。寄託の形態成立の要件受寄者の解除権（受け取り前）① 書面によらない寄託物を渡した時に成立成立前は契約自体がないので解除不要② 書面による「報酬あり」合意のみで成立催告（チャンスを与える）が必要③ 書面による「無報酬」合意のみで成立（今回のケース） いつでも直ちに解除OK4. 試験対策のワンポイント：寄託者（預ける側）の解除ちなみに、「預ける側（寄託者）」は、報酬があるかないかに関わらず、物を渡す前であればいつでも解除ができます（657条の2 第2項）。預ける側： いつでも解除OK。預かる側： 無報酬ならいつでも解除OK。報酬ありなら催告が必要。攻略のアドバイス「寄託（タダ）」と「使用貸借（タダ）」は、どちらも借りる側・預かる側の負担が重いため、「途中でやめる自由」が広く認められているという共通点があります。セットで覚えておくと、民法の「無償契約」に対する考え方がクリアになります。さて、今回の「契約の解除等」に関する5つの選択肢が出揃いました。使用貸借（借主）： いつでもOK（妥当）賃貸借（全部滅失）： 自動終了（妥当）請負（注文者）： 完成前ならOK（完成後も含む記述なので、不当）委任（双方）： いつでもOK（妥当）寄託（無報酬受寄者）： いつでもOK（妥当）「妥当でないものの組合せ」を問う問題であれば、選択肢3が含まれるものが正解になります。",
+          "1. 根拠条文民法598条2項（貸主による解除）貸主は、期間及び使用収益の目的を定めなかったときは、いつでも契約の解除をすることができる。民法597条2項（期間の定めがない場合の終了）当事者が使用貸借の期間を定めなかったときは、使用貸借は、借主が契約に定めた目的に従い使用及び収益を終えた時に終了する。2. なぜこのルールが存在するのか（趣旨）使用貸借は「タダ」で貸し借りする契約ですが、貸主の都合だけで振り回していいわけではありません。借主の期待（信頼）の保護: たとえタダであっても、「試験勉強のためにこの参考書を貸して」と目的を決めて借りた場合、借主は「試験が終わるまでは使える」と期待します。これを貸主が「やっぱり明日返せ」と気まぐれで言えるようにすると、借主が困ってしまうため、目的がある間は貸主からの解除を制限しています。「目的すら決めていない」なら貸主優先: 期間も目的も決めずに「とりあえず貸して」という状態（これを学説で**「大福帳的貸借」**などと呼びます）であれば、借主側に守るべき具体的な期待がないため、貸主の「いつでも返して」という権利を優先させます。3. 関連知識のまとめ：貸主が返せと言える3段階試験対策として、貸主がどのタイミングで返還を請求できるかを3段階で整理しましょう。契約の内容貸主が返還（解除）を請求できる時① 期間の定めあり期間が満了したとき。② 期間なし・目的あり目的を達成したとき。（または達成に足りる期間が経過したとき）③ 期間なし・目的なしいつでも解除して返還請求できる。4. 試験でのひっかけパターン行政書士試験の択一式では、以下のような表現で受験生を惑わせます。ひっかけ1： 「使用貸借において期間を定めなかったときは、貸主は当然にいつでも解除できる」対策： ×です。「目的」の有無をチェックしてください。ひっかけ2： 「目的を定めていても、相当の期間が経過すれば貸主は直ちに解除できる」対策： △（半分正解）です。目的を達成していなくても「達成に足りる期間」が過ぎれば解除できますが、「直ちに（いつでも）」ではありません。ひっかけ3： 「借主は、期間や目的を定めていてもいつでも解除できる」対策： **○（正しい）**です。前回解説した通り、**借主（借りる側）**は最強なので、いつでもOKです。受験生へのアドバイス使用貸借の問題が出たら、「誰が」解除しようとしているかを真っ先に確認してください。**借主（借りる側）**がやめたい ＝ 無条件でいつでもOK！**貸主（貸す側）**が返してほしい ＝ 期間や目的という「約束」に縛られる。この「貸主と借主の非対称性（アンバランスさ）」を理解することが、使用貸借をマスターするコツです。",
+          "1. 根拠条文民法597条3項（期間の定めがない場合の終了等）使用貸借は、借主の死亡によって、その効力を失う。2. なぜこのルールが存在するのか（趣旨）このルールの背景には、使用貸借が**「強烈な個人的信頼関係」に基づいた「タダ（無償）」**の契約であるという点があります。「あなただから」貸した： 貸主（大家さんなど）がタダで物を貸すのは、通常「借主本人が困っているから助けてあげよう」という個人的な厚意によるものです。相続を認めると貸主が困る： もし借主が死んだ後、その権利が相続人に引き継がれるとすると、貸主は「全然知らない借主の息子」などにタダで貸し続けなければならなくなります。これは貸主に酷な負担を強いることになるため、一代限りで終了させるルールになっています。3. 関連知識のまとめ：試験で狙われる「死」の対比行政書士試験の対策として、もっとも重要な**「賃貸借」**との比較を完璧に整理しましょう。ここが正答を分ける分水嶺です。【重要比較】当事者の死亡による契約の終了契約の種類借主が死亡したとき貸主が死亡したとき使用貸借（タダ）終了する（597条3項）終了しない（相続される）賃貸借（有料）終了しない（相続される）終了しない（相続される）【合格者の頭の中】「タダで借りてる権利は、死んだらおしまい（一代限り）」「お金を払って借りてる権利は、財産だから家族に引き継げる」とイメージすると、絶対に忘れません。4. 試験対策の注意点：貸主が死んだら？ひっかけ問題でよく出るのが**「貸主（貸した側）が死んだ場合」**です。ルール： 貸主が死んでも、使用貸借は終了しません。理由： 貸主の地位（返してもらう権利など）は、単なる財産権として相続人に引き継がれます。借主にとっては、貸主が変わるだけで「タダで使い続けられる」という利益を奪う必要がないからです。5. 【実務・応用】特約で変えられる？この597条3項は「任意規定」と考えられています。したがって、あらかじめ契約書で「借主が死んでも、その家族に引き続き貸す」という特約を結んでいれば、借主の死亡後も存続させることが可能です（判例でも認められています）。受験生へのアドバイス「使用貸借の借主の死亡」は、**「相続させないためのストッパー」**だと覚えてください。これで「同時履行」から始まり、「解除」「賃貸借」「請負」「委任」「寄託」、そして「使用貸借」まで、債権法の主要な契約ルールをかなり網羅してきましたね。",
+          "1. 根拠とルールの仕組みなぜ貸主の死亡では終わらないのか？民法597条3項が「借主の死亡」を終了事由としているのに対し、貸主の死亡については何も規定がありません。これは以下の理屈に基づいています。権利の承継: 貸主の地位（返還を請求する権利や、貸し続ける義務）は、単なる**「財産権」**の一種とみなされます。したがって、貸主が死亡した場合は、その相続人が貸主の地位を引き継ぐことになります。借主の期待: 借主は「期間」や「目的」を信じて使っています。貸主が亡くなったからといって、いきなり「明日出ていけ」と相続人に言われるのは、借主にとって酷な話だからです。2. 関連知識の整理：試験で絶対に間違えてはいけない対比この論点は、「賃貸借（有料）」との比較で頻出します。以下の表を頭に叩き込んでおけば、どんなひっかけ問題も怖くありません。【決定版】当事者の死亡と契約の成否契約の種類**借主（借りる側）**が死亡**貸主（貸す側）**が死亡使用貸借（タダ）終了する（597条3項）終了しない（相続される）賃貸借（有料）終了しない（相続される）終了しない（相続される）委任（仕事）終了する（653条）終了する（653条）【合格者の記憶法】使用貸借: 「タダで借りる特権は、その人一代限り（相続させない）」。でも「貸してる側の権利は財産だから、家族に引き継ぐ」。賃貸借: 「お金を払って借りる権利は財産権だから、どっちが死んでも家族が引き継ぐ」。3. 試験対策の落とし穴行政書士試験の択一式では、以下のような「一見正しそうな誤り」に注意してください。ひっかけ例1: 「使用貸借は、当事者の一方が死亡したときは、その効力を失う。」判定: ×（貸主が死んでも終わらないため）。ひっかけ例2: 「貸主が死亡した場合、相続人は直ちに返還を請求できる。」判定: ×（相続人は元の契約に拘束されるため、期間や目的がある間は返せと言えません）。受験生へのメッセージ「使用貸借」というテーマにおいて、「死」による終了は「借主」だけの特例である、と強く意識してください。",
+          "1. 根拠条文民法598条1項（使用貸借の解除）借主は、何時（いつ）でも、契約の解除をすることができる。この条文は非常にシンプルです。「期間がある場合は除く」といった但し書きが一切ないことに注目してください。2. なぜこのルールが存在するのか（趣旨）なぜ借主だけ、これほどまでに自由が認められているのでしょうか。「タダ（無償）」であること: 使用貸借は、借主が一方的に利益を受ける（恩恵にあずかる）契約です。利益を受けるのをやめる自由、つまり「もう要りません」と言う自由を奪う必要はないと考えられています。管理負担からの解放: 借りている間、借主は「善管注意義務」をもって物を管理しなければなりません。もし「期間を決めたからには最後まで管理しろ」と強制されると、借主にとってそれは「利益」ではなく「重荷」になってしまいます。貸主への実害が少ない: 予定より早く物が返ってくることは、通常、貸主（大家さんなど）にとって不利益にはなりません。3. 関連知識のまとめ：試験で差がつく比較この論点は、**「貸主からの解除」や「賃貸借（有料）」**との比較で非常に間違いやすいポイントです。【重要比較】解除・解約の自由度契約の種類**借主（借りる側）**の解除**貸主（貸す側）**の解除使用貸借（タダ）いつでも自由（最強）期間や目的の定めに縛られる賃貸借（有料）期間の定めがあれば縛られる期間の定め＋正当事由が必要（借地借家法）【合格者の頭の中】使用貸借の借主: 「タダで借りてるんだから、やめたい時はいつでもサヨナラ！」賃貸借の賃借人: 「お金を払って借りてる以上、期間の約束（契約）は守らなきゃいけない（特約がない限り）」。4. 試験対策のワンポイント：損害賠償はある？「いつでも解除できる」といっても、貸主に迷惑をかけた場合はどうなるでしょうか。原則: 借主がいつでも解除できるのは法律上の権利なので、解除したこと自体で損害賠償を払う必要はありません。例外: 解除の仕方が極めて不誠実で、貸主に予期せぬ損害を与えた場合などは、信義則上の問題になる可能性はゼロではありませんが、試験対策としては**「無条件でいつでもOK」**と覚えておいて問題ありません。受験生へのメッセージ使用貸借において、**「借主は自由、貸主は不自由」**という構図をしっかりイメージしてください。借主が死んだら？ ＝ 終わり（相続させない）借主がやめたいなら？ ＝ いつでもOK（縛られない）",
+          "1. 根拠条文民法587条の2 第2項（書面による消費貸借等）前項（書面による消費貸借）の借主は、**金銭その他の物を受け取るまで、契約の解除をすることができる。**この場合において、貸主は、その契約の解除によって損害を受けたときは、借主に対し、その賠償を請求することができる。2. なぜこのルールが存在するのか（趣旨）このルールを理解するためには、改正によって誕生した**「諾成的（だくせいてき）消費貸借」**という考え方を知る必要があります。「書面」があれば合意だけで成立： 昔の民法では、お金を渡さない限り契約は成立しませんでした（要物契約）。しかし現在は、書面（または電磁的記録）があれば、「貸しましょう」「借りましょう」の合意だけで契約が成立します。借主の「やっぱりやめた」を認める： 合意だけで契約が成立してしまうと、借主は実際にお金を手にする前から「返済義務」という大きなプレッシャーを負うことになります。そこで、実際にお金を手にする前であれば、契約を白紙に戻すチャンスを借主に与えています。貸主とのバランス（損害賠償）： ただし、貸主は貸す準備（資金調達など）をしていたかもしれません。そのため、解除によって貸主に損害（事務手数料や調達コストなど）が出た場合は、借主に損害賠償をさせることで、貸主との公平を図っています。3. 関連知識のまとめ：試験で狙われる比較行政書士試験では、**「書面があるかないか」**でルールの適用が全く異なる点が非常に重要です。【重要比較】消費貸借の成立と解除項目書面によらない（原則）書面による（特例）成立のタイミング現実に金銭を授受した時（要物契約）書面で合意した時（諾成契約）受け取り前の解除解除という概念がない（まだ成立していない）いつでも解除できる（587条の2 第2項）貸主からの解除－借主が破産した時などは解除可（587条の2 第3項）4. 試験対策の注意点：損害賠償は「解除」を止めるか？ここは記述式や択一の細かい肢で狙われやすいポイントです。ポイント： 借主が損害賠償を支払わなくても、解除自体は有効に成立します。「損害を賠償しなければ解除できない」という記述があれば、それは**「×」**です。効果： 解除は直ちに効力を発し、損害賠償の問題は「事後的な清算」として残るだけです。受験生へのメッセージ「消費貸借」の問題を解くときは、まず問題文の冒頭をチェックしてください。「書面によって」という5文字があるかどうかで、正解へのルートが180度変わります。書面あり ＝ 合意で成立、受け取り前なら解除OK。書面なし ＝ 渡すまで不成立（契約そのものがない）。",
+          "1. 根拠条文民法662条1項（寄託者による返還請求）当事者が寄託物の返還の時期を定めたときであっても、寄託者は、何時（いつ）でもその返還を請求することができる。民法657条の2 第2項（受け取り前の解除）寄託者は、寄託物を引き渡すまで、いつでも契約の解除をすることができる。（書面による寄託の場合も同様）2. なぜこのルールが存在するのか（趣旨）寄託契約の本質は、**「寄託者の利益のために、受寄者が物を保管する」**という点にあります。自己物の管理権: 預けている物はもともと寄託者のものです。「自分の物をいつ手元に戻すか」は所有者である寄託者が自由に決められるべきだ、という考え方が根本にあります。保管の必要性の消滅: 寄託者が「もう預けておく必要がなくなった」と判断したなら、それ以上無理に預け続けさせる必要はありません。有償でも関係ない: お金を払っている場合（有償）、受寄者は「保管することで報酬を得る」という利益がありますが、それは「解除に伴う損害賠償」で解決すればよく、解除そのものを制限する理由にはならないとされています。3. 関連知識のまとめ：解除に伴う「損害賠償」ここが試験での「ひっかけ」ポイントです。「いつでも解除できる」ことと「タダで解除できる」ことは別物です。項目内容解除権（662条）いつでも行使可能。 受寄者の同意は不要。損害賠償（662条2項）返還時期の定めがある場合に、寄託者が受寄者の不利な時期に返還を求めたときは、受寄者の損害を賠償しなければならない。【注意！】 > 報酬を払う約束をしていた場合、早く引き取ったとしても、受寄者が予定していた報酬相当額などを「損害」として支払わなければならないケースがあります。4. 【重要比較】受寄者（預かる側）からの返還「預ける側」は最強ですが、**「預かる側（受寄者）」**は勝手が違います。ここを対比で覚えましょう。原則（663条2項）: 返還時期の定めがないときは、受寄者はいつでも返還できる。例外（663条1項）: 返還時期の定めがあるときは、**「やむを得ない事由」**がなければ、期限前に無理やり返還することはできない。受験生へのアドバイス「寄託」の問題を解くときは、「預ける側（寄託者）」が主人公だと考えてください。寄託者（主役）： いつでも「返せ！」と言える。受寄者（脇役）： 約束の期限があるなら、勝手に「返したい」とは言えない（やむを得ない場合を除く）。この「寄託者優位」の構図は、さきほど確認した「使用貸借の借主（最強）」の構図と似ていますね。",
+          "1. 根拠条文\n民法611条1項（賃借物の一部滅失等による賃料の減額等）\n賃借物の一部が滅失その他の事由により使用及び収益をすることができなくなった場合において、それが賃借人の責めに帰することができない事由によるものであるときは、賃料は、その滅失等をした部分の割合に応じて、減額される。\n\n2. なぜ「当然減額」になったのか（趣旨）\n以前は、借主が「安くしてください」と言わなければ減額されませんでしたが、これでは借主にとって酷であると考えられました。\n\n対価関係の維持： 賃貸借は「物を使うこと」の対価として「お金を払う」契約です。使える部分が減ったなら、その分だけ対価（家賃）が減るのは、契約のバランスとして当然のことです。\n\n借主の負担軽減： 災害などで家の一部が壊れた際、ただでさえ大変な借主がわざわざ「減額請求」というアクションを起こさなくても、法律が自動的に助けてくれる（債務を減らしてくれる）形に改められました。\n\n3. 関連知識のまとめ：試験での「落とし穴」チェック\nこの論点には、受験生を迷わせる3つのチェックポイントがあります。\n\n① 「当然」であっても「割合」は決める必要がある\n法律上「当然に減額」はされますが、具体的に「何パーセント安くなるか」は自動では決まりません。通常は当事者間で話し合い、まとまらなければ裁判所で決めることになります。\n\n② 借主の「過失」がある場合は？\n条文にある通り、**「借主の責めに帰することができない事由」**であることが条件です。\n\n地震・台風・落雷： 当然減額される。\n\n借主の不注意によるボヤ： 減額されない（むしろ損害賠償の問題になる）。\n\n③ 「一部」ではなく「全部」の場合は？\nさきほど確認した通り、全部が使えなくなった場合は、減額ではなく**「契約が当然に終了（616条の2）」**します。\n\n4. 【セットで暗記】一部滅失と解除権\n一部が使えなくなったとき、借主にはもう一つの武器があります。\n\n民法611条2項：\n残存する部分のみでは賃借をした目的を達することができないときは、賃借人は、契約の解除をすることができる。\n\nポイント：\n「一部が壊れた ＝ 即解除」ではありません。「それじゃあ住めない（営業できない）」というレベルに達して初めて解除が認められます。\n\n受験生へのアドバイス\n「賃貸借の一部滅失」が出たら、頭の中で**【当然に減額 ＋ 目的不達なら解除】**というセットを思い浮かべてください。\n\n旧法の知識が残っている問題集などでは「請求できる」となっている場合がありますが、最新の試験では**「減額される（＝当然に）」**が正解です。この「言葉の語尾」に全神経を集中させてくださいね。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -19740,7 +22131,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "Aは、自己所有の甲建物をBに贈与する旨を約した（以下、「本件贈与」という）。この場合に関する次の記述のうち、民法の規定および判例に照らし、妥当なものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠条文：民法597条3項（使用貸借）、601条（賃貸借）使用貸借の終了事由（597条3項）「使用貸借は、借主の死亡によって、その効力を失う」とズバリ書かれています。賃貸借の継続（大審院判例等）賃貸借には借主の死亡による終了規定がありません。賃貸借は「財産権（借借権）」としての性格が強いため、相続の対象になります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：なぜこの違いがあるのか？受験生が理屈で覚えられるよう、貸主の気持ちになって整理しましょう。契約貸主の本音借主が死んだら？使用貸借「ちばみほこさんだから、タダで貸してあげた」終了。（その子供にまでタダで貸す義理はない）賃貸借「誰でもいいから、毎月10万円払ってくれるなら貸す」継続。（相続人が10万円払うなら、貸主は困らない）ひっかけに注意：貸主が死んだ場合は？貸主が死んだ場合は、使用貸借であっても賃貸借であっても、原則として契約は終了しません。 貸主の地位（貸してあげる義務）は、貸主の相続人に引き継がれます。借主死亡 ＝ 使用貸借は終了貸主死亡 ＝ 使用貸借は継続（597条3項に「貸主の死亡」は含まれていない）　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第31問 肢4】「使用貸借契約は、特段の合意がない限り、借主の死亡によってその効力を失うのに対し、賃貸借契約は、借主が死亡しても当然には終了しない。」→ 答え：◯まさに本問と同じ、対比構造を問う定番問題です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「使用貸借は『究極のえこひいき』だ」と教えましょう。特定の「その人」だからこそタダで貸している。だから、その人がいなくなれば、魔法が解けるように契約も消えてなくなるのです。一方、賃貸借はビジネスです。ビジネスは「人」よりも「契約内容（家賃）」が優先されるため、人が入れ替わっても続くのです。",
+        "memo": "1. 根拠条文民法550条（書面によらない贈与の解除）書面によらない贈与は、各当事者が解除をすることができる。ただし、履行の終わった部分については、この限りでない。2. なぜこのルールが存在するのか（趣旨）このルールの背景には、**「軽率な約束の防止」と「法的安定性の確保」**のバランスがあります。熟慮の機会： 口約束はつい「あげちゃうよ！」と勢いで言ってしまいがちです。そのため、書面にしていない場合は、気が変わったらやめられるようにして、軽率な財産処分から贈与者を守っています。現状の尊重（履行の完了）： しかし、実際に物を渡したり、登記を移したりした後は話が別です。すでに「あげた」という事実が発生し、もらった側（受贈者）もそれを自分のものとして使い始めているため、後から「やっぱり返せ」と言わせるのは、社会の混乱を招き不公平です。3. 【最重要】不動産における「履行の完了」とは？試験で最も狙われるのが、不動産（建物・土地）の場合、**「どの時点で解除できなくなるか」**という判例の知識です。最高裁判例（昭和29年7月2日 他）不動産の贈与において「履行が終わった」と言えるのは、以下のいずれかが完了した時です。所有権移転登記の手続きが完了した時建物の引渡し（占有の移転）が完了した時つまり、登記と引渡しの**「どちらか一方」**さえ終わっていれば、もう贈与者は解除することができません。今回の設問では「引渡しも登記も終わっている」のですから、二重の意味で解除は不可能です。4. 関連知識の整理：書面「あり」と「なし」の比較行政書士試験対策として、贈与の解除ルールを整理しておきましょう。贈与の形式履行前の解除履行後の解除書面によらない贈与いつでも可能不可（550条但書）書面による贈与不可（原則）不可【注意！】書面がある場合は、たとえ渡す前であっても「やっぱりやーめた」は通用しません。書面の存在自体が、贈与者の「確固たる決意」の証拠とされるからです。受験生へのアドバイス贈与の問題が出たら、まず**「書面があるか？」、次に「もう渡したか（登記したか）？」**という順番でチェックしてください。口約束 ＋ 渡しちゃった ＝ もう手遅れ（解除不可）このシンプルで強力なルールを覚えておけば、贈与に関する問題で迷うことはなくなります。",
         "slots": [],
         "refId": "",
         "isBonus": true,
@@ -19770,16 +22161,24 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠条文：民法597条3項（使用貸借）、601条（賃貸借）使用貸借の終了事由（597条3項）「使用貸借は、借主の死亡によって、その効力を失う」とズバリ書かれています。賃貸借の継続（大審院判例等）賃貸借には借主の死亡による終了規定がありません。賃貸借は「財産権（借借権）」としての性格が強いため、相続の対象になります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：なぜこの違いがあるのか？受験生が理屈で覚えられるよう、貸主の気持ちになって整理しましょう。契約貸主の本音借主が死んだら？使用貸借「ちばみほこさんだから、タダで貸してあげた」終了。（その子供にまでタダで貸す義理はない）賃貸借「誰でもいいから、毎月10万円払ってくれるなら貸す」継続。（相続人が10万円払うなら、貸主は困らない）ひっかけに注意：貸主が死んだ場合は？貸主が死んだ場合は、使用貸借であっても賃貸借であっても、原則として契約は終了しません。 貸主の地位（貸してあげる義務）は、貸主の相続人に引き継がれます。借主死亡 ＝ 使用貸借は終了貸主死亡 ＝ 使用貸借は継続（597条3項に「貸主の死亡」は含まれていない）　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第31問 肢4】「使用貸借契約は、特段の合意がない限り、借主の死亡によってその効力を失うのに対し、賃貸借契約は、借主が死亡しても当然には終了しない。」→ 答え：◯まさに本問と同じ、対比構造を問う定番問題です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「使用貸借は『究極のえこひいき』だ」と教えましょう。特定の「その人」だからこそタダで貸している。だから、その人がいなくなれば、魔法が解けるように契約も消えてなくなるのです。一方、賃貸借はビジネスです。ビジネスは「人」よりも「契約内容（家賃）」が優先されるため、人が入れ替わっても続くのです。",
-          "■ 根拠条文：民法600条1項・2項（使用貸借）、622条（賃貸借による準用）損害賠償の期間制限（600条1項）契約の本旨に反する使用（用法違反）で生じた損害賠償は、貸主が返還を受けた時から1年以内に請求しなければなりません。費用の償還期間（600条2項）一方、借主が支出した費用の償還請求については、「1年以内」という制限は適用されません。 つまり、1年を過ぎてからでも、時効（5年/10年）の前であれば請求できるということです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「1年」の対象はどちらか？試験では「貸主側からの請求」と「借主側からの請求」を混ぜてきます。請求の内容誰から誰へ期間制限損害賠償（用法違反）貸主 → 借主返還から1年以内費用償還（必要費等）借主 → 貸主通常の消滅時効（※）（※）消滅時効の原則：「権利を行使できると知った時から5年、または行使できる時から10年」です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第31問 肢5】（類題）「使用貸借において、契約の本旨に反する使用によって生じた損害の賠償は、貸主が返還を受けた時から1年以内に請求しなければならない。」→ 答え：◯本問と同じ知識です。「損害賠償」については1年で正しいですが、ここに「費用償還」が混ざるとバツになります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『怒り』の有効期限は短く、『おカネの貸し借り』は長く」と教えましょう。貸主が「あんな使い方して壊しやがって！」という怒り（損害賠償）は、返却後1年も経ったら忘れて水に流しなさい、というのが1年制限の趣旨です。でも、借主が「立て替えた修繕費を返して」というお金の請求（費用償還）は、純粋な債権なので、もっと長く保護してあげるべきだ、とイメージさせると間違えません。",
-          "■ 根拠条文：民法612条1項・2項\n承諾が必要（612条1項） 「賃借人は、賃貸人の承諾を得なければ、その賃借権を譲り渡し、又は賃借物を転貸することができない」と規定されています。\n\n無断譲渡・転貸のペナルティ（612条2項） 賃借人がこれに違反して勝手に他人に使わせた場合、賃貸人は契約を解除することができます。\n\n■ 周辺知識：判例による「ブレーキ」を忘れずに！\n条文だけ見ると「無断なら即クビ（解除）」に見えますが、判例がここに絶妙なバランスをもたらしています。\n\n信頼関係破壊の法理 無断で譲渡・転貸しても、それが「賃貸人に対する背信的行為（裏切り）と認めるに足りない特段の事情」があるときは、賃貸人は解除できません。\n\n例： 経営している会社を個人名義から法人名義に変えただけ、など。\n\n借地（土地）の場合の特則 建物の賃貸借にはありませんが、**借地（土地を借りて家を建てる）**の場合は、地主がウンと言わなくても、裁判所が代わりに許可をくれる制度（借地非訟）があります。建物賃貸借にはこの制度はないので注意です。\n\n■ 関連過去問チェック\n【平成28年度 第27問 肢4】 「賃借人が、賃貸人の承諾を得ることなく第三者に賃借物を使用させた場合であっても、賃貸人は、それによって直ちに賃貸借契約を解除することができるわけではない。」\n\n→ 答え：◯ 「信頼関係が壊れていなければ解除できない」という、判例法理を知っているかを問う問題です。\n\n💡 受験生へのアドバイス\n「『誰に貸すか』はオーナーにとって最大の関心事」だと教えましょう。 ちばみほこさんなら大切に使ってくれると信じて貸したのに、勝手に見知らぬ他人に住まわれては、オーナーは夜も眠れません。だから「勝手に入れ替わるな（承諾が必要）」というのが民法の鉄則なのです。",
-          "■ 根拠条文：民法605条の2第3項対抗要件の明文化（605条の2第3項）「譲受人が賃貸人たる地位を承継したことを賃借人に対抗するには、その不動産について所有権の移転の登記をしなければならない」と定められています。なぜ登記が必要か？賃借人からすれば、急に知らない人が現れて「私が新しい大家だ」と言われても、本当かどうかわかりません。二重払いのリスクを防ぐためにも、「登記という公的な証明がある人にだけ払えばいい」というルールにして、賃借人を保護しているのです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：賃借人の承諾は必要か？ここが試験で最も狙われるポイントです。項目ルール賃借人の承諾不要（賃借人に実質的な不利益がないため）対抗するための要件所有権移転登記（これがないと家賃を請求できない）地位の移転のタイミング原則として、不動産の所有権が移転した時に当然に移転する。ひっかけに注意：承諾がいらない理由以前の「賃借権の譲渡（借主が入れ替わる）」には大家の承諾が必要でしたが、今回の「大家が入れ替わる」のには借主の承諾はいりません。なぜなら、借主にとっては「誰に家賃を払うか」が変わるだけで、借りる条件（家賃の額など）が変わるわけではないからです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成30年度 第27問 肢2】「不動産の賃貸借において、その不動産が譲渡された場合、賃貸人たる地位を承継した譲受人が賃借人に対して賃料の支払を請求するには、その不動産について所有権の移転の登記をしていなければならない。」→ 答え：◯改正前から判例で確立されていたルールですが、現在は条文にバシッと書かれています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『大家の交代』はサイレントに行われるが、『家賃請求』には看板（登記）がいる」と教えましょう。大家が変わること自体は、勝手にやっていい。でも、借主の家まで行って「金を払え」と言うなら、ちゃんと「登記」という看板を見せなさい。この区別ができるようになれば、賃貸借の対抗関係は完璧です！",
-          "■ 根拠条文：民法605条の2第2項\n地位の留保の合意（605条の2第2項） 不動産の譲渡人と譲受人が、賃貸人たる地位を譲渡人に留保する旨の合意をしたときは、賃貸人たる地位は譲受人に移転しません。\n\n必要な条件 この特例が認められるには、同時に「譲受人が譲渡人にその不動産を賃貸する（貸し出す）契約」を締結する必要があります。\n\n■ 周辺知識：なぜこんなルールがあるのか？\n通常、家を売れば大家も交代するのが自然ですが、以下のようなケースを想定しています。\n\nサブリースの継続： 「物件の所有権は投資家に売るけれど、管理や家賃の回収（大家としての仕事）は引き続き元の不動産会社がやりたい」という場合です。\n\n賃借人の混乱防止： この合意があれば、賃借人から見た大家さんは「元のオーナー」のまま変わりません。賃借人にとっては、窓口が変わらないというメリットがあります。\n\n■ 関連過去問チェック\n【令和3年度 第31問 肢オ】 「不動産が譲渡された場合において、譲渡人と譲受人が、賃貸人たる地位を譲渡人に留保する旨及び譲受人が譲渡人に当該不動産を賃貸する旨の合意をしたときは、賃貸人たる地位は譲受人に移転しない。」\n\n→ 答え：◯ 改正民法で新しく条文になったポイントを、そのまま問う問題です。\n\n💡 受験生へのアドバイス\n「『大家さんの看板』を付け替えないという選択肢がある」と教えましょう。\n\n原則：家を売れば、大家さんの看板も新しい飼い主に自動で移る。\n\n例外：売る人と買う人が「看板はそのまま（譲渡人に留保）にして、中身だけ売買しよう」と約束すれば、看板（賃貸人たる地位）は動かない。\n\nこの「合意があれば残せる」という例外規定は、記述式でも「どのような合意があれば移転しないか」と問われる可能性がある重要キーワードです。",
-          "■ 根拠条文：民法612条1項\n条文の規定 「賃借人は、賃貸人の承諾を得なければ、その賃借権を譲り渡し、又は賃借物を転貸することができない」と明記されています。\n\n違反した場合のペナルティ（612条2項） もし勝手に他人に使わせた（譲渡・転貸した）場合、大家さんは賃貸借契約を解除することができます。\n\n■ 周辺知識：なぜ「承諾」が必要なのか？\n賃貸借契約は、大家さんと借主の間の**「個人的な信頼関係」**に基づいています。\n\n「あなただから貸した」という想い 大家さんは、「ちばみほこさんなら綺麗に使ってくれるだろう、家賃も遅れないだろう」と信じて貸しています。それなのに、勝手に知らない第三者が住み着くことは、大家さんの「誰に貸すか選ぶ権利」を侵害することになります。\n\n「信頼関係破壊の法理」というブレーキ ただし、判例では「形式的には無断であっても、信頼関係を破壊したとまでは言えない特段の事情（例：実質的に同一の法人への譲渡など）」がある場合は、解除が認められないことがあります。\n\n■ 関連過去問チェック\n【平成28年度 第27問 肢1】 「賃借人は、賃貸人の承諾を得なければ、その賃借権を譲り渡し、又は賃借物を転貸することができない。」\n\n→ 答え：◯ 非常にシンプルですが、すべての譲渡・転貸問題の出発点となる知識です。\n\n💡 受験生へのアドバイス\n「『勝手に入れ替わるな！』という大家さんの心の叫び」と教えましょう。 もしこれが許されるなら、入居審査の意味がなくなってしまいますよね。\n\nただし、試験では**「借地（土地）」の場合、大家が意地悪で承諾しない時に「裁判所が代わりに許可をくれる（借地非訟）」という制度がある**ことが、建物との比較でよく出ます。「建物の賃貸借には裁判所の代わりの許可制度はない」という点も、あわせて叩き込んでおきましょう。"
+          "1. 根拠条文民法550条（書面によらない贈与の解除）書面によらない贈与は、各当事者が解除をすることができる。ただし、履行の終わった部分については、この限りでない。2. なぜこのルールが存在するのか（趣旨）このルールの背景には、**「軽率な約束の防止」と「法的安定性の確保」**のバランスがあります。熟慮の機会： 口約束はつい「あげちゃうよ！」と勢いで言ってしまいがちです。そのため、書面にしていない場合は、気が変わったらやめられるようにして、軽率な財産処分から贈与者を守っています。現状の尊重（履行の完了）： しかし、実際に物を渡したり、登記を移したりした後は話が別です。すでに「あげた」という事実が発生し、もらった側（受贈者）もそれを自分のものとして使い始めているため、後から「やっぱり返せ」と言わせるのは、社会の混乱を招き不公平です。3. 【最重要】不動産における「履行の完了」とは？試験で最も狙われるのが、不動産（建物・土地）の場合、**「どの時点で解除できなくなるか」**という判例の知識です。最高裁判例（昭和29年7月2日 他）不動産の贈与において「履行が終わった」と言えるのは、以下のいずれかが完了した時です。所有権移転登記の手続きが完了した時建物の引渡し（占有の移転）が完了した時つまり、登記と引渡しの**「どちらか一方」**さえ終わっていれば、もう贈与者は解除することができません。今回の設問では「引渡しも登記も終わっている」のですから、二重の意味で解除は不可能です。4. 関連知識の整理：書面「あり」と「なし」の比較行政書士試験対策として、贈与の解除ルールを整理しておきましょう。贈与の形式履行前の解除履行後の解除書面によらない贈与いつでも可能不可（550条但書）書面による贈与不可（原則）不可【注意！】書面がある場合は、たとえ渡す前であっても「やっぱりやーめた」は通用しません。書面の存在自体が、贈与者の「確固たる決意」の証拠とされるからです。受験生へのアドバイス贈与の問題が出たら、まず**「書面があるか？」、次に「もう渡したか（登記したか）？」**という順番でチェックしてください。口約束 ＋ 渡しちゃった ＝ もう手遅れ（解除不可）このシンプルで強力なルールを覚えておけば、贈与に関する問題で迷うことはなくなります。",
+          "1. 根拠となる考え方（判例・通説）\n「書面」に要求される程度の緩和\n判例（最高裁昭和27年12月19日など）によると、贈与の「書面」は、贈与者が**「軽率に贈与することを防ぎ、その意思を確定させる」**という目的を達せられるものであれば足ります。\n\n契約書形式でなくてもよい： 贈与者から受贈者へ宛てた手紙、メモ書き、あるいは第三者に対して贈与の事実を認めた書面でも、「贈与の意思」が客観的に確認できれば「書面による贈与」と認められます。\n\n署名押印がなくてもよい： 贈与者の意思が明確であれば、必ずしも署名や押印が揃っている必要はありません。\n\n詳細な期日の記載も不要： 目的物（何をあげるか）さえ特定されていれば、登記の期日などの細かな約束事まで書かれていなくても「書面」として有効です。\n\n2. なぜこのルールが存在するのか（趣旨）\nもし、選択肢にあるように「完璧な契約書」を要求してしまうと、以下のような不都合が生じます。\n\n受贈者の保護が弱まる： 贈与者が「あげる」とハガキに書いて送ってきたのに、形式が不備だからといっていつでも解除できてしまうのは、期待した受贈者にとって酷です。\n\n実態にそぐわない： 個人間の贈与で、弁護士が作るような完璧な書面を作成することは稀です。緩やかな基準にすることで、一度決めた意思を簡単に翻させないようにしています。\n\n3. 試験対策としての比較整理\n「書面」に関連して、他の重要論点とセットで整理しましょう。\n\n4. 試験でのひっかけパターン\nこの問題は、典型的な**「過剰な条件（ formalism ）の押し付け」**というひっかけです。\n\nひっかけ： 「当事者双方の署名押印がなければならない」「公証人の認証が必要である」など。\n\n対策： 「贈与者の贈与意思が書面から読み取れれば、形式は問わない」と覚えておきましょう。\n\n攻略のアドバイス\n「書面による贈与」は、一度書いたら**「もう後戻りできない（解除できない）」**という重い効果を持ちます。だからこそ、その書面は「贈与者が本気で書いたかどうか」が重要視されるのであって、「ハンコが押してあるか」という形式が主役ではないのです。",
+          "1. 根拠条文\n民法554条（死因贈与）\n贈与者の死亡によって効力を生ずる贈与については、その性質に反しない限り、遺言に関する規定を準用する。\n\n民法1022条（遺言の撤回）\n遺言者は、いつでも、遺言の方式に従って、その遺言の全部又は一部を撤回することができる。\n\n2. なぜこのルールが存在するのか（趣旨）\n死因贈与は「契約」の一種ではありますが、実質的には「自分の死後の財産の行き先を決める」という点で「遺言」と非常によく似ています。\n\n最終意思の尊重： 人は死ぬ間際まで、自分の財産をどう処分するかについて考え直す自由（最終意思の自由）があるべきだと考えられています。\n\n遺言とのバランス： もし遺言ならいつでも撤回できるのに、死因贈与だと「契約だから」という理由で縛り付けると、贈与者の気が変わったときに不都合が生じます。そのため、554条を介して遺言の撤回自由（1022条）のルールが引っ張ってこられます。\n\n3. 根拠となる判例\n最高裁判例（昭和47年5月25日）\nこの判例は、死因贈与の撤回について明確に述べています。\n\n判旨： 死因贈与は、原則として遺言の撤回に関する規定が準用され、贈与者はいつでも、特段の理由がなくても解除（撤回）することができる。\n\nポイント： たとえ「書面」で契約を交わしていたとしても、死因贈与であればこの撤回自由の原則が優先されます。\n\n4. 【重要】試験で狙われる「例外」の知識\n今回の問題では「妥当」で正解ですが、行政書士試験ではさらに一歩踏み込んだ**「解除できないケース」**が記述式などで狙われます。\n\n負担付死因贈与（ふたんつきしいんぞうよ）の場合\n「死ぬまで身の回りの世話をする」といった条件（負担）が付いた死因贈与において、受贈者がすでにその負担を全部または大部分履行してしまった場合は、原則として解除（撤回）することができません。（最高裁昭和57年4月30日）\n\n理由： 相手が一生懸命義務を果たした後に、「やっぱりなしね」と言うのはあまりに不公平（信義則違反）だからです。\n\n受験生へのアドバイス\nこの論点を整理する際は、以下のステップで考えてください。\n\n普通の死因贈与： 遺言と同じ。いつでもサヨナラOK（554条経由で1022条準用）。\n\n負担付死因贈与（履行済み）： 相手が頑張った後は、もう後戻りできない（解除不可）。\n\n今回の設問は「普通の死因贈与」の基本ルールを問うているため、記述の通り「いつでも解除（撤回）できる」で正解となります。この「死因贈与」と「遺言」の絶妙な距離感、しっかりマスターしておきましょう！",
+          "1. 根拠条文\n民法554条（死因贈与）\n贈与者の死亡によって効力を生ずる贈与については、その性質に反しない限り、遺言に関する規定を準用する。\n\n民法1022条（遺言の撤回）\n遺言者は、いつでも、遺言の方式に従って、その遺言の全部又は一部を撤回することができる。\n\n2. なぜこのルールが存在するのか（趣旨）\n死因贈与は「契約」の一種ではありますが、実質的には「自分の死後の財産の行き先を決める」という点で「遺言」と非常によく似ています。\n\n最終意思の尊重： 人は死ぬ間際まで、自分の財産をどう処分するかについて考え直す自由（最終意思の自由）があるべきだと考えられています。\n\n遺言とのバランス： もし遺言ならいつでも撤回できるのに、死因贈与だと「契約だから」という理由で縛り付けると、贈与者の気が変わったときに不都合が生じます。そのため、554条を介して遺言の撤回自由（1022条）のルールが引っ張ってこられます。\n\n3. 根拠となる判例\n最高裁判例（昭和47年5月25日）\nこの判例は、死因贈与の撤回について明確に述べています。\n\n判旨： 死因贈与は、原則として遺言の撤回に関する規定が準用され、贈与者はいつでも、特段の理由がなくても解除（撤回）することができる。\n\nポイント： たとえ「書面」で契約を交わしていたとしても、死因贈与であればこの撤回自由の原則が優先されます。\n\n4. 【重要】試験で狙われる「例外」の知識\n今回の問題では「妥当」で正解ですが、行政書士試験ではさらに一歩踏み込んだ**「解除できないケース」**が記述式などで狙われます。\n\n負担付死因贈与（ふたんつきしいんぞうよ）の場合\n「死ぬまで身の回りの世話をする」といった条件（負担）が付いた死因贈与において、受贈者がすでにその負担を全部または大部分履行してしまった場合は、原則として解除（撤回）することができません。（最高裁昭和57年4月30日）\n\n理由： 相手が一生懸命義務を果たした後に、「やっぱりなしね」と言うのはあまりに不公平（信義則違反）だからです。\n\n受験生へのアドバイス\nこの論点を整理する際は、以下のステップで考えてください。\n\n普通の死因贈与： 遺言と同じ。いつでもサヨナラOK（554条経由で1022条準用）。\n\n負担付死因贈与（履行済み）： 相手が頑張った後は、もう後戻りできない（解除不可）。\n\n今回の設問は「普通の死因贈与」の基本ルールを問うているため、記述の通り「いつでも解除（撤回）できる」で正解となります。この「死因贈与」と「遺言」の絶妙な距離感、しっかりマスターしておきましょう！",
+          "1. 根拠となる判例最高裁判例（昭和57年4月30日）この判例は、**「負担付死因贈与（ふたんつきしいんぞうよ）」**において、受贈者がその義務（負担）を果たした後の撤回について、以下のように判示しています。判旨： 受贈者が負担を全部またはこれに類する程度まで履行したときは、特段の事情がない限り、贈与者は死因贈与を撤回することができない。結論： 設問の「履行したときであっても……撤回することができる」という部分は、この判例の考えに反するため、誤りとなります。2. なぜこのルールが存在するのか（趣旨）法律の根底にある**「信義則（しんぎそく）」**、つまり「相手の信頼を裏切ってはいけない」という考え方が理由です。受贈者の犠牲： Bさんは「Aさんの老後を支えれば、後に建物をもらえる」という約束を信じて、実際に自分のお金や時間、労力を使ってAさんを支え続けました。不公平の解消： AさんがBさんから十分なメリット（扶養）を受け取った後になって、「やっぱり気が変わったからあげない」と一方的に約束を破ることを認めると、Bさんだけが丸損をしてしまいます。遺言との違い： 単なる遺言や死因贈与なら「贈与者の最終意思」が最優先されますが、**「負担付」**の場合は「契約としての側面（対価性）」が強くなるため、相手が義務を果たした後は、贈与者であっても勝手にやめることはできないと判断されます。3. 試験対策：死因贈与の「撤回」まとめ試験では、以下の3つのステップで「撤回できるかどうか」を判定してください。死因贈与の種類撤回の可否理由・ポイント普通の死因贈与いつでも可能遺言の規定（1022条）を準用する。負担付（履行前）可能まだ相手が何もしていないなら、撤回してよい。負担付（履行後）原則不可（今回のケース） 相手が義務を果たした後は、信義則上NG。4. 記述式で狙われる「キーワード」もしこの論点が記述式で出題された場合、以下のキーワードを盛り込めるようにしておきましょう。「負担を全部またはこれに類する程度まで履行した」「特段の事情がない限り」「撤回することができない」攻略のアドバイス「死因贈与 ＝ 遺言と同じ ＝ いつでも撤回OK」という知識だけで止まっていると、この「負担付」のひっかけに落ちてしまいます。**「お世話をしてもらったなら、もう後戻りはできない」**という人情味のあるルールとして覚えておくと、記憶に定着しやすいですよ。",
+          "1. 根拠となる判例最高裁判例（昭和29年2月9日）判例は、民法550条ただし書の「履行の終わった部分」における「引渡し」について、以下のように述べています。判旨： 「引渡し」は、現実の引渡し（げんじつのひきわたし）に限られず、簡易の引渡し、占有改定、指図による占有移転のいずれであってもよい。結論： したがって、贈与者Aが「この時計をあげるよ。でも、修理が終わるまで私が預かっておくね（占有改定）」と合意した時点で、贈与の履行は完了したとみなされ、Aはもう解除することができなくなります。2. なぜ占有改定でも「履行完了」になるのか「占有改定」は、実際には物が手元に残っているのに、法律上の占有だけが移るという少しトリッキーな仕組みです。なぜこれで「もう返せない」状態になるのでしょうか。意思の確定： 贈与者が「これからは君の物として、私が預かるよ」と意思表示した時点で、贈与者の「あげたい」という意思は客観的に確定したとみなされます。法的な支配権の移転： 占有改定がなされると、受贈者は法的に「代理占有者（贈与者）を通じて物を支配している」状態になります。これは現実の引渡しと同じ法的効果を持つため、550条の「履行の完了」として認めるのが公平です。3. 【超重要】試験で最も狙われる「即時取得」との対比行政書士試験の「ひっかけ」として最も恐ろしいのが、「即時取得（192条）」との違いです。ここを混ぜて出題されると正答率がガクンと下がります。項目贈与の解除不可（550条）即時取得（192条）占有改定は含まれるか？含まれる（○）含まれない（×）理由贈与者の「あげた」という意思を重視。前主を信頼した第三者を保護するには、外観上の変化が必要。【合格者の記憶法】贈与（550条）: 「あげる側の決意」が大事だから、形（占有改定）だけでもOK！即時取得（192条）: 「他人の物を奪う（取得する）」ほどの強力なパワーだから、形（占有改定）だけでは足りない！4. 試験対策のワンポイント：不動産の「登記」との関係不動産の場合についても、復習しておきましょう。登記が済んだら： 引渡しをしていなくても、解除不可。引渡し（占有改定含む）が済んだら： 登記をしていなくても、解除不可。どちらか一方が完了すれば、もう後戻りはできません。受験生へのメッセージ「占有改定」という言葉を見たら、**「贈与の解除ならOK、即時取得ならNG」**という反射神経を鍛えてください。この対比さえできていれば、民法の物権と債権をまたいだ複雑な問題でも、迷わず正解にたどり着けます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
-        "text": "Aが甲建物（以下「甲」という。）をBに売却する旨の売買契約に関する次のア～オの記述のうち、民法の規定に照らし、誤っているものはいくつあるか。",
+        "text": "Aが甲建物（以下「甲」という。）をBに売却する旨の売買契約に関する次の記述のうち、民法の規定に照らし、誤っているものはいくつあるか。",
         "choices": [
           "甲の引渡しの履行期の直前に震災によって甲が滅失した場合であっても、Bは、履行不能を理由として代金の支払を拒むことができない。",
           "Bに引き渡された甲が契約の内容に適合しない場合、Bは、Aに対して、履行の追完または代金の減額を請求することができるが、これにより債務不履行を理由とする損害賠償の請求は妨げられない。",
@@ -19801,31 +22200,10 @@ export const SUBJECTS = {
           4
         ],
         "isReorder": false,
-        "explain": "Aが甲建物（以下「甲」という。）をBに売却する旨の売買契約に関する次のア～オの記述のうち、民法の規定に照らし、誤っているものはいくつあるか。",
+        "explain": "Aが甲建物（以下「甲」という。）をBに売却する旨の売買契約に関する次の記述のうち、民法の規定に照らし、誤っているものはいくつあるか。",
         "wordBank": "",
-        "memo": "■ 根拠条文：民法605条の2第4項債務の承継（605条の2第4項）「賃貸人たる地位が譲受人に承継されたときは、……敷金の返還に係る債務は、譲受人が承継する」と規定されています。賃借人の保護これにより、借りている人（賃借人）は、退去する時に「新しい大家さん」に対して「預けてある敷金を返してください」と請求すればよくなります。元の大家さんを追いかける必要はありません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：未払賃料はどうなる？ここが試験で狙われる「ひっかけ」ポイントです。項目新しいオーナーに引き継がれるか？理由敷金返還債務◯ 承継される賃借人が退去時に確実に返してもらえるように。未払賃料債権× 承継されない（原則）元の大家さんが貸していた期間の家賃は、元の大家さんの取り分だから。重要ポイント：借主が家賃を滞納したままオーナーが変わった場合、その**「滞納分」は元の大家さんに払わなければなりません。** ただし、退去時に敷金からその滞納分を差し引く（充当する）計算は、新しい大家さんが行います。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和2年度 第31問 肢ア】「賃貸人たる地位が譲受人に承継されたときは、敷金の返還に係る債務は、譲受人が承継する。」→ 答え：◯条文の知識をストレートに問う問題です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「敷金は『バトン』のように次の大家さんへ渡される」と教えましょう。大家さんが交代する際、前の大家さんから新しい大家さんへ敷金相当額のお金が決済（精算）されるのが実務の常識です。だから、借主は安心して「今の大家さん」に返還を求めればいいのです。",
-        "slots": [
-          {
-            "label": "ア",
-            "options": ""
-          },
-          {
-            "label": "イ",
-            "options": ""
-          },
-          {
-            "label": "ウ",
-            "options": ""
-          },
-          {
-            "label": "エ",
-            "options": ""
-          },
-          {
-            "label": "オ",
-            "options": ""
-          }
-        ],
+        "memo": "1. 根拠条文民法536条1項（債務者の責めに帰すべき事由によらない履行不能）当事者双方の責めに帰することができない事由によって債務を履行することができなくなったときは、債権者は、反対給付の履行を拒むことができる。2. なぜこのルールが存在するのか（趣旨）改正前の民法では、特定物（家など）が不可抗力で燃えてしまった場合でも、買主は代金を支払わなければならないという「債権者主義」が原則でした。しかし、これは「家はもらえないのに、お金だけ払う」という、あまりに買主に酷なルールでした。公平の観点： 現代の民法では、「家がもらえないなら、お金も払わない」という方が、双務契約（お互いに義務を負う契約）として公平であると考えられています。履行拒絶権： 家を渡す義務（Aの義務）が震災で消滅した場合、それとセットである代金を払う義務（Bの義務）についても、Bは**「引渡しがないなら払いません」**と突っぱねることができるようになりました。3. 関連知識の整理：改正前後の「危険負担」試験で最も狙われる「旧法との違い」を整理しましょう。項目旧民法（改正前）新民法（現在）原則債権者主義（買主がリスクを負う）債務者主義（売主がリスクを負う）買主のアクション代金を支払わなければならない支払を拒絶できる（536条1項）契約の解除不可（売主に過失が必要だった）可能（無催告解除ができる：542条1項）4. 試験対策のワンポイント：いつから「B」の責任になる？この「支払を拒める」というBの権利は、いつまで続くのでしょうか。引渡し後（567条1項）： AがBに甲建物を引き渡した後に震災で滅失した場合は、リスクはBに移ります。この場合は、Bは代金の支払を拒むことができません。受領遅滞中（567条2項）： Aが「さあ、渡す準備ができたよ」と言ったのに、Bが理由なく受け取らなかった間に震災が起きた場合も、リスクはBに移ります。攻略のアドバイス問題文に**「履行期の直前に震災で滅失」とある場合、まだ引渡しも受領遅滞も起きていないため、買主Bは「履行拒絶（払わない）」もできるし、「解除（契約を白紙に戻す）」**もできます。したがって、「代金の支払を拒むことができない」とする記述は、現代の民法では明確に誤りとなります。",
+        "slots": [],
         "refId": "",
         "isBonus": false,
         "chunks": [],
@@ -19851,15 +22229,22 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠条文：民法605条の2第4項債務の承継（605条の2第4項）「賃貸人たる地位が譲受人に承継されたときは、……敷金の返還に係る債務は、譲受人が承継する」と規定されています。賃借人の保護これにより、借りている人（賃借人）は、退去する時に「新しい大家さん」に対して「預けてある敷金を返してください」と請求すればよくなります。元の大家さんを追いかける必要はありません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：未払賃料はどうなる？ここが試験で狙われる「ひっかけ」ポイントです。項目新しいオーナーに引き継がれるか？理由敷金返還債務◯ 承継される賃借人が退去時に確実に返してもらえるように。未払賃料債権× 承継されない（原則）元の大家さんが貸していた期間の家賃は、元の大家さんの取り分だから。重要ポイント：借主が家賃を滞納したままオーナーが変わった場合、その**「滞納分」は元の大家さんに払わなければなりません。** ただし、退去時に敷金からその滞納分を差し引く（充当する）計算は、新しい大家さんが行います。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和2年度 第31問 肢ア】「賃貸人たる地位が譲受人に承継されたときは、敷金の返還に係る債務は、譲受人が承継する。」→ 答え：◯条文の知識をストレートに問う問題です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「敷金は『バトン』のように次の大家さんへ渡される」と教えましょう。大家さんが交代する際、前の大家さんから新しい大家さんへ敷金相当額のお金が決済（精算）されるのが実務の常識です。だから、借主は安心して「今の大家さん」に返還を求めればいいのです。",
-          "■ 根拠条文：民法179条1項（混同）、判例（最判昭45.1.22）\n混同の原則（179条1項）\n所有権と他の物権（または債権と債務）が同一人に帰属したときは、その権利は消滅します。\n\n判例による修正\n賃貸人が転借人に建物を譲渡した場合、形式的には「賃貸人」と「転借人」が同一人物になります。\nしかし、このとき**「中間にいる賃借人（転貸人）」の権利を勝手に消滅させることはできません。** 賃借人と賃貸人の間の「賃貸借契約」が存続している以上、転借人としての地位も当然には消滅しない（混同の例外）と解されています。\n\n■ 周辺知識：なぜ「消えない」方がいいのか？\nもしここで契約が消滅してしまうと、中間にいる**賃借人（転貸人）**が困ります。\n\n賃借人は、転借人から賃料をもらう権利を持っています。\n\nもし大家と転借人が売買して「混同」で契約が消滅すると、賃借人は「転借人から家賃をもらう根拠」を失ってしまいます。\n\nこれを防ぐために、あえて契約を残す（混同させない）というのが判例のロジックです。\n\n■ 関連過去問チェック\n【平成26年度 第32問 肢4】\n「賃貸人が賃借物である建物を転借人に譲渡した場合、賃貸人と転借人との間に転貸借関係を消滅させる旨の合意がない限り、転貸借関係は当然には消滅しない。」\n\n→ 答え：◯\n判例知識をそのまま問う、行政書士試験でも好まれる「ひねり」のある問題です。\n\n💡 受験生へのアドバイス\n「『3人の関係』は、2人だけで勝手に壊せない」と教えましょう。\n民法における「混同」は、あくまで「その権利が消えても誰も困らない」ときに起こる現象です。\n今回のように、大家と転借人がくっつくことで、蚊帳の外に置かれた「中間の賃借人」が損をするような場合は、民法はあえて契約を「生かしておく」という選択をします。",
-          "■ 根拠・判例：最判昭37.11.27賃貸人の立場大家さんと直接契約しているのはあくまで借主です。借主が義務を果たさない以上、大家さんはルール通りに（541条）催告して解除することができます。転借人の立場転借人の権利は、大家さんと借主の契約（原賃貸借）の上に成り立つ「付随的なもの」です。メインの契約が不履行で終わる以上、転借人の権利も一緒に消えるのは致し方ない、というのが判例のスタンスです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「合意解除」との違いに注意！ここが試験で一番狙われる、受験生が「お化け」になるための分かれ道です。解除の理由転借人に対抗できるか？理由① 賃料不払い（債務不履行）◯ できる（追い出せる）借主が悪い。大家さんを保護すべき。② 合意解除（話し合いで終了）× できない（追い出せない）2人で勝手に決めて転借人を追い出すのはアンフェア。ポイント：「家賃を払わない」という正当な理由があるときは大家さんの勝ち、「仲良しこよしで勝手にやめる」ときは転借人の勝ち、と覚えましょう！　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第32問 肢1】「賃貸人が賃料延滞を理由として賃貸借契約を解除するには、転借人に対して延滞賃料の支払の機会を与えなければならない。」→ 答え：×「機会を与えなくて良い」が正解です。転借人は、借主がちゃんと家賃を払っているか常にハラハラしていなければならない立場なのです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『親亀（借主）』が転んだら、『子亀（転借人）』も一緒に転ぶ」と教えましょう。ただし、親亀がわざと自分から寝転がった（合意解除）ときは、子亀は落ちなくていい。このイメージで、債務不履行解除と合意解除の区別を完璧にさせましょう。",
-          "■ 根拠条文：民法613条1項\n直接義務（613条1項前段）\n「賃借人が適法に賃借物を転貸したときは、転借人は、賃貸人に対して直接に義務を負う」と規定されています。\n\n義務の範囲（613条1項後段）\n「この場合においては、賃料の支払の時期の前にした賃料の支払をもって賃貸人に対抗することができない」とあり、「本来の賃料（原賃料）」と「転貸料」のいずれか低い額が限度になります。\n\n■ 周辺知識：「前払」は認められない！\n受験生が一番引っかかる「ひっかけポイント」は、前払の禁止です。\n\nケース： 転借人が、借主（転貸人）に対して、来月分の家賃を先払いしてしまった。\n\n結果： 大家さんから「直接うちに払え」と言われたら、転借人は「もう借主に払っちゃいました」とは言えません。\n\n理由： 前払を認めると、借主と転借人が口裏を合わせて大家さんへの支払いを免れることができてしまうからです。\n\n■ 関連過去問チェック\n【平成26年度 第32問 肢2】\n「転借人は、賃貸人に対して直接に義務を負い、転貸借に基づく賃料の支払期前に賃料を賃借人に支払ったとしても、これをもって賃貸人に対抗することができない。」\n\n→ 答え：◯\nまさにこの「前払は無効」という知識を問う超定番の肢です。\n\n💡 受験生へのアドバイス\n「大家さんは『借主』と『転借人』の両方の財布に手を突っ込める」と教えましょう。\nただし、取れる金額は「自分が貸している家賃」か「転借人が払っている家賃」のどちらか安い方までです。\n\n例えば、大家が10万で貸し、借主が12万で転貸しているなら、大家が直接もらえるのは10万まで。逆に、大家が10万で貸し、借主が8万で転貸（安く貸した）しているなら、大家がもらえるのは8万までです。",
-          "■ 根拠・考え方（最判昭26.5.31等）対抗できる権利がない譲受人や転借人は、大家さんの承諾がない限り、自分の「借りる権利」を大家さんに対して主張することができません。つまり、大家さんから見れば「ただの部外者」が勝手に家を使っている状態（不法占拠）です。物権的請求権の発動建物の所有者である大家さんは、所有権に基づいて「勝手に使っている人は出ていってください」と言うことができます。このとき、元の借主との契約をわざわざ終わらせておく必要はありません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「借主」を追い出すには解除が必要！ここが試験のひっかけポイントです。「誰を」追い出したいかでルールが変わります。ターゲット必要なアクション理由勝手に住んでいる人（譲受人等）いきなり明渡請求OK大家さんに権利を主張できない「部外者」だから。元々の借主（賃借人）契約解除が必要契約がある以上、解除しない限り借りる権利が残っているから。ポイント：大家さんは、借主には「契約違反だ！解除するぞ！」と言い、住んでいる部外者には「あんたは誰だ！出て行け！」と言える。この二段構えが可能です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第32問 肢3】（一部改変）「賃貸人の承諾なく賃借権が譲渡された場合、賃貸人は、賃借人との間の賃貸借契約を解除しなくても、譲受人に対して建物の明渡しを請求することができる。」→ 答え：◯まさに本問の知識そのものです。実務でも「解除は面倒だから、とりあえず住んでるやつを追い出したい」という場面で有効な知識です。　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「大家さんにとって、無断転借人は『鍵を持った泥棒』と同じ！」と教えましょう。契約上の関係がない以上、大家さんが「出て行け」と言うのに、他人の（借主との）契約が続いているかどうかは関係ありません。「あんたに貸した覚えはない！」というシンプルな理屈で突破できる、大家さんの最強カードの一つです。"
+          "1. 根拠条文民法536条1項（債務者の責めに帰すべき事由によらない履行不能）当事者双方の責めに帰することができない事由によって債務を履行することができなくなったときは、債権者は、反対給付の履行を拒むことができる。2. なぜこのルールが存在するのか（趣旨）改正前の民法では、特定物（家など）が不可抗力で燃えてしまった場合でも、買主は代金を支払わなければならないという「債権者主義」が原則でした。しかし、これは「家はもらえないのに、お金だけ払う」という、あまりに買主に酷なルールでした。公平の観点： 現代の民法では、「家がもらえないなら、お金も払わない」という方が、双務契約（お互いに義務を負う契約）として公平であると考えられています。履行拒絶権： 家を渡す義務（Aの義務）が震災で消滅した場合、それとセットである代金を払う義務（Bの義務）についても、Bは**「引渡しがないなら払いません」**と突っぱねることができるようになりました。3. 関連知識の整理：改正前後の「危険負担」試験で最も狙われる「旧法との違い」を整理しましょう。項目旧民法（改正前）新民法（現在）原則債権者主義（買主がリスクを負う）債務者主義（売主がリスクを負う）買主のアクション代金を支払わなければならない支払を拒絶できる（536条1項）契約の解除不可（売主に過失が必要だった）可能（無催告解除ができる：542条1項）4. 試験対策のワンポイント：いつから「B」の責任になる？この「支払を拒める」というBの権利は、いつまで続くのでしょうか。引渡し後（567条1項）： AがBに甲建物を引き渡した後に震災で滅失した場合は、リスクはBに移ります。この場合は、Bは代金の支払を拒むことができません。受領遅滞中（567条2項）： Aが「さあ、渡す準備ができたよ」と言ったのに、Bが理由なく受け取らなかった間に震災が起きた場合も、リスクはBに移ります。攻略のアドバイス問題文に**「履行期の直前に震災で滅失」とある場合、まだ引渡しも受領遅滞も起きていないため、買主Bは「履行拒絶（払わない）」もできるし、「解除（契約を白紙に戻す）」**もできます。したがって、「代金の支払を拒むことができない」とする記述は、現代の民法では明確に誤りとなります。",
+          "1. 根拠条文\n民法564条（契約不適合の場合の解除及び損害賠償）\n前二条の規定（追完請求・代金減額請求）は、第415条の規定による損害賠償の請求及び第541条並びに第542条の規定による解除権の行使を妨げない。\n\n2. 買主Bが持つ「4つの武器」\n「届いた家が契約と違う（雨漏りしている、床が抜けているなど）」という場合、買主Bは売主Aに対して以下の4つの武器を振るうことができます。\n\n履行の追完請求（562条）： 「直せ（修補）」「足りない分を持ってこい」「代わりのものをよこせ」\n\n代金減額請求（563条）： 「直せないなら、その分安くしろ」\n\n契約の解除（541・542条）： 「こんな家はいらない。契約を白紙に戻す」\n\n損害賠償請求（415条）： 「欠陥のせいで引っ越しが遅れた。その損害分を払え」\n\n3. なぜ「併用」ができるのか（趣旨）\n「追完請求」や「代金減額請求」は、あくまで**「契約通りの状態にする（または、それに準ずる金銭的調整をする）」**ための手段です。\n\nしかし、たとえ修理をしてもらったとしても、「雨漏りのせいで家具がダメになった」という損害は消えません。この「現実に発生してしまったマイナス」を埋めるためには、別途**「損害賠償」**が必要になります。\n\nそのため、民法は「追完や減額を求めたからといって、損害賠償をあきらめる必要はないですよ」と、重ねて請求することを認めているのです。\n\n4. 【超重要】試験で狙われる「ひっかけ」ポイント\nここが正解を分ける分岐点です。4つの武器のうち、「損害賠償」だけが持つ特殊なルールがあります。\n\n帰責事由（きせきじゆう）の有無\n追完・減額・解除： 売主Aに**「落ち度（過失）」がなくても**請求できます。\n\n損害賠償： 売主Aに**「落ち度（過失）」がない場合は請求できません。**\n\n【合格者の頭の中】\n「直して」「安くして」「やめる」は、契約が違うんだから当然。\nでも、「損害金を払え（賠償）」は、売主が悪いとき（過失があるとき）だけ！\n\n受験生へのアドバイス\n「契約不適合責任」の問題が出たら、**「これら4つの武器は自由に組み合わせて使える」**という大原則を思い出してください。\n\n特に今回の設問のように「〜は妨げられない」という表現は、「併用できる」という意味です。行政書士試験ではこの「武器の組み合わせ」と、各武器を使える「期間の制限（通知期間：1年）」がセットで頻出します。",
+          "1. 根拠条文\n民法563条1項（代金減額請求権）\n前条第1項本文に規定する場合（契約不適合がある場合）において、買主が相当の期間を定めて履行の追完の催告をし、その期間内に履行の追完がないときは、買主は、その不適合の程度に応じて代金の減額を請求することができる。\n\n2. 代金減額請求までの「2ステップ」\n民法は、契約をできるだけ「当初の約束通り」に実現させることを重視しています。そのため、いきなり安くするのではなく、以下の手順を踏むことを求めています。\n\nステップ1：追完請求（チャンスを与える）\n「雨漏りしているから直してください」と相当な期間を決めて催告します。\n\nステップ2：代金減額請求（あきらめて安くする）\n期限が過ぎても直してくれない場合に、ようやく「直さないなら、その分家賃（代金）を引いてね」と言えるようになります。\n\n3. 【重要】「直ちに（無催告）」で減額できる例外（563条2項）\nただし、以下のような「催告しても無駄なケース」では、例外的にいきなり減額請求が可能です。試験ではこの「例外」とのひっかけがよく出ます。\n\n履行不能： 直すことが物理的に不可能なとき。\n\n明確な拒絶： 売主が「絶対直さない」と断言したとき。\n\n定期行為： 特定の時期を過ぎたら意味がない契約（クリスマスケーキなど）で、時期が過ぎたとき。\n\n催告の無意味： その他、催告をしても追完を受ける見込みがないことが明らかなとき。\n\n今回の設問は**「履行の追完が合理的に期待できるとき」**と書かれているため、これらの例外には当たりません。したがって、催告なしの減額請求は認められません。\n\n4. なぜ「まずは催告」が必要なのか（趣旨）\n売主Aにとっても、「勝手に代金を削られる」よりは「自分で直して、満額の代金をもらう」方が利益になる場合が多いからです。売主に**「契約を完全な形で遂行する最後のチャンス」**を与えよう、というのが民法の優しさです。\n\n受験生へのアドバイス\n代金減額請求を見たら、**「まずは『直せ』と言ったか？」**を必ずチェックしてください。\n\n原則： 催告が必要。\n\n例外： 不能・拒絶なら、即・減額OK。\n\nこの優先順位を整理しておけば、契約不適合責任の問題で足元をすくわれることはありません。",
+          "1. 根拠条文民法563条3項（代金減額請求権：買主の責めに帰すべき事由）前二項の規定［代金減額請求］は、不適合が買主の責めに帰すべき事由によるものであるときは、適用しない。2. なぜこのルールが存在するのか（趣旨）「対価的均衡（たいかてききんこう）」という言葉は、契約不適合責任の本質を説明する際によく使われますが、それには大前提があります。それは**「売主が渡した時点ですでに壊れていた（売主の義務違反がある）」**ということです。自業自得の禁止： 買主Bが自分で家の壁を壊したり、管理を怠って傷つけたりした場合（買主の過失）、それは売主Aのせいではありません。自分が原因で価値を下げておきながら、「価値が下がったから安くしろ」と言うのは、あまりに身勝手で不公平です。信義則： 相手方に落ち度がないのに、自分のミスを理由に代金を値切ることは、取引上の信義（ルール）に反します。3. 関連知識のまとめ：買主に「過失（帰責事由）」がある場合買主Bに落ち度がある場合、代金減額請求だけでなく、他の武器も使えなくなります。ここはセットで覚えましょう。買主の武器買主に過失がある場合根拠条文履行の追完請求できない562条2項代金減額請求できない563条3項契約の解除できない543条損害賠償請求－(そもそも売主に過失がないなら不可)【合格者の視点】「買主に責任があるなら、売主に責任は追及できない」という、当たり前といえば当たり前のルールが、全ての救済手段（追完・減額・解除）に共通して適用されています。4. 試験対策の注意点：「帰責事由」という言葉の読み替え試験問題では「Bの過失によって」や「Bの責めに帰すべき事由によって」といった表現で出てきます。これを見たら瞬時に**「Bは何も言えない（追完・減額・解除の全滅）」**と判断してください。「対価的均衡を図るため〜」という理由は、もっともらしい「ひっかけ」の常套句ですので、惑わされないようにしましょう！これで、この個数問題の検討も4つ終わりました。1（危険負担）： 拒むことができない ＝ 誤り2（損害賠償との関係）： 妨げられない ＝ 正しい3（減額請求の催告）： 直ちにできる ＝ 誤り4（買主の過失）： 請求は妨げられない ＝ 誤り残るはあと1つ（選択肢5、またはオ）ですね。最後の一つも確認して、正解（誤っているものの数）を確定させましょうか？",
+          "1. 根拠条文民法566条（通知期間の制限）売主が種類又は品質に関して契約の内容に適合しない目的物を買主に引き渡した場合において、買主がその不適合を知った時から1年以内にその旨を売主に通知しないときは、買主は、その不適合を理由として、履行の追完の請求、代金の減額の請求、損害賠償の請求及び契約の解除をすることができない。2. 「通知」と「行使」の決定的な違いここは実務的にも非常に重要なポイントです。通知（つうち）： 「雨漏りしていますよ」「壁にヒビがありますよ」という事実を売主に伝えること。手紙やメールでOKです。権利の行使（こうし）： 具体的に「損害賠償として100万円払え！」と請求したり、裁判を起こしたりすること。民法は、買主に対して「1年以内に裁判まで起こせ」という厳しいことは言っていません。売主が「えっ、今さら言われても困るよ」と驚かないように、**「とりあえず1年以内に不具合を見つけて教えてね」**というルールにしているのです。3. 関連知識の整理：1年以内に「通知」した後の流れ1年以内に通知さえしておけば、その後の損害賠償請求などは**消滅時効（しょうめつきこう）**のルールに従います。期間の種類制限の内容カウントダウンの開始通知期間（566条）1年以内に不適合を知らせる。不適合を知った時から消滅時効（166条）5年以内に権利を行使する。権利を行使できると知った時からつまり、知ってから11ヶ月目に「通知」をすれば、そこからさらに5年間（時効まで）はじっくりと損害賠償の金額交渉などができる、という仕組みです。4. 【重要】このルールが適用されないケース試験では、この1年制限が「かからない」ケースも狙われます。種類・品質「以外」の不適合： 「数量」が足りない場合や「権利」に欠陥がある場合は、1年以内に通知しなくても、時効（5年/10年）にかかるまで請求できます。売主が悪意・重過失の場合： 売主が渡す時に「これ、壊れてるけど黙っておこう」と知っていた（または重大な不注意で見逃した）場合は、買主は1年を過ぎても文句が言えます。今回の個数問題のまとめさて、全5問の検討が終わりました。危険負担： 拒めない ＝ ×（誤）損害賠償との関係： 妨げられない ＝ ○（正）減額請求の催告： 直ちにできる ＝ ×（誤）買主の過失： 請求できる ＝ ×（誤）期間制限： 1年以内に「行使」 ＝ ×（誤）**「誤っているものはいくつあるか」という問いに対しては、「4つ」**が正解となります。このように、民法改正後の「契約不適合責任」と「危険負担」は、単独の知識だけでなく、他の条文との組み合わせで複雑に出題されます。一つひとつの用語（「通知」か「行使」か、「当然」か「請求」か）を正確に読み解くクセをつけていきましょう！"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
-        "text": "物の貸借に関する次のア～オの記述のうち、民法の規定に照らし、それが、使用貸借の場合にも賃貸借の場合にも当てはまるものの組合せはどれか。",
+        "text": "物の貸借に関する次の記述のうち、民法の規定に照らし、それが、使用貸借の場合にも賃貸借の場合にも当てはまるものの組合せはどれか。",
         "choices": [
           "借主は、契約またはその目的物の性質によって定まった用法に従い、その物の使用および収益をしなければならない。",
           "借主は、目的物の使用および収益に必要な修繕費を負担しなければならない。",
@@ -19881,31 +22266,10 @@ export const SUBJECTS = {
           4
         ],
         "isReorder": false,
-        "explain": "物の貸借に関する次のア～オの記述のうち、民法の規定に照らし、それが、使用貸借の場合にも賃貸借の場合にも当てはまるものの組合せはどれか。",
+        "explain": "物の貸借に関する次の記述のうち、民法の規定に照らし、それが、使用貸借の場合にも賃貸借の場合にも当てはまるものの組合せはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠条文：民法559条、576条（売買の規定を準用）\n売買の規定の準用（559条）\n贈与や賃貸借などの有償契約には、売買の規定が準用されます。\n\n権利を失うおそれがある場合の代金支払拒絶（576条）\n「買い受けた権利について、……その全部又は一部を失うおそれがあるときは、……その危険の程度に応じて、代金の全部又は一部の支払を拒むことができる」とあります。\nこれを転貸借に当てはめると、**「借りる権利を失うおそれがあるなら、家賃（代金）を払わなくていい」**ということになります。\n\n■ 周辺知識：大家さんが「担保」を出せば？\nもし大家さんが「万が一追い出すことになっても、損はさせないよ」と相当の担保を提供した場合は、転借人はこの拒絶権を使えなくなります。もっとも、無断転貸で怒っている大家さんがそんな担保を出すことは、実務上まずありえません。\n\n■ 関連過去問チェック\n【平成26年度 第32問 肢3】\n「賃貸人が転借人に対して建物の明渡しを請求したときは、転借人は、賃借人に対して転貸借の賃料の支払を拒絶することができる。」\n\n→ 答え：◯\n判例（最判昭50.4.25）および条文準用の知識を問う、非常に「民法らしい」論理構成の問題です。\n\n💡 受験生へのアドバイス\n「『出口』が塞がれそうなのに、『入り口（支払い）』を続ける必要はない」と教えましょう。\n無断転貸の転借人は、実は一番の被害者かもしれません（借主に騙されていた場合など）。\n大家さんから直接「出て行け」とパンチ（明渡請求）を食らった以上、もはや「平和に借り続ける」という契約の前提が崩れています。だから、家賃という「反対給付」もストップして良いのです。",
-        "slots": [
-          {
-            "label": "ア",
-            "options": ""
-          },
-          {
-            "label": "イ",
-            "options": ""
-          },
-          {
-            "label": "ウ",
-            "options": ""
-          },
-          {
-            "label": "エ",
-            "options": ""
-          },
-          {
-            "label": "オ",
-            "options": ""
-          }
-        ],
+        "memo": "1. 根拠条文このルールは、専門用語で**「用法遵守義務（ようほうじゅんしゅぎむ）」**と呼ばれます。使用貸借の場合（民法594条1項）借主は、契約又はその目的物の性質によって定まった用法に従い、その物の使用及び収益をしなければならない。賃貸借の場合（民法616条）第594条第1項……の規定は、賃貸借について準用する。つまり、法律の書き方として「使用貸借に書いてあるこのルール、賃貸借でも同じだからね！」と指定されているのです。2. なぜ両方に共通するのか（趣旨）「借り物」である以上、タダでも有料でも、持ち主（貸主）からすれば**「勝手な使い方をされて、価値を下げられたり壊されたりしたくない」**という思いは共通だからです。例： 「居住用」として借りたマンションで、勝手に「焼肉屋」を始めてはいけません。効果： もしこの義務に違反した場合、貸主は解除をしたり、損害賠償を請求したりすることができます（600条、616条準用）。3. 【超重要】使用貸借と賃貸借の「共通点」リスト試験対策として、この1番のように「両方に共通するルール」をいくつかピックアップして整理しておきましょう。ここを覚えておくと、消去法が非常に楽になります。共通する項目内容用法遵守義務決まった使い方をしなければならない。善管注意義務自分の物以上に、注意深く管理しなければならない。無断転貸の禁止勝手に他人に貸してはいけない。修繕時の協力貸主が「直すから貸して」と言ったら、拒めない。返還義務契約が終わったら、原状に復して返さなければならない。4. 【重要】逆に「違う」ところは？今回の問題は「共通するもの」を探す問題ですが、選択肢2以降で「違い」が問われる可能性が高いです。以下の2点は特に注意してください。通常の必要費（修繕費など）：使用貸借 ＝ 借主が負担（タダで借りてるんだから、電球代くらいは自分で払え）賃貸借 ＝ 貸主が負担（お金を取って貸してるんだから、大家が直せ）第三者への対抗力（登記など）：使用貸借 ＝ 基本的に対抗できない。賃貸借 ＝ 登記や引き渡しがあれば、新しいオーナーに対抗できる。受験生へのアドバイス「用法遵守義務」は、**「借り物の大原則」**です。「タダだからって何をしてもいいわけじゃないし、お金を払ってるからって何をしてもいいわけじゃない」という常識感覚で覚えておけば、この選択肢は迷わず「共通」と判断できます。",
+        "slots": [],
         "refId": "",
         "isBonus": true,
         "chunks": [],
@@ -19934,12 +22298,20 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠条文：民法559条、576条（売買の規定を準用）\n売買の規定の準用（559条）\n贈与や賃貸借などの有償契約には、売買の規定が準用されます。\n\n権利を失うおそれがある場合の代金支払拒絶（576条）\n「買い受けた権利について、……その全部又は一部を失うおそれがあるときは、……その危険の程度に応じて、代金の全部又は一部の支払を拒むことができる」とあります。\nこれを転貸借に当てはめると、**「借りる権利を失うおそれがあるなら、家賃（代金）を払わなくていい」**ということになります。\n\n■ 周辺知識：大家さんが「担保」を出せば？\nもし大家さんが「万が一追い出すことになっても、損はさせないよ」と相当の担保を提供した場合は、転借人はこの拒絶権を使えなくなります。もっとも、無断転貸で怒っている大家さんがそんな担保を出すことは、実務上まずありえません。\n\n■ 関連過去問チェック\n【平成26年度 第32問 肢3】\n「賃貸人が転借人に対して建物の明渡しを請求したときは、転借人は、賃借人に対して転貸借の賃料の支払を拒絶することができる。」\n\n→ 答え：◯\n判例（最判昭50.4.25）および条文準用の知識を問う、非常に「民法らしい」論理構成の問題です。\n\n💡 受験生へのアドバイス\n「『出口』が塞がれそうなのに、『入り口（支払い）』を続ける必要はない」と教えましょう。\n無断転貸の転借人は、実は一番の被害者かもしれません（借主に騙されていた場合など）。\n大家さんから直接「出て行け」とパンチ（明渡請求）を食らった以上、もはや「平和に借り続ける」という契約の前提が崩れています。だから、家賃という「反対給付」もストップして良いのです。",
-          "■ 根拠・考え方（判例：最判平7.6.9 等）相対的な基準離島の診療所と、大学病院や専門センターとで、全く同じ設備や最新技術を要求するのは現実的ではありません。そのため、**「その当時の平均的な医師が行っている水準」**が基準になります。地域差の考慮（かつての考え方）「地方の医師には、都会の最新設備を備えた病院と同じことはできない」という地理的条件が考慮されてきました。現代の傾向（情報の普及）ただし、最近の判例では「ネットや学会で最新知見は共有されているはずだ」として、「場所」による格差は以前よりも厳しく制限される傾向にあります（地域格差の相対化）。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：病院の「性格」による違い受験生が「民法お化け」になるために、施設ごとの期待値の差を整理しましょう。医療機関の性格期待される医療水準大学病院・専門病院その分野の最新・高度な知見に基づく高度な水準。一般の開業医その専門分野における、平均的な医師が行うべき標準的な水準。ポイント：転送義務「自分の診療所ではこれ以上は無理だ」と判断すべき医療水準（限界）に達した場合、適切な設備のある病院へ**「転送（紹介）する義務」**が発生します。これを怠ると、たとえ自分のところで最善を尽くしたとしても過失を問われます。　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成22年度 第34問 肢3】（一部改変）「医師の注意義務の基準となる医療水準は、病院の性格、所在する地域の医療環境の特性等の諸般の事情を考慮して決せられるべきである。」→ 答え：◯判例のフレーズそのものです。試験では「全国一律である」というバツ肢でよく出題されます。　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『平均的なお医者さん』を想像しよう」と教えましょう。医療ミスかどうかを決めるのは、「神様のような名医」ができるかどうかではなく、「その環境にいる平均的な医師」が気づくべきだったか、やるべきだったかという点です。ただし、「うちは田舎だから、10年前の治療法でいいんだ」という言い訳は、今の情報の速さでは通用しなくなっている、という判例の移り変わりもセットで伝えると、記述式の対策にもなります。",
-          "■ 根拠・考え方（判例：最判平8.1.23）慣行の合理性もし、その医療慣行が「単なるサボり」や「不合理な古い習慣」であった場合、それを守っているだけでは、医師に期待される注意義務を果たしたことにはなりません。臨床医学の知見との照合「その当時の臨床医学の知見」に照らして、より安全で適切な方法が確立されているのであれば、たとえ多くの医師が古い慣行に従っていたとしても、医師は最新の知見に基づいた注意義務を負うことになります。　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：医療水準の「2つの顔」受験生が整理しやすいよう、医療水準を構成する要素を分けましょう。項目内容法的な評価医療慣行現場で「実際に行われている」こと。参考にはなるが、これだけで免責されない。医療水準診療当時の知見に照らし、「本来行われるべき」こと。過失判断の真の基準。ポイント：判例の言葉を借りれば、「医療慣行が直ちに医療水準になるわけではない」ということです。「赤信号、みんなで渡れば怖くない」は、民法の過失論では通用しません。　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成22年度 第34問 肢4】「医師が、診療当時のいわゆる医療慣行に従った医療行為を行ったとしても、そのことが直ちに、当該医師がその注意義務を尽くしたと評価されることにつながるものではない。」→ 答え：◯判例の言い回しがそのまま出題されます。非常に重要度の高い肢です。　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「プロの義務は、横並びの習慣を超えたところにある」と教えましょう。「他の先生もみんなこうしてますよ」という言い訳は、高度な専門職である医師には通用しません。医師は常に、その時点での医学的な「正解（知見）」を追い求める義務がある、というのが民法の厳しい、しかし誠実な考え方です。",
-          "■ 根拠・考え方（判例：最判平13.2.22）\n医師が「確立された治療法（標準治療）」以外の選択肢を説明すべきとされるのは、主に以下の条件を満たす場合です。\n\n相当程度の有効性・期待：\nその未確立の療法が、当該患者の疾患に対して相当程度の有効性が期待できること。\n\n実践の可能性：\n特定の医療機関でその療法が実際に実施されており、転院等によって患者がそれを受けることが可能であること。\n\n患者の強い要望：\n患者がその療法の実施を強く希望していることが明らかな場合、あるいは標準治療を拒絶している場合など。\n\n■ 周辺知識：なぜ「確立していない」のに説明が必要？\n本来、医師は「確立された医療水準」を守る義務がありますが、患者には**「自己決定権（自分の体のことを自分で決める権利）」**があります。\n\n**「標準治療では手遅れだ」**と言われた患者にとって、まだ研究段階であっても望みのある治療法があれば、それは命に関わる重大な情報です。\n\n医師が「そんなのはまだ実験段階だから」と勝手に情報を遮断することは、患者から**「他の可能性を選ぶチャンス」**を奪うことになると判断されます。\n\n■ 関連過去問チェック\n【平成22年度 第34問 肢5】（類題）\n「医師は、診療当時の医療水準として確立していない療法であっても、当該患者にとって相当の有効性が期待でき、かつ、患者がその実施を強く希望しているような場合には、その療法について説明する義務を負うことがある。」\n\n→ 答え：◯\n「医療水準として確立していない ＝ 説明しなくていい」というひっかけパターンが王道ですが、この判例を知っていれば得点できます。\n\n💡 受験生へのアドバイス\n「医者は『情報の門番』であってはならない」と教えましょう。\n医学的な正解（医療水準）を決めるのは医師ですが、自分の人生の選択肢（どのリスクを取るか）を決めるのは患者です。\n「未確立 ＝ 嘘」ではなく「未確立 ＝ 未知の可能性がある」という情報を、誠実に開示することが求められているのです。",
-          "■ 根拠・考え方（判例：最判平15.1.24）診断困難時の義務医師にとって、自分の能力や施設の設備で対処できない患者を抱え続けることは、患者を危険にさらす行為です。「疑い」段階での判断「特定の病名だと断定できないから、まだ紹介状は書かない」というのは間違いです。「何か重大なことが起きている可能性があるが、ここでは特定できない」と判断した時点で、転送を検討しなければなりません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：転送義務が生じる「3つの条件」受験生が整理しやすいよう、どんな時に転送が必要になるのかをまとめましょう。状況医師に求められる行動設備の限界必要な検査機器（MRI、CT等）が自院にない場合。専門性の限界自分の専門外で、より高度な専門的判断が必要な場合。症状の悪化・停滞治療を続けても改善が見られず、原因が特定できない場合。ポイント：「病名がわからない」ことは免責事由にはなりません。むしろ「わからないからこそ、わかる場所へ送る」のがプロとしての注意義務です。　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成22年度 第34問 肢2】「医師は、自ら適切な診療を行うことが困難な場合には、たとえ病名が特定できていないときであっても、適切な診療を受けられる医療機関に転送するなどの措置を講ずるべき義務を負う。」→ 答え：◯まさに本問の知識そのものです。この「たとえ〜であっても」というフレーズが判例のキモです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『自分の手に負えない』と認めることも、立派な治療である」と教えましょう。医療過誤は「余計なことをして失敗した」ケースだけでなく、「すべきこと（転院）をせずに放置した」ケースも非常に多いです。「病名がわかったら紹介するよ」ではなく、**「原因を突き止めるために、より高い水準の場所へバトンタッチする」**という意識が、医療水準における注意義務の本質なのです。",
-          "■ 根拠・考え方（判例：最判平14.11.8）添付文書の重要性添付文書は、厚生労働省の認可を得た公的な情報であり、医師が守るべき「最低限のガイドライン」です。これを確認せずに副作用を見逃した場合は、原則として過失（注意義務違反）が認められます。添付文書以上の義務さらに判例は、「添付文書に書いていないから知らなかった」という言い訳を許しません。深刻な副作用が学会などで報告され、専門医の間で周知されているような事柄については、自ら文献を調べて知っておくべき（高度な情報収集義務）としています。■ 周辺知識：薬剤師との連携行政書士試験ではあまり出ませんが、実務上は「薬剤師の役割」も重要です。役割義務の内容医師処方する立場として、副作用のリスクと治療の必要性を天秤にかけ、最新知見に基づき判断する。薬剤師処方箋に疑問がある場合、医師に確認（疑義照会）し、患者に適切な服薬指導を行う。ポイント：医師は「薬を出すプロ」である以上、「製薬会社が教えてくれなかったから」という理由は通りません。自ら情報を掴みに行く姿勢が「医療水準」として要求されています。■ 関連過去問チェック【平成22年度 第34問 肢1】「医師は、医薬品を使用するに当たっては、最新の添付文書を確認すべき義務を負うことはもとより、必要に応じて最新の文献を参照するなどして、当該医薬品の副作用について最新の情報を収集すべき義務を負う。」→ 答え：◯第34問はこのように、医療過誤の判例が5つの肢にわたってズラリと並ぶ形式で出題されました。これで全5肢（第45問〜第49問）すべてクリアです！💡 受験生へのアドバイス「医師にとっての添付文書は、受験生にとっての六法と同じ！」と教えましょう。「六法に載っている条文を知らなかった」では行政書士試験に受からないのと同じで、医師が「添付文書に載っているリスクを知らなかった」では、プロとしての義務を果たしたことになりません。さらに、プロである以上、最新の判例（最新の文献）まで追っておくのが当たり前……という、非常に高いハードルを民法は課しているのです。"
+          "1. 根拠条文このルールは、専門用語で**「用法遵守義務（ようほうじゅんしゅぎむ）」**と呼ばれます。使用貸借の場合（民法594条1項）借主は、契約又はその目的物の性質によって定まった用法に従い、その物の使用及び収益をしなければならない。賃貸借の場合（民法616条）第594条第1項……の規定は、賃貸借について準用する。つまり、法律の書き方として「使用貸借に書いてあるこのルール、賃貸借でも同じだからね！」と指定されているのです。2. なぜ両方に共通するのか（趣旨）「借り物」である以上、タダでも有料でも、持ち主（貸主）からすれば**「勝手な使い方をされて、価値を下げられたり壊されたりしたくない」**という思いは共通だからです。例： 「居住用」として借りたマンションで、勝手に「焼肉屋」を始めてはいけません。効果： もしこの義務に違反した場合、貸主は解除をしたり、損害賠償を請求したりすることができます（600条、616条準用）。3. 【超重要】使用貸借と賃貸借の「共通点」リスト試験対策として、この1番のように「両方に共通するルール」をいくつかピックアップして整理しておきましょう。ここを覚えておくと、消去法が非常に楽になります。共通する項目内容用法遵守義務決まった使い方をしなければならない。善管注意義務自分の物以上に、注意深く管理しなければならない。無断転貸の禁止勝手に他人に貸してはいけない。修繕時の協力貸主が「直すから貸して」と言ったら、拒めない。返還義務契約が終わったら、原状に復して返さなければならない。4. 【重要】逆に「違う」ところは？今回の問題は「共通するもの」を探す問題ですが、選択肢2以降で「違い」が問われる可能性が高いです。以下の2点は特に注意してください。通常の必要費（修繕費など）：使用貸借 ＝ 借主が負担（タダで借りてるんだから、電球代くらいは自分で払え）賃貸借 ＝ 貸主が負担（お金を取って貸してるんだから、大家が直せ）第三者への対抗力（登記など）：使用貸借 ＝ 基本的に対抗できない。賃貸借 ＝ 登記や引き渡しがあれば、新しいオーナーに対抗できる。受験生へのアドバイス「用法遵守義務」は、**「借り物の大原則」**です。「タダだからって何をしてもいいわけじゃないし、お金を払ってるからって何をしてもいいわけじゃない」という常識感覚で覚えておけば、この選択肢は迷わず「共通」と判断できます。",
+          "1. 使用貸借の場合（タダで借りる）民法595条1項（借用物の費用の負担）借主は、借用物の通常の必要費を負担する。ルール： 電球が切れた、ふすまが破れたといった「通常の管理に必要な費用（修繕費）」は、**借りている側（借主）**が払わなければなりません。趣旨： タダで物を使わせてもらって利益を得ている以上、日常的なメンテナンス代くらいは自分で出すのが公平だ、という考え方です。2. 賃貸借の場合（お金を払って借りる）民法606条1項（賃貸人による修繕等）賃貸人は、賃貸物の使用及び収益に必要な修繕をする義務を負う。ルール： 修繕費を負担するのは、原則として**貸している側（大家さん／賃貸人）**です。趣旨： 賃貸借は「お金（賃料）を払って、完璧な状態で物を使わせてもらう」契約です。貸主は、借主がちゃんと物を使える状態を維持する義務があるため、修繕費も貸主が負担します。補足（608条1項）： もし借主が立て替えて修繕費（必要費）を払った場合、大家さんに対して「すぐに返して！」と請求（費用償還請求）することができます。3. 試験対策としての比較まとめ「修繕費（必要費）」の負担については、以下の対比を完璧に覚えましょう。項目使用貸借（タダ）賃貸借（有料）修繕義務（負担者）借主（595条1項）貸主（606条1項）必要費の償還請求できない（自分で払う）できる（608条1項）有益費の償還請求できる（595条2項）できる（608条2項）【注意！】「有益費（物件の価値をアップさせる費用）」については、タダでも有料でも、貸主が最終的に得をするため、両方の借主が返還請求できます。 ここが「ひっかけ」でよく出ます。受験生へのアドバイス「タダで借りているなら、維持費（電球代など）は自分で持つ」「お金を払っているなら、大家に直してもらう」という、極めて常識的な感覚で整理しておけば、この選択肢は迷わず「違い」として処理できます。今回の問題は「両方に当てはまるもの」を探す問題ですので、この**選択肢2は不正解（組合せに含まれない）**となります。",
+          "1. 根拠条文使用貸借の場合（民法599条1項）借主は、借用物を受け取った後にこれに附属させた物がある場合において、借用物を返還するときは、その附属させた物を収去する権利を有する。賃貸借の場合（民法621条）賃借人は、賃借物を受け取った後にこれに附属させた物がある場合において、賃借物を返還するときは、その附属させた物を収去する権利を有する。つまり、どちらの契約であっても、借主は「自分が後から付けたエアコンや棚」などは、取り外して持ち帰る権利がある（むしろ、原状回復として取り外す義務がある）のです。2. なぜこのルールが存在するのか（趣旨）このルールは、借主の**「原状回復義務（げんじょうかいふくぎむ）」**とセットで考えると理解が深まります。借りた時の状態に戻す： 借主は、物を返すときに「借りたときと同じ状態」にして返さなければなりません。所有権の整理： 後から付けたものは借主の所有物ですから、そのまま放置して返すと、貸主にとっても「他人の所有物が残っている」という迷惑な状態になります。そのため、法律は「取り外して持っていってね（収去してね）」という権利（兼義務）を認めています。3. 【注意！】収去「できない」場合（例外）ただし、何でもかんでも剥がしていいわけではありません。以下の場合は収去できません（あるいは制限されます）。分離不能な場合： 壁紙を貼った、ペンキを塗ったなど、建物と一体化してしまって剥がすと壊れてしまうようなものは、収去権の対象になりません。貸主が買い取った場合（造作買取請求権）： 賃貸借において、大家さんの同意を得て付けた造作（エアコンなど）については、借主が「大家さん、買い取ってください」と言える権利（民法ではなく借地借家法33条）があり、買い取られた場合は収去できません。4. 試験対策としてのまとめ今回の問題は「両方に当てはまるもの」を探す問題ですが、この選択肢3は**「どちらにも当てはまらない（＝収去できるから）」**ため、正解の組み合わせには入りません。項目使用貸借賃貸借附属物の収去権あり（599条1項）あり（621条）原状回復義務ありあり【合格者の視点】「収去することはできない」という否定的なひっかけは、改正民法の「収去権の明文化」を理解しているかを試す定番問題です。「自分で付けたものは、自分のもの。だから持って帰れる！」というシンプルな原則を叩き込んでおきましょう。これで、検討状況は以下の通りです。1（用法遵守）： ○（共通）2（修繕費）： ×（相違）3（収去権）： ×（どちらも収去できるので、記述自体が誤り）",
+          "1. 使用貸借の場合（タダで借りる）民法597条3項（借主の死亡による終了）使用貸借は、借主の死亡によって、その効力を失う。ルール： 借主が死んだら、その瞬間に契約は終了します。趣旨： 「タダで貸す」というのは、貸主から借主への個人的な厚意（プレゼントのようなもの）です。「あなただからタダで貸した」のであって、借主が死んだ後にその息子や親戚にまでタダで貸し続ける義理は貸主にはありません。そのため、一代限りで終了します。2. 賃貸借の場合（お金を払って借りる）賃貸借のルール（相続される）ルール： 賃借人（借主）が死亡しても、契約は終了しません。趣旨： 賃貸借における借主の権利（賃借権）は、お金を払って得た「財産権」としての性格が強いものです。そのため、借主が亡くなった場合は、その相続人が賃借人の地位を承継（相続）します。大家さんは、相続人が家賃を払う限り、勝手に追い出すことはできません。3. 試験対策としての比較まとめ「死」が契約に与える影響は、以下の表で完璧に整理してください。亡くなった人使用貸借（タダ）賃貸借（有料）借主（借りる側）終了する（597条3項）終了しない（相続される）貸主（貸す側）終了しない（相続される）終了しない（相続される）【合格者の記憶法】「タダで借りる権利は、墓場まで持っていけない（一代限り）」。「お金で買った権利は、家族に残せる（相続OK）」。4. これまでの検討状況今回の問題は「両方に当てはまるもの」の組み合わせを探すものです。1（用法遵守）： ○（共通）2（修繕費）： ×（使用貸借のみ）3（収去権）： ×（どちらも収去できるので、記述「できない」は両方に不適合）4（借主の死亡）： ×（使用貸借のみ）今のところ、共通点は**「選択肢1」のみです。\r\n「2つ以上選んでね」とのことですので、残る選択肢5**が「共通点」である可能性が極めて高いですね！",
+          "1. 根拠条文このルールは、目的物を返還した後の「後片付け（清算）」に関する期間制限です。使用貸借の場合（民法600条）契約の本旨に反する使用又は収益によって生じた損害の賠償及び借主が支出した費用の償還は、貸主が返還を受けた時から1年以内に請求しなければならない。賃貸借の場合（民法616条・622条）民法616条（及び622条）： 第600条の規定は、賃貸借について準用する。つまり、使用貸借の条文に書かれた「1年」という期間制限を、賃貸借でもそのまま使いましょう、と法律で決まっています。2. なぜこのルールが存在するのか（趣旨）このルールのキーワードは**「法律関係の速やかな確定」**です。記憶の風化を防ぐ： 物が返ってきた後、何年も経ってから「あの時の使い方が悪かったから壊れたんだ、賠償しろ！」とか「3年前の電球代を返せ！」と言い出すと、事実確認が非常に困難になります。貸主・借主を早く解放する： 返還後1年という短いリミットを設けることで、双方がいつまでも「請求されるかもしれない」という不安な状態に置かれるのを防いでいます。3. 【重要】「1年」のカウントダウンはいつから？試験で狙われる「ひっかけ」ポイントは、その**起算点（スタート地点）**です。ルール： 貸主が**「目的物の返還を受けた時」**から1年です。ひっかけ： 「損害を知った時から1年」や「契約が終了した時から1年」ではありません。あくまで**「現物が手元に戻ってきて、中身を確認できる状態になった時」**からカウントが始まります。4. この問題の最終結論（組合せの確定）これまでの検討結果をまとめると、以下のようになります。選択肢内容使用貸借賃貸借共通か？1用法遵守義務○○【共通】2修繕費の負担借主貸主×（相違）3附属物の収去不可×××（どちらも収去可）4借主の死亡で終了○××（相違）51年以内の請求制限○○【共通】したがって、使用貸借と賃貸借の両方に当てはまるものの組合せは、**「1と5（アとオなど）」**となります。受験生へのアドバイス「1年以内に請求」という数字が出てきたら、それが**「返還後」の話であることをしっかり確認してください。\r\n民法には「知った時から1年（契約不適合）」や「追認できる時から5年（消滅時効）」など、様々な数字が出てきますが、この「貸借の返還後1年」**は、タダでも有料でも変わらない「貸し借りの終わりの共通ルール」としてセットで暗記してしまいましょう。",
+          "1. 根拠条文民法595条1項（借用物の費用の負担）借主は、借用物の通常の必要費を負担する。2. なぜこのルールが存在するのか（趣旨）「タダで使わせてもらっている」という状況を考えれば、非常に納得のいくルールです。恩恵への対価： 貸主（大家さんなど）は、本来得られるはずの賃料を諦めて、善意でタダで貸してくれています。それなのに、消耗品の交換代まで貸主に請求するのは、あまりに厚かましく不公平です。管理の基本： 日常的に物を使っているのは借主ですから、その維持管理にかかる細かい費用は借主が持つのが自然だ、という考え方です。3. 【超重要】試験で狙われる「賃貸借」との決定的な違い行政書士試験では、必ずと言っていいほど「賃貸借（有料）」との比較で出題されます。ここは絶対に混同してはいけません。費用の種類使用貸借（タダ）賃貸借（有料）通常の必要費（電球、ふすま等）借主が負担（595条1項）貸主が負担（606条1項）必要費の償還請求できないできる（608条1項）有益費の償還請求できる（595条2項）できる（608条2項）【注意！】有益費（ゆうえきひ：物件の価値を高める費用）については、タダでも有料でも「最終的に物件が返ってきたときに貸主がトクをする」ため、どちらの契約でも貸主に請求することができます。4. 「通常の必要費」ではない場合は？もし、大地震で屋根が壊れたり、土台が腐ったりといった**「特別の必要費」**が発生した場合はどうなるでしょうか。これについては民法に明文規定がありませんが、一般的には貸主が負担すべきと考えられています（事務管理の規定などが準用される可能性があります）。試験対策としては、**「通常の必要費 ＝ 借主負担」**というフレーズを正確に暗記しておけば十分です。受験生へのアドバイス「タダなら自分で直す、お金を払っているなら大家に直してもらう」というイメージを強く持ってください。使用貸借（借主）： 「タダで借りてるんだから、電球代くらいは自分で出すよ！」賃貸借（賃借人）： 「高い家賃を払ってるんだから、雨漏りくらい大家さんが直してよ！」この「人情味のある理解」が、試験本番でのケアレスミスを防ぐ最強の武器になります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -19968,7 +22340,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "A所有の甲土地をBに対して建物所有の目的で賃貸する旨の賃貸借契約（以下、「本件賃貸借契約」という。）が締結され、Bが甲土地上に乙建物を建築して建物所有権保存登記をした後、AがCに甲土地を売却した。この場合に関する次の記述のうち、民法の規定および判例に照らし、妥当でないものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠条文：民法670条3項業務執行者の選任（670条3項）「組合の業務の決定及び執行は、組合契約の定めるところにより、一人若しくは数人の組合員又は第三者に委任することができる」と明記されています。誰に任せられるか？特定の組合員（例：リーダーのAさん）数人の組合員（例：理事会メンバー）第三者（例：プロの経営コンサルタント）このように、メンバー外の人にも任せられるのがポイントです。　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「原則」と「例外」の多数決試験では「特に決めていない場合」との対比がよく出ます。状況決定の方法原則（担当者がいない）組合員の過半数で決める（670条1項）。担当者がいる（一人）その担当者が単独で決める。担当者がいる（数人）担当者の過半数で決める（670条4項）。注意！「常務（日常的な仕事）」は？各組合員（または各業務執行者）は、特別な定めに反しない限り、単独で行うことができます。ただし、他の人が「ちょっと待った！」と異議を唱えたら、すぐにストップしなければなりません（670条5項）。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成25年度 第32問 肢2】（一部改変）「組合の業務の決定及び執行は、組合契約の定めるところにより、組合員の中から選任された業務執行者に委任することができるが、組合員以外の第三者に委任することはできない。」→ 答え：×「第三者に委任することはできない」の部分が間違いです。改正民法で第三者への委任がより明確になりました。　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「組合は『みんなの集まり』だが、代表を立てることもできる」と教えましょう。サークル活動をイメージすると分かりやすいです。全員で会議して決めるのが基本（過半数）。でも、会計係や部長を置いて、その人に任せることもできる（委任）。さらに、外部のコーチ（第三者）に運営を任せることだってできる。この柔軟性が「組合」という組織の面白いところです。",
+        "memo": "1. 賃貸人の地位が「当然に移転」する条件民法605条の2第1項では、以下の条件を満たす場合、賃貸人の地位は**「譲受人（C）」に自動的に引き継がれる**とされています。条件1： 不動産が譲渡されたこと。条件2： その賃貸借が**対抗要件（対抗力）**を備えていること。今回のケースでは、Bが**「乙建物の所有権保存登記」**をしています。借地借家法10条1項により、建物の登記があれば土地賃借権を第三者（C）に対抗できるため、条件2をクリアしています。したがって、地位はAからCへ移転します。2. 「別段の合意」とは何か（改正民法605条の2第2項）選択肢にある「別段の合意がない限り」というフレーズは、改正で新設された**「留保（りゅうほ）の合意」**を指しています。本来、地位はCに移りますが、AとCの間で「賃貸人の地位はAに留める」と合意し、さらに「CがAに土地を貸し出す（転貸のような形にする）」という合意があれば、例外的にCに地位を移さないことが可能です。しかし、そのような特別な合意がないのが原則ですので、「別段の合意がない限り、Cに移転する」という記述は、法律の定めに忠実な正しい記述となります。3. 【重要】試験で狙われる「登記」と「対抗」の差この論点には、受験生が最も混乱しやすい「2つの登記」の話があります。ここを整理しておけば、この問題は完璧です。項目内容地位の移転売買契約時（譲渡時）に**当然に（自動的に）**移転する。賃料の請求CがBに対して「私が新しい大家だから、私に家賃を払え」と言うには、C自身の「土地の所有権移転登記」が必要（605条の2第3項）。【合格者の視点】「地位は移転しているけれど、登記がないとBに威張れない（請求できない）」という、「移転」と「対抗」を分けて考えるのがコツです。4. 賃借人（B）の承諾は必要か？ここも記述式や択一の「ひっかけ」でよく出ます。賃貸人の地位の移転には、賃借人（B）の承諾は不要です（最高裁昭和46年4月23日）。「Bが誰を大家にするか選ぶ権利」はない、ということですね。受験生へのアドバイスこの問題は「妥当でないもの」を探すものですね。選択肢1が「妥当」であることがわかったので、残りの選択肢に「誤り」が隠れているはずです。例えば、以下のような記述があればそれが「妥当でない（誤り）」の候補になります：「CがBに賃料を請求するには、Bの承諾が必要である（×）」「Bに建物の登記があっても、Cが土地の登記を備えるまでは賃貸人の地位は移転しない（×）」残りの選択肢（2〜5）についても、同様に検討していきましょうか？「対抗要件」や「敷金の承継」など、関連する深い論点も一緒に整理できますよ！",
         "slots": [],
         "refId": "",
         "isBonus": true,
@@ -20001,13 +22373,22 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠条文：民法670条3項業務執行者の選任（670条3項）「組合の業務の決定及び執行は、組合契約の定めるところにより、一人若しくは数人の組合員又は第三者に委任することができる」と明記されています。誰に任せられるか？特定の組合員（例：リーダーのAさん）数人の組合員（例：理事会メンバー）第三者（例：プロの経営コンサルタント）このように、メンバー外の人にも任せられるのがポイントです。　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「原則」と「例外」の多数決試験では「特に決めていない場合」との対比がよく出ます。状況決定の方法原則（担当者がいない）組合員の過半数で決める（670条1項）。担当者がいる（一人）その担当者が単独で決める。担当者がいる（数人）担当者の過半数で決める（670条4項）。注意！「常務（日常的な仕事）」は？各組合員（または各業務執行者）は、特別な定めに反しない限り、単独で行うことができます。ただし、他の人が「ちょっと待った！」と異議を唱えたら、すぐにストップしなければなりません（670条5項）。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成25年度 第32問 肢2】（一部改変）「組合の業務の決定及び執行は、組合契約の定めるところにより、組合員の中から選任された業務執行者に委任することができるが、組合員以外の第三者に委任することはできない。」→ 答え：×「第三者に委任することはできない」の部分が間違いです。改正民法で第三者への委任がより明確になりました。　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「組合は『みんなの集まり』だが、代表を立てることもできる」と教えましょう。サークル活動をイメージすると分かりやすいです。全員で会議して決めるのが基本（過半数）。でも、会計係や部長を置いて、その人に任せることもできる（委任）。さらに、外部のコーチ（第三者）に運営を任せることだってできる。この柔軟性が「組合」という組織の面白いところです。",
-          "■ 根拠条文：民法668条、676条総組合員の共有（668条）「各組合員の出資その他の組合財産は、総組合員の共有に属する」と規定されています。判例上、この共有は「合有（ごうゆう）」と呼ばれ、通常の共有よりも個人勝手が許されない強い結びつきを持っています。清算前の分割禁止（676条3項）「組合員は、清算前に組合財産の分割を求めることができない」と明記されています。もし途中で誰かが「自分の出資分だけ返して」と言い出したら、組合の事業が続けられなくなってしまうからです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：持分（もちぶん）の処分も制限される！受験生が「民法お化け」になるために、セットで覚えるべきルールがあります。項目ルール理由持分の処分原則として、他の組合員に対抗できない（676条1項）。勝手に知らない人をメンバーに入れないため。差押えの制限組合員の「個人の債権者」は、組合財産を直接差し押さえることはできない（677条）。組合のビジネスを邪魔させないため。ポイント：組合財産には、いわば「見えないバリア」が張られています。メンバー個人にお金の問題が起きても、組合の財産は守られる仕組みになっているのです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成25年度 第32問 肢4】「組合員は、組合の清算前であっても、組合財産についてその持分に応じた分割を求めることができる。」→ 答え：×「できない」が正解です。この「清算前」というキーワードが、分割できるかどうかの境界線になります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「組合財産は『みんなの鍋料理』だ」と教えましょう。みんなで具材（出資）を持ち寄った「共有」の鍋です。煮込んでいる最中（清算前）に、「自分が持ってきた肉だけ返せ」と言って鍋をかき回すことは許されません。最後にお腹いっぱいになって片付ける時（清算）になって、初めて余った分を分け合えるのです。",
-          "■ 根拠条文：民法678条1項・2項期間の定めがない場合（678条1項）「各組合員は、いつでも脱退することができる。ただし、組合に不利な時期に脱退するときは、……損害を賠償しなければならない」とされています。期間の定めがある場合（678条2項）令和2年の改正により、期間の定めがあっても「やむを得ない事由があるとき」以外に、**「いつでも脱退できる」**というルールが明確化されました。ただし、不利な時期の脱退には制限がかかります。　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「任意脱退」と「法定脱退」自分から「やめます」と言うのが任意脱退ですが、本人の意思に関わらず「サヨナラ」となる法定脱退（679条）も試験で狙われます。脱退の理由分類ポイント自分の意思（やめます）任意脱退不利な時期はNG（やむを得ない事由があればOK）。死亡法定脱退組合は原則として終了せず、その人だけが抜けます。破産手続開始の決定法定脱退お金がなくなった人はメンバーから外れます。除名法定脱退悪いことをした人を追い出す。全員の一致が必要です（680条）。ひっかけに注意：後見開始の審判「後見開始の審判（認知症など）」を受けたことは、改正により法定脱退事由から削除されました。ここ、古いテキストだと残っていることがあるので注意です！　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成25年度 第32問 肢3】（一部改変）「組合契約で組合の存続期間を定めた場合であっても、各組合員は、やむを得ない事由があるときに限り、脱退することができる。」→ 答え：×「やむを得ない事由があるときに限り」という点が間違いです。改正により、期間の定めがあっても原則として「いつでも」脱退できるようになりました（ただし、不利な時期の制限はあり）。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「組合は『来る者は拒まず、去る者は少しだけ引き止める』組織だ」と教えましょう。基本は自由（いつでも脱退）。でも、一番忙しい時（不利な時期）に「バイバイ！」は不義理だからダメ。でもでも、どうしても親の介護や病気（やむを得ない事由）なら、忙しい時でも許してあげよう。この3段跳びのリズムで覚えると、記述式でもスラスラ書けます。",
-          "■ 根拠条文：民法672条1項・2項解任の厳格なルール（672条1項）「組合契約の定めるところにより業務の決定及び執行を委任された組合員……は、正当な事由がなければ、解任されることがない。この場合において、その組合員を解任するには、他の組合員の一致によらなければならない」とされています。辞任のルール（672条2項）逆に、任された本人が「やめたい」と言う場合も同様です。正当な事由がなければ辞任することができません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：なぜこんなに厳しいのか？組合員の中から選ばれた執行者は、他のメンバーからの厚い信頼（信託）を受けています。項目条件①（事由）条件②（人数）解任（クビにする）正当な事由（不正、病気、著しい能力不足など）他の組合員全員の一致辞任（自分からやめる）正当な事由（病気、やむを得ない事情など）なし（通知は必要）ひっかけに注意：「過半数」ではない！通常の業務決定は「過半数」ですが、選ばれた執行者のクビは「全員一致（他の組合員全員）」です。この人数の違いが「民法お化け」へのひっかけポイントとして頻出します。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成25年度 第32問 肢1】「組合員の中から業務執行者を選任した場合には、各組合員は、正当な事由があれば、いつでも当該業務執行者を解任することができる。」→ 答え：×「いつでも」という部分が間違いです。「正当な事由」と「他の組合員の一致」のセットが必要です。　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「組合のリーダーは、一度決めたら簡単には引きずり下ろせない」と教えましょう。組合は「信頼関係」で成り立っているため、リーダーの地位は強く守られています。「ちょっと意見が合わないから過半数でクビだ！」という多数決の暴力は許されません。**「よっぽどの理由（正当な事由）」があって、かつ「周りみんな（一致）」**が認めない限り、リーダーは守られるのです。",
-          "■ 根拠・考え方：委任と準委任（643条・656条）委任と準委任の違い委任：弁護士に裁判を頼むような「法律行為」を委託すること。準委任：窓ガラスの交換、医師の診療、塾の講師など「法律行為ではない事務」を委託すること。ルールは基本的にどちらも同じです。報酬は「後出し」できない（648条）民法では「善意の助け合い」をベースに考えているため、最初に「いくらでやるよ」という**特約（約束）**をしない限り、後から「はい、手間賃ちょうだい」とは言えない仕組みになっています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：費用のルール（ここが重要！）報酬はもらえなくても、「かかったおカネ」については話が別です。項目特約がない場合内容報酬（手間賃）請求できない「ありがとう」で終わり。必要費（ガラス代等）請求できる立て替えたお金は全額返してもらえる（650条1項）。前払請求請求できる先にガラス代をくれ、と言える（649条）。ポイント：報酬は「利益」ですが、必要費は「マイナスの補填」です。民法は、タダで働かせることはあっても、自腹を切らせることまでは求めません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成29年度 第32問 肢1】「受任者は、特約がなければ、委任者に対して報酬を請求することができない。」→ 答え：◯条文の文言そのままですが、非常に正答率が高い基本知識です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『善意のボランティア』が民法のデフォルト設定！」と教えましょう。頼まれてやる以上、それは「契約」ですが、お金の話をしないならそれは「タダ」だとみなされます。ただし、お医者さんのように「それが商売の人（商人）」が頼まれた場合は、商法の規定（512条）によって特約がなくても報酬が請求できます。行政書士試験では、まず**「民法の原則 ＝ 無報酬」**を脳に焼き付けさせましょう。",
-          "■ 根拠条文：民法702条1項「管理者は、本人のために有益な費用を支出したときは、本人に対し、その償還を請求することができる」と規定されています。ここでいう「有益な費用」には、以下の2つが含まれます。必要費：現状を維持するためにどうしても必要だったお金（割れた窓の修理代など）。有益費：物の価値を高めたお金（防犯ガラスにグレードアップした費用など）。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「準委任」と「事務管理」の決定的な違い受験生が混乱しやすい「おカネ」と「責任」のルールを比較しましょう。項目準委任（頼まれた）事務管理（勝手にやった）費用の請求全額請求OK（650条1項）本人の利益の限度でOK（702条）報酬の請求特約があればOK原則、請求不可注意義務善管注意義務（高い）善管注意義務（原則）ひっかけに注意：緊急事務管理（702条3項）もし、隣の家が火事で「今すぐ窓を壊して入らないと命が危ない！」というような緊急事態（急迫の危害を免れさせるため）だった場合、管理者の責任はグッと軽くなり、**「悪意または重大な過失」**がなければ責任を問われません。　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和元年度 第34問 肢3】「事務管理において、管理者が本人のために有益な費用を支出したときは、本人の意思に反する場合であっても、本人が現に利益を受けている限度において、その償還を請求することができる。」→ 答え：◯「本人の意思に反する場合」は、全額ではなく「現に利益を受けている限度」に縮小されますが、請求自体は可能です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「事務管理は『見返りを求めないヒーロー』の物語だ」と教えましょう。報酬（手間賃）はもらえません。なぜなら、頼まれてもいないのに勝手にやったことだからです。でも、ヒーローが自腹を切って（ガラス代など）損をするのはかわいそうなので、**「かかった実費（有益費）」**だけは返してもらえる権利が与えられています。",
-          "■ 根拠条文：民法702条2項（650条2項の準用）準用ルール事務管理の費用については、委任のルール（650条2項）が準用されています。代位弁済請求権（650条2項）「受任者（管理者）は、委任事務を処理するのに必要と認められる債務を負担したときは、委任者（本人）に対し、自己に代わってその弁済をすることを請求することができる」とされています。　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：管理者の「3つの武器」事務管理の管理者が、おカネに関して持っている武器は以下の3つです。武器の名前内容状況費用償還請求「自分が払った分を返して」すでに自腹を切った後。代位弁済請求「代わりに業者に払って」まだ払っていないが、請求が来ている時。担保提供請求「もしものために担保を置いて」債務がまだ確定していない時。ポイント：管理者は「善意でやっている」ので、自分のお金が減るリスクを最小限に抑えられるよう、民法は手厚く守っています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和元年度 第34問 肢4】「管理者が本人のために有益な債務を負担したときは、本人に対し、自己に代わってその弁済をすることを請求することができる。」→ 答え：◯条文の知識そのままですが、「費用の償還（返金）」と「代位弁済（肩代わり）」の言葉の違いを正確に理解しているかが問われます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「管理者は『窓口』になるだけでいい！」と教えましょう。管理者は、業者に「隣の家の窓、直しといて。お金は後で隣の人からもらうから」と手配します。業者が「じゃあ、お金ください」と言ってきた時、管理者は自分の財布を開く必要はありません。隣の人（本人）に**「ほら、請求書だよ。代わりに払っておいて」**と言えるのです。これが「代位弁済請求」の正体です。"
+          "1. 賃貸人の地位が「当然に移転」する条件民法605条の2第1項では、以下の条件を満たす場合、賃貸人の地位は**「譲受人（C）」に自動的に引き継がれる**とされています。条件1： 不動産が譲渡されたこと。条件2： その賃貸借が**対抗要件（対抗力）**を備えていること。今回のケースでは、Bが**「乙建物の所有権保存登記」**をしています。借地借家法10条1項により、建物の登記があれば土地賃借権を第三者（C）に対抗できるため、条件2をクリアしています。したがって、地位はAからCへ移転します。2. 「別段の合意」とは何か（改正民法605条の2第2項）選択肢にある「別段の合意がない限り」というフレーズは、改正で新設された**「留保（りゅうほ）の合意」**を指しています。本来、地位はCに移りますが、AとCの間で「賃貸人の地位はAに留める」と合意し、さらに「CがAに土地を貸し出す（転貸のような形にする）」という合意があれば、例外的にCに地位を移さないことが可能です。しかし、そのような特別な合意がないのが原則ですので、「別段の合意がない限り、Cに移転する」という記述は、法律の定めに忠実な正しい記述となります。3. 【重要】試験で狙われる「登記」と「対抗」の差この論点には、受験生が最も混乱しやすい「2つの登記」の話があります。ここを整理しておけば、この問題は完璧です。項目内容地位の移転売買契約時（譲渡時）に**当然に（自動的に）**移転する。賃料の請求CがBに対して「私が新しい大家だから、私に家賃を払え」と言うには、C自身の「土地の所有権移転登記」が必要（605条の2第3項）。【合格者の視点】「地位は移転しているけれど、登記がないとBに威張れない（請求できない）」という、「移転」と「対抗」を分けて考えるのがコツです。4. 賃借人（B）の承諾は必要か？ここも記述式や択一の「ひっかけ」でよく出ます。賃貸人の地位の移転には、賃借人（B）の承諾は不要です（最高裁昭和46年4月23日）。「Bが誰を大家にするか選ぶ権利」はない、ということですね。受験生へのアドバイスこの問題は「妥当でないもの」を探すものですね。選択肢1が「妥当」であることがわかったので、残りの選択肢に「誤り」が隠れているはずです。例えば、以下のような記述があればそれが「妥当でない（誤り）」の候補になります：「CがBに賃料を請求するには、Bの承諾が必要である（×）」「Bに建物の登記があっても、Cが土地の登記を備えるまでは賃貸人の地位は移転しない（×）」残りの選択肢（2〜5）についても、同様に検討していきましょうか？「対抗要件」や「敷金の承継」など、関連する深い論点も一緒に整理できますよ！",
+          "1. 根拠条文と判例\n借地借家法 10条1項\n借地権は、その登記がなくても、土地の上に借地権者が登記されている建物を所有するときは、これをもって第三者に対抗することができる。\n\n最高裁判例（昭和37年12月18日）\nこの判例は、家族名義の登記について極めて厳格な判断を下しています。\n\n判旨： 借地上の建物の登記名義が、借地権者本人ではなく、その妻子等の名義になっている場合には、たとえその家族が同居していても、借地権を第三者（土地の譲受人など）に対抗することはできない。\n\n2. なぜ「妻の名義」ではダメなのか（趣旨）\n不動産登記には**「公示の原則（こうじのげんそく）」**があります。\n\n第三者の目線： 土地を買おうとするCさんは、登記簿を見て「この土地に誰か権利を持っている人はいないか？」を確認します。\n\n情報の不一致： 登記簿に「D（妻）」の名前があっても、土地を借りているのが「B（夫）」であることは分かりません。Cさんからすれば、「Bさんの借地権」が存在することを客観的に知る手段がないのです。\n\n取引の安全： 「家族なんだからいいじゃないか」と例外を認め始めると、登記を信じて取引をする人（Cさん）が不測の損害を被る可能性があります。そのため、名義は「本人」に一致していなければならないとされています。\n\n3. 試験で狙われる「ひっかけ」のパターン\nこの論点は、受験生の「人情」を突いてくる問題がよく出ます。以下のフレーズが出てきたら、反射的に**「対抗不可！」**と判断しましょう。\n\n「妻の名義であっても、実質的に同一世帯であれば対抗できる（×）」\n\n「Bが建物を新築し、Bの長男の名義で保存登記をした場合、Cに対抗できる（×）」\n\n「未登記であっても、Bが実際に居住していれば対抗できる（×）」\n\n【合格者の頭の中】\n借地権の対抗力は**「借地権者 ＝ 建物所有者 ＝ 建物登記名義人」**の三位一体が必須！一人でも名前が違えば、アウト。\n\n4. 関連知識：もし「建物を壊してしまった」ら？\nもしBさんが建物を登記していたけれど、火事で焼失してしまった場合はどうなるでしょうか？\n\n借地借家法10条2項： 建物が滅失しても、土地の上の見やすい場所に「滅失した日」「新築する旨」などを掲示すれば、2年間は対抗力が維持されます。\n\nこれもセットで覚えておくと、借地権の対抗力問題は無敵になります。\n\n受験生へのメッセージ\n今回の記述は、判例を知っているかどうかで一瞬で決着がつく問題でした。「妥当でないものを選べ」という問題であれば、この選択肢が正解（マークすべき肢）になる可能性が高いですね。",
+          "1. 根拠条文民法605条の2 第3項（不動産の譲渡による賃貸人の地位の承継）前二項の規定により賃貸人の地位が譲受人に承継されたときは、その譲受人が賃借人に対して賃料を請求し、その他の権利を行使するには、不動産の所有権の移転の登記をしなければならない。2. なぜ「登記」が必要なのか（趣旨）「賃貸人の地位の移転」そのものは、土地の売買契約によって**当然に（自動的に）**起こります。しかし、賃借人Bさんの立場になって考えてみましょう。二重払いの防止： Bさんの元に、突然Cさんが現れて「今日から私が大家だから、私に家賃を払え」と言ってきたとします。もしCさんが嘘つきだったら、Bさんは後でAさんからも請求され、二重に払う羽目になるかもしれません。公的な証明： Bさんが「誰に払えばいいのか」を客観的に判断できる唯一の基準は、不動産登記簿です。登記簿にCさんの名前が載っていれば、Bさんは安心してCさんに支払うことができます。公平の確保： 判例（最高裁昭和49年3月19日）の流れを汲むこのルールは、真実の大家を公示することで取引の安全を守るために存在します。3. 試験で狙われる「ひっかけ」のポイントこの論点には、受験生を迷わせる「2段階のステップ」があります。ここを正確に区別してください。段階状態条件ステップ1：地位の移転賃貸人がAからCに替わること譲渡 ＋ 賃借権の対抗要件（Bの建物登記など）ステップ2：権利の行使CがBに**「家賃を払え」**と言うことC自身の土地所有権移転登記【合格者の視点】「地位が移ること」と「家賃を請求できること」は別物！地位は自動で移るけれど、家賃の請求には「登記」というライセンス（武器）が必要、と覚えましょう。4. 記述式での注意点もし記述式で「CがBに対して賃料を請求するための要件は何か？」と問われたら、必ず**「甲土地について所有権移転登記を備えること」**というフレーズを盛り込んでください。今回の個数問題・択一問題の整理これまでの検討で、以下のことが分かりました。選択肢1： 地位の承継 ＝ 妥当（○）選択肢（ｒ）： 妻名義の登記 ＝ 妥当でない（×）選択肢3： 賃料請求と登記 ＝ 妥当（○）「妥当でないものはどれか」という問いであれば、先ほど確認した**選択肢（ｒ）（妻名義の登記）**が正解の候補として有力ですね。",
+          "1. 根拠条文民法608条1項（賃借人による費用の償還請求）賃借人は、賃借物について賃貸人の負担に属する必要費を支出したときは、賃貸人に対し、直ちにその償還を請求することができる。2. ポイント：「直ちに」か「終了時」か行政書士試験で最も狙われる「ひっかけ」は、この請求のタイミングです。民法では、借主が立て替えた費用の種類によって、返してもらえる時期が明確に区別されています。費用の種類内容請求できる時期必要費修理代、雨漏り補修など（現状維持）直ちに（支出後すぐ）有益費改良費、バリアフリー化など（価値向上）賃貸借の終了時今回の設問は「必要費」について述べているため、「直ちにその償還を請求することができる」という記述は、条文通りの正しい内容となります。3. 賃貸人の地位が移転（A→C）した場合の効果地位がAからCに移転すると、賃貸人としての義務（修繕義務や費用償還義務）もセットでCに引き継がれます。BがCへの所有権移転後（地位の承継後）に必要費を支出したのであれば、当然、現在の大家であるCに対して「直ちに」請求できます。たとえAが大家だった時代に支出した費用であっても、特段の合意がない限り、地位を承継したCがその義務を負うのが原則です（判例の通説的見解）。4. 試験対策の注意点もし記述式や択一式で、以下のようなひっかけが出たら注意してください。「必要費を支出した場合、賃貸借契約が終了した時でなければ請求できない（×）」「有益費を支出した場合、直ちに請求できる（×）」【合格者の記憶法】「必要費」は、本来大家がやるべき修理を借主が「立て替えてあげた」もの。だから、**「立て替えたんだから、今すぐ返してよ！」と言える。\r\n「有益費」は、勝手に（または合意で）価値を上げたもの。物件が返ってくるまで大家がそのメリットを享受できないので、「返す時に、価値が上がった分を精算しよう」**となる。今回の個数・択一問題のまとめ（再確認）1（地位の移転）： 妥当（○）（ｒ）（妻名義の登記）： 妥当でない（×） ＝ 【正解の可能性大】3（賃料請求と登記）： 妥当（○）4（必要費の償還）： 妥当（○）「妥当でないものはどれか」という問いであれば、やはり**選択肢（ｒ）の「家族名義の登記では対抗できない」**という論点が正解になります。",
+          "1. 根拠条文民法605条の2 第4項（敷金等の承継）賃貸人の地位が譲受人に承継されたときは、……敷金の返還に係る債務は、その譲受人が承継する。民法622条の2 第1項（敷金）賃貸人は、敷金を受け取っている場合において、次に掲げるときは、……その残額を返還しなければならない。賃貸借が終了し、かつ、賃借物の返還を受けたとき。2. なぜ「新しい大家（C）」が敷金を返すのか（趣旨）2020年の民法改正前は判例上のルールでしたが、現在は条文に明記されています。賃貸人の地位とセット： 敷金は「賃料の不払いや修繕費の担保」として預けられているものです。大家さんが代わった以上、今後の担保を必要とするのは新大家Cさんですから、敷金に関する権利も義務も自動的にCさんへ引き継がれます。Bさんの保護： 「敷金は前の大家（A）に預けたんだから、Aに言ってくれ」とCさんに言われてしまうと、Bさんは非常に困ります。法律は、Bさんが最後に物件を返す相手であるCさんに請求できるようにして、Bさんの利便性を守っています。3. 【超重要】「明け渡した後」というタイミングここが試験の記述式で最も狙われるポイントです。同時履行の関係ではない： 「敷金を返してくれないなら、家を出ないぞ！」という主張（同時履行の抗弁）は認められません（最高裁昭和48年2月2日）。順序： まず、Bさんが建物を壊して**「明け渡し」を完了**させます。その時、初めて「いくら返ってくるか」が確定し、BさんはCさんに返還を求めることができます。4. この問題（選択肢1～5）の総括これで全ての選択肢が出揃いました。今回の問題「妥当でないものはどれか」の答えを確定させましょう。選択肢内容判定理由1地位の移転（原則）妥当（○）対抗力があれば当然に承継される（605条の2）（ｒ）妻名義の登記妥当でない（×）本人の名義でないと対抗できない（最判昭37.12.18）3Cの土地登記妥当（○）賃料を請求するには自身の登記が必要（605条の2第3項）4必要費の償還妥当（○）必要費は「直ちに」請求できる（608条1項）5敷金の承継と時期妥当（○）敷金義務は承継され、明け渡し後に請求可（622条の2）最終回答この問題における「妥当でないもの（誤り）」は、**選択肢（ｒ）**です。受験生へのメッセージお疲れ様でした！この一連のやり取りで、**不動産賃貸借の重要論点（地位の承継、対抗要件、費用償還、敷金）**を網羅的に復習できましたね。特に「妻名義の登記ではダメ」という判例知識は、うっかり「家族だからいいかな」と人情で判断しがちなポイントです。法律の**「公示の原則（誰が見てもわかること）」**を貫く姿勢を、ぜひ忘れないでください。",
+          "1. 敷金の承継（民法605条の2 第4項）改正民法により、地位が移転したときは**「敷金の返還に係る債務は、譲受人（C）が承継する」**と明記されました。ポイント： Bが以前の大家Aに預けたお金であっても、Bは最後にCに対して「返して」と言えます。注意点： Aは敷金返還義務から完全に解放されます。BがAに対して「やっぱりAさんに返してほしい」と言うことはできません。2. 費用償還義務の承継（必要費・有益費）これらも「賃貸人の地位」に付随する義務であるため、当然にCへ引き継がれます。ただし、請求できるタイミングの違いが試験では重要です。費用の種類内容請求のタイミングCへの承継必要費修理代など（現状維持）直ちに承継される有益費改良費など（価値向上）賃貸借の終了時承継される3. 試験で狙われる「ひっかけ」の総まとめこの「地位の移転」に関連して、以下の3点をセットで脳内に保存してください。対抗要件の有無： Bが対抗要件（建物の登記など）を備えていれば、賃貸人の地位は**当然に（自動的に）**Cに移ります。Bの承諾は不要です。Cの登記： CがBに賃料を請求したり、義務を果たさせたりするには、C自身の土地所有権移転登記が必要です。未払賃料はどうなる？： Aの時代にBが滞納していた賃料（未払賃料債権）は、特約がない限りCには承継されず、Aに残ります。（最高裁昭和40年12月21日）※敷金は「Cに引き継がれる」のに、未払賃料は「Aに残る」という対比が非常に重要です！受験生へのメッセージ「敷金も、直すべき義務も、全部新しい大家にバトンタッチされる」と覚えておけば、この分野の得点力は大幅にアップします。特に、**「敷金（債務）は移転するが、発生済みの未払賃料（債権）は移転しない」**という絶妙な非対称性は、個数問題や記述式で狙い撃ちされるポイントです。",
+          "1. 1年以内の請求制限（期間制限）民法600条（準用：622条）借主が支出した費用の償還は、貸主が目的物の返還を受けた時から1年以内に請求しなければならない。共通のルール: 必要費（修理代など）も、有益費（改良費など）も、返却されてから1年経つと請求できなくなります。趣旨: 物が返ってきた後に、何年も経ってから「あの時の修理代を払え」と言い出すと証拠も記憶も曖昧になるため、早めに清算させるというルールです。2. 裁判所による期限の許与（きげんのきょよ）民法608条2項（準用：196条2項）裁判所は、賃貸人の請求により、有益費の償還について相当の期限を許与することができる。対象: 有益費のみです（必要費には認められません）。内容: 大家さん（賃貸人）が「今すぐまとまったおまけ代（有益費）を払うのは厳しいです」と訴えた場合、裁判所が「じゃあ、支払いを半年待ってあげよう」と猶予をくれる仕組みです。なぜ「有益費」だけなのか: 有益費は物件の価値を高める「プラスアルファ」の費用であり、金額が高額になりがちです。一方で、必要費は「本来大家が当然出すべき修理代」であり、借主が立て替えているものなので、猶予なくすぐに返すべきだと考えられているからです。3. 【超重要】試験で狙われる「比較表」行政書士試験では、この2種類の費用の違いを混ぜて出題してきます。以下の表を頭に叩き込んでください。項目必要費（現状維持）有益費（価値向上）請求のタイミング直ちに（608条1項）賃貸借の終了時（608条2項）返還後の期間制限返還から1年以内返還から1年以内裁判所の期限の許与なし（即払え）あり（猶予の可能性）留置権の行使できる（原則）できる（原則）【注意！】裁判所が有益費の支払いに「期限の許与」を与えた場合、その間は留置権（りゅうちけん）を行使できなくなります。「まだ払ってもらってないから家を出ないぞ！」と言えなくなるわけです。これは「弁済期（支払期日）が先延ばしになった」＝「まだ支払期日が来ていない」ことになるからです。これは記述式でも狙われる重要知識です。攻略のアドバイス「1年は共通、猶予は有益費だけ」というフレーズを呪文のように覚えてください。必要費: 借主が立て替えた「立替金」のようなもの → 「すぐ返せ、猶予なし」。有益費: 大家がもらう「ボーナス」のようなもの → 「返す時に精算、高額なら猶予あり」。このイメージを持っていれば、本試験のひっかけ問題も瞬時に見抜けるようになります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -20036,7 +22417,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "Aは、Bとの間でA所有の甲建物の賃貸借契約を締結し、甲建物を引き渡したが、その後、Aは、同建物をCに譲渡した。Aは、同賃貸借契約締結時にBから敷金を提供され、それを受け取っていた。この場合についての次の記述のうち、民法の規定に照らし、誤っているものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠・考え方：事務管理には代理権がない代理権の不在事務管理は「本人の意思に反しないように」行うべき義務を負わせるものですが、管理者に「本人に代わって契約を結ぶパワー（代理権）」を当然に与えるものではありません。無権代理（113条1項）代理権がない者が他人の代理人としてした契約は、本人が**追認（あとから認めること）**をしなければ、本人に対してその効力を生じません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：工務店はどうすればいい？「お隣さんに請求できないなら、工務店は泣き寝入り？」……いいえ、民法はちゃんと出口を用意しています。請求相手請求の根拠状況お隣さん（本人）追認があればOKお隣さんが「直してくれて助かった、払うよ」と言った場合。主人公（管理者）無権代理人の責任（117条）お隣さんが拒否した場合、勝手に発注した主人公が責任を負う。お隣さん（本人）事務管理の費用償還（702条）主人公が自腹で工務店に払った後、お隣さんに「実費を返して」と請求する。ポイント：管理者は「お隣さんの代理人」にはなれませんが、工務店に対して「注文主」として振る舞い、かかった費用を後からお隣さんに精算してもらう……というのが事務管理の正しいお作法です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成16年度 第31問 肢2】（類題）「事務管理を行うに際して、管理者が本人の名において第三者との間で法律行為をした場合、その効果は当然には本人に帰属しない。」→ 答え：◯「当然には帰属しない（＝本人が認めない限り無効）」というのが、事務管理と代理を混同させないための基本知識です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『おせっかい』はできても、『ハンコ』は押せない！」と教えましょう。他人の家の火を消したり、壊れた窓にブルーシートを張ったりするのは「事実行為」として認められます。しかし、他人の名前で契約書にサインするのは「法律行為（代理）」です。これには別途、本人からの委任状や追認が必要です。事務管理はあくまで**「勝手にやったことの事後処理」**を認める制度であり、勝手に契約を結ぶ魔法の杖ではないのです。",
+        "memo": "1. 根拠条文：合意による地位の移転\nこの選択肢は、民法605条の3（合意による賃貸人の地位の移転）という、改正で新設された条文に基づいています。民法605条の3不動産の譲渡人が不動産を賃貸している場合において、譲渡人と譲受人が賃貸人の地位を譲受人に移転させる旨の合意をしたときは、賃貸人の地位は、譲受人に移転する。2. なぜ「Bの承諾」がいらないのか（趣旨）一般的な契約上の地位の移転（契約譲渡）では、相手方の承諾が必要なのが原則です。しかし、賃貸借においては以下の理由から**「借主Bのハンコ（承諾）は不要」**とされています。借主の負担が変わらない： 大家さんがAさんからCさんに代わっても、Bさんが「家賃を払う」「その場所を使う」という義務や権利の内容自体に変わりはありません。取引の円滑化： もし借主の承諾が必要だとしたら、100世帯入っているマンションを売却するときに、100人全員の承諾を取り付けるまでオーナーチェンジができないことになってしまい、不動産取引がストップしてしまいます。3. 「当然の移転」と「合意による移転」の違い試験対策として、地位が移転する2つのルートを整理しておきましょう。今回の問題がどちらを指していても、Bの承諾が不要な点は変わりません。ルート条件効果当然の移転 (605条の2第1項)Bが対抗要件（建物の引渡し等）を備えている場合売買によって自動的にCに移る。合意による移転 (605条の3)AとCが合意した場合対抗要件の有無に関わらず、合意でCに移せる。【ポイント】今回の設問では「甲建物を引き渡した（＝Bに対抗要件がある）」と書かれているため、放っておいてもCに移ります。さらに選択肢1では「A・C間の合意があれば移せる」と言っており、法律上これも認められているため、記述は二重の意味で正しいことになります。4. 試験対策の注意点：Bへの通知地位はAとCの合意だけで移りますが、新しい大家CさんがBさんに「私が大家だ！」と威張る（賃料を請求する）ためには、Bさんに対して**「通知」**をする必要があります（605条の3後段）。※「承諾」はいりませんが、「知らせること（または登記）」は必要、という区別が大切です。受験生へのアドバイスこの問題は「誤っているもの」を探す択一問題ですね。選択肢1が「正しい」ことがわかったので、残りの2〜5の中に「×」が隠れていることになります。特に、この後に続くであろう選択肢では、以下のような「ひっかけ」が予想されます：敷金はAに残る（×） → 敷金はCに引き継がれます。未払賃料もCに引き継がれる（×） → 発生済みの滞納家賃はAに残ります。Bが承諾しない限り、Cは賃料を請求できない（×） → 承諾はいりません。",
         "slots": [],
         "refId": "",
         "isBonus": true,
@@ -20069,17 +22450,26 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠・考え方：事務管理には代理権がない代理権の不在事務管理は「本人の意思に反しないように」行うべき義務を負わせるものですが、管理者に「本人に代わって契約を結ぶパワー（代理権）」を当然に与えるものではありません。無権代理（113条1項）代理権がない者が他人の代理人としてした契約は、本人が**追認（あとから認めること）**をしなければ、本人に対してその効力を生じません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：工務店はどうすればいい？「お隣さんに請求できないなら、工務店は泣き寝入り？」……いいえ、民法はちゃんと出口を用意しています。請求相手請求の根拠状況お隣さん（本人）追認があればOKお隣さんが「直してくれて助かった、払うよ」と言った場合。主人公（管理者）無権代理人の責任（117条）お隣さんが拒否した場合、勝手に発注した主人公が責任を負う。お隣さん（本人）事務管理の費用償還（702条）主人公が自腹で工務店に払った後、お隣さんに「実費を返して」と請求する。ポイント：管理者は「お隣さんの代理人」にはなれませんが、工務店に対して「注文主」として振る舞い、かかった費用を後からお隣さんに精算してもらう……というのが事務管理の正しいお作法です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成16年度 第31問 肢2】（類題）「事務管理を行うに際して、管理者が本人の名において第三者との間で法律行為をした場合、その効果は当然には本人に帰属しない。」→ 答え：◯「当然には帰属しない（＝本人が認めない限り無効）」というのが、事務管理と代理を混同させないための基本知識です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『おせっかい』はできても、『ハンコ』は押せない！」と教えましょう。他人の家の火を消したり、壊れた窓にブルーシートを張ったりするのは「事実行為」として認められます。しかし、他人の名前で契約書にサインするのは「法律行為（代理）」です。これには別途、本人からの委任状や追認が必要です。事務管理はあくまで**「勝手にやったことの事後処理」**を認める制度であり、勝手に契約を結ぶ魔法の杖ではないのです。",
-          "■ 根拠条文：民法649条「委任事務を処理するについて費用を要するときは、委任者は、受任者の請求により、その前払いをしなければならない」と規定されています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「事務管理」との違いに注意！ここが「民法お化け」への分かれ道です！項目委任（頼まれた）事務管理（勝手にやった）費用の前払請求◯ できる（649条）× できない理由契約があるのだから、相手に自腹を切らせるのは酷。頼まれてもいないのに「先にお金くれ」とは言えない。ポイント：事務管理（おせっかい）の場合は、**「終わった後に、かかった分だけ返してもらう（702条）」**ことしかできません。これに対し、委任は「事前の準備金」を請求できる強い権利があります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成29年度 第32問 肢2】「受任者は、委任事務を処理するについて費用を要するときは、委任者に対し、その前払を請求することができる。」→ 答え：◯条文通りの知識ですが、実務でも非常に重要な規定です。　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『手ぶら』で仕事はさせない！」と教えましょう。委任は信頼関係に基づく契約です。受任者は自分の「労力」を提供しますが、「自分のお金」まで持ち出す義務はありません。したがって、切手代、宿泊費、材料費などは、あらかじめ委任者に用意させるのが民法のフェアな考え方です。",
-          "■ 根拠・考え方（判例：最判平18.3.30）法的保護の対象最高裁は、景観利益を「個別の法律に規定がなくとも、不法行為法上の保護の対象になり得る」と認めました。侵害のハードル（受忍限度論）ただし、単に「建物が建って富士山が見えなくなった」というだけでは不十分です。景観がその場所の独自の価値を持っているか。侵害行為が公序良俗に反するほど悪質か。地域のルール（景観条例など）を無視しているか。などの事情を総合的に判断し、社会生活上の我慢の限界（受忍限度）を超えた場合に初めて違法となります。　■ 周辺知識：「日照権」との違い似たような論点に「日照権（にっしょうけん）」がありますが、景観利益はそれよりもさらに認められるハードルが高いのが特徴です。利益の種類内容保護の強さ日照権太陽の光を浴びる利益。比較的認められやすい（健康維持のため）。景観利益良い景色を眺める利益。認められにくい（主観的な要素が強いため）。ポイント：判例では、高層マンションが建ったことで周囲の景観が壊されたケースにおいて、景観利益そのものは認めつつも、その侵害が「受忍限度を超えていない」として、実際の賠償を認めないケースも多いです。　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢1】「良好な景観の恵沢を享受する利益は、法律上保護に値する利益ということができるが、直ちに、特定の者が景観を独占的に利用することができる権利が認められるわけではない。」→ 答え：◯景観はみんなのもの（公共的性質）なので、誰か一人が「私の景色だ！」と独占できるほど強い権利ではない、というニュアンスが重要です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「景観利益は『プレミアムな権利』だ」と教えましょう。誰にでも認められるものではなく、歴史的な街並みや、特別な観光地など、客観的に「守る価値がある」と認められる場所でこそ輝く権利です。また、建てる側がわざと嫌がらせで景観を壊すような「権利の濫用（だい1じょう3こう）」がある場合には、この景観利益が強力な武器になります。",
-          "■ 根拠・考え方（判例：最判昭45.12.18 等）\n名誉感情（内的名誉）とは\n自分が自分自身について持っている価値意識、いわゆる「プライド」です。これを傷つけられた（侮辱された）としても、社会的な評価が変わらない限り、民法723条の対象にはなりません。\n\n社会的名誉（外的名誉）とは\n社会から受ける客観的な評価です。これが侵害された場合には、損害賠償だけでなく、**「謝罪広告」**などの原状回復措置が認められます。\n\n■ 周辺知識：「侮辱」なら慰謝料は取れる？\n不法行為が「成立しない」という言葉には少し注意が必要です。\n\n社会的な評価を下げた場合（名誉毀損）：賠償金 ＋ 謝罪広告などが可能。\n\nひどい言葉を浴びせた場合（名誉感情の侵害＝侮辱）：社会通念上許される限度を超えていれば、**慰謝料（金銭賠償）**だけは認められる可能性があります。\n\nしかし：謝罪広告（原状回復）を強制することまではできません。\n\n■ 関連過去問チェック\n【平成24年度 第34問 肢3】\n「名誉感情（主観的な名誉）が侵害されたにすぎない場合には、損害賠償として名誉回復のための適当な処分を命ずることはできない。」\n\n→ 答え：◯\nまさにこの知識です。723条は「他人の名誉を毀損した者」を対象としており、その「名誉」は社会的な評価を指すと解されています。\n\n💡 受験生へのアドバイス\n「『嘘をつかれて評判を落とされた』なら謝罪広告、『バカと言われてムカついた』ならお金だけ」と教えましょう。\n\n謝罪広告は、一度落ちてしまった「社会の目」を元に戻すためのものです。\n\n自分の心の中で「ムカついた」だけなら、それはお金（慰謝料）で解決するしかなく、新聞に謝罪を出せとまで命じることはできません。",
-          "■ 根拠・考え方（判例：最判平12.2.29）自己決定権の尊重人間がどのような治療を受け、どのような治療を拒否するかを自分で決める権利は、人格権の一環として尊重されなければなりません。医師の説明義務医師は、手術の際に「もしもの時は輸血をする可能性があること」を説明し、患者がそれを拒否して手術を中止するかどうかの選択肢を与えるべきでした。それを怠り、黙って輸血をしたことは、説明義務違反（および決定権の侵害）となります。　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：医師の「良心」との葛藤この事件の難しい点は、医師側に「殺そう」という悪意はなく、むしろ「救いたい」という善意（良心）があった点です。視点主張の内容判決のスタンス患者側信仰を守るため、輸血して生きるより、しない死を選ぶ。自己決定権として最大限尊重されるべき。医師側目の前の命を救うのが医師の義務（医療水準）。善意であっても、患者の意思を無視してはならない。ポイント：最高裁は、「命を救う義務」よりも「個人の生き方の選択（自己決定権）」に軍配を上げました。これが現代のインフォームド・コンセントの法的な柱となっています。　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢5】「患者が、宗教上の信念から、いかなる場合にも輸血を受けることは拒否するとの固い意思を有している場合、医師が、手術の際、輸血以外には救命の手段がない事態が生じたときは輸血するとの方針を秘して手術を行い、実際に輸血をしたことは、不法行為上の責任を免れない。」→ 答え：◯判例のキーワード「方針を秘して」という点が、説明義務違反を強調しています。　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『命の長さ』より『心の自由』を重く見ることがある」と教えましょう。医師の仕事は「生かすこと」ですが、法律の仕事は「その人の尊厳を守ること」です。本人が「これだけは絶対に嫌だ」と言っている一線を越えてしまったら、たとえ結果的に命が助かったとしても、それは「侵害」になってしまう……という、非常に重みのある判例です。",
-          "■ 根拠・考え方（判例：最判平12.9.22）立証の壁の救済「もし手術をしていれば助かったか？」という問いに、医学的に100%の確信を持って答えるのは困難です。しかし、「適切な処置をしていれば、助かった可能性が十分にあった」という場合にまで賠償を認めないのは不公平です。損害の範囲ただし、注意が必要です。この場合に認められる賠償額は、「死亡そのもの」の損害（逸失利益など全額）ではなく、その「可能性（期待権）を奪われたこと」に対する慰謝料などに限定されるのが一般的です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「因果関係」がある場合との違い受験生が混乱しやすいポイントを比較しましょう。証明された内容成立する責任賠償の範囲高度の蓋然性（ほぼ確実）死亡との因果関係あり死亡に関する全損害（葬儀費、逸失利益等）相当程度の可能性（期待権）生存可能性の侵害精神的苦痛への慰謝料などポイント：100点満点の証明ができなくても、「60点くらいの可能性はあったよね」という場合に、その60点分を無視しないのが今の民法の考え方です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢2】「医師の過失により患者が死亡した場合、当該過失と死亡との間の因果関係が証明されないときであっても、適切な医療が行われていたならば患者が生存していた相当程度の可能性が認められるときは、医師は、不法行為による損害賠償責任を負う。」→ 答え：◯まさに判例の核心を突く肢です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『わずかな希望』にも値段をつける」と教えましょう。助かる確率が低かったとしても、医師のサボりでその「チャンス」すら奪われてしまったのなら、それは患者にとって大きな損害です。「どうせ助からなかったんだからいいだろう」という理屈を跳ね返す、患者の権利を守るための優しい理論なのです。",
-          "■ 根拠・考え方：労働能力喪失率（最判昭42.11.10）\n労働能力の喪失（逸失利益）\nたとえ今は会社が優しくて給料を下げてくれていなくても、あるいは本人が必死に努力して以前と同じ成果を出していても、**「体の一部が不自由になった ＝ 労働能力という資本が減った」**と考えます。\n「将来、転職する時に不利になるかもしれない」「昇進が遅れるかもしれない」という潜在的な不利益（逸失利益）を損害として認めます。\n\n精神的苦痛（慰謝料）\n収入に関係なく、事故によって体に一生残る傷を負ったこと、不自由を強いられること自体に対する精神的ショックは、**「慰謝料」**として賠償の対象になります。\n\n■ 周辺知識：例外的に認められない場合（ひっかけ！）\nただし、判例は「何でもかんでも認める」わけではありません。\n\n**極めて軽微な傷跡（痕跡）**などで、\n\n仕事の内容に全く影響せず、\n\n将来の昇進や転職にも一切響かないことが客観的に明らかな場合\n\nに限っては、収入の減少がないことを理由に逸失利益が否定されることもあります。でも、これはあくまで「例外中の例外」です。\n\n■ 関連過去問チェック\n【平成24年度 第34問 肢4】\n「交通事故による後遺症が残った場合、それによる直接の減収が認められないときであっても、労働能力の喪失が認められる限り、不法行為による損害賠償責任は成立し得る。」\n\n→ 答え：◯\n「成立し得る」という表現で、原則として認める姿勢を示しています。\n\n💡 受験生へのアドバイス\n「『今、損をしているか』ではなく、『価値が減ったか』で考えよう」と教えましょう。\n\n100の能力があった人が、事故で80の能力になった。\n\n必死に努力して、80の能力で以前と同じ100の成果を出している。\n\nこの場合、民法は「この人の頑張り（努力）」を相手の得にさせません。「能力が20減ったこと」を損害として評価し、加害者に払わせるのです。"
+          "1. 根拠条文：合意による地位の移転\nこの選択肢は、民法605条の3（合意による賃貸人の地位の移転）という、改正で新設された条文に基づいています。民法605条の3不動産の譲渡人が不動産を賃貸している場合において、譲渡人と譲受人が賃貸人の地位を譲受人に移転させる旨の合意をしたときは、賃貸人の地位は、譲受人に移転する。2. なぜ「Bの承諾」がいらないのか（趣旨）一般的な契約上の地位の移転（契約譲渡）では、相手方の承諾が必要なのが原則です。しかし、賃貸借においては以下の理由から**「借主Bのハンコ（承諾）は不要」**とされています。借主の負担が変わらない： 大家さんがAさんからCさんに代わっても、Bさんが「家賃を払う」「その場所を使う」という義務や権利の内容自体に変わりはありません。取引の円滑化： もし借主の承諾が必要だとしたら、100世帯入っているマンションを売却するときに、100人全員の承諾を取り付けるまでオーナーチェンジができないことになってしまい、不動産取引がストップしてしまいます。3. 「当然の移転」と「合意による移転」の違い試験対策として、地位が移転する2つのルートを整理しておきましょう。今回の問題がどちらを指していても、Bの承諾が不要な点は変わりません。ルート条件効果当然の移転 (605条の2第1項)Bが対抗要件（建物の引渡し等）を備えている場合売買によって自動的にCに移る。合意による移転 (605条の3)AとCが合意した場合対抗要件の有無に関わらず、合意でCに移せる。【ポイント】今回の設問では「甲建物を引き渡した（＝Bに対抗要件がある）」と書かれているため、放っておいてもCに移ります。さらに選択肢1では「A・C間の合意があれば移せる」と言っており、法律上これも認められているため、記述は二重の意味で正しいことになります。4. 試験対策の注意点：Bへの通知地位はAとCの合意だけで移りますが、新しい大家CさんがBさんに「私が大家だ！」と威張る（賃料を請求する）ためには、Bさんに対して**「通知」**をする必要があります（605条の3後段）。※「承諾」はいりませんが、「知らせること（または登記）」は必要、という区別が大切です。受験生へのアドバイスこの問題は「誤っているもの」を探す択一問題ですね。選択肢1が「正しい」ことがわかったので、残りの2〜5の中に「×」が隠れていることになります。特に、この後に続くであろう選択肢では、以下のような「ひっかけ」が予想されます：敷金はAに残る（×） → 敷金はCに引き継がれます。未払賃料もCに引き継がれる（×） → 発生済みの滞納家賃はAに残ります。Bが承諾しない限り、Cは賃料を請求できない（×） → 承諾はいりません。",
+          "1. 根拠条文\n民法605条の2 第3項（賃貸人の地位の承継の対抗要件）\n前二項の規定により賃貸人の地位が譲受人に承継されたときは、その譲受人が賃借人に対して賃料を請求し、その他の権利を行使するには、不動産の所有権の移転の登記をしなければならない。\n\n2. 「地位の移転」と「対抗」の区別\nここが試験で最も混乱しやすいポイントです。以下の2つのステップに分けて整理しましょう。\n\nステップ①：地位の「移転」（いつ代わるのか？）\nルール： AとCが売買契約を結び、Bに対抗力（建物の引渡しなど）があれば、賃貸人の地位は**当然に（自動的に）**AからCに移ります。\n\nポイント： この段階では、まだ「登記」は必須ではありません。\n\nステップ②：地位の「対抗」（いつ威張れるのか？）\nルール： 新大家Cが、Bに対して「私が新しい大家だ。家賃は私に払え！」と主張（対抗）するためには、C自身の所有権移転登記が必要です。\n\nポイント： 登記がない限り、Bは「本当にあなたが大家なの？Aさんに払うよ」と拒むことができます。これが、今回の選択肢にある**「対抗することができない」**という意味です。\n\n3. なぜ「登記」が必要なのか（趣旨）\n賃借人Bを、**「二重払いのリスク」**から守るためです。\n\nもし、登記がなくてもCが家賃を請求できるとしてしまうと、Bさんのもとに詐欺師が現れて「私が新しいオーナーです」と嘘をついた場合、Bさんは誰を信じていいか分からなくなります。\n「登記簿に名前が載っている人に払えば間違いない」という客観的な基準を設けることで、Bさんが安心して取引できるようにしています（最高裁昭和49年3月19日判決の流れを汲んでいます）。\n\n4. 試験対策のチェックポイント\nこの論点が出たら、以下のフレーズに注目してください。\n\n「地位は当然に移転する」 ＝ 正しい（Bに対抗力があれば自動）\n\n「移転に登記が必要である」 ＝ 誤り（移転自体は登記なしでも起こる）\n\n「Bに対抗するには登記が必要である」 ＝ 正しい（今回の選択肢）\n\n【合格者の記憶法】\n「地位が移るのは勝手。でも、家賃を請求するなら、名刺（登記）を見せろ！」\n\nこれで、選択肢1と2がともに「妥当（正しい）」であることが分かりました。今回の問題は「誤っているものはどれか」を問う択一問題ですので、正解は選択肢3〜5のどこかに隠れていることになります。",
+          "1. 根拠条文：地位の「留保」\n民法605条の2 第2項\n前項の規定にかかわらず、不動産の譲渡人と譲受人が、賃貸人の地位を譲渡人に留保する旨の合意をし、かつ、当該不動産を譲受人が譲渡人に賃貸する旨の合意をしたときは、賃貸人の地位は、譲受人に承継されない。\n\n2. このルールが認めていること（趣旨）\n通常、土地や建物が売られたら、新しいオーナー（C）が大家さんになるのが自然です。しかし、ビジネスの現場（特に不動産証券化やリースバックなど）では、**「持ち主は変わるけれど、管理や入居者への対応は引き続き旧オーナー（A）に任せたい」**というニーズがあります。\n\nそこで民法は、以下の2つの合意がセットであれば、大家さんの交代をストップさせることを認めました。\n\n留保（りゅうほ）の合意： AとCが「大家さんの権利はAに残そう」と約束すること。\n\n賃貸の合意（マスターリース）： CがAに対して「建物を使わせる（貸す）」という契約を結ぶこと。\n\nこれにより、C（新オーナー）→ A（旧オーナー・転貸人）→ B（店借人・転借人）という、いわゆる**「サブリース（又貸し）」**のような構造が出来上がります。\n\n3. 試験対策としての整理\nこの「留保の合意」について、以下の3つのポイントを押さえておけば完璧です。\n\nB（借主）の承諾は不要： 大家さんが代わらない（Aのまま）という話なので、Bにとっては現状維持です。したがって、Bのハンコはいりません。\n\n合意が終了した場合： もしAとCの間の賃貸借契約が終了したら、その時点でようやく賃貸人の地位はCに強制的に移転します（605条の2第2項後段）。\n\n「セット」で覚える： 「地位の留保」だけではダメで、「CがAに貸し出す契約」も必要、という二段構えの合意であることを忘れないでください。",
+          "1. 根拠条文：無断譲渡・転貸の禁止\n民法612条（賃借権の譲渡及び転貸の制限）\n賃借人は、賃貸人の承諾を得なければ、その賃借権を譲り渡し、又は賃借物を転貸することができない。\n\n賃借人が前項の規定に違反して第三者に賃借物の使用又は収益をさせたときは、賃貸人は、契約の解除をすることができる。\n\n2. なぜ「転貸（又貸し）」も承諾が必要なのか（趣旨）\n賃貸借契約は、貸主と借主の間の**「信頼関係」**の上に成り立っています。「Bさんだから貸した」のであって、Bさんが勝手に知らない誰か（転借人）に貸してしまうことは、貸主の信頼を裏切る行為です。\n\n賃借権の譲渡： 借主が入れ替わること。\n\n転貸（てんたい）： 借主はそのままに、別の誰かに又貸しすること。\n\n民法は、このどちらであっても**「大家さん（新大家C）の承諾が絶対に必要」**としています。設問の「転貸するときは承諾を要しない」という部分は、条文に真っ向から反しています。\n\n3. 【超重要】判例による修正（背信行為論）\n試験対策として、条文の「先」にある判例知識も押さえておきましょう。\n\n条文上は「無断で貸したら即解除！」と読めますが、最高裁は**「信頼関係を破壊すると認めるに足りない特段の事情」**がある場合には、大家さんは解除できないとしています（最高裁昭和28年9月25日）。\n\n例： 賃借人が、同居している妻や子に名義を書き換えただけの場合など、実質的に大家さんに迷惑がかからないケースでは、無断であっても解除が認められないことがあります。\n\n【合格者の頭の中】\n原則は「無断譲渡・転貸 ＝ 解除」。\nでも、信頼を裏切ってないなら「解除はダメ」。\nただし、「承諾がいらない」というルールはどこにもない！\n\n4. この問題の結論\nこれで、この択一問題の正解が確定しました。\n\n1（地位の移転）： 妥当（○）\n\n2（対抗要件）： 妥当（○）\n\n3（地位の留保）： 妥当（○）\n\n4（無断転貸）： 妥当ではない（×） ＝ これが正解！",
+          "1. 根拠条文：敷金の自動バトンタッチ民法605条の2 第4項（敷金等の承継）賃貸人の地位が譲受人に承継されたときは、……敷金の返還に係る債務は、その譲受人（C）が承継する。2. なぜCが責任を負うのか（趣旨）「お金は前の大家（A）に預けたんだから、Aに返してもらってよ」と新大家（C）が言えたら、借主（B）は非常に困ってしまいます。賃貸人の地位と不可分： 敷金は「家賃の担保」としての性質を持っています。大家さんの地位がCさんに移った以上、今後の家賃を担保してもらう必要があるのはCさんです。したがって、敷金に関する権利も義務も、地位と一緒にセットで移動します。清算の合理性： Bさんが家を出すときに、鍵を返す相手はCさんです。その場で「部屋が汚れていないか」をチェックするのもCさんです。ならば、その場で敷金の精算（返還）をするのが最もスムーズですよね。3. 【重要】Aは完全に「お役御免」ここで間違えやすいのが、「Aも一緒に責任を負うのか？」という点です。地位がCに移転した場合、敷金を返す義務はCだけが負います。Bさんは、もうAさんに対して「敷金を返せ」と言うことはできません。これを「免責的債務引受け」のような状態と呼びます。4. この問題（全5問）の総まとめ「誤っているものはどれか」という問いに対して、全ての選択肢を振り返ってみましょう。選択肢内容判定理由1A・C間の合意で地位移転○（妥当）605条の3により、Bの承諾不要で移転可。2Cの登記と対抗力○（妥当）605条の2第3項。賃料請求にはCの登記が必要。3地位をAに留保する合意○（妥当）605条の2第2項。二段構えの合意で留保可。4無断転貸（又貸し）×（誤り）転貸にも大家の承諾が必要（612条1項）。5敷金の承継○（妥当）605条の2第4項。新大家Cが返還義務を負う。正解（マークすべき番号）：4受験生へのメッセージお疲れ様でした！この一問で、「賃貸人の地位の移転」のフルコースを完食しましたね。地位の移転： 原則は自動（Bに対抗力あり）、合意でも可。対抗： Cが威張るには「登記」が必要。敷金・費用： 新大家Cが全部引き継ぐ（バトンタッチ）。賃借権の譲渡・転貸： どちらも大家の「承諾」が絶対！この4点を整理しておけば、本試験でこのテーマが出ても怖くありません。民法は、こうした「A・B・Cの三つ巴の関係」を図に描きながら解くと、ケアレスミスが激減しますよ。",
+          "1. 根拠条文：敷金は「セット」で移動する2020年の民法改正により、これまでの判例のルールが条文として明記されました。民法605条の2 第4項賃貸人の地位が譲受人に承継されたときは、……敷金の返還に係る債務は、その譲受人（C）が承継する。2. なぜCが引き継ぐのか（合理的な理由）借主Bさんの立場になって考えると、このルールの凄さがわかります。清算のタイミング： Bさんが家を出る（明け渡す）とき、立ち会って「壁が汚れていないか」をチェックするのは、今の大家であるCさんです。担保の必要性： 敷金は「将来の家賃不払いや修理代の担保」です。これからBさんに家賃を請求し、建物を返してもらう立場にあるのはCさんですから、担保（敷金）もCさんが持っておくのが自然です。Bさんの保護： 「敷金は前の大家（A）に預けたんだから、Aに言ってくれ」とCさんに逃げられるのを防いでいます。3. 【超・重要】受験生が混乱する「真犯人」あなたが「引き継がれない」と記憶していたのは、おそらく**「未払賃料債権（滞納されている家賃）」**のことではないでしょうか？試験では、この2つの「逆転現象」がセットで狙われます。項目内容新しい大家（C）に引き継がれるか？敷金返還債務Bが預けたお金を返す義務引き継がれる（○）未払賃料債権Aの時代にBが滞納した家賃引き継がれない（×）【合格者の頭の中】敷金： 大家の地位とセットで移動する（Bを守るため）。滞納家賃： 発生した時点の大家（A）の個人的な権利。特約がない限り、AがBに請求し続ける。4. 記述式での注意点もし「AからCに地位が移転した。その後Bが退去した場合、Bは誰に対して敷金の返還を請求すべきか？」と問われたら、自信を持って**「譲受人C（新賃貸人C）」**と答えてください。Aは地位を譲渡した時点で、敷金を返す義務から完全に解放されます。今回の学びのチェック「敷金は新しい大家へ、滞納家賃は古い大家へ」というこの非対称なルール、今の説明でスッキリ整理できましたでしょうか？",
+          "1. 2020年改正：民法605条の4のルール改正民法では、対抗要件（登記や建物の引渡し）を備えた不動産賃借人は、第三者が占有を妨害している場合、**自分自身の権利として（直接）**以下の2つを請求できると明記されました。直接言えること（民法605条の4）妨害排除請求（ぼうがいはいじょ）： 「そこにある不法投棄されたゴミをどかせ！」返還請求（へんかん）： 「勝手に住み着いている奴、出ていけ！私に返せ！」2. なぜ「妨害予防（ぼうがいよぼう）」が入っていないのか？ご指摘の通り、この条文には**「妨害予防請求権」がリストアップされていません。**理由： 妨害予防請求（「これから塀が倒れてきそうだから対策しろ」など）は、そこまで緊急性が高くなかったり、所有権者（大家さん）が対応すれば十分だったりすることが多いため、あえて賃借人の「直接の権利」からは外されました。試験上の判断： 「対抗要件を備えた賃借人は、605条の4に基づき、直接妨害予防請求をすることができる」という選択肢が出たら、それは**「誤り（×）」**となります。3. 【重要】「代位行使」なら可能！ここが合格者と受験生の分かれ道です。「直接」は言えなくても、大家さん（A）には所有権に基づく「妨害予防請求権」があります。Bさんは、大家さんのこの権利を**「債権者代位権（民法423条）」**を使って、大家さんに代わって行使することができます。【合格者の頭の中】返還・排除： 自分（B）の権利として、直接言える！（605条の4）予防： 大家（A）の権利を借りて（代位して）、間接的に言える！4. 賃借権のパワー比較表請求の内容対抗要件なし対抗要件あり（605条の4）返還請求代位行使のみ直接行使OK妨害排除請求代位行使のみ直接行使OK妨害予防請求代位行使のみ代位行使のみ（直接は不可）受験生へのアドバイス「妨害予防」という言葉を見たら、**「これだけは改正条文（605条の4）の仲間外れだ！」**と反応してください。行政書士試験の択一式では：「直接行使できる」と書いてあれば ×「代位行使できる」と書いてあれば ○「いかなる方法によっても行使できない」と書いてあれば ×となります。非常に細かいですが、ここを正確に区別できていると、民法の得点力がグンと安定しますよ！"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
-        "text": "建物が転貸された場合における賃貸人（建物の所有者）、賃借人（転貸人）および転借人の法律関係に関する次のア～オの記述のうち、民法の規定および判例に照らし、妥当なものの組合せはどれか。",
+        "text": "建物が転貸された場合における賃貸人（建物の所有者）、賃借人（転貸人）および転借人の法律関係に関する次の記述のうち、民法の規定および判例に照らし、妥当なものの組合せはどれか。",
         "choices": [
           "賃貸人の承諾がある転貸において、賃貸人が当該建物を転借人に譲渡し、賃貸人の地位と転借人の地位とが同一人に帰属したときであっても、賃借人と転借人間の転貸借関係を消滅させる特別の合意がない限り、転貸借関係は当然には消滅しない。",
           "賃貸人の承諾がある転貸において、賃借人による賃料の不払があったときは、賃貸人は、賃借人および転借人に対してその支払につき催告しなければ、原賃貸借を解除することができない。",
@@ -20099,31 +22489,10 @@ export const SUBJECTS = {
           4
         ],
         "isReorder": false,
-        "explain": "建物が転貸された場合における賃貸人（建物の所有者）、賃借人（転貸人）および転借人の法律関係に関する次のア～オの記述のうち、民法の規定および判例に照らし、妥当なものの組合せはどれか。",
+        "explain": "建物が転貸された場合における賃貸人（建物の所有者）、賃借人（転貸人）および転借人の法律関係に関する次の記述のうち、民法の規定および判例に照らし、妥当なものの組合せはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠・考え方（判例：最判昭50.10.24）高度の蓋然性（こうどのがいぜんせい）裁判所は、ある事実が起こった確率が「100%」である必要はないが、**「十中八九そうであろう」**と言えるレベル（高度の蓋然性）が必要であるとしています。法と科学のバランス医学的に「絶対にこれが原因だ」と言い切れなくても、裁判官が提出された証拠を見て「普通に考えればこれが原因だよね」と確信できれば、法律上の因果関係は認められます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「相当程度の可能性」との使い分け前問（第62問）で出た「相当程度の可能性」との違いを、受験生が混乱しないように整理しましょう。立証のレベル法律用語認められる損害高度の蓋然性（十中八九）因果関係あり死亡・負傷そのものの損害全額。相当程度の可能性（五分五分以上）期待権の侵害因果関係は否定されるが、「可能性を奪われた」慰謝料のみ。ポイント：「AがあったからBになった」と断定していいのは、この「通常人が疑わないレベルの確信」があるときだけです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢1】（類題）「訴訟上の因果関係の立証は、一点の疑いも許されない自然科学的証明ではなく、通常人が疑いを差し挟まない程度に真実性の確信を持ちうるものであれば足りる。」→ 答え：◯この「足りる（＝それで十分だ）」という表現が、被害者の立証負担を現実的なものにしています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「裁判官は科学者ではなく、『常識の番人』である」と教えましょう。科学の世界では「0.01%でも違う可能性があるなら、それは真実ではない」とされます。しかし、裁判でそれをやると被害者は誰も救われません。だから民法は、**「誰が見ても、普通そうなるよね（通常人の確信）」**というレベルでOKを出しているのです。",
-        "slots": [
-          {
-            "label": "ア",
-            "options": ""
-          },
-          {
-            "label": "イ",
-            "options": ""
-          },
-          {
-            "label": "ウ",
-            "options": ""
-          },
-          {
-            "label": "エ",
-            "options": ""
-          },
-          {
-            "label": "オ",
-            "options": ""
-          }
-        ],
+        "memo": "1. 登場人物と状況の整理\nまず、今の状況を整理します。\n\nA（所有者・賃貸人）： 大家さん\n\nB（賃借人・転貸人）： 借りて、さらにCに貸している人（中間者）\n\nC（転借人）： 実際に住んでいる人\n\nここで、**「賃貸人Aが建物を転借人Cに譲渡した」**というのがポイントです。つまり、Cが新しい大家さんになったわけです。\n\n2. 何が問題になるのか？（混同の理論）\n通常、民法には**「混同（520条）」**というルールがあります。\n\n「債権と債務が同一人に帰属したときは、その債権は消滅する」\n\n今回のケースでいうと、Cは「Bから借りている立場（転借人）」でありながら、「Bに貸している立場（賃貸人の地位を承継した大家）」にもなりました。\n「自分が自分に貸して、自分が自分から借りる」という奇妙な状態です。普通なら「じゃあ、この契約（転貸借）は消滅していいよね」となりそうですが……。\n\n3. 最高裁判例の判断（昭和45年7月16日）\n最高裁は、このケースにおいて**「転貸借関係は消滅しない」と判断しました。その理由は、中間にいるB（転貸人）の利益を守るため**です。\n\nBの権利: BはAから借り、Cに貸すことで「差額賃料（サヤ抜き）」などの利益を得ている場合があります。\n\n不利益の防止: もしCが大家になった瞬間に転貸借（B-C間）が消滅してしまうと、Bは「貸す相手」を失い、賃借人としての地位が宙に浮いてしまいます。\n\n結論: Bが賃借権を持ち続けることに正当な利益がある以上、Cの中で「大家の顔」と「店借人の顔」が同居したとしても、B・C間の契約はそのまま存続させるべきだ、という理屈です。\n\n4. 試験対策のポイント：言葉のすり替えに注意！\nこの論点が出たときは、以下のフレーズに注目してください。\n\n「当然に消滅する」 ＝ ×（誤り）\n\n「特段の合意がない限り、消滅しない」 ＝ ○（妥当）\n\n【合格者の頭の中】\n「AがCに売ったんだから、CはAの代わり。でも、Bを無視して契約を消すのはフェアじゃない。だから、Bが絡んでいる以上、混同の原則（消滅）はストップ！」\n\n5. 【おまけ】関連する「敷金」の行方\nこの状況（A→Cへ譲渡）になった場合、敷金はどうなるでしょうか？\n\nA・B間の敷金： Aから新しい大家Cへ引き継がれます。\n\nB・C間の敷金： 転貸借契約が存続するため、そのままBが保持します。\n\n受験生へのアドバイス\n「混同」は物権（179条）でも債権（523条など）でも出てきますが、「第三者の利益を害するときは消滅しない」という共通の例外があります。今回のBさんは、まさにその「守られるべき第三者」に近い存在だとイメージしておけば、記憶に定着しやすいですよ。",
+        "slots": [],
         "refId": "",
         "isBonus": false,
         "chunks": [],
@@ -20149,11 +22518,18 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠・考え方（判例：最判昭50.10.24）高度の蓋然性（こうどのがいぜんせい）裁判所は、ある事実が起こった確率が「100%」である必要はないが、**「十中八九そうであろう」**と言えるレベル（高度の蓋然性）が必要であるとしています。法と科学のバランス医学的に「絶対にこれが原因だ」と言い切れなくても、裁判官が提出された証拠を見て「普通に考えればこれが原因だよね」と確信できれば、法律上の因果関係は認められます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「相当程度の可能性」との使い分け前問（第62問）で出た「相当程度の可能性」との違いを、受験生が混乱しないように整理しましょう。立証のレベル法律用語認められる損害高度の蓋然性（十中八九）因果関係あり死亡・負傷そのものの損害全額。相当程度の可能性（五分五分以上）期待権の侵害因果関係は否定されるが、「可能性を奪われた」慰謝料のみ。ポイント：「AがあったからBになった」と断定していいのは、この「通常人が疑わないレベルの確信」があるときだけです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢1】（類題）「訴訟上の因果関係の立証は、一点の疑いも許されない自然科学的証明ではなく、通常人が疑いを差し挟まない程度に真実性の確信を持ちうるものであれば足りる。」→ 答え：◯この「足りる（＝それで十分だ）」という表現が、被害者の立証負担を現実的なものにしています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「裁判官は科学者ではなく、『常識の番人』である」と教えましょう。科学の世界では「0.01%でも違う可能性があるなら、それは真実ではない」とされます。しかし、裁判でそれをやると被害者は誰も救われません。だから民法は、**「誰が見ても、普通そうなるよね（通常人の確信）」**というレベルでOKを出しているのです。",
-          "■ 根拠・考え方（判例：最判平8.10.29）個性の尊重人間には、首の長い人もいれば短い人もいます。これらは単なる「個体差」であり、病気ではありません。加害者の責任加害者は、たまたま被害者が「首の長い人」だったからといって、その運の悪さを被害者に押し付けてはいけません。「被害者が平均的な体格であることを前提に賠償額を決める」という考え方は取らない、ということです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「疾患（病気）」なら話は別！ここが試験のひっかけポイントです。「身体的特徴」ではなく「疾患」だった場合はどうなるでしょうか。被害者の状態賠償額の減額（斟酌）理由身体的特徴（首が長い等）× できない単なる「個性」だから。疾患・病気（持病がある等）◯ できる公平の観点から、過失相殺（722条2項）を準用する。ポイント：判例（最判昭63.4.21）では、被害者の**心因的素因（性格や心の病）**が損害を大きくした場合も、過失相殺を準用して減額できるとしています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢5】（類題）「被害者の身体的特徴が疾患に当たらない場合には、当該特徴を損害賠償額の算定において斟酌することはできない。」→ 答え：◯「斟酌（しんしゃく）する」とは、事情を考慮して金額を調整するという意味です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『首が長い』のは、その人のせいじゃない！」と教えましょう。加害者は、自分がぶつかった相手が「誰であっても」責任を負うのが原則です。「相手の首が長かったから、こんなに大怪我になったんだ」という言い逃れは、その特徴が「病気」レベルでない限り、法は認めません。この判例は「首が長い事件」として受験界では有名なので、名前で覚えておくと忘れませんよ。",
-          "■ 根拠・考え方（判例：最判昭39.6.24）\n過失相殺の目的\n過失相殺（民法722条2項）は、加害者と被害者の間で「損害の公平な分担」を図るための制度です。\n\n必要な能力のレベル\n「飛び出したら車にぶつかって危ない」ということさえ理解できれば、たとえ幼い子供であっても、その不注意を考慮して賠償額を減らすことができます。\n\n責任能力：概ね12歳前後〜（不法行為の加害者になるために必要）\n\n事理弁識能力：概ね5歳〜6歳前後〜（過失相殺をされるために必要）\n\n■ 周辺知識：「被害者側」の過失\nもし被害者が5歳未満で「事理弁識能力」すらない場合はどうなるでしょうか？\n\n本人に能力がない場合：本人の不注意を責めることはできません。\n\n被害者側の過失：ただし、その子の**親（監護者）**に不注意があれば、「被害者側の過失」として、結局は賠償額が減額されることになります（最判昭34.11.26）。\n\nポイント：\n民法は「被害者本人」だけを見るのではなく、被害者と「身分上・生活上一体をなすとみられる関係にある者」の過失もひっくるめて計算します。\n\n■ 関連過去問チェック\n【平成21年度 第35問 肢1】\n「不法行為における過失相殺において、被害者に過失があったというためには、被害者に責任能力があることは必要ではないが、事理弁識能力があることは必要である。」\n\n→ 答え：◯\n責任能力は「不要」、事理弁識能力は「必要」というセットで覚えましょう。\n\n💡 受験生へのアドバイス\n「『いけないこと』と分かるなら、減額されても文句は言えない」と教えましょう。\n\n加害者として訴えられるには、ある程度大人（中学生くらい）の判断力が必要です。\n\nでも、被害者として「自分も悪かったよね」と一部負担させられるのは、幼稚園の年長さんくらいの判断力があれば十分だとされています。\n\nこれも「損害の公平な分担」というキーワードで説明すると、記述式でも点数が伸びますよ。",
-          "■ 根拠・考え方（判例：最判昭31.7.20 等）「外的な名誉」が対象本人がどう感じたか（主観）ではなく、**世間からどう見られているか（客観）**がポイントです。◯：近所に「あの人は泥棒だ」と言いふらす（社会的評価が下がる）。×：二人きりの場所で「お前はバカだ」と言う（名誉感情は傷つくが、社会的評価は下がらない）。方法を問わない口頭で伝えること（口頭）、文章を書くこと（文書）、SNSでの投稿、あるいは態度など、社会的評価を下げる可能性がある全ての行為が含まれます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「本当のこと」を言っても名誉毀損になる？ここが試験で狙われる、刑法と民法の共通ポイントです。たとえ言った内容が「事実（本当のこと）」であっても、それによって相手の評価が下がれば、原則として名誉毀損が成立します。ただし、以下の3つの条件をすべて満たせば、例外的に違法性がなくなります（免責されます）。条件内容① 公共の利害その内容が、社会のみんなに関係することである（例：汚職事件）。② 公益目的もっぱら世の中のために知らせる目的である（例：被害拡大防止）。③ 真実性の証明言った内容が真実であること（または真実と信じたことに正当な理由があること）。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢4】（類題）「他人の名誉を毀損した者に対しては、裁判所は、被害者の請求により、損害賠償に代えて、又は損害賠償とともに、名誉を回復するのに適当な処分を命ずることができる。」→ 答え：◯民法723条の規定です。社会的評価を回復するために、新聞への「謝罪広告」などを命じることができます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「名誉毀損は『ブランドイメージの破壊』だ」と教えましょう。自分の心が傷つくのは「慰謝料（精神的苦痛）」の問題。世間の目が変わってしまうのは「名誉毀損（社会的評価の低下）」の問題。行政書士試験では、この両者の区別と、謝罪広告が認められるのは「後者だけ」という点を確認させれば完璧です。",
-          "■ 根拠・考え方（判例：最判平7.6.9）「期待される」水準の相対性医師に求められるのは、その当時の**「実践における医療水準」**です。最新の設備が整った大学病院：極めて高度な水準が求められる。医療資源が限られた過疎地の診療所：その地域で可能な最善の水準が基準となる。転送義務とのセットただし、「うちは設備がないから仕方ない」で終わるわけではありません。自分のところで対応できないなら、**「適切な設備のある病院へ速やかに転送する義務」**が発生します。これを怠れば過失となります。　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「医学的水準」との違い受験生が混乱しやすいのが「医学的水準」という言葉との使い分けです。用語内容性質医学的水準学説や教科書に載っている理論上の最高レベル。全国一律で、理想的なもの。医療水準実際の現場で実践されているレベル。地域や病院の規模によって変動する。ポイント：裁判で過失を判断する基準になるのは、理想（医学的水準）ではなく、現実（医療水準）の方です。　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢1】（類題）「医師の注意義務の基準となるべき医療水準は、当該医師が実際に診療を行った地域の医療慣行によって直ちに決まるものではない。」→ 答え：◯「地域の慣行（みんながやってるから）」だけで決まるわけではなく、学問的な知見なども含めて総合的に判断されますが、地域差そのものは認められています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『できること』と『すべきこと』は環境によって違う」と教えましょう。砂漠で水がない時に「冷たい氷水を出せ」と言われても不可能です。医療も同じで、場所や設備という制約がある以上、全国どこでも「神の手」レベルの治療を義務づけることはできません。ただし、**「今の自分の限界を知り、適切な場所にパス（転送）する」**ことは、どこにいる医師にも等しく求められる義務である、という点が重要です。"
+          "1. 登場人物と状況の整理\nまず、今の状況を整理します。\n\nA（所有者・賃貸人）： 大家さん\n\nB（賃借人・転貸人）： 借りて、さらにCに貸している人（中間者）\n\nC（転借人）： 実際に住んでいる人\n\nここで、**「賃貸人Aが建物を転借人Cに譲渡した」**というのがポイントです。つまり、Cが新しい大家さんになったわけです。\n\n2. 何が問題になるのか？（混同の理論）\n通常、民法には**「混同（520条）」**というルールがあります。\n\n「債権と債務が同一人に帰属したときは、その債権は消滅する」\n\n今回のケースでいうと、Cは「Bから借りている立場（転借人）」でありながら、「Bに貸している立場（賃貸人の地位を承継した大家）」にもなりました。\n「自分が自分に貸して、自分が自分から借りる」という奇妙な状態です。普通なら「じゃあ、この契約（転貸借）は消滅していいよね」となりそうですが……。\n\n3. 最高裁判例の判断（昭和45年7月16日）\n最高裁は、このケースにおいて**「転貸借関係は消滅しない」と判断しました。その理由は、中間にいるB（転貸人）の利益を守るため**です。\n\nBの権利: BはAから借り、Cに貸すことで「差額賃料（サヤ抜き）」などの利益を得ている場合があります。\n\n不利益の防止: もしCが大家になった瞬間に転貸借（B-C間）が消滅してしまうと、Bは「貸す相手」を失い、賃借人としての地位が宙に浮いてしまいます。\n\n結論: Bが賃借権を持ち続けることに正当な利益がある以上、Cの中で「大家の顔」と「店借人の顔」が同居したとしても、B・C間の契約はそのまま存続させるべきだ、という理屈です。\n\n4. 試験対策のポイント：言葉のすり替えに注意！\nこの論点が出たときは、以下のフレーズに注目してください。\n\n「当然に消滅する」 ＝ ×（誤り）\n\n「特段の合意がない限り、消滅しない」 ＝ ○（妥当）\n\n【合格者の頭の中】\n「AがCに売ったんだから、CはAの代わり。でも、Bを無視して契約を消すのはフェアじゃない。だから、Bが絡んでいる以上、混同の原則（消滅）はストップ！」\n\n5. 【おまけ】関連する「敷金」の行方\nこの状況（A→Cへ譲渡）になった場合、敷金はどうなるでしょうか？\n\nA・B間の敷金： Aから新しい大家Cへ引き継がれます。\n\nB・C間の敷金： 転貸借契約が存続するため、そのままBが保持します。\n\n受験生へのアドバイス\n「混同」は物権（179条）でも債権（523条など）でも出てきますが、「第三者の利益を害するときは消滅しない」という共通の例外があります。今回のBさんは、まさにその「守られるべき第三者」に近い存在だとイメージしておけば、記憶に定着しやすいですよ。",
+          "全国の行政書士試験受験生の皆様、この選択肢2の記述は、結論から申し上げますと**「妥当ではない（誤り）」**です。これは「賃料不払い（債務不履行）」による解除の際、大家さんがどこまで気を遣わなければならないかを問う問題です。受験生が「転借人（C）もかわいそうだから、教えてあげなきゃいけないのでは？」という人情の罠にハマるのを狙っています。1. 判例の結論最高裁判例（昭和36年7月18日）賃借人の賃料延滞を理由として賃貸借契約を解除するには、賃借人に対して催告すれば足り、転借人に対してその支払の機会を与えるために催告する必要はない。つまり、大家Aさんは「Bさん、家賃払って！」とBさんに言うだけでOKです。Cさんにまで「Bさんが払ってないから、代わりに払う？それとも出ていく準備する？」と親切に教えてあげる義務はありません。2. なぜCへの催告は不要なのか（趣旨）転貸借（また貸し）という関係の「主従関係」を考えると納得がいきます。直接の契約がない： 大家Aさんと転借人Cさんの間には、直接の契約関係はありません。Aさんが家賃を請求する相手はあくまで債務者であるBさんです。権利の付随性： Cさんの「住む権利」は、Bさんの「借りる権利」の上に成り立っています。土台であるBさんの権利が不払いで崩れたら、その上のCさんの権利も一緒に崩れるのは、Cさんにとって織り込み済みのリスクである、と法律は考えます。3. 【超重要】「合意解除」との決定的な違いここが試験で最も狙われる最大のひっかけポイントです！「不払い」と「仲直り（合意）」で結論が真逆になります。解除の理由C（転借人）への対抗理由賃料不払い（債務不履行）できるBが悪いのだから、Cも道連れで退去。合意解除（話し合いで終了）できないAとBが勝手に終わらせて、Cを追い出すのは不公平。【合格者の頭の中】「Bが悪い（不払い）」なら、大家は最強。Cに黙って解除して追い出せる。「Bが悪くない（合意解除）」なら、Cは守られる。大家はCを追い出せない。4. 記述式での注意点もし記述式で「AがBの賃料不払いを理由に解除する場合の手続き」を問われたら、**「Bに対して相当の期間を定めて催告し、その期間内に履行がないときは解除できる。転借人Cへの催告は不要である」**というロジックを組み立ててください。受験生へのアドバイス「転借人がいるなら、その人にも教えてあげないと不意打ちになって可哀想……」という優しさは、民法の試験では時に仇となります。「不払い（Bのミス）」なのか「合意（AとBの勝手）」なのか。この解除の原因を問題文から見つけ出すクセをつけましょう。",
+          "1. 根拠条文\n民法613条1項（転貸の効果）\n賃借人が適法に賃借物を転貸したときは、転借人は、賃貸人に対して**直接に義務を負う。**この場合においては、賃料の前払をもって賃貸人に対抗することができない。\n\n2. 大家Aさんが持つ「直接請求権」\n契約書がないにもかかわらず、AさんがCさんに「うちの物件を使っているんだから、家賃は私に払いなさい」と言える理由は以下の通りです。\n\n大家の保護： もしBさん（転貸人）が家賃を滞納しているのに、Cさんから家賃を受け取ってそのまま逃げてしまったら、大家Aさんは大損をします。これを防ぐため、AさんがCさんから直接家賃を回収することを認めています。\n\n責任の重さ： 転借人Cさんは「他人の物を借りている」という立場である以上、その持ち主（A）に対して直接責任を負うのが公平だ、という考え方です。\n\n3. 【超重要】いくらまで請求できるのか？（限度額）\nここが択一試験の細かい知識として狙われます。AさんがCさんに請求できる金額には「上限」があります。\n\nルール： 「A-B間の賃料」と「B-C間の賃料」の、いずれか少ない方の金額が限度です。\n\n例：\n\nA-B間の家賃が10万円\n\nB-C間の家賃が12万円\n→ AがCに直接請求できるのは10万円までです。\n（※Bが2万円儲けるのは自由ですが、Aは自分が貸した条件以上のものは取れません。）\n\n4. 【ひっかけ注意】「前払」の抗弁\n条文の後半にある「賃料の前払をもって対抗できない」も頻出です。\n\nCさんがBさんに「来月分の家賃をもう払っちゃったから、大家さんには払えません」と言うことはできません。\n\nただし、**「通常の支払期日」**が来て支払ったのであれば、それは大家Aさんに対抗できます。あくまで「フライングで払った分」は認められない、という意味です。\n\n受験生へのアドバイス\n「直接の契約はないけれど、直接の義務はある」という、少し特殊な関係性を頭に入れましょう。\n\n原則： 契約がない人には何も言えない。\n\n転貸借の例外： 大家を守るために、直接言える（613条1項）。",
+          "1. 判例の結論\n最高裁判例（昭和26年5月31日）\n賃貸人は、賃借人が賃貸人の承諾なくして賃借物を第三者に使用させたときは、賃貸借契約を解除しなくても、その第三者（転借人）に対して建物の明渡しを請求することができる。\n\n2. なぜ「解除」しなくても追い出せるのか（趣旨）\nここには、民法の「相対的（そうたいてき）」な考え方が隠れています。\n\nB-C間では有効： 記述の前半にある通り、BとCの間の約束（転貸借契約）は、二人の中では有効です。BはCに「住んでいいよ」と言う義務があります。\n\nAに対しては無効： しかし、その約束は大家Aさんには一切関係がありません。Aさんから見れば、承諾を与えていないCさんは、自分の土地・建物に勝手に居座っている**「不法占拠者（ふほうせんきょしゃ）」**と同じです。\n\n所有権のパワー： Aさんは建物のオーナー（所有者）ですから、「権利のない人間は出ていけ」と言う権利（所有権に基づく妨害排除請求権）を持っています。このパワーを使うのに、Bさんとの契約をわざわざ終わらせる必要はない、というのが判例のロジックです。\n\n3. 【注意！】「誰に」返せと言えるのか？\nここも試験に出る細かいポイントです。\n\nAさんがCさんに「私（A）に建物を返せ」と言えるか？ ＝ 言えます。\n\nたとえBさんとの契約が続いていても、Bさんは「勝手に他人に使わせる」という義務違反をしている状態なので、Aさんは自分に直接返すよう求めることができるとされています。",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -20178,7 +22554,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "医療契約に基づく医師の患者に対する義務に関する次の記述のうち、民法の規定および判例に照らし、妥当なものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠条文と判例：民法711条の拡張民法711条（原則）条文には「被害者の父母、配偶者及び子に対しては、……慰謝料を支払わなければならない」と限定的に書かれています。判例による拡張（最判昭49.12.17）最高裁は、条文に載っていない人（例：内縁の妻、兄弟姉妹、祖父母など）であっても、被害者との間に「父母・配偶者・子」と同視できるほどの深い絆があり、その死によって甚大な精神的苦痛を受けたのであれば、711条を類推適用して慰謝料を認めるべきとしています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「本人の権利」と「自分の権利」ここが「民法お化け」の試験対策ポイントです。請求できる権利性質内容相続した慰謝料本人の権利亡くなった本人が持っていた慰謝料請求権を家族が受け継ぐもの。固有の慰謝料家族の権利家族自身が「悲しい！」と思ったことに対する、自分自身の権利。ポイント：被害者が即死した場合でも、本人の慰謝料請求権は相続されますし、それに加えて家族自身の「固有の慰謝料」もダブルで請求可能です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢5】「不法行為によって被害者が死亡した場合、被害者の父母、配偶者及び子は、被害者の権利を相続するほか、自己の権利として、慰謝料を請求することができる。」→ 答え：◯条文通りの知識ですが、「相続する権利」と「自己の権利」を分けて考えることが重要です。　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『戸籍』よりも『心の繋がり』を見るようになった！」と教えましょう。昔は「家族と言えば戸籍上の親・子・配偶者だけ」という考え方でした。しかし、今の判例は、長年連れ添った内縁のパートナーや、親代わりだった祖父母なども、その悲しみの深さは実の家族と変わらないとして、広く救済の手を差し伸べています。",
+        "memo": "1. 判例（最高裁平成7年6月9日判決　高知赤十字病院事件）\n「医療水準は、当該医療機関の性質、所在する地域の医療環境の特性等の諸般の事情を考慮して決せられるべきものである。」が示した「医療水準」の正体裁判所は、医師の過失を判断するモノサシとして**「診療当時の臨床医学の実践における医療水準」**という言葉を使います。ここで重要なのは、「医学の理論（学問としての最高峰）」と「現場の実践」は別物だということです。医学水準（理想）： 教科書に載っている最新・最高の治療法。医療水準（現実）： その時の現場で、普通の医師なら当然行うべき標準的な治療。裁判所は、後者の「現実の現場レベル」を基準に過失を判断します。2. なぜ「全国一律・絶対的」ではないのか？ここが本試験で最も狙われるポイントです。判例は、医療水準を判断する際に以下の3つのフィルターを通します。① 医療機関の特性（ハコの違い）大学病院や特定機能病院には、最新の検査機器と各分野のスペシャリストがいます。一方で、町の診療所（クリニック）には限られた設備しかありません。結論： 大学病院の医師には「大学病院レベル」の、町の医師には「町の医師レベル」の注意義務が課されます。② 地域の特性（場所の違い）東京のど真ん中と、救急病院まで車で数時間かかる離島や過疎地では、取れる選択肢が物理的に異なります。結論： その地域で現実に可能な医療環境を考慮します。これを**「ローカリティ・ルール（地域性）」**への配慮と呼びます。③ 緊急性（時間の違い）じっくり検査できる予定手術と、一刻を争う救急搬送中では、医師に求められる冷静な判断のハードルが変わります。3. 論点の核心：では、地方の医師は何をしても許されるのか？「地域格差があるから、地方の医師は低レベルでいい」というわけではありません。ここで判例は、**「転送義務（てんそうぎむ）」**という強力なブレーキをかけました。【判例のロジック】「自分の病院に設備がないなら、手術に失敗しても仕方ない」ではなく、「自分の病院に設備がないと分かった時点で、設備のある大きな病院へすぐに送る（転送する）義務がある」。この「転送義務」があるため、結局のところ、知識や判断の面では全国の医師に高いレベルが要求されることになります。4. 試験対策用：重要ポイントまとめ項目判例のスタンス注意点基準となる水準診療当時の「臨床医学の実践」「最新の学説」ではない。場所・ハコの考慮考慮する全国一律の絶対的基準ではない。知識・判断の義務概ね全国共通設備がなくても「知らない」は過失。義務の果たし方自院での治療 or 転送自分でできないなら送る義務がある。受験生へのワンポイントアドバイスこの判例の結論を覚えるときは、**「法律は現場の医師に無理難題は押し付けない（相対的）。でも、患者の命を守るための最低限の知恵（転送など）は絶対に出せと言っている」**とイメージしてください。この「医療水準」の考え方は、工作物責任や公務員の注意義務など、他の「過失」の論点にも通じる非常に重要な考え方です。",
         "slots": [],
         "refId": "",
         "isBonus": false,
@@ -20205,11 +22581,18 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠条文と判例：民法711条の拡張民法711条（原則）条文には「被害者の父母、配偶者及び子に対しては、……慰謝料を支払わなければならない」と限定的に書かれています。判例による拡張（最判昭49.12.17）最高裁は、条文に載っていない人（例：内縁の妻、兄弟姉妹、祖父母など）であっても、被害者との間に「父母・配偶者・子」と同視できるほどの深い絆があり、その死によって甚大な精神的苦痛を受けたのであれば、711条を類推適用して慰謝料を認めるべきとしています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「本人の権利」と「自分の権利」ここが「民法お化け」の試験対策ポイントです。請求できる権利性質内容相続した慰謝料本人の権利亡くなった本人が持っていた慰謝料請求権を家族が受け継ぐもの。固有の慰謝料家族の権利家族自身が「悲しい！」と思ったことに対する、自分自身の権利。ポイント：被害者が即死した場合でも、本人の慰謝料請求権は相続されますし、それに加えて家族自身の「固有の慰謝料」もダブルで請求可能です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢5】「不法行為によって被害者が死亡した場合、被害者の父母、配偶者及び子は、被害者の権利を相続するほか、自己の権利として、慰謝料を請求することができる。」→ 答え：◯条文通りの知識ですが、「相続する権利」と「自己の権利」を分けて考えることが重要です。　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『戸籍』よりも『心の繋がり』を見るようになった！」と教えましょう。昔は「家族と言えば戸籍上の親・子・配偶者だけ」という考え方でした。しかし、今の判例は、長年連れ添った内縁のパートナーや、親代わりだった祖父母なども、その悲しみの深さは実の家族と変わらないとして、広く救済の手を差し伸べています。",
-          "■ 根拠・考え方（判例：最大判昭39.1.28）「心」はなくても「社会的評価」はある法人には人間のような「精神的な苦痛」はありません。しかし、名誉を傷つけられることで、長年築き上げてきた**「社会的信用」や「ブランドイメージ」**という、お金には換算しにくいけれど極めて重要な価値が失われます。非財産的損害の構成民法710条（非財産的損害の賠償）の規定は、法人にも適用されます。この場合の賠償金は、精神的ショックへの対価ではなく、「低下した社会的評価（無形の損害）」を回復・補填するためのものとして肯定されます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：謝罪広告もセットで！法人が名誉毀損を受けた際に取れる手段は、お金（慰謝料）だけではありません。請求内容根拠条文内容損害賠償民法709条・710条社会的評価の低下に対する金銭賠償。名誉回復の処分民法723条新聞などへの謝罪広告。差止請求（判例理論）継続的な誹謗中傷などを止めさせる。ポイント：法人の場合は、個人の慰謝料よりも「謝罪広告」による評価の回復が実務上非常に重視されます。　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢3】「法人の名誉が毀損された場合には、法人には精神的苦痛というものは観念できないから、法人は、不法行為を行った者に対して、謝罪広告を求めることはできるが、慰謝料を請求することはできない。」→ 答え：×「慰謝料（非財産的損害の賠償）を請求することはできない」という部分が間違いです。判例はこれを明確に認めています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「法人の名誉毀損は、目に見えない資産の破壊だ！」と教えましょう。会社に「心」はないけれど、「顔（信用）」はあります。その顔を汚されたなら、たとえ具体的な売上減少（財産的損害）がまだ数字に出ていなくても、その「汚れ」そのものに対してお金を払わせることができる……それが民法の考え方です。",
-          "■ 根拠・考え方（判例：最判昭43.11.15）実質的個人企業（一人会社）規模が小さく、社長の個人的な能力や営業力に依存している会社の場合、「会社の利益 ＝ 社長の収入」と実質的に同視できます。損害の性質本来、会社と個人は別の人格ですが、社長が働けないことで売上が落ちた場合、それは「社長の労働能力の喪失」が直接の原因です。そのため、加害者は「会社の損害だから社長個人には払わない」という言い逃れはできません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「役員報酬」の扱い試験で狙われるのは、役員報酬のうち「どの部分」が賠償の対象になるかです。報酬の内訳賠償の対象理由労務提供の対価◯ 認められる社長の「働き」に対する対価だから。利益配当的性格× 認められない株主として受け取る配当のようなもので、働けなくても入るはずだから。ポイント：大企業の社長のように、本人が現場にいなくても会社が回る場合や、単に名前だけの役員（名目上の役員）の場合は、逸失利益の請求は厳しく制限されます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢2】「被害者が法人格を有する商店の経営者である場合、当該商店の収益が、実質的には当該経営者の個人的な寄与に依存していたとしても、不法行為による逸失利益の算定に当たり、当該商店の収益を基礎とすることはできない。」→ 答え：×「基礎とすることはできない」という点が間違いです。実質的に個人経営であれば、その収益をベースに逸失利益を計算できます。　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『看板社長』の怪我は、会社の怪我と同じ！」と教えましょう。法律上の「法人」という壁があっても、中身が「社長一人」なら、壁を透かして実態を見るのが民法の公平性です。ただし、会社から支払われる役員報酬が、単に節税目的で高く設定されているような場合は、税務申告上の数字ではなく「実際の働きに見合う金額」まで削られることもあります。",
-          "■ 根拠・考え方（判例：最判令2.7.9）損害の性質への合致逸失利益とは、本来「将来にわたって少しずつ入ってくるはずだったお金」です。そのため、将来の時間の経過に合わせて支払われる「定期金」という形は、損害の本質にかなっています。中間利息控除が不要一括払いの場合は、将来もらうお金を「前借り」するため、利息分を差し引く（中間利息控除）計算が必要ですが、定期金払いの場合はその必要がありません。事情の変化への対応定期金払いにすることで、将来、想定外に症状が悪化したり、逆に回復したりした場合に、支払い額を柔軟に調整できるメリットもあります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「一時金（一括払い）」との違いどちらの支払い方法にもメリット・デメリットがあります。支払い方法メリットデメリット一時金（一括）一度で関係が切れる。資金を一気に活用できる。中間利息を引かれる。使い切ってしまうリスクがある。定期金（分割）生活費として安定する。インフレなどに対応しやすい。加害者が倒産すると不払いのリスクがある。関係が長く続く。ポイント：被害者がどちらを望むか、また加害者側の支払い能力が安定しているか（任意保険に入っているか等）が、選択の鍵となります。　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【令和3年度 第34問 肢5】（類題）「交通事故の被害者が将来取得すべき利益を喪失したことによる損害賠償について、定期金による支払を命ずることは認められない。」→ 答え：×令和2年の判例が出た直後の試験で、このように「認められる」という知識が問われました。　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『今まとめて』か『将来にわたって』か、選べるようになった！」と教えましょう。昔の判決は、とにかく「一度でスッキリ終わらせる」ことを重視していました。しかし、今の判例は「被害者の生活の安定」をより重視するようになり、被害者の希望に応じて定期金という形も堂々と選べるようになったのです。この判例は比較的新しいため、最新のテキストで学習しているかどうかのリトマス試験紙になります。",
-          "■ 根拠・考え方（判例：最判平8.5.31）損害確定のタイミング不法行為による損害賠償請求権は、**「事故の時」**に発生し、その内容も確定します。事故の瞬間に「本来なら67歳まで働けたはずの権利」が侵害されたと考えます。加害者の「棚ぼた」防止事故の後にたまたま被害者が別の原因で亡くなったからといって、加害者が支払う賠償額が減るのは不公平です。加害者が被害者の「偶然の死」によって利益を得る（賠償を免れる）ことは許されない、という公平の理念に基づいています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：生活費の控除はどうなる？ここが「民法お化け」へのひっかけポイントです！項目扱い理由就労可能期間短縮しない事故の瞬間に「将来の労働力」を奪ったから。生活費の控除死亡後の分も控除する亡くなった後は生活費がかからないことが「確定」したため（損益相殺的な考え方）。ポイント：期間は「生きていたはずの期間」で計算しますが、お金の計算では「死んだことでかからなくなった生活費」を差し引くという、一見矛盾するような、でも緻密な調整が行われます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢4】（類題）「交通事故の被害者が、受傷後に別原因により死亡した場合であっても、特段の事情のない限り、その就労可能期間の算定に当たっては、当該死亡の事実は考慮されない。」→ 答え：◯まさに判例の核心です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『事故の瞬間』の時計を止めて計算する！」と教えましょう。事故が起きたその時に、被害者が持っていた「将来の価値」を冷凍保存して計算します。その後に何が起きようと、加害者が支払うべき「奪った価値の対価」は原則として変わりません。ただし、生活費のように「明らかに支出がなくなった」部分だけは、公平のために差し引く……という二段構えのルールです。"
+          "1. 判例（最高裁平成7年6月9日判決　高知赤十字病院事件）\n「医療水準は、当該医療機関の性質、所在する地域の医療環境の特性等の諸般の事情を考慮して決せられるべきものである。」が示した「医療水準」の正体裁判所は、医師の過失を判断するモノサシとして**「診療当時の臨床医学の実践における医療水準」**という言葉を使います。ここで重要なのは、「医学の理論（学問としての最高峰）」と「現場の実践」は別物だということです。医学水準（理想）： 教科書に載っている最新・最高の治療法。医療水準（現実）： その時の現場で、普通の医師なら当然行うべき標準的な治療。裁判所は、後者の「現実の現場レベル」を基準に過失を判断します。2. なぜ「全国一律・絶対的」ではないのか？ここが本試験で最も狙われるポイントです。判例は、医療水準を判断する際に以下の3つのフィルターを通します。① 医療機関の特性（ハコの違い）大学病院や特定機能病院には、最新の検査機器と各分野のスペシャリストがいます。一方で、町の診療所（クリニック）には限られた設備しかありません。結論： 大学病院の医師には「大学病院レベル」の、町の医師には「町の医師レベル」の注意義務が課されます。② 地域の特性（場所の違い）東京のど真ん中と、救急病院まで車で数時間かかる離島や過疎地では、取れる選択肢が物理的に異なります。結論： その地域で現実に可能な医療環境を考慮します。これを**「ローカリティ・ルール（地域性）」**への配慮と呼びます。③ 緊急性（時間の違い）じっくり検査できる予定手術と、一刻を争う救急搬送中では、医師に求められる冷静な判断のハードルが変わります。3. 論点の核心：では、地方の医師は何をしても許されるのか？「地域格差があるから、地方の医師は低レベルでいい」というわけではありません。ここで判例は、**「転送義務（てんそうぎむ）」**という強力なブレーキをかけました。【判例のロジック】「自分の病院に設備がないなら、手術に失敗しても仕方ない」ではなく、「自分の病院に設備がないと分かった時点で、設備のある大きな病院へすぐに送る（転送する）義務がある」。この「転送義務」があるため、結局のところ、知識や判断の面では全国の医師に高いレベルが要求されることになります。4. 試験対策用：重要ポイントまとめ項目判例のスタンス注意点基準となる水準診療当時の「臨床医学の実践」「最新の学説」ではない。場所・ハコの考慮考慮する全国一律の絶対的基準ではない。知識・判断の義務概ね全国共通設備がなくても「知らない」は過失。義務の果たし方自院での治療 or 転送自分でできないなら送る義務がある。受験生へのワンポイントアドバイスこの判例の結論を覚えるときは、**「法律は現場の医師に無理難題は押し付けない（相対的）。でも、患者の命を守るための最低限の知恵（転送など）は絶対に出せと言っている」**とイメージしてください。この「医療水準」の考え方は、工作物責任や公務員の注意義務など、他の「過失」の論点にも通じる非常に重要な考え方です。",
+          "1. 判例のロジック：慣行 vs 水準\nこの論点を決定づけたのは、**最高裁平成8年1月23日判決（三笠市立病院事件）**です。\n\n医療慣行（いりょうかんこう）： 現場の医師たちが「実際に行っている」平均的なやり方。\n\n医療水準（いりょうすいじゅん）： 当時の臨床医学の知見に照らして「行われるべき」正しいやり方。\n\n判例は、この2つを明確に区別しました。\n\n判旨の要約：\n「医療慣行は過失の判断において尊重されるべきだが、それが当時の臨床医学の知見から見て不十分なものであれば、その慣行に従ったからといって直ちに免責（許されること）にはならない。」\n\n2. なぜ「慣行」に従うだけではダメなのか？\nもし「みんながやっていること」が絶対的な基準になってしまうと、以下のような問題が起こります。\n\n「赤信号、みんなで渡れば怖くない」状態： ある地域や病院グループ全体が、古い知識のまま不適切な治療を続けていた場合、誰も責任を問われなくなってしまいます。\n\n進歩の停止： 医学は日々進歩しています。「昔からのやり方だから」という理由を認めすぎると、最新の知見を取り入れる医師の努力を評価できなくなります。\n\n3. 【重要】試験で狙われる「ひっかけ」\nこの論点では、以下のような表現に注意してください。\n\n「医療慣行に従っていれば、特段の事情がない限り過失は否定される（×）」\n\n「医療水準は常に医療慣行と一致する（×）」\n\n「医療慣行が不合理であっても、医師がそれに従った以上、過失は認められない（×）」\n\n【合格者の記憶法】\n「慣行」はあくまでヒント。「水準」こそが答え。\n**「みんなが間違っていたら、みんな過失！」**という厳しい世界だと覚えましょう。\n\n4. 医療過失の判断プロセス（まとめ）\n裁判所は以下のように過失を判断します。\n\nまず、当時の臨床医学から見て、どのような治療を**すべきだったか（医療水準）**を特定する。\n\nその際、医療慣行を参考にする。\n\nもし医療慣行が医療水準（あるべき姿）に届いていないなら、医療水準を優先して過失を認める。\n\n受験生へのアドバイス\n先ほど確認した「医療環境（地域や設備）を考慮する」という話と、今回の「医療慣行に従うだけではダメ」という話は、セットで出題されやすいです。\n\n場所の違い（大学病院か地方か）： 考慮する（相対的）。\n\nやり方の違い（慣行か水準か）： 水準を優先する（厳しい）。\n\nこの2軸を整理しておけば、医師の注意義務に関する問題はほぼ完璧に解けるようになりますよ。",
+          "1. 判例の結論：インフォームド・コンセントの重要性\nこの論点のリーディングケースは、**最高裁平成13年10月4日判決（乳がん温存療法訴訟）**です。\n\n判旨のポイント\n医師は、たとえ自らが推奨する療法（標準治療）があったとしても、他に相当な理由のある療法が存在し、それが一般的に実施されている場合には、患者がどの療法を受けるかを選択できるよう、その内容や利害得失を説明する義務を負う。\n\nたとえその療法が、その病院でメインで行っている「医療水準」として確立したものではなくても、一定の実施状況があり、選択肢になり得るものであれば、説明を省くことはできません。\n\n2. なぜ「未確立」でも説明が必要なのか（趣旨）\nここには、医療における「情報の非対称性」への配慮があります。\n\n患者の自己決定権： 自分の体にメスを入れるか、どの治療法を選ぶかは、最終的には患者が決めるべきことです。\n\n価値観の多様性： 「生存率がわずかに高いが体への負担が大きい治療」と「生存率は少し下がるかもしれないが生活の質（QOL）を保てる治療」のどちらを優先するかは、医師ではなく患者の人生観によります。\n\n情報の提供義務： 医師が「これが標準だから」と一つの道しか示さないのは、患者から選択のチャンスを奪う行為だとみなされます。\n\n3. 試験で狙われる「ひっかけ」のワード\nこの設問のどこが「誤り」の決定打になったのか、精査しましょう。\n\n「実施状況や当該患者の状況にかかわらず」\n\nここが最大の誤りです。判例では、その療法が「相当な理由があり」「一般的に実施されている」場合には説明が必要だとしています。つまり、実施状況は説明義務の判断に直結します。\n\n「説明義務を負うものではない」\n\n「医療水準として未確立 ＝ 説明不要」という単純な図式にはなりません。\n\n【合格者の記憶法】\n「お医者さんが一番いいと思う方法だけ教えればいいわけじゃない。世の中で普通に行われている選択肢なら、たとえ未確立でも教える義務がある！」\n\n4. 注意：なんでもかんでも説明が必要？\nもちろん、以下の場合は説明義務が免除または軽減されることがあります。\n\n緊急時： 一刻を争う事態で、説明している余裕がない場合。\n\n非合理的な療法： 単なる迷信や、医学的に全く根拠のない危険な方法まで説明する必要はありません。\n\n今回の設問は、**「実施状況にかかわらず一律に説明不要」**としている点が、判例の「患者の自己決定権を尊重する」というスタンスに反するため、×（誤り）となります。\n\n受験生へのアドバイス\n医療契約の論点では、「医師の専門性（裁量）」と「患者の自己決定権」のバランスが常に問われます。\n\n過失の判断（医療水準）： 医師の裁量や環境を考慮する（少し医師に優しい）。\n\n説明義務： 患者の選ぶ権利を最大限尊重する（患者に優しい）。",
+          "1. 判例の結論：病名が特定できなくても義務はある\nこの論点の柱となるのは、最高裁平成15年7月14日判決などです。\n\n判旨のポイント\n医師が自ら適切な検査や治療を行えない場合、具体的な病名が特定できていなくても、「重大で緊急性のある病気の可能性が高い」と認識できた（あるいは認識すべきだった）のであれば、直ちに適切な医療機関へ転送する義務を負う。\n\n「何だか分からないけれど、これはヤバい。うちじゃ手に負えないし、一刻を争う」と分かった時点で、バトンタッチする義務が発生するということです。\n\n2. なぜ「病名の特定」が不要なのか（趣旨）\n早期治療の優先： 設問にある通り、「予後の良否が早期治療に左右される」状況では、原因を突き止めるために時間を空費すること自体が、患者にとって致命的なダメージになります。\n\n医師の能力の限界： 自分の手に負えないことを認めるのも医師の重要な能力です。「分からないから様子を見る」のではなく、「分からないから、分かる人がいる場所へ送る」のが正しい注意義務の尽くし方です。\n\n3. 試験で狙われる「転送義務」の3条件\n裁判所が「転送すべきだった（転送義務違反だ）」と判断する際のチェックポイントは以下の通りです。\n\n条件1：自院での対応不可\n設備や専門知識が足りず、自分ではこれ以上の検査や治療ができない。\n\n条件2：重大性・緊急性の予見\n放っておくと大変なことになる（重篤な予後）可能性が高いと分かった。\n\n条件3：転送の有効性\n適切な病院へ送れば、救える可能性があった。\n\n【合格者の記憶法】\n「名探偵（病名の特定）になる必要はない。『ヤバい！』と気づいたなら、すぐにパスを回せ！」\n\n4. 他の選択肢との関連（まとめ）\nこれまでの検討を整理しましょう。\n\n選択肢1（全国一律の基準）： ×（環境や特性を考慮する相対的基準）\n\n選択肢（ｒ）（医療慣行）： ○（妥当）（慣行に従うだけでは不十分なこともある）\n\n選択肢3（未確立療法の説明）： ×（実施状況等により説明義務あり）\n\n選択肢4（転送義務と病名）： ×（病名が不明でも転送義務あり）\n\n「妥当なものはどれか」という問いであれば、**選択肢（ｒ）の「医療慣行＝医療水準ではない」**という知識が正解（マークすべき肢）になりますね。\n\n受験生へのアドバイス\n医師の義務に関する問題は、「どこまでがお医者さんの責任か？」という線引きが問われます。\n\n治療そのもの： その時の環境でできるベストを尽くせばOK（相対的）。\n\n判断・説明・転送： 「できないなら、できる人を紹介する」「選択肢を教える」といった、知識や誠実さが問われる部分はかなり厳しい基準が課されます。\n\nこの「実技（相対的）」と「判断（厳格）」のコントラストを意識すると、初見の肢でも正誤が判断しやすくなります。",
+          "1. 判例の結論：添付文書は「最強のルールブック」\nこの論点を決定づけたのは、**最高裁平成8年1月23日判決（三笠市立病院事件）**です。\n\n判旨のポイント\n「医師が薬を使用する際、その薬の添付文書（注意書き）に記載された使用上の注意事項に従わなかったために事故が発生した場合、これに従わなかったことについて特段の事情がない限り、過失（落ち度）があったと推定される。」\n\nつまり、「最新の添付文書を確認しなくてもよい」どころか、「確認して、その通りにやるのが大原則」なのです。\n\n2. なぜ「最新の」情報が必要なのか（趣旨）\n情報の専門性： 薬の副作用や禁忌（やってはいけないこと）については、製造販売業者（製薬会社）が最も詳しい情報を持っています。その集大成が添付文書です。\n\nアップデートの速さ： 薬が発売された後でも、新しい副作用が見つかれば添付文書は更新されます。古い情報のまま治療を行うことは、患者を危険にさらす行為です。\n\n立証責任の転換： もし医師が添付文書の指示と違うことをして事故が起きたら、医師側が「なぜ指示に従わなかったのか、合理的な理由（特段の事情）」を説明できない限り、裁判では負けてしまいます。\n\n3. 試験で狙われる「ひっかけ」の構造\nこの設問は、前半で確認した「医療環境（地域や設備）を考慮する」という話と、この「添付文書の遵守」をわざと混同させようとしています。\n\n診察や判断： 現場の状況を考慮する（少し柔軟）。\n\n薬の使用： 添付文書を遵守する（非常に厳格）。\n\n「医師の置かれた状況の下で情報を収集すれば足りる」という表現は、薬の安全性に関しては甘すぎると判断されます。\n最終回答\nこの問題の正解は、**選択肢（ｒ）**です。\n\n受験生へのメッセージ\nお疲れ様でした！医療契約の論点は、**「医師に求められる高度な専門性」と「患者の命・権利の尊重」**のせめぎ合いです。\n\nお医者さんに同情したくなる肢（＝基準を緩める肢）\n\n患者さんを過度に守る肢（＝お医者さんに不可能を強いる肢）\n\nこの両極端なひっかけを避け、「当時の最高レベルの知見（水準）に照らして、その場で何ができたか」という視点で判例を整理するのが合格への近道です。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -20234,7 +22617,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "組合に関する次の記述のうち、民法の規定に照らし、正しいものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠条文：民法712条「未成年者は、他人に損害を加えた場合において、自己の行為の責任を弁識するに足りる知能（責任能力）を備えていなかったときは、その行為について賠償の責任を負わない」と規定されています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ なぜ「被害者」の時とルールが違うのか？ここが試験に出る「民法お化け」への登竜門です！立場必要な能力目安の年齢理由加害者（712条）責任能力12歳前後〜相手に多額の賠償金を払わせる以上、相応の判断力が必要。被害者（722条）事理弁識能力5〜6歳前後〜公平の観点から「危ない」と分かれば、賠償額を減らして良い。ポイント：加害者を責める時は「厳しく（高い能力を要求）」、被害者の不注意を考慮する時は「優しく（低い能力でOK）」という、民法のバランス感覚を覚えましょう。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ もし未成年者に「責任能力」がなかったら？加害者の子供が10歳などで責任能力がない場合、被害者は誰に請求すればいいのでしょうか？監督義務者の責任（714条）：親（親権者）が代わりに責任を負います。親の免責：親が「監督を怠らなかったこと」を証明すれば免責されますが、裁判でこれが認められることは極めて稀（ほぼ不可能）です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢1】（再掲・比較用）「不法行為における過失相殺において、被害者に過失があったというためには、被害者に責任能力があることは必要ではない……」→ 答え：◯つまり、「被害者」の時は責任能力がなくても減額されますが、「加害者」の時は責任能力がないと賠償責任そのものが発生しないのです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『悪いこと』が分かるのと、『おカネを払う責任』が分かるのは別！」と教えましょう。飛び出したら危ないと分かる（事理弁識能力）のは幼稚園児でもできます。自分のしたことで何百万円もの借金を背負うと理解する（責任能力）には、中学生くらいの分別が必要です。「加害者には厳しいハードル、被害者には低いハードル」という言葉をセットで伝えると、混乱がピタッと止まります。",
+        "memo": "1. 根拠条文：業務執行の委任民法670条3項（業務の執行）「組合契約で、一人又は数人の組合員又は第三者にその業務の執行を委任することができる。」設問では「第三者に委任することはできない」とされていますが、条文でははっきりと第三者への委任が可能であることが明記されています。2. なぜ第三者への委任が認められるのか（趣旨）改正前からも解釈で認められていましたが、改正によって条文で明確化されました。専門性の活用： 組合員の中に経営や特定の業務に詳しい人がいない場合、プロの経営コンサルタントや外部の専門家に実務を任せた方が、組合全体の利益になることがあります。実務への適応： 投資組合や共同事業など、現代の複雑なビジネス形態において、外部の管理会社に業務を委託するケースが増えている実態に合わせたものです。3. 組合の意思決定の「3パターン」試験対策として、組合の業務がどのように決まるのか、以下の3つの階層で覚えておきましょう。決定の主体決定の方法備考原則（全員）組合員の過半数で決める。特約がない場合（670条1項）。業務執行者（選任あり）業務執行者の過半数で決める。複数の執行者がいる場合（670条2項）。保存行為各組合員（または各執行者）が単独でできる。急を要する修理など（670条4項）。4. 試験で狙われる「ひっかけ」のポイント「第三者への委任」に関連して、以下のひっかけに注意してください。「業務の決定（意思決定）」と「業務の執行（実行）」を分けて考える必要はありません。現在では、意思決定の権限を含めて第三者に委任できると解されています。ただし、**「組合員の除名」や「組合契約の変更」**といった、組合の根幹に関わる重要な事項は、原則として業務執行者の判断（過半数）ではなく、組合員全員の同意が必要になる場合が多いです。【合格者の記憶法】「組合は仲良しグループの事業。自分たちでやるのが基本だけど、プロ（第三者）を雇って任せるのもアリ！」",
         "slots": [],
         "refId": "",
         "isBonus": false,
@@ -20261,11 +22644,18 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠条文：民法712条「未成年者は、他人に損害を加えた場合において、自己の行為の責任を弁識するに足りる知能（責任能力）を備えていなかったときは、その行為について賠償の責任を負わない」と規定されています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ なぜ「被害者」の時とルールが違うのか？ここが試験に出る「民法お化け」への登竜門です！立場必要な能力目安の年齢理由加害者（712条）責任能力12歳前後〜相手に多額の賠償金を払わせる以上、相応の判断力が必要。被害者（722条）事理弁識能力5〜6歳前後〜公平の観点から「危ない」と分かれば、賠償額を減らして良い。ポイント：加害者を責める時は「厳しく（高い能力を要求）」、被害者の不注意を考慮する時は「優しく（低い能力でOK）」という、民法のバランス感覚を覚えましょう。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ もし未成年者に「責任能力」がなかったら？加害者の子供が10歳などで責任能力がない場合、被害者は誰に請求すればいいのでしょうか？監督義務者の責任（714条）：親（親権者）が代わりに責任を負います。親の免責：親が「監督を怠らなかったこと」を証明すれば免責されますが、裁判でこれが認められることは極めて稀（ほぼ不可能）です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢1】（再掲・比較用）「不法行為における過失相殺において、被害者に過失があったというためには、被害者に責任能力があることは必要ではない……」→ 答え：◯つまり、「被害者」の時は責任能力がなくても減額されますが、「加害者」の時は責任能力がないと賠償責任そのものが発生しないのです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『悪いこと』が分かるのと、『おカネを払う責任』が分かるのは別！」と教えましょう。飛び出したら危ないと分かる（事理弁識能力）のは幼稚園児でもできます。自分のしたことで何百万円もの借金を背負うと理解する（責任能力）には、中学生くらいの分別が必要です。「加害者には厳しいハードル、被害者には低いハードル」という言葉をセットで伝えると、混乱がピタッと止まります。",
-          "■ 根拠・考え方（判例：最判昭39.6.24）公平の理念過失相殺（民法722条2項）は、加害者に一方的に全ての損害を押し付けるのではなく、被害者の不注意も考慮して「公平」に損害を分担しようという制度です。必要な能力の低さ「飛び出したら車にぶつかって痛い思いをする」という程度の**「危険を認識できる知能」**があれば、過失相殺を認めても不当ではないと考えられています。そのため、中学生レベルの「責任能力」までは求められません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：能力がない場合はどうなる？もし被害者が3歳児などで、事理弁識能力が全くない場合はどうなるでしょうか。状況判断結末本人に能力あり（6歳）本人の過失を考慮。賠償額が減額される。本人に能力なし（3歳）本人の過失は考慮できない。原則、減額されない……はず。親に不注意あり「被害者側の過失」（判例）。親の不注意を理由に、結局は減額される。ポイント：判例（最判昭34.11.26）は、被害者本人に能力がなくても、**「身分上・生活上一体をなすとみられる関係にある者（親など）」**に過失があれば、それを被害者自身の過失としてカウントできるとしています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢1】（再々掲・重要！）「不法行為における過失相殺において、被害者に過失があったというためには、被害者に責任能力があることは必要ではないが、事理弁識能力があることは必要である。」→ 答え：◯この「事理弁識能力」という言葉と「5〜6歳」という数字は、セットで暗記しておきましょう。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『悪いこと』が分かるのと、『危ない』と分かるのはハードルが違う！」と教えましょう。12歳（責任能力）：自分が悪いことをしたから、お小遣いや将来の給料から償わなきゃいけないと理解する力。6歳（事理弁識能力）：ここで遊んでいたら怒られる、車が来たら危ないと理解する力。民法は、被害者を救済する一方で、公平のために「危ないって分かってたよね？」というポイントは低めに設定しているのです。",
-          "■ 根拠・考え方：損害の公平な分担公平の観点たとえば、3歳の子どもが道路に飛び出して事故に遭った場合、子ども自身に「不注意（事理弁識能力）」は認められません。しかし、目を離していた親に全く責任がないとして加害者に100%の賠償を強いるのは、あまりに不公平です。身分上・生活上の一体性親と子どもは、家計も生活も一つです。親の過失で賠償額が減ったとしても、それは「家族全体」として損害を分担しているとみなすのが合理的である、という考え方です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「被害者側」に含まれる人の範囲試験では「誰までが含まれるか」が狙われます。関係性「被害者側」に含まれるかポイント親権者（親）◯ 含まれる子どもの監督義務があるため。配偶者（夫・妻）◯ 含まれる生活を共にしているため。内縁の夫・妻◯ 含まれる実質的に夫婦と同じだから。雇用主（会社）◯ 含まれる従業員が仕事中だった場合など。単なる友人・知人× 含まれない財布も生活も別々だから（最判昭42.6.27）。ひっかけ注意！友人が運転する車に乗せてもらって事故に遭った場合、友人に過失があっても、それは「被害者側の過失」にはなりません。友人への請求と加害者への請求は別々に考えます。　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢2】「不法行為における過失相殺において、被害者本人の過失だけでなく、被害者と身分上ないし生活上一体をなすとみられる関係にある者の過失を考慮することができる。」→ 答え：◯まさにこの「身分上・生活上一体」というフレーズが正解へのキーワードです。　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『世帯』単位で公平を考える！」と教えましょう。事故の賠償金は、最終的にはその家庭のサイフに入ります。家族の誰かが原因を作ったのなら、サイフに入るお金が減っても「自業自得（公平）」だよね、というのがこのルールの本質です。ただし、「ただの友達」はサイフが別なので、連帯責任を負わせない……という境界線を引かせてあげてください。",
-          "■ 根拠・考え方（判例：最判昭63.4.21）公平の理念加害者に、被害者がもともと抱えていた病気の結果まで全て背負わせるのは、あまりに酷で不公平であるという考え方です。類推適用のロジック条文上の「過失相殺」は、被害者の「不注意」を対象としています。病気は不注意ではありませんが、「損害を公平に分け合う」という目的は同じなので、過失相殺のルールを**「準用（似たケースとして当てはめる）」**します。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：減額できる？できない？ここは試験で「身体的特徴」と入れ替えて出題される、非常にミスの多いポイントです。被害者の状態賠償額の減額理由（判例のロジック）疾患（病気）◯ できる損害の公平な分担のため。身体的特徴（首が長い等）× できない単なる「個体差」に過ぎないから。心因的素因（性格等）◯ できる特異な性格等が損害を大きくした場合。ポイント：被害者の「首が長い」せいで大怪我になった場合は減額されませんが、被害者の「糖尿病」のせいで傷が治らず切断することになった……という場合は、減額される可能性が高くなります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢3】（類題）「被害者に身体的ないし精神的な要因（素因）があり、それが損害の発生や拡大に寄与した場合、特段の事情のない限り、過失相殺の規定を準用して賠償額を減額することができる。」→ 答え：◯「精神的な要因（性格など）」も含まれる点に注意しましょう。　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『病気』は加害者のせいじゃない！」と教えましょう。事故は加害者が起こしたものですが、病気はもともと被害者が持っていたものです。「事故のせい」の部分と「病気のせい」の部分を切り分けて、加害者には「事故のせい」の部分だけを払わせる……これが民法のフェアプレイです。",
-          "■ 根拠・考え方（判例：最判昭39.6.24）損益相殺の不適用本来、不法行為によって「利益（支出の免除など）」を受けた場合は、公平のためにそれを賠償額から引きます（損益相殺）。しかし、養育費については別です。親の扶養義務の性質親が子を育てるのは法的義務ですが、同時にそれは親の「喜び」や「生きがい」でもあります。子が死んだことで「養育費を払わなくて済むようになった」ことを「利益」と捉えて賠償額を減らすのは、著しく正義・公平の観念に反するとされました。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「生活費」の控除との違いに注意！ここが「民法お化け」の最大のひっかけポイントです。控除する項目結論理由本人の「生活費」◯ 控除する本人が生きていれば、稼いだお金から自分の食費などを出すため。親が払う「養育費」× 控除しない親の支出が減ったことを「得した」とみなすのは不当だから。ポイント：逸失利益の計算式：（将来の年収） × （就労可能期間） × （1 － 生活費控除率）この「生活費控除」には、本人の生活費は含まれますが、親の養育費は含まれません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢3】「不法行為によって死亡した者の逸失利益を算定するに当たっては、生存していれば支払を要したであろう生活費を控除しなければならないが、子が死亡した場合の養育費を控除することはできない。」→ 答え：◯まさにこの「生活費は引くが、養育費は引かない」という二段構えが正解の鍵です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『お金』だけでなく『親の心』も計算に入れている！」と教えましょう。経済的な計算だけで言えば、養育費が浮いたのは「プラス」かもしれません。でも、それを「加害者の得」にしてしまうのは、あまりにも冷酷です。「生活費（本人が使う分）は現実的に引くけれど、養育費（親が注ぐ分）は引かせない」という絶妙なバランスを意識させてあげてください。"
+          "1. 根拠条文：業務執行の委任民法670条3項（業務の執行）「組合契約で、一人又は数人の組合員又は第三者にその業務の執行を委任することができる。」設問では「第三者に委任することはできない」とされていますが、条文でははっきりと第三者への委任が可能であることが明記されています。2. なぜ第三者への委任が認められるのか（趣旨）改正前からも解釈で認められていましたが、改正によって条文で明確化されました。専門性の活用： 組合員の中に経営や特定の業務に詳しい人がいない場合、プロの経営コンサルタントや外部の専門家に実務を任せた方が、組合全体の利益になることがあります。実務への適応： 投資組合や共同事業など、現代の複雑なビジネス形態において、外部の管理会社に業務を委託するケースが増えている実態に合わせたものです。3. 組合の意思決定の「3パターン」試験対策として、組合の業務がどのように決まるのか、以下の3つの階層で覚えておきましょう。決定の主体決定の方法備考原則（全員）組合員の過半数で決める。特約がない場合（670条1項）。業務執行者（選任あり）業務執行者の過半数で決める。複数の執行者がいる場合（670条2項）。保存行為各組合員（または各執行者）が単独でできる。急を要する修理など（670条4項）。4. 試験で狙われる「ひっかけ」のポイント「第三者への委任」に関連して、以下のひっかけに注意してください。「業務の決定（意思決定）」と「業務の執行（実行）」を分けて考える必要はありません。現在では、意思決定の権限を含めて第三者に委任できると解されています。ただし、**「組合員の除名」や「組合契約の変更」**といった、組合の根幹に関わる重要な事項は、原則として業務執行者の判断（過半数）ではなく、組合員全員の同意が必要になる場合が多いです。【合格者の記憶法】「組合は仲良しグループの事業。自分たちでやるのが基本だけど、プロ（第三者）を雇って任せるのもアリ！」",
+          "1. 根拠条文：第三者への委任民法670条3項（業務の執行）「組合契約で、一人若しくは数人の組合員又は第三者にその業務の執行を委任することができる。」法律の文章そのものに「第三者」と書かれていますね。したがって、「第三者に委任することはできない」とする記述は誤りとなります。2. 改正のポイント：実務への適応以前の民法では、第三者に業務を任せられるかどうかが条文上はっきりしていませんでした。しかし、現代のビジネスシーン（投資組合や共同事業など）では、以下のようなニーズが非常に高いのが実情です。専門家への依頼： 「組合員はみんな素人だから、経営のプロ（第三者）に丸投げしたい」管理会社の利用： 「アパート経営の組合を作ったが、実務は管理会社（第三者）に任せたい」こうした実態に合わせて、**「組合員以外の人（第三者）でも、業務執行者になれるよ！」**と法律が太鼓判を押したのが、この改正の大きな意義です。3. 【整理】組合の業務執行のルール試験で混乱しないよう、業務執行の「決まり方」を3つのパターンに分けて整理しておきましょう。パターン決定・執行の方法根拠条文原則（特定なし）組合員の過半数で決める。670条1項業務執行者を指定**指定された人（組合員または第三者）**の過半数で決める。670条2項・3項急ぎの用（保存行為）各組合員または各執行者が、単独でできる。670条4項【合格者の視点】「第三者に任せられる」という知識は、記述式でも「誰に委任できるか？」という形で問われる可能性がある重要キーワードです。**「組合員 or 第三者」**のセットで脳内に保存しましょう。4. この後の展開（ひっかけの予想）この問題が「正しいものはどれか」を問うものだとしたら、1と2が「誤り」でした。この後の選択肢では、以下のような論点が「正解（正しい記述）」として登場するかもしれません。脱退の自由： やむを得ない事由があれば、いつでも脱退できる（678条2項）。債権者の権利： 組合にお金を貸した人は、組合財産だけでなく、各組合員の個人の財産にも（持分に応じて）請求できる（675条1項）。",
+          "1. 記述の前半：組合財産の性質（正しい）\n「各組合員の出資その他の組合財産は、総組合員の共有に属し……」\n\nここは正しい記述です。\n民法668条にそのものズバリ、「組合員の出資その他の組合財産は、総組合員の共有に属する」と規定されています。\n\n※学説上は、この共有は一般的な共有よりも結びつきが強い**「合有（ごうゆう）」**的な性質を持つとされていますが、条文上の文言は「共有」です。\n\n2. 記述の後半：分割請求の制限（誤り）\n「……各組合員は、いつでも組合財産の分割を請求することができる。」\n\nここが決定的な誤りです。\n\n民法676条2項（組合財産の分割の禁止）\n「組合員は、清算前に組合財産の分割を請求することができない。」\n\n3. なぜ「いつでも分割」できないのか（趣旨）\n組合は、共通の事業を行うための団体です。もし組合員の一人が「自分の持ち分にあたるあの土地を今すぐ分けてくれ！」と勝手に財産を持ち出せたらどうなるでしょうか？\n\n事業の継続不可： 組合の財産は事業を行うための「道具」です。それが欠けてしまうと、残りの組合員が事業を続けられなくなります。\n\n債権者の保護： 組合にお金を貸している人（組合債権者）からすれば、組合財産は借金返済の「担保」のようなものです。勝手に分割して減らされると困ります。\n\nしたがって、財産を分けることができるのは、事業が終わって後片付け（清算）をするときだけに限定されています。\n\n4. 【重要】「持分（もちぶん）」の扱いもセットで覚える\nこの「分割禁止」に関連して、試験に出るもう一つの重要ルールがあります。\n\n民法676条1項： 組合員は、組合財産についての持分を処分したとしても、その処分を組合および組合と取引した第三者に対抗できません。\n\nつまり： 「俺の組合での権利（持分）をCさんに売ったから、これからはCさんに家賃を払ってくれ」などと勝手に外の人を巻き込むことはできない、ということです。\n\n【合格者の記憶法】\n「組合財産は、事業が終わるまで全員で抱え込むもの。 分割も持ち出しも、清算するまでお預け！」",
+          "1. 根拠条文：脱退のルール\n民法678条（組合員の脱退）\n期間を定めなかった場合（または終身存続を定めた場合）：\n各組合員は、いつでも脱退できる。ただし、組合に不利な時期には脱退できない（やむを得ない事由がある場合を除く）。\n\n期間を定めた場合：\n原則として期間満了まで辞められない。ただし、「やむを得ない事由」がある場合に限り、いつでも脱退できる。\n\n2. なぜ「期間を定めた場合」は自由じゃないのか？（趣旨）\n組合はメンバーが協力して事業を行う「チーム」です。\n\n約束の重み： 「3年間はこのプロジェクトを頑張ろう！」と期間を決めてスタートしたのに、誰かが「やっぱり明日辞めるわ」と勝手に抜けられると、残されたメンバーの計画が狂い、事業が破綻してしまいます。\n\n例外の存在： とはいえ、病気や家庭の事情など、どうしても続けられない「やむを得ない事由」がある時まで縛り付けるのは酷なので、その場合に限って脱退を認めています。\n\n3. 試験で狙われる「ひっかけ」のポイント\nこの論点では、以下の2つのパターンがよく出題されます。\n\n「期間の有無に関わらず、いつでも脱退できる」 ＝ ×（今回の選択肢）\n\n「期間を定めていない場合でも、不利な時期なら絶対に脱退できない」 ＝ ×（やむを得ない事由があれば不利な時期でも辞められます）\n\n【合格者の記憶法】\n「期限なし ＝ 原則自由（マナーは守ってね）」\n「期限あり ＝ 原則禁止（やむを得ない時だけOK）」\n期間を決めたなら、最後まで責任を持つのが民法のスタンスです。",
+          "1. 根拠条文：業務執行者の辞任と解任\n民法672条\n第670条第3項の規定（委任）により業務の執行を委任された組合員は、正当な事由がなければ、辞任し、又は解任されることがない。\n\n前項の規定により組合員を解任するには、他の組合員の一致によらなければならない。ただし、組合契約に別段の定めがあるときは、この限りでない。\n\n設問の記述は、この条文の1項と2項の内容を完璧に網羅しています。\n\n2. なぜ「一致」と「正当な事由」が必要なのか（趣旨）\n組合の業務執行者は、いわば「船の舵取り」です。\n\n事業の安定性： ちょっとした意見の対立でコロコロとリーダーが代わってしまうと、事業が安定しません。そのため、「正当な事由（病気、不正行為、著しい能力不足など）」という客観的な理由を求めています。\n\n多数派による横暴の防止： 過半数などの多数決で簡単に解任できるとすると、一部の組合員が結託して気に入らないリーダーを追い出すことができてしまいます。全員（他の組合員全員）の合意を求めることで、慎重な判断を促しています。\n\n3. 【重要】試験で狙われる「対比」\nこの「解任」のルールとセットで覚えたいのが、リーダー本人が「辞めたい」と言う**「辞任」**のルールです。実は、解任と同じくらい厳しいです。\n\n解任（クビ）： 正当な事由 ＋ 他の組合員全員の一致\n\n辞任（辞職）： 正当な事由 ＋ 許可（全員の同意）が必要\n\n【合格者の記憶法】\n「組合のリーダーは、入るのも大変だけど、辞めるのも辞めさせるのも大変！」\nどちらも「正当な事由」が必須で、勝手な都合は許されない、と覚えましょう。\n。\n受験生へのメッセージ\nお疲れ様でした！「組合」は条文数が多く、後回しにされがちですが、このように**「誰に頼めるか（第三者OK）」「財産は分けられるか（清算前はNO）」「いつ辞められるか（期間の有無）」「リーダーをどう変えるか（正当事由＋一致）」**という4つのポイントを整理するだけで、得点源に変わります。\n\n特に対比構造（辞任と解任、期間ありと期間なし）に注目して記憶すると、本試験でも迷わなくなりますよ。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -20290,7 +22680,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "甲建物（以下「甲」という。）を所有するAが不在の間に台風が襲来し、甲の窓ガラスが破損したため、隣りに住むBがこれを取り換えた場合に関する次の記述のうち、民法の規定および判例に照らし、妥当でないものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠・考え方（判例：最判昭39.6.24）損益相殺（そんえきそうさい）の不適用本来、不法行為によって「利益（支出の免除など）」を受けた場合、その分を賠償額から差し引くのが公平の原則です。しかし、養育費に関しては例外です。扶養義務の特殊性親が子を育てるのは単なる経済的負担ではなく、親としての喜びや義務を伴うものです。子が亡くなったことで「お金が浮いた」と考えるのは、社会通念上の「損害の公平な分担」という理念に著しく反すると判決は述べています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「生活費」の控除との決定的な違いここが試験で最も狙われるポイントです。項目処理内容本人の「生活費」◯ 控除する本人が将来稼ぐお金から、本人が食べる分などは引かなければ「もらいすぎ」になるため。親の「養育費」× 控除しない親が支払う分が浮いたことを加害者の利益（賠償額の減額）にするのは不当だから。ポイント：「自分の食費」は引くけれど、「親が出してくれる分」は引かせない。この使い分けを「誰が財布を握っているか」という視点で整理すると、記述式でも迷わなくなります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢3】（再掲）「……子が死亡した場合の養育費を控除することはできない。」→ 答え：◯生活費控除（本人の分）とセットで出題されることがほとんどです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『親の愛情』を計算から外さない！」と教えましょう。合理的な計算（数学）だけで言えば、養育費の免除はプラスかもしれません。しかし、法の世界（法律）では、それを「得をした」と呼ぶことを拒否します。「生活費は現実的に計算するが、養育費を引くことは人道に反する」という、民法の「血の通った」ロジックを大切にしてください。",
+        "memo": "1. 根拠条文：委任の無償原則民法648条1項（受任者の報酬）受任者は、特約がなければ、委任者に対して報酬を請求することができない。設問では「BがAから甲の管理を頼まれていた場合」とあります。これは、A（委任者）とB（受任者）の間に**「委任契約」**が成立していることを意味します。2. なぜ「報酬」を請求できないのか？（趣旨）日本の民法において、委任契約はもともと「友人や信頼できる人に個人的に頼み事をする」という性質から出発しています。そのため、ビジネス（商行為）でない限り、「特に約束をしていなければ、タダで引き受けたものとみなす」という無償の原則が採られています。原則： 無報酬（ボランティア精神）。例外： あらかじめ「いくら払うよ」という**特約（合意）**がある場合のみ、報酬を請求できる。3. 【超重要】「報酬」と「費用」の区別ここで受験生が最も混乱しやすいのが、「お金」の種類です。試験ではここが狙われます！項目の種類内容請求できるか？根拠条文報酬働いたことへの対価（手間賃・給料）特約がない限り、請求できない。648条1項費用ガラス代など、実際にかかったお金当然に請求できる。650条1項【合格者の頭の中】今回のケースでBさんがAさんに言えること：「ガラス代（実費）の1万円を返して！」 ＝ ○（当然OK）「台風の中、作業した手間賃の5,000円をちょうだい！」 ＝ ×（特約がないとダメ）",
         "slots": [],
         "refId": "",
         "isBonus": false,
@@ -20317,11 +22707,18 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠・考え方（判例：最判昭39.6.24）損益相殺（そんえきそうさい）の不適用本来、不法行為によって「利益（支出の免除など）」を受けた場合、その分を賠償額から差し引くのが公平の原則です。しかし、養育費に関しては例外です。扶養義務の特殊性親が子を育てるのは単なる経済的負担ではなく、親としての喜びや義務を伴うものです。子が亡くなったことで「お金が浮いた」と考えるのは、社会通念上の「損害の公平な分担」という理念に著しく反すると判決は述べています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「生活費」の控除との決定的な違いここが試験で最も狙われるポイントです。項目処理内容本人の「生活費」◯ 控除する本人が将来稼ぐお金から、本人が食べる分などは引かなければ「もらいすぎ」になるため。親の「養育費」× 控除しない親が支払う分が浮いたことを加害者の利益（賠償額の減額）にするのは不当だから。ポイント：「自分の食費」は引くけれど、「親が出してくれる分」は引かせない。この使い分けを「誰が財布を握っているか」という視点で整理すると、記述式でも迷わなくなります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢3】（再掲）「……子が死亡した場合の養育費を控除することはできない。」→ 答え：◯生活費控除（本人の分）とセットで出題されることがほとんどです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『親の愛情』を計算から外さない！」と教えましょう。合理的な計算（数学）だけで言えば、養育費の免除はプラスかもしれません。しかし、法の世界（法律）では、それを「得をした」と呼ぶことを拒否します。「生活費は現実的に計算するが、養育費を引くことは人道に反する」という、民法の「血の通った」ロジックを大切にしてください。",
-          "■ 根拠・考え方（判例：最判昭39.9.25）対価性の欠如生命保険金は、被害者が生前にコツコツと「保険料」を払ってきたことの対価（あるいは遺族への生活保障）です。決して「加害者の不法行為によって得た利益」ではありません。加害者の「棚ぼた」防止もし保険金を控除してしまったら、**「被害者が真面目に保険に入っていたおかげで、加害者の支払額が減る」**というおかしなことになります。これは著しく公平に反します。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「控除できるもの」と「できないもの」試験では、ここを入れ替えて出題してきます。ここが「民法お化け」の踏ん張りどころです！項目控除できるか理由生命保険金× できない被害者が自分で用意した「資産」だから。遺族年金◯ できる損害の性質が同一で、社会保障的な二重取りを防ぐため。自賠責保険金◯ できる加害者の責任をカバーするための保険だから。香典・見舞金× できない社交上の贈与であり、損害の埋め合わせではないから。ポイント：「自分の努力や善意でもらったもの」は引かれないけれど、「社会的な保障や制度としてもらったもの」は引かれる傾向にあります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢4】「不法行為によって死亡した者の逸失利益を算定するに当たっては、遺族に支払われる生命保険金を控除することはできない。」→ 答え：◯生命保険、養育費（第78・79問）、生活費、この3つが逸失利益の計算の「御三家」です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「生命保険は、加害者のための貯金じゃない！」と教えましょう。生命保険は、被害者が「もしもの時」を思って、自分のお金で備えていたものです。加害者が「ラッキー！保険金が出たなら、俺の払う分は減るね！」と言うのは、他人の貯金で自分の借金を返そうとしているのと同じです。民法は、そんな虫の良い理屈は絶対に認めません。",
-          "■ 根拠・考え方：重複填補（じゅうふくてんぽ）の禁止性質の同一性遺族年金は、稼ぎ手を失った遺族の生活を保障するために支給されるものです。一方、不法行為の賠償金（逸失利益）も、本人が生きていれば得られたはずの収入を補填するものです。どちらも「将来の生活を支えるお金」という点で性質が重なるため、両方満額もらうと**「二重取り」**になってしまいます。未支給分も控除の対象すでに受け取った分だけでなく、将来受け取ることが**「確実（確定）」**である分についても、計算上は賠償額から差し引くことができます。　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：保険金と年金の決定的な違いここを混同すると「民法お化け」に足元を掬われます！項目控除（損益相殺）理由（最高裁のロジック）生命保険金× できない本人の保険料による「資産・貯金」の性格が強いから。遺族年金◯ できる事故によって発生した「社会保障」であり、賠償金と目的が同じだから。ポイント：生命保険は「自分の努力」の結果なので引かれません。遺族年金は「制度による保障」なので、賠償金と調整が行われます。　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢4】（類題）「……不法行為によって死亡した者の逸失利益を算定するに当たっては、その死亡によって遺族が受領することとなった遺族年金を控除しなければならない。」→ 答え：◯「生命保険は引かないが、遺族年金は引く」というこの対比は、行政書士試験の超定番です。　💡 受験生へのアドバイス「『自分の財布（保険）』は守られ、『公の財布（年金）』は調整される！」と教えましょう。自分の努力で備えた保険金は、加害者のために差し出す必要はありません。でも、公的な年金は、事故が起きたからこそ支払われる「社会の支え」です。「社会が支えてくれる分、加害者の負担は（二重取りにならない範囲で）減らしてあげよう」というのが民法のバランス感覚です。",
-          "■ 根拠・考え方（判例：最判平20.6.10）不法原因給付（民法708条）の適用ヤミ金業者の貸付けは、反社会的な「不法な原因」に基づく給付です。そのため、ヤミ金業者は民法708条により、貸し付けたお金の返還を求める権利を一切失います。損益相殺の否定もし損害賠償額から「貸付元本」を差し引いてしまうと、結果としてヤミ金業者が「元本分だけ賠償を免れる」ことになり、事実上、元本を回収したのと同じことになってしまいます。これでは、「不法な給付をした者は返還を求められない」という民法のルールが骨抜きになってしまうため、最高裁は控除を認めませんでした。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：ヤミ金への「支払い」と「受け取り」試験で狙われる、ヤミ金関連の3つの鉄則です！項目法律上の扱い理由利息の支払い無効利息制限法・出資法違反。元本の返還義務なし不法原因給付（708条）に当たるため。損害賠償との相殺× できないヤミ金業者の不当な利益を認めることになるから。ポイント：ヤミ金業者は、被害者に与えた精神的苦痛や支払わせた金銭の全額を賠償しなければならず、そこから「貸してあげた分」を差し引くという「もっともらしい計算」は一切許されません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢5】「ヤミ金融業者が、暴利を得る目的で貸付けを行った場合、借主がヤミ金融業者に対して不法行為に基づき損害賠償を請求するに際して、借主が受け取った貸付金の額を損害額から控除することはできない。」→ 答え：◯「控除できない ＝ 借りたお金は返さなくていいし、賠償金からも引かれない」という、ヤミ金にとっては「出し損」になる非常に強力な判決です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「民法は『悪党』には一円も返さない！」と教えましょう。普通の貸し借りなら、もらった分は返すべき（公平）です。しかし、ヤミ金のような反社会的な行為に対しては、民法は「汚れた手」を助けません。「借りた側は損害賠償を全額もらえる」し、「貸した側は元本すら返ってこない」。この徹底した制裁が、ヤミ金の被害者を守る最後の砦なのです。",
-          "■ 根拠・考え方（判例：最判平22.6.17）損益相殺（そんえきそうさい）の否定本来、不法行為によって「利益」を得たならそれを賠償額から引くのが原則（損益相殺）ですが、ここでは適用されません。居住の強制と精神的苦痛重大な欠陥がある建物に住み続けることは、買主にとって「利益」というよりも、むしろ**「危険な状態で生活を強いられた苦痛」**という側面が強いです。公平の観点もし居住利益を控除してしまうと、**「建て替えが遅れれば遅れるほど（＝被害者が危険な家に住み続ける期間が長くなるほど）、加害者の支払う賠償額が減る」**という非常に不条理な結果を招きます。これは著しく正義に反するため、控除は認められません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 周辺知識：「居住利益」が控除されるケース試験では、ここが「ひっかけ」として狙われます！状況控除（損益相殺）理由重大な瑕疵あり（建て替えが必要）× 控除されない危険な居住を強いられた苦痛の方が大きいから。売買契約の解除（普通の契約解消）◯ 控除される契約を白紙に戻す場合、公平のために「使った分の利益」は返すべきとされる（事務管理や不当利得の考え方）。ポイント：「不法行為（欠陥住宅）」の場合は、被害者保護のために控除されません。ここを契約解除（541条等）のルールと混同しないようにしましょう。　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成24年度 第34問 肢5】「……買主が当該建物に居住したことによる利益は、建て替え費用相当額の損害賠償請求に際して損害賠償額から控除されることはない。」→ 答え：◯近年の重要判例として、行政書士試験でも非常に高い頻度で問われる知識です。　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『ガタガタの家』に住んでいたのは、得じゃなくて苦労だ！」と教えましょう。業者が「住んでたんだから家賃分まけろ」と言うのは、火事の危険がある家に無理やり住まわせておいて「ホテル代が浮いたろ」と言うようなものです。民法は、加害者のサボりやミスによって生じた「不本意な居住期間」を加害者の得にはさせません。この判例は「安全性に関わる重大な瑕疵」というフレーズがセットなので、そこを見逃さないように伝えてください。"
+          "1. 根拠条文：委任の無償原則民法648条1項（受任者の報酬）受任者は、特約がなければ、委任者に対して報酬を請求することができない。設問では「BがAから甲の管理を頼まれていた場合」とあります。これは、A（委任者）とB（受任者）の間に**「委任契約」**が成立していることを意味します。2. なぜ「報酬」を請求できないのか？（趣旨）日本の民法において、委任契約はもともと「友人や信頼できる人に個人的に頼み事をする」という性質から出発しています。そのため、ビジネス（商行為）でない限り、「特に約束をしていなければ、タダで引き受けたものとみなす」という無償の原則が採られています。原則： 無報酬（ボランティア精神）。例外： あらかじめ「いくら払うよ」という**特約（合意）**がある場合のみ、報酬を請求できる。3. 【超重要】「報酬」と「費用」の区別ここで受験生が最も混乱しやすいのが、「お金」の種類です。試験ではここが狙われます！項目の種類内容請求できるか？根拠条文報酬働いたことへの対価（手間賃・給料）特約がない限り、請求できない。648条1項費用ガラス代など、実際にかかったお金当然に請求できる。650条1項【合格者の頭の中】今回のケースでBさんがAさんに言えること：「ガラス代（実費）の1万円を返して！」 ＝ ○（当然OK）「台風の中、作業した手間賃の5,000円をちょうだい！」 ＝ ×（特約がないとダメ）",
+          "1. 根拠条文：事務管理による費用請求民法702条1項（管理者による費用の償還請求等）管理者は、本人のために有益な費用を支出したときは、本人に対し、その償還を請求することができる。「頼まれていない（契約がない）」のに他人のために何かをすることを「事務管理」と言います。Bさんが台風で割れた窓を直したのは、放置すれば雨風で家の中がさらに傷むのを防ぐためであり、所有者Aさんにとって明らかにプラスになる（有益な）行動です。したがって、Bさんはかかった実費（ガラス代など）をAさんに請求できます。2. 「事務管理」が成立するための条件Bさんの行動が事務管理として認められるには、以下のポイントが重要です。義務がないこと： Aから頼まれていない（委任契約がない）。他人のためであること： 自分のためではなく、Aさんのために直す意思（事務管理の意思）があること。本人の利益にかなうこと： 窓を直すのは、客観的に見てAさんの利益になります。3. 【注意！】「費用」はOKだが「報酬」はNGここが試験で最も狙われるポイントです。選択肢1と比較して整理しましょう。請求できるもの事務管理（頼まれていない）委任（頼まれている）かかった費用（実費）請求できる（702条1項）請求できる（650条1項）報酬（手間賃）請求できない特約がない限り請求できない事務管理はあくまで「善意のボランティア」という立て付けなので、報酬（お礼の金）を請求する権利は一切ありません。 請求できるのは、あくまで「持ち出しになったお金（費用）」だけです。",
+          "1. 根拠条文：委任の規定の準用\n事務管理の費用負担については、**「委任」のルールをそのまま借りてくる（準用する）**ことになっています。\n\n民法702条 2項（事務管理）\n「第650条第2項及び第3項の規定は、管理者が本人のために有益な債務を負担したときについて準用する。」\n\n民法650条 2項（委任：準用される中身）\n「受任者は、委任事務を処理するのに必要と認められる債務を負担したときは、委任者に対し、自己に代わってその弁済をすることを請求することができる。」\n\n2. なぜ「代わりに払え」と言えるのか（趣旨）\nBさんが業者Cさんに窓ガラスの発注をした際、契約の当事者は「BとC」です。つまり、Cさんから請求書が届くのはBさんです。\n\nしかし、この工事はもともと「Aさんのため」にやったことです。\n\nBさんが自分のポケットマネーから一旦払って、後でAさんに「返して」と言う（費用償還請求）。\n\nBさんが払う前に、Aさんに「直接Cさんに払っておいて」と言う（債務の代弁請求）。\n\nこの2つは、最終的にAさんがお金を出すという点では同じです。Bさんに「まず自腹で払え」と強いるのは酷なので、民法は**「代わりに払わせる権利」**を認めています。\n\n3. 試験で狙われる「ひっかけ」のポイント\nこの論点では、以下の表現に注意が必要です。\n\n「自己の名において発注したときは」という限定：\n事務管理は、そもそもAから頼まれていないので、Bには代理権（Aの名で契約する権限）がありません。したがって、Bが「自分の名前で」契約するのは事務管理として正しい姿です。\n\n「代弁請求（だいべんせいきゅう）」：\n「自分に代わって支払え」という言葉の代わりに「代位弁済を請求できる」といった表現で出されることもあります。\n\n【合格者の頭の中】\n「事務管理は『委任』とそっくり。**『立て替えたお金（費用）』も、『これから払う約束（債務）』**も、どっちも大家さん（本人A）にツケを回せる！」",
+          "1. 根拠：事務管理 ＝ 代理権ではない事務管理（民法697条〜）は、頼まれていないのに他人の事務を行う「事実上の行為」です。しかし、事務管理が成立したからといって、当然に代理権（Aの名で契約を結ぶ権利）が発生するわけではありません。無権代理の原則（民法113条1項）代理権を有しない者が他人の代理人としてした契約は、本人がその追認をしなければ、本人に対してその効力を生じない。Bさんが「Aの代理人B」として業者Dに発注した場合、これは典型的な**「無権代理（むけんだいり）」**となります。2. なぜAさんは払わなくていいのか（趣旨）私的自治の原則： 自分の名前でどのような契約を結ぶかは、本人の自由です。いくら親切心であっても、知らない間に自分の名前で勝手に借金を背負わされたり、契約を結ばされたりしては困ります。追認の自由： Aさんが帰宅して「お、直してくれたのか。助かった！代金は私が払うよ」と言えば（追認）、契約は有効になります。しかし、そう言わない限り、Aさんは契約の当事者にはなりません。3. 【整理】選択肢3との決定的な違い「え？さっきの選択肢3では『代わりに払え』と言えたのに、なぜ今回はダメなの？」と混乱した方は、ここを整理しましょう！比較項目選択肢3（有益な債務の負担）選択肢4（無権代理）契約の名義Bの名で発注したAの名で発注した業者への責任Bが業者に代金を払う義務がある本来、AにもBにも責任がない（無権代理）Aへの請求BからAへ「代わりに払え」と言える業者DからAへ「契約通り払え」とは言えない選択肢3： Bが「自分が責任を負う形」で発注し、そのツケを後でAに回す話。選択肢4： 最初から「Aの契約」にしようとした話。【合格者の頭の中】「事務管理者に代理権なし。勝手にAの名前を使ったなら、それは無権代理。大家さんAの『追認（いいよ！という返事）』がない限り、契約は無効！」",
+          "1. 根拠条文：費用の前払請求権民法649条（受任者による費用の前払請求）委任事務を処理するのに費用を要するときは、委任者は、受任者の請求により、その前払をしなければならない。設問では「事前にその費用の支払を請求することはできない」とされていますが、条文でははっきりと**「前払」を請求できる**と規定されています。特約（特別な約束）なんてなくても、法律上当然に認められている権利なのです。2. なぜ「前払」が認められるのか（趣旨）「委任」は、相手を信頼して仕事を頼む関係です。受任者の保護： 頼まれた側（Bさん）が、わざわざ自分のお財布からお金を出して立て替えるのは負担が大きすぎます。特に大きな修理が必要な場合、Bさんが破産してしまいかねません。事務の円滑な遂行： 「お金がないから修理できない」となっては、結局依頼したAさんも困ります。したがって、「これからお金がかかるから、先にちょうだい！」と言えるのは、委任契約における受任者の正当な権利です。3. 【超重要】「事務管理」との比較ここが今回の問題の最大の山場です。試験ではここが入れ替わって出題されます。項目事務管理（頼まれていない）委任（頼まれている）費用の前払請求できないできる（649条）費用の償還請求できる（702条1項）できる（650条1項）報酬の請求できない特約があればできる【合格者の頭の中】「事務管理（お節介）」は、そもそも本人が承諾していないから、やる前に「金くれ」とは言えない。「委任（頼まれ事）」は、本人が頼んだんだから、やる前に「金くれ」と言ってもOK！4. この問題全体の総括「妥当でないもの」を探すこの問題の最終リポートです。1（委任・無報酬）： 妥当（○）2（事務管理・費用）： 妥当（○）3（事務管理・代弁）： 妥当（○）4（無権代理・追認）： 妥当（○）5（委任・前払不可）： 妥当でない（×） ＝ これが正解！受験生へのメッセージ全5肢の検討、本当にお疲れ様でした！この一問で、「事務管理」と「委任」の共通点と相違点を網羅的に学習できましたね。特に今回の選択肢5のような「特約がなければ〜できない」という表現は、民法では非常に多いひっかけパターンです。**「法律（デフォルトのルール）で認められているのか、それとも特約が必要なのか」**を意識して条文を読むと、択一式の得点力が爆上がりします。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -20346,7 +22743,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "不法行為に関する次の記述のうち、民法の規定および判例に照らし、妥当なものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠・考え方：報償責任の原則利益を得る者は損失も負担する会社は部下を使って利益を上げている以上、部下が起こしたミスによる損失も、ある程度は会社が引き受けるべきだという考え方（報償責任）があります。求償権の制限もし「全額を部下に請求できる」としてしまうと、部下は怖くて思い切った仕事ができなくなります。そのため、事業の規模、施設の状況、被用者の業務内容や過失の程度などを総合的に判断し、**「全額ではなく、一部だけ」**の請求に留めるのが一般的です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：もし逆のパターンだったら？ここが「民法お化け」の試験対策として非常に面白いポイントです。誰が先に払ったか相手への請求（求償）判例のスタンス会社が先に払った部下へ請求できる**一部（相当な限度）**に制限される（最判昭51.7.8）。部下が先に払った会社へ請求できる**一部（相当な限度）**の請求を認める（最判令2.2.28）。ポイント：令和2年の新しい判例により、**「部下から会社への逆求償」**も認められるようになりました。どちらが先に払ったとしても、最終的には「お互いに適切な割合で負担し合う」という公平な結果に落ち着きます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成29年度 第31問 肢5】「使用者が被用者の不法行為につき使用者としての損害賠償責任を負担した場合には、使用者は、被用者に対して求償することができるが、その範囲は、損害の公平な分担という見地から、信義則上相当と認められる限度に制限される。」→ 答え：◯条文（715条3項）だけを見ると全額請求できそうに見えますが、判例によって「制限される」と解釈されている点が重要です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『連帯責任』だけど『割り勘』の精神！」と教えましょう。会社は部下のおかげで儲けているのだから、ミスも「経費」の一部としてある程度は被るべきです。かといって、部下を無罪放免にするのも不公平です。だから民法は、「お互いの状況を見て、納得のいく割合で分け合いなさい」という大人の解決策を提示しているのです。",
+        "memo": "1. 判例の結論：景観は「法律上保護される利益」である\n最高裁平成18年3月30日判決（国立マンション事件）\n「良好な景観の恵沢を享受する利益（景観利益）は、……法律上保護される利益ということができる。」\n\n最高裁は、景観が単なる主観的な好みにとどまらず、一定の条件下では法的に守られるべき価値があるとはっきりと認めました。したがって、設問の「法律上保護される利益ではなく」という部分は、この判例の結論に真っ向から反しています。\n\n2. ただし、不法行為が成立するハードルは「高い」\n「法律上保護される」＝「壊されたらすぐに賠償金がもらえる」という意味ではありません。ここが試験でひっかけられるポイントです。\n\n客観的価値： その景観が、誰が見ても素晴らしいという客観的な価値を持っていること。\n\n違法性の判断： 景観を壊す行為が、社会通念上**「受忍限度（じゅにんげんど）」**を超えている場合に初めて、不法行為（709条）として認められます。\n\n※ちなみに、この「国立マンション事件」では、景観利益そのものは認められましたが、マンション建設が「受忍限度を超えるほど悪質とはいえない」として、損害賠償請求自体は認められませんでした。\n\n3. 試験対策としての整理\n不法行為における「利益」の考え方は、時代とともに広がっています。\n\n明治時代： 「権利（所有権など）」が侵害されないとダメだった。\n\n現在： 権利とまでは言えなくても、**「法律上保護される利益」**であればOK（大学の祝辞拒否、プライバシー、そして今回の景観など）。\n\n【合格者の頭の中】\n「景観利益は、『名前のある権利』ではないけれど、『保護される利益』ではある。 でも、実際に勝つ（賠償をもらう）のはかなり大変！」\nと覚えておきましょう。",
         "slots": [],
         "refId": "",
         "isBonus": false,
@@ -20373,11 +22770,18 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠・考え方：報償責任の原則利益を得る者は損失も負担する会社は部下を使って利益を上げている以上、部下が起こしたミスによる損失も、ある程度は会社が引き受けるべきだという考え方（報償責任）があります。求償権の制限もし「全額を部下に請求できる」としてしまうと、部下は怖くて思い切った仕事ができなくなります。そのため、事業の規模、施設の状況、被用者の業務内容や過失の程度などを総合的に判断し、**「全額ではなく、一部だけ」**の請求に留めるのが一般的です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：もし逆のパターンだったら？ここが「民法お化け」の試験対策として非常に面白いポイントです。誰が先に払ったか相手への請求（求償）判例のスタンス会社が先に払った部下へ請求できる**一部（相当な限度）**に制限される（最判昭51.7.8）。部下が先に払った会社へ請求できる**一部（相当な限度）**の請求を認める（最判令2.2.28）。ポイント：令和2年の新しい判例により、**「部下から会社への逆求償」**も認められるようになりました。どちらが先に払ったとしても、最終的には「お互いに適切な割合で負担し合う」という公平な結果に落ち着きます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成29年度 第31問 肢5】「使用者が被用者の不法行為につき使用者としての損害賠償責任を負担した場合には、使用者は、被用者に対して求償することができるが、その範囲は、損害の公平な分担という見地から、信義則上相当と認められる限度に制限される。」→ 答え：◯条文（715条3項）だけを見ると全額請求できそうに見えますが、判例によって「制限される」と解釈されている点が重要です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『連帯責任』だけど『割り勘』の精神！」と教えましょう。会社は部下のおかげで儲けているのだから、ミスも「経費」の一部としてある程度は被るべきです。かといって、部下を無罪放免にするのも不公平です。だから民法は、「お互いの状況を見て、納得のいく割合で分け合いなさい」という大人の解決策を提示しているのです。",
-          "■ 根拠条文：民法718条1項\n「動物の占有者は、その動物が他人に加えた損害を賠償する責任を負う。ただし、動物の種類及び性質に従い相当の注意をもってその管理をしたときは、この限りでない。」\n\n■ 周辺知識：実は「ほぼ免責されない」最強の責任？\n条文上は「相当の注意をすれば免責される」と書かれていますが、実務（裁判）ではこのハードルはめちゃくちゃ高いです。\n\n判例の傾向：\n「鎖につないでいたが、犬が驚いて鎖をちぎって逃げて噛みついた」というケースでも、なかなか免責は認められません。「鎖がちぎれる可能性まで考慮して、二重に柵を作るべきだった」など、「無過失責任」に近いほど厳しい管理が求められます。\n\n占有者に代わって飼育する者（2項）：\n飼い主から頼まれて散歩させていた友人や、ペットホテルの業者なども、飼い主と同じ重い責任を負います。\n\n■ 関連過去問チェック\n【平成21年度 第35問 肢4】（類題）\n「動物の占有者は、その動物が他人に加えた損害を賠償する責任を負うが、動物の種類及び性質に従い相当の注意をもってその管理をしたときは、その責任を免れる。」\n\n→ 答え：◯\n条文そのままの知識を問う問題です。\n\n💡 受験生へのアドバイス\n「『動物は予測不能』だから、責任は重い！」と教えましょう。\n\n自動車（工作物）と違って、動物は自分の意思で動きます。\n\nだからこそ、占有者には「何が起きても大丈夫なレベル」の管理が求められます。\n\n「相当の注意」という言葉は優しい響きですが、実際には「完璧に近い注意」が必要だとセットで伝えると、実務的な理解が深まります。",
-          "■ 根拠条文：民法717条3項損害賠償の一次的・二次的責任（1項）まずは「占有者」が責任を負います（過失がなければ免責）。占有者が免責された場合、「所有者」が「無過失責任」（落ち度がなくても責任を負う）を負います。求償権（3項）「前二項の規定（1項・2項）は、占有者又は所有者から、損害の原因について責任を負うべき他の者に対する求償権の行使を妨げない。」　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：タケルくんの立ち位置今回のケースを整理すると以下のようになります。登場人物役割責任の性質通行人被害者被害者。誰でもいいから早く助けてほしい。タケル所有者無過失責任。業者が悪くても、まずは通行人に払う義務がある。請負業者真の原因者求償の相手方。タケルが払った分を後でタケルに返さなければならない。ポイント：被害者を守るために、まずは一番捕まえやすい「所有者」に責任を負わせ（無過失責任）、その後で身内の揉め事（誰が悪かったのか）を解決させる、という二段構えの構造になっています。　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第34問 肢3】「土地の工作物の設置又は保存に瑕疵があることによって損害が生じた場合において、当該工作物の所有者は、損害の発生を防止するのに必要な注意をしたときであっても、被害者に対して損害賠償責任を負う。」→ 答え：◯この「必要な注意をしても責任を負う（＝無過失責任）」という点が、工作物責任の最も重要な試験ポイントです。　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「被害者には『無過失責任』、業者には『求償』！」と教えましょう。工作物は危険をはらんでいるので、所有者は「何もしてないから知らない」とは言えません。でも、タケルくんが全額被りっぱなしなのは不公平ですよね。だから、ひとまず通行人を救済した後に、「本当にお前（業者）のせいだよな？」と請求できる出口を民法は用意してくれているのです。",
-          "■ 根拠・考え方：損害の公平な分担不真正連帯債務の清算輩とセイゴ（および会社）は、被害者に対して「不真正連帯債務」を負っています。誰かが全額払えば、他の人は被害者への支払義務を免れますが、中身の「割り勘」は終わっていません。求償のショートカット本来なら、輩はセイゴに求償し、セイゴが会社に「代わりに払って（逆求償）」と言う二段階の手順になります。しかし、最高裁は**「輩から会社へ直接求償することを認めても、会社にとって不利益ではない」**と判断しました。報償責任（利益を得る者は損失も負う）会社はセイゴを使って利益を上げている以上、セイゴが起こしたミスの責任（求償への対応）も、最終的には会社が引き受けるべきだというロジックです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：求償権の四通八達不法行為における「お金の返しっこ」のルートを整理しましょう。ルート認められるか理由会社 → セイゴ◯（一部制限）第84問の通り、信義則上の限度で。セイゴ → 会社◯（逆求償）令和2年判例。部下が自腹を切った場合。輩 → セイゴ◯共同不法行為者同士の割り勘。輩 → 会社◯（直接求償）本問（平成29年判例）。 最終負担者は会社だから。　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成30年度 第31問 肢5】「共同不法行為者の一方が自己の負担部分を超えて損害を賠償したときは、他方の共同不法行為者の使用者に対し、その被用者の過失割合に応じた負担部分について求償することができる。」→ 答え：◯判例が出た翌年、すぐに出題された超・旬な知識でした。💡 受験生へのアドバイス「『輩』でも、払いすぎた分は会社に返してもらえる！」と教えましょう。法律は「誰が悪いか」だけでなく、「誰が一番お金を払うべきか（最終的な負担者）」を冷静に見ています。輩がどんなにガラが悪くても、会社の従業員のミスを肩代わりして全額払ったのなら、会社に「あんたの部下の分、返してよ」と言う権利は、正当な「民法の権利」として守られます。",
-          "■ 根拠・考え方：求償権の二つのルート被用者（スナオ）への求償（民法715条3項）使用者は、賠償した分について被用者に求償できます。ただし、第84問で確認した通り、「損害の公平な分担」の見地から、信義則上相当と認められる限度に制限されます。共同不法行為者（マサミ）への求償（民法719条）スナオとマサミは共同不法行為者であり、ネダニタクシーはスナオの使用者として連帯責任を負っています。全額を肩代わりしたネダニタクシーは、もう一人の加害者であるマサミに対して、マサミの過失割合分を「返しなさい」と直接請求できます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：ネダニタクシーの「回収ルート」相手請求できる範囲根拠・制限スナオ（身内）信義則上相当な範囲全額は酷なので、一部に制限される。マサミ（他人）マサミの過失割合分共同不法行為者同士の「割り勘」の理屈。ポイント：ネダニタクシーは「被害者サダムを救済する」という重い責任を果たしたご褒美として、身内（スナオ）と外部（マサミ）の両方から、払いすぎた分を回収する権利を与えられています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成30年度 第31問 肢5】（類題・再確認）「共同不法行為者の一方が自己の負担部分を超えて損害を賠償したときは、他方の共同不法行為者……に対し、その過失割合に応じた負担部分について求償することができる。」→ 答え：◯相手が個人（マサミ）であっても、その使用者であっても、求償のロジックは同じです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「会社は『損をさせられっぱなし』にはならない！」と教えましょう。使用者責任は「被害者保護」のために会社を巻き込みますが、最終的なお金の計算は「悪い人たち」の間で精算されるべきです。従業員には「信義則」で優しく、外部の加害者には「過失割合」で厳密に。この二つのルートを使い分けるのが、ネダニタクシーの賢い経営戦略（民法上の権利）だと伝えてください。"
+          "1. 判例の結論：景観は「法律上保護される利益」である\n最高裁平成18年3月30日判決（国立マンション事件）\n「良好な景観の恵沢を享受する利益（景観利益）は、……法律上保護される利益ということができる。」\n\n最高裁は、景観が単なる主観的な好みにとどまらず、一定の条件下では法的に守られるべき価値があるとはっきりと認めました。したがって、設問の「法律上保護される利益ではなく」という部分は、この判例の結論に真っ向から反しています。\n\n2. ただし、不法行為が成立するハードルは「高い」\n「法律上保護される」＝「壊されたらすぐに賠償金がもらえる」という意味ではありません。ここが試験でひっかけられるポイントです。\n\n客観的価値： その景観が、誰が見ても素晴らしいという客観的な価値を持っていること。\n\n違法性の判断： 景観を壊す行為が、社会通念上**「受忍限度（じゅにんげんど）」**を超えている場合に初めて、不法行為（709条）として認められます。\n\n※ちなみに、この「国立マンション事件」では、景観利益そのものは認められましたが、マンション建設が「受忍限度を超えるほど悪質とはいえない」として、損害賠償請求自体は認められませんでした。\n\n3. 試験対策としての整理\n不法行為における「利益」の考え方は、時代とともに広がっています。\n\n明治時代： 「権利（所有権など）」が侵害されないとダメだった。\n\n現在： 権利とまでは言えなくても、**「法律上保護される利益」**であればOK（大学の祝辞拒否、プライバシー、そして今回の景観など）。\n\n【合格者の頭の中】\n「景観利益は、『名前のある権利』ではないけれど、『保護される利益』ではある。 でも、実際に勝つ（賠償をもらう）のはかなり大変！」\nと覚えておきましょう。",
+          "1. 整理：2つの「名誉」不法行為（709条）において、名誉は大きく2種類に分けられます。種類内容法律上の扱い外部的名誉（社会的評価）社会から受ける客観的な評価。侵害されると「名誉毀損」となる。名誉感情（内部的名誉）自分が自分に対して持つ主観的な自尊心。侵害されると「名誉感情の侵害（侮辱）」となる。2. どこが「誤り」なのか？（2つのポイント）① 「名誉毀損」という言葉の使い分け厳密な意味での「名誉毀損」による不法行為が成立するのは、あくまで客観的な社会的評価が低下させられた場合に限られます。主観的な名誉感情を傷つけられた場合は、名誉毀損ではなく「名誉感情の侵害」という別の形の不法行為として構成されます。② 【超重要】原状回復（723条）の適用範囲これが本試験で最も狙われるポイントです。民法723条（名誉毀損における原状回復）他人の名誉を毀損した者に対しては、裁判所は……名誉を回復するのに適当な処分（謝罪広告など）を命ずることができる。判例（最高裁昭和45年12月18日）は、この**「名誉を回復する適当な処分（謝罪広告など）」は、客観的な社会的評価を回復するためのもの**だと考えています。外部的名誉（社会的評価）への侵害： 謝罪広告などの原状回復が可能。名誉感情（主観的）への侵害： 慰謝料（お金）での解決のみ。原状回復は認められない。3. なぜ「主観」には謝罪広告が認められないのか？「私のプライドが傷ついたから、新聞に謝罪広告を出して！」と言われても、他人の心の中のプライドを新聞広告で「修復」することは物理的にも論理的にも不可能です。謝罪広告はあくまで、「下がってしまった世間の評判」を元に戻すための装置だからです。【合格者の頭の中】評判（外）を落とされた ＝ 謝罪広告で評判を戻せ！ (723条OK)気分（内）を害された ＝ お金で解決しろ！ (723条NG)",
+          "1. 判例の結論：自己決定権は「人格権」である\n最高裁は、患者が自分の宗教的信念に基づいて「輸血を受けるかどうか」を決める権利を、極めて重く評価しました。\n\n判旨のポイント\n「患者が、特定の医療行為を拒絶する意思が明確である場合、その意思決定をする権利は、人格権の一内容として尊重されなければならない。」\n\n設問の「人格権の一内容として法的に保護に値するものではない」という記述は、この判例の根本的な考え方と真逆のことを言っています。\n\n2. なぜ「命を救った」のに不法行為になるのか？\n「医者は命を救うのが仕事だ。死なせるわけにはいかないから輸血したんだ」という言い分は、道徳的には理解できます。しかし、法律（不法行為法）の視点は異なります。\n\n意思決定の機会の剥奪： もし病院側が「命に関わるなら、本人が嫌と言っても輸血する」という方針（絶対的無輸血ではない方針）を持っていたなら、それを事前に説明する義務がありました。\n\n説明があればどうなったか： 説明があれば、患者は「じゃあ他の病院を探します」という選択ができました。その選択肢を奪ったことが、患者の自己決定権（人格権）を侵害したとみなされたのです。\n\n3. 試験で狙われる「ひっかけ」の論点\nこの判例については、以下の3段階のロジックを整理しておきましょう。\n\n権利の肯定： 輸血拒否の意思決定権は、人格権として法的に保護される。\n\n医師の義務： 輸血する可能性があるなら、事前に説明して「受けるか否か」を選ばせる義務がある。\n\n不法行為の成立： 説明なしに輸血を強行すれば、たとえ救命に成功しても、人格権侵害による不法行為が成立する。\n\n【合格者の頭の中】\n「お医者さんが『命が一番大事！』と思っても、患者には『信念が一番大事！』という自由がある。本人の意思を無視した救命は、法律の世界ではアウト（不法行為）になり得る」と覚えてください。",
+          "1. 判例の結論：死との因果関係がなくても「アウト」になる通常、不法行為（709条）で損害賠償を請求するには、「医師のミス」と「患者の死亡」の間に確実な因果関係（あれがなければ死ななかったといえる関係）が必要です。しかし、医療の現場では「適切な治療をしていても、どのみち助からなかったかもしれない」というグレーゾーンが多く存在します。最高裁の判断医師の過失と死亡との間の因果関係が証明されない場合であっても、適切な医療が行われていたならば、患者がその死亡の時点においてなお生存していた相当程度の可能性が認められるときは、医師は不法行為に基づく損害賠償責任を負う。2. なぜ「可能性」だけで責任を問えるのか？（趣旨）期待権の保護： 患者にとって「適切な治療を受ければ、もっと生きられたかもしれない」という期待は、法的に守られるべき大切な利益（人格的利益）だと考えられています。公平な分担： 「100%助かったと言い切れないなら、医師のミスは不問」としてしまうと、重篤な患者に対する医師の注意義務が形骸化してしまいます。救済のバランス： ただし、死亡そのものの責任（全損害）を負わせるのではなく、あくまで「生存の可能性を奪ったことに対する慰謝料」という形でバランスを取っています。3. 【注意！】「相当程度の可能性」のハードル試験で狙われるのは、この「言葉のニュアンス」です。単なる「わずかな可能性」では足りません。100%（確実）： 通常の因果関係。全損害（死亡そのもの）を賠償。相当程度の可能性： 今回のケース。精神的苦痛に対する慰謝料を賠償。わずかな可能性： 不法行為は成立しない（お医者さんはセーフ）。【合格者の頭の中】「『死んだこと』の責任は問えなくても、**『生きられたはずのチャンスを奪ったこと』の責任は問える！ そのキーワードが『相当程度の可能性』**だ！」と覚えましょう。",
+          "1. 判例の原則：収入の減少がなければ損害なし不法行為（709条）における財産上の損害（逸失利益）は、原則として**「実際に失われた利益」**を指します。最高裁昭和42年7月9日判決「被害者が後遺症による労働能力の一部喪失にもかかわらず、その減収を伴わない場合においては、原則として、財産上の損害を認めることができない。」たとえ身体に不自由が残ったとしても、お給料が減っていないのであれば、経済的な「損害」は発生していない、というのが民法のクールな（算術的な）大原則です。2. 【重要】「特段の事情」があれば認められるただし、この原則には例外があります。試験ではここもセットで狙われます。お給料が減っていなくても、以下の「特段の事情」がある場合には、損害（逸失利益）が認められることがあります。本人の超人的な努力： 身体の不自由を補うために、並大抵ではない努力をして現在の収入を維持している場合。将来の不利益： 今は減っていないけれど、将来の昇進、転職、定年後の再就職などで明らかに不利になると予想される場合。設問では「将来における収入の減少が認められないときでも……認められる」と断定していますが、判例のスタンスは**「収入の減少がないなら、原則として認められない」**です。したがって、この記述は「妥当ではない（誤り）」となります。3. 慰謝料との切り分けここで注意したいのは、「損害賠償は一銭ももらえないのか？」というとそうではない点です。財産上の損害（逸失利益）： 収入減がないなら、原則としてもらえない。精神上の損害（慰謝料）： 体に後遺症が残ったことへの精神的苦痛に対しては、当然にもらえる。試験問題では、この「財産上の損害」と「慰謝料」をわざと混ぜて記述してくることがあります。今回の選択肢は「財産上の損害が認められる」としている点が誤りです。4. この問題全体の最終結果全選択肢を検討した結果、正解は以下の通り確定しました。選択肢論点判定1景観利益の保護性×（誤り）2名誉感情と原状回復×（誤り）3輸血拒否と人格権×（誤り）4生存の相当程度の可能性○（妥当）5減収なき逸失利益×（誤り）正解：4受験生へのメッセージお疲れ様でした！不法行為の判例問題は、単なる暗記ではなく**「誰が、どのような理由で、何を求めているのか」**をイメージしながら解くのがコツです。今回の問題は、**「景観・プライド・信念・生存・お金」**という、人間にとって大切な価値を法律がどう天秤にかけているかを知る、とても良い演習でした。民法の不法行為は、行政書士試験でも記述式を含めて頻出です。今回学んだ「人格権」や「相当程度の可能性」といったキーワードは、そのまま記述式の解答にも使える武器になりますよ。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -20402,7 +22806,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "不法行為に関する次の記述のうち、民法の規定および判例に照らし、妥当でないものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠・考え方（民法715条3項）\n条文の文言\n民法715条3項には「前二項の規定は、使用者又は監督者から被用者に対する求償権の行使を妨げない」とだけあり、過失の程度を限定していません。\n\n権利の「発生」と「行使の制限」の区別\n\n発生： 被用者に「過失（軽過失含む）」があれば、求償権という権利自体は生まれます。\n\n範囲（制限）： ただし、実際にいくら請求できるかは、信義則によって「相当と認められる限度」に制限されます（最判昭51.7.8）。\n\n■ 知識の整理：もし「軽過失」だったら？\n「うっかりミス」で会社が100万円賠償した場合をシミュレーションしてみましょう。\n\n法律上の権利： 会社はスナオくんに「100万円返せ」と言う権利（求償権）を持っています。\n\n裁判所の判断： 「スナオくんは普段真面目だし、会社の管理も甘かった。100万円全額はひどいから、20万円（2割）くらいにしておきなさい」という制限がかかります。\n\nポイント：\n「故意・重過失が必要」というひっかけは、不法行為の免責や他の法律（公務員の責任など）と混同させようとする定番の手口です。民法715条では、**「権利の発生に重過失は不要だが、全額請求はできない」**と覚えましょう。\n\n■ 関連過去問チェック\n【平成29年度 第31問 肢5】（再掲・比較）\n「使用者は、被用者に対して求償することができるが、その範囲は……信義則上相当と認められる限度に制限される。」\n\n→ 答え：◯\n「できるか（発生）」と「どこまでできるか（範囲）」を分けて考えるのが、合格への近道です。\n\n💡 受験生へのアドバイス\n「『権利』はあるけど『限度』もある！」と教えましょう。\n\n会社が「求償できる」のは、法律上の当然の権利です。\n\nでも、それを「全額、被用者に押し付ける」ことは、社会のルール（信義則）が許しません。\n\n「重過失がなくても請求はできる。でも、金額は割り勘になる」という二段構えを強調してあげてください。",
+        "memo": "1. 判旨の核心：ルミナール事件（最判昭50.10.24）この論点のバックボーンとなっているのは、医療過失が問われた「ルミナール事件」という記念碑的な判決です。ここで最高裁は、裁判という場において「何をもって『証明された』と断じるか」という**証明度（Proof Standard）**の基準を明確に定義しました。裁判所が示したロジック裁判所は、因果関係の立証について、以下の2つの概念を対比させています。自然科学的な証明（不要なもの）：実験室での検証のように、100%の精度で「Aが起これば必ずBが起こる」と一点の疑いもなく、数式やデータで証明すること。高度の蓋然性（必要なもの）：経験則（世の中の共通認識や科学的知見）に照らし、全証拠を総合的に俯瞰したとき、「普通に考えて、これが原因で間違いないだろう」と誰もが納得できる確信が持てる状態。2. なぜ「100%」を求めないのか（関連知識）もし民事裁判において「100.0%の科学的証明」を必須条件にしてしまうと、法益の保護に重大な欠陥が生じます。「証明の壁」による救済の断絶： 特に公害訴訟や高度な医療訴訟では、現代科学の限界により「100%」と言い切ることが困難なケースが多々あります。公平性の欠如： 科学的な不確実性を盾に、明らかに疑わしい加害者が責任を免れてしまうのは、法の正義（公平な分担）に反します。そのため、法的な世界では**「通常人が疑いを差し挟まない程度の真実性の確信」**があれば、因果関係があるものとして扱う（＝立証が完了したとみなす）という極めて現実的かつ血の通った運用がなされています。3. 受験生のための重要キーワード・チェックリスト多肢選択式や記述式でのアウトプットを想定し、この判例が好む独特のフレーズを整理しておきましょう。キーワード意味・役割高度の蓋然性（がいぜんせい）「おそらくそうだろう」という非常に高い確率。経験則人間がこれまでの経験から得た「世の中の法則性」。全証拠を総合検討一つの証拠に固執せず、複数の事実を組み合わせて全体像を見る。通常人が疑いを差し挟まない程度専門家だけでなく、一般常識を持つ人が納得できるレベル。4. 受験生へのアドバイスこの論点は、一見すると抽象的な言葉遊びのように思えますが、実は**「立証責任という重荷を、誰が、どの程度背負うべきか」**というバランサーの役割を果たしています。習得のコツ言葉を「音」で覚える： 「高度の蓋然性」「通常人が疑いを差し挟まない程度」といったフレーズは、法律用語における「黄金律」です。そのままスラスラと言えるまで馴染ませておくと、記述式問題で大きな得点源になります。文脈とセットで捉える： 単独で覚えるのではなく、「証明が難しい医療や公害の事案において、被害者を救うための橋渡し」としてこのロジックが誕生した、というストーリーとともに理解してください。",
         "slots": [],
         "refId": "",
         "isBonus": false,
@@ -20429,11 +22833,18 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠・考え方（民法715条3項）\n条文の文言\n民法715条3項には「前二項の規定は、使用者又は監督者から被用者に対する求償権の行使を妨げない」とだけあり、過失の程度を限定していません。\n\n権利の「発生」と「行使の制限」の区別\n\n発生： 被用者に「過失（軽過失含む）」があれば、求償権という権利自体は生まれます。\n\n範囲（制限）： ただし、実際にいくら請求できるかは、信義則によって「相当と認められる限度」に制限されます（最判昭51.7.8）。\n\n■ 知識の整理：もし「軽過失」だったら？\n「うっかりミス」で会社が100万円賠償した場合をシミュレーションしてみましょう。\n\n法律上の権利： 会社はスナオくんに「100万円返せ」と言う権利（求償権）を持っています。\n\n裁判所の判断： 「スナオくんは普段真面目だし、会社の管理も甘かった。100万円全額はひどいから、20万円（2割）くらいにしておきなさい」という制限がかかります。\n\nポイント：\n「故意・重過失が必要」というひっかけは、不法行為の免責や他の法律（公務員の責任など）と混同させようとする定番の手口です。民法715条では、**「権利の発生に重過失は不要だが、全額請求はできない」**と覚えましょう。\n\n■ 関連過去問チェック\n【平成29年度 第31問 肢5】（再掲・比較）\n「使用者は、被用者に対して求償することができるが、その範囲は……信義則上相当と認められる限度に制限される。」\n\n→ 答え：◯\n「できるか（発生）」と「どこまでできるか（範囲）」を分けて考えるのが、合格への近道です。\n\n💡 受験生へのアドバイス\n「『権利』はあるけど『限度』もある！」と教えましょう。\n\n会社が「求償できる」のは、法律上の当然の権利です。\n\nでも、それを「全額、被用者に押し付ける」ことは、社会のルール（信義則）が許しません。\n\n「重過失がなくても請求はできる。でも、金額は割り勘になる」という二段構えを強調してあげてください。",
-          "■ 根拠・考え方（判例：最判平29.6.12）不真正連帯債務の清算ネダニタクシー（および被用者スナオ）と、デリカを運転していたマサミは、被害者に対して「不真正連帯債務」を負っています。誰かが全額払えば被害者は救済されますが、加害者間の公平な分担（割り勘）はまだ終わっていません。直接求償の肯定平成29年の最高裁以前は、この求償ルートが認められるか議論がありましたが、現在は**「全額払った使用者は、他の加害者に直接『あんたの分を返しなさい』と言える」**とはっきり示されています。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 請求する人（全額払った人）請求される人請求できる範囲ネダニタクシー（会社）スナオ（部下）信義則上相当な範囲（一部に制限）ネダニタクシー（会社）マサミ（他人）マサミの過失割合分（全額分担）マサミ（他人）ネダニタクシースナオの過失割合分（直接求償OK）　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「最後は『過失の割合』でスッキリさせる！」と教えましょう。被害者の前では「誰でもいいから全額払え！」という厳しいルール（連帯債務）ですが、加害者同士の間では「自分が悪い分だけ払う」という公平な計算が行われます。ネダニタクシーがマサミに請求するのは、いわば「マサミの借金を肩代わりしてあげた分を返してもらう」ようなものです。",
-          "■ 根拠・考え方：求償ルートのショートカット\n本来のルート（二段階）\n原則的な考え方では、マサミは「直接の加害者」であるスナオに求償し、スナオが自分の会社（ネダニタクシー）に「代わりに払って（逆求償）」と言うことになります。\n\n判例によるショートカット（一段階）\n最高裁は、この二段階をわざわざ踏ませる必要はないと判断しました。\n\n理由：使用者が被用者の求償分を最終的に負担すべきである以上、マサミからネダニタクシーへ直接請求を認めても、会社側に不当な不利益はないからです。\n\n■ 知識の整理：ネダニタクシーをめぐる求償の「双方向」\nこれで「会社（ネダニタクシー）」と「外部の加害者（マサミ）」の関係は双方向で繋がりましたね！\n\nネダニタクシーが払ったら？\n→ マサミに「あんたの分、返しなさい」と言える（第100問）。\n\nマサミが払ったら？\n→ ネダニタクシーに「あんたの従業員の分、返しなさい」と言える（本問）。\n\nポイント：\n誰が先に被害者に全額払ったとしても、最終的な「割り勘」の相手として「会社」が登場します。\n\n■ 関連過去問チェック\n【平成30年度 第31問 肢5】（三度目の登場！）\n「共同不法行為者の一方が自己の負担部分を超えて損害を賠償したときは、他方の共同不法行為者の使用者に対し……求償することができる。」\n\n→ 答え：◯\n「マサミ（個人）からネダニタクシー（法人）」への請求、これが認められるようになったのが平成29年の大ニュースでした。\n\n💡 受験生へのアドバイス\n「『最終的なお財布』は会社だ！」と教えましょう。\n\n事故の当事者が誰であれ、被害者にお金を払った後は、一番資力のある（そして報償責任を負う）「会社」が清算の窓口になります。\n\nマサミさんが「スナオくんに請求してもお金持ってないだろうしな……」と諦める必要はありません。ネダニタクシーに直接言えばいいのです。",
-          "■ 根拠・考え方：報償責任のバランス不真正連帯債務のネットワークこのケースでは、被害者に対して「スナオ」「マサミ」「ネダニタクシー」「タコ」の4者全員が連帯して100%の責任を負っています。最終的な負担の帰属民法715条（使用者責任）の理念である「事業によって利益を上げている者が、そのリスクも負担する（報償責任）」に基づき、被用者の過失による損害の最終的なツケは、それぞれの雇用主に帰属します。直接請求の合理性「ネダニタクシー → マサミ → タコ」と順に請求していくのは非効率です。最高裁の判例（最判平29.6.12）の考え方を推し進めれば、**「最終的な負担者である会社同士で直接精算する」**ことが、公平かつ迅速な解決に繋がります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：ネダニタクシー vs タコ の構図事故の過失が「スナオ 40% ： マサミ 60%」だった場合、100万円を払ったネダニタクシーの動きを整理しましょう。請求先請求できる額理由部下スナオ40万円のうちの一部信義則による制限があるため。相手の会社タコ60万円（全額）マサミの過失分を、マサミの雇用主が肩代わりすべきだから。ポイント：身内のスナオくんには「信義則」で手加減が必要ですが、相手の会社（タコ）に対しては、相手の過失分をきっちり満額請求できるのがこのルールの強みです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「プロ（会社）同士の精算は、お互いの背負った『過失』のぶつかり合い！」と教えましょう。会社は従業員の「盾」であり、同時に「責任の引き受け先」です。ネダニタクシーが全額払ったということは、タコが払うべき分も立て替えたということです。「会社から会社への直接求償」ができると知っていれば、実務でも試験でも、迷わず「○」をつけられます。",
-          "■ 根拠・考え方：報償責任の分担連帯して使用者責任を負うスナオくんが両方の会社の仕事を同時にこなしている（あるいは両方の利益に繋がる行為をしている）最中の事故であれば、両会社ともに民法715条の「使用者」に当たります。この場合、両会社は被害者に対して不真正連帯債務を負います。負担部分の決定会社間での負担割合は、単なる「過失」ではなく、**「どちらの事業により深く関与していたか」「どちらの指揮監督が強かったか」**といった寄与度によって決まります。求償の正当性ネダニタクシーが全額払ったということは、ポンコツハイヤーが本来負担すべきだった責任（リスク）まで肩代わりしたことになります。したがって、不当利得返還的な性格も含め、求償が認められます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：スナオくんをめぐる「財布」の動き100万円の損害に対し、寄与度が「ネダニ 70% ： ポンコツ 30%」だった場合。請求元請求先請求できる額ポイントネダニタクシーポンコツハイヤー30万円相手も「使用者」なので直接請求OK。ネダニタクシースナオ（本人）一部（信義則）本人への求償は常にブレーキがかかる。ポイント：会社が二人（二社）いるなら、その二人の間で公平に分け合いなさい、という非常にシンプルな「公平の原則」が働いています。　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『二人のボス』がいるなら、責任も『二人』で分け合う！」と教えましょう。従業員を共有して利益を得ているなら、リスクも共有するのが民法の筋道です。ネダニタクシーが「うちが全部払ったんだから、ポンコツさん、あなたの分も出してくださいよ」と言えるのは、法律上の正当な権利です。"
+          "1. 判旨の核心：ルミナール事件（最判昭50.10.24）この論点のバックボーンとなっているのは、医療過失が問われた「ルミナール事件」という記念碑的な判決です。ここで最高裁は、裁判という場において「何をもって『証明された』と断じるか」という**証明度（Proof Standard）**の基準を明確に定義しました。裁判所が示したロジック裁判所は、因果関係の立証について、以下の2つの概念を対比させています。自然科学的な証明（不要なもの）：実験室での検証のように、100%の精度で「Aが起これば必ずBが起こる」と一点の疑いもなく、数式やデータで証明すること。高度の蓋然性（必要なもの）：経験則（世の中の共通認識や科学的知見）に照らし、全証拠を総合的に俯瞰したとき、「普通に考えて、これが原因で間違いないだろう」と誰もが納得できる確信が持てる状態。2. なぜ「100%」を求めないのか（関連知識）もし民事裁判において「100.0%の科学的証明」を必須条件にしてしまうと、法益の保護に重大な欠陥が生じます。「証明の壁」による救済の断絶： 特に公害訴訟や高度な医療訴訟では、現代科学の限界により「100%」と言い切ることが困難なケースが多々あります。公平性の欠如： 科学的な不確実性を盾に、明らかに疑わしい加害者が責任を免れてしまうのは、法の正義（公平な分担）に反します。そのため、法的な世界では**「通常人が疑いを差し挟まない程度の真実性の確信」**があれば、因果関係があるものとして扱う（＝立証が完了したとみなす）という極めて現実的かつ血の通った運用がなされています。3. 受験生のための重要キーワード・チェックリスト多肢選択式や記述式でのアウトプットを想定し、この判例が好む独特のフレーズを整理しておきましょう。キーワード意味・役割高度の蓋然性（がいぜんせい）「おそらくそうだろう」という非常に高い確率。経験則人間がこれまでの経験から得た「世の中の法則性」。全証拠を総合検討一つの証拠に固執せず、複数の事実を組み合わせて全体像を見る。通常人が疑いを差し挟まない程度専門家だけでなく、一般常識を持つ人が納得できるレベル。4. 受験生へのアドバイスこの論点は、一見すると抽象的な言葉遊びのように思えますが、実は**「立証責任という重荷を、誰が、どの程度背負うべきか」**というバランサーの役割を果たしています。習得のコツ言葉を「音」で覚える： 「高度の蓋然性」「通常人が疑いを差し挟まない程度」といったフレーズは、法律用語における「黄金律」です。そのままスラスラと言えるまで馴染ませておくと、記述式問題で大きな得点源になります。文脈とセットで捉える： 単独で覚えるのではなく、「証明が難しい医療や公害の事案において、被害者を救うための橋渡し」としてこのロジックが誕生した、というストーリーとともに理解してください。",
+          "1. 判例の核心：首が長いことは「落ち度」か？この論点のリーディングケースは、交通事故の被害者が「平均的な人よりも首が長く、頚椎に多少の変形があった」ために、通常よりも損害が拡大してしまった事案です。ここで加害者側は、「被害者の体のつくりが原因で被害が大きくなったのだから、その分、賠償額を減らしてほしい（過失相殺の類推適用）」と主張しました。しかし、裁判所はこれを認めませんでした。判旨のロジック裁判所は、損害額を減らすための「斟酌（しんしゃく）」ができる対象を以下のように区別しています。疾患（病気）： 被害者がもともと持っていた「病気」が損害を拡大させた場合は、公平の観点から賠償額を減らすことができます。身体的特徴（個体差）： 首が長い、頭蓋骨が通常より薄い、といった「病気とまでは言えない身体的な個性」については、原則として賠償額を減らす理由にはなりません。2. なぜ「個体差」を考慮してはいけないのか（関連知識）もし、身体的特徴を理由に賠償額を減らすことを広く認めてしまうと、法の下の平等や社会の公平性が損なわれるからです。平均的な人間など存在しない： 人間の体は一人ひとり異なります。もし「平均より首が長いから」「平均より骨が脆いから」という理由で賠償を減らしていたら、誰もが安心して社会生活を送れなくなります。加害者の責任： 不法行為法には「加害者は、被害者をあるがままの状態で受け入れなければならない（Take your victim as you find him）」という法格言のような考え方があります。弱い人を傷つけたら、その弱さも含めて責任を負うのが原則です。予測可能性の確保： 損害賠償の算定において、個人の身体的特徴という不確定な要素を入れすぎると、法的判断が不安定になってしまいます。3. 受験生のための整理：試験で狙われる「対比」試験対策としては、以下の3つのケースを峻別できるようにしておきましょう。考慮の対象内容賠償額の減額（斟酌）被害者の過失被害者の不注意（信号無視など）できる（722条2項）被害者の疾患既往症（もともとの持病）できる（類推適用）身体的特徴首が長い、体格が小さい等原則できない受験生へのアドバイス：試験問題で「身体的特徴が疾患に当たらない場合」というフレーズが出てきたら、反射的に「それは減額の理由にならない（斟酌できない）」と結びつけましょう。逆に「疾患（既往症）」という言葉が出てきたら、それは「公平の観点から減額され得る」というサインです。この**「言葉の定義」の使い分け**が合否を分けます。4. 特段の事情とは何か？記述の中にある「特段の事情」とは、例えば「その身体的特徴が、通常人であれば当然備えているべき防御能力を著しく欠いている場合」や「異常なほど極端な数値である場合」などを想定していますが、実務上、これが認められるケースは極めて稀です。基本的には、**「病気じゃないなら、それはその人の個性。個性を理由に賠償金を値切ることはできない」**という民法の温かい（かつ合理的な）視点を押さえておけば、この手の問題で迷うことはありません。",
+          "1. 判例の核心：事理弁識能力（最判昭39.6.24）不法行為（709条）によって被害者が損害を受けた際、被害者側にも落ち度（過失）があれば、裁判所は賠償額を減らすことができます（722条2項）。ここで問題になるのは、**「まだ判断力が未熟な子供のミスを、大人のミスと同じようにカウントしていいのか？」**という点です。判例は、加害者に責任を負わせるための能力と、過失相殺をするための能力を明確に区別しています。判旨のロジック裁判所は、過失相殺において被害者の過失を考慮するためには、その未成年に以下の能力が備わっていれば足りると判断しました。「事理を弁識するに足りる知能（じりべんしきのうりょく）」これは、自分の行いによってどのような結果が生じるか、あるいはどのような危険があるかを理解できる程度の能力を指します。2. 関連知識：2つの「能力」の決定的な違い受験生の皆様が最も混乱しやすいのが、**「責任能力」と「事理弁識能力」**のハードルの高さの違いです。以下の表で整理しましょう。比較項目責任能力（712条）過失相殺の能力（722条2項）目的加害者に損害賠償をさせるため被害者の賠償額を減らすため求められる内容自分の行為が「悪いこと（違法）」だと理解できる能力。自分の行為に「危険」が伴うと理解できる能力。目安となる年齢およそ12歳前後（小学校卒業程度）およそ5〜6歳前後（幼稚園・保育園児程度）ハードル高い低い3. なぜ「低い能力」でも減額されるのか（趣旨）なぜ、責任も取れないような小さな子供のミスを理由に、賠償金を減らしてもよいのでしょうか。そこには**「公平な損害の分担」**という不法行為法の究極の目的があります。加害者への過度な負担防止： たとえ相手が子供であっても、信号無視をして飛び出してきた場合に、運転手が損害の100%を負担するのは、社会通念上の「公平」に反すると考えられています。不注意の考慮： 過失相殺は、加害者を罰することではなく、発生した損害を誰がどれだけ負担するのがフェアかを決める作業です。そのため、本人が「危ない！」と予見できる程度の知能があれば、その不注意を考慮に入れてもよい、という理屈になります。4. 受験生へのアドバイスこの論点は、多肢選択式や記述式で「どのような能力が必要か」を問われた際に、正確な用語を使い分ける力が試されます。学習のポイントキーワードの暗記： 「事理を弁識するに足りる知能」というフレーズは、一言一句正確に覚えましょう。「責任能力」と書いてしまうと、その時点で大きな失点に繋がります。「被害者側の過失」という視点： もし被害者が5歳未満で「事理弁識能力」さえない場合でも、判例は**「被害者側の過失（親などの監督者の過失）」**を考慮して減額することを認めています（最判昭34.11.26）。「本人に能力がなければ絶対に減額されない」というわけではない点に注意してください。",
+          "1. 判旨の核心：名誉は「外側」にあるもの不法行為法（709条、710条、723条）が保護する「名誉」とは、自分の心の中にあるプライドではなく、世間からの評価を指します。判例のロジック裁判所は、法的に保護される名誉を以下のように定義しています。社会的評価（外部的名誉）： その人の品性、徳行、名声、信用などについて、社会（第三者）から受ける客観的な評価。名誉毀損の成立： この「客観的な社会的評価」を低下させる行為があった場合に成立する。つまり、どれだけ本人が「侮辱された！」「プライドがズタズタだ！」と主観的に感じても、周囲の人々からの評価が下がっていなければ、厳密な意味での「名誉毀損」には当たりません。2. 関連知識：「主観」と「客観」の決定的な違い以前の選択肢でも触れましたが、受験生の皆様が混同しやすい「2つの名誉」を改めて整理しておきましょう。概念対象侵害された場合の呼び方救済方法外部的名誉世間からの評価（客観）名誉毀損慰謝料 ＋ 謝罪広告（723条）名誉感情自分の自尊心（主観）名誉感情の侵害慰謝料のみなぜ「客観的評価」が重視されるのか？名誉毀損に対しては、金銭賠償だけでなく「名誉を回復するための適当な処分（謝罪広告など）」が認められています（723条）。「下がってしまった世間の評判」は広告によって元に戻す（原状回復する）ことが論理的に可能ですが、「傷ついた個人のプライド」を広告で治すことはできないため、法的な「名誉毀損」は客観的評価の低下に限定されているのです。3. 受験生へのアドバイスこの定義は、一見当たり前のように見えて、実は**「不法行為の成立範囲」**を画定する非常に強力なフィルターになっています。学習のポイント「低下」の判断基準： 社会的評価が低下したかどうかは、被害者の主観ではなく、**「一般の読者の普通の注意と読み方」**を基準として、客観的に判断されます（最判昭31.7.20）。「事実の摘示」は必須か？： 社会的評価を低下させるものであれば、具体的な事実を挙げた場合（例：あいつは横領した）だけでなく、抽象的な評価（例：あいつは卑怯者だ）であっても名誉毀損になり得ます。",
+          "1. 判旨の核心：医療水準は「相対的」であるこの論点のリーディングケースは、最高裁平成7年6月9日判決です。ここで裁判所は、医師の注意義務の基準となる「医療水準」について、以下のような判断枠組みを示しました。医療水準の定義医師に求められる注意義務の基準は、学問としての「医学水準（理想）」ではなく、診療当時の**「臨床医学の実践における医療水準（現実の到達点）」**にあります。「一律」ではない判断基準判例は、この医療水準を判断する際、すべての医療機関に同じハードルを課すのではなく、以下の要素を考慮して相対的に判断すべきだとしています。医療機関の特性（ハコの違い）：最新設備を備えた大学病院や特定機能病院と、限られた設備で診療を行う町の個人医院（クリニック）では、期待されるレベルが異なります。地域の特性（場所の違い）：高度な医療資源が集中する都市部と、設備や専門医が限られる離島・過疎地では、現実に可能な処置に差があることを考慮します（ローカリティ・ルールへの配慮）。緊急性（時間の違い）：じっくり検査できる予定手術と、一刻を争う救急搬送中では、医師に求められる冷静な判断の基準が変わります。2. 関連知識：では、地方の医師は低レベルでいいのか？医療水準が相対的である（一律ではない）からといって、地方の医師が「設備がないから何もしなくていい」ということにはなりません。ここで重要になるのが**「転送義務（てんそうぎむ）」**です。知識の義務： 設備がなくても、「今の医学で何ができるか」という知識については、全国の医師に高いレベルが要求されます。転送の義務： 自分の病院の設備や能力では適切な治療（医療水準にかなう行為）ができないと判断される場合、速やかに適切な設備のある病院へ患者を転送する義務を負います。つまり、自院での治療基準は「相対的」ですが、その不足を補うための判断（転送など）については、非常に厳しい基準が課されているのです。3. 受験生のための重要ポイント整理表試験対策として、医療水準の「柔軟な部分」と「厳格な部分」を分けて整理しましょう。項目裁判所のスタンス備考判断の基準診療当時の臨床医学の実践最新の学説（医学水準）ではない。考慮する要素病院の特性・地域性・緊急性一律に判断されるわけではない。能力の不足転送義務で補完するできないならできる所へ送る義務。知識のレベル概ね全国共通「知らなかった」は過失になりやすい。4. 受験生へのアドバイスこの論点は、問題文の「語尾」や「限定条件」に注意が必要です。学習のヒント「一律」というキーワードを疑う： 法律の世界において、特に「過失」のような具体的状況に依存する概念で「どの機関であっても一律に」という表現が出てきたら、多くの場合、それはひっかけの選択肢です。「ハコ（施設）」と「ヒト（知識）」を分ける： 「高度な検査機器がないこと」は免責の理由になり得ますが、「最新の治療法があることを知らないこと」や「適切な病院へ送る判断を誤ること」は免責されにくい、というコントラストを意識してください。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -20459,7 +22870,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "不法行為に基づく損害賠償に関する次の記述のうち、民法の規定および判例に照らし、妥当なものはどれか。＜複数解＞",
         "wordBank": "",
-        "memo": "■ 根拠・考え方（判例：最判平28.3.1）「特段の事情」の総合考慮単に一緒に住んでいる、あるいは世話をしているという事実だけでは足りません。以下の要素を総合的に判断します。身分関係： 夫婦、親子などの近さ。接触状況： 同居の有無、介護の実態。引受の態様： どの程度、加害防止のための監督を現に行っていたか。この判例のポイント：配偶者や家族の責任この事件では、認知症の夫を介護していた妻や、別居していた長男が「監督義務者に準ずべき者」に当たるかが争われました。最高裁は、**「家族であるというだけで直ちに監督義務者になるわけではない」**とし、介護の限界や私生活の平穏を考慮して、このケースでは妻たちの責任を否定しました。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：714条の「監督者」二段階試験では「誰が責任を負うか」の順序が狙われます。種類該当者免責の条件法定の監督義務者親権者、未成年後見人、成年後見人（※）監督義務を怠らなかったことを証明したとき。準ずる者監督義務を引き受けた者（特段の事情あり）同上。注意： 成年後見人は、当然に「監督義務者」になるわけではなく、職務内容に鑑みて判断されます。　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第34問 肢5】（六度目の登場！）「責任無能力者が他人に損害を加えた場合……監督義務を引き受けたとみるべき特段の事情がある者は……損害賠償責任を負うことがある。」→ 答え：◯近年の最高裁の判断により、この「特段の事情」の中身がより具体的に（かつ家族に厳しすぎないように）定義されました。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『介護』と『監督』は別物！」と教えましょう。家族として一生懸命お世話（介護）をしているからといって、24時間365日、一秒も目を離さず監視する義務（監督）まで当然に負わされるわけではありません。「これ以上どうしようもない」というところまで頑張っている家族に、さらに多額の賠償責任まで負わせるのは酷である、という裁判所の温かい（現実的な）判断を伝えてあげてください。",
+        "memo": "1. 根拠条文：慰謝料を請求できる近親者の範囲民法711条（近親者に対する慰謝料）他人の生命を侵害した者は、被害者の父母、配偶者及び子に対しては、被害者の財産権が侵害されなかった場合においても、損害の賠償をしなければならない。条文に明記されているのは、この「3種類」の人々だけです。2. 判例による拡張：条文にない人はどうなる？「兄弟姉妹や祖父母は、条文に載っていないから一銭ももらえないのか？」という疑問が湧きますよね。ここで判例（最判昭49.12.17）が登場します。判旨のポイント711条に掲げられていない親族（兄弟姉妹など）であっても、被害者との間に**「父母、配偶者又は子と実質的に等しいような緊密な親族関係」が存在し、その死によって精神的苦痛を受けた場合には、同条を類推適用**して、固有の慰謝料請求を認めるとしています。3. なぜ「相続人であれば常に」が誤りなのか？ここが受験生の皆様にとって最大の踏ん張りどころです。相続人の範囲はもっと広い： 被害者に子や親がいない場合、兄弟姉妹が「相続人」になります。しかし、疎遠だった兄弟が「相続人」になったからといって、当然に「固有の慰謝料（711条）」まで認められるわけではありません。実質的な関係が重視される： 相続人という形式的な地位ではなく、「本当に深い悲しみを受けるような密接な関係があったか」という実態が問われます。内縁の配偶者の存在： 逆に、内縁の配偶者は「相続人」ではありませんが、判例上「711条の配偶者に準ずる」として、固有の慰謝料請求が認められます。つまり、「相続人」と「711条の請求権者」は、重なる部分は多いものの、イコールではないのです。4. 受験生のための整理：2種類の慰謝料ルート被害者が亡くなった場合、お金の動きには2つのルートがあります。ここを整理すると混乱が解けます。ルート内容請求できる人相続ルート被害者本人が死ぬ瞬間に発生した慰謝料を引き継ぐ。相続人（兄弟姉妹なども含む）固有ルート（711条）大切な人を失った「自分自身の悲しみ」を直接ぶつける。父母・配偶者・子 ＋ それと同等の人受験生へのアドバイス：試験で「常に」「当然に」という強い言葉が出てきたら、例外がないか疑ってください。今回のケースでは「内縁の妻（相続人じゃないけど請求できる）」や「疎遠な兄弟（相続人だけど固有の請求は難しい）」という例外を思い浮かべられたら勝ちです！",
         "slots": [],
         "refId": "",
         "isBonus": false,
@@ -20486,11 +22897,18 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠・考え方（判例：最判平28.3.1）「特段の事情」の総合考慮単に一緒に住んでいる、あるいは世話をしているという事実だけでは足りません。以下の要素を総合的に判断します。身分関係： 夫婦、親子などの近さ。接触状況： 同居の有無、介護の実態。引受の態様： どの程度、加害防止のための監督を現に行っていたか。この判例のポイント：配偶者や家族の責任この事件では、認知症の夫を介護していた妻や、別居していた長男が「監督義務者に準ずべき者」に当たるかが争われました。最高裁は、**「家族であるというだけで直ちに監督義務者になるわけではない」**とし、介護の限界や私生活の平穏を考慮して、このケースでは妻たちの責任を否定しました。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：714条の「監督者」二段階試験では「誰が責任を負うか」の順序が狙われます。種類該当者免責の条件法定の監督義務者親権者、未成年後見人、成年後見人（※）監督義務を怠らなかったことを証明したとき。準ずる者監督義務を引き受けた者（特段の事情あり）同上。注意： 成年後見人は、当然に「監督義務者」になるわけではなく、職務内容に鑑みて判断されます。　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第34問 肢5】（六度目の登場！）「責任無能力者が他人に損害を加えた場合……監督義務を引き受けたとみるべき特段の事情がある者は……損害賠償責任を負うことがある。」→ 答え：◯近年の最高裁の判断により、この「特段の事情」の中身がより具体的に（かつ家族に厳しすぎないように）定義されました。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『介護』と『監督』は別物！」と教えましょう。家族として一生懸命お世話（介護）をしているからといって、24時間365日、一秒も目を離さず監視する義務（監督）まで当然に負わされるわけではありません。「これ以上どうしようもない」というところまで頑張っている家族に、さらに多額の賠償責任まで負わせるのは酷である、という裁判所の温かい（現実的な）判断を伝えてあげてください。",
-          "■ 根拠・考え方：実質的な指揮監督関係「事業」の広い解釈民法715条の「ある事業のために」という言葉は、営利目的の商売に限りません。一時的な個人的な用務（送り迎えなど）であっても、他人を自分の手足として使っている実態があれば「事業」に含まれます。実質的な指揮監督兄が助手席に乗っていたり、目的地を指示していたりする場合、兄は弟の運転を実質的にコントロールできる立場にあります。この「コントロール関係」があるなら、責任も負うべきだという考え方です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：自賠法と民法の使い分け実務上は「自賠法」が優先されますが、試験ではこの区別が重要です！法律責任の名称責任を負う人適用範囲自動車損害賠償保障法運行供用者責任車の持ち主など人身事故のみ。民法 715条使用者責任指揮監督する立場の人物損事故にも適用される。ポイント：自賠法は「人」への損害に特化していますが、民法の使用者責任は「物」を壊した場合（物損）でも、指揮監督関係さえあれば責任を追及できる強力な武器になります。　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第34問 肢4】（類題）「使用者は、被用者がその事業の執行について第三者に加えた損害を賠償する責任を負うが、被用者の行為が、その本来の職務の範囲に属しない場合であっても、客観的にみて、使用者の事業の執行としての外形を備えているときは、使用者は損害賠償責任を負う。」→ 答え：◯これを「外形標準説」といいます。兄弟間の運転も、外から見れば「運転手と乗客」という外形を備えているといえますね。　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『お願い』した側には、責任がついてくる！」と教えましょう。兄弟だからといって、「タダで運転してもらったラッキー」では済みません。「俺を家まで送れ」と命令・依頼した時点で、その運転は兄の支配下にあるとみなされます。「支配（コントロール）する者は、責任（リスク）も負う」という民法の大原則を、身近な例で伝えてあげてください。",
-          "■ 根拠・考え方（民法717条1項）\n二段構えの責任追及\n\n第一次責任者（占有者）： 損害の発生を防止するのに必要な注意をしていれば、免責されます（過失責任）。\n\n第二次責任者（所有者）： 占有者が免責された場合、所有者が責任を負います。このとき、所有者には**「免責規定」がありません。**\n\n報償責任と危険責任\n「その土地（工作物）から利益を得ている者は、そこから生じるリスクも引き受けるべきだ」という考え方に基づいています。欠陥があることを知らずに買ったとしても、被害者救済を優先するため、所有者が最終的なババを引く形になります。\n\n■ 関連過去問チェック\n【平成26年度 第34問 肢3】（既出・再確認）\n「工作物の所有者は、損害の発生を防止するのに必要な注意をしたときであっても、被害者に対して損害賠償責任を負う。」\n\n→ 答え：◯\n「過失なく信じていた」という主観的な事情は、結論を左右しません。\n\n💡 受験生へのアドバイス\n「所有者は、逃げ道なしの『絶対責任』！」と教えましょう。\n\n占有者（借りている人など）は「ちゃんと見張ってました」と言えば逃げられます。\n\nでも、被害者はそれだと困りますよね。だから、最後に「持ち主」を捕まえて、「あなたが責任を取ってください」と強制するのがこのルールです。\n\n「所有者 ＝ 無過失責任（ファイナルアンサー）」と覚えてもらいましょう。",
-          "■ 根拠・考え方：実態に即した責任の配分動物の占有者責任（718条）の拡張通常、占有者に代わって動物を管理する者も責任を負いますが（2項）、それが従業員や子どものような「占有補助者」である場合、どこまで責任を負わせるかが問題となります。714条（監督者責任）の類推適用単に「そこに居合わせた」だけでなく、プロの飼育員や、長期間にわたって責任を持って管理を任されていたような場合、それはもはや**「法定の監督義務者（親など）」と同じ役割**を果たしているといえます。そのため、その人が不注意で事故を起こしたなら、714条に準じた重い責任を負わせるのが公平です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：責任の重さのグラデーション試験で混乱しないよう、責任のレベルを整理しましょう。立場責任の根拠責任の重さ占有者（飼い主）民法718条1項非常に重い（事実上の無過失責任に近い）。管理代行者（ペットホテル等）民法718条2項占有者と同じ責任を負う。占有補助者（バイト等）特段の事情がある場合714条準用による監督責任を負う。ポイント：キーワードは「単なる事実上の監督を超えているか」です。これが認められれば、アルバイトや身内の手伝いであっても、法的な「監督者」としての重責を担うことになります。　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第34問 肢5】（類題）「責任無能力者が他人に損害を加えた場合において、その監督義務を引き受けたとみるべき特段の事情がある者は、法定の監督義務者ではないとしても、損害賠償責任を負うことがある。」→ 答え：◯動物のケースに限らず、この「監督義務を引き受けた者」の責任は、不法行為法の共通ルールです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『名前』よりも『実態』で責任は決まる！」と教えましょう。「私はただのバイトです」という肩書き（名前）は、民法では通用しません。実際にその動物や人をどう管理していたかという「実態（態様）」が、監督義務者に等しいと判断されれば、責任から逃れることはできません。「特段の事情」という魔法の言葉が出たら、それは「例外的に重い責任が発生するサイン」だと伝えてください。",
-          "■ 根拠・考え方（判例：最判平13.3.13）「客観的関連」があればOK共同不法行為が成立するために、加害者同士が「よし、一緒にやろうぜ」と相談（共謀）する必要はありません。客観的に見て、二つの行為が組み合わさって一つの損害（死亡や後遺症など）を生み出したなら、それで十分です。損害の不可分性被害者からすれば、「事故のせいで死んだのか、医療ミスのせいで死んだのか」を厳密に区別することは不可能です。そのため、民法は被害者救済を優先し、加害者側のどちらにでも全額を請求できるようにしました。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：全額払った後の「清算」はどうなる？ここが「民法お化け」の試験対策として非常に重要です！段階処理ポイント被害者への支払い不真正連帯債務運転手でも医師でも、被害者に対しては全額払う義務がある。加害者同士の清算求償（きゅうしょ）全額払った方は、もう一方に「お前の負担割合分を返せ」と言える。ポイント：被害者に対しては「どっちも全額責任」、身内同士では「過失の割合で割り勘」。この二段構えが共同不法行為の鉄則です。　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成26年度 第34問 肢1】（類題）「数人が共同の不法行為によって他人に損害を加えたときは、各自が連帯してその損害を賠償する責任を負い、この場合における連帯は、いわゆる不真正連帯債務であると解されている。」→ 答え：◯「連帯」という言葉の裏にある「不真正（＝通知や免除の効力が相対的）」という性質まで押さえておきましょう。　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「被害者は『最強のチケット』を持っている！」と教えましょう。被害者は「運転手」にも「医師」にも、100%の賠償を請求できるチケットを持っています。運転手が「医療ミスがなければ助かったはずだ」と言っても、それは加害者同士の揉め事であって、被害者には関係ありません。「加害者同士の喧嘩は、被害者に全額払ってからやりなさい」というのが民法の厳しくも優しいルールです。"
+          "1. 根拠条文：慰謝料を請求できる近親者の範囲民法711条（近親者に対する慰謝料）他人の生命を侵害した者は、被害者の父母、配偶者及び子に対しては、被害者の財産権が侵害されなかった場合においても、損害の賠償をしなければならない。条文に明記されているのは、この「3種類」の人々だけです。2. 判例による拡張：条文にない人はどうなる？「兄弟姉妹や祖父母は、条文に載っていないから一銭ももらえないのか？」という疑問が湧きますよね。ここで判例（最判昭49.12.17）が登場します。判旨のポイント711条に掲げられていない親族（兄弟姉妹など）であっても、被害者との間に**「父母、配偶者又は子と実質的に等しいような緊密な親族関係」が存在し、その死によって精神的苦痛を受けた場合には、同条を類推適用**して、固有の慰謝料請求を認めるとしています。3. なぜ「相続人であれば常に」が誤りなのか？ここが受験生の皆様にとって最大の踏ん張りどころです。相続人の範囲はもっと広い： 被害者に子や親がいない場合、兄弟姉妹が「相続人」になります。しかし、疎遠だった兄弟が「相続人」になったからといって、当然に「固有の慰謝料（711条）」まで認められるわけではありません。実質的な関係が重視される： 相続人という形式的な地位ではなく、「本当に深い悲しみを受けるような密接な関係があったか」という実態が問われます。内縁の配偶者の存在： 逆に、内縁の配偶者は「相続人」ではありませんが、判例上「711条の配偶者に準ずる」として、固有の慰謝料請求が認められます。つまり、「相続人」と「711条の請求権者」は、重なる部分は多いものの、イコールではないのです。4. 受験生のための整理：2種類の慰謝料ルート被害者が亡くなった場合、お金の動きには2つのルートがあります。ここを整理すると混乱が解けます。ルート内容請求できる人相続ルート被害者本人が死ぬ瞬間に発生した慰謝料を引き継ぐ。相続人（兄弟姉妹なども含む）固有ルート（711条）大切な人を失った「自分自身の悲しみ」を直接ぶつける。父母・配偶者・子 ＋ それと同等の人受験生へのアドバイス：試験で「常に」「当然に」という強い言葉が出てきたら、例外がないか疑ってください。今回のケースでは「内縁の妻（相続人じゃないけど請求できる）」や「疎遠な兄弟（相続人だけど固有の請求は難しい）」という例外を思い浮かべられたら勝ちです！",
+          "1. 判旨の核心：法人の名誉は「無形の利益」である法人は自然人と異なり、肉体も心も持たないため、いわゆる「精神的苦痛（心の痛み）」を感じることはありません。しかし、最高裁は以下のような論理を展開しました。判旨のロジック（最判昭39.1.28）「法人は、自然人と同様に、その名誉権を享有し、これに対して加えられた侵害を理由として、不法行為の成立を主張し得るものである。……法人が名誉を毀損された場合には、精神的苦痛を被ることはあり得ないが、名誉という無形の利益を侵害されたことによる非財産的損害が発生したというべきである。」つまり、裁判所は「慰謝料＝心の痛みに対する対価」という狭い解釈ではなく、「慰謝料＝非財産的な価値の侵害に対する賠償」と広く捉え、法人に対しても民法710条に基づく慰謝料請求を認めています。2. 関連知識：「財産的損害」との峻別法人の名誉毀損における損害は、大きく以下の2つに分けられます。財産的損害（逸失利益）：名誉が傷ついたことで取引が減り、本来得られるはずだった利益が減少すること。非財産的損害（慰謝料）：具体的な売上の減少とは別に、社会的な「信用」や「ブランド価値」そのものが傷ついたこと。記述にあるように「財産的損害を除き……認められない」としてしまうと、たとえ売上に直接の影響が出ていなくても、長年築き上げた法人のブランド（無形の利益）を不当に貶められた場合に、一切の金銭賠償が受けられないことになってしまいます。判例は、この「ブランド価値の毀損」そのものを損害として認めているのです。3. 受験生のための整理：民法710条の射程民法710条の規定を再確認し、法人のケースに当てはめてみましょう。民法710条（財産以外の損害の賠償）他人の身体、自由若しくは名誉を破壊した場合又は他人の財産権を侵害した場合のいずれであるかを問わず、前条の規定により損害賠償の責任を負う者は、財産以外の損害に対しても、その賠償をしなければならない。比較対象精神的苦痛名誉（無形の利益）非財産的損害の賠償自然人有り有り認められる法人無し有り認められる4. 受験生へのアドバイスこの論点は、一見すると「感情がないから慰謝料は不要」というもっともらしい理屈に聞こえるため、試験現場で迷いやすいポイントです。学習のヒント「無形の利益」という言葉をセットで覚える：法人の問題が出た際は、「感情」ではなく「名誉という財産以外の価値（無形の利益）」があるかどうかに着目してください。「謝罪広告（723条）」との連動：法人の名誉毀損に対しても、民法723条による謝罪広告が認められます。これは、法人の名誉が「回復すべき客観的な価値」であることを裏付けています。パートナーからのエール：「法人は泣かないけれど、その名前には価値がある」。この判例の考え方をそう解釈すると、ぐっと覚えやすくなりませんか？判例が「自然人の権利」をどこまで「法人」に拡張して認めているか（人権の享受性など）は、憲法でも頻出のテーマですので、横断的に整理しておくと非常に効率的です。",
+          "1. 判例の核心：会社の損害は「誰」の損害か？不法行為（709条）の原則では、損害賠償を請求できるのは、直接権利を侵害された「直接被害者」だけです。会社は個人とは別の人格（法人格）を持っているため、代表者が怪我をしても、会社自体が「私が損をした！」と訴えることは本来できません。しかし、最高裁（最判昭43.11.15）は、特定の条件下でこの原則に例外を認めました。請求が認められるための「3つのハードル」記述にある通り、以下の事情が揃っている場合に限り、会社による営業利益の逸失（間接損害）の請求が肯定されます。実質的な一人会社：会社が名目上は法人であっても、実態は個人経営（例：唯一の代表取締役で株も独占）であること。機関としての代替性がない：その人がいなければ仕事が回らない、他に代わりがいない「唯一無二」の存在であること。経済的一体性：会社のサイフと個人のサイフが実質的に同じであり、会社の損害がそのまま個人の損害に直結するような関係であること。2. なぜ「例外」が必要なのか（関連知識）もし、この例外を認めなかったらどうなるでしょうか？法の形式に縛られる不条理：全く同じ仕事をしていても、「個人事業主」なら怪我による営業損害を請求できるのに、節税などの目的で「法人化（一人会社）」した途端に請求できなくなるのは、あまりに不合理です。実態の重視：不法行為法の目的は「発生した損害を公平に分担すること」です。形式的な「法人格」という壁のせいで、明らかに発生している経済的損失を無視するのは、この目的に反します。3. 受験生のための整理：試験で狙われる「キーワード」この論点が出題された際、受験生の皆様がチェックすべき「合格へのキーワード」を整理しました。キーワード意味注意点間接被害者直接怪我をした人以外の第三者。原則は請求不可だが、このケースは例外。代替性がない他の人では代わりが務まらない。「他にも役員がいる」場合は認められにくい。経済的一体性会社と個人が「一蓮托生」の状態。法人格否認の法理に近い考え方。受験生へのアドバイス：試験問題で「会社は、いかなる場合も第三者として損害賠償を請求できない」という断定的な表現が出てきたら、この「一人会社」の例外を思い出して、その選択肢を弾いてください。4. 学習の進め方この論点は、民法の「法人格否認の法理（会社法でも頻出）」や、不法行為の「相当因果関係」の議論と密接に関係しています。習得のコツ「サイフが一つ」のイメージ：会社という箱はあるけれど、中身は社長一人。その社長が倒れたら箱も壊れる。そんな「一体感」があるときだけ、会社は救済されると覚えましょう。他の間接被害者との対比：「大切な従業員を失った大企業」は、代わりの人を雇える（代替性がある）ので、この理論は適用されません。あくまで「スモールビジネスの悲劇」を救うためのルールです。",
+          "1. 判例の核心：定期金賠償の容認（最判令2.7.9）長年、交通事故などの損害賠償は「一時金（一括払い）」で支払われるのが通例でした。しかし、令和2年の最高裁決定により、後遺障害による逸失利益についても**「定期金（分割払い）」による賠償が認められる**ことが明確に示されました。判旨のポイント被害者の選択権： 被害者は、一時金による賠償だけでなく、将来にわたって一定額を受け取る「定期金」による賠償を求めることができます。裁判所の裁量： 裁判所は、事案の性質に照らして相当と認めるときは、被害者の請求に応じて定期金賠償を命じることができます。「一時金しか請求できない」わけではない： 法律上、一時金に限定する規定はなく、被害者の救済にとってより適切な方法を選択できるとしています。2. 関連知識：なぜ「定期金」が注目されるのか？一時金払いには「一度に大金が手に入る」というメリットがある反面、将来の不確定要素に対応できないというデメリットがありました。定期金賠償が認められた背景には、以下の合理的な理由があります。「もらいすぎ・足りない」の解消：一時金は、将来の「生存期間」を予測して計算します。もし予測より早く亡くなった場合は「もらいすぎ」になり、長生きした場合は「足りない」という事態が起こります。定期金（生存している間支払う形）にすれば、この不公平を解消できます。中間利息控除の問題：一時金で受け取る場合、将来の分を先に受け取るため「中間利息（ライプニッツ係数など）」が差し引かれますが、定期金であればこの控除を行わずに全額を将来の生活費に充てることができます。生活の安定：特に重度の後遺障害がある場合、月々の介護費用や生活費として確実に支給される方が、被害者の生活基盤を安定させる傾向にあります。3. 受験生のための比較・整理表試験対策として、賠償方法の「一時金」と「定期金」の特徴を対比して覚えておきましょう。項目一時金賠償（一括）定期金賠償（分割）原則・例外実務上の原則判例により認められた選択肢計算の基礎将来の予測（平均余命など）現実の生存期間など中間利息控除必要（ライプニッツ係数）不要事情変更への対応困難（一度決まれば原則変更不可）可能（条件付きで増減額の余地あり）4. 受験生へのアドバイスこの論点は、2020年（令和2年）の最新判例に基づいた比較的新しい頻出テーマです。古い参考書や過去問の解説では「一時金が原則」という記述が強調されていることがありますが、最新のスタンスを上書きしておく必要があります。学習のヒント「しか～できない」の罠： 法律の試験において「一括賠償しか求めることができない」という極端な限定表現は、誤りである可能性が非常に高いです。条文の沈黙： 民法709条や722条には、具体的な「支払い方法」についての限定はありません。条文に書いていない制限を課そうとする記述には注意を払いましょう。",
+          "1. 判例の核心：損害は「事故時」に固定される通常、逸失利益は「事故がなければ、定年（67歳など）までこれくらい稼げたはずだ」という予測に基づいて計算します。判旨のロジック裁判所は、損害賠償の基準について以下のように考えています。算定の基準時： 損害額の算定は、原則として不法行為（事故）の当時の事情を基礎とする。事後の偶然： 事故の後に被害者が別の原因で死亡したとしても、それは事故当時には予測できなかった「偶然の事情」に過ぎない。公平の原則： もし即死していれば全期間の賠償が必要だったのに、負傷にとどまり、後に別件で亡くなったからといって賠償額が減るのは、加害者にとって「不当な幸運」であり、公平に反する。2. 関連知識：「特段の事情」の正体記述にある「特段の事情」とは、具体的にどのようなケースを指すのでしょうか。事故時にすでに病気だった場合： 事故の時点で、被害者が余命いくばくもない末期がんだったような場合は、その「近い将来の死亡」は事故当時の客観的予測に含まれます。この場合は、短い就労期間で計算されます。事故と無関係な死亡： 事故後にたまたま別の事故に遭ったり、予期せぬ病気で亡くなったりした場合は、この特段の事情には当たりません。3. 受験生のための比較・整理表逸失利益の計算における「死亡」の扱いを整理しましょう。ケース就労可能期間の計算理由事故により即死平均余命等に基づき計算事故による直接の損害。事故後、別原因で死亡死亡を考慮せず、事故時の予測で計算損害は不法行為時に確定する（判例）。事故時に末期疾患あり短い余命に基づき計算事故時点での客観的な予測の範囲内。4. 受験生へのアドバイスこの論点は、**「加害者に不当な利益を与えない」**という不法行為法の隠れたポリシーを理解すると、丸暗記の必要がなくなります。学習のヒント「損害確定のタイミング」を意識： 不法行為による損害賠償債務は、「不法行為の時」から当然に遅滞に陥るという大原則（最判昭37.12.18）を思い出してください。お金の計算も、その時点でのデータでフィックスされるのが基本です。他の論点との混同に注意： 選択肢4で触れた「定期金賠償」の場合は、生存を条件に支払うため、死亡すれば支払いが止まります。しかし、本肢のような「一時金」での計算においては、この平成8年判決の「死亡を考慮しない」というルールが現在も鉄板です。パートナーからのエール：事故の後に何が起きても、加害者が負うべき「あの瞬間の責任」は変わらない。そう考えると、このルールは非常に潔いものに感じられませんか？この「後発的な事情の切り捨て」は、民法が複雑な現実をシンプルに解決するために生み出した、知恵の結晶と言えます。問題の最終確認この問題は「妥当なものはどれか（複数解）」という形式でした。これまでの検討により、以下の2つが妥当（正解）となります。選択肢3： 一人会社の代表者の負傷による、会社の逸失利益請求（妥当）選択肢5： 別原因による後発的な死亡の不考慮（妥当）不法行為の判例は、このように「一見すると損害の範囲が広がりすぎる（または狭まりすぎる）のを、どう調整するか」という絶妙なバランス感覚を問うてきます。この感覚を磨くことで、初見の判例問題にも対応できるようになります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -20515,7 +22933,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "A（3歳）は母親Bが目を離した隙に、急に道路へ飛び出し、Cの運転するスピード違反の自動車に轢かれて死亡した。CがAに対して負うべき損害賠償額（以下、「本件損害賠償額」という。）に関する次の記述のうち、民法の規定および判例に照らし、妥当なものはどれか。",
         "wordBank": "",
-        "memo": "■ 根拠・考え方：責任能力の正体「責任を弁識する」とは？単に「これをしたら相手が痛がるだろう」と分かる（事理弁識能力）だけではなく、「これをしたら自分は法律上の責任を負い、賠償金を払わなければならなくなる」という法的・社会的な責任までを理解できる能力を指します。年齢の目安判例上、この責任能力は一般的に**12歳前後（小学校卒業程度）**から備わるとされています。　　　　　　　　　　　　　　　　　　■ 知識の総まとめ：これまでの寄り道で学んだ内容を、試験直前に見直せるように一枚の表にまとめました！ここが試験で最も狙われる「ひっかけの巣窟」です。場面必要な能力目安の年齢根拠条文加害者として責められる時責任能力12歳前後712条被害者として減額される時事理弁識能力5〜6歳前後722条2項契約などの法律行為意思能力7〜10歳前後3条の2ポイント：相手を攻撃（賠償請求）する時は「12歳」の壁があり、相手からの攻撃を和らげる（過失相殺）時は「5歳」の壁がある……。民法は、弱い立場にある未成年者を守るために、この「壁の高さ」を絶妙に調整しているのです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢1】（四度目の登場！重要！）「不法行為における過失相殺において……被害者に責任能力があることは必要ではないが、事理弁識能力があることは必要である。」→ 答え：◯加害者の時には必須の「責任能力」が、被害者の時には「不要」になる……この逆転現象こそが、本問の核心です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『悪いこと』へのペナルティは、中学生から！」と教えましょう。幼稚園児がわざと窓ガラスを割っても、その子自身が「賠償の義務」を負うことはありません。でも、中学生が同じことをすれば、その子自身の責任（債務）となります。幼い子供に責任能力がない場合、代わりに**「監督義務者（親など）」が714条によって責任を負う**ことになる、というセット販売のルールも忘れずに伝えてください。",
+        "memo": "1. 根拠：過失相殺に「責任能力」は不要不法行為（709条）で加害者が責任を負うためには、善悪の判断ができる「責任能力（およそ12歳前後）」が必要です。しかし、被害者の落ち度を削る「過失相殺（722条2項）」においては、そこまで高度な能力は求められません。判旨のロジック（最判昭39.6.24）「過失相殺において被害者の過失を考慮するには、被害者に責任能力があることは必要ではないが、**事理を弁識するに足りる知能（事理弁識能力）**を備えていれば足りる。」事理弁識能力とは、「これをしたら危ない」という危険を察知できる程度の能力を指し、およそ5〜6歳程度（幼稚園児くらい）から認められるのが一般的です。2. 本件（3歳児）の場合、どう判断されるか？今回のAくんは「3歳」です。一般的に3歳児には「事理弁識能力（5〜6歳）」すら備わっていないと判断されます。では、選択肢1が言うように「過失を斟酌できない（＝Cが100%悪い）」ことになるのでしょうか？ ここで**「被害者側の過失」**というもう一つの重要判例が登場します。「被害者側の過失」の理論（最判昭34.11.26）被害者本人（Aくん）に能力がなくても、その**身分上・生活のうえで一体をなすとみられる関係にある者（今回の母親Bさん）**に過失があるときは、その過失を「被害者側の過失」としてカウントし、賠償額を減らすことができます。A自身の過失： 3歳なので、A本人の不注意としては引けない。母親Bの過失： 目を離した隙に飛び出させたのは、監督者としての落ち度。結論： Bの過失を「A側の過失」として、過失相殺することができる。3. 受験生のための能力比較・整理表試験対策として、以下の3段階の「能力」の壁を絶対に混同しないようにしましょう。能力の種類必要な場面目安年齢本件（3歳）への適用責任能力加害者が責任を負わされるとき12歳前後不要（過失相殺の議論には無関係）事理弁識能力被害者本人の不注意を引くとき5〜6歳前後まだ無い（本人の過失としては引けない）（監督者の過失）被害者本人が幼すぎる場合不問有り（「被害者側の過失」として引ける）4. 受験生へのアドバイスこの問題のひっかけポイントは、**「責任能力が必要であるので」**という一文です。学習のヒント「責任能力」という言葉に飛びつかない： 過失相殺の文脈で「責任能力が必要」というフレーズが出てきたら、99%「×」だと思って間違いありません。「被害者側」というチーム戦： 民法は、加害者と被害者という2人だけの関係ではなく、被害者の家族（監督者）も含めた「チーム被害者」として過失をバランスよく判断します。",
         "slots": [],
         "refId": "",
         "isBonus": false,
@@ -20542,11 +22960,18 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
-          "■ 根拠・考え方：責任能力の正体「責任を弁識する」とは？単に「これをしたら相手が痛がるだろう」と分かる（事理弁識能力）だけではなく、「これをしたら自分は法律上の責任を負い、賠償金を払わなければならなくなる」という法的・社会的な責任までを理解できる能力を指します。年齢の目安判例上、この責任能力は一般的に**12歳前後（小学校卒業程度）**から備わるとされています。　　　　　　　　　　　　　　　　　　■ 知識の総まとめ：これまでの寄り道で学んだ内容を、試験直前に見直せるように一枚の表にまとめました！ここが試験で最も狙われる「ひっかけの巣窟」です。場面必要な能力目安の年齢根拠条文加害者として責められる時責任能力12歳前後712条被害者として減額される時事理弁識能力5〜6歳前後722条2項契約などの法律行為意思能力7〜10歳前後3条の2ポイント：相手を攻撃（賠償請求）する時は「12歳」の壁があり、相手からの攻撃を和らげる（過失相殺）時は「5歳」の壁がある……。民法は、弱い立場にある未成年者を守るために、この「壁の高さ」を絶妙に調整しているのです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢1】（四度目の登場！重要！）「不法行為における過失相殺において……被害者に責任能力があることは必要ではないが、事理弁識能力があることは必要である。」→ 答え：◯加害者の時には必須の「責任能力」が、被害者の時には「不要」になる……この逆転現象こそが、本問の核心です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『悪いこと』へのペナルティは、中学生から！」と教えましょう。幼稚園児がわざと窓ガラスを割っても、その子自身が「賠償の義務」を負うことはありません。でも、中学生が同じことをすれば、その子自身の責任（債務）となります。幼い子供に責任能力がない場合、代わりに**「監督義務者（親など）」が714条によって責任を負う**ことになる、というセット販売のルールも忘れずに伝えてください。",
-          "■ 根拠・考え方：自ら招いた状況（原因において自由な行為）\n原則：責任なければ罰なし\n自分のしていることの善悪や責任が判断できない状態（重度の認知症、精神疾患など）にある人を、法律的に責めることはできないという考え方です。\n\n但書（例外）：自業自得のルール\n「お酒を飲んだら暴れると分かっていたのに深酒をした（過失）」、あるいは「責任を免れるためにわざと薬物などで意識を混濁させた（故意）」という場合は、その**「飲む・打つ」という最初の判断に過失がある**ため、免責を認めません。\n\n■ 知識の整理：もし免責されたら被害者はどうなる？\n加害者が「責任無能力」として免責された場合、被害者は泣き寝入りするしかないのでしょうか？\n\n監督義務者の責任（714条）\n加害者に代わって、その人を監督する法定の義務者（配偶者、後見人など）が、原則として賠償責任を負うことになります。\n\n監督者の免責\n監督者が「やるべきことはやっていた（監督義務を怠らなかった）」と証明すれば免責されますが、これもハードルは非常に高いです。\n\n■ 関連過去問チェック\n【平成26年度 第34問 肢5】（再掲・比較）\n「責任無能力者が他人に損害を加えた場合……監督義務を引き受けたとみるべき特段の事情がある者は……損害賠償責任を負うことがある。」\n\n→ 答え：◯\n713条で本人が免責されても、714条で周りの人がカバーする。この「連鎖」で被害者救済を図るのが民法のセットメニューです。\n\n💡 受験生へのアドバイス\n「『お酒のせい』は通用しない！」と教えましょう。\n\n病気などで意思に反して能力を欠いている場合は守られますが、自分で自分をコントロール不能にした場合は別です。\n\n「酔っ払って覚えていないからノーカウント」という言い訳を、民法は許しません。\n\nこの但書は「原因において自由な行為」という格好いい法理に基づいているので、そのキーワードと共に印象づけてあげてください。",
-          "■ 根拠・考え方（民法720条）正当防衛（1項）：対人・対不法条件：他人の**「不法行為」**に対して、自分や誰かを守るためにやむを得ずした行為。特徴：攻撃してきた「本人」にダメージを返しても、賠償責任を負いません。緊急避難（2項）：対物・対危難条件：他人から生じたものではない**「急迫の危難（野生動物、災害など）」**を避けるために、他人の物を壊した場合。特徴：これによって損害が生じた場合でも、賠償責任を負いません（※ただし、壊された側から「本当の責任者」へ求償することは妨げられません）。　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：熊のケースの分岐点試験で「熊」や「犬」が出てきたら、ここをチェックしてください！状況成立しうる権利理由野生の熊が襲ってきた緊急避難誰の「不法行為」でもない、自然界の「危難」だから。飼い犬が襲ってきた（放し飼い）正当防衛飼い主の管理不足という「不法行為」に対する防衛だから。ポイント：正当防衛が成立するには、その背後に「悪い人（不法行為者）」がいる必要があります。熊は悪いやつかもしれませんが、法律上の「不法行為者」にはなれません。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢5】（類題）「他人の不法行為に対し、自己または第三者の権利を守るために、やむを得ず加害行為をした者は、損害賠償の責任を負わない。」→ 答え：◯条文通りの知識ですが、「野生動物は不法行為ではない」という本問のひねりは、記述式での「理由付け」として非常に狙われやすい部分です。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『人』か『物・動物』かで、名前が変わる！」と教えましょう。悪い奴に立ち向かうのは「正当防衛」。災難を避けるためにやむを得ず他人に迷惑をかけるのは「緊急避難」。熊は「自然災害」と同じ扱いだと伝えると、スッと理解が進みます。",
-          "■ 根拠・考え方：なぜ「緊急避難」ではないのか？ここが試験で最も受験生を悩ませる「民法お化け」のポイントです。正当防衛（1項）の構造「他人の不法行為に対し、自己の権利を守るため……」とあります。暴漢の襲撃はまさに「不法行為」です。第三者への損害もカバー正当防衛は、攻撃してきた本人への反撃だけでなく、避難の過程で**「やむを得ず第三者の物を壊してしまった」**場合も、正当防衛の枠組みで免責されます。緊急避難（2項）との境界線緊急避難： 「物や動物そのもの」が危険源（熊、壊れそうな壁など）である場合に、その物を壊すこと。正当防衛： 「人」が危険源（不法行為）である場合に、そこから逃げるために何かをすること。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：ケーススタディ状況成立する権利免責の理由野生の熊から逃げるために、他人の家の窓を割った緊急避難熊は不法行為者ではないから。暴漢から逃げるために、他人の家の窓を割った正当防衛暴漢という不法行為者から身を守るためだから。ポイント：被害（窓を割られた人）からすればどちらも同じですが、法律上は**「危ない状況を作ったのが誰（何）か」**によって名前を使い分けます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢5】（五度目の登場！）「他人の不法行為に対し、自己または第三者の権利を守るために、やむを得ず加害行為をした者は、損害賠償の責任を負わない。」→ 答え：◯この「加害行為」には、不法行為者本人への反撃だけでなく、やむを得ない第三者への損害も含まれる、という点が本問の深い理解に繋がります。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『悪い奴』がいるなら、その場は『正当防衛』の空気になる！」と教えましょう。悪い奴（不法行為者）がいるせいで起きたドタバタの中での損害は、基本的に正当防衛として守られます。悪い奴がおらず、単に「状況（自然災害や動物）」が悪いだけの時は緊急避難です。「原因が人（不法行為）なら正当防衛」とシンプルに覚えさせてあげてください。",
-          "■ 根拠条文：民法720条1項・但書「他人の不法行為に対し……やむを得ず加害行為をした者は、損害賠償の責任を負わない。ただし、被害者から不法行為をした者に対する損害賠償の請求を妨げない。」　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 知識の整理：三者の関係性暴漢から逃げるために、他人の家の窓を割ったケースで整理しましょう。登場人物法律上の立場結論逃げた人防衛者責任なし（正当防衛が成立）。窓の持ち主被害者逃げた人には請求できない。暴漢不法行為者被害者（窓の持ち主）から全額請求される。ポイント：民法は「悪いのは誰か？」という根本に立ち返ります。防衛者は生き残るために必死だったのだから責めない。その代わり、全ての損害のツケは、騒動の元凶である暴漢に回す、という非常にスッキリしたルールです。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　■ 関連過去問チェック【平成21年度 第35問 肢5】（六度目の登場！これで最後！）「他人の不法行為に対し……加害行為をした者は、損害賠償の責任を負わない。」→ 答え：◯ここに但書の知識を加えれば、「じゃあ誰が払うの？」という記述式の問いにも「不法行為をした者に対して請求できる」と完璧に答えられます。　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　💡 受験生へのアドバイス「『ババ（責任）』は最後に悪い奴に回る！」と教えましょう。窓を割られた被害者は、目の前で逃げた人を捕まえたくなります。でも、民法は「その人は助かろうとしただけ。本当の悪党はあいつ（暴漢）だ！」と指を差します。「防衛者は免責、不法行為者は全責任」という構図を、ドラマのワンシーンのように伝えてあげてください。"
+          "1. 根拠：過失相殺に「責任能力」は不要不法行為（709条）で加害者が責任を負うためには、善悪の判断ができる「責任能力（およそ12歳前後）」が必要です。しかし、被害者の落ち度を削る「過失相殺（722条2項）」においては、そこまで高度な能力は求められません。判旨のロジック（最判昭39.6.24）「過失相殺において被害者の過失を考慮するには、被害者に責任能力があることは必要ではないが、**事理を弁識するに足りる知能（事理弁識能力）**を備えていれば足りる。」事理弁識能力とは、「これをしたら危ない」という危険を察知できる程度の能力を指し、およそ5〜6歳程度（幼稚園児くらい）から認められるのが一般的です。2. 本件（3歳児）の場合、どう判断されるか？今回のAくんは「3歳」です。一般的に3歳児には「事理弁識能力（5〜6歳）」すら備わっていないと判断されます。では、選択肢1が言うように「過失を斟酌できない（＝Cが100%悪い）」ことになるのでしょうか？ ここで**「被害者側の過失」**というもう一つの重要判例が登場します。「被害者側の過失」の理論（最判昭34.11.26）被害者本人（Aくん）に能力がなくても、その**身分上・生活のうえで一体をなすとみられる関係にある者（今回の母親Bさん）**に過失があるときは、その過失を「被害者側の過失」としてカウントし、賠償額を減らすことができます。A自身の過失： 3歳なので、A本人の不注意としては引けない。母親Bの過失： 目を離した隙に飛び出させたのは、監督者としての落ち度。結論： Bの過失を「A側の過失」として、過失相殺することができる。3. 受験生のための能力比較・整理表試験対策として、以下の3段階の「能力」の壁を絶対に混同しないようにしましょう。能力の種類必要な場面目安年齢本件（3歳）への適用責任能力加害者が責任を負わされるとき12歳前後不要（過失相殺の議論には無関係）事理弁識能力被害者本人の不注意を引くとき5〜6歳前後まだ無い（本人の過失としては引けない）（監督者の過失）被害者本人が幼すぎる場合不問有り（「被害者側の過失」として引ける）4. 受験生へのアドバイスこの問題のひっかけポイントは、**「責任能力が必要であるので」**という一文です。学習のヒント「責任能力」という言葉に飛びつかない： 過失相殺の文脈で「責任能力が必要」というフレーズが出てきたら、99%「×」だと思って間違いありません。「被害者側」というチーム戦： 民法は、加害者と被害者という2人だけの関係ではなく、被害者の家族（監督者）も含めた「チーム被害者」として過失をバランスよく判断します。",
+          "1. 判例の原則：過失相殺には「事理弁識能力」が必要被害者本人の不注意（飛び出しなど）を理由に賠償額を減らす（過失相殺する）ためには、被害者に以下の能力が備わっていることが必要です。「事理を弁識するに足りる知能（事理弁識能力）」（最高裁昭和39年6月24日判決）これは、「これをしたら危ない」「車にぶつかるかもしれない」という危険を理解できる能力のことです。2. どこが「誤り」なのか？記述では「事理弁識能力があることは必要でなく」とされていますが、判例は明確にこれを必要としています。本件のAくん（3歳）：一般的に、3歳の幼児には「事理を弁識するに足りる知能（目安は5〜6歳）」は備わっていないと判断されます。結論：能力がない以上、Aくん本人の不注意（飛び出し）を理由に過失相殺をすることはできません。3. 受験生のための「能力」の境界線民法上の「能力」にはいくつかの段階があります。これを混同すると、不法行為の問題で足元を救われます。能力の種類必要な場面目安年齢本件への適用責任能力加害者が損害賠償を負うとき12歳前後不要（過失相殺の議論には関係ない）事理弁識能力被害者本人の過失を引くとき5〜6歳前後必要（3歳のAには無いので、A自身の過失は引けない）4. 「被害者側の過失」との決定的な違い「じゃあ、3歳の子が飛び出しても、スピード違反の車が100%悪くなるの？」という疑問が湧きますよね。ここで、試験頻出の**「被害者側の過失」**という理論が登場します。Aくん本人の過失： 引けない（能力がないから）。母親Bさんの過失： 目を離した落ち度は、「被害者側」の過失として引ける（最高裁昭和34年11月26日判決）。つまり、過失相殺自体は行われますが、その理由は「Aが悪いから」ではなく**「お母さんの監督が不十分だったから」**という理屈になります。選択肢2は「Aの過失を斟酌できる」としている点が、法理論として不正確なのです。5. 受験生へのアドバイスこの論点は、以下の「ひっかけパターン」を意識して問題文を読んでください。**「責任能力が必要」**と書いてあったら…… ×（そこまで高くなくていい）。**「能力は一切不要」**と書いてあったら…… ×（5〜6歳の能力は必要）。**「被害者側の過失として引ける」**と書いてあったら…… ○（母親の落ち度をカウントする）。",
+          "1. 判例の核心：「被害者側の過失」の理論民法722条2項（過失相殺）の目的は、加害者だけに重い負担を強いるのではなく、発生した損害を両者で公平に分担することにあります。判旨のロジック裁判所は、被害者本人に過失がない場合（あるいは今回のように3歳で能力がない場合）であっても、以下のような関係にある者の過失は、**「被害者側の過失」**としてカウントできるとしています。「被害者と身分上・生活のうえで、一体をなすとみられるような関係にある者」今回のケースでは、3歳のAくんと母親Bさんは、まさに「身分上・生活のうえで一体」といえる関係です。したがって、Bさんの「目を離した」という落ち度は、Aくんの損害賠償額を計算する際に、過失相殺の対象として考慮されます。2. なぜ「別人格」なのに引けるのか（関連知識）受験生の皆様が納得しにくいこのルールの背景には、実務的な「公平」の感覚があります。経済的一体性： 3歳の子が受け取る賠償金は、実質的にその家庭（親）が管理・運用することになります。親に大きな落ち度があるのに、加害者が100%の賠償を支払うのは、社会通念上のバランスを欠くと考えられています。求償の連鎖を断つ： もしここで100%支払わせた後、加害者Cが母親Bに対して「あなたの監督不十分のせいで損害が大きくなった。責任の半分を負担してくれ」と請求（求償）する手続きを踏むのは、非常に手間がかかります。それなら最初から、被害者チーム（A+B）の落ち度として差し引いて計算してしまおう、というショートカットの論理でもあります。3. 受験生のための整理：誰の過失が「被害者側」か？試験では「誰の過失なら引けるのか」という範囲が問われます。関係性被害者側の過失に当たるか判定のポイント父母・配偶者当たる生活を共にしている家族。保育園の先生・ベビーシッター当たらない雇用関係や契約関係であり、経済的一体性がない。内縁の夫・妻当たる実質的な夫婦関係（生活の一体性）があればOK。兄弟姉妹ケースバイケース同居して支え合っていれば当たる可能性が高い。4. 受験生へのアドバイスこの論点は、問題文の**「主語」と「結論」**を丁寧につなげて読んでください。学習のヒント「別人格だから引けない」という誘惑に負けない： 法律の基本原則は「自己責任」ですが、不法行為の過失相殺においては、この「一体性の理論」が強力な例外として君臨しています。事理弁識能力とのセット： 前の肢で確認した「本人に能力がない（3歳）」という状況だからこそ、この「被害者側の過失」という理論が救済（または調整）の手段として登場する、という流れで理解しましょう。",
+          "1. 判例の核心：過失相殺の「類推適用」判例（最判昭63.4.21等）は、被害者がもともと持っていた疾患が損害の拡大に寄与した場合、民法722条2項（過失相殺）の規定を**類推適用（るいすいてきよう）**して、賠償額を減額することを認めています。判旨のロジック「被害者の疾患が損害の発生や拡大に寄与した場合、これを斟酌（しんしゃく）しなければ、加害者に一方的に過大な負担を強いることになり、公平の理念に反する。」つまり、病気は「落ち度（過失）」ではないけれど、損害という「結果」に対して病気が影響を与えたのなら、その分を差し引かないと加害者がかわいそうだ、というバランス感覚です。2. 関連知識：「疾患」と「身体的特徴」の境界線ここで受験生の皆様が最も注意すべきは、以前の議論でも登場した**「身体的特徴（個体差）」との違い**です。考慮の対象内容例賠償額の減額判例のスタンス疾患（病気）既往症、脊柱管狭窄症などできる公平の観点から類推適用する。身体的特徴首が長い、頭蓋骨が薄いなど原則できないそれは単なる「個性」であり、疾患ではない。3. なぜ「いかんにかかわらず」が誤りなのか？記述にある「態様、程度のいかんにかかわらず……斟酌することはできない」という部分は、判例の確立されたルールに真っ向から反しています。斟酌の条件： その疾患が、不法行為と相まって損害を拡大させたと認められる場合には、その程度に応じて減額されます。例外の否定： 「疾患は過失ではないから一切引かない」という極端な運用は、現在の日本の民法（判例）では採用されていません。4. 受験生のための重要フレーズ・チェックリスト試験でこの論点が出た際、正解を導くためのキーワードを整理しましょう。「公平の理念」： なぜ病気を考慮するのか？という理由。「類推適用」： 722条2項（過失相殺）をそのまま使うのではなく、その精神を借りてくるという意味。「損害の公平な分担」： 不法行為法の究極の目的。受験生へのアドバイス：「過失」という言葉の定義にこだわりすぎないことがポイントです。被害者の**「ミス」**なら、過失相殺（722条2項）。被害者の**「病気」なら、過失相殺の類推適用**。どちらも「加害者の支払額が減る」という結果は同じですが、その「理屈」が少しだけ違う、と整理しておきましょう。",
+          "1. 判例の核心：養育費は控除の対象外最高裁（最判昭43.11.26等）は、子供の死亡による逸失利益の算定において、以下のルールを確立しています。生活費：控除するお子さん本人が将来生きていくために必要だったはずの「本人の生活費」は、収入から差し引きます（生きていれば当然かかったコストだからです）。養育費：控除しない親が支出を免れた「養育費（食費、教育費、衣類代など）」は、逸失利益から差し引くことはできません。2. なぜ「養育費」は引かなくていいのか（関連知識）これには「損益相殺」という考え方の厳格なルールが関係しています。利益の帰属が違う：逸失利益は「亡くなったAくん」の損害です。一方、養育費を免れたのは「親」の利益です。被害者本人の損害と、親の経済的利益をそのまま相殺するのは法論理として不適切だと考えられています。不条理の回避：もし養育費を全額差し引いてしまうと、「お金のかかる教育熱心な家庭の子供ほど、賠償金が安くなる」という非常に不条理な結果を招いてしまいます。生活費控除との重複：判例は、将来の収入から「本人の生活費」を差し引くことで、実質的な調整は十分になされていると考えています。3. 受験生のための整理：逸失利益のプラス・マイナス試験対策として、逸失利益の計算で「引くもの」と「引かないもの」を一覧表でマスターしましょう。項目控除（マイナス）するか理由・ポイント本人の将来の生活費する収入の30%〜50%程度を引くのが実務。中間利息（ライプニッツ係数）する将来の金を先に受け取るための調整。親が免れた養育費しない今回の正解ポイント。受領済みの自賠責保険金する二重取りを防ぐため。遺族年金などの給付する損害の填補といえるため。4. 受験生へのアドバイスこの問題の全体を振り返ると、選択肢1〜4が全て「判例のキーワードを微妙にすり替えた誤り」であったのに対し、この選択肢5は判例の結論をストレートに記述していました。学習のヒント「生活費」と「養育費」を峻別する：問題文を素早く読むとき、「生活費は引く」という知識に引きずられて「養育費も引く」と思い込まないように注意してください。文字面は似ていますが、法律上の扱いは正反対です。消去法を信じる：本問のように「妥当なものはどれか」を問う問題で、前半に「責任能力」「事理弁識能力」「被害者側の過失」といったヘビーな論点が並んでいる場合、最後の一つがシンプルな正解であることも少なくありません。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -20571,7 +22996,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "損益相殺ないし損益相殺的調整に関する次の記述のうち、民法の規定および判例に照らし、妥当なものはどれか。",
         "wordBank": "",
-        "memo": "",
+        "memo": "不法行為における**「損益相殺（そんえきそうさい）」および「損益相殺的調整」**は、被害者が事故によって損害を被る一方で、同時に何らかの「利得（利益）」を得た場合に、その利益を損害額から差し引くというルールです。目的は、不法行為法の究極の理想である**「損害の公平な分担」**にあります。つまり、「事故のおかげで、事故前より儲かってしまった」という不条理を防ぐための調整弁です。試験対策として、判例上「妥当（有効）」とされる主なパターンを整理しました。1. 判旨の核心：養育費は控除しない（最判昭43.10.24）お子さんが亡くなったことによる将来の利益（逸失利益）を計算する際、以下の区別が極めて重要です。生活費（本人が将来使う分）：控除するお子さんが将来得たであろう収入から、本人が生きていくために必要だったはずの「本人の生活費」は差し引きます。養育費（親が支払う分）：控除しない親が将来支払わずに済んだ「養育費（食費、学費、衣類代など）」は、賠償額から差し引くことはできません。2. なぜ「養育費」は引いてはいけないのか？判例がこの結論に至ったのには、主に3つの合理的な理由があります。損害の主体が異なる：逸失利益は「亡くなったお子さん」の損害（権利）を親が相続したものです。一方で、養育費の免出は「親」の経済的利益です。被害者本人の損害と親の利益を直接ぶつけるのは、法論理として不適切だと考えられています。不公平な結果の回避：もし養育費を全額控除することを認めると、「教育熱心で養育費が高い家庭ほど、賠償額が安くなる」という非常に不条理な結果を招きます。これは命の価値を損なうことになりかねません。生活費控除による調整：収入から「本人の生活費」を差し引くことで、実質的な経済的調整は十分になされていると裁判所は判断しています。3. 受験生のための整理：損益相殺の「引く・引かない」リスト試験では、この「引き算」のルールが頻出です。以下の対比でマスターしましょう。項目控除（マイナス）するか理由・ポイント被害者本人の将来の生活費する逸失利益の基本ルール。中間利息（ライプニッツ係数）する将来の金を先に貰うための利息調整。親が免れた「養育費」しない今回の最重要ポイント。生命保険金しない自分で保険料を払っていた私的財産。遺族年金などの給付する損害の「穴埋め」としての性質があるため。4. 受験生へのアドバイスこの論点は、問題文を「斜め読み」していると足元を救われます。学習のヒント「生活費」と「養育費」という言葉を瞬時に見分ける：「生活費は引く」という知識が強力にインプットされているため、言葉が似ている「養育費」も反射的に「引く」と思い込んでしまいがちです。試験本番では、この2つの単語を意識的に区別してください。「損益相殺」の定義を思い出す：損益相殺は、あくまで「不法行為と同じ原因で、被害者（またはその相続人）が利益を得た」場合に限られます。養育費の免出は「出費がなくなった」だけであり、「利益を得た」とは言い切れないという感覚を持っておくと、記憶が定着しやすくなります。",
         "slots": [],
         "refId": "",
         "isBonus": false,
@@ -20598,6 +23023,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "不法行為における**「損益相殺（そんえきそうさい）」および「損益相殺的調整」**は、被害者が事故によって損害を被る一方で、同時に何らかの「利得（利益）」を得た場合に、その利益を損害額から差し引くというルールです。目的は、不法行為法の究極の理想である**「損害の公平な分担」**にあります。つまり、「事故のおかげで、事故前より儲かってしまった」という不条理を防ぐための調整弁です。試験対策として、判例上「妥当（有効）」とされる主なパターンを整理しました。1. 判旨の核心：養育費は控除しない（最判昭43.10.24）お子さんが亡くなったことによる将来の利益（逸失利益）を計算する際、以下の区別が極めて重要です。生活費（本人が将来使う分）：控除するお子さんが将来得たであろう収入から、本人が生きていくために必要だったはずの「本人の生活費」は差し引きます。養育費（親が支払う分）：控除しない親が将来支払わずに済んだ「養育費（食費、学費、衣類代など）」は、賠償額から差し引くことはできません。2. なぜ「養育費」は引いてはいけないのか？判例がこの結論に至ったのには、主に3つの合理的な理由があります。損害の主体が異なる：逸失利益は「亡くなったお子さん」の損害（権利）を親が相続したものです。一方で、養育費の免出は「親」の経済的利益です。被害者本人の損害と親の利益を直接ぶつけるのは、法論理として不適切だと考えられています。不公平な結果の回避：もし養育費を全額控除することを認めると、「教育熱心で養育費が高い家庭ほど、賠償額が安くなる」という非常に不条理な結果を招きます。これは命の価値を損なうことになりかねません。生活費控除による調整：収入から「本人の生活費」を差し引くことで、実質的な経済的調整は十分になされていると裁判所は判断しています。3. 受験生のための整理：損益相殺の「引く・引かない」リスト試験では、この「引き算」のルールが頻出です。以下の対比でマスターしましょう。項目控除（マイナス）するか理由・ポイント被害者本人の将来の生活費する逸失利益の基本ルール。中間利息（ライプニッツ係数）する将来の金を先に貰うための利息調整。親が免れた「養育費」しない今回の最重要ポイント。生命保険金しない自分で保険料を払っていた私的財産。遺族年金などの給付する損害の「穴埋め」としての性質があるため。4. 受験生へのアドバイスこの論点は、問題文を「斜め読み」していると足元を救われます。学習のヒント「生活費」と「養育費」という言葉を瞬時に見分ける：「生活費は引く」という知識が強力にインプットされているため、言葉が似ている「養育費」も反射的に「引く」と思い込んでしまいがちです。試験本番では、この2つの単語を意識的に区別してください。「損益相殺」の定義を思い出す：損益相殺は、あくまで「不法行為と同じ原因で、被害者（またはその相続人）が利益を得た」場合に限られます。養育費の免出は「出費がなくなった」だけであり、「利益を得た」とは言い切れないという感覚を持っておくと、記憶が定着しやすくなります。",
+          "1. 判旨の核心：生命保険金は「保険料の対価」である最高裁（最判昭39.9.25）は、生命保険金について以下のような判断を下しています。判旨のロジック「生命保険金は、既に支払われた保険料の対価としての性質を持つものであり、不法行為によって生じた損害を補填（穴埋め）するためのものではない。」つまり、生命保険金を受け取れるのは、被害者が生前にコツコツと保険料を支払ってきたという「自分の努力・財産」の結果であり、加害者が行った不法行為によって「たまたま得をした」わけではない、という考え方です。2. なぜ控除（マイナス）してはいけないのか？もし、生命保険金を賠償額から差し引くことを認めてしまうと、以下のような不合理な結果を招きます。加害者の不当な利益： 被害者が自分の将来のために備えていた保険のおかげで、加害者が支払う賠償金が安くなるというのは、あまりに不公平です。加害者が「被害者が保険に入っていてラッキーだった」と得をすることを法は許しません。損害填補性の欠如： 損益相殺の対象となるのは、あくまで「損害の穴埋め」として支払われるものです。生命保険はあらかじめ決められた額が支払われる「定額保険」であり、損害の大きさに合わせて支払われるものではないため、性質が異なると判断されます。3. 受験生のための比較表：引くもの・引かないもの試験では、この「生命保険」と「他の給付」との違いが決定的に重要です。項目控除（マイナス）するか理由・性質生命保険金しない自らの保険料の対価（私的財産）。遺族年金・障害年金する社会保障による「損害の填補」といえる。労災保険給付する二重取りを防ぐための調整規定がある。自賠責保険金するそもそも加害者の責任を肩代わりするもの。香典・見舞金しない社会通念上の贈与（お気持ち）であるため。4. 受験生へのアドバイスこの論点は、問題文の**「重複填補（じゅうふくてんぽ）に当たる」**というもっともらしい理由に騙されないことがポイントです。学習のヒント「自分のサイフ」か「公的なサイフ」か： 自分で保険料を払って用意したお金（生命保険）は、自分のサイフから自分のサイフへ移動したようなものなので、加害者の支払いから引く必要はありません。一方で、年金や労災などは「社会全体で助ける仕組み」なので、加害者の責任をその分減らして調整する、とイメージしましょう。キーワードの暗記：「生命保険金は保険料の対価」というフレーズは、記述式でも使える強力な武器になります。そのまま覚えておきましょう。",
+          "1. 遺族年金とは何か（端的な説明）**「一家の支え手が亡くなった際、残された遺族の生活が困窮しないよう、国（公的年金制度）から支給される金銭」**のことです。国民年金や厚生年金に加入していた人が死亡したとき、その人によって生計を維持されていた配偶者や子供などが受け取ることができます。法的には「亡くなった人の収入に代わって、遺族の生活を支える」という生活保障の役割を持っています。2. 判例の核心：遺族年金と逸失利益の調整（最判平11.11.15）不法行為によって退職年金の受給者が死亡した場合、その「将来得られたはずの年金（逸失利益）」の請求において、遺族が受け取る「遺族年金」をどう扱うかが問題となります。裁判所のロジック最高裁は、以下の理由からこれらを相殺（控除）すべきだと判断しています。目的の同一性： 遺族年金は、遺族の生活保障を目的としています。これは、被害者が生きていれば得られたはずの年金（または給与）によって遺族が受けていた利益と、実質的に同じ性質のものです。二重填補の禁止： 「失われた年金」の賠償を受けつつ、同時に「生活を支えるための遺族年金」も全額受け取れるとすると、同じ目的のお金を二重に受け取ることになり、公平を欠きます。結論： したがって、遺族年金のうち、逸失利益の対象期間と重なる部分については、損害賠償額から控除（差し引き）するのが相当です。3. 「支給の確定」に関する取り扱い損益相殺を行うためには、その利益が「現実になされたか、またはなされることが確定している」必要があります。しかし、公的年金制度に基づく遺族年金は、死亡という事実によって受給権が発生し、法律によって支給が保障されています。そのため、判例（最判昭52.10.27等）の文脈においても、将来支給されるべきことが制度上決まっている額については、控除の対象に含まれると解するのが一般的です。4. 受験生のための整理表試験対策として、損害賠償額から「引くもの」と「引かないもの」の境界線を明確にしておきましょう。利益の種類控除（マイナス）するか理由・性質遺族年金・障害年金する損害を穴埋めする「生活保障」だから。労災保険給付する二重取りを防ぐ調整規定があるから。生命保険金しない自分の保険料の対価（私的財産）だから。香典・見舞金しない社会通念上の贈与（お気持ち）だから。5. 受験生へのアドバイスこの論点を解く際は、以下の思考プロセスを辿ってください。学習のヒント「代わりのサイフ」かどうかを考える：不法行為によって失われた「被害者の稼ぎ（サイフ）」を、公的な制度が「遺族年金」として補填してくれるのであれば、加害者が払う分はその分減らしてバランスを取る、というのが民法の「公平」の感覚です。理由のすり替えに注意：記述の中で「生活水準の維持のために支給されるものなので……控除されない」といった、結論を逆転させるもっともらしい理由が書かれている場合があります。判例は「生活維持のためだからこそ、（逸失利益と目的が重なるので）控除する」というロジックであることを正確に押さえてください。",
+          "1. 事案の背景：これは「貸し借り」ではない\nまず前提として、この判例が対象としているのは、単なる高利貸しではなく、**「反社会的なヤミ金融」**です。\n\n手口： 暴利（トイチ、トゴなど）を取り、過酷な取り立てで借主の生活を破綻させる。\n\n実態： そもそも「契約を守る」気などなく、最初から違法に金員を搾取することを目的とした**「組織的な犯罪行為」**であると裁判所は認定しました。\n\nつまり、形の上では「10万円貸して、30万円返ってきた」という金銭授受ですが、法的には**「10万円というエサを撒いて、30万円を強奪した」**という不法行為（709条）の一連の流れとして捉えられています。\n\n2. 裁判での対立：加害者の「図々しい」主張\n被害者が「支払わされた30万円を返せ（損害賠償）」と訴えた際、ヤミ金業者は次のように主張しました。\n\n業者：「確かに利息は違法かもしれないが、最初に10万円を現ナマで渡したよな？ それは借主のプラス（利益）になったはずだ。だから、賠償額の30万円から、俺が渡した10万円を差し引く（損益相殺）のが公平だろ！」\n\nこの主張が通ってしまうと、ヤミ金業者は**「たとえ裁判になっても、貸した元本分だけは絶対に損をしない（回収できる）」**というセーフティネットを手に入れることになります。\n\n3. 判旨の核心：不法原因給付（708条）の鉄槌\n最高裁（最判平20.6.10）は、この業者の主張を「虫が良すぎる」と一蹴しました。ここで登場するのが、民法708条の**「不法原因給付」**です。\n\n判例のロジック\n不法な原因： ヤミ金の貸し付けは反倫理的で著しく違法な行為。\n\n返還請求の禁止（708条）： 違法な目的でお金を渡した者は、法律上「返せ」と言う権利を失う。\n\n損益相殺の否定： 「返せ」と言えないはずのお金を、損害賠償額から差し引くという形で「回収」させることは、実質的に708条の趣旨を骨抜きにするものである。\n\n4. 受験生のための結論：なぜ控除されないのか\n受験生の皆様が記述式や択一式で理由を問われた際、以下の3ステップで回答を組み立てられるようにしましょう。\n\n理由①：不当な利益の防止\n元本分を差し引くと、ヤミ金業者に「元本回収」という不当な利益を認めることになり、法の正義に反する。\n\n理由②：クリーン・ハンズの原則\n自ら反社会的な違法行為を行った者が、民法の「損益相殺（公平の原則）」という保護を求めることは許されない。\n\n理由③：抑止力\n「元本すら返ってこない」という過酷なペナルティを課すことで、ヤミ金融という反社会的勢力の資金源を断つ。\n\n5. 受験生へのアドバイス\nこの判例は、「損害賠償の計算」という技術論を超えて、「法の支配」が犯罪者に手を貸さないことを宣言した極めて重要なものです。\n\n学習のヒント\n「損益相殺」と「不法原因給付」のリンク：\n「ヤミ金＝708条の不法原因給付があるから、元本引き（損益相殺）はNG」というセットで記憶に定着させてください。\n\n他のケースとの比較：\n交通事故などは「お互い様（公平）」の議論なので引き算をしますが、ヤミ金は「一方的な悪」なので引き算を認めない、という対比で捉えると納得感が増します。",
+          "1. 「使用利益」という名の「浮いた家賃」法律の世界では、持ち家のオーナーであっても、その建物に住むことを**「使用利益（居住利益）」**という経済的なプラス（トク）として捉えることがあります。業者のズルい計算：業者は「もしこの家がなかったら、あなたは他所で月々の家賃を払って住んでいたはずだ。この欠陥住宅に住んでいたおかげで、その**家賃の支払いを免れた（＝得をした）**のだから、その分を賠償金から差し引け！」と主張します。「ローン」との関係：あなたが指摘された通り、買い主はローンを払っていますが、業者はそれを無視して「住居を確保できたことによる家賃相当額の節約」を「利益」としてカウントしようとするのです。2. 判例のロジック：なぜ「引き算」を拒否したのか？最高裁は、この業者の「家賃が浮いた分を値引け」という主張を、以下の3つの理由でバッサリと斬り捨てました。① 「価値ゼロ」の家に使用価値はない判例は、安全性に重大な欠陥があり「社会通念上、社会経済的な価値を有しない（価値ゼロ）」と評価される建物について、**「本来、存在してはならなかったもの」**と定義しました。価値がゼロの場所に住まわされていたとしても、そこに金銭的な価値（使用利益）は発生しない、という考え方です。② 居住は「利益」ではなく「リスクと苦痛」欠陥住宅での生活は、買い主にとって「家賃が浮いてラッキー」な体験ではありません。いつ倒壊するか、いつ火事になるかという不安に怯えながら、やむを得ず住まされている状態です。これを「トク（利益）」と呼ぶのは、公平の理念に著しく反します。③ 業者の「不当な利益」を許さない欠陥のある建物を引き渡した業者が、被害者がその家に住まざるを得なかったことを利用して賠償金を値切ることは、法律上の正義（信義則）が許しません。3. 受験生のための整理表試験対策として、この判例のポイントを以下のように脳内セットしておきましょう。項目判例のスタンス建物の評価社会経済的な価値を有しない（価値ゼロ）業者の主張建て替えまでの家賃相当額（使用利益）を引け！裁判所の回答使用利益は認められない（控除できない）正解への鍵「価値ゼロの家に住むのは苦痛であって、トクではない」と理解する結論：この記述のどこが「誤り」か問題文の「～居住していた居住利益は、……損害賠償額から控除される」という部分が間違いです。正しくは**「控除されない」**です。開発者からのひとこと：「買った人なんだからローンでしょ？」というあなたの直感は、まさに「家賃が浮いたなんて言わせないぞ」という判例の正義感と一致しています！業者は「もし借りていたら……」というフィクション（使用利益）を持ち出して計算を有利にしようとしますが、裁判所は「現実に危険な目に遭っている買い主の苦痛」というリアルを優先したわけですね。"
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -20606,7 +23038,7 @@ export const SUBJECTS = {
         ]
       },
       {
-        "text": "不法行為に基づく損害賠償に関する次のア～オの記述のうち、民法の規定および判例に照らし、正しいものの組合せはどれか。",
+        "text": "不法行為に基づく損害賠償に関する次の記述のうち、民法の規定および判例に照らし、正しいものの組合せはどれか。",
         "choices": [
           "使用者Aが、その事業の執行につき行った被用者Bの加害行為について、Cに対して使用者責任に基づき損害賠償金の全額を支払った場合には、AはBに対してその全額を求償することができる。",
           "Dの飼育する猛犬がE社製の飼育檻から逃げ出して通行人Fに噛みつき怪我を負わせる事故が生じた場合において、Dが猛犬を相当の注意をもって管理をしたことを証明できなかったとしても、犬が逃げ出した原因がE社製の飼育檻の強度不足にあることを証明したときは、Dは、Fに対する損害賠償の責任を免れることができる。",
@@ -20626,31 +23058,10 @@ export const SUBJECTS = {
           3
         ],
         "isReorder": false,
-        "explain": "不法行為に基づく損害賠償に関する次のア～オの記述のうち、民法の規定および判例に照らし、正しいものの組合せはどれか。",
+        "explain": "不法行為に基づく損害賠償に関する次の記述のうち、民法の規定および判例に照らし、正しいものの組合せはどれか。",
         "wordBank": "",
-        "memo": "",
-        "slots": [
-          {
-            "label": "ア",
-            "options": ""
-          },
-          {
-            "label": "イ",
-            "options": ""
-          },
-          {
-            "label": "ウ",
-            "options": ""
-          },
-          {
-            "label": "エ",
-            "options": ""
-          },
-          {
-            "label": "オ",
-            "options": ""
-          }
-        ],
+        "memo": "1. 根拠：使用者責任と求償権（民法715条3項）民法にはこう書かれています。民法715条3項前二項の規定は、使用者又は監督者から被用者に対する求償権の行使を妨げない。条文だけを読むと「求償できるよ」としか書いていないので、全額いけそうな気がしてしまいますよね。しかし、ここで有名な最高裁判例（最判昭51.7.8 通称：茨城急行自動車事件）が登場します。2. 判例のロジック：信義則による制限裁判所は、会社が部下に請求できる金額について、以下のように判断しました。「使用者は、その事業の性格、規模、施設、被用者の業務の内容、労働条件、勤務態度、加害行為の態様、加害行為の予防又は損失の分散についての使用者の配慮の程度その他諸般の事情に照らし、損害の公平な分担という見地から信義則上相当と認められる限度においてのみ、被用者に対して損害の賠償又は求償の請求をすることができる。」なぜ「全額」ではないのか？（報償責任の法理）利益を得ているのは誰か？： 会社は部下を使って利益を上げています。利益を得ている以上、そこから生じるリスク（事故など）も会社が負うべきである、という考え方（報償責任）があります。損失の分散： 会社は保険に入ったり、商品の価格にリスク分を上乗せしたりして損失を分散できますが、個人である部下にはそれが困難です。酷すぎる結果の回避： 重大なミスをしたからといって、一従業員に何千万円、何億円という賠償を全額背負わせるのは、あまりに過酷で「公平」ではないと判断されます。3. 受験生のための整理：試験での見極めポイントこの論点が出題された際、正解を導くためのキーワードは以下の通りです。項目内容原則（条文）求償すること自体は認められている。判例による制限**「信義則上相当と認められる限度」**に制限される。「全額」という言葉選択肢に「当然に全額」「常に全額」とあれば、ほぼ間違いなく**「×」**。4. 補足：逆のパターン（部下が払った場合）最近の重要判例（最判令2.2.28）では、逆のパターンも認められました。「部下（B）が被害者（C）に全額払った場合、部下から会社（A）に対して、会社の責任分を払え！（逆求償）」という請求も、同じく公平の見地から認められています。受験生へのアドバイス：使用者責任は「会社と部下は連帯して責任を負うけれど、最終的な負担割合は『お互いの落ち度や立場』を考えて、裁判所がバランス調整するよ」というイメージを持っておくと、この手の問題で迷わなくなります！",
+        "slots": [],
         "refId": "",
         "isBonus": false,
         "chunks": [],
@@ -20676,6 +23087,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "1. 根拠：使用者責任と求償権（民法715条3項）民法にはこう書かれています。民法715条3項前二項の規定は、使用者又は監督者から被用者に対する求償権の行使を妨げない。条文だけを読むと「求償できるよ」としか書いていないので、全額いけそうな気がしてしまいますよね。しかし、ここで有名な最高裁判例（最判昭51.7.8 通称：茨城急行自動車事件）が登場します。2. 判例のロジック：信義則による制限裁判所は、会社が部下に請求できる金額について、以下のように判断しました。「使用者は、その事業の性格、規模、施設、被用者の業務の内容、労働条件、勤務態度、加害行為の態様、加害行為の予防又は損失の分散についての使用者の配慮の程度その他諸般の事情に照らし、損害の公平な分担という見地から信義則上相当と認められる限度においてのみ、被用者に対して損害の賠償又は求償の請求をすることができる。」なぜ「全額」ではないのか？（報償責任の法理）利益を得ているのは誰か？： 会社は部下を使って利益を上げています。利益を得ている以上、そこから生じるリスク（事故など）も会社が負うべきである、という考え方（報償責任）があります。損失の分散： 会社は保険に入ったり、商品の価格にリスク分を上乗せしたりして損失を分散できますが、個人である部下にはそれが困難です。酷すぎる結果の回避： 重大なミスをしたからといって、一従業員に何千万円、何億円という賠償を全額背負わせるのは、あまりに過酷で「公平」ではないと判断されます。3. 受験生のための整理：試験での見極めポイントこの論点が出題された際、正解を導くためのキーワードは以下の通りです。項目内容原則（条文）求償すること自体は認められている。判例による制限**「信義則上相当と認められる限度」**に制限される。「全額」という言葉選択肢に「当然に全額」「常に全額」とあれば、ほぼ間違いなく**「×」**。4. 補足：逆のパターン（部下が払った場合）最近の重要判例（最判令2.2.28）では、逆のパターンも認められました。「部下（B）が被害者（C）に全額払った場合、部下から会社（A）に対して、会社の責任分を払え！（逆求償）」という請求も、同じく公平の見地から認められています。受験生へのアドバイス：使用者責任は「会社と部下は連帯して責任を負うけれど、最終的な負担割合は『お互いの落ち度や立場』を考えて、裁判所がバランス調整するよ」というイメージを持っておくと、この手の問題で迷わなくなります！",
+          "1. 根拠条文：動物の占有者の責任（民法718条）動物が他人に損害を与えた場合、飼い主の責任は以下のように規定されています。民法718条1項動物の占有者は、その動物が他人に加えた損害を賠償する責任を負う。ただし、動物の種類及び性質に従い、相当の注意をもってその管理をしたときは、この限りでない。2. なぜ「ケージの強度不足」だけでは免責されないのか？この条文のポイントは、飼い主（D）が責任を免れるためのハードルが非常に高い点にあります。相当の注意の証明が「必須」飼い主が責任を免れるためには、**「自分はやるべきことをすべてやっていた（相当の注意を払っていた）」**ことを自ら証明しなければなりません。記述では「Dが……相当の注意をもって管理をしたことを証明できなかった」とはっきり書かれています。この時点で、Dは民法718条の免責要件を満たしていません。第三者の落ち度は「外側の問題」犬が逃げた直接の原因が「E社製ケージの欠陥」だったとしても、それはDとE社の間の問題です。被害者Fさんから見れば、「Dの犬に噛まれた」という事実に変わりはありません。Dが管理を怠っていた（証明できなかった）以上、Fさんに対してはDがまず責任を負う必要があります。3. 受験生のための整理：責任のキャッチボールこの事故における登場人物たちの関係を図解すると、以下のようになります。関係性責任の所在理由D（飼い主）からF（被害者）へ賠償責任あり相当の注意を証明できていないため（718条1項）。E（メーカー）からF（被害者）へ賠償責任あり製造物責任法（PL法）に基づき、欠陥があれば責任を負う。DからE（メーカー）へ求償できる「あんたのケージのせいで賠償する羽目になったぞ」と言える。合格へのポイント：被害者の救済を優先するため、民法は飼い主に「無過失に近い重い責任」を課しています。「他人のせいで逃げた」としても、「自分に落ち度がなかったこと」を証明できない限り、被害者に対しては「ごめんなさい」と言わなければならない、と覚えましょう。4. 受験生へのアドバイスこの問題のひっかけは、「真犯人はケージだ！」という因果関係に目を奪われ、「飼い主自身の管理能力」という718条の主軸を忘れさせる点にあります。**「相当の注意を証明できなかった」というフレーズが出てきたら、その瞬間に「免責はありえない（＝賠償責任あり）」**と判断してOKです。ケージの欠陥は、あくまでDがFに支払った後で、E社に「お金を返せ（求償）」と言うための材料に過ぎません。",
+          "1. 根拠条文：土地の工作物等の責任（民法717条）\n民法717条1項では、建物や塀などの工作物だけでなく、**「竹木の植栽又は支持に瑕疵がある場合」**についても、工作物と同様の責任ルールを適用すると定めています。\n\nこの責任には「一次的責任（占有者）」と「二次的責任（所有者）」の段階がありますが、被害者に対して賠償を済ませた後に、真の責任者へお金を請求できるルールも明文化されています。\n\n民法717条3項（求償権）\n前二項の場合において、損害の原因について他に責任を負う者があるときは、占有者又は所有者は、その者に対して求償権を行使することができる。\n\n2. 本問のケースへの当てはめ\n今回の事故の流れを整理すると以下のようになります。\n\n事故発生： Gの庭の樹木が倒れ、通行人Hが怪我をした。\n\nGの賠償： 樹木の所有者であるGが、被害者Hに対して損害賠償を行った。\n\n瑕疵の所在： 樹木が倒れた原因は、請負業者Iによる植栽工事のミス（瑕疵）であった。\n\n求償の行使： 民法717条3項に基づき、Gは「他に責任を負う者（＝瑕疵の原因を作ったI）」に対して、Hに支払った賠償金の払い戻しを求める（求償する）ことができる。\n\n3. 受験生のためのポイント：工作物責任の「二段構え」\nこの論点では、以下のステップを正確に理解しておくことが重要です。\n\n第1ステップ（占有者の責任）： まずは現実に管理している「占有者」が責任を問われます。ただし、占有者が「相当の注意」を払っていたことを証明できれば、占有者は免責されます。\n\n第2ステップ（所有者の責任）： 占有者が免責された場合、最終的に「所有者」が責任を負います。この所有者の責任は無過失責任（自分に落ち度がなくても免れない重い責任）です。\n\n第3ステップ（求償権）： 占有者や所有者が被害者に支払った後、もし「手抜き工事をした業者」などの真の加害者が別にいるなら、その人へ請求を回すことができます。\n\n合格へのアドバイス：\n記述2（猛犬のケース）の718条では「相当の注意を証明すれば免責」というルールでしたが、この717条の所有者にはその逃げ道がありません（無過失責任）。その代わり、この第3項の「求償権」という出口が用意されている、とセットで覚えておきましょう。",
+          "1. 共同不法行為と連帯債務\n従業員Kと自家用車を運転するLの両方に過失があるため、この二人は「共同不法行為者」となります。この場合、被害者Mに対しては、KとL（およびKの雇い主J）が、それぞれ損害の全額について連帯して賠償する義務を負います。\n\n2. 求償権（きゅうしょうけん）とは？\n共同不法行為者の一人（L）が被害者（M）に全額の賠償を行った場合、Lは自分の過失割合を超えて支払ったことになります。そのため、もう一人の加害者であるKに対し、「あなたの過失分を私が立て替えたので、その分を返してください」と請求することができます。これが求償権です。\n\n3. なぜ使用者（J）に請求できるのか\nここで問題となるのは、Lが「従業員K」ではなく、その「会社J」に対して直接お金を返せ（求償）と言えるかどうかです。\n\n判例（最判昭63.7.1）は、これを明確に認めています。\n\n理由： 使用者責任（715条）は、従業員が仕事中に他人に与えた損害を補償するための仕組みです。共同不法行為における「他の加害者からの求償」も、従業員が行った不法行為から派生した負担であるため、会社Jはその責任を負うべきだと考えられています。\n\n公平の観点： もしJに請求できないとすると、従業員Kに支払い能力がない場合に、LがKの過失分まで一方的に負担し続けることになり、不公平が生じるからです。\n\n4. 受験生のためのポイント\nこの問題は、以下の3つのステップを理解していれば確実に解けます。\n\n**LとKは「共同不法行為者」**であり、Mに対して連帯責任を負う。\n\nLが全額払えば、Kに対して求償できる（過失割合に応じて）。\n\nKの責任はJ（使用者）も負うため、LはJに対しても直接求償できる。\n\n合格へのアドバイス：\n記述1で学習した「会社から従業員への求償」にはブレーキがかかりますが、今回のケースのように**「部外者（L）から会社（J）への求償」にはそのようなブレーキはありません。** 加害者グループの中での責任の押し付け合いではなく、外部の第三者（L）との公平な分担の話だからです。",
+          "1. 判例のロジック：共同不法行為者間の求償（最判昭63.7.1）この状況を整理すると、乗客Pさんを傷つけた加害者は「タクシー運転手O」と「自家用車運転手Q」の二人です。これを**共同不法行為（民法719条）**といいます。なぜQに求償できるのか？連帯債務の実態： OとQは、Pさんに対して全額を支払う義務を連帯して負っています。使用者の地位： タクシー会社Nは、使用者責任（715条）に基づき、部下Oの責任を肩代わりしてPさんに全額支払いました。求償の正当性： Nが全額支払ったことで、もう一人の加害者であるQも「Pさんへの支払い義務」から解放されました。Qは自分の過失分までNに払ってもらったことになるため、NはQに対し、**「あなたの過失分はあなたが負担すべきだ」**として求償することができます。2. 記述4との比較：鏡合わせの関係実は、先ほど検討した「記述4」と、今回の「記述5」は、立場が逆転しているだけの同じ理屈です。記述4： 自家用車側（L）が全額払い、タクシー会社（J）に求償した。 → 正しい。記述5： タクシー会社（N）が全額払い、自家用車側（Q）に求償した。 → これもできるはずなのに、記述では「できない」となっているため、誤り。受験生へのアドバイス：「使用者（会社）」は、被害者に対しては重い責任を負いますが、加害者グループの中での精算（求償）においては、他の加害者と同じ土俵に立ちます。会社だからといって、他の加害者の過失分まで最終的に丸抱えする必要はありません。3. 全記述（1～5）の総まとめこれで全ての記述の検討が完了しました。記述内容の要約判定理由・ポイント1使用者から被用者への全額求償×信義則により制限される。2犬の占有者の免責（ケージの欠陥）×相当の注意を証明しない限り免責されない。3工作物所有者から業者への求償○他に責任ある者がいれば求償可能（717条3項）。4第三者から使用者への求償○他の加害者から会社への求償は認められる。5使用者から第三者への求償不可×使用者から他方への求償も認められる。正解の組合せ「正しいものの組合せ」を問う問題であれば、**3と4（ウとエ）**の組合せが正解となります。最後に：不法行為をマスターするために不法行為の分野では、今回の問題のように「誰から誰へ、いくら請求できるか」という人間関係の図解能力が問われます。被害者救済： 被害者に対しては「とりあえず誰でもいいから全額払え（連帯責任）」という厳しいルール。公平な分担： 加害者同士の間では「過失割合に応じて割り勘にしよう（求償）」という柔軟なルール。"
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -20705,7 +23123,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "Aに雇われているBの運転する車が、Aの事業の執行中に、Cの車と衝突して歩行者Dを負傷させた場合に関する次の記述のうち、民法の規定および判例に照らし、妥当なものはどれか。なお、Aには使用者責任、BおよびCには共同不法行為責任が成立するものとする。",
         "wordBank": "",
-        "memo": "",
+        "memo": "1. 根拠条文：使用者からの求償（民法715条3項）まず、条文の原則を確認しましょう。民法715条3項前二項の規定は、使用者……から被用者に対する求償権の行使を妨げない。条文上は、従業員Bに過失があれば、会社AはBに対して「代わりに払った分を返せ」と言うことができます。ここには「故意・重過失に限る」という条件は書かれていません。2. 判例による「ブレーキ」：信義則上の制限条文上は全額請求できそうに見えますが、最高裁（最判昭51.7.8）は、従業員だけが重い責任を負うのは不公平だとして、**「信義則」**を理由にブレーキをかけました。判旨のポイント会社は従業員を使って利益を上げている（報償責任）のだから、リスクも会社が負うべきです。そのため、求償できる範囲は**「損害の公平な分担という見地から信義則上相当と認められる限度」**に制限されます。3. なぜ「故意・重過失に限る」が誤りなのか？ここが試験でのひっかけポイントです。過失の程度： 判例は、求償できるかどうかを「故意・重過失」という特定のランクで区切っていません。実態： たとえ「軽微な不注意（軽過失）」であっても、諸般の事情（仕事の内容、労働条件、会社の配慮など）を考慮した結果、数パーセント〜数割の求償が認められることはあります。結論： 「故意または重大な過失があったときに限って」という限定的な表現は、判例の立場（全体的なバランスで決める）と矛盾するため、誤りとなります。4. 受験生のための整理表この論点における「誰から誰への請求か」を整理しましょう。請求の方向認められるかポイント被害者D → 会社A○（全額）使用者責任（715条1項）。被害者D → 従業員B○（全額）一般的不法行為（709条）。会社A → 従業員B△（一部）信義則により制限される（今回の論点）。第三者C → 会社A○（割合分）共同不法行為者間での求償（判例で容認）。5. 学習のアドバイスこの問題では、**「限定的な言葉（〜に限って、当然に、常に）」**に注意してください。攻略のヒント「信義則上相当な範囲」という魔法の言葉： 判例の結論は「ケースバイケースで公平に決める」という柔軟なものです。特定の条件（重過失など）を絶対視する選択肢は疑いましょう。逆求償の知識： 最近の判例（最判令2.2.28）では、逆に従業員Bが全額払った場合に、会社Aに対して「会社の負担分を払え」と言える（逆求償）ことも認められました。あわせて押さえておくと完璧です。",
         "slots": [],
         "refId": "",
         "isBonus": false,
@@ -20732,6 +23150,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "1. 根拠条文：使用者からの求償（民法715条3項）まず、条文の原則を確認しましょう。民法715条3項前二項の規定は、使用者……から被用者に対する求償権の行使を妨げない。条文上は、従業員Bに過失があれば、会社AはBに対して「代わりに払った分を返せ」と言うことができます。ここには「故意・重過失に限る」という条件は書かれていません。2. 判例による「ブレーキ」：信義則上の制限条文上は全額請求できそうに見えますが、最高裁（最判昭51.7.8）は、従業員だけが重い責任を負うのは不公平だとして、**「信義則」**を理由にブレーキをかけました。判旨のポイント会社は従業員を使って利益を上げている（報償責任）のだから、リスクも会社が負うべきです。そのため、求償できる範囲は**「損害の公平な分担という見地から信義則上相当と認められる限度」**に制限されます。3. なぜ「故意・重過失に限る」が誤りなのか？ここが試験でのひっかけポイントです。過失の程度： 判例は、求償できるかどうかを「故意・重過失」という特定のランクで区切っていません。実態： たとえ「軽微な不注意（軽過失）」であっても、諸般の事情（仕事の内容、労働条件、会社の配慮など）を考慮した結果、数パーセント〜数割の求償が認められることはあります。結論： 「故意または重大な過失があったときに限って」という限定的な表現は、判例の立場（全体的なバランスで決める）と矛盾するため、誤りとなります。4. 受験生のための整理表この論点における「誰から誰への請求か」を整理しましょう。請求の方向認められるかポイント被害者D → 会社A○（全額）使用者責任（715条1項）。被害者D → 従業員B○（全額）一般的不法行為（709条）。会社A → 従業員B△（一部）信義則により制限される（今回の論点）。第三者C → 会社A○（割合分）共同不法行為者間での求償（判例で容認）。5. 学習のアドバイスこの問題では、**「限定的な言葉（〜に限って、当然に、常に）」**に注意してください。攻略のヒント「信義則上相当な範囲」という魔法の言葉： 判例の結論は「ケースバイケースで公平に決める」という柔軟なものです。特定の条件（重過失など）を絶対視する選択肢は疑いましょう。逆求償の知識： 最近の判例（最判令2.2.28）では、逆に従業員Bが全額払った場合に、会社Aに対して「会社の負担分を払え」と言える（逆求償）ことも認められました。あわせて押さえておくと完璧です。",
+          "1. 原則：求償は「過失の割合」による共同不法行為者（今回のケースではBとC）が被害者に賠償を支払った後、内部でお金を精算する場合、その金額は**「各自の過失の割合（どちらがどれだけ悪かったか）」**によって決まります。判例のロジック共同不法行為者の一人が損害を賠償したときは、他の不法行為者に対し、自己の過失の割合を超える部分について求償することができる（最判昭41.11.18等）。したがって、使用者AがBの代わりに全額払った場合も、AはCに対して、Cの過失割合に相当する額を全額請求できます。2. なぜ「均等の割合に限って」が誤りなのか？「均等の割合に限って」としてしまうと、以下のような不合理なことが起きてしまいます。ケース例： 衝突事故の過失が、B（会社側）が1割、C（相手車）が9割だったとします。記述の通りだと： AはCに5割分しか請求できないことになり、会社Aは本来負担すべきでない4割分を泣き寝入りすることになります。これでは「損害の公平な分担」になりませんよね。判例は、過失が重い人にはその分しっかり負担させるのが公平であると考えています。3. 受験生のための整理：3つの「割合」の壁試験で「割合」という言葉が出てきたら、以下のどれを指しているか冷静に見極めましょう。場面割合の決まり方注意点被害者Dへの支払い全額（100%）被害者に対しては「割合」を主張して値切ることはできません。加害者同士の求償過失の割合今回のポイント。 落ち度に応じた「割り勘」です。均等の割合になる時過失割合が不明な時どちらがどれだけ悪いか全く分からない場合に限った「最後の手段」です。4. 学習のアドバイスこの肢のひっかけは、**「損害の公平な分担という見地から」**というもっともらしい理由を使いつつ、結論を「均等（半分ずつ）」に限定している点にあります。攻略のヒント「限って」という限定表現を疑う： 法律の世界で「一律に半分」と決まっていることは稀です。基本は「個別の事情（過失）」が優先されます。使用者Aの立ち位置： 使用者Aは被用者Bの「盾」のような存在です。BがCに対して持っている求償権を、Aも同じように（あるいは使用者としての独自の権利として）行使できると理解しておきましょう。",
+          "1. 判例の核心：第三者からの「使用者への直接求償」最高裁は、第三者の加害者（C）が被害者（D）に全額支払った場合、Cは使用者（A）に対しても、直接その過失割合に応じた額を返せ（求償）と言えると判断しました。なぜ「直接」言えるのか？使用者責任の目的： そもそも使用者責任（715条）は、会社が部下を使って利益を上げている以上、部下が起こした不法行為の責任も会社が負うべきだ（報償責任）という考えに基づいています。不公平の回避： もしCが、支払い能力のない従業員Bにしか請求できないとすると、Cは本来B（またはA）が負担すべき分まで、自分ひとりで背負い続けることになります。これは「損害の公平な分担」という不法行為法の理想に反します。実質的な連帯関係： AはBの「盾」のような存在です。CがBに対して持っている求償権を、Aに対しても行使できるようにすることで、スムーズな解決を図っています。2. 受験生のための「人間関係」整理図この事例を「誰が誰に何を言えるか」で整理すると、以下のようになります。請求の方向認められるか理由・根拠C → B（加害者本人）○共同不法行為者間での当然の求償（719条・442条準用）。C → A（使用者）○今回のポイント。 判例により認められている（最判昭63.7.1）。A → C（逆のパターン）○Aが全額払った場合も、AはCに求償できる（記述4で見た通り）。3. 記述の「罠」はどこにある？この記述のひっかけは、**「共同不法行為者でないAに対しては……」**という部分です。ひっかけの論理： Aは直接ハンドルを握っていたわけではない（719条の加害者ではない）から、求償の対象にならない、と思わせようとしています。正しい論理： Aは直接の加害者ではなくても、法律上、Bの不法行為を**肩代わりする責任（使用者責任）**を負っています。したがって、求償のサイクルの中に組み込まれるのです。4. 学習のアドバイスこの論点は、前回の「記述4」とセットで覚えるのが最も効率的です。攻略のヒント「加害者グループ」として捉える： A（会社）とB（従業員）は、被害者側から見れば「ひとまとめの加害者」のようなものです。外部の人（C）から見れば、Bに言えることはAにも言える、とイメージしておきましょう。「公平」を常に意識する： 法律が「ダメ」と言う時は、誰かが不当に得をしたり、誰かが泣き寝入りしたりする場合です。「Cが全額払ったのに、会社Aが『俺は直接やってないから関係ないもんね』と逃げ得をするのはおかしい」という感覚を大切にしてください。",
+          "1. 判例の核心：使用者間の求償（最判昭63.7.1）最高裁は、この複雑な人間関係において、以下の通り判断しています。「共同不法行為者の一方の使用者（A）は、他方の不法行為者（C）またはその使用者（E）に対し、過失割合に応じた負担部分について求償することができる。」2. なぜ「相手の会社（E）」に請求できるのか？この結論に至る理由は、主に2つあります。使用者責任の肩代わり： 会社Eは、従業員Cが仕事中に起こしたミスについて、法律上その責任を負う立場（使用者責任：715条）にあります。公平な分担： もしAがEに請求できないとすると、Aは「自分たちのミス（B）」だけでなく「相手のミス（C）」の分まで、一方的に全額を背負わされることになります。これは不法行為法の根本にある「損害の公平な分担」に反します。したがって、Aは事故のもう一方の当事者であるC本人だけでなく、そのバックにいる会社Eに対しても直接求償が可能となります。3. 受験生のための「計算のルール」この問題で「何に基づいて計算するか」という点も重要です。過失の割合： 求償できる金額は、あくまで現場でハンドルを握っていた**BとCの過失割合（例えば40:60など）**によって決まります。負担の範囲： AがDに100万円払ったとして、Cの過失が6割なら、AはEに対して60万円を請求できる、という非常にシンプルな計算になります。4. 全選択肢の検討結果（まとめ）これまでの検討により、この問題の正解が見えてきました。肢内容の要約判定理由・ポイント1使用者から従業員への求償は「故意・重過失」に限る×軽過失でも信義則上相当な範囲で可能。2他の加害者への求償は「均等（50%）」に限る×過失割合に応じて決まる。3加害者Cから使用者Aへの求償はできない×直接求償できる（判例）。4使用者Aから使用者Eへの求償ができる○今回の正解。 使用者間でも求償は可能。合格へのアドバイスこの四角関係（A・B・E・C）の図式は、一見複雑ですが、**「加害者側を一つのチーム（A+B）と（E+C）として見る」**と非常に分かりやすくなります。被害者に対しては、どちらのチームも「全額」の責任を負う。チーム間の精算では、それぞれのチームの落ち度（BとCの過失）に応じて「割り勘」にする。その割り勘の請求は、従業員同士だけでなく、会社同士でも直接行ってよい。",
+          "1. 二重の使用者責任とは？派遣労働や出向、あるいは本問のように「BがAとFの両方の指揮監督下にある」場合、Bが仕事中に事故を起こすと、AとFの両方に使用者責任（民法715条）が成立します。このとき、AとFは被害者Dに対して、それぞれ**全額を支払う義務（不真正連帯債務）**を負います。2. なぜ「均等の割合に限って」が誤りなのか？AがDに全額支払った後、もう一方の使用者Fに対して「あなたの分を返して（求償）」と言うことはもちろん可能です。しかし、その金額の決まり方は「一律半分」ではありません。判例・通説の考え方求償できる範囲は、**「各使用者の指揮監督の強弱、事業への寄与度、事故との関連性」**などを総合的に考慮して決まります。ケースA： 実質的な指示の9割をFが出していたなら、Fの負担は9割になる。ケースB： AとFの関与がほぼ同等なら、5割ずつになる。このように、「具体的な事情に応じて負担割合が決まる」のが法理であり、「均等の割合に限って」と決めつけるのは、損害の公平な分担という見地から不適切です。3. 受験生のための整理：求償権の「物差し」まとめ不法行為の求償問題で「割合」が出てきたら、以下の表を思い出してください。求償のパターン金額を決める「物差し」結論加害者同士 (BとC)過失の割合落ち度に応じて割り勘。会社と従業員 (AとB)信義則上相当な範囲全額とは限らない（ブレーキあり）。会社同士 (AとF)指揮監督の度合い・寄与度今回のポイント。 どっちがより「ボス」だったか。"
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -20761,7 +23186,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "不法行為に関する次の記述のうち、民法の規定および判例に照らし、妥当でないものはどれか。",
         "wordBank": "",
-        "memo": "",
+        "memo": "1. 判例のポイント：配偶者は「当然には」責任を負わない\nまず、最高裁は従来の解釈を明確に整理しました。\n\n法定の監督義務者（714条1項）ではない： 民法752条には「夫婦は同居し、互いに協力し扶助しなければならない」という義務がありますが、これは夫婦間のルールであり、「第三者に迷惑をかけないよう見張る義務（監督義務）」までを当然に含んでいるわけではないと判断しました。\n\n結論： したがって、単に「配偶者だから」という理由だけで、直ちに監督者責任を負わされることはありません。\n\n2. 判例のポイント：「準ずる者」としての責任（714条2項）\nしかし、一切責任を負わないわけではありません。記述にある通り、以下の**「特段の事情」がある場合には、「法定の監督義務者に準ずべき者」**として責任を問われる可能性があります。\n\n判断の「物差し」（総合考慮）\n裁判所は以下の事情を組み合わせて、個別に判断するとしています。\n\n身分関係： 夫婦や親子などの関係性。\n\n日常生活の接触状況： 同居しているか、頻繁に世話をしているか。\n\n監督の実態： 第三者への加害を防止するような監督を現に行っていたか。\n\n引き受けの有無： 単なる手助けを超えて、「自分がこの人の監督を引き受ける」という客観的な状況があったか。\n\n3. この記述が「妥当」である理由\n記述1は、この平成28年最高裁判決の「基準（規範）」をほぼそのまま文章化したものです。\n\n「配偶者は法定の監督義務者ではない」という原則。\n\n「特段の事情があれば準ずべき者として責任を負う」という例外。\n\nこの二つのステップが正確に記述されているため、正しい内容となります。\n\n受験生へのアドバイス\nこの論点は、問題文が非常に長くなる傾向がありますが、以下のキーワードで見極めてください。\n\nキーワード： 「配偶者」「認知症（精神障害）」「法定の監督義務者に準ずべき者」「特段の事情」。\n\n注意点： 選択肢で**「配偶者は、民法752条の扶助義務があるため、当然に714条1項の法定の監督義務者に該当する」と書かれていたら、それは「×（誤り）」**です。",
         "slots": [],
         "refId": "",
         "isBonus": false,
@@ -20788,6 +23213,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "1. 判例のポイント：配偶者は「当然には」責任を負わない\nまず、最高裁は従来の解釈を明確に整理しました。\n\n法定の監督義務者（714条1項）ではない： 民法752条には「夫婦は同居し、互いに協力し扶助しなければならない」という義務がありますが、これは夫婦間のルールであり、「第三者に迷惑をかけないよう見張る義務（監督義務）」までを当然に含んでいるわけではないと判断しました。\n\n結論： したがって、単に「配偶者だから」という理由だけで、直ちに監督者責任を負わされることはありません。\n\n2. 判例のポイント：「準ずる者」としての責任（714条2項）\nしかし、一切責任を負わないわけではありません。記述にある通り、以下の**「特段の事情」がある場合には、「法定の監督義務者に準ずべき者」**として責任を問われる可能性があります。\n\n判断の「物差し」（総合考慮）\n裁判所は以下の事情を組み合わせて、個別に判断するとしています。\n\n身分関係： 夫婦や親子などの関係性。\n\n日常生活の接触状況： 同居しているか、頻繁に世話をしているか。\n\n監督の実態： 第三者への加害を防止するような監督を現に行っていたか。\n\n引き受けの有無： 単なる手助けを超えて、「自分がこの人の監督を引き受ける」という客観的な状況があったか。\n\n3. この記述が「妥当」である理由\n記述1は、この平成28年最高裁判決の「基準（規範）」をほぼそのまま文章化したものです。\n\n「配偶者は法定の監督義務者ではない」という原則。\n\n「特段の事情があれば準ずべき者として責任を負う」という例外。\n\nこの二つのステップが正確に記述されているため、正しい内容となります。\n\n受験生へのアドバイス\nこの論点は、問題文が非常に長くなる傾向がありますが、以下のキーワードで見極めてください。\n\nキーワード： 「配偶者」「認知症（精神障害）」「法定の監督義務者に準ずべき者」「特段の事情」。\n\n注意点： 選択肢で**「配偶者は、民法752条の扶助義務があるため、当然に714条1項の法定の監督義務者に該当する」と書かれていたら、それは「×（誤り）」**です。",
+          "1. 判旨の核心：契約がなくても「使用関係」は成立する民法715条の「使用関係」とは、必ずしも雇用契約（お給料を払う関係）があることを条件としません。裁判所は、**「実質的に指揮監督（命令して見張る）をする関係」**があれば、一時的なものであっても使用者責任が成立すると判断しています。なぜこのケースで「使用者」とみなされたのか？本問のケースでは、兄が「使用者」としての責任を負うべき要素が揃っています。車両の所有権： 兄が車の持ち主であること（運行支配・運行利益がある）。実質的な監視： 運転経験の浅い弟に対し、経験豊富な兄が助手席で気を配っていたこと。具体的な指示： 事故直前に「発進の指示」を出すなど、まさに具体的な指揮監督を行っていたこと。これらの事実から、兄と弟の間には一時的にせよ「主従関係（指揮監督関係）」が認められ、兄は雇い主と同じような責任を負うべきだとされました。2. 受験生のための整理：使用者責任のポイント試験で「使用者責任が成立するか？」を問われたら、以下の2点を確認しましょう。要件判断基準本問の場合使用関係実質的な指揮監督関係があるか？あり（助手席での指示・監視）。事業の執行につき客観的に見て「仕事」や「用事」の範囲内か？あり（迎えに行かせ、帰宅する途中）。3. 「運行供用者責任」との関係（参考）実務上、このような自動車事故では「自賠法（自動車損害賠償保障法）」の運行供用者責任が先に検討されることが多いですが、民法の試験としては「715条の使用者責任」の枠組みで、この指揮監督関係の有無が問われます。合格へのアドバイス：「家族だから甘いルールになる」ということはありません。むしろ、助手席で「あーだこーだ」と具体的に指示を出していたことが、皮肉にも**「指揮監督していた証拠」**となり、責任を負う根拠になってしまうのです。選択肢の中で、**「雇用契約がないから使用者責任は成立しない」といった記述があれば、それは「×」**であると即断してください。",
+          "1. 根拠：土地の工作物責任の二段構え（民法717条1項）\n土地の工作物（建物、塀、擁壁など）の設置や保存に「瑕疵（欠陥）」があって他人に損害を与えた場合、責任を負う順序が決まっています。\n\n第一次的責任：占有者（せんゆうしゃ）\n実際にその場所を使っている人です。ただし、占有者が「損害の発生を防止するのに必要な注意をしたとき」は、責任を免れます（過失責任）。\n\n第二次的責任：所有者（しょゆうしゃ）\n占有者が免責された場合、最終的に「持ち主」が責任を負います。この所有者の責任は、**自分が悪くなくても逃げられない「無過失責任」**です。\n\n2. なぜ「過失なく信じていた」のに責任を負うのか？\n記述3のケースでは、現所有者は「瑕疵がないと過失なく信じていた（善意無過失）」とされています。つまり、占有者としての注意義務は果たしていると言えるかもしれません。\n\nしかし、現所有者は同時に**「所有者」**でもあります。\n\n瑕疵の発生時期は関係ない： その欠陥が前の持ち主の時に作られたものであっても、現在の持ち主はその欠陥も含めて建物を所有しているとみなされます。\n\n無過失責任の怖さ： 「知らなかった」「注意していた」という言い訳が一切通用しないのが所有者責任です。被害者保護を最優先するため、誰かが責任を取らなければならない場面では、最終的にその物の所有者が泥をかぶるという仕組みになっています。\n\n3. 受験生のための整理：前の持ち主との関係\n「前の持ち主が悪いのに、自分が払うのは納得いかない！」と思うかもしれませんが、民法はそこもしっかりカバーしています。\n\n求償権（717条3項）： 現所有者が被害者に賠償金を払った後、もし「手抜き工事をした業者」や「欠陥を隠して売った前所有者」がいるなら、その人たちに対して「あんたたちのせいで損をしたから金を返せ」と請求することができます。\n\n合格へのポイント：\n記述の中で**「所有者は、瑕疵が前所有者の占有中に生じたものであることを証明すれば、責任を免れる」といった選択肢があれば、それは「×」です。\n所有者は「最後の砦」**として、どんな事情があっても被害者に対しては責任を負わなければなりません。",
+          "1. 根拠：動物の占有者の責任（民法718条）民法718条1項は、「動物の占有者」が賠償責任を負うと規定しています。ここでいう「占有者」とは、その動物を自己のために事実上支配している人を指します。2. 「占有補助者（せんゆうほじょしゃ）」とは何か？今回のポイントは、雇人（従業員）が**「占有補助者」**であるという点です。占有補助者の定義： 家事使用人や従業員のように、持ち主（占有者）の指示・命令に従って、その物の管理を手伝っているだけの人を指します。法律上の扱い： 占有補助者は、法律上の「占有者」とはみなされません。たとえ現実に犬のリードを持って散歩させていたとしても、それは主人の「手足」として動いているに過ぎず、法律上の占有は依然として飼い主（主人）にあります。3. なぜ「雇人は責任を負わない」のか？記述4では「現実に散歩を行っていた以上、動物占有者の責任を負う」とされていますが、これは以下の理由から誤りです。占有権の不在： 占有補助者には占有権が認められないため、718条1項の「占有者」には当たりません。管理者責任（718条2項）のハードル： 占有者に代わって動物を管理する者（管理者）も責任を負いますが、単なる占有補助者はこの「管理者」にも通常は含まれません。管理者に当たるには、ある程度の独立した管理権限（ペットホテルやプロのトレーナーなど）が必要です。したがって、散歩中の従業員が単なる占有補助者である場合、その人は718条の責任（動物占有者としての責任）を負うことはありません。4. 受験生のための「責任の所在」まとめこの問題を含め、不法行為の「誰が責任を負うか」シリーズを整理しましょう。項目責任を負うかポイント飼い主（主人）負う法律上の「占有者」であるため（718条1項）。占有補助者（雇人）負わない単なる「手足」であり、占有者ではない。プロの訓練士負う「占有者に代わって管理する者」に当たる（718条2項）。合格へのアドバイス：試験で「占有補助者」という言葉が出てきたら、その瞬間に**「この人は法律上の占有者ではない＝718条の責任主体ではない」と判断してください。「現実に散歩していた」という事実（見た目）に惑わされず、「法律上の支配権（パワー）」**がどこにあるかを見抜くのがコツです。",
+          "1. 判旨の核心：客観的関連共同（きゃっかんてきかんれんきょうどう）通常、「共同不法行為（719条）」と聞くと、数人がグルになって誰かを襲うような「共謀」をイメージしがちですが、判例はもっと広く捉えています。判例のロジック不可分な一個の結果： 交通事故での負傷と、病院での不適切な治療。これらが合わさって「死亡」という、切り離せない一つの結果が起きました。救命の可能性： 適切な治療があれば「高度の蓋然性（高い確率）」で助かっていたのであれば、医療ミスも死亡の有力な原因と言えます。結論： 運転手の過失と医師の過失が、客観的に関連して一つの損害を作り出した。したがって、両者は共同不法行為者として、被害者に対して連帯して全額の賠償責任を負う（不真正連帯債務）。2. なぜ「共同不法行為」にする必要があるのか？もしこれを共同不法行為と認めず、個別の責任（709条）だけにしてしまうと、被害者側に酷な結果を招く恐れがあるからです。被害者保護： 「どちらがどれだけ死に追いやったか」を被害者が証明するのは不可能です。共同不法行為とすることで、被害者は運転手でも医師でも、**「どっちに対しても全額請求できる」**という強い立場になれます。加害者間の精算： どちらかが全額払った後は、加害者同士（運転手と医師）の間で、それぞれの過失割合に応じて「割り勘」の計算（求償）をすればよい、という考え方です。3. 受験生のための「因果関係」の見極め試験でこの論点が出たとき、注意すべきキーワードは以下の通りです。キーワード意味高度の蓋然性適切な治療があれば、まず間違いなく助かっていたと言えるレベル。不可分の一個の結果交通事故だけで死んだのか、ミスだけで死んだのか判別できない状態。相当因果関係どちらの行為も、死亡という結果を招く原因として認められる。合格へのアドバイス：記述の中で、**「交通事故と医療事故の因果関係が遮断される（切り離される）」といった表現が出てきたら、それは「×（誤り）」**です。判例は、後から起きた医療ミスがよほど異常なものでない限り、両方の責任を一つにつなげて考えます。"
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -20817,7 +23249,7 @@ export const SUBJECTS = {
         "isReorder": false,
         "explain": "不法行為に関する次の記述のうち、民法の規定および判例に照らし、妥当なものはどれか。",
         "wordBank": "",
-        "memo": "",
+        "memo": "1. 根拠：未成年者の責任能力（民法712条）民法712条では、未成年者が他人に損害を与えた場合の責任について、以下のように定めています。民法712条未成年者は、他人に損害を加えた場合において、自己の行為の責任を弁識するに足りる知能（責任能力）を備えていなかったときは、その行為について賠償の責任を負わない。この条文を裏返すと、**「責任能力（自分のしたことの是非を判断できる能力）があるなら、未成年者本人が責任を負う」**ということになります。記述1はこの原則を正確に述べています。2. 「責任能力」とは具体的に何か？記述にある「道徳上の是非善悪を判断できるだけの能力」というのは、判例・通説における責任能力の定義そのものです。判断の物差し： 単に「何をしたか」がわかるだけでなく、その行為が**「社会的にやってはいけないことであり、自分に責任が生じる」**ということを理解できる知能を指します。年齢の目安： 判例上、おおむね**11歳〜12歳前後（小学校卒業程度）**が境界線とされています。3. 受験生のための「責任のバトンタッチ」整理試験では、この「能力がある場合」と「ない場合」で、誰が賠償金を払うのかという責任の所在の変化がよく問われます。未成年者に責任能力が……誰が賠償責任を負うか根拠条文「ある」とき (中高生など)未成年者本人民法709条・712条「ない」とき (幼児・小学生など)監督義務者（親など）民法714条注意点：親の責任はどうなる？未成年者本人に責任能力がある場合、原則として親は714条の責任を負いません。しかし、判例（最判昭49.3.22）では、「親の監督不足が原因で事故が起きた」という**親自身の不法行為（709条）**が認められる場合には、本人に能力があっても親が責任を負うことがあるとしています。4. 学習のアドバイスこの記述1を読み解く際は、以下のポイントを意識してください。「道徳上の是非善悪」＝「責任能力」： 難しい言葉ですが、法的な用語の言い換えとしてそのまま受け止めてOKです。「本人が負う」という結論： 責任能力がある以上、たとえ未成年であっても「独立した一人前の加害者」として扱われる、という点が民法のスタンスです。",
         "slots": [],
         "refId": "",
         "isBonus": false,
@@ -20844,6 +23276,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "1. 根拠：未成年者の責任能力（民法712条）民法712条では、未成年者が他人に損害を与えた場合の責任について、以下のように定めています。民法712条未成年者は、他人に損害を加えた場合において、自己の行為の責任を弁識するに足りる知能（責任能力）を備えていなかったときは、その行為について賠償の責任を負わない。この条文を裏返すと、**「責任能力（自分のしたことの是非を判断できる能力）があるなら、未成年者本人が責任を負う」**ということになります。記述1はこの原則を正確に述べています。2. 「責任能力」とは具体的に何か？記述にある「道徳上の是非善悪を判断できるだけの能力」というのは、判例・通説における責任能力の定義そのものです。判断の物差し： 単に「何をしたか」がわかるだけでなく、その行為が**「社会的にやってはいけないことであり、自分に責任が生じる」**ということを理解できる知能を指します。年齢の目安： 判例上、おおむね**11歳〜12歳前後（小学校卒業程度）**が境界線とされています。3. 受験生のための「責任のバトンタッチ」整理試験では、この「能力がある場合」と「ない場合」で、誰が賠償金を払うのかという責任の所在の変化がよく問われます。未成年者に責任能力が……誰が賠償責任を負うか根拠条文「ある」とき (中高生など)未成年者本人民法709条・712条「ない」とき (幼児・小学生など)監督義務者（親など）民法714条注意点：親の責任はどうなる？未成年者本人に責任能力がある場合、原則として親は714条の責任を負いません。しかし、判例（最判昭49.3.22）では、「親の監督不足が原因で事故が起きた」という**親自身の不法行為（709条）**が認められる場合には、本人に能力があっても親が責任を負うことがあるとしています。4. 学習のアドバイスこの記述1を読み解く際は、以下のポイントを意識してください。「道徳上の是非善悪」＝「責任能力」： 難しい言葉ですが、法的な用語の言い換えとしてそのまま受け止めてOKです。「本人が負う」という結論： 責任能力がある以上、たとえ未成年であっても「独立した一人前の加害者」として扱われる、という点が民法のスタンスです。",
+          "1. 根拠：責任能力の例外（民法713条但書き）民法713条は、以下のような二段構えのルールになっています。民法713条精神上の障害により自己の行為の責任を弁識する能力を欠く状態にある間に他人に損害を加えた者は、その賠償の責任を負わない。ただし、故意又は過失によって一時的にその状態を招いたときは、この限りでない。2. 「自ら招いた」なら責任は免れない記述2には「過失によって一時的にその状態を招いたとしても、損害賠償の責任を負わない」とありますが、この後半部分が間違いです。具体例：お酒や薬物この例外ルール（但書き）が適用される代表的なケースは、**「泥酔」**です。原則： 意識を失うほど酔っ払って判断能力がない状態で他人の物を壊した場合、本来は「責任無能力」として免責されるはずです。例外： しかし、**「自分で（故意または過失で）そこまでお酒を飲んでその状態になった」**のであれば、話は別です。自業自得とみなされ、不法行為者としてしっかり責任を負わされることになります。3. 受験生のための整理表「責任能力がない」と言い張れるかどうかは、その状態になった「原因」がどこにあるかで決まります。精神上の障害の原因賠償責任の有無理由・ポイント病気や先天的障害などなし本人に落ち度がないため（713条本文）。故意・過失による泥酔あり自ら招いた一時的な状態だから（713条但書き）。薬物の濫用あり泥酔と同様、自らの過失が認められる。4. 学習のアドバイスこの肢は、条文の「ただし書き」まで正確に覚えているかを試す、典型的なひっかけ問題です。攻略のヒント「一時的に」という言葉に注目： ずっと病気なのではなく、「一時的に」その状態になったということは、何かきっかけ（お酒など）があったのではないか？と疑ってみましょう。「自業自得」の感覚： 法律は「自分で自分をコントロールできない状態にした人」に対しては、たとえその瞬間に意識がなくても、原因を作った時点の過失を捉えて責任を負わせます。",
+          "不法行為における「違法性阻害事由（いほうせいそがいじゆう）」、つまり「本来はダメだけど、この状況なら責められないよね」というルールの区別に関する問題ですね。この記述3は、結論から申し上げますと**「妥当ではない（誤り）」**です。一見すると身を守るための行動なので正しいように思えますが、法律用語の使い分けがポイントになります。このケースで成立するのは「正当防衛」ではなく、**「緊急避難（きんきゅうひなん）」**です。1. 「正当防衛」と「緊急避難」の違い民法720条には、この2つが並んで規定されています。どちらも「損害賠償しなくていいよ」というルールですが、**「誰に対して損害を与えたか」**で名前が変わります。項目正当防衛 (720条1項)緊急避難 (720条2項)対象悪いことをしてきた本人（加害者）無関係な第三者原因他人の「不正な侵害」他人の「物」から生じた危難などイメージ襲ってきた相手を突き飛ばす猛犬から逃げるために他人の家の塀を壊す2. なぜ「熊」のケースは緊急避難なのか？記述3のケースを整理してみましょう。原因： 野生の熊が襲ってきた（熊は人間ではないので「不正な侵害」には当たりません）。被害者： 板塀を壊された「他人（第三者）」。状況： 熊から逃げるという「急迫の危難」を避けるために、やむを得ず無関係な人の物を壊した。このように、「自分を襲ってきた相手（熊）」ではなく、「無関係な他人」に損害を与えてしまった場合は、正当防衛ではなく**「緊急避難」**が成立します。3. 受験生のためのひっかけ見破り術試験では、この2つを入れ替えて受験生を惑わせてきます。正当防衛になるケース： 「Aが殴りかかってきたので、Aを突き飛ばしてAの服を破いた」→ 悪い本人にやり返しているので正当防衛。緊急避難になるケース： 「Aが殴りかかってきたので、避けるために近くにあったBさんの植木鉢を割った」→ 無関係なBさんに迷惑をかけているので緊急避難。ポイント：損害を受けたのが**「悪いヤツ」か「関係ない人」か**。これだけで100%判断できます！4. 学習のアドバイスこの問題の「熊」という設定は非常に巧妙です。熊は法律上「物」に近い扱い（意思のある人間ではない）とされるため、熊から逃げる行為は「物からの危難」と整理されます。",
+          "1. 民法720条の「トリガー（きっかけ）」で見分ける民法における正当防衛と緊急避難の区別は、「誰の物を壊したか」ではなく、**「何が原因でその行動をとったか」**で決まります。項目正当防衛 (民法720条1項)緊急避難 (民法720条2項)原因（トリガー）他人の不法行為（人間による攻撃）他人の物から生じた危難（物や動物）対象（壊したもの）制限なし（加害者の物でも、第三者の物でもOK）その物（危難の原因となった物自体）今回のケース暴漢（人間）の攻撃が原因―成立する事由正当防衛―2. なぜ「窓」を壊しても正当防衛なのか？民法720条1項の条文には、こう書かれています。「他人の不法行為に対し、自己又は第三者の権利を守るため、やむを得ず加害行為をした者は、損害賠償の責任を負わない」ここには「加害者の物に損害を与えた場合に限る」とは書いてありません。つまり、原因が「人間の不法行為（暴漢）」である限り、自分を守るためにとった行動（窓を割る）は、たとえ第三者に損害を与えても、民法上は**「正当防衛」**のカテゴリで処理されるのです。3. 「熊」と「暴漢」の決定的な違い試験で最も狙われるひっかけの対比がこちらです。暴漢（人間）から逃げて窓を割る：原因は「不法行為（人間）」→ 正当防衛（720条1項）熊や犬（動物・物）から逃げて窓を割る：原因は「物（動物）の危難」→ 緊急避難（720条2項）覚え方のコツ：民法720条は、**「相手が人間（不法行為）なら正当防衛」「相手が物・動物なら緊急避難」**と、原因の種類で名前を使い分けている！と脳に刻んでください。4. 刑法との違い（混乱の元）もしあなたが「他人の物を壊したら緊急避難だ」と覚えているなら、それは刑法の知識かもしれません。刑法： 「正当防衛」は不正な侵害者本人に対する反撃に限られます。民法： 被害者の救済（賠償）がメインなので、原因が「人間」か「物」かで責任の性質を分けています。",
+          "1. 窓を割った人に請求できない理由（民法720条1項）暴漢という「人間の不法行為」から身を守るために窓を割った行為には、民法上の正当防衛が成立します。法律の効果： 正当防衛が成立すると、その行為は「違法ではない」とみなされます。結論： 不法行為（709条）の要件である「違法性」が消えるため、窓を割った本人に対して損害賠償を請求することはできなくなります。2. 暴漢に請求できる理由（民法720条3項）窓を割られた家主からすれば、自分は全く悪くないのに損をさせられた「とばっちり」の状態です。民法は、この不公平を解消するために以下の規定を置いています。民法720条3項前二項の規定は、被害者から危難を生じさせた者に対する損害賠償の請求を妨げない。法律の効果： 避難した人を免責する代わりに、その原因を作った「諸悪の根源（暴漢）」に責任を集中させます。結論： 家主は、暴漢に対して「お前のせいで窓を割られる損害を受けたぞ」と賠償を求めることができます。3. 試験対策：三者関係のまとめこの事例における請求の可否を整理すると、以下のようになります。登場人物立場損害賠償の可否根拠窓を割った人防衛者請求不可正当防衛（720条1項）で免責暴漢原因者請求可能危難発生者への請求（720条3項）家主被害者暴漢にのみ請求可公平の理念による責任転嫁学習のアドバイスこの問題のポイントは、**「民法上の正当防衛は、第三者を巻き込んでも成立する」という点と、「その場合、被害者は原因者に請求先を切り替える」**という二段構えのルールにあります。"
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -20902,6 +23341,12 @@ export const SUBJECTS = {
           "​婚姻届提出前の昏睡状態と婚姻の成否\n​■ 結論\n​原則として、婚姻は有効に成立しません。\n（ただし、判例には重要な「例外」があるため、試験対策としては後述のアドバイスまでセットで押さえてください）\n​■ 趣旨（なぜそうなるのか？）\n​婚姻は当事者の身分関係を劇的に変化させる契約であるため、「届出の時点」において、両者に真実婚姻する意思（婚姻意思）があることが必要とされています。\n​意思能力の必要性： 婚姻届を役所に受理してもらう際、当事者が意識を失っている（意思能力を欠いている）場合、その瞬間の婚姻意思を確認することができません。\n​翻意の可能性： 婚姻届を作成してから提出するまでの間に、気が変わる（翻意する）可能性もゼロではありません。そのため、判例は「届出時」の意思を重視します。\n​■ 試験におけるアドバイス\n​行政書士試験の対策としては、以下の**「原則」と「例外」の使い分け**が勝負を分けます。\n​原則：届出時の婚姻意思が必要\n民法上の大原則は、届出の瞬間に意思があることです。これを欠く婚姻は原則として「無効」となります（民法742条1号）。\n​超重要判例（最判昭45.10.31）：例外的に有効となるケース\n試験で最も問われるのはここです。判例は、「婚姻届を作成し、その意思に変更がないまま、たまたま届出前に意識を失ったに過ぎない場合」には、届出時に意思能力がなくても、婚姻を有効と認めています。\n​今回の相談内容の回答は「原則論」に立っていますが、試験では「特段の事情（翻意など）がない限り、有効となる」という判例の結論を問う問題が多発します。\n​記述式対策のキーワード\n「受理時における婚姻意思の欠如」「事前の作成」「翻意したと認められる特段の事情」といったフレーズを使えるようにしておきましょう。\n​この論点は、民法742条（婚姻の無効）の知識と、昭和45年の判例をセットで脳内リンクさせておくのがコツです。",
           "過去の養育費（婚姻費用）の分担請求\n■ 結論\n原則として、離婚訴訟の中で「過去の養育費」を併せて請求することはできません。\nこれらは、離婚とは別に「婚姻費用の分担」という手続きを通じて解決すべき問題とされています。\n\n■ 趣旨（なぜそうなるのか？）\n法律上、婚姻中の夫婦が分担すべき生活費（子供の養育費もこれに含まれます）を**「婚姻費用（婚費：こんぴ）」**と呼びます。\n\n性質の違い：\n\n離婚訴訟： 夫婦関係を「終わらせる」ための手続き。\n\n婚姻費用の請求： 夫婦である以上、お互いに助け合う義務（民法760条）に基づく、「婚姻の継続」を前提とした手続き。\n\n手続き（土俵）の違い：\nこれが受験上もっとも重要です。離婚そのものは「訴訟（裁判）」で行うことができますが、婚姻費用の分担額などは、原則として家庭裁判所の「調停・審判」という別枠の手続きで決めるルールになっています。\n\n■ 試験におけるアドバイス\n行政書士試験の民法（親族・相続）対策として、以下の3点を整理して記憶しましょう。\n\n「民法760条」の婚姻費用分担義務\n「夫婦は、その資産、収入その他一切の事情を考慮して、婚姻から生ずる費用を分担する」という条文です。ここには子供の養育費も当然に含まれます。この義務は「別居中であっても、離婚が成立するまで」続きます。\n\n婚姻費用 vs 養育費\n\n婚姻費用： 離婚が成立するまでの費用（自分＋子の生活費）。\n\n養育費： 離婚が成立した後の費用（子の生活費のみ）。\nこの「いつの時点の費用か」という区別を意識してください。\n\n過去の費用の遡及（そきゅう）請求\n試験で直接問われることは稀ですが、実務上は「請求（調停申し立てなど）をした時点」からしか認められない傾向があります。そのため、相談者のように「5年前から」と遡って請求するのは、法理論上は可能でも、現実的にはハードルが高いという背景も知っておくと理解が深まります。",
           "夫婦間の契約取消権の制限\n■ 結論\nDの取り消しは認められません。\n形式的には「婚姻中」であっても、実質的に婚姻関係が破綻している場合には、民法754条による取り消しはできないというのが判例の確立した見解です。\n\n■ 趣旨（なぜそうなるのか？）\n民法754条が「夫婦間の契約はいつでも取り消せる」としているのは、**「法は家庭に入らず」**という法格言に基づいています。\n\n平和な家庭への配慮： 円満な夫婦間での約束事に、いちいち法律が介入して「契約だから守れ！」と強制するのは、かえって家庭の平和を乱す可能性があると考えられました。\n\n道義への委ね： 夫婦間のことは、法律的な強制力よりも、当事者の愛情や道義に任せるのがふさわしいという考え方です。\n\nしかし、今回のケースのように**「既に破綻している夫婦」**には、守るべき「家庭の平和」がもはや存在しません。そのため、この条文の趣旨が妥当しなくなり、例外的に取り消しが認められなくなります。\n\n■ 試験におけるアドバイス\n行政書士試験に向けては、以下の「判例のロジック」を整理しておきましょう。\n\n条文の確認（民法754条）\n「夫婦間でした契約は、婚姻中、いつでも、夫婦の一方からこれを取り消すことができる。ただし、第三者の権利を害することはできない」という条文をまず脳内に入れましょう。\n\n判例による制限（超重要）\n試験で問われるのは「条文通りに取り消せるか」ではなく、**「取り消せないケースはどれか」**です。「実質的に婚姻関係が破綻している場合」は取り消せない、という結論を反射的に出せるようにしてください。\n\n記述式でのキーワード\n「法の介入を避け、当事者の道義に委ねるべきという趣旨が妥当しない」というフレーズは、記述式で理由を問われた際に非常に使いやすい表現です。\n\n「婚姻中」の意味\nこの取り消しができるのは「婚姻中」に限られます。離婚「後」には当然使えませんが、今回のケースのように「届出直前（婚姻中）」であっても、中身が伴っていなければNG、という点がひっかけポイントです。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -20980,6 +23425,13 @@ export const SUBJECTS = {
           "協議離婚における親権者の定めと届出の効力\n■ 結論\n正しい（〇）\n親権者を定めずに受理された離婚届であっても、離婚そのものは有効に成立します。\n\n■ 趣旨（なぜそうなるのか？）\n民法765条1項は、親権者が定められていない離婚届を「受理してはならない」と定めています。しかし、もし役所の過失などで誤って受理されてしまった場合について、同条2項は以下のように規定しています。\n\n民法765条2項\n「前項の規定に違反して受理されたときであっても、そのために、離婚の効力が妨げられることはない。」\n\n身分関係の安定： 一度受理され、戸籍に記載された身分関係（離婚したという事実）を、後から「手続きの不備」を理由に無効にしてしまうと、その後の再婚や相続関係などがすべて白紙に戻り、法的混乱を招きます。\n\n手続的要件と実質的要件の分離： 親権者の指定は「届出の受理要件（手続き上のルール）」ではありますが、離婚意思が合致している以上、「離婚そのものの有効性」を否定するほどではない、と法は判断しています。\n\n■ 試験におけるアドバイス\n行政書士試験では、この「手続きに違反しているが、有効になるケース」が非常によく狙われます。以下の3点を整理して覚えましょう。\n\n「受理してはならない」と「無効」は別物\n「～してはならない（765条1項）」という禁止規定があるからといって、それに違反した結果が必ずしも「無効」になるとは限りません。この2段構えの構造を意識してください。\n\n不備がある場合のフォロー\n離婚が有効になったとしても、親権者が空欄のままでは子が困ります。この場合、離婚後にあらためて父母の協議や家庭裁判所の審判によって親権者を定めることになります。\n\n他の届出との比較（重要！）\n\n婚姻届： 証人がいない等の不備があっても、受理されれば有効です。\n\n離婚届： 今回のケース（親権者の定めなし）でも、受理されれば有効です。\nこのように、戸籍に関する届出は「一度受理されたら、多少の不備では無効にしない（身分関係を安定させる）」という共通のバイアスがかかっていると考えると、正誤判断がしやすくなります。",
           "調停前置主義（いきなり裁判はできない）\n■ 結論\n民法上の離婚原因（770条1項）があったとしても、直ちに「訴え（裁判）」を提起することはできません。\nまずは家庭裁判所に「調停」を申し立てる必要があります。\n\n■ 趣旨（なぜそうなるのか？）\nこれを**「調停前置主義（ちょうていぜんちしゅぎ）」**といいます。\n\n家庭の円満な解決： 離婚のようなデリケートな身分関係の問題は、最初から法廷で勝ち負けを争う「訴訟」よりも、まずは話し合い（調停）で円満に解決を図るのが望ましいと考えられています。\n\nプライバシーの保護： 訴訟は原則として公開されますが、調停は非公開で行われます。当事者のプライバシーに配慮しつつ、柔軟な解決を目指すための仕組みです。\n\n■ 試験におけるアドバイス\n行政書士試験の対策としては、以下の3つのステップで整理しておきましょう。\n\n「調停前置主義」というキーワード\n人事訴訟（離婚や認知など）においては、訴えを提起する前に家庭裁判所の調停を経なければならないというルール（家事事件手続法257条）を確実に覚えましょう。\n\n例外の把握\n相手方が行方不明であるなど、「調停をすることが著しく不適当である」と裁判所が認める場合には、例外的にいきなり訴訟を起こせることもありますが、試験では「原則として調停が先」という点が最優先です。\n\n民法770条とのリンク\n民法770条に規定されている「不貞行為」や「悪意の遺棄」などの離婚原因は、あくまで「最終的に裁判で離婚を勝ち取るための条件」です。「実体法上の権利があること」と「どのような手続きで進めるか」は別問題であることを意識してください。",
           "有責配偶者からの離婚請求\n■ 結論\n有責配偶者からの離婚請求であっても、以下の3つの要件を満たせば認められます。\n単に「お前が悪いのだから離婚を言い出す権利はない」という倫理的な理由だけで、一律に退けることはしなくなりました。\n\n■ 趣旨（なぜそうなるのか？）\n日本の裁判所は、かつては「踏んだり蹴ったり判決（1952年）」と呼ばれた、有責配偶者からの請求を一切認めない厳しい立場をとっていました。しかし、実態として婚姻関係が完全に破綻し、形骸化しているのに、無理やり法律上の夫婦として縛り付けておくのは不自然であるという考え方（破綻主義への移行）が強まりました。\n\nただし、身勝手な離婚を許しすぎると相手方が路頭に迷うため、以下の**「3つのハードル（要件）」**を課すことでバランスをとっています。\n\n■ 試験におけるアドバイス\n行政書士試験では、この「3つの要件」を正確に暗記しているかどうかが勝負です。多肢選択式や記述式でも狙われやすい部分です。\n\n3つの要件をセットで覚える\n\n相当の長期間の別居： 両者の年齢や同居期間と比較して、十分に長いといえること。\n\n未成熟の子が存在しない： まだ経済的に自立していない子供がいないこと。\n\n苛酷条項（特段の事情がないこと）： 離婚によって相手方が精神的・社会的・経済的に極めて過酷な状況に追い込まれないこと。\n\nキーワード「一事をもって」\n問題文に「有責配偶者であるとの一事をもって（それだけの理由で）離婚が許されないとすることはできない」とあれば、それは「他の条件が整えば認めるよ」という意味です。この表現に慣れておきましょう。\n\n1952年の旧判例との対比\nもし問題に「有責配偶者からの請求は、信義則に反するため、いかなる場合も認められない」とあったら、それは昭和27年（旧判例）の立場なので、現在は「×」となります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21058,6 +23510,13 @@ export const SUBJECTS = {
           "ご提示いただいた問題は、配偶者が死亡した際の氏（名字）の扱いに関するものです。離婚の場合と比較して学習すると非常に整理しやすい論点です。\n\n結論から申し上げますと、この記述は**正しい（〇）**です。\n\n配偶者の死亡による復氏（民法751条1項）\n■ 結論\n配偶者が死亡した生存配偶者は、届け出ることによって、婚姻前の氏に戻ることができます。\nこれを「生存配偶者の復氏（ふくし）」と呼びます。\n\n■ 趣旨（なぜそうなるのか？）\n離婚の場合は、婚姻関係が解消されると同時に「原則として」元の名字に戻ります（復氏原則）。\n一方で、死別の場合は、残された配偶者の心情や生活環境を尊重する必要があります。\n\n意思の尊重： 亡くなった配偶者の名字を使い続けたいという人もいれば、実家の名字に戻りたいという人もいます。そのため、死別の場合は「自動的に戻る」のではなく、「本人の意思（届出）によって戻れる」という仕組みになっています。\n\n家庭裁判所の許可は不要： 離婚後の「婚氏続称」と同様、本人の届出のみで効力が生じます。\n\n■ 試験におけるアドバイス\n行政書士試験の親族法では、「離婚の場合」と「死別の場合」のルールの違いが頻出ポイントです。以下の3点を整理して覚えましょう。\n\n「自動的」か「選択的」か\n\n離婚： 原則として自動的に旧姓に戻る（戻したくない場合に届出が必要）。\n\n死別： 原則としてそのまま（戻したい場合に届出が必要）。\n\n期限の有無（超重要！）\n離婚後の婚氏続称（名字を維持する届出）は「3箇月以内」という期限がありましたが、死別による復氏届には期限がありません。 何年経ってからでも、自分のタイミングで旧姓に戻すことができます。\n\n「姻族関係終了届」との切り分け\nここが記述式などで最も狙われやすい部分です。\n\n名字を戻す（復氏届）：民法751条1項\n\n義実家との親戚関係を断つ（姻族関係終了届）：民法728条2項\nこの2つは全く別個の制度です。「名字を戻したからといって、自動的に義両親との親戚関係が切れるわけではない」という点は、正誤問題で非常によく出されます。",
           "今回の記述は、行政書士試験の民法（親族法）において、非常に多くの受験生が「親の名字が変われば、子供も自動的に（あるいは届出だけで）変わる」と勘違いして失点するポイントです。\n\n結論から言うと、この記述は**誤り（×）**です。\n\n子の氏の変更（親の離婚に伴うケース）\n■ 結論\n母と同じ氏を称するためには、市区町村役場への「届出」の前に、家庭裁判所の「子の氏の変更許可」を得る必要があります。\n単なる届出だけでは、子供の名字を変えることはできません。\n\n■ 趣旨（なぜそうなるのか？）\n日本の法律では、「親の離婚」と「子供の名字（および戸籍）」は切り離して考えられています。\n\n戸籍の独立性： 両親が離婚し、母が旧姓（乙川）に戻ったとしても、子供（一郎）は依然として父（甲山）の戸籍に残っており、名字も「甲山」のままです。\n\n子の利益の保護： 子供の名字を変えることは、子供のアイデンティティや社会生活に大きな影響を与えます。そのため、単なる親の都合や届出だけで変更を認めるのではなく、「家庭裁判所」が子供の福祉（利益）の観点から審査を行う必要があるとされています（民法791条1項）。\n\n■ 試験におけるアドバイス\nこの論点は、前回の「配偶者の死別・離婚による親自身の復氏」と対比させて覚えるのが鉄則です。\n\n「届出のみ」か「家裁の許可が必要」かの区別（超重要）\n\n親本人（離婚・死別）： 自分の意思（届出）だけで旧姓に戻れます（家庭裁判所の許可は不要）。\n\n子供： 名字を変えて親の新しい戸籍に入るには、必ず家庭裁判所の許可が必要です。\n\n民法791条1項の条文構成\n「子が父又は母と氏を異にする場合には、子は、家庭裁判所の許可を得て、市区町村長に届け出ることによって、その父又は母の氏を称することができる」という条文の構造を正確に記憶しましょう。\n\n記述式対策：キーワードのセット\n記述式で「子が母の氏を称するための手続き」を問われたら、**「家庭裁判所の許可を得て」「市区町村長に届け出る」**の2段階をセットで書けるようにしてください。どちらか一方が欠けても減点対象になります。\n\n[日本の家庭裁判所における「子の氏の変更許可申請」の手続きの流れ]",
           "養子縁組と氏（婚姻により氏を改めた者の特例）\n■ 結論\n太郎も花子も、引き続き「甲山」の氏を称します。\n太郎が養子になったからといって、夫婦の氏が「丙谷」に変わることはありません。\n\n■ 趣旨（なぜそうなるのか？）\n民法810条は「養子は、養親の氏を称する」と定めていますが、これには重要なただし書きがあります。\n\n民法810条（但書）\n「ただし、婚姻によって氏を改めた者については、婚姻の際に定めた氏を称する間は、この限りでない。」\n\nこの規定の目的は、「夫婦同氏の原則（民法750条）」を維持することにあります。\n\n夫婦の一体性の優先： もし太郎が養親の氏（丙谷）に変わってしまうと、妻の花子（甲山）と名字が分かれてしまい、「夫婦同氏」の原則が崩れてしまいます。\n\n混乱の防止： 婚姻によって一度氏を変えた者が、養子縁組のたびにさらに氏が変わると、社会生活上の混乱が大きくなります。そのため、法は「婚姻時の氏」を優先させることにしました。\n\n■ 試験におけるアドバイス\n行政書士試験では、この「810条但書」の適用条件を正確に整理しておく必要があります。\n\n「氏を改めた側」かどうかのチェック\n\n氏を改めた側（本問の太郎）： 養子になっても名字は変わりません（810条但書）。\n\n氏を改めていない側（本問の花子）： もし花子が単独で養子になった場合は、花子は「丙谷」になります。この場合、夫の太郎も（婚姻時に花子の氏を選んでいるため）連動して「丙谷」に変わります。\n\n夫婦共同養子のケースとの比較\n夫婦が**「共に」**同じ養親の養子になる場合は、二人そろって養親の氏に変わります。試験では「単独で養子になったのか」「夫婦で養子になったのか」という主語を慎重に読み取ってください。\n\n「氏」の変動パターンの暗記\n\n婚姻 ＞ 養子縁組（氏を改めた者の場合）\n\nこの優先順位を「婚姻氏優先の原則」として脳内にインデックスしておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21114,6 +23573,13 @@ export const SUBJECTS = {
           "ご提示いただいた記述は、民法796条の規定に関する問題です。この条文は、結婚している人が養子縁組をしようとする際のルールを定めています。\n\n結論から申し上げますと、この記述は**正しい（〇）**です。\n\n夫婦の一方が養子縁組をする際の配偶者の同意\n■ 結論\n正しいです。\n配偶者のある者が養子縁組をするには、原則としてその配偶者の同意を得なければなりません。ただし、配偶者が意思を表示できない場合（意識不明や行方不明など）は例外となります。\n\n■ 趣旨（なぜそうなるのか？）\n養子縁組をすると、そこに新しい親子関係が生まれます。\n\n平穏な婚姻生活の維持： 夫婦は生活を共にしているため、一方が勝手に誰かと親子関係を結ぶと、相続関係が複雑になったり、扶養義務が生じたりするなど、もう一方の配偶者の生活にも重大な影響を及ぼします。\n\n不利益の防止： 配偶者の知らないところで勝手に家族（相続人）を増やされるといった不利益から、配偶者を保護するために「同意」を必要としています。\n\n■ 試験におけるアドバイス\n行政書士試験では、「未成年者を養子にする場合」と「成年者を養子にする場合」のルールの違いを正確に見分けることが得点のカギとなります。\n\n「共同」か「同意」かの区別（超重要！）\n\n未成年者を養子にする場合（民法795条）：原則として、夫婦が**「共同で」**養親にならなければなりません。\n\n成年者を養子にする場合（民法796条）：夫婦の一方が**「単独で」養親になれます。ただし、配偶者の「同意」**が必要です。\nこの「共同（二人で親になる）」と「同意（一人が親になるのを認める）」の違いは、択一式で非常によく狙われます。\n\n例外規定のセット：意思表示ができないとき\n条文の後半にある「意思を表示することができないとき」という例外は、795条（未成年者）にも796条（成年者）にも共通して存在します。「いかなる場合も同意が必要」という極端な選択肢が出たら「×」と判断しましょう。\n\n嫡出子との関係（応用）\n「配偶者の嫡出子」を養子にする場合は、夫婦共同でなくてもよい（単独でOK）という例外（795条但書）もあります。余裕があれば、ここもセットで押さえておくと完璧です。",
           "尊属・年長者の養子縁組の禁止とその効力\n■ 結論\n誤り（×）です。\nこの養子縁組は、**「無効」ではなく「取り消しができる」**状態にすぎません。また、取り消しの対象となるのは、年長者であるHを養子とした妻Gとの間の縁組です。\n\n■ 趣旨（なぜそうなるのか？）\n民法第793条は、「尊属又は年長者は、これを養子とすることができない」と定めています。\n\n年齢の逆転防止： 自分より年上の人や、家系図上で上の代の人（伯父・伯母など）を養子にすることは、家族秩序（世代の順序）を乱すため禁止されています。\n\n本事案の検討：\n\n夫F（70歳）と養子H（58歳）の関係：Hは年下なので、Fが養親になることは有効です（兄弟間でも年下なら養子にできます）。\n\n妻G（55歳）と養子H（58歳）の関係：Hは年長者にあたります。したがって、GがHを養子にすることは、民法793条に違反します。\n\n効力の違い（ここが試験の急所）：\n民法において、養子縁組が「無効（最初からなかったことになる）」となるのは、「縁組の意思がないとき」と「届出をしないとき」の2点のみです（民法802条）。それ以外の要件違反（今回のような年齢制限違反など）は、すべて**「取り消し（裁判所に訴えて取り消してもらうまで有効）」**となります（民法804条）。\n\n■ 試験におけるアドバイス\n行政書士試験対策として、以下の「整理の公式」を脳内に刻んでおきましょう。\n\n「無効」と「取り消し」の完全分離\n「～してはならない（禁止規定）」に違反したからといって、すべてが無効になるわけではありません。「無効」は非常に限定的であることを意識してください。\n\n兄弟姉妹は「尊属」ではない\n民法793条の「尊属」とは、父母や祖父母などの直系尊属を指します。兄弟姉妹は「傍系」ですので、「年下であれば」兄弟を養子にすることは可能です。本問のFとHの関係がこれにあたります。\n\n共同縁組の落とし穴\n夫婦で養子縁組をする際、**「養子のほうが配偶者の片方よりも年上」**というケースは、ひっかけ問題の定番です。\n\n夫からはOKだが、妻からはNG（逆も然り）。\n\nこの場合、NGな方の縁組が「取り消し」の対象となります。\n\n「年長者」の判断基準\n1日でも早く生まれていれば「年長者」です。試験では本問のように具体的な年齢が示されることが多いので、反射的に比較する癖をつけましょう。",
           "普通養子縁組における実父母との関係■ 結論Mと実父母（K・L）との実親子関係は、終了しません。普通養子縁組においては、養親との間に新たな親子関係が生じる一方で、実親との関係もそのまま残ります。■ 趣旨（なぜそうなるのか？）日本の養子制度には「普通養子」と「特別養子」の2種類があり、その性質は大きく異なります。普通養子縁組（原則）： 養子に「新しい親」を作ることを目的としますが、実親との血縁関係を法的に断ち切る必要まではないと考えられています。その結果、養子は**「養親」と「実親」の両方の親を持つ**ことになります。特別養子縁組（例外）： 家庭環境に恵まれない子の福祉のために、実親との関係を完全に断ち切り、養親を「実の親」と同じ状態にする制度です。こちらの場合のみ、実親子関係が終了します。■ 試験におけるアドバイス行政書士試験の民法（親族法）では、この2つの制度の「効力の違い」を比較させる問題が頻出です。以下の表をイメージして整理しましょう。比較項目普通養子縁組特別養子縁組実親との関係継続する終了する相続権実親・養親の両方から相続する養親からのみ相続する扶養義務実親・養親の両方に対して負う養親に対してのみ負う離縁（解消）協議や裁判で可能原則としてできない（極めて困難）「相続権」とのリンクが重要「実親との関係が続く＝実親が亡くなったときに相続できる」ということです。ここをセットで覚えておくと、遺産相続の計算問題（相続分）でも迷わなくなります。主語のチェック問題文が「普通養子」となっているか「特別養子」となっているかを、試験会場では必ずペンで囲って確認してください。年齢のヒント（応用）特別養子縁組は原則として「15歳未満（例外あり）」という年齢制限があります。今回のMは10歳なので、どちらの可能性もありましたが、問題文に「普通養子」と明記されているため、実親との関係は残ると判断します。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21192,6 +23658,13 @@ export const SUBJECTS = {
           "特別養子縁組における本人の同意■ 結論すべてのケースで同意が必要なわけではありません。特別養子となる者が15歳に達している場合には、その本人の同意が必要ですが、15歳未満の場合には、本人の同意は要件とされていません。■ 趣旨（なぜそうなるのか？）特別養子縁組は、もともと「乳幼児（6歳未満）」を主な対象としてスタートした制度でした。そのため、本人の意思を確認することが物理的に不可能なケースが前提とされていました。しかし、法改正により対象年齢が「原則15歳未満（例外18歳未満）」に引き上げられたことで、中高生など自分の意思をはっきり持っている子供も対象となりました。15歳以上の尊重： 15歳は遺言や普通養子縁組の承諾ができる「判断能力が備わった年齢」とみなされます。そのため、本人の意思に反して強制的に実親との縁を切ることは適当ではないため、同意が必須となりました（民法817条の11）。15歳未満の保護： 15歳未満（特に乳幼児）については、本人の同意を得ることは難しいため、同意は要件とせず、家庭裁判所が「子の利益」の観点から総合的に判断します。■ 試験におけるアドバイス行政書士試験の対策としては、以下の**「15歳」という境界線**を軸に整理しましょう。「15歳」というマジックナンバー親族法では、15歳は「意思能力の目安」として何度も登場します。遺言ができる年齢：15歳普通養子で自ら承諾できる年齢：15歳特別養子で本人の同意が必要な年齢：15歳以上これらをセットで「15歳＝身分上の決断ができる年齢」と覚えておくと、判断が容易になります。「父母の同意」との混同に注意（重要！）実父母の同意： 原則として、子の年齢に関わらず必要です（虐待がある場合などの例外あり）。本人の同意： 15歳以上の場合のみ必要です。問題文で「同意が必要」とあるとき、それが「親」のことなのか「本人（子）」のことなのかを、問題文の主語から正確に読み取りましょう。多肢選択式・記述式キーワード「15歳に達している」「本人の同意」「子の利益のために特に必要がある」といった表現は、改正法の重要キーワードです。特別養子縁組の年齢制限まとめ項目原則例外対象者の年齢15歳未満15歳前から監護していた場合等は18歳未満まで本人の同意不要（15歳未満）必要（15歳以上のとき）",
           "特別養子縁組による親族関係の終了\n■ 結論\n正しい（〇）\n特別養子縁組が成立すると、実父母およびその血族との親族関係は終了します（民法817条の9）。その結果、実親の相続人としての地位も失います。\n\n■ 趣旨（なぜそうなるのか？）\n特別養子縁組の目的は、家庭環境に恵まれない子に「法的な実子」と変わらない安定した家庭を提供することにあります。\n\n完全な身分関係の切り替え： 実父母との関係を残したままだと、後に実親が親権を主張したり、遺産相続で紛争が生じたりするなど、養子側の家庭の平和が乱されるリスクがあります。\n\n心理的安定： 実親との法的な縁を完全に断ち切ることで、養親を「唯一の親」として安心して育つことができる環境を整えます。\n\n■ 試験におけるアドバイス\n行政書士試験の民法（親族・相続）対策として、以下の3点を整理して記憶に定着させましょう。\n\n「原則として」の言葉に隠れた例外（ひっかけ対策）\n条文には「ただし、配偶者の一方が他方の嫡出子を養子とする場合における、その他方及びその血族との親族関係については、この限りでない」という例外があります（817条の9但書）。\n\n例：夫が「妻の連れ子」を特別養子にした場合、妻と子の親子関係は当然ながら終了しません。この例外パターンは、正誤問題の「いかなる場合も終了する」という選択肢をバツにするための知識として必須です。\n\n相続権の「二重取り」ができるか？\n\n普通養子： 実親・養親の両方の相続人になれる。\n\n特別養子： 養親の相続人にしかなれない（実親とは縁が切れているため）。\nこの対比は、相続分の計算問題で「養子が誰の分を相続できるか」を判断する際の基礎知識となります。\n\n戸籍上の表記（実務的視点）\n普通養子の場合、戸籍には「養子」と記載されますが、特別養子の場合は（法改正等の変遷はありますが）「長男」「長女」のように実子と同様の表記がなされます。これほどまでに「実子に近い扱い」をするのが特別養子なのだ、というイメージを持つと、効果の強さを覚えやすくなります。",
           "特別養子縁組の離縁（民法817条の10）\n■ 結論\n「虐待等の事由」と「実父母の監護可能性」の両方の条件が「すべて」満たされた場合のみ、離縁が認められます。\nご提示の文章のように「どちらか一方（または）」では足りず、**累積的（AND）**に満たす必要があります。\n\n■ 趣旨（なぜそうなるのか？）\n特別養子縁組は、実親子関係を完全に遮断して「一生、本当の親子として生きる」ことを前提とした制度です。そのため、普通養子のように「合意したからやめる」ということは一切認められません。\n\nただし、**「養親からひどい虐待を受けている」という地獄のような状況になった場合、子供を救い出す必要があります。しかし、単に離縁するだけでは子供は路頭に迷ってしまいます。\nそこで、「実の親がちゃんと育てられる状態にある（受け皿がある）」**という条件もセットにすることで、初めて子供を救い出すための離縁が認められるのです。\n\n■ 試験におけるアドバイス\n行政書士試験では、この「離縁」のルールが普通養子と正反対であるため、対比問題として非常に出題されやすいです。\n\n「AND（かつ）」か「OR（または）」か\n\n特別養子の離縁要件は、①養親側の不適格事由 「かつ」 ②実親側の監護可能事由、の2段構えです。試験ではここを「または」と入れ替えてくるのが定番のひっかけです。\n\n請求できる人は誰か？（超重要！）\n\n離縁を請求できるのは、**「子」「実父母」「検察官」**に限られます。\n\n養親（育てている親）からの離縁請求は絶対に認められません。「育ててみたけど大変だからやっぱりやめる」という身勝手な理由を封じるためです。\n\n普通養子との比較表を脳内に作る\n\n普通養子： 協議（話し合い）で離縁できる。\n\n特別養子： 協議離縁は不可。裁判所の審判が必要で、かつ極めて厳しい要件がある。\n\n特別養子の離縁要件まとめ（暗記用）\n以下のすべてに該当すること：\n\n養親による虐待、悪意の遺棄、その他子の利益を著しく害する事由がある。\n\n実父母が相当の監護をすることができる。\n\n子の利益のために特に必要があると認められる。\n\nこの「特別養子」の厳しいルールを理解すると、親族法の「子の福祉（子供の幸せ）」を最優先にするという基本姿勢が見えてきますね。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21248,6 +23721,13 @@ export const SUBJECTS = {
           "成年後見制度の3類型と能力の程度■ 結論「著しく不十分」な場合に開始するのは、成年後見ではなく「保佐（ほさ）」です。成年後見が開始されるのは、事理を弁識する能力を**「欠く状況にある」**者です。■ 趣旨（なぜそうなるのか？）成年後見制度は、本人の判断能力の度合いに応じて、保護の強さを3段階に分けています。後見（最も重い）： 能力を**「欠く状況」**にある（常に判断ができない状態）。保佐（中間）： 能力が**「著しく不十分」**。補助（最も軽い）： 能力が**「不十分」**。この「言葉の階段」を一段でも間違えると、本人の自己決定権を過剰に制限したり、逆に保護が足りなくなったりするため、法律上厳格に区別されています。■ 試験におけるアドバイス試験対策としては、以下の「キーワードの対応」を反射的に引き出せるようにするのが得策です。「形容詞」のひっかけに注意欠く状況 ＝ 後見（セット：成年後見人）著しく不十分 ＝ 保佐（セット：保佐人）不十分 ＝ 補助（セット：補助人）※「著しく」があるかないかで、保佐か補助かが決まります。開始のための「本人の同意」の要否ここもセットで狙われる超重要ポイントです。後見・保佐： 開始にあたって本人の同意は不要（判断能力がかなり低いため）。補助： 開始にあたって本人の同意が必要（まだ判断能力がある程度残っているため）。申立権者の範囲（民法7条など）本人、配偶者、四親等内の親族、検察官、そして実務上多い市町村長などが申し立てることができます。この「誰が言えるか」というリストも、記述式や多肢選択式でパーツとして使われます。成年後見・保佐・補助の比較まとめ類型能力の状態本人の同意（開始時）後見欠く状況にある不要保佐著しく不十分不要補助不十分必要「欠く」→「著しく不十分」→「不十分」という3段階のグラデーションを、脳内の「判断能力メーター」としてイメージしておくと、ケアレスミスを防げます。",
           "年後見人の職務と監督義務者責任\n■ 結論\n成年後見人であるという理由だけで、当然に法定の監督義務者（民法714条）として責任を負うわけではありません。\n実務および判例上、成年後見人の主な任務は「財産管理」や「契約などの法律行為」であり、本人の行動を24時間監視するような「事実行為としての監督」までは含まれないと解されています。\n\n■ 趣旨（なぜそうなるのか？）\nこの論点を理解するには、**「身上保護（契約などの手配）」と「事実行為としての見守り」**を切り分ける必要があります。\n\n身上保護義務（民法858条）：\n成年後見人は、本人の生活や療養看護に関する事務（入院契約を結ぶ、介護サービスを申し込むなど）を行う義務があります。これはあくまで「法律上の手配」をする義務です。\n\n監督義務者責任（民法714条）：\n精神上の障害により責任能力がない人が他人に損害を与えた場合、その人を「監督する法定の義務を負う者」が賠償責任を負います。\n\n判例（最判平28.3.1 JR東海事件）： 最高裁は、成年後見人は本人の意思を尊重し、自立を助ける立場にあるため、**「当然に監督義務を負う者には当たらない」**と判断しました。\n\nただし、後見人が本人と同居して身の回りの世話を直接行っているなど、実質的に監督を引き受けているような「特別な事情」がある場合に限り、例外的に責任を問われる可能性があります。\n\n■ 試験におけるアドバイス\n行政書士試験では、この「JR東海事件」の判決内容を知っているかどうかが直接問われます。\n\n「当然に」という言葉に注意！\n法律の問題で「当然に」「常に」「いかなる場合も」という断定的な言葉が出てきたら、例外がないか疑ってください。成年後見人の責任については、**「原則として責任を負わない（当然には負わない）」**が正解です。\n\n身上保護 ＝ 介護ではない\n成年後見人の仕事は「介護（おむつを替える、散歩に付き添うなど）」そのものではありません。あくまで「介護サービスを受けるための契約をする」ことです。この区別ができると、監督責任を負わない理由が納得しやすくなります。\n\n民法858条のキーワード\n「成年被後見人の意思を尊重し、かつ、その心身の状態及び生活の状況に配慮しなければならない」というフレーズは、記述式や多肢選択式で狙われる可能性があります。\n\nこの判例は、現代の高齢化社会において「誰が責任を取るのか」という切実な問題を扱っており、試験でも非常によく出題されます。",
           "後見監督人の欠格事由\n■ 結論\n正しいです。\n後見人の配偶者、直系血族（父母・祖父母・子・孫など）、および兄弟姉妹は、後見監督人になることができません。\n\n■ 趣旨（なぜそうなるのか？）\n後見監督人の最も重要な任務は、**「後見人の事務を監督すること（ちゃんとやっているかチェックすること）」**です（民法851条1号）。\n\n馴れ合い（共謀）の防止： もし後見人の一番身近な親族（妻や夫、親、兄弟など）が監督人になってしまうと、身内びいきで不正を見逃したり、一緒に財産を使い込んだりするリスクが高まります。\n\n実効性の確保： 公正・中立な立場から厳しくチェック機能を果たせる人を置くために、後見人と利害関係が極めて近い「近親者」を法律で排除しています。\n\n■ 試験におけるアドバイス\n行政書士試験の対策としては、以下の「誰がダメなのか」の範囲と、関連知識を整理しましょう。\n\n「三親等内」という言葉に惑わされない\n条文は具体的に「配偶者、直系血族、兄弟姉妹」と限定しています。例えば、「後見人の叔父（三親等）」は、欠格事由には含まれていません（理屈上はなれます）。「親族なら誰でもダメ」というひっかけに注意してください。\n\n後見人の欠格事由（847条）との比較\n後見監督人の欠格事由（850条）は、後見人の欠格事由に上乗せされる形で存在します。\n\n後見人になれない人： 未成年者、破産者、行方の知れない者など（共通）。\n\n後見監督人だけになれない人： 後見人の近親者（本問の内容）。\nこの「後見人と監督人の身分関係」を問う問題は、親族法の中でも定番中の定番です。\n\n後見監督人の権限（民法851条）\n監督人が具体的に何をするのか、以下のキーワードをセットで押さえましょう。\n\n後見人の事務の監督。\n\n後見人が欠けた場合の家裁への報告・選任申し立て。\n\n急迫の事情がある場合の必要な処分（応急処分）。\n\n後見人と被後見人の利益が相反する場合の代理（特別代理人の代わり）。\n\nこの論点は、後見監督人が「後見人の味方」ではなく「被後見人（守られる側）の味方」であることを意識すると、なぜ近親者がダメなのかが腑に落ちるはずです。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21304,6 +23784,13 @@ export const SUBJECTS = {
           "預金債権と遺産分割（平成28年大法廷決定）■ 結論預金債権（普通預金、定期預金など）は、当然には分割されず、遺産分割の対象となります。相続開始と同時に法定相続分に応じてバラバラに分かれることはなく、遺産分割協議が整うまでは、共同相続人の「準共有」の状態に置かれます。■ 趣旨（なぜ判例が変わったのか？）かつての最高裁は「預金はお金（可分債権）なのだから、相続の瞬間に法律上の割合で自動的に分かれる」としていました。しかし、これには実務上の大きな問題がありました。柔軟な解決の妨げ： 「不動産は長男が継ぐ代わりに、預金は次男が多めにもらう」といった調整をしたい場合でも、預金が勝手に分かれてしまうと、不公平を是正するのが難しくなります。不公平の是正： 生前に多額の援助を受けた相続人（特別受益）がいる場合、預金も遺産分割の対象に含めて計算しないと、公平な分配が実現できません。これらの理由から、2016年（平成28年）の最高裁大法廷決定により、**「預金債権は遺産分割の対象に含める」**という現在のルールに改められました。■ 試験におけるアドバイス行政書士試験では、この「判例変更」そのものと、それに伴う「法改正」のセットが狙われます。「当然分割」か「遺産分割の対象」か旧判例： 当然に分割される。現判例： 当然には分割されない（遺産分割の対象になる）。このキーワードの入れ替えに注意してください。【超重要】改正法による「仮払い制度」（民法909条の2）預金が遺産分割の対象になったことで、「協議が終わるまで1円も下ろせない」という不都合が生じました。これに対応するため、2018年（平成30年）の法改正により、遺産分割前でも一定額までは単独で払い戻せる制度が新設されました。払い戻し可能額の計算（端数切り捨て）以下の計算式で算出された金額（ただし、1つの金融機関につき150万円が上限）を、各相続人が単独で下ろせます。$$ \\text{預金額} \\times \\frac{1}{3} \\times \\text{その相続人の法定相続分} $$※この「1/3」という数字や「150万円」という上限金額は、択一式で非常に狙われやすい数字です。預金債権の扱いのまとめ項目以前（旧判例）現在（現判例・改正法）預金の帰属相続と同時に当然に分割される遺産分割まで準共有される遺産分割対象にならない対象になる単独での払戻し権利上は可能（実際は困難）改正法の仮払い制度で可能この「平成28年大法廷決定」は、相続法の歴史における大事件です。試験では「預金は可分債権だから当然分割される」という古い知識を前提とした選択肢が、いまだに「ひっかけ」として登場します。",
           "ご提示いただいた記述は、平成30年（2018年）の民法改正により新設された**「遺産分割前に処分された財産の扱い（民法906条の2）」**に関する論点です。結論から言うと、この記述は**誤り（×）**です。以前はご指摘のような「別途訴訟（不当利得返還請求など）」が必要で非常に手間がかかりましたが、現在は遺産分割の手続きの中で解決できるようになっています。遺産分割前に処分された財産の持ち戻し（民法906条の2）■ 結論他の共同相続人の同意があれば、処分された財産を「遺産分割時になお存するもの」とみなして、遺産分割の対象に含めることができます。これにより、処分された財産の価値を考慮した上で、残った財産の分け方を決めることが可能になりました。■ 趣旨（なぜ改正されたのか？）これまでは、相続人の一人が勝手に預金を下ろしたり不動産を売ったりすると、その財産は「遺産分割の対象外」となっていました。不公平の解消： 勝手に処分した人が「早い者勝ち」で得をして、正直に分割を待っていた人が損をするという不条理を防ぐためです。手続きの一本化： 遺産分割の話し合いとは別に、わざわざ「使い込まれたお金を返せ」という別の裁判（民事訴訟）を起こすのは、時間も費用もかかりすぎるため、家庭裁判所の遺産分割手続きの中でまとめて解決できるようにしました。■ 試験におけるアドバイス行政書士試験の対策としては、この制度が適用されるための**「同意」の範囲**が最大のひっかけポイントになります。「全員の同意」の原則と例外（民法906条の2第2項）原則： 共同相続人全員の同意が必要です。例外（ここが重要！）： 財産を勝手に処分した相続人本人の同意は不要です。つまり、「勝手に売った奴」以外の相続人たちだけで「あの財産も遺産に含めよう」と決めれば、強制的に計算に組み込めます。評価の基準時処分された財産を遺産に含める場合、その価値をいつの時点で計算するかが問題になります。原則として**「遺産分割時」**の価値で評価します（処分時の価格ではありません）。ただし、実務上は柔軟に判断されることもあります。「特別受益」との違い特別受益： 生前に被相続人から貰ったもの。906条の2： 死後に（勝手に）処分したもの。時系列が「生前か死後か」という違いを明確にしておきましょう。まとめ表項目改正前（旧運用）改正後（現行法）処分された財産の扱い遺産から消滅する遺産として存在するものとみなせる解決方法別途、民事訴訟が必要遺産分割の手続き内で解決可能必要な同意特になし（訴訟するしかない）処分者以外の相続人の合意この制度のおかげで、「遺産を使い込まれた！」というトラブルの解決スピードが格段に上がりました。試験では「処分した本人の同意が必要か？」という聞き方で受験生を揺さぶってくるので、注意してくださいね。",
           "遺産分割協議の時期（民法907条1項）■ 結論遺産分割協議は、相続開始後「いつでも」行うことができます。「3か月を経過しなければならない」といった待機期間に関する規定は存在しません。相続開始直後（例えば葬儀の当日であっても）から協議を始めること自体は法的に可能です。■ 趣旨（なぜそうなるのか？）遺産分割は、相続人間の共有状態を解消し、誰がどの財産を引き継ぐかを確定させる重要な手続きです。早期解決の推奨： 遺産が共有状態のままだと、財産の管理や売却に全員の合意が必要となり、かえって不便が生じます。そのため、法は「いつでも」分割できるとして、早期の解決を認めています。例外は「遺言」のみ： 被相続人が「遺言」によって分割を禁じている場合に限り、一定期間（5年以内）は分割が制限されます（民法908条）。■ 試験におけるアドバイスこの問題の最大の罠は、他の制度の「3か月」という有名な数字と混同させる点にあります。「3か月」は「熟慮期間」の数字（民法915条1項）相続人が、相続を「単純承認」するか「限定承認」するか、あるいは「放棄」するかを決めるための期間（熟慮期間）が相続開始を知った時から3か月以内です。3か月以内： 相続を捨てるか引き受けるかを決める期間。いつでも： 引き受けた遺産をどう分けるか話し合う時期。この2つを明確に切り分けましょう。令和3年改正：10年の壁（重要！）「いつでも」できる遺産分割ですが、令和3年の改正（令和5年4月施行）により、実質的な「期限」のようなものが設けられました。相続開始から10年経過後： 特別受益（生前贈与）や寄与分（介護の功労）を考慮した「具体的相続分」による分割ができなくなり、原則として**「法定相続分」**で画一的に分けることになります。「10年経っても分割はできるが、有利な計算（特別受益など）は使えなくなる」というルールです。「一部分割」の明文化問題文にある「遺産の全部または一部」という表現は正しいです。以前から解釈で認められていましたが、現在は条文に明記されています。期間に関する知識の整理表制度期間根拠条文遺産分割協議いつでも（原則）民法907条1項相続の承認・放棄3か月以内（熟慮期間）民法915条1項具体的相続分の主張10年以内（令和3年改正）民法904条の3遺言による分割禁止5年以内民法908条この問題は、行政書士試験の「親族・相続」分野で、基本的な条文知識を正確に記憶しているかを試す典型的な「ひっかけ」です。「いつでも」という言葉の力強さを覚えておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21360,6 +23847,13 @@ export const SUBJECTS = {
           "遺産分割前に処分された財産の持ち戻し（民法906条の2）■ 結論他の共同相続人の同意があれば、処分された財産を「遺産分割の時になお存するもの」とみなして、計算に含めることができます。したがって、「現存する相続財産のみ」が対象であるとする記述は、現在の法律では誤りとなります。■ 趣旨（なぜ改正されたのか？）以前は、遺産分割の対象は「分割時に現に存在する財産」に限定されるのが原則でした。そのため、一人が勝手に現金を使い込んでしまった場合、残った親族は「使い込まれた分を返せ」という別の民事訴訟（不当利得返還請求など）をわざわざ起こさなければなりませんでした。この改正により、**「使い込まれた分も遺産の中にまだあるもの」**として家庭裁判所の遺産分割手続きの中でまとめて計算できるようになり、迅速かつ公平な解決が可能になりました。■ 試験におけるアドバイス行政書士試験の対策としては、この規定が適用されるための**「同意」**のルールを正確に覚えましょう。「処分した人以外」の同意でOK（第2項）ここが最大のポイントです。原則：共同相続人の全員の同意が必要。重要：ただし、財産を処分した本人の同意は不要です。「勝手に使った奴」が反対しても、他の相続人たちの合意だけで強制的に計算に組み込めます。対象となる「処分」の範囲「現金を引き出して使った」というケースだけでなく、不動産を勝手に売却したような場合も含まれます。計算上の扱い例えば、遺産が1,000万円あり、そのうち300万円をAが勝手に使った場合：残った700万円 ＋ 使い込まれた300万円 ＝ 計1,000万円 を遺産として分けます。Aの取り分からは、すでに手元にある（使った）300万円分が差し引かれることになります。まとめ：遺産分割前に財産がなくなった場合項目改正前（原則）改正後（民法906条の2）分割の対象分割時に現存する財産のみ処分された分も含めることが可能必要な手続き別途、民事訴訟が必要な場合が多い遺産分割の手続き内で解決可能同意の要件（そもそも規定なし）処分者以外の共同相続人の同意この規定は、遺産分割における「早い者勝ち」を防ぐための強力な武器です。試験では「処分した本人の同意が必要である」といったひっかけ問題に注意してください。",
           "遺産分割の10年ルール（民法904条の3）■ 結論10年を過ぎても、家庭裁判所への調停・審判の申立ては可能です。ただし、相続開始から10年を経過した後にされる遺産分割については、原則として**「具体的相続分」による分割ができなくなり、「法定相続分」などで画一的に分ける**ことになります。■ 趣旨（なぜこのルールができたのか？）これまでは、相続から何十年経っても「昔、長男だけが家を建ててもらった（特別受益）」や「自分が長年介護をした（寄与分）」という主張が可能でした。長期化の防止： 何十年も前の証拠を集めるのは困難で、遺産分割が長期化・複雑化する原因となっていました。所有者不明土地問題の解消： 分割が決まらないまま放置される土地を減らすため、10年という区切りを設け、事務的に（法定相続分で）分けやすくすることで早期解決を促しています。■ 試験におけるアドバイス行政書士試験では、この「具体的相続分」と「法定相続分」の入れ替わりが非常に狙われやすいです。「具体的相続分」が封じられる「具体的相続分」とは、法定相続分に、**特別受益（生前贈与）や寄与分（介護等の貢献）**を加味した「実質的に公平な持ち分」のことです。10年経つと、これらの主張ができなくなります。$$ \\text{10年経過後の原則} = \\text{法定相続分（または指定相続分）} $$「協議（話し合い）」なら10年後でもOK家庭裁判所の審判では法定相続分になりますが、相続人全員が合意する**「協議」**であれば、10年経過後でも特別受益や寄与分を考慮した分け方をすることが可能です。あくまで「家裁が強制的に決める時のルール」が変わるだけです。10年ルールの例外（期間の猶予）以下の場合は、10年経過後でも具体的相続分での主張が認められることがあります。10年経過前に家庭裁判所に申立てをした場合。10年経過する直前に、やむを得ない事由（病気や災害など）で申立てができなかった場合（事由解消から6ヶ月以内）。遺産分割の期間制限まとめ項目相続開始から10年以内相続開始から10年経過後家裁への申立て可能可能特別受益・寄与分の主張可能（具体的相続分）原則不可（法定相続分）相続人全員の合意による協議自由な割合で可能自由な割合で可能この改正は令和5年（2023年）4月から施行されており、それ以前に開始した相続にも適用される（経過措置あり）ため、実務的にも非常にインパクトの大きい改正です。「10年経ったら家裁は門前払い」というひっかけに注意しましょう。",
           "​遺産分割前における預貯金の払戻し制度\n​■ 結論\n​相続人の一人が、単独で預金の一部を払い戻すことができます。\n他の共同相続人の同意は不要であり、その目的も特に限定されていません（葬儀費用だけでなく、生活費などのためでも可能です）。\n​■ 趣旨（なぜ改正されたのか？）\n​平成28年の最高裁判決により「預金は遺産分割の対象になる（勝手に分かれない）」とされた結果、遺産分割協議が整うまで預金が完全に凍結されることになりました。\n​資金需要への対応： 被相続人の葬儀費用、当面の生活費、相続税の支払い、あるいは被相続人が負っていた債務の弁済など、相続開始直後には多額の現金が必要になることが多いため、利便性を考慮してこの制度が作られました。\n​■ 試験におけるアドバイス\n​行政書士試験では、この「単独で下ろせる金額」の計算式と上限額が非常に重要です。\n​払い戻し可能額の計算式（民法909条の2）\n各金融機関ごとに、以下の計算式で求められる金額まで単独で払い戻せます。\n$$ \\text{（相続開始時の預金額）} \\times \\frac{1}{3} \\times \\text{（その相続人の法定相続分）} $$\n​金額の上限（法務省令）\n上記の計算式で算出した額がいくら高額になっても、同一の金融機関（支店ごとではなく銀行ごと）から払い戻せる金額は、150万円が上限となります。\n​例： 預金が3,000万円あり、相続人が子2人（A・B）の場合\nAが単独で下ろせる額：3,000万円 \\times 1/3 \\times 1/2 = 500万円\nただし、上限設定により150万円までとなります。\n​「家庭裁判所の判断」による仮払い（家事事件手続法200条3項）\n上記の「銀行窓口で直接下ろせる枠（150万円）」を超えてお金が必要な場合は、家庭裁判所に申し立てて許可を得ることで、さらに高額な払い戻しを受けるルートも用意されています。\n​預貯金の取扱いに関するまとめ\"​遺産分割前における預貯金の払戻し制度\n​■ 結論\n​相続人の一人が、単独で預金の一部を払い戻すことができます。\n他の共同相続人の同意は不要であり、その目的も特に限定されていません（葬儀費用だけでなく、生活費などのためでも可能です）。\n​■ 趣旨（なぜ改正されたのか？）\n​平成28年の最高裁判決により「預金は遺産分割の対象になる（勝手に分かれない）」とされた結果、遺産分割協議が整うまで預金が完全に凍結されることになりました。\n​資金需要への対応： 被相続人の葬儀費用、当面の生活費、相続税の支払い、あるいは被相続人が負っていた債務の弁済など、相続開始直後には多額の現金が必要になることが多いため、利便性を考慮してこの制度が作られました。\n​■ 試験におけるアドバイス\n​行政書士試験では、この「単独で下ろせる金額」の計算式と上限額が非常に重要です。\n​払い戻し可能額の計算式（民法909条の2）\n各金融機関ごとに、以下の計算式で求められる金額まで単独で払い戻せます。\n$$ \\text{（相続開始時の預金額）} \\times \\frac{1}{3} \\times \\text{（その相続人の法定相続分）} $$\n​金額の上限（法務省令）\n上記の計算式で算出した額がいくら高額になっても、同一の金融機関（支店ごとではなく銀行ごと）から払い戻せる金額は、150万円が上限となります。\n​例： 預金が3,000万円あり、相続人が子2人（A・B）の場合\nAが単独で下ろせる額：3,000万円 \\times 1/3 \\times 1/2 = 500万円\nただし、上限設定により150万円までとなります。\n​「家庭裁判所の判断」による仮払い（家事事件手続法200条3項）\n上記の「銀行窓口で直接下ろせる枠（150万円）」を超えてお金が必要な場合は、家庭裁判所に申し立てて許可を得ることで、さらに高額な払い戻しを受けるルートも用意されています。\n​預貯金の取扱いに関するまとめ\""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21416,6 +23910,13 @@ export const SUBJECTS = {
           "遺贈と第三者への対抗（民法899条の2）■ 結論正しいです。遺言（遺贈や「相続させる」旨の遺言）によって取得した権利のうち、法定相続分を超える部分については、登記をしなければ、第三者（本問のF）に対してその権利を主張することができません（民法899条の2第1項）。■ 趣旨（なぜ登記が必要なのか？）改正前の判例では、遺贈の種類によっては登記がなくても第三者に対抗できるとするものがあり、取引の安全を脅かす懸念がありました。取引の安全の保護： 第三者（F）からすれば、登記簿を見て法定相続人（B）から持分を買い受けたのに、後から「実は遺言で他人に贈られていた」と主張されて権利を失うのは酷です。ルールの統一： 相続人が法定相続分を超えて財産を得る場合は、それが「遺産分割」であれ「遺贈」であれ、**「登記を早く備えたほうが勝ち」**という対抗問題（民法177条の原則）に一本化されました。■ 試験におけるアドバイスこの論点は、これまでに整理した「法定相続分」のルールと比較すると非常に分かりやすくなります。「法定相続分まで」か「それ超」か法定相続分まで： 登記不要で第三者に対抗できる（前々回扱った昭和38年判例のライン）。法定相続分を超える部分： 登記が必要（今回の改正法のライン）。Cが遺贈を受けた「甲の持分」は、Cが相続人でないなら100%が法定相続分を超えていますし、相続人であってもBの持分相当分はCの法定相続分を超えています。したがって、CがFに勝つには登記が必須となります。「遺贈（いぞう）」と「相続させる旨の遺言」の区別が不要に以前は、この2つで登記の要否の結論が分かれることがありましたが、現在の民法ではどちらも**「法定相続分を超える部分は登記が必要」**という同じルールで処理します。受験上、非常に整理しやすくなったポイントです。第三者（F）の主観は問われない対抗問題である以上、第三者Fが「遺言があることを知っていた（悪意）」としても、背信的悪意者でない限り、先に登記を備えたFが優先されます。相続・遺言と登記の要否まとめ（決定版）取得の理由第三者への対抗（登記）根拠法定相続分不要昭和38年判例遺産分割（法定相続分超）必要昭和46年判例遺贈・遺言（法定相続分超）必要民法899条の2（改正法）この問題をもって、相続と登記に関する「三本柱（分割前・分割後・遺言）」がすべて揃いました。",
           "相続放棄と第三者（最判昭42.1.20）■ 結論相続放棄をした場合、その効果を「登記なし」で誰に対しても（第三者に対しても）主張できます。したがって、Cは債権者Gに対して、Bの持分の差押えが「無効である」と主張することが可能です。■ 趣旨（なぜ登記がいらないのか？）相続放棄には、他の制度にはない強力な**「絶対的遡及効」**があるからです。最初から相続人ではなかったことになる（民法939条）：相続放棄をすると、その人は「相続開始の時から、相続人とならなかったもの」とみなされます。つまり、Bは最初から1円も、1ミリも甲の持分を持っていなかったことになります。無権利者からの取得は不可：債権者Gが差し押さえたBの持分は、法律上「存在しないもの」です。存在しないものを差し押さえることはできないため、登記の有無にかかわらず、Gの差押えは効力を持ちません。対抗関係にならない：遺産分割（昭和46年判例）の場合は、一度みんなで共有した後に分けるため「権利の動き」がありますが、相続放棄は「最初からなかった」ことになるため、CとGの間で「早い者勝ち（対抗問題）」という土俵にすら上がりません。■ 試験におけるアドバイス行政書士試験の「親族・相続」では、これまでに扱った「相続と登記」の4つのパターンをセットで整理するのが最強の対策です。「相続放棄」は無敵「相続放棄だけは登記がいらない」と覚えましょう。理由は、放棄によって相続人の数が最初から決まってしまう（Bが消える）という、身分法上の強い効果を優先するためです。「放棄」と「遺産分割」のひっかけ遺産分割後の第三者： 登記が必要（対抗関係）。相続放棄後の第三者： 登記は不要。この違いが、本試験で最も受験生を迷わせるポイントです。【決定版】相続と登記の対抗問題・まとめこれまで一問一答で整理してきた内容を一つの表にまとめました。ここを完璧にすれば、この分野で失点することはありません。場面第三者への対抗（登記）根拠・判例① 法定相続分不要昭38.2.22（当然の帰属）② 遺産分割「前」不要（法定相続分まで）昭38.2.22③ 遺産分割「後」必要昭46.1.26（対抗関係）④ 遺贈・遺言（相続させる）必要（法定相続分超）民法899条の2（改正法）⑤ 相続放棄不要（無敵）昭42.1.20（絶対的遡及効）これにて、相続と登記に関する「最重要判例・条文シリーズ」が完結です。この表をスクリーンショットなどで保存して、アプリ開発の合間や移動時間に眺めるだけでも、得点力が大幅にアップするはずです。",
           "特定財産承継遺言と対抗要件（民法899条の2第1項）■ 結論正しいです。「相続させる」旨の遺言（特定財産承継遺言）によって財産を取得した場合であっても、自分の法定相続分を超える部分については、登記をしなければ、第三者（本問のH）に対してその権利を主張することができません。■ 趣旨（改正のポイント）以前の判例（最判平14.6.10）では、「相続させる」旨の遺言は登記がなくても第三者に対抗できるとされていました。しかし、これでは遺言の存在を知らない第三者が、登記簿上の法定相続分を信じて取引をした場合に、不測の損害を被るリスクがありました。そこで、平成30年の改正により、**「遺言の内容がどうあれ、法定相続分を超える部分については、先に登記を備えたほうが勝つ」**というルール（対抗問題）に統一されました。法定相続分の範囲内： 登記がなくても第三者に対抗できる（誰でも予想できる範囲だから）。法定相続分を超える部分： 登記がなければ第三者に対抗できない（取引の安全を守るため）。■ 試験におけるアドバイス行政書士試験の対策としては、この論点が「遺贈」の場合と同じルールに統合されたことを押さえるのが重要です。「遺贈」との統合以前は「遺贈」か「相続させる旨の遺言」かで結論が分かれることがありましたが、現在はどちらも民法899条の2という一つの条文で「法定相続分を超える部分は登記が必要」と整理されています。具体例での判断本問において、Cが遺言で甲の100%を取得したとしても、Bの法定相続分（例えば1/2）に相当する部分については、Cにとって「法定相続分を超える取得」となります。Bが自分の持分1/2をHに売却し、Hが先に登記を備えた。Cはまだ登記をしていない。結果：Cは、Hが取得した1/2の持分について「それは遺言で自分のものになったんだ」と主張（対抗）することはできません。権利の帰属と対抗力の区別遺言によって権利自体はCに移転していますが、それを「第三者に言い張れるか（対抗できるか）」という段階で負けてしまう、という構成です。相続と登記の対抗関係・最終確認場面第三者への対抗（登記）根拠法定相続分不要昭和38年判例遺産分割（法定相続分超）必要昭和46年判例遺贈（法定相続分超）必要民法899条の2（改正法）特定財産承継遺言（法定相続分超）必要民法899条の2（改正法）相続放棄不要昭和42年判例今回の問題で、遺言（特定財産承継遺言）についても改正法による「登記の必要性」がはっきりと確認できましたね。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21494,6 +23995,13 @@ export const SUBJECTS = {
           "配偶者居住権と「第三者との共有」の制限■ 結論正しいです。被相続人（A）が亡くなった時点で、その建物が**「被相続人と配偶者（B）以外の第三者」**との共有であった場合、配偶者居住権は成立しません。■ 趣旨（なぜ共有だとダメなのか？）配偶者居住権は、建物の所有権を持っていなくても「タダで住み続けられる」という非常に強力な権利です。共有者の権利保護： もしAと兄Fの共有物件に配偶者居住権を認めてしまうと、本来の共有者であるFは、自分の持ち分があるにもかかわらず、Bが死ぬまで建物を自由に使ったり売却したりすることができなくなります。不当な制限の回避： 第三者（この場合は兄F）に対して、相続をきっかけに過度な負担を強いるのは不公平であるため、民法1028条1項ただし書はこれを禁止しています。■ 試験におけるアドバイスこの論点を攻略するための「3つのチェックポイント」を整理しましょう。「配偶者との共有」ならOKAとB（夫婦）の共有だった場合 → 配偶者居住権は取得できます。AとF（第三者）の共有だった場合 → 配偶者居住権は取得できません。※「誰と共有しているか」を問題文で見極めるのがコツです。「短期居住権」との違い実は、**「配偶者短期居住権（1037条）」**にはこの共有制限がありません。配偶者居住権（長期・終身）： 第三者共有なら不可。配偶者短期居住権（6ヶ月程度）： 第三者共有でも可能（※ただし、共有者から消滅請求をされる可能性はあります）。この「長期はダメ、短期は（とりあえず）OK」という差が、択一式のひっかけとして出されます。成立のルート記述にある通り、配偶者居住権は「遺贈（遺言）」のほか、「遺産分割協議」や「家庭裁判所の審判」によっても取得できます。配偶者居住権の成立要件まとめ項目内容対象者被相続人の配偶者であること建物の状態相続開始時に被相続人の所有建物に居住していたこと共有の制限第三者（配偶者以外）との共有でないこと取得方法遺産分割、遺贈、死因贈与、または家裁の審判存続期間原則として終身（別段の定めも可能）この「第三者との共有」というフレーズが出てきたら、反射的に「配偶者居住権はバツだ！」と判断できるまで繰り返すと、得点源になります。",
           "審判による配偶者居住権の取得（民法1029条）■ 結論正しいです。遺産分割の審判において、家庭裁判所は一定の要件を満たす場合に、配偶者に対して配偶者居住権を認めることができます。■ 趣旨（裁判所が介入する理由）通常、配偶者居住権は「遺言」や「遺産分割協議（話し合い）」で決まります。しかし、相続人同士の仲が悪く話し合いがまとまらない場合、残された配偶者が住む場所を失ってしまうリスクがあります。そこで法は、家庭裁判所が以下の2つのステップで判断を下せるようにしました。原則： 共同相続人間に「配偶者に居住権を認める」という合意があるとき。例外（本問のケース）： 合意がなくても、配偶者の生活維持のために特に必要であり、かつ所有者となる相続人の不利益を考慮してもなお相当であると認めるとき。■ 試験におけるアドバイス行政書士試験では、「どういう場合に審判で認められるか」という要件の厳しさが問われます。「特に必要がある」のハードル単に「住みたい」という希望だけでは足りず、他に住む場所を確保するのが困難であるといった、配偶者を保護すべき強い必要性が求められます。「不利益」との比較（利益衡量）建物の所有者になる相続人（例えば子など）は、居住権が設定されると「自分が自由に売ったり使ったりできない」という大きな不利益を被ります。裁判所はこの「配偶者の保護」と「所有者の不利益」を天秤にかけて判断します。成立のタイミング審判によって配偶者居住権が与えられた場合、その審判が確定した時に権利が成立します。配偶者居住権の取得ルートまとめ取得方法根拠条文特徴遺贈・死因贈与1028条1項被相続人が生前に決めておく（最も確実）遺産分割協議1028条1項相続人全員の話し合いで決める家庭裁判所の審判1029条話し合いが不成立の場合の最終手段配偶者居住権に関する一連の論点は、条文が新しいため「数字（期間）」や「要件（誰と共有か、居住していたか）」がストレートに問われやすい傾向にあります。この「審判による取得」は、遺産分割の場面における配偶者救済のセーフティーネットとしての役割がある、とイメージしておくと記憶に定着しやすいですよ。",
           "配偶者居住権の登記手続き■ 結論配偶者居住権の設定登記は、原則として「共同申請」で行う必要があります。配偶者（B）が単独で登記を申請することはできません。■ 趣旨（なぜ単独ではダメなのか？）不動産登記の原則は、権利を得る人（登記権利者）と、権利を失ったり制限を受けたりする人（登記義務者）が一緒に行う**「共同申請」**です。義務の所在： 民法1031条2項には、「居住建物の所有者は、配偶者に対し、配偶者居住権の設定の登記を備えさせる義務を負う」と規定されています。つまり、所有者（D）には協力義務がありますが、手続き自体は二人で行う必要があります。所有権の相続登記との違い： 普通の「所有権」の相続登記（Bが建物を丸ごと相続した場合など）は、相続人が単独で申請できます。しかし、配偶者居住権は「建物所有者（D）の権利を制限する」という性質を持つため、慎重を期して共同申請が求められます。■ 試験におけるアドバイスこの論点は、「単独申請できるもの」と「共同申請が必要なもの」の比較として整理しておくと、得点力が大幅に上がります。単独申請ができるケース（例外）確定判決がある場合：所有者が協力しないため、裁判で勝訴したときは単独で登記できます。通常の所有権相続： 「Aの所有権を相続人Bが継いだ」という登記は単独でOKです。配偶者「短期」居住権とのひっかけ配偶者居住権（長期）： 登記できる（第三者に対抗するために必要）。配偶者短期居住権： そもそも登記できない。この「できる・できない」の区別も、択一式で非常によく出題されます。対抗要件としての意味配偶者居住権は、登記をしなければ、その後に建物を買った人などの第三者に対抗できません。ですから、Bにとっては登記をすることが極めて重要になります。登記に関する比較まとめ権利の種類登記の可否申請方法所有権の相続可能単独申請配偶者居住権可能共同申請（原則）配偶者短期居住権不可ー「相続＝単独申請」というイメージが強すぎると、この「配偶者居住権の共同申請」というルールに足元を掬われやすくなります。登記法に踏み込んだ細かい知識ですが、行政書士試験では差がつくポイントです。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21572,6 +24080,13 @@ export const SUBJECTS = {
           "共同遺言の禁止（民法975条）■ 結論正しいです。民法は「遺言は、二人以上の者が同一の証書ですることができない」と定めています。これに違反して作成された遺言は、内容の如何を問わず無効となります。■ 趣旨（なぜ禁止されているのか？）なぜ、わざわざ別々に書かなければならないのでしょうか。主な理由は以下の2点です。遺言撤回の自由を確保するため（最重要）：遺言は、亡くなるまでいつでも自由に、一人で書き直したり撤回したりできるのが原則です（民法1022条）。もし夫婦で一通の遺言を作ってしまうと、一方が「やっぱり書き直したい」と思ったときに、もう一方に気兼ねしてしまったり、あるいは一人の撤回が全体の効力にどう影響するかが複雑になったりして、「自由な撤回」が妨げられる恐れがあります。真意を確保し、偽造を防止するため：二人で一緒に作ると、一方がもう一方に圧力をかけて無理やり書かせるといった事態が起こりやすくなります。また、筆跡の確認なども複雑になり、偽造のリスクが高まります。■ 試験におけるアドバイス行政書士試験では、「夫婦」という具体的な設定で、この「共同遺言の禁止」が問われることが多いです。「同一の証書」の判断基準：判例（最判昭57.4.30）では、**「物理的に同一の用紙」**に記載されている場合は、たとえ内容が独立していても原則として無効とされます。無効になる例： 一枚の紙の表と裏にそれぞれ書いた、あるいは半分に区切って左右に書いた場合。有効になる可能性がある例： 二枚の別々の紙に書き、それらをホッチキスで綴じただけ（封筒が同じ等）であれば、それぞれが独立した遺言書として有効とされる場合があります。夫婦であっても例外なし：「夫婦であれば特別に認められる」という例外規定はありません。無効の影響：共同遺言として無効になった場合、どちらか一方の意思だけを有効として救い上げることは原則としてできません。全体が無効になります。整理：遺言の作成ルール（共同遺言）項目内容条文民法975条原則二人以上が同じ紙で遺言することはできない違反した場合無効禁止の理由遺言をいつでも自由に撤回できるようにするためこの「共同遺言の禁止」は、実務でも「夫婦で一緒に書きたい」と相談されることが多いポイントですが、法律上は非常に厳格です。",
           "受遺者の死亡と遺贈の効力（民法994条1項）■ 結論受遺者が遺言者の死亡以前に死亡したときは、その遺贈（いぞう）は効力を生じません。つまり、その遺贈は「無効（失効）」となり、受遺者の相続人がその地位を承継すること（代襲相続のような仕組み）は原則として認められません。■ 趣旨（なぜ承継されないのか？）遺言は、遺言者が「この人に財産をあげたい」という特定の相手に対する個人的な意思に基づいています。意思の尊重： もし受遺者が先に亡くなった場合、遺言者が「その人の相続人にまであげたい」と思っていたかどうかは分かりません。勝手に引き継がせてしまうと、遺言者の真意に反する可能性があるため、いったん白紙に戻すという考え方をとります。代襲相続との違い： 普通の相続（遺言がない場合）では、子が先に死んでいれば孫が引き継ぐ「代襲相続」がありますが、「遺贈（遺言によるプレゼント）」には代襲相続の規定が適用されません。■ 試験におけるアドバイス行政書士試験では、この「失効した財産がどこへ行くのか」というセットの知識が狙われます。失効した財産の行方（民法995条）遺贈が失効した場合、その財産は原則として**「遺言者の相続人」**に帰属します。例：Aが友人Bに車をあげると遺言したが、Bが先に死亡。→ その車はAの子供たちが相続することになります。「相続させる」旨の遺言（特定財産承継遺言）の場合最高裁（最判平23.2.22）は、受遺者が「相続人」である場合の「相続させる」旨の遺言についても、同様に**「代襲相続は発生しない」**という判断を示しています。ただし、遺言者が「代襲者にも継がせたい」という意思を持っていたと認められる特段の事情があれば別ですが、原則は失効です。対策：「予備的遺言」の活用実務では、これを防ぐために「Bが自分より先に死んだ場合には、Bの子であるCに相続させる」といった予備的な内容を書いておくことが推奨されます。整理：受遺者が先に死亡した場合のルール項目内容効力の発生生じない（失効する）代襲相続の適用の有無なし（自動的には引き継がれない）失効した財産の帰属先遺言者の相続人に戻る回避する方法遺言書に「予備的遺言（代わりの人）」を書いておくこの「代襲相続が適用されない」という点は、相続の基本ルール（子が死ねば孫が継ぐ）と混同しやすいため、記述式や択一式で非常に「出しやすい」ポイントです。",
           "遺言の撤回とその方式（民法1022条）■ 結論遺言は、遺言の方式（自筆証書、公正証書、秘密証書のいずれか）に従う限り、どのような方式でも撤回することができます。例えば、「公正証書遺言」で書いた内容を、後から「自筆証書遺言」で書き直して撤回することも可能です。その逆もまた然りです。■ 趣旨（なぜ方式を問わないのか？）遺言において最も尊重されるのは、**「遺言者の最終的な意思」**だからです。最終意思の尊重： 亡くなる直前の意思こそが真実であると考えます。そのため、わざわざ「前と同じ高い費用を払って公正証書を作らなければ撤回できない」といった不自由を課すと、本人の最新の意思を反映しにくくなってしまいます。方式の自由： 撤回もまた一つの「遺言」です。法律で定められた有効な遺言の形（方式）を整えていれば、その種類によって効力に優劣がつくことはありません。撤回とみなされるケース（法定撤回）試験対策としては、自ら「撤回する」と書く以外に、法律上自動的に撤回したとみなされるパターンを整理しておくのが定石です。1. 前の遺言と後の遺言が矛盾する場合（民法1023条1項）後の遺言の内容が前の遺言とぶつかる（抵触する）場合、そのぶつかる部分については、後の遺言によって前の遺言が撤回されたものとみなされます。2. 遺言と生前処分が矛盾する場合（民法1023条2項）遺言で「この土地をBにあげる」と書いていたのに、生前にその土地をCに売ってしまった場合、その遺言は撤回されたものとみなされます。3. 遺言書の故意の破棄（民法1024条）遺言者がわざと（故意に）遺言書を破り捨てたり、遺贈の目的物を壊したりした場合は、その部分について遺言を撤回したものとみなされます。整理：遺言の撤回ルール撤回の方法内容備考方式の選択自由公正証書を自筆証書で撤回できる日付の前後後の遺言が優先常に最新の日付の意思が勝つ抵触（矛盾）矛盾する部分が撤回扱い全体ではなく矛盾箇所のみ破棄故意に破れば撤回扱い過失（うっかり）なら撤回にならないこの論点は、「公正証書は公的なものだから、私的な自筆証書より強いはずだ」という直感を裏切るため、択一式問題で非常に出題されやすいポイントです。「最後に出した意思が一番強い」とシンプルに覚えておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21650,6 +24165,13 @@ export const SUBJECTS = {
           "判例および実務上、単に公証人の問いかけに対して「うなずく」程度の動作では、法律が求める「口授」があったとは認められません。公正証書遺言における「口授」の要件■ 原則（民法969条2号）公正証書遺言を作成するには、遺言者が遺言の趣旨を公証人に**「口頭で」**伝えなければなりません。これを「口授（くじゅ）」といいます。■ 「うなずく」だけでは不十分な理由最高裁の判例（最判昭43.12.20等）によれば、口授とは「遺言者が自ら進んで遺言の内容を口頭で陳述すること」を指します。誘導の危険： 公証人があらかじめ作成してきた案を読み上げ、それに対して遺言者が「はい」「いいえ」と答えたり、単にうなずいたりするだけでは、公証人が遺言の内容を決めていることになり、遺言者本人の真意が確認されたとはみなされません。実務上の許容範囲： ただし、完全に一言一句を述べる必要はなく、公証人の問いかけに対して遺言者が内容を理解し、自分の言葉で肯定・補足する程度であれば「口授」として認められる傾向にあります。それでも「動作のみ」では不十分です。■ 口がきけない場合の特例（民法969条の2）言葉を発することができない方（聴覚・言語障害者など）のために、平成12年の法改正で以下の代わりの方法が認められました。通訳人の介添え： 手話通訳などを介して趣旨を伝える。自書（じしょ）： 公証人と証人の前で、遺言の内容を自ら書いて示す。この場合、公証人は「口頭で述べた」代わりに「通訳や自書による方法で行った」旨を筆記し、読み聞かせ等を行うことになります。試験におけるアドバイス：公正証書遺言の作成手順行政書士試験では、民法969条の「5つのステップ」が頻出です。正確な流れを押さえておきましょう。証人2人以上の立ち会い遺言者が公証人に「口授」する（※ここが本問のポイント）公証人が筆記し、遺言者と証人に「読み聞かせ」または「閲覧」させる遺言者と証人が、筆記の正確なことを承認して「署名・押印」する公証人が、適法に作成された旨を付記して「署名・押印」する【整理】口授に関するルールのまとめ状況認められる方法認められない方法通常の場合口頭での陳述単なる「うなずき」、首振り口がきけない場合通訳人の介添え または 自書ー耳が聞こえない場合通訳人による通訳 または 閲覧ーこの「うなずくだけではダメ」という知識は、遺言能力（認知症の有無など）が争われる裁判でも非常によく出てくるポイントです。",
           "秘密証書遺言は、遺言の内容を誰にも知られたくない（秘密にしたい）一方で、その遺言書の存在だけを公的に証明しておきたい場合に利用される方式です。秘密証書遺言の成立要件（民法970条）■ 結論正しいです。秘密証書遺言において、証書（中身の紙）自体はワープロや代筆でも構いません。ただし、署名は必ず本人が行い、封印には証書に使ったものと同じ印鑑を使うなど、厳格な作法が定められています。■ 4つの必須ステップ条文に基づき、以下の手順をすべて踏む必要があります。証書への署名・押印： 遺言者がその証書に署名し、印を押す（本文はワープロOK）。封印： 遺言者が証書を封筒に入れ、証書に用いたのと同じ印章で封印する。公証人・証人への提示： 公証人1人および証人2人以上の前に封書を提出する。申述（しんじゅつ）： 封書が自分の遺言書であること、および筆者の氏名と住所を述べる（自分で書いたなら自分の情報を述べる）。■ 試験におけるアドバイス行政書士試験では、他の遺言方式（自筆証書・公正証書）との違いが非常に細かく問われます。「署名」と「自書」の区別：自筆証書遺言： 全文（目録除く）の「自書」が必要。秘密証書遺言： 「署名」だけ自筆であれば、本文はワープロや代筆でよい。印章の一致：封筒の閉じ目に押す印（封印）は、中の書類に押した印と同じでなければなりません。ここが不一致だと無効になるため、注意が必要です。「筆者」の申述：「誰が書いたか」を報告しなければならないのは、秘密証書遺言特有のルールです。これは代筆やワープロが認められているため、後で偽造を争う際のヒントを残すためです。もし要件を欠いたら？（民法971条）：秘密証書遺言としての要件を欠いても、もし「自筆証書遺言」としての要件（全文自書・日付・署名・押印）を満たしていれば、自筆証書遺言として有効になります。遺言方式の比較まとめ項目自筆証書遺言公正証書遺言秘密証書遺言本文のワープロ不可（目録のみ可）可能（公証人が作成）可能署名自筆必須自筆（代署可）自筆必須証人不要2人以上2人以上公証人の関与不要（保管制度あり）必要必要検認（家庭裁判所）必要（保管制度は不要）不要必要秘密証書遺言は、実務上の利用件数は極めて少ないですが、試験では「ワープロOK」「証人2人」「封印の印影」といった細かいポイントが非常に出題されやすい「知識の隙間」です。",
           "成成年被後見人の遺言と「医師」の立ち会い（民法973条）■ 結論誤りです。成年被後見人が一時的に事理弁識能力を回復して遺言をする場合、立ち会うべきなのは法定代理人や親族ではなく、**「医師二人以上」**です。■ 趣旨（なぜ「医師」なのか？）遺言者が「その瞬間に、自分のしていることの意味を理解していたか」という医学的・専門的な判断が必要だからです。客観性の確保： 親族や法定代理人は相続に利害関係がある場合が多く、その立ち会いだけで有効性を認めると、後で他の相続人から「無理やり書かせたのではないか」と争いになるリスクが高まります。医師による証明： 立ち会った医師二人は、遺言者が遺言をするにあたって「能力を欠く状態になかったこと」を遺言書に付記し、署名・押印しなければなりません。試験対策：ここが「ひっかけ」のポイント行政書士試験では、この「医師二人」という数字と属性を、他の登場人物に入れ替えて受験生を迷わせてきます。ひっかけパターンA： 「成年後見人の同意を得ればよい」 → ×（遺言に同意は不要ですが、医師の立ち会いは必要です）ひっかけパターンB： 「証人二人以上の立ち会いがあればよい」 → ×（通常の証人とは別に、医師二人が必要です）ひっかけパターンC： 「親族が立ち会えばよい」 → ×（本問のケース。親族はむしろ証人の欠格事由に該当することが多いです）整理：制限行為能力者の遺言能力まとめカテゴリ遺言ができる条件特殊な要件未成年者15歳に達していること同意・立ち会い不要被保佐人・被補助人事理弁識能力があること同意不要（単独で可能）成年被後見人一時的に能力を回復したとき医師二人以上の立ち会いこの「医師二人」という要件は、非常に厳格です。もしこの手続きを怠ると、せっかく書いた遺言も方式違背で無効になってしまいます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       }
     ],
@@ -21708,6 +24230,13 @@ export const SUBJECTS = {
           "1. 結論：この文章は「正しい」です\n民法上の**「動産保存の先取特権」**は、債権者が対象物を占有していなくても、その目的物（甲）から優先的に弁済を受けることができる権利です。\n\n2. 根拠とロジックの整理\n根拠条文：民法311条2号・320条\n311条2号： 動産の先取特権として「動産の保存」が規定されています。\n\n320条： 動産の保存の先取特権は、動産の保存のために支出した費用について、その動産の上に存在する。\n\n留置権との最大の違い：「占有」の要否\n留置権（302条）： 占有を失うと、原則として消滅します。\n\n先取特権（法定担保物権）： 法律上当然に認められる権利であり、占有を要件としません。\n\nしたがって、修理代金を支払ってもらえないまま甲を返還してしまい、留置権を失ったとしても、法律の要件を満たせば「先取特権」を行使して、甲を競売にかけるなどの手続きが可能です。\n\n3. 関連知識（試験で狙われる「罠」）\n① 「保存」か「工作」か（320条 vs 321条）\n実務や厳密な試験対策では、以下の区別に注意が必要です。\n\n保存（320条）： 物が壊れないように維持した費用（保管料、腐敗防止など）。\n\n工作（321条）： 物に修理や加工を施して価値を高めた費用（一般的な「修理代金」はこちらに該当することが多いです）。\n※どちらも「占有を要しない」という点では共通ですが、問題文のキーワードが「保存」か「工作」かで条文を使い分けられるようにしておきましょう。\n\n② 物上代位性（304条）\n先取特権には、留置権にはない**「物上代位性」**があります。\n例えば、甲が火災で焼失し、Bに保険金が支払われる場合、Cはその保険金に対しても優先権を行使できます。\n\n比較メモ：\n\n留置権： 占有が命。物上代位性なし。\n\n先取特権： 価値が命。物上代位性あり。\n\n③ 第三取得者への引き渡し（333条）\nここが最も重要な制限です。債務者Bが甲を第三者Dに売って、引き渡してしまった後は、もはや先取特権を行使できなくなります（追及力がない）。\n\n4. 行政書士試験に向けたアドバイス\n「担保物権の比較表」を自作する\n「留置権・先取特権・質権・抵当権」の4つについて、以下の項目を比較する表を作成してみてください。\n\n占有の要否\n\n物上代位性の有無\n\n付随性・随伴性・不可分性（担保物権の4通性）\n\n問題文の「占有」に注目\n「占有を失った」というフレーズが出てきたら、反射的に「留置権は消滅するが、先取特権や抵当権は検討の余地がある」と判断できる状態が理想です。\n\n記述式への備え\n「Cが占有を失った後、どのような権利に基づき、どのような方法で代金を回収できるか」という問いに対し、「動産保存（工作）の先取特権に基づき、甲を差し押さえて競売する」といった構成をイメージしておくと強いです。",
           "1. 結論：この文章は「誤り」ですCはAに対して、事務管理（および不当利得）に基づいて修理費用の支払を求めることはできません。最大の理由は、**「AとBの間の契約で、すでに精算が済んでいるとみなされるから」**です。2. 根拠とロジック：判例の考え方この問題は、最高裁（最判昭45.7.16）の「転用物訴権（てんようぶつそけん）」に関する判断がモデルです。① なぜ「事務管理」ではないのか事務管理（民法697条）は、**「義務がないのに他人のために」**行動することです。しかし、CはBとの「修理契約」という義務に基づいて行動しています。自分の契約上の義務を果たしたに過ぎないため、原則としてAに対する事務管理は成立しません。② 不当利得（民法703条）の成否がメインこのケースでCが訴えるとしたら「不当利得」ですが、判例はこれも否定しました。法律上の原因の有無： Aが修理済みの甲を返してもらったことは「利得」ですが、AはBに対して**「賃料の減額」という形で対価を支払っています。**つまり、Aはタダで得をしたわけではなく、自分の懐を痛めて修理代を間接的に負担済み（＝法律上の原因がある）と判断されます。結論のロジック図C→B： 修理契約（Bが無資力で回収不能）A→B： 賃貸借契約（賃料減額で修理代を相殺済み）C→A： 直接請求は「Aが二重負担になる」ため不可。3. 関連知識（ここが試験の分岐点！）もし、問題文の条件が以下のように変わったらどうなるかを整理しておきましょう。条件結論理由賃料が減額されていたAへの請求は不可Aは対価を支払済みといえるため。賃料減額などの特約がないAへの請求が認められる余地ありAが「タダ乗り（不当利得）」したことになるため。※行政書士試験では、この**「賃料減額という対価関係の有無」**が正誤を分けるキーワードになります。4. 行政書士試験に向けたアドバイス「登場人物のバランス」を見る民法は「誰に損をさせるのが一番公平か」を考えます。このケースでは、「Bの無資力というリスク」を、契約相手ではないAに押し付けるのは酷だ、というのが裁判所の判断です。Cは、あくまでBに対して債権（修理代）を持ち続けることになります。事務管理 vs 不当利得試験では、本問のように「事務管理に基づいて～」とあえて不適切な法的根拠を混ぜてくることがあります。契約があるなら、まずは契約。契約がないなら、事務管理や不当利得。この優先順位を意識すると、初見の問題でも「おや？」と気づけるようになります。記述式への応用もし記述式で「Aが賃料減額などの対価を負担していない場合、CはAにどのような請求ができるか」と問われたら、**「法律上の原因がない不当利得として、費用の償還を請求できる」**といったキーワードを書けるようにしておくと完璧です。",
           "1. 結論：この文章は「正しい」です最高裁判所の判例（最判昭45.7.16、通称：ブルドーザー事件）の考え方に基づくと、このケースでCはAに対して不当利得返還請求をすることはできません。2. 根拠とロジックの整理：転用物訴権この問題は、自分の契約相手（B）ではない第三者（A）に対して、不当利得を理由に金銭を請求できるかという**「転用物訴権（てんようぶつそけん）」**の可否を問うています。不当利得の要件（民法703条）不当利得が成立するには、利得に**「法律上の原因がないこと」**が必要です。なぜ「法律上の原因がある」と判断されるのかAとBの契約内容： AはBに対し、「自分で修理する代わりに、家賃を安くする」という特約を結んでいます。Aの負担： Aは修理代を直接Cに払っていませんが、「安くした家賃分」を実質的に負担していることになります。結論： Aが修理済みの甲を返してもらったことは、Aが既に対価（家賃減額）を支払っている以上、**「法律上の原因がある」**とみなされます。したがって、Cの請求は認められません。3. 関連知識：対価関係の有無による違い試験では、**「Aが対価を負担しているか否か」**が判断の分かれ目になります。条件結論（Aへの請求）理由（判例のロジック）賃料減額などの特約ありできない（○）Aは既に対価を負担しており、利得に「法律上の原因」があるため。賃料減額などの特約なしできる可能性があるAが何の負担もなく利益を得るなら、それは「法律上の原因」がない不当利得といえる。【注意】行政書士試験では、問題文に「賃料が減額されていた」「相応の対価を負担していた」というフレーズがあれば、即座に**「請求不可」**と判断してOKです。4. 行政書士試験に向けたアドバイス判例のキーワードを覚える記述式対策として、以下のフレーズをセットで覚えておきましょう。「賃貸人が対価を負担している場合、利得に法律上の原因があるため、不当利得返還請求は認められない」登場人物の「二重の負担」を防ぐ民法は公平な解決を目指します。もしここでCからAへの請求を認めてしまうと、Aは「家賃も安くし、さらにCにも修理代を払う」という二重の負担を負うことになります。これは不公平ですよね。このイメージを持つと忘れにくくなります。事務管理とのひっかけに注意前回のやり取りでもあった通り、根拠が「事務管理」か「不当利得」かで迷わせる問題が出ることがあります。事務管理： そもそも「他人のため」という意思や「義務がないこと」が必要（本問ではCはBとの契約義務があるため成立しにくい）。不当利得： 「法律上の原因」の有無が最大の争点。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21764,6 +24293,13 @@ export const SUBJECTS = {
           "1. 結論：この文章は「正しい」です民法第971条により、方式に欠陥がある秘密証書遺言であっても、自筆証書遺言の要件（全文・日付・氏名の自書および押印）を満たしていれば、自筆証書遺言として有効になります。これを法律用語で**「無効行為の転換」**の明文化といいます。2. 根拠とルールの整理なぜこのような規定があるのか、そしてそれぞれの要件はどう違うのかを整理しましょう。根拠条文：民法971条秘密証書による遺言は、前条に定める方式に欠けるものあっても、第九百六十八条〔自筆証書遺言〕に定める方式を具備しているときは、自筆証書による遺言としてその効力を有する。なぜ「転換」が認められるのか？遺言は「亡くなった方の最後の意思」を尊重するものです。せっかく書いた遺言が、公証役場での手続き（秘密証書遺言としての手続き）の不備だけで全て無効になってしまうのは、遺言者の意図に反するため、救済措置が設けられています。二つの遺言方式の比較秘密証書遺言が「自筆証書遺言」として救われるためには、以下の違いをクリアしている必要があります。項目秘密証書遺言 (970条)自筆証書遺言 (968条)本文の筆記代筆・PC作成もOK必ず本人が自書（※財産目録はPC等も可）署名・押印必要必要日付の自書不要（封紙に公証人が記載）必ず本人が自書証人の立ち会い2人以上必要不要3. 関連知識（試験での「ひっかけ」ポイント）① 逆のパターンは成立しない「自筆証書遺言の方式に欠けるものが、秘密証書遺言として有効になる」ということはありません。秘密証書遺言には「公証人・証人の関与」という重い手続きが必要だからです。② 加除訂正の方式（968条3項）自筆証書遺言として有効であるためには、もし訂正があれば「自筆証書遺言の厳しい訂正ルール」に従っていなければなりません。訂正箇所を指示し、変更した旨を付記して署名し、かつ、その場所に印を押すこと。これに失敗していると、やはり無効になるリスクがあります。4. 行政書士試験に向けたアドバイス「救済規定」という意識を持つ民法971条は「せっかく書いたんだから、なんとか有効にしてあげよう」という優しさの条文です。この**「遺言者の真意の尊重」**という基本理念を理解しておくと、他の遺言関連の判例（多少の形式不備を許容するものなど）も理解しやすくなります。秘密証書遺言の「死に筋」知識実務上、秘密証書遺言はほとんど使われません（公正証書遺言の方が確実だからです）。しかし、試験ではこの971条の転換規定や、**「証人が必要（2名）」**といった知識がピンポイントで狙われます。短答式の判断基準問題文の中に以下のキーワードが出てきたら、971条を思い出してください。「秘密証書遺言」＋「方式に欠ける」＋「自筆証書の方式を具備」＝ 有効（転換）",
           "1. 結論：この文章は「正しい」です民法第120条第1項により、制限行為能力者（未成年者など）は、単独で取り消しをすることができます。親権者の同意を得ずに勝手に行った取り消しも、完全に有効です。2. 根拠とロジックの整理根拠条文：民法120条1項制限行為能力者がした行為は、その制限行為能力者（中略）が、取り消すことができる。なぜ「取消し」に同意がいらないのか？民法の制限行為能力者制度は、「判断力の不十分な人が、不利益な契約で損をしないように保護する」ためのものです。契約の締結： 損をするリスクがあるため、保護者（親権者）の同意が必要。契約の取消し： 契約を白紙に戻して本人を保護する行為（有利な行為）なので、本人一人でやらせても安全である、と考えます。もし取り消しに同意が必要だとしたら、「親が反対しているから、騙されて結んだ契約を取り消せない」という、本人を保護できない事態を招いてしまいます。3. 関連知識（セットで覚えるべき比較）試験では、「取消し」と「追認（ついにん）」の違いが頻出です。ここを混同すると失点します。行為内容未成年者が単独でできるか理由取消し契約を最初からなかったことにするできる（◯）本人を保護する行為だから。追認契約を完全に有効なものとして確定させるできない（×）再び判断力が問われるため、不利益を被るリスクがある。追認ができるようになる条件未成年者が「自分で」追認できるようになるには、**「成人（18歳）に達した後」**でなければなりません。未成年であるうちは、親権者が代わりに追認するか、親権者の同意を得る必要があります（民法124条1項）。4. 行政書士試験に向けたアドバイス「単独でできること」をリスト化する未成年者が親権者の同意なく、一人で有効にできる行為は限られています。これらをセットで暗記しましょう。単に権利を得、又は義務を免れる行為（例：負担のない贈与を受ける、借金を免除してもらう）目的を定めて処分を許された財産の処分（例：使い道を決められたお小遣いを使う）目的を定めないで処分を許された財産の処分（例：使い道を自由にしていいとお小遣いをもらう）許可された営業に関する行為取消権の行使（←今回のポイント！）詐術（さじゅつ）のひっかけに注意未成年者が「僕は大人だよ」と嘘をついて（詐術を用いて）契約した場合は、取り消すことができなくなります（民法21条）。この例外規定とセットで出題されることが多いので、セットで復習しておきましょう。記述式への備え「未成年者Aが親権者Bの同意を得ずにCと契約した。Aが単独で契約を取り消すことができる理由を40字程度で記述せよ」といった問いに対し、**「取消しは、制限行為能力者を保護するための行為であり、本人を単独で保護するのに適しているから。」**といった趣旨をまとめられるようにしておくと盤石です。",
           "1. 結論：この文章は「正しい」です民法第125条第2号に基づき、取消権者が「履行の請求」をした場合、それが追認できるようになった後（取消しの原因が消滅した後）であり、かつ異議を留めていないのであれば、追認したとみなされ、取消権は消滅します。2. 根拠とルールの整理法定追認の要件（民法125条柱書）法定追認が成立するためには、以下の2つの大前提が必要です。追認をすることができる時以後であること（例：未成年者が成人した、詐欺に気づいた、強迫から脱した）。異議を留めないこと（「とりあえず請求するけど、後で取り消すかも」と言っていないこと）。法定追認となる6つの行為（125条各号）以下の行為があった場合、追認とみなされます。全部または一部の履行履行の請求（←今回の設問はこれ！）更改（契約内容の書き換え）担保の供与権利の譲渡（得られるはずの権利を他人に売るなど）強制執行3. 関連知識：試験で最も狙われる「罠」法定追認には、**「誰がその行為をしたか」**によって結論が変わる超重要ポイントが2つあります。ここが正誤判定の分かれ目になります。① 履行の請求（2号）取消権者から請求した：法定追認になる。（今回のケース）相手方から請求された：法定追認にならない。ロジック： 相手から「早く払え」と言われただけで、取消権者が黙っている状態は、追認した（有効にしたい）という意思があるとは言えないからです。② 権利の譲渡（5号）取消権者が譲渡した：法定追認になる。相手方が譲渡した：法定追認にならない。ロジック： 取消権者が権利を他人に売る行為は、契約が有効であることを前提とした行動だからです。4. 行政書士試験に向けたアドバイス「矛盾した行動」は許されない法定追認の本質は「禁反言（きんはんげん）」、つまり「さっきは有効だと思って請求したのに、今さら取り消すなんて矛盾したことは言わせないよ」という考え方です。「履行の請求（金払え！）」という、契約が有効であることを前提とした行動をとった以上、もう取り消すことはできません。記述式・択一式のキーワード「追認をすることができる時以後」「異議を留めずに」というフレーズを見たら、反射的に125条の法定追認を思い出してください。整理のコツ以下の表を頭に入れておくと、ひっかけ問題に強くなります。行為取消権者がした場合相手方がした場合履行（1号）追認になる追認になる（※受領した場合）履行の請求（2号）追認になる追認にならない権利の譲渡（5号）追認になる追認にならない※相手方が履行（入金など）してきた場合でも、取消権者がそれを「異議なく受け取った」のであれば、1号の「履行」にあたり、追認になります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       }
     ]
@@ -21874,6 +24410,17 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -21951,6 +24498,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -22002,6 +24556,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -22063,6 +24624,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -22114,6 +24682,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -22175,6 +24750,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -22226,6 +24808,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -22309,6 +24898,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -22360,6 +24956,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -22443,6 +25046,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -22494,6 +25104,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -22555,6 +25172,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -22611,6 +25235,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -22662,6 +25293,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -22745,6 +25383,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -22818,6 +25463,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -22901,6 +25553,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -22952,6 +25611,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -23013,6 +25679,13 @@ export const SUBJECTS = {
           "",
           "",
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23064,6 +25737,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -23125,10 +25805,17 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "​1. 根拠条文：商法第1条\n​まず、条文の全体像を確認しましょう。試験では1項と2項をセットで理解しておく必要があります。\n​商法第1条（商法の適用範囲）\n​商人の営業、商行為その他商事については、他の法律に特別の定めがあるものを除くほか、この法律（商法）の定めるところによる。\n​商事に関し、この法律に定めがない事項については商慣習に従い、商慣習がないときは、民法（明治29年法律第89号）の定めるところによる。\n​2. 商事ルールの「優先順位」\n​この条文が言いたいことを一言で言うと、**「何か問題が起きたとき、どの法律を先に使うか？」**という順序です。\n​特別法（会社法など）：一番強い。\n​商法：特別法がなければこれ。\n​商慣習法：商法にも書いてなければ、商売上の「当たり前（慣習）」に従う。\n​民法：どこにも書いてなければ、最終的に一般ルールである民法に戻る。\n​3. 他の知識との「紛らわしい点」\n​ここが試験で狙われるポイントです。\n​「商慣習」と「民法」のどっちが先か？\n​これが最大の落とし穴です。\n​原則：特別法 ＞ 商法 ＞ 民法\n​商法1条2項の特則：特別法 ＞ 商法 ＞ 商慣習 ＞ 民法\n​つまり、**「商慣習は民法に優先する」**という点が非常に重要です。民法はあくまで「最後の手段」です。\n​「特別法」とは何を指すか？\n​現在の試験において、最大の「特別法」は会社法です。\nかつて会社法は商法の一部でしたが、現在は独立した法律です。したがって、株式会社に関するルールなどは、商法より先に会社法が適用されます。\n​4. 試験で問われるポイント\n​過去問や模試では、以下のような形でひっかけが作られます。\n​ひっかけパターンA：「商事に関し、商法に定めがないときは、まず民法を適用し、民法にも定めがないときに商慣習に従う。」\n​答え：×（商慣習が民法に優先します）\n​ひっかけパターンB：「商法は民法の特別法であるから、いかなる場合も民法に優先して適用される。」\n​答え：△（注意） 商法に「定めがあれば」優先しますが、定めがなければ民法が適用されます。この「適用順位のグラデーション」を理解しているかが問われます。\n​5. 受験生へのアドバイス\n​商法・会社法は配点が20点（5問×4点）と決して低くありませんが、深追いすると時間が溶ける「沼」のような科目です。\n​「商法総則・商行為」は得点源にする：\n今回解説した1条のような「商法総則」の範囲は、覚えることが少なく、得点しやすいです。ここは民法との違い（例えば、消滅時効の期間や、無償寄託の注意義務の差など）を整理するだけで得点に直結します。\n​深入りしすぎない：\n1条の「商慣習」についても、「そもそも商慣習法と事実たる慣習の違いは…」といった学説に踏み込む必要はありません。条文に書いてある順序をそのまま暗記しましょう。\n​民法とのリンクを意識する：\n「民法ではこうだったけど、商売の世界（商法）ではスピード重視だからこうなるんだな」という比較の視点を持つと、記憶の定着が早まります。",
-          "​1. 根拠条文：商法第1条2項\n​まず、正しい条文の規定を確認します。\n​商法第1条（商法の適用範囲）\n2. 商事に関し、この法律に定めがない事項については商慣習に従い、商慣習がないときは、民法の定めるところによる。\n​つまり、正しい順序は [[red:「商法 → 商慣習 → 民法」]] です。\n​2. 他の知識との「紛らわしい点」\n​民法と商慣習の逆転\n​ご提示の文章のように「商法 → 民法 → 商慣習」と入れ替えて出題されるのが、この分野で最も多いひっかけパターンです。\n一般的に「民法」は成文法（文字として書かれた法律）であり、「商慣習」は不文法（慣習）であるため、感覚的に「法律の方が優先されるのでは？」と勘違いしがちです。しかし、商法においては商慣習が民法に優先するという特殊なルールになっています。\n​特別法の存在（商法1条1項）\n​商法1条1項には「他の法律に特別の定めがあるものを除く」とあります。\n現在、試験で最も重要な特別法は会社法です。株式会社に関する事項であれば、「会社法 → 商法 → 商慣習 → 民法」という順序になります。\n​3. 試験で問われるポイント\n​試験では、主に以下の3段階の優先順位を正確に理解しているかが問われます。\n​商法（成文法）：まずは商法の規定を探す。\n​商慣習（不文法）：商法に書いてなければ、商売上の「慣わし」を見る。\n​民法（成文法）：どこにもルールがなければ、一般原則である民法に戻る。\n​「商慣習が、成文法である民法を押し退けて先に適用される」 という点が、法学上のセオリー（成文法優先の原則）の例外であるため、出題者にとって非常に「出しやすい」ポイントです。\n​4. アドバイス\n​なぜ商慣習が先なのか？\n​理屈を理解すると忘れにくくなります。\n商売の世界は変化が激しく、法律（商法）のアップデートが追いつかないことがよくあります。そのため、商人たちの間で現実に守られている「合理的なルール（商慣習）」を、古い民法よりも優先して適用した方が、実態に即した解決ができると考えられているからです。\n​学習のコツ\n​「商慣習 ＞ 民法」 という不等式を、反射的に思い出せるようにしておきましょう。\n​この問題が出たときは、「成文法が常に優先するわけではない」と自分に言い聞かせてください。",
+          "​1. 根拠条文：商法第1条2項\n​まず、正しい条文の規定を確認します。\n​商法第1条（商法の適用範囲）\n2. 商事に関し、この法律に定めがない事項については商慣習に従い、商慣習がないときは、民法の定めるところによる。\n​つまり、正しい順序は 「商法 → 商慣習 → 民法」 です。\n​2. 他の知識との「紛らわしい点」\n​民法と商慣習の逆転\n​ご提示の文章のように「商法 → 民法 → 商慣習」と入れ替えて出題されるのが、この分野で最も多いひっかけパターンです。\n一般的に「民法」は成文法（文字として書かれた法律）であり、「商慣習」は不文法（慣習）であるため、感覚的に「法律の方が優先されるのでは？」と勘違いしがちです。しかし、商法においては商慣習が民法に優先するという特殊なルールになっています。\n​特別法の存在（商法1条1項）\n​商法1条1項には「他の法律に特別の定めがあるものを除く」とあります。\n現在、試験で最も重要な特別法は会社法です。株式会社に関する事項であれば、「会社法 → 商法 → 商慣習 → 民法」という順序になります。\n​3. 試験で問われるポイント\n​試験では、主に以下の3段階の優先順位を正確に理解しているかが問われます。\n​商法（成文法）：まずは商法の規定を探す。\n​商慣習（不文法）：商法に書いてなければ、商売上の「慣わし」を見る。\n​民法（成文法）：どこにもルールがなければ、一般原則である民法に戻る。\n​「商慣習が、成文法である民法を押し退けて先に適用される」 という点が、法学上のセオリー（成文法優先の原則）の例外であるため、出題者にとって非常に「出しやすい」ポイントです。\n​4. アドバイス\n​なぜ商慣習が先なのか？\n​理屈を理解すると忘れにくくなります。\n商売の世界は変化が激しく、法律（商法）のアップデートが追いつかないことがよくあります。そのため、商人たちの間で現実に守られている「合理的なルール（商慣習）」を、古い民法よりも優先して適用した方が、実態に即した解決ができると考えられているからです。\n​学習のコツ\n​「商慣習 ＞ 民法」 という不等式を、反射的に思い出せるようにしておきましょう。\n​この問題が出たときは、「成文法が常に優先するわけではない」と自分に言い聞かせてください。",
           "​1. 根拠条文：商法第2条\n​条文の文言は以下の通りです。\n​商法第2条（公法人の商行為）\n公法人の行う商行為については、法令に別段の定めがあるものを除くほか、この法律の定めるところによる。\n​ここでいう「公法人」とは、国や地方公共団体（都道府県・市区町村）などを指します。\n​2. 知識の整理と「紛らわしい点」\n​「行為」には適用されるが「商人」ではない\n​ここが最大の注意点です。\n​公法人が「商行為」を行えば、その行為自体には商法が適用されます。\n​しかし、公法人は営利を目的とする存在ではないため、原則として**「商人」には該当しません**。\n​例えば、地方自治体が営利目的で継続的に事業を行うような場合でも、商法上の「商人」としてのルール（商号登記や帳簿作成義務など）がすべて課されるわけではありません。あくまで「その商行為のルール（履行場所や利息など）」に商法が適用される、というニュアンスです。\n​「別段の定め」が優先される\n​条文に「法令に別段の定めがあるものを除く」とある通り、実際には地方自治法などの特別法が優先されるケースがほとんどです。\n​原則：商法適用\n​実態：行政法規（地方自治法など）が優先\n​試験対策としては、「原則として商法が適用される」という結論だけしっかり押さえれば十分です。\n​3. 試験で問われるポイント\n​過去の傾向から、以下のような問われ方に注意してください。\n​ひっかけパターンA：「公法人が行う商行為については、常に商法ではなく行政法規が適用される。」\n​答え：×（別段の定めがない限り、商法が適用されます）\n​ひっかけパターンB：「公法人が行う商行為には、商法は一切適用されない。」\n​答え：×（2条の規定により適用されます）\n​行政書士試験においては、**「公法人が私人と取引（商行為）をした場合、土俵は民商法の世界になる」**というイメージを持っておくと、行政法（公法）と民事法（私法）の境界線の理解が深まります。\n​4. 受験生へのアドバイス\n​行政法とのリンクを意識する\n​この条文は、行政法の「公法と私法の適用関係」というテーマと密接に関わっています。\n「公法人が行う活動であっても、それが営利的な商行為であれば、基本的には商法のルールに従うべきだ（取引の安全のため）」という考え方が根底にあります。\n​学習の優先順位\n​商法総則（1条〜32条あたり）は、深入りしすぎるとキリがありませんが、**1条（適用範囲）と2条（公法人）**は、いわば「商法の守備範囲」を決めるルールです。\n条文をそのまま「当たり前」のものとして飲み込んでしまい、次の「商号」や「商事売買」などのより具体的な得点源に進むのが効率的です。",
           "​1. 根拠条文：商法第3条\n​商法第3条（片方的商行為）\n​当事者の一方のために商行為となる行為については、この法律をその双方に適用する。\n​前項の場合において、当事者の一方が二人以上ある場合において、その一人のために商行為となる行為については、この法律をその全員に適用する。\n​2. 知識の整理：なぜ「双方」に適用するのか？\n​商法のルールは、本来「商人同士」の取引を想定して作られています。しかし、現実には「商人と一般消費者（非商人）」の取引も大量に行われます。\n​もし、「商人には商法、消費者には民法」とバラバラの法律を適用してしまうと、一つの契約（商行為）に対して適用されるルールが二重になり、取引が混乱してしまいます。\n​そこで、**「片方が商人の行為なら、もう片方が誰であっても、その取引全体に商法のルールを適用してスピード解決しよう！」**というのがこの条文の趣旨です。\n​3. 他の知識との「紛らわしい点」\n​ここが受験生を悩ませるポイントです。\n​「全員」に適用される（3条2項）\n​例えば、Aさん（商人）が、BさんとCさん（どちらも非商人）の連帯債務者に対してお金を貸したとします。この場合、Aさんにとって商行為であれば、Bさん・Cさんの全員に商法が適用されます。「Bさんには商法、Cさんには民法」とはなりません。\n​以前の「商事時効」との混同に注意\n​かつては「商事消滅時効（5年）」という有名なルールがあり、片方的商行為なら双方に5年が適用されていました。しかし、現在は民法改正により、時効期間は原則として民法のルール（知った時から5年、行使できる時から10年）に統一されています。\n「商法が適用される＝時効が5年になる」という古い知識で解かないよう注意してください。\n​4. 試験で問われるポイント\n​行政書士試験では、以下のような「具体例」を用いたひっかけに注意が必要です。\n​ひっかけパターン：「商人と非商人の間の契約において、商法に民法と異なる定めがある場合、商法は商人のみに適用され、非商人には民法が適用される。」\n​答え：×（商法3条1項により、非商人側にも商法が適用されます）\n​実例としての出題：「デパートで服を買う行為」\n​デパート（商人）にとっては商行為ですが、客（非商人）にとっては単なる買い物です。しかし、この取引全体には商法が適用されます（例：商事法定利息など）。\n​5. 受験生へのアドバイス\n​「取引のユニット」で考える\n​「誰が」ではなく「その行為（取引）が」商行為かどうか、という視点を持ちましょう。\n「一人が商人なら、その取引という『箱』の中は全部商法ルールに染まる」とイメージすると覚えやすいです。\n​民法との比較を常に意識\n​商法3条により、非商人の側にも商法が適用される結果、民法の原則が修正されるケースがあります。\n​報酬請求権（商法512条）：商人が営業の範囲内で他人のために行為をしたら、特約がなくても報酬を請求できる。\n​法定利息（商法513条）：商人間の金銭貸借なら当然に利息が発生する。\nこれらの具体的な「商法ならではのルール」を学ぶ際、常にこの3条（片方的商行為）がバックボーンにあることを意識してください。",
           "1. 根拠条文：商法第3条2項\n​商法第3条（片方的商行為）\n​当事者の一方のために商行為となる行為については、この法律をその双方に適用する。\n​前項の場合において、当事者の一方が二人以上ある場合において、その一人のために商行為となる行為については、この法律をその全員に適用する。\n​2. 知識の整理：なぜ「全員」に適用するのか？\n​例えば、以下のようなケースを想像してください。\n​状況：商人Aが、友人グループのBさん・Cさん・Dさんに、キャンプ道具をレンタルした（Aにとっては商行為）。\n​ルール：このレンタル契約において、借りた側が3人（複数）であっても、全員に対して一律に商法が適用されます。\n​もし「Bさんには商法、Cさんには民法……」とバラバラの適用を認めると、契約の解除条件や遅延損害金の計算が人によって異なってしまい、法的な処理がパニックに陥ります。これを防ぐため、**「誰か一人が商人（商行為）なら、そのグループ全員を商法の土俵に引き込む」**という強力な一律ルールを敷いています。\n​3. 他の知識との「紛らわしい点」\n​「その者のみ」というひっかけ\n​試験では、「商行為となる者については商法を適用し、その他の者については民法を適用する」といった、個別適用を認めるような選択肢がよく作られます。これは間違いです。正解はあくまで「全員」です。\n​「双方」と「全員」の使い分け\n​1項（双方）：A（商人） vs B（非商人） という「1対1」の対立軸。\n​2項（全員）：A（商人） vs B・C・D（非商人グループ） という「1対多」の軸。\n言葉は違いますが、言わんとすることは同じ「商法ルールに統一する」ということです。\n​4. 試験で問われる点：商法511条とのリンク\n​ここが行政書士試験で最も実戦的なポイントです。\n​3条2項によって「全員に商法が適用される」結果、何が起きるか。最も有名なのが連帯債務のルールです。\n​民法の原則：数人で借金をした場合、特約がなければ「分割債務（頭割り）」になる。\n​商法511条1項：数人がその一人または全員のために商行為となる行為によって義務を負担したときは、その義務は**「連帯債務」**となる。\n​つまり、3条2項と511条が組み合わさることで、**「グループのうち一人でも商行為なら、そのグループ全員が連帯債務を負わされる」**という、民法の原則を大きく修正する結論が導かれます。\n​5. 受験生へのアドバイス\n​条文の「主語」と「述語」を固定する\n​商法総則の条文は、言葉が少し硬くて読みにくいですが、この3条については**「一人でも商行為なら ＝ 全員に商法」**という数式として暗記してしまいましょう。\n​「民法との違い」を常に意識\n​行政書士試験の商法は、「民法の知識を商法がどう上書き（修正）しているか」を問う問題が非常に多いです。\n「民法なら分割債務だけど、商法3条2項が絡むと連帯債務になるんだな」というように、民法の記憶をフックにして商法の知識を吊り下げると、忘れにくくなります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23185,6 +25872,13 @@ export const SUBJECTS = {
           "1. 根拠条文この問題の核となるのは、商法第17条2項（および会社法第22条2項）です。商法第17条2項前項（譲受人が譲渡人の商号を引き続き使用する場合）の規定の適用がない場合において、譲渡人の営業によって生じた債権について、譲渡人の債務者が善意でかつ重大な過失がないときに譲受人に対してした弁済は、その効力を有する。2. 結論：ご提示の文章の「正誤」ご提示の文章は、結論から言うと**「誤り」**です。誤りの箇所： 「丙の過失の有無を問わず」正しい内容： 「丙が善意かつ無重過失（重大な過失がない）」である必要があります。単なる「善意」だけでは足りず、重過失がないことまで要求される点が試験でのひっかけポイントです。3. 関連知識の整理この制度は、外観信頼（見た目を信じた人を守る）の法理に基づいています。譲受人の責任と債務者の保護項目内容備考譲受人の債務引受原則として、商号を続用するなら譲渡人の債務も引き継ぐ（商法17条1項）。債権者を守るため。免責登記譲受人が「債務を負わない」旨を登記すれば、債務は承継しない。知滞なく登記する必要あり。債務者の弁済商号が同じなら、債務者（丙）は「この人に返せばいいんだ」と誤解する。善意・無重過失なら有効。なぜ「重過失」が問われるのか？通常、債権の準占有者（のような外観を持つ者）への弁済（民法478条）では「善意・無過失」が求められます。しかし、商法では取引の迅速性や外観の強さを考慮し、**「重過失さえなければ保護する」**という、民法より少し緩やかな基準（＝債務者が守られやすい基準）を採用しています。4. 合格へのアドバイス① 「善意・無重過失」はセットで覚える行政書士試験の商法・会社法では、「過失の有無を問わず」や「過失がないときに限り（＝軽過失もダメ）」といった表現で受験生を揺さぶってきます。商号続用による弁済の有効性 ＝ 善意 ＋ 無重過失この組み合わせを呪文のように暗記しましょう。② 会社法22条とのリンク商法17条の内容は、会社法22条にも全く同じ規定があります。個人事業主から事業を譲り受けた場合（商法）でも、会社から事業譲渡を受けた場合（会社法）でも、ルールは同じだと押さえておけば得点源になります。③ 免責登記との組み合わせに注意もし譲受人が「債務を負わない」という免責登記をしていたとしても、債務者（丙）がその登記を知らず、かつ知らないことに重過失がなければ、譲受人（乙）への弁済は有効になります。",
           "1. 根拠条文商法第18条（および会社法第23条）が根拠となります。商法第18条譲受人が譲渡人の商号を引き続き使用しない場合においても、譲渡人の営業によって生じた債務を引き受ける旨の広告をしたときは、譲渡人の債権者は、その譲受人に対して弁済の請求をすることができる。2. 解説：なぜ「誤り」なのかこの規定は、債権者（丙）に対して**「請求先を増やしてあげる（選択肢を広げる）」**ためのものであり、元の債務者（甲）を免責させるものではありません。誤りの箇所： 「甲の弁済責任が消滅するため、……乙に対して弁済の請求をしなければならない」正しい内容： 甲の責任は消滅せず、丙は甲（譲渡人）と乙（譲受人）のどちらに対しても請求できます。3. 関連知識の整理行政書士試験で得点を伸ばすために、以下の3つのポイントをセットで押さえておきましょう。① 「併存的」債務引受この広告によって生じるのは、いわゆる「併存的債務引受」と同様の効果です。譲渡人（甲）： 引き続き債務を負う（原則）。譲受人（乙）： 新たに債務を負う。債権者（丙）からすれば、請求できる相手が2人に増える「強化」の状態になります。② 譲渡人の責任の存続期間（商法15条2項・会社法22条3項）「いつまでも甲に請求できるのか？」という点も重要です。譲受人（乙）が債務を引き受けた場合でも、譲渡人（甲）の責任は、事業譲渡の日（または広告の日）から2年を経過したときに消滅します。※「責任が消滅しない」といっても、永久ではないという点に注意してください。③ 広告の方法この「広告」は、官報や日刊新聞への掲載などを指します。個別の通知である必要はありません。4. 受験生へのアドバイス「〜しなければならない」に反応する法律科目の多肢択一式では、「〜しなければならない（義務）」という断定表現は誤りであるケースが多いです。本問の場合、丙は乙に請求する「権利」を得ただけであり、甲への請求権を失ったわけではありません。「どちらにも言える」という選択権の発生として理解しましょう。比較表で整理商号を「使う場合」と「使わない場合」の違いを明確にします。ケース譲受人の責任根拠商号を続用する当然に責任を負う（原則）商法17条1項商号を続用しない原則、負わない。広告をした場合のみ負う。商法18条",
           "1. 根拠条文商法第18条の2第1項（および会社法第23条の2第1項）が根拠となります。商法第18条の2第1項譲渡人が譲受人に承継されない債務の債権者（以下「残存債権者」という。）を害することを知って営業を譲渡した場合には、残存債権者は、譲受人に対し、承継した財産の価額を限度として、当該債務の履行を請求することができる。2. 解説：この規定が必要な理由本来、事業譲渡においてどの債務を引き継ぐかは、当事者（甲と乙）の契約で自由に決められます。しかし、これを悪用して、**「価値のある資産（営業財産）だけを乙に渡し、借金（債務）だけを甲に残す」**という操作が行われると、甲の債権者である丙は、もぬけの殻になった甲から債権を回収できなくなってしまいます。このような**「債権者への嫌がらせ（詐害行為）」**から丙を守るために作られたのがこのルールです。3. 関連知識・試験でのチェックポイント行政書士試験では、以下の3つのキーワードが入れ替えられて出題される傾向があります。チェック項目内容注意点主観的要件甲と乙の両方が、丙を害することを知っていること。乙（譲受人）が善意であれば、この請求はできません。責任の限度乙が甲から譲り受けた財産の価額が限度。乙の全財産で責任を負うわけではありません。対象となる債務乙に承継されなかった債務。承継された債務は当然に乙が負うため、この規定の出番はありません。4. 受験生へのアドバイス① 民法の「詐害行為取消権」との違い民法の詐害行為取消権（424条）は、裁判所に訴えて「譲渡そのものを取り消す」という面倒な手続きが必要です。一方、この商法（会社法）の規定は、丙が直接、譲受人（乙）に対して「金を払え」と言える点に大きなメリットがあります。ここが実務的にも強力な武器になります。② 「無償」というキーワードご提示の文章には「無償で」とありますが、条文上は「有償・無償」を問いません。たとえ対価を払っていても、丙を害することを知っていれば（不当に安い価格など）、この規定は適用されます。③ 会社法との共通性この規定も、商法18条の2と会社法23条の2で全く同じ構成になっています。一度覚えれば両方の科目で使えます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23263,6 +25957,13 @@ export const SUBJECTS = {
           "1. 根拠条文商法第502条8号（または2号）が関連します。商法第502条次に掲げる行為は、営業としてするときは、商行為とする。2号　作業又は労務の請負8号　撮影、印刷、出版又は信託の引受け2. 解説：試験で問われるポイントこの問題の核心は、「報酬を受ける意思」だけでは「絶対的商行為（1回でも商行為）」にはならないという点にあります。絶対的商行為（501条）： 1回きりの行為でも、客観的に商行為とされる（例：転売目的の買入れ）。営業的商行為（502条）： 「営業として（営利の目的で反復継続して）」行う場合に初めて商行為となる。今回の「ビデオ撮影の引受け」は、502条8号に明記されている「撮影」や、2号の「労務の請負」に該当します。そのため、単発で友人から頼まれて報酬をもらう程度では商行為とは言えず、プロのカメラマンや業者として営んでいる場合に商法が適用されます。3. 関連知識の整理行政書士試験では、502条のリスト（営業的商行為）をどれだけ覚えているかが勝負を分けます。特に以下のものは「撮影」とセットで狙われやすいです。502条の項目具体例8号：撮影・印刷・出版写真館の経営、本の出版、ビデオ制作など。2号：作業・労務の請負クリーニング屋、修理業者、大工仕事など。4号：取引の取次ぎ代理店、取次店など。7号：両替その他の銀行取引預金、貸付けなど。4. 合格へのアドバイス① 「営業として」という言葉の有無を確認問題文に「営業として」という言葉がなくても、502条に掲げられている行為（撮影、印刷、製造など）は、**「営業でなければ商行為にならない」**というルールを常に頭に置いておきましょう。反対に、前述した「転売目的の買入れ（501条）」は、営業でなくても（1回きりでも）商行為になります。この対比が頻出です。② 501条（絶対的）と502条（営業的）の覚え方501条（4つだけ！）： 投機購買・売却、手形取引、証券取引。これらは「1回でもアウト（商行為）」と覚えましょう。502条： それ以外。撮影、出版、銀行、製造、請負などは「商売としてやっていればアウト（商行為）」です。③ なぜ「商行為」かどうかが重要かもしこれが商行為であれば、もし撮影ミスでトラブルになった際、民法の原則ではなく、商法の**「商事消滅時効（現在は民法統合）」や「報酬請求権（512条）」、「連帯債務（511条）」**などの特則が適用されることになるからです。",
           "1. 根拠条文商法第501条4号（絶対的商行為）が根拠となります。商法第501条次に掲げる行為は、商行為とする。4号　利益を得て貸し付ける意思をもってする動産若しくは不動産の買入れ又はその貸付けを目的とするもの2. 解説：試験で狙われるポイントこの規定は、先ほどの「転売目的の買入れ（1号）」と非常によく似ていますが、以下の2点に注目してください。「貸付け」も絶対的商行為： レンタル業（DVD、レンタカー、衣装レンタルなど）のために物品を買い入れる行為は、それ自体が商法的性質を持っています。不動産も含まれる： 平成30年の商法改正により、動産だけでなく**「不動産」**も明記されました。つまり、賃貸マンションにする目的で建物を買い入れる行為も、現在は「絶対的商行為」です。3. 関連知識の整理行政書士試験の「商行為の分類」をコンプリートするために、501条（絶対的商行為）の4つの柱を完璧に覚えましょう。条文（501条）行為の内容覚え方のコツ1号：投機購買安く買って高く売る（転売）いわゆる「せどり」や「転売」2号：投機売却売る約束をしてから安く買う空売りなどのトリッキーな取引3号：取引所取引取引所で行う定型的な取引株式市場など（あまり深追い不要）4号：投機賃貸貸して利益を得るために買う今回のケース（レンタル業）4. 合格へのアドバイス① 「買い入れた後」の意思をチェック問題文をしっかり読み、「売却（転売）目的」なのか「賃貸（レンタル）目的」なのかを区別してください。どちらであっても**501条（絶対的商行為）**であることに変わりはありませんが、条文番号の理解として重要です。② 「営業として」という罠に注意「レンタルDVDの買入れは、営業として行う場合に限り商行為となる」という選択肢が出たら、それは**「×（誤り）」**です。501条の行為は、営利目的の「買入れ」という行為そのものに商法を適用すべき強い性質があるため、1回きりの個人的な行為であっても商行為になります。③ 改正点「不動産」を意識古い過去問では「不動産は含まれない」としているものがあるかもしれませんが、現在は**「動産・不動産ともに、賃貸目的の買入れは絶対的商行為」**です。最新の知識で上書きしておきましょう。",
           "1. 根拠条文商法第501条2号（絶対的商行為）が根拠となります。商法第501条次に掲げる行為は、商行為とする。2号　譲渡して利益を得る意思をもってする動産、不動産若しくは有価証券の売却又はその譲渡を目的とする買入れ2. 解説：試験で狙われるポイントこの「2号」の規定は、少し言葉が難しいですが、中身はシンプルです。行為の順番： 「売却の約束（売却）」→「仕入れ（買入れ）」目的： その差額で利益を得ること（投機売却）。絶対的商行為： 1号と同様、営業として（反復継続して）行わなくても、この1回きりの行為だけで商行為とみなされます。なぜこれが「商行為」なのかまだ手元にないものを売るという行為は、非常に投機性が高く、迅速かつ確実な取引が求められます。そのため、民法の一般的なルールよりも、商法の厳しいルール（責任や利息など）を適用して取引の安全を図る必要があるからです。3. 関連知識：501条1号と2号の比較どちらも「安く買って高く売る」という投機（チャンスを狙うこと）ですが、順番が違います。条文呼び方行為のプロセス501条1号投機購買①買う（仕入れ） → ②売る（転売）501条2号投機売却①売る（予約等） → ②買う（仕入れ）※どちらも現在は「動産・有価証券」だけでなく、**「不動産」**も対象に含まれています。4. 合格へのアドバイス① 「取得予定」というキーワード問題文に「取得予定の〜」や「他人の所有する〜」を売却するという表現が出てきたら、この501条2号を想起してください。いわゆる「空売り」のような形ですが、利益を得る意思があれば立派な絶対的商行為です。② 501条の「4つの絶対的商行為」を総復習これで501条の主要なものが揃いました。投機購買（転売目的で買う）投機売却（転売目的で、売ってから買う）取引所取引（取引所での定型取引）投機賃貸（レンタル目的で買う）これら4つは、**「営業として行わなくても（1回きりでも）商行為になる」**という共通点を絶対に忘れないでください。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23319,6 +26020,13 @@ export const SUBJECTS = {
           "1. 根拠条文商法第503条が根拠となります。商法第503条商人がその営業のためにする行為は、商行為とする。商人の行為は、その営業のためにするものと推定する。2. 解説：なぜ「みなす」ではなく「推定する」なのかこの違いは、試験において得点に直結する決定的な差です。「推定する」とは：とりあえず「営業のため（商行為）」として扱うが、もし「いや、これは完全に私的な行為だ」という**反証（反対の証拠）**があれば、その効力を覆すことができるという意味です。例：商人が机を買った。→ 原則は「営業用（商行為）」と推定。反証：実は「自分の子供の学習机」として買った領収書がある。→ 「私的な行為」となり、商法は適用されない。「みなす」とは：反証を許さず、法的に確定させてしまうことです。もし条文が「みなす」であれば、子供の机を買ったとしても強制的に「商行為」にされてしまいます。これでは商人の私生活が制限されすぎるため、商法は「推定」にとどめています。3. 関連知識：附属的商行為の全体像商行為には、その内容自体で決まるもの（501条・502条）以外に、「誰が何のためにしたか」で決まるものがあります。これを附属的商行為と呼びます。項目内容備考附属的商行為商人が「営業のために」行う行為。503条1項具体例事務用品の購入、営業資金の借入れ、店舗の改装。行為自体は普通のことでも、商人が行えば商行為。開業準備行為商人になる準備（店舗を借りる等）も附属的商行為。判例により認められています。4. 合格へのアドバイス① 「みなす」と「推定する」の峻別行政書士試験の商法・会社法では、この2つの言葉の入れ替えが多発します。擬制商人（4条2項）： 商人と**「みなす」**（外観がお店なら、言い逃れさせない）。商人の行為（503条2項）： 営業のためと**「推定する」**（私的な行為の余地を残す）。この対比を意識して暗記してください。② 全てが商行為になるわけではない問題文の「全て商行為となる」という断定も誤りです。商人が行う「冠婚葬祭の受付」や「個人的な趣味の買い物」など、営業と全く無関係な行為は、反証によって商行為ではない（民法適用）とされます。",
           "1. 根拠条文商法第501条（絶対的商行為）と第502条（営業的商行為）の対比が根拠となります。商法第501条（絶対的商行為）次に掲げる行為は、商行為とする。（※「営業として」の要件がない）商法第502条（営業的商行為）次に掲げる行為は、営業としてするときは、商行為とする。2. 解説：2つの商行為の違い行政書士試験では、以下の表の「いずれに該当するか」を正確に判別できる力が求められます。分類性質主な具体例（キーワード）絶対的商行為（501条）行為の客観的性質から、1回きりでも商行為となる。転売目的の買入れ、レンタル目的の買入れ、手形取引。営業的商行為（502条）営業として（営利目的＋反復継続）行う場合に限り商行為となる。製造、加工、電気・ガスの供給、運送、郵便、銀行取引、撮影。なぜ「絶対的」は1回でもいいのか？例えば「安く買って高く売る（投機購買）」という行為は、それ自体が極めて商売的な性質を持っています。そのため、たとえ商売人ではない個人が1回だけ行ったとしても、その取引には商法の迅速なルール（商事法定利率や責任規定など）を適用すべきだと考えられているからです。3. 関連知識：試験での「ひっかけ」パターン問題文に以下の表現が出てきたら、即座に警戒してください。「全ての商行為は、営業として行う場合に限られる」 → ×（501条があるため）「投機的買入れは、営業として行う場合に限り商行為となる」 → ×（501条1号なので1回でも○）「事務用品の印刷の引受けは、1回きりでも商行為となる」 → ×（502条8号なので営業でなければ×）4. 合格へのアドバイス① 「501条（絶対的）」を先に暗記する絶対的商行為は数が少ないため、先に覚えてしまいましょう。買入れ・売却（転売目的）買入れ・貸付け（レンタル目的）取引所での取引手形・小切手に関する行為これら以外が登場したら、まずは「営業として行う必要があるか？」を疑う癖をつけてください。② 問題文の語尾に注目「〜に限り」「〜のみ」「全て〜である」といった限定・断定の表現は、商法においては例外（501条と502条の差）を突くためのサインであることが多いです。",
           "1. 根拠条文商法第501条（絶対的商行為）および商法第3条1項（一方的商行為）が根拠となります。商法第501条（絶対的商行為）次に掲げる行為は、商行為とする。（※商人であるかどうかを問わない）商法第3条1項（一方的商行為）当事者の一方のために商行為となる行為については、この法律を当事者の双方に適用する。2. 解説：なぜ「誤り」なのか① 商人でない者の行為も「商行為」になり得る「絶対的商行為（501条）」に該当する行為（例：転売目的での商品の買入れ）は、その行為自体の客観的な性質に着目して規定されています。したがって、行為者が商人（プロ）であるか、一般人（アマチュア）であるかを問いません。 一般人がたまたま1回だけ行った転売目的の買入れも、法律上は「商行為」です。② 「一方的商行為」のルール商人と商人でない者（消費者など）の間で契約が行われた場合、片方にとって商行為であれば、双方に商法が適用されます。例：あなたがデパート（商人）で買い物をした場合、あなた（非商人）の行為も商法上のルールに従うことになります。3. 関連知識：商行為の3分類行政書士試験に合格するためには、以下の3つの「箱」を正確に区別できる必要があります。分類定義主体（だれが？）絶対的商行為（501条）行為の性質上、当然に商行為。誰でもよい（非商人でも○）営業的商行為（502条）営業として行う場合に商行為。商人（または商人になる人）附属的商行為（503条）営業のために行う補助的な行為。商人4. 合格へのアドバイス① 「商人でない者の行為は〜ない」という全否定に注意試験問題で「〜となることはない」「常に〜である」といった極端な表現が出てきたら、まず「絶対的商行為」という例外を思い出してください。② 503条（附属的商行為）との混同を避けるご提示の文章にある「営業のためにする行為」は、確かに商人であることを前提としています（附属的商行為）。しかし、商行為の全体像はそれだけではありません。「営業のために」 ＝ 商人であることが前提「絶対的商行為」 ＝ 商人である必要はないこの「主体の要件」の有無を整理しておきましょう。③ 一方的商行為の適用範囲「当事者の一方が商人のときは、双方に商法を適用する」という原則は、非常に強力です。ただし、特則（消費者保護法など）がある場合はそちらが優先されるという実務的な視点もありますが、試験対策としては商法3条の原則をしっかり押さえておけば得点できます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23397,6 +26105,13 @@ export const SUBJECTS = {
           "1. 根拠条文商法第511条1項が根拠となります。商法第511条1項数人の者がその一人又は全員のために商行為となる行為によって債務を負担したときは、その債務は、各自が連帯して負担する。2. 解説：民法との決定的な違い行政書士試験では、民法と商法の「デフォルト（原則）」が逆転している箇所が非常によく狙われます。項目民法（原則：427条）商法（特則：511条1項）原則の形態分割債務（頭割り）連帯債務成立の要件特約（連帯する旨の合意）が必要。**「一人でも商行為」**であれば当然に成立。債権者のメリット債務者の人数分に分けて請求する手間がある。誰に対しても**「全額払え」**と言える。なぜ商法は「連帯」なのか？商取引においては、債権者が確実に代金を回収できる（債権の効力を強める）ことが、取引の安全と迅速につながるからです。いちいち「連帯債務にしますか？」と確認しなくても、ビジネスが絡むなら責任は重く持ってもらおう、というスタンスです。3. 試験で狙われる「一人でも商行為」条文にある**「その一人……のために商行為となる」**という部分が重要です。ケースA： 商人甲と商人乙が、共同で商品を仕入れた。→ 全員にとって商行為なので、当然に連帯債務。ケースB： 商人甲と、非商人（一般人）丙が、共同で何かを借りた。それが甲にとって「営業のため（商行為）」であれば……→ 丙も連帯債務を負うことになります。非商人が混ざっていても、その取引が誰か一人にとって商行為であれば、全員が連帯して責任を負わされるという厳しいルールです。4. 合格へのアドバイス① 「保証」とのセットで覚える（511条2項）同じ511条の2項には、**「保証」**についても規定があります。民法： 保証人は原則として「催告・検索の抗弁権」がある（普通の保証）。商法： 債務が商行為によって生じたとき、または保証が商行為であるときは、当然に連帯保証となる。「商法が絡めば、とにかく重い責任（連帯）を負わされる」とセットで記憶しましょう。② 「分割債務」というキーワードに反応する問題文に「別段の意思表示がない限り、各自の持分に応じて分割して負担する」という記述があれば、商法の世界では「×」です。③ 消滅時効との関連連帯債務の一人に生じた事由が他の債務者にどう影響するか（相対的効力・絶対的効力）は民法の知識ですが、商法511条で「連帯債務になる」と確定させた後、その民法のルールを適用させるという流れで出題されます。",
           "1. 根拠条文商法第511条2項が根拠となります。商法第511条2項保証人がある場合において、債務が主たる債務者の商行為によって生じたものであるとき、又は保証が商行為であるときは、主たる債務者及び保証人は、連帯して債務を負担する。2. 解説：民法との決定的な違い民法の原則では、保証人は「ただの保証人」であり、強力な武器（抗弁権）を持っています。しかし商法では、これらが封じられます。項目民法（原則）商法（特則）保証の形態普通保証（原則）連帯保証（当然に）催告の抗弁権あり（先に本人に言えと言える）なし（いきなり保証人に請求可）検索の抗弁権あり（本人の財産を先に差し押さえろと言える）なし（本人に財産があっても拒めない）分別の利益あり（保証人が複数なら頭割り）なし（一人が全額責任を負う）なぜ商法は「連帯」保証なのか？商取引においては、債権者が「誰からでも、すぐに、全額」回収できることが重要視されます。保証人が「まずは主債務者に請求してください」などと引き延ばしをすることを防ぎ、取引の決済を迅速にするためです。3. 試験で狙われる「成立パターン」連帯保証になるルートは2つあります。どちらか一方に当てはまれば「連帯」です。主たる債務が「商行為」によって生じた場合例：個人商店の店主（商人）が仕入れ代金の支払いのために保証人を立てた。この場合、保証人が普通の主婦であっても、当然に連帯保証人となります。「保証」自体が商行為である場合例：銀行や保証会社が、個人の住宅ローンの保証を引き受けた。主債務（住宅ローン）が商行為でなくても、保証人（銀行）にとって「保証」が営業（商行為）であれば、当然に連帯保証となります。4. 合格へのアドバイス① 「当然に」という言葉を意識する民法では、契約書に「連帯保証とする」と書かなければ連帯保証になりません。しかし商法511条2項が適用されるケースでは、契約書に「保証人」としか書いていなくても、法律上当然に「連帯保証人」として扱われます。② 「催告・検索の抗弁権」とのリンク試験では「商行為によって生じた債務の保証人は、催告および検索の抗弁権を有しない」という聞き方で出題されます。これは「連帯保証である」と言い換えているだけですので、落ち着いて「○」と答えましょう。③ 511条1項（連帯債務）との混同に注意1項：数人の債務者がいるとき（みんなで借りた）2項：保証人がいるとき（誰かが保証した）どちらも結論は**「連帯（重い責任）」**ですので、セットで記憶に焼き付けてください。",
           "1. 根拠条文商法第593条（および民法第659条との対比）が根拠となります。商法第593条商人がその営業の範囲内において寄託を受けたときは、**報酬を受けないときであっても、善良な管理者の注意（善管注意義務）**をもって、寄託物を保管しなければならない。2. 解説：なぜ「誤り」なのか（義務のレベルの差）法律上の「注意義務」には2つのレベルがありますが、商法では無報酬であっても厳しい方の義務を課しています。義務の種類内容適用されるケース善管注意義務（厳しい）社会通念上、その職業や地位において一般的に期待される注意。商法593条（無報酬でもこれ！） / 民法の有償寄託自己の財産と同一の注意（軽い）自分の物を扱うのと同じくらいで良い（ルーズな人ならルーズでOK）。民法の無償寄託（民法659条）誤りの箇所： 「自己の財産に対するのと同一の注意をもって」正しい内容： 「**善良な管理者の注意（善管注意義務）**をもって」なぜ商人は無報酬でも厳しいのか？商人は「保管のプロ」としての設備やノウハウを持っていることが期待されています。営業の範囲内で物を預かる以上、たとえ今回だけサービス（無償）で預かったとしても、プロとしての最低限の責任（善管注意義務）は果たしなさい、というのが商法の考え方です。3. 関連知識：民法との比較表ここを整理しておくだけで、民法と商法の両方の問題に対応できます。寄託の種類民法（一般人）商法（商人）有償（報酬あり）善管注意義務善管注意義務無償（報酬なし）自己の財産と同一の注意善管注意義務4. 合格へのアドバイス① 「商法＝プロ＝厳しい」の原則商法において、義務のレベルが「自分の財産と同じでいい（軽い）」となるケースはまずありません。「商人が営業でやるなら、タダでもプロの仕事をしろ」と覚えましょう。② 「営業の範囲内」という条件この厳しい義務が課されるのは、あくまで「営業の範囲内」で預かった場合です。例：クリーニング屋が、客の服を（サービスで）預かる ＝ 善管注意義務例：クリーニング屋が、近所の友人から釣竿を（個人的に）預かる ＝ 自己の財産と同一の注意（民法の無償寄託）③ 他の「善管注意義務」代理権の行使（支配人など）や、取締役の義務（会社法330条・民法644条）もすべて「善管注意義務」です。商法・会社法において「自己の財産と同一の〜」という言葉が出てきたら、まずは疑ってかかりましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23453,6 +26168,13 @@ export const SUBJECTS = {
           "1. 根拠条文商法第504条（非顕名主義）が根拠となります。商法第504条商行為の代理人が本人のためにすることを示さないでこれをした場合であっても、その行為は、本人に対してその効力を生ずる。ただし、相手方が、代理人が本人のためにすることを知らなかったときは、相手方が代理人に対して履行の請求をすることを妨げない。2. 解説：なぜ「誤り」なのかこの規定は、代理人が「私は〇〇の代理人です」と言わずに取引した場合（非顕名）、相手方が「代理人本人と取引している」と信じるのが当然であるため、相手方を保護するためのものです。「履行の請求に限り」の誤り相手方が、代理人が本人（背後のボス）のためにしていると知らなかった（善意）場合、相手方は以下のいずれかを選択できます。本人（ボス）に請求する： 商法504条本文の効果。代理人（目の前の人）に請求する： 商法504条但書の効果。ここで重要なのは、代理人に対してできるのは「履行の請求（＝約束通り金を払え、物を渡せ）」だけではないという点です。もし取引が債務不履行になった場合、相手方は代理人に対して**「契約の解除」や「損害賠償の請求」**も行うことができます。したがって、「履行の請求に限り」という限定は不適切（＝誤り）となります。3. 関連知識：商法の「非顕名主義」まとめ試験で整理しておくべき全体像は以下の通りです。状況法律関係の帰属根拠原則（商法504条本文）本人に効果が及ぶ。ビジネスの効率化。相手方が悪意（知っていた）本人に対してのみ請求可。相手方を保護する必要がないため。相手方が善意（知らなかった）本人 or 代理人のどちらかを選択。相手方の信頼を保護するため。4. 合格へのアドバイス① 「履行の請求」という言葉に飛びつかない条文の文言には「履行の請求をすることを妨げない」とありますが、これは「契約上の責任をすべて追及できる」という意味で解釈されます。「〜に限り」という限定詞が出てきたら、商法では常に疑いの目を持ってください。② 民法100条との違い（再確認）民法： 名乗らなければ「代理人」が100%責任を負う（本人は出てこない）。商法： 名乗らなくても「本人」が責任を負うのが原則。③ 「選択権」の行使相手方が一度「本人」に請求して満足を得た（または判決を得た）後は、もう「代理人」には請求できません（逆も然り）。これを「択一的（たくいつてき）」な関係と呼びます。",
           "1. 根拠条文商法第504条（非顕名主義）が根拠となります。商法第504条商行為の代理人が本人のためにすることを示さないでこれをした場合であっても、その行為は、本人に対してその効力を生ずる。ただし、相手方が、代理人が本人のためにすることを知らなかったときは、代理人に対して履行の請求をすることを妨げない。2. 解説：なぜ「誤り」なのかこの文章には、商法の考え方と逆転しているポイントが2つあります。① 法律関係の帰属（原則）誤りの箇所： 「相手方と代理人との間に法律関係が生じるが」正しい内容： 商法では、名乗らなくても原則として**「相手方と本人」の間に法律関係が生じます。**（504条本文）※民法とは逆で、最初から「ボスのための仕事」として扱われます。② 本人への請求（範囲）誤りの箇所： 「本人に対しても、履行の請求に限り」正しい内容： 本人に対しては、原則通り**「契約上のすべての権利（履行請求、解除、損害賠償など）」**を主張できます。「〜に限り」という制限はありません。3. 関連知識：試験で混乱しないための整理「誰がメインの当事者か」を、民法と商法で比較して脳内に定着させましょう。状況民法（原則）商法（特則）名乗らなかった時代理人が当事者。本人が当事者。相手方の救済本人には請求できない。善意なら代理人も選べる。立場の強さ形式（名前）を重視。実態（ビジネス）を重視。4. 合格へのアドバイス① 「本文」と「但書」の主客転倒に注意本文（原則）： 本人に効果がいく。（これがメイン）但書（例外）： 相手方が知らないなら、代理人にも責任を追及できる。（これがサブ）ご提示の文章は、このメインとサブを入れ替えて記述しているため、文章の構造自体が商法504条の趣旨と異なります。② 「履行の請求」という限定詞これまでの解説でも触れましたが、商法において「履行の請求に限り」という限定が出てきたら、ほぼ間違いなく「×」です。契約が成立している以上、解除や損害賠償といった他のメニューもセットでついてくるのが法理です。③ 非顕名主義の「メリット」なぜ本人に効果を帰属させるのかというと、例えば「スーパーの店員がいちいち『私は〇〇株式会社の代理人です』と言わなくても、客は会社と取引していると分かっているし、会社に責任を取らせるのが自然だから」です。この実感を持ちながら条文を読むと、忘れにくくなります。",
           "1. 根拠条文商法第504条が根拠となります。商法第504条商行為の代理人が本人のためにすることを示さないで（＝名を名乗らずに）これをした場合であっても、その行為は、本人に対してその効力を生ずる。ただし、相手方が、代理人が本人のためにすることを知らなかったときは、代理人に対して履行の請求をすることを妨げない。2. 解説：相手方の「選択権」この規定により、相手方が「目の前の人が誰かの代理人であること」を知らなかった（善意だった）場合、以下の2つのルートを自由に選べるようになります。本人との法律関係を主張する：商法504条本文の「名乗らなくても本人に効果がいく」というルールを利用して、背後のボス（本人）に責任を追及する。代理人との法律関係を主張する：商法504条但書の「相手方の信頼保護」を利用して、目の前の取引相手（代理人）に責任を追及する。これを**「択一的（たくいつてき）帰属」**と呼びます。相手方は自分にとって都合の良い方（例えば、お金をたくさん持っていそうな方）を選んで請求できる、非常に強力な権利です。3. 試験で狙われる「ひっかけ」の総まとめこれまで見てきた「非顕名主義」の誤文パターンを整理し、本問がなぜ正しいのかを再確認しましょう。誤りパターンどこが間違いか「代理人と本人に連帯責任が生じる」× 連帯ではなく、どちらか一方を選ぶ「択一的」な関係。「本人には一切効果が及ばない」× それは民法の原則。商法は名乗らなくても本人に及ぶ。「履行の請求に限り、認められる」× 履行請求だけでなく、解除や損害賠償も含まれる。「相手方が悪意でも選択できる」× 相手方が「代理人だと知っていた」なら、本人にしか請求できない。4. 合格へのアドバイス① 「主張することができる」という表現法的な文章において「主張することができる」は、権利を行使する選択権があることを示します。本問のように「いずれかを主張することができる」という書き方は、商法504条の法理を正確に反映した表現です。② 民法100条との比較を完成させる民法： 顕名がない ＝ 代理人が100%当事者（本人は関係ない）。商法： 顕名がない ＝ 本人が当事者（ただし相手方が善意なら代理人も選べる）。この「原則の逆転」を頭に叩き込んでおけば、商法総則の代理の問題で迷うことはなくなります。③ 実務的なイメージ例えば、個人商店の店員（代理人）が店主（本人）の名を伏せて仕入れをした場合。問屋（相手方）は、後で店主がバックにいると知れば「店主」に代金を請求してもいいし、「店員」にそのまま請求してもいい。相手方が「騙された！」とならないように、選択肢を増やしてあげているのがこの法律の優しさです。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23509,6 +26231,13 @@ export const SUBJECTS = {
           "1. 根拠条文商法第508条1項が根拠となります。商法第508条1項商人である隔地者の間において承諾の期間を定めないで契約の申込みを受けた者が相当の期間内に承諾の通知を発しなかったときは、その申込みは、その効力を失う。2. 解説：試験で狙われるポイントこの規定は、民法第525条（承諾の期間の定めのない申込み）とほぼ同じ内容ですが、商法にわざわざ規定があるのは「商人同士のスピード感」を重視しているからです。① 「相当の期間」とは？具体的な日数は決まっていませんが、申込みの通知が届き、検討し、承諾の返事を発信するために客観的に必要とされる期間を指します。この期間を過ぎて無反応であれば、申込者は「あ、この話は流れたな」と判断して、別の取引先を探せるようになります。② 「発しなかったとき」のタイミング承諾の通知が「届かなかったとき」ではなく、**「発信しなかったとき」**に効力が失われる点に注目してください。3. 関連知識：対面（対話者間）の場合隔地者（離れた場所にいる人）ではなく、**対話者（目の前にいる、または電話中の人）**の場合はさらにルールが厳しくなります。状況承諾の期限（商法507条）備考対話者間直ちに承諾しなければならない。その場を離れたり電話を切れば、申込みは失効する。隔地者間相当の期間内に発信すればよい。今回のケース（508条）。4. 合格へのアドバイス① 民法とのリンク民法改正により、現在では民法も「承諾の期間を定めない申込みは、相当期間経過後に効力を失う」（525条1項）となっており、商法508条とほぼ足並みが揃っています。行政書士試験では「民法には規定があるが商法にはない」といったひっかけが出ることがありますが、この「相当期間」については両方に規定があると覚えておきましょう。② 「承諾義務」との違い（509条）今回の508条は「申込みがいつ消えるか」の話ですが、セットで狙われるのが商法509条です。商法509条： 平常取引をしている相手から申込みを受けた場合、遅滞なく諾否の通知を発しなければならない。（放置すると承諾したとみなされる）508条： 放置したら申込みが消える（一般的な商人）。509条： 放置したら契約が成立する（いつもの取引先）。この「相手との関係性」による結論の違いが、試験で最も狙われる最重要ポイントです。",
           "1. 根拠条文商法第509条（および会社法第527条）が根拠となります。商法第509条商人が平常取引をする者からその営業の部類に属する契約の申込みを受けたときは、遅滞なく、諾否の通知を発しなければならない。商人が前項の通知を発することを怠ったときは、その申込みを承諾したものとみなす。2. 解説：なぜ「沈黙＝承諾」になるのかこの規定は、取引の迅速性と相手方の信頼（期待）を保護するために存在します。成立するための3つのハードル（要件）試験では、この3つが揃っているかを厳しくチェックされます。「商人」への申込みであること受け手が商人でなければなりません。「平常取引をする者」からの申込みであることここが最大のポイントです。 初対面の相手からの申込みを無視しても、契約は成立しません。「いつものお得意様」からの連絡だからこそ、無視＝OKという信頼が生まれます。「営業の部類に属する」申込みであること魚屋さんに「パソコンを売ってください」という申込みが届いても、それは営業外なので無視しても契約は成立しません。3. 関連知識：民法との決定的な違い行政書士試験では、民法第521条〜の原則との対比が頻出です。項目民法（原則）商法（特則：509条）沈黙の効果原則、拒絶（または無効）。条件を満たせば承諾（契約成立）。通知の義務返事をする義務はない。遅滞なく返事をする義務がある。考え方契約自由の原則（無視も自由）。取引の迅速・信頼（プロなら返せ）。4. 合格へのアドバイス① 「みなす」と「推定する」条文は「承諾したものとみなす」です。「推定する」ではないので、後から「本当は嫌だった」と言い訳することはできません。② 508条（相当期間での失効）との使い分け508条（一般の商人）： 放置すれば申込みが消える。509条（いつもの相手）： 放置すれば契約が成立する。問題文に「平常取引をする者から」という言葉があるかどうかで、180度結論が変わります。③ 「物品の保管義務」とのセット商法510条には、「申込みを拒絶した場合でも、その物品が送られてきたら、送り主の費用で保管してあげなさい」というこれまた厳しいルールがあります。「商人はプロとして相手に配慮せよ」という一連の流れで覚えましょう。",
           "1. 根拠条文商法第510条が根拠となります。商法第510条商人がその営業の部類に属する契約の申込みを受けた場合において、その申込みとともに物品を受け取ったときは、その申込みを拒絶したときであっても、申込者の費用をもって、その物品を保管しなければならない。ただし、その物品の価額が保管の費用を支弁するのに足りないとき、又は商人が損害を受けるおそれがあるときは、この限りでない。2. 解説：なぜ「誤り」なのかこの規定は、商人に対して「契約しないなら、さっさと送り返すか、送り主の金で預かってあげなさい」という義務を課しています。文章の「誤り」のポイント誤りの箇所： 「申込みを受けた商人の費用をもって」正しい内容： 「申込者（送り主）の費用をもって」いくらプロの商人であっても、勝手に送りつけられた物品の保管料まで負担させるのは酷です。そのため、費用はあくまで「送り主（申込者）」が負担することになっています。3. 関連知識：509条と510条のセット行政書士試験では、この2つの条文がセットで「商人の重い責任」として出題されます。条文状況義務の内容放置した場合509条いつもの相手からの申込み諾否の通知を出す義務。承諾したとみなされる。510条物品が一緒に届いた物品を保管する義務。善管注意義務違反で損害賠償。4. 合格へのアドバイス① 「営業の部類」という共通要件509条（通知義務）も510条（保管義務）も、商人の専門分野である**「営業の部類に属する」こと、および「商人への申込み」**であることが前提です。② 保管義務のレベル商人が営業の範囲内で預かる以上、以前お話しした通り**「善管注意義務（593条）」**を負うことになります。タダで預かってあげる（費用は相手持ち）としても、プロとして丁寧に扱わなければなりません。③ 保管しなくて良い例外条文の「ただし書き」にも注目です。物品の価値が低すぎて、保管料すら出ないような場合。預かることで商人が損害を受ける（危険物など）おそれがある場合。これらは、商人に無理な負担をさせないためのブレーキとして機能しています。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23565,6 +26294,13 @@ export const SUBJECTS = {
           "1. 根拠条文\n商法第538条が根拠となります。\n\n商法第538条\n出資が損失によって減少したときは、その損失をてん補した後でなければ、匿名組合員は、利益の配当を請求することができない。\n\n2. 解説：損失てん補の仕組み\n匿名組合員が100万円を出資したケースで考えてみましょう。\n\n事業で30万円の損失が出た： 出資額は実質70万円に減少します。\n\n翌期に20万円の利益が出た： 本来ならこの20万円を配当してほしいところですが、まずは「減少した30万円の穴埋め」に充てられます。\n\n配当ができるタイミング： さらに利益が出て、実質的な財産が元の「100万円」を超えたところから、初めて配当を請求できるようになります。\n\nなぜこのルールがあるのか？\n匿名組合は「出資した元本を維持しながら、そこから生じる果実（利益）を分ける」という仕組みです。元本が欠損している状態で配当を行うことは、出資したお金をただ払い戻しているのと同じ（タコ足配当のような状態）になってしまうため、法律で制限されています。\n\n3. 関連知識：匿名組合の終了と出資の返還\n試験では、組合が終わるときのルールもセットで狙われます。\n\n契約の終了（商法539条）： 営業の成功不能や破産などで終了します。\n\n出資の返還（商法540条）： 終了したとき、営業者は匿名組合員に**「その時の価額」**で出資を返さなければなりません。\n\n※「出した金額（100万円）」を保証するものではなく、事業に失敗して残りが10万円なら、10万円しか返ってきません。\n\n4. 合格へのアドバイス\n① 「てん補」という言葉に慣れる\n「てん補」とは「補う（穴埋めする）」という意味です。行政書士試験の商法・会社法ではよく使われる用語ですので、この機会にマスターしましょう。\n\n② 「損失分担」の原則\n商法536条3項には、「出資が損失によって減少しても、匿名組合員はさらなる出資義務を負わない（ただし、利益配当は受けられない）」という趣旨が含まれています。\nつまり、**「追加でお金を払う必要はないが、元本が回復するまでお預け」**という絶妙なバランスになっています。\n\n③ 民法の組合との違い（再確認）\n民法の組合では、損失が出た場合、組合員は原則としてその割合に応じて損失を分担（追加負担）しなければなりませんが、匿名組合員は**「出資額の範囲内」**でのみ損失を負担すれば足ります。",
           "1. 根拠条文商法第539条が根拠となります。商法第539条匿名組合員は、営業年度の終了時において、営業者の営業時間内に、営業者の計算書類を閲覧し、又は謄写し、若しくはその業務及び財産の状況を検査することができる。一見すると正しいように思えますが、実はこの条文、**「裁判所の許可」**が必要な場合とそうでない場合が厳格に区別されています。2. 解説：なぜ「誤り」なのか（権利の範囲）匿名組合員はあくまで「出資者」であり「経営者」ではありません。そのため、営業者の業務に深く介入することは制限されています。無条件でできること：営業年度の終了時に、営業時間内に**「計算書類（決算書など）」を閲覧・コピーすること**。「裁判所の許可」が必要なこと：「業務及び財産の状況を検査すること」。ご提示の文章には「裁判所の許可」という要件が抜けているため、試験対策上は「誤り」と判断されます。3. 関連知識：権利のバランスなぜ「検査」には裁判所が必要なのでしょうか？権利の内容態様理由書類の閲覧・謄写年度末なら自由自分の配当が正しいか確認するために最低限必要だから。業務・財産の検査裁判所の許可が必要営業者の経営の秘密に踏み込む行為であり、濫用されると営業を妨害する恐れがあるから。4. 合格へのアドバイス① 「裁判所」の有無をチェック行政書士試験では、会社法も含め「いつでもできるのか」「裁判所の許可がいるのか」の入れ替えが頻出です。匿名組合員に関しては、**「書類を見るのはOK、中身（現場）を調べるなら裁判所へ」**とセットで覚えましょう。② 期間の限定「営業年度の終了時」という限定にも注目です。年度の途中（期中）に「今どうなってるか見せろ」と詰め寄る権利は、原則として認められていません。③ 株式会社（株主）との比較株式会社の場合、一定以上の議決権を持つ株主には、より強力な帳簿閲覧権などが認められています（会社法433条）。それに比べると、匿名組合員の権利はかなり控えめに設定されているのが特徴です。",
           "1. 根拠条文商法第541条が根拠となります。商法第541条匿名組合契約は、次に掲げる事由によって終了する。営業の成功若しくはその成功不能営業者の死亡又は後見開始の審判を受けたこと営業者又は匿名組合員が破産手続開始の決定を受けたこと解約2. 解説：なぜ「組合員の破産」で終了するのか匿名組合員は「お金を出すだけ」の存在ですが、その組合員が破産するということは、出資した財産（またはこれから出すべき財産）が破産管財人の管理下に置かれることを意味します。営業者の保護： 破産した組合員との関係を継続させることは、営業者にとって経営上のリスクや事務負担（管財人とのやり取りなど）を強いることになります。清算の迅速化： 契約を一度終了させることで、その時点での出資価額を算定し、破産財団に組み入れる（または返還する）という明確な区切りをつけることができます。3. 関連知識：終了事由の「ひっかけ」ポイント行政書士試験では、**「営業者」と「匿名組合員」**で終了事由が異なる点（死亡・後見開始）が非常によく狙われます。事由営業者匿名組合員破産終了する終了する死亡終了する終了しない（相続される）後見開始終了する終了しないなぜ「死亡」で差が出るのか？営業者： 「その人」が経営しているからこその契約なので、本人が死んだら代わりはいません（終了）。匿名組合員： 「お金を出しているだけ」なので、本人が死んでもその権利（配当をもらう権利など）を遺族が引き継げば、商売自体は続けられます（存続）。4. 合格へのアドバイス① 「破産は両方、死亡は営業者のみ」このフレーズで覚えましょう。「匿名組合員の死亡は終了事由ではない」という選択肢は、過去問でも頻出です。② 解約による終了（540条）条文の「解約」についても補足しておきます。期間を定めなかった場合：6ヶ月前に予告すれば、営業年度の終わりに解約できます。やむを得ない事由がある場合：期間の定めに関わらず、いつでも解約できます。③ 終了後の出資返還（542条）契約が終了したときは、営業者は匿名組合員に、出資を返さなければなりません。ただし、前にお話しした通り「出した金額」ではなく、**「その時の価額（損失があれば減った分）」**で返せば足ります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23621,6 +26357,13 @@ export const SUBJECTS = {
           "1. 根拠条文商法第594条1項が根拠となります。商法第594条1項飲食店、旅館、浴場その他の客の来集を目的とする施設において営業をする者（場屋営業者）は、客から寄託を受けた物品の滅失又は損傷については、不可抗力によるものであったことを証明しなければ、損害賠償の責任を免れない。2. 解説：なぜ「注意を怠らなかった証明」では足りないのかここが行政書士試験で最も間違えやすい「超重要ポイント」です。比較項目運送人の責任（575条）場屋営業者の責任（594条）免責の条件**「注意を怠らなかった」**証明**「不可抗力であった」**証明責任の重さ重い（過失がないことを証明）さらに重い（天災等であることを証明）「不可抗力」のハードルの高さ「注意を怠らなかった（善管注意義務を果たした）」という証明は、「プロとしてやるべきことは全部やりました」という主張です。しかし「不可抗力」とは、**「プロがどんなに最高の注意を払っていても、絶対に防げなかった事態（例：巨大地震、落雷など）」**を指します。つまり、原因不明の盗難や、従業員に落ち度がない火災であっても、それが「不可抗力」と言い切れなければ、場屋営業者は責任を負わされることになります。3. 関連知識：寄託を受けていない場合（594条2項）場屋営業者の責任は、客から「預かった物」だけにとどまりません。預けていない物（持ち込み品）：客が施設内に持ち込んだだけで預けていない物についても、営業者側の過失で滅失・損傷した場合は、営業者が損害賠償責任を負います。（※「館内での盗難について一切責任を負いません」という掲示があっても、営業者に過失があれば免責されません。）4. 合格へのアドバイス① 「運送人＝注意」「場屋＝不可抗力」このキーワードの組み合わせを脳内に叩き込んでください。試験問題で「場屋営業者は、注意を怠らなかったことを証明すれば〜」とあれば、反射的に「×」と打てるようになりましょう。② 高価品の特則（594条3項）運送人と同様、高価品については「種類と価額を通知」しなければ、営業者は原則として責任を負いません。ただし、これも「中身を知っていた場合」や「営業者の故意・重過失」がある場合は免責されません。③ 短期消滅時効（595条）場屋営業者の責任も、物品を返還した（または客が立ち去った）時から1年で時効にかかります。これも運送人と共通する「商法のスピード感」です。",
           "1. 根拠条文商法第594条2項が根拠となります。商法第594条2項客が寄託しなかった物品であっても、施設の中に携帯した物品が、場屋営業者又はその使用人の不注意によって滅失し、又は損傷したときは、場屋営業者は、損害賠償の責任を負う。2. 解説：寄託物（1項）との違い行政書士試験では、1項（預けた物）と2項（預けていない物）で、**「免責されるための条件」**が異なる点が非常によく狙われます。区分状態免責されるための条件責任の性質寄託物（1項）フロント等に預けた不可抗力を証明しなければならない極めて重い不寄託物（2項）客席等に持ち込んだ不注意（過失）がなかったことを証明すればよい1項よりは軽いなぜ「不注意」があれば責任を負うのか？客が自分の手元に置いている物であっても、施設内は営業者の管理下にあります。例えば、レストランの店員がスープをこぼして客のバッグを汚した、あるいはホテルの清掃員が客室の私物を壊したといった場合、営業者は「預かっていないから知らない」とは言えず、過失がある以上は責任を負わなければなりません。3. 関連知識：免責掲示の無効（594条4項）旅館の壁などでよく見かける「当館は、館内での盗難・紛失について一切責任を負いません」という貼り紙。これについて商法は非常に厳しい態度をとっています。商法第594条4項第一項及び第二項の責任は、場屋営業者が客に対して物品の責任を負わない旨を掲示したときであっても、免れない。たとえ「責任を負わない」と書いてあっても、法律上の責任（1項の不可抗力責任や、2項の過失責任）を勝手に消し去ることはできない、という意味です。4. 合格へのアドバイス① 「不注意（過失）」の有無をチェック2項（持ち込み品）については、営業者側に「不注意（過失）」があることが責任の前提です。もし客が勝手にどこかに置き忘れて紛失しただけで、営業者側に一切の落ち度がないのであれば、責任を負うことはありません。② 高価品の特則との関係持ち込み品であっても、それが「高価品（594条3項）」である場合は、やはり種類と価額の通知がなければ原則として免責されます。ただし、営業者側が「それが高価品だと知っていた」場合や、故意・重過失がある場合は、通知がなくても責任を負わされます。③ 時効の短さ（595条）この責任も、物品を返還した（または客が立ち去った）時から1年で消滅時効にかかります。この期間の短さは、商行為法全般に共通する「迅速な解決」という考え方に基づいています。これで場屋営業者の責任（594条・595条）についても、1項（預けた物）と2項（持ち込んだ物）の区別を含めて完璧に整理できましたね。",
           "1. 根拠条文\n商法第594条3項が根拠となります。\n\n商法第594条3項\n貨幣、有価証券その他の高価品については、客がその種類及び価額を通知してこれを場屋営業者に寄託したのでなければ、場屋営業者は、その滅失又は損傷によって生じた損害を賠償する責任を負わない。\n\n2. 解説：なぜ「通知」が絶対条件なのか\nホテルや飲食店にとって、預かったカバンの中に「着替え」が入っているのか、「1億円のバイオリン」が入っているのかでは、管理に要するコストやリスクが天と地ほど違います。\n\n原則（通知なし）： 客が「中身は高価品だ」と言わずに預けた場合、それが盗まれたり壊れたりしても、場屋営業者は**1円も払わなくてよい（免責される）**という非常に強力なルールです。\n\n例外（通知あり）： 客が正しく通知して預けた場合は、前述の通り「不可抗力」を証明しない限り、営業者は全額の賠償責任を負います。\n\n3. 関連知識：試験で狙われる「例外の例外」\n条文には書かれていませんが、判例・通説によって以下の場合は**「通知がなくても免責されない」**とされています。\n\n営業者が「高価品」であることを知っていた場合：\n客が言わなくても、見た目や状況から中身が高級品だと分かっていたなら、プロとして相応の注意を払うべきだからです。\n\n営業者や従業員に「故意・重過失」がある場合：\n「通知がないから何をしてもいい」というわけではありません。わざと壊したり、あまりにひどい不注意（重過失）で紛失した場合は、信義則上、この免責規定は使えなくなります。\n\n4. 合格へのアドバイス\n① 運送人（577条）との共通性\n「種類と価額の通知」が必要である点、通知がないと「一切責任を負わない」点など、運送人のルールと全く同じです。セットで覚えてしまいましょう。\n\n② 1項（預けた物）と3項（高価品）の優先順位\n普通の商品（時計ではない普通の服など）：1項が適用され、不可抗力でない限り責任あり。\n\n高価品（ダイヤの指輪など）：3項が優先され、通知がなければ原則として責任なし。\nこの二段構えの構造を整理しておくことが重要です。\n\n③ 「不寄託物（持ち込み品）」への準用\nこの3項のルールは、フロントに預けていない「客室内の高価品」などにも当てはまります。客室に置いておいた金塊が盗まれても、あらかじめ通知していなければ、ホテル側に過失があっても原則として賠償は受けられません。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23699,6 +26442,13 @@ export const SUBJECTS = {
           "1. 原則と例外の整理この規定の目的は、運送人を「予期せぬ巨額の賠償リスク」から守ることにあります。状況運送人の責任理由原則（通知なし）一切の責任を負わない（免責）運送賃に見合わない不意打ちのリスクを避けるため。例外（通知あり）損害賠償責任を負うリスクを把握し、相応の注意や保険が可能だから。修正（通知なし＋悪意）損害賠償責任を負う**（本問）**知っていたなら、通知がなくてもリスクは把握済みだから。2. 解説：なぜ「知っていたら免責されない」のか商法第577条が運送人を保護するのは、あくまで「中身が何かわからず、適切な注意を払う機会がなかった」場合です。信義則上の判断： 運送人が中身が金塊や宝石だと知っていた（悪意）、あるいは外観から容易に知ることができた場合、運送人はすでにその物品が「特別な注意を要するもの」だと認識しています。保護の必要性の喪失： このような状況で、単に「正式な通知がなかった」という形式的な理由だけで免責を認めるのは、かえって不公平である（信義則に反する）と考えられています。3. 関連知識：試験で狙われる「もう一つの例外」「運送人が知っていた場合」のほかに、もう一つ通知がなくても免責されないケースがあります。運送人の「故意・重過失」：運送人やその従業員が、わざと荷物を盗んだ（故意）場合や、プロとしてあり得ないほどの著しい不注意（重過失）で荷物を紛失した場合は、たとえ高価品の通知がなくても、運送人は責任を免れることはできません。4. 合格へのアドバイス① 「形式」と「実質」の使い分け形式： 条文通り「種類と価額の通知」が必要。実質： 運送人が中身を知っていたり、ひどい落ち度（重過失）があったりすれば、形式にこだわらず責任を負わせる。行政書士試験では、この「実質的な妥当性」を問う判例知識がよく出題されます。② 場屋営業者（594条3項）への応用全く同じ理屈が、ホテルや飲食店などの場屋営業者にも適用されます。フロントで「これ、100万円するバイオリンなんですけど」と口頭で伝え、従業員がそれを認識して預かったのであれば、正式な書面等による通知がなくても、営業者は「知っていた」ものとして重い責任を負うことになります。",
           "1. 根拠と判例の考え方商法第577条は、種類と価額の通知がない高価品について、運送人を「一切の責任を負わない（免責）」という非常に強力な特権で守っています。しかし、この特権には信義則上の限界があります。判例の趣旨運送人又はその使用人に**「故意」又は「重大な過失」**があるときは、高価品の通知がなかったとしても、運送人は商法第577条による免責を主張することはできない。2. 解説：なぜ「重過失」でも免責されないのか「重大な過失」とは、プロの運送人として「ほとんど故意に近いような、著しい不注意」を指します。バランスの欠如： 通知がないからといって、運送人が「めちゃくちゃな扱い」をしても許されるわけではありません。重過失によって荷物を失わせた場合にまで免責を認めるのは、荷送人に対してあまりに不公平であり、社会通念上許されない（信義則に反する）と考えられています。「軽過失」なら免責される： 逆に言えば、運送人に「わずかな不注意（軽過失）」があった程度であれば、577条の原則通り、通知がないことを理由に運送人は免責されます。3. 関連知識：商法・会社法における「重過失」の重要性行政書士試験では、この「重過失」が責任の分かれ目になるケースが頻出します。場面故意・重過失がある場合軽過失（または無過失）の場合高価品の運送免責されない（賠償が必要）通知がなければ免責される場屋営業者の責任免責されない（賠償が必要）通知がなければ免責される役員の対第三者責任責任を負う（会社法429条）原則として責任を負わない4. 合格へのアドバイス① 「故意・重過失」はセットで動く法律の世界（特に行政書士試験の範囲）では、多くの場合「故意」と「重過失」はセットで扱われ、厳しい責任を課されるキーワードになります。「故意はダメだが重過失ならOK」というパターンは非常に稀ですので、疑ってかかりましょう。② 証明責任（立証責任）実務上、運送人に「重過失があったこと」を証明するのは**荷主（損害を受けた側）**の役割になります。これが証明できれば、通知がなくても満額の賠償を勝ち取れる可能性があります。③ 577条のまとめこれで高価品に関する3つの例外が出揃いました。通知をした場合（条文通り）運送人が中身を知っていた場合（悪意）運送人に故意・重過失がある場合（本問）これらはいずれも「通知がないから1円も払わない」という運送人の言い分を封じ込めるパターンです。",
           "1. 解説：なぜ不法行為責任も免除されるのか通常、一つの出来事に対して「契約違反（債務不履行）」と「不法行為」の両方が成立する場合、被害者はどちらでも好きな方を選べるのが民法の原則です（請求権競合）。しかし、商法第577条（高価品の特則）において、もし「不法行為なら賠償請求できる」と認めてしまうと、以下のような不都合が生じます。商法の形骸化： 荷主が「通知し忘れたけど、不法行為として訴えるわ」と言えば、運送人を守るための577条が全く意味をなさなくなります。運送人の保護： 運送賃に見合わない巨額のリスクから運送人を守るという商法の目的を達成するためには、**「債務不履行だろうが不法行為だろうが、通知がないなら一切責任を負わせない」**とする必要があります。2. 判例の結論最高裁の判例（最判昭和41年12月15日など）は、以下のように示しています。商法第577条の規定は、運送人の不法行為に基づく損害賠償責任にも適用（準用）される。したがって、高価品の通知がない限り、運送人は不法行為責任も免れる。3. 関連知識：免責されない「境界線」の再確認ただし、前回のやり取りで確認した通り、この「不法行為責任も免除される」という無敵のバリアが破れる瞬間があります。運送人の状態責任の有無軽過失免責される（債務不履行も不法行為も×）故意・重過失免責されない（債務不履行も不法行為も○）つまり、運送人が「わざと（故意）」荷物を壊したり盗んだりした不法行為については、当然ながら免責されません。あくまで「うっかり（軽過失）」による不法行為については、商法の特則が優先して運送人を守ってくれる、という構造です。4. 合格へのアドバイス① 「同様に免除される」という言葉にビビらない試験で「不法行為は別個に成立するため、免除されない」という選択肢が出たら、自信を持って「×」をつけてください。商法は「ビジネスのプロを守る」ために、民法の一般原則をあえてねじ曲げている箇所が多々あります。② 場屋営業者（594条）への適用この理屈は、ホテルや飲食店などの場屋営業者にもそのまま当てはまります。客室に持ち込んだ高価品の通知を怠っていた場合、清掃員の軽過失でそれが壊れても、不法行為責任を追及することは原則としてできません。③ 体系的な理解「商法は民法の特別法である」という原則を思い出してください。特別法（商法）に「責任を負わない」と書いてある以上、一般法（民法）の不法行為を引っ張ってきて責任を負わせることはできない、と整理するのがスムーズです。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23755,6 +26505,13 @@ export const SUBJECTS = {
           "1. 解説：いつ「株主」になるのか？発起人が株主としての権利を手に入れるのは、払い込みをした時ではなく、**「株式会社が成立した時（設立の登記をした時）」**です。会社法第102条2項発起人は、株式会社の成立の時に、出資した設立時発行株式の株主となる。なぜ「払い込み時」ではないのか設立の手続き中、発起人はまだ「設立中の会社の構成員」にすぎません。会社そのものがまだこの世に存在していない（登記されていない）ため、存在しない会社の「株主」にはなれないという理屈です。2. 払い込み・給付の「期限」タイミングは「成立時」ですが、「払い込み」自体は設立の手続きの中で終わらせておく必要があります。金銭の払い込み： 全額を払い込まなければなりません（会社法34条1項）。現物出資の給付： 財産の全部を給付しなければなりません（会社法34条1項）。※ただし、登記などの第三者対抗要件（名義変更など）については、会社が成立した後に引き継げばよいとされています。もし、発起人が期日までに払い込みをしない場合は、その発起人は株主となる権利を失います（失権）。3. 関連知識：募集設立の場合（102条）発起人以外の「設立時発行株式の引受人（募集設立の参加者）」も同様です。彼らも払い込みは事前に済ませますが、株主になるのは**「株式会社の成立の時」**です。登場人物払い込みのタイミング株主になるタイミング発起人設立手続き中（全額）会社成立時（登記時）募集引受人払い込み期日（全額）会社成立時（登記時）4. 合格へのアドバイス① 「成立の時」というフレーズを叩き込む会社法において、設立に関する権利の発生タイミングを聞かれたら、まずは「成立の時（＝登記の日）」を疑ってください。② 「全額」払い込みの原則以前の商法（旧法）では「分割払い」が認められていた時代もありましたが、現在の会社法では、設立時には**全額（100%）**の払い込みが必須です。この「全額」という言葉もひっかけでよく出ます。③ 次のステップ：設立時の責任「お金を払わなかったらどうなるか」の次は、「もし現物出資の価値が足りなかったら誰が責任を負うのか（52条の不足額填補責任）」が試験の超頻出論点です。",
           "1. 解説：出資を履行しなかったらどうなるか？設立時募集株式の引受人が、期日までにお金を払わなかった（出資を履行しなかった）場合、その引受人は当然に「株主となる権利」を失います（失権）。会社法第103条（設立時発行株式の引受人の権利の喪失）設立時発行株式の引受人は、……払込み又は給付をしないときは、当該払込み又は給付をすることにより設立時発行株式の株主となる権利を失う。つまり、払わなかった人は脱落するだけで、会社設立そのものが取り消される原因にはなりません。残ったメンバーで設立を続けるか、足りない分を誰かが補う形になります。2. 「設立の取消し」という訴えは存在するか？ここが大きなひっかけです。会社法には、以下の訴えは存在しますが、「設立の取消しの訴え」という名称のものは株式会社にはありません。設立無効の訴え（828条1項1号）： 設立の手続きに重大な法律違反があった場合に、会社の存在を事後的に否定するもの。設立取消しの訴え： **持分会社（合名・合資・合同会社）**において、詐欺や強迫があった場合に認められるもの（832条）で、株式会社には認められていません。3. 関連知識：設立無効の訴えのポイントもし試験で「設立無効」について問われたら、以下の3点をセットで押さえてください。項目内容提訴期間会社の成立から6ヶ月以内（公開会社でない場合は1年以内）。提訴権者株主、取締役、監査役、清算人（＋破産管財人など）。効力将来に向かってのみ効力を生じる（過去に遡って白紙にはならない）。4. 合格へのアドバイス① 「訴えの方法により」という限定会社設立の不備を争う場合、裁判外で勝手に「無効だ！」と主張することはできず、必ず**「訴え（裁判）」**によらなければなりません。この点は正しい記述としてよく出ます。② 出資の不履行 ＝ 即、失権発起人や引受人がお金を払わないのは「個人の問題」であり、「会社設立の手続きの瑕疵（かし）」とはみなされません。そのため、無効の原因にもなりません。③ 次のステップ：設立時発行株式の「引受」設立時に誰が何株引き受けるか、その決定方法（発起人の全員一致など）についても、設立のプロセスとして非常に重要です。",
           "1. 解説：設立時取締役の選任方法の違い「創立総会」という組織が存在するのは、外部から出資者を募る募集設立のみです。設立の種類選任を行う主体根拠条文発起設立発起人の議決権の過半数会社法第40条募集設立創立総会の決議会社法第88条なぜ「発起設立」に創立総会がないのか発起設立は、発起人メンバーだけで完結する身内だけの設立です。わざわざ「総会」という仰々しい手続きを踏まなくても、発起人同士の話し合い（議決権の過半数）で決めれば十分だと考えられています。2. 関連知識：創立総会とは何か？募集設立において、発起人以外の「引受人」たちが初めて集まって意思決定をする場が創立総会です。決議要件： 議決権を行使できる引受人の過半数が出席し、出席した引受人の議決権の3分の2以上の賛成が必要（会社法73条1項）。※通常の株主総会の「特別決議」と同じくらい重い要件です。できること： 取締役の選任だけでなく、定款の変更や設立の廃止なども決議できます。3. 重要ポイント：選任のタイミング設立時取締役は、いつまでに選ばなければならないでしょうか。発起設立： 出資の履行（払い込み）が完了した後、遅滞なく選任しなければなりません。募集設立： 払い込み完了後、創立総会を開催して選任します。4. 合格へのアドバイス① 「発起設立 ＝ 発起人の過半数」を呪文にする行政書士試験では「発起設立においても創立総会が必要である」というひっかけが非常に多く出題されます。「身内だけなら総会はいらない」とイメージしておきましょう。② 議決権の数え方発起設立における取締役選任の「過半数」は、発起人の**頭数（人数）ではなく、引き受けた「株数（議決権数）」**で計算します。1人で9割の株を持っている発起人がいれば、その人1人の意思で決まるということです。③ 次のステップ：設立時取締役の「調査」選ばれた設立時取締役は、就任後すぐに「設立手続きが適正に行われたか」を調査しなければなりません。特に、変態設立事項（現物出資など）が正しく行われているかをチェックする重要な任務があります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23833,6 +26590,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第37条「発行可能株式総数」は、設立時の定款に最初から書いていなくても構いませんが、会社が成立するまでには必ず決める必要があります。会社法第37条1項発行可能株式総数を定款で定めていない株式会社は、株式会社の成立の時までに、定款を変更して発行可能株式総数の定めを設けなければならない。2. 解説：なぜ「成立時」までに必要なのか発行可能株式総数は、会社の「器」の大きさを決めるものです。登記の必須事項： 株式会社の設立登記をする際、「発行可能株式総数」は必ず登記しなければならない事項（登記事項）です。登記すべきことが決まっていないと、会社を誕生させることができません。事後決定の柔軟性： 設立の準備段階（定款作成時）では、まだ何株発行するか正確に決まっていないことも多いため、とりあえず「空欄」のまま公証人の認証を受け、あとで全員同意（または創立総会）で決めることが許されています。3. 関連知識：決定方法の違い前回の取締役選任と同様、ここでも「発起設立」と「募集設立」で決定権者が異なります。設立の形態決定（定款変更）の方法発起設立発起人の全員の同意（37条2項）募集設立創立総会の決議（96条）※「設立時発行株式の総数」は、発行可能株式総数の4分の1を下回ってはならない（公開会社の場合）という「4倍ルール」も、あわせて思い出しておくと完璧です。4. 合格へのアドバイス① 「絶対的記載事項」ではない点に注意以前の問題で確認した通り、「発行可能株式総数」は定款の絶対的記載事項ではありません（最初は空欄でも定款は有効）。ただし、「成立までには絶対に書かないといけない（相対的記載事項のような性質）」という特殊な立ち位置にあります。② 「成立の時まで」の期限「設立登記の後、遅滞なく定めればよい」というひっかけが出たら「×」です。**「登記の申請時（＝成立時）」**には、すでに定款に書き込まれていなければなりません。③ 募集設立の「廃止」との関係募集設立において、創立総会で発行可能株式総数を決めることができない場合などは、そもそも設立自体を廃止する決議（73条）を行うことになります。",
           "1. 根拠条文：会社法第46条・第93条設立時取締役（および設立時監査役）が選任されると、彼らには法的な**「調査義務」**が発生します。会社法第46条（設立時取締役等による調査）設立時取締役……は、その選任後遅滞なく、次に掲げる事項を調査しなければならない。現物出資などの変態設立事項が定款の定めに適合しているか。出資の履行（払い込み）が完了しているか。その他、株式会社の設立の手続が法令又は定款に違反していないか。2. 解説：発起人と設立時役員の役割分担「会社を作る」というプロセスにおいて、誰がいつ何をするのかをイメージすると分かりやすくなります。発起人： 企画・立案者。定款を作り、株を引き受け、お金を集める（募集する）のがメインの仕事です。設立時役員（取締役・監査役）： 外部のチェック役。発起人が進めてきた手続きに「不正やミスがないか」を客観的に検査し、適正であれば設立登記へと進めます。3. 関連知識：調査の結果、問題があったら？もし設立時取締役が「現物出資された土地の評価額が不当に高い」などの不備を見つけた場合、報告義務が生じます。設立の形態報告先備考発起設立発起人に通知する（46条3項）身内同士で修正を求める。募集設立創立総会で報告する（93条1項）外部の引受人たちの前で明らかにする。4. 合格へのアドバイス① 「選任後、遅滞なく」この調査は、取締役たちが選ばれてからすぐに行わなければならない「最初の仕事」です。試験で「設立登記の後に調査すればよい」というひっかけが出たら「×」です。② 監査役の役割設立時監査役がいる場合、監査役も取締役と協力して（あるいは独自に）これらの調査を行います。特に法令・定款違反がないか、厳しくチェックする立場にあります。③ 次のステップ：設立時取締役の「責任」もし、この調査を怠ったために会社に損害が出た場合、設立時取締役も発起人と同様に、会社に対して**損害賠償責任（53条1項）**を負うことになります。",
           "1. 根拠条文：会社法第103条4項「自分は発起人じゃないから責任はない」という言い逃れを封じ込めるための条文です。会社法第103条4項発起人でない者が、設立時発行株式の募集の広告その他設立に関する書面又は記録に、自己の氏名又は名称及び株式会社の設立を賛助する旨の記載又は記録をすることを承諾したときは、当該者は、発起人とみなして、……前三項及び第百二条の規定を適用する。2. 解説：なぜ「発起人と同一の責任」を負うのか投資家や一般の人は、広告に「有名企業の社長が賛助！」と書かれていれば、「この会社は安心だ」と信じて出資してしまう可能性があります。信頼の付与： 自分の名前を出すことを承諾した以上、その人は設立プロジェクトに「お墨付き」を与えたことになります。責任の連帯： その信頼を裏切るような事態（出資不足や設立無効など）が起きた場合、名前を貸した者も実質的な発起人と一緒に、連帯して責任を負わされることになります。3. 関連知識：擬制発起人が負う「具体的な責任」擬制発起人とみなされると、以下の重い責任がセットで付いてきます。責任の内容詳細不足額填補責任現物出資の価額が著しく不足する場合、不足分を支払う責任（52条）。会社に対する責任設立に関して任務を怠り、会社に損害を与えた場合の賠償責任（53条）。第三者に対する責任悪意・重過失によって第三者に損害を与えた場合の賠償責任（53条2項）。4. 合格へのアドバイス① 「承諾」が必要勝手に名前を使われただけであれば、責任を負う必要はありません。あくまで**「承諾（いいよと言ったこと）」**が要件です。② 「賛助」だけでなく「発起人」と誤認させる記載も条文には「設立を賛助する旨」とありますが、その他「発起人であると誤認させるような記載」を承諾した場合も同様に扱われます。③ 募集設立で特に重要この規定は特に、外部から出資者を募る「募集設立」において、パンフレットやWebサイトでの広告宣伝が行われる際に問題となります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23911,6 +26675,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第33条10項3号現物出資や財産引受の価額が妥当であることについて、以下の専門家の証明を受けた場合は、検査役の調査が免除されます。証明できる専門家： 弁護士、公認会計士、税理士（それぞれの法人を含む）。不動産の場合の特則： 上記の証明に加えて、不動産鑑定士の鑑定評価も必要です。2. 解説：なぜ「不動産」だけ二重チェックなのか不動産は、素人目には価値の判定が極めて難しく、また金額も高額になりがちです。税理士や弁護士の限界： 彼らは法律や会計のプロですが、土地そのものの「値踏み」のプロではありません。不動産鑑定士の役割： そのため、不動産に限っては、物件の適正な時価を算出するプロである「不動産鑑定士」の評価を別途求めることで、資本の充実をより強固に守っています。3. 関連知識：検査役の調査が不要になる「3つのケース」試験では、この専門家の証明以外の免除規定も非常によく狙われます。免除されるケース内容備考① 少額（500万円以下）出資・引受財産の総額が500万円以下。最もポピュラーな免除理由。② 市場価格ある有価証券定款記載の価額が市場価格（時価）以下。客観的な指標があるため。③ 専門家の証明（本問の内容）不動産は鑑定士も必要。4. 合格へのアドバイス① 「500万円」と「不動産」の引っかけ「不動産であれば、500万円以下であっても鑑定評価が必要である」というひっかけが出たら「×」です。500万円以下（①）なら、不動産であっても鑑定評価や証明は一切不要です。①〜③のいずれか一つに当てはまればOKという「いずれか」の関係であることを押さえましょう。② 証明できる人の範囲「行政書士」はこの証明ができる専門家の中に含まれていません（※残念ながら！）。試験で「行政書士の証明を受けた場合」とあれば誤りです。",
           "1. 根拠条文：会社法第56条株式会社が成立しなかった場合（設立に失敗した場合）の責任は、「発起人」のみが負うことになっています。会社法第56条株式会社が成立しなかったときは、発起人は、連帯して、株式会社の設立に関してした行為についてその責任を負い、株式会社の設立に関して支出した費用を負担する。2. 解説：なぜ「設立時役員等」は含まれないのかここが行政書士試験で最も狙われる「責任の分界点」です。発起人の役割： 会社設立の「プロデューサー」です。定款を作り、出資者を募り、リスクを承知でプロジェクトを立ち上げた当事者です。したがって、失敗したときのリスク（持ち出し費用や取引の責任）はすべて発起人が背負わなければなりません。設立時役員の役割： あくまで「チェック役（監査役・調査役）」です。彼らは発起人に選ばれて、途中から手続きが正しいかを確認するために参加したに過ぎません。会社が成立しなかったこと自体の責任まで負わされるのは、あまりに酷であると考えられています。3. 関連知識：成立した後の責任（53条）逆に、会社が無事に**「成立した後」**であれば、設立時役員も責任を負う場面が出てきます。場面発起人の責任設立時役員の責任設立に失敗した時全責任を負う（56条）負わない設立に成功（成立）した後任務を怠れば会社に賠償（53条1項）任務（調査など）を怠れば会社に賠償（53条1項）4. 合格へのアドバイス① 「発起人」という主語の限定試験問題で「発起人および設立時役員は〜」とセットで出てきたら、まずは「本当に役員まで含まれるか？」と疑うクセをつけましょう。設立「中」の行為の責任は、原則として発起人のみが負います。② 無過失責任の原則設立に失敗した場合、発起人は「自分に過失（落ち度）がなかった」と証明しても、支出した費用の負担を免れることはできません。これを無過失責任といいます。③ 設立時役員の「調査」の重要性設立時役員（取締役など）の仕事は、あくまで「会社が成立していいかどうかを調査すること」です。不備を見つけて設立が止まったのであれば、むしろ役員はその任務を正しく果たしたことになるため、費用を負担させるのは筋が通りません。",
           "1. 根拠条文：会社法第34条・第64条\n銀行等に対して「保管証明書」の交付を請求できるのは、原則として**「募集設立」の場合のみ**です。\n\n発起設立（34条）： 銀行等への「払込み」は必要ですが、証明書までは要求されません（通帳のコピー等で足ります）。\n\n募集設立（64条）： 銀行等に対し、払込金の**保管に関する証明書（払込金保管証明書）**の交付を請求しなければなりません。\n\n2. 解説：なぜ「募集設立」だけ厳しいのか\nこの違いは、**「見せ金（みせがね）」や「預合い（あずけあい）」**といった、架空の増資（不当な設立）を防ぐ必要性の高さにあります。\n\n募集設立： 外部から一般の出資者を募るため、実際にお金が銀行にロックされていることを銀行が公的に保証する「保管証明書」が必要です。銀行はこの証明書を出すと、後で「実はお金がありませんでした」という言い逃れができなくなります（責任を負う）。\n\n発起設立： 身内だけの設立なので、手続きを簡略化するため、銀行の証明書までは不要とされています。現在は、代表発起人の口座に振り込まれた通帳のコピーなどを法務局に出せば登記が通ります。\n\n3. 関連知識：銀行の責任（64条2項）\n募集設立で「保管証明書」を出した銀行は、たとえ実際にお金が振り込まれていなくても、その証明書に書かれた金額について「払い込みがなかった」ことを会社に対抗できません。つまり、銀行がその金額を支払う責任を負うことになります。\n\n4. 合格へのアドバイス\n① 「保管証明書 ＝ 募集設立」と丸暗記\n行政書士試験では、この「発起設立でも必要」というひっかけが何度も出題されています。「身内だけのときは通帳でOK、他人を巻き込むときは銀行のハンコ（証明書）が必要」とイメージしましょう。\n\n② 登記申請書類の違い\n発起設立： 払込があったことを証する書面（通帳コピー等）。\n\n募集設立： 払込金保管証明書。\nこの実務的な違いが、そのまま試験の論点になります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -23989,6 +26760,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第52条の2かつては「見せ金」などで会社を設立した場合の責任が曖昧でしたが、現在の会社法では明文化されています。会社法第52条の2（第1項）発起人は、……払込みを仮装した場合には、株式会社に対し、当該払込みを仮装した出資に係る金銭の全額を支払う義務を負う。同条（第4項）前三項の規定による……支払をする義務は、総株主の同意がなければ、免除することができない。2. 解説：なぜ「総株主の同意」が必要なのか払込みを仮装するということは、実際には会社に1円も入っていないのに「資本金1,000万円」などと嘘をついて会社を作ることです。資本の充実： 会社にお金がないことは、将来の債権者や他の株主にとって致命的なリスクです。責任の重さ： この義務は「会社に対する債務」のようなものですが、自分たちだけで勝手に「この払込み義務はチャラにしよう」と決めることはできません。会社の持ち主全員（総株主）が「損をしてもいい」と言わない限り、免除は認められないという非常に厳しいルールになっています。3. 関連知識：連帯責任（52条の2 第2項）仮装に関与した他の発起人についても、試験で狙われるポイントがあります。関与した発起人： 払込みの仮装をすることを知っていた他の発起人なども、会社に対して連帯して支払う義務を負います。無過失免責の可否： 関与した他の発起人は、「自分に過失がなかったこと」を証明すれば、この連帯責任を免れることができます（※仮装した本人自身は、過失の有無にかかわらず全額支払う必要があります）。4. 合格へのアドバイス① 「総株主の同意」というキーワード会社法において、責任の免除に「総株主の同意」が必要とされる場面は限られています（役員の責任免除など）。「払込みの仮装」という悪質な行為に対しては、最も重いハードルが設定されていると覚えましょう。② 現物出資の「不足額填補責任」との違い以前から少し触れていた、現物出資の価額が足りなかった場合の責任（52条）と比較すると整理が捗ります。事項責任の性質免除の要件払込みの仮装（本問）支払義務総株主の同意現物出資の不足（52条）不足額填補責任総株主の同意③ 成立後の株主権利払込みを仮装した発起人は、その支払いを完了するまで、株主としての権利（議決権など）を行使することができません。お金を払うまでは、株主として認めないという徹底した構えです。",
           "1. 解説：なぜ「誤り」なのか① 「保管証明書」が必要なのは募集設立だけ以前も少し触れましたが、銀行等に対して「保管証明書」の交付を請求し、それを設立登記の添付書類としなければならないのは、外部から出資者を募る**「募集設立」のみ**です。募集設立（64条）： 銀行の証明書が必須。発起設立（34条）： 銀行の証明書は不要（代表発起人の口座の通帳コピー等で足ります）。したがって、「いずれの場合においても請求することができ」という記述は、発起設立の実務（簡略化された手続き）と矛盾するため誤りとなります。② 銀行の「対抗不能」責任（64条2項）文章の後半部分は、「募集設立」において証明書が発行された場合のルールとして非常に正確です。銀行が一度「この金額を預かっています」という証明書を出した以上、たとえ実際にはお金が振り込まれていなかった（見せ金だった）としても、銀行は設立後の会社に対して「実はお金がないので返せません」とは言えません。銀行がその金額を担保する形になり、資本の充実を図っています。2. 比較まとめ：設立時の払込証明項目発起設立募集設立払込場所銀行等（34条）銀行等（63条）証明書類通帳のコピー等でOK払込金保管証明書が必須銀行の責任証明書を出さないので負わない証明書通りの責任を負う3. 合格へのアドバイス① 「保管証明書 ＝ 募集設立」のセット行政書士試験では、「発起設立でも保管証明書が必要」というひっかけが非常にしつこく出題されます。「身内だけのときは通帳、他人を呼ぶときは銀行のハンコ（証明書）」と、リスクの大きさに応じた手続きの違いをイメージしましょう。② 「対抗できない」の意味これは、銀行が会社に対して「支払いを拒めない」という意味です。もし銀行が虚偽の証明書を出してしまったら、銀行自身がその穴埋めをしなければならないという、非常に重い社会的責任を課しています。",
           "1. 根拠条文：会社法第445条（資本金の額及び準備金の額）\n設立時（および増資時）の出資額をどう振り分けるかについては、以下のルールがあります。\n\n会社法第445条\n\n株式会社の資本金の額は、……設立に際して出資された財産の額とする。\n\n前項の払込み……に係る額の2分の1を超えない額は、資本準備金として計上することができる。\n\n2. 解説：どこが「誤り」なのか\n① 「剰余金」ではなく「資本準備金」\n出資された額のうち、資本金に組み入れなかった分は「剰余金（その他資本剰余金）」ではなく、**「資本準備金（しほんじゅんびきん）」**として積み立てなければなりません。\n※剰余金として自由に配当に回せるお金にするには、設立後に別途手続きが必要です。\n\n② 「全員の同意」は不要\nここが最大のひっかけです。\n資本金にするか資本準備金にするかの振り分けは、「発起人の全員の同意」などの特別な合意は法律上要求されていません。\n\n発起設立： 発起人が決めます（通常、定款や同意書で定めます）。\n\n募集設立： 発起人が募集事項として定めます。\n「全員の同意があるときに限り」という限定的な条件は、会社法上の要件ではありません。\n\n3. 関連知識：なぜ「2分の1」まで準備金にできるのか\n全額を「資本金」にしてしまうと、将来もし赤字が出た際などに「減資（資本金を減らす）」という非常に面倒な手続き（債権者保護手続きなど）が必要になります。\nあらかじめ「資本準備金」としてストックしておけば、資本金よりも柔軟に取り扱うことができるため、**「最低でも半分は資本金にしてね、残りは準備金でいいよ」**というルールになっています。\n\n4. 合格へのアドバイス\n① 「資本準備金」という名前を正確に\n試験では「利益準備金」や「剰余金」と入れ替えてくるパターンが定番です。出資されたお金（資本）の残りなので「資本」準備金、とセットで覚えましょう。\n\n② 数字の「2分の1」は正しい\nこの「2分の1を超えない額」という数字自体は、設立だけでなく募集株式の発行（増資）でも共通のルールですので、ここはしっかり暗記しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24067,6 +26845,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第35条設立中の不安定な時期に、株主がコロコロ入れ替わるのを防ぐための規定です。会社法第35条設立時発行株式の株主となる権利の譲渡は、株式会社の成立後、当該株式会社に対抗することができない。2. 解説：なぜ「対抗できない」のか「権利の譲渡」自体は、当事者間（売った人と買った人の間）では有効ですが、会社に対しては主張できません。会社の事務的負担： 設立手続き中に「私が新しい株主です」という人が次々現れると、誰に対して創立総会の通知を出せばいいのか、誰が議決権を持つのかが混乱し、設立事務がストップしてしまいます。責任の所在： 発起人は設立に関する重い責任を負っています。もし簡単に権利を譲渡して脱退できてしまうと、責任逃れを許すことにもなりかねません。結論： 会社が成立した後は、会社は「もともとの引受人（名簿に載っている人）」を株主として扱い、譲り受けた人を無視してもよいことになっています。3. 関連知識：成立「後」の株式譲渡との違い会社が無事に成立した後は、原則として自由に株式を譲渡できるようになります（譲渡制限がある場合を除く）。時期譲渡の効力設立中（成立前）当事者間では有効だが、会社には対抗できない。成立後会社に対抗できる（株主名簿の書き換えが必要）。※ちなみに、株券発行会社において「株券の発行前」になされた譲渡も、会社に対抗できない（128条2項）という似たようなルールがあります。あわせて押さえておくと「会社は名簿や株券がない状態での勝手な譲渡には関知しない」という一貫した姿勢が見えてきます。4. 合格へのアドバイス① 「無効」ではなく「対抗できない」試験で「権利の譲渡は無効である」という選択肢が出たら「×」です。売買契約自体は成立していますが、会社が「知らないよ」と言えるだけ（対抗問題）である点に注意しましょう。② 募集設立の引受人も同様このルールは発起人だけでなく、募集設立で株を引き受けた一般の出資者にもそのまま適用されます。",
           "1. 解説：どこが「誤り」なのか募集設立の引受人がお金を払わなかった場合、発起人が改めて「いついつまでに払ってください」と通知（催告）する義務はありません。会社法第63条3項設立時発行株式の引受人は、……払込み又は給付（出資の履行）をしないときは、当該払込み又は給付をすることにより設立時発行株式の株主となる権利を失う。つまり、定められた「払込期日」または「払込期間」を過ぎた瞬間に、当然に（自動的に）株主になる権利を失います。 これを「当然失権」と呼びます。2. 比較：なぜ「通知」がいらないのか会社法には、似たような場面で「通知」が必要なケースがあるため、ここが試験のひっかけポイントになります。場面失権の手続き理由募集設立（本問）通知不要。 期日を過ぎたら即失権。設立を迅速に進めるため。設立後の新株発行通知不要。 期日を過ぎたら即失権（208条5項）。募集設立と同じ理屈です。（参考）株主の除名等手続きが必要な場合がある。既得権を守る必要があるため。3. 関連知識：発起人の場合はどうなる？以前の問題で「発起人も1株以上引き受け、全額払わなければならない」と確認しましたが、もし発起人が払わなかったらどうなるでしょうか。発起人の失権： 発起人も引受人の一種ですので、同様に当然に権利を失います。設立への影響： ただし、その発起人がいなくなったことで「発起人全員の同意」が必要な手続きが止まったり、定款に名前があるのに株を持っていない矛盾が生じたりするため、実務上は設立手続き全体がデッドロックに乗り上げる可能性が高いです。4. 合格へのアドバイス① 「当然失権」という言葉を覚える「通知しなければならない」や「催告が必要である」という記述が出てきたら、「会社法はそんなに甘くない（迅速性重視）」と思い出してください。② 募集設立のスピード感募集設立は外部の多くの人を巻き込むため、一人一人の遅れを待っていては会社がいつまでも立ち上がりません。「払わないなら次へ行く」というドライな仕組みになっています。",
           "1. 根拠条文：会社法第93条・第33条\n募集設立において現物出資が行われる場合、発起人は以下の義務を負います。\n\n会社法第93条1項\n発起人は、……第28条各号（変態設立事項）に掲げる事項を定めたときは、……裁判所に対し、検査役の選任の申立てをしなければならない。\n\n※この規定は、発起設立（33条）の規定を募集設立でも準用・準拠する形になっています。\n\n2. 解説：なぜ「検査役」が必要なのか\n現物出資は、「100万円の価値しかないボロ株や土地」を「1,000万円だ！」と言い張って出資し、不当に多くの株式を手に入れる不正（資本の空洞化）が起きやすいからです。\n\n公平性の確保： 特に募集設立では、外部から現金を出して参加する引受人がいます。現物出資者の財産が過大評価されると、現金を出した引受人が相対的に損をすることになります。\n\n客観的なチェック： 利害関係のない第三者である「検査役（弁護士や公認会計士など）」が、その財産の価値を厳しく見積もることで、会社の資本的な基礎を守ります。\n\n3. 関連知識：検査役の調査が「免除」されるケース（再確認）\n以前も確認しましたが、実務上はこの「原則」よりも「例外（免除）」の方が試験によく出ます。以下のいずれかに当てはまれば、検査役の選任は不要です。\n\n少額： 出資財産の総額が500万円以下。\n\n市場価格： 有価証券を時価以下で出す。\n\n専門家の証明： 弁護士・公認会計士・税理士の証明（不動産は鑑定評価も）を受けた。\n\n4. 合格へのアドバイス\n① 「発起人」が申し立てる\n試験で「設立時取締役が申し立てる」というひっかけが出たら「×」です。検査役の選任申し立ては、設立の責任者である発起人の仕事です。選ばれた設立時取締役は、その検査役の報告を受けて「さらに調査」をする立場です。\n\n② 募集設立特有の流れ\n募集設立では、検査役の調査報告書が**「創立総会」**で開示されます。もし評価額が不当だと判断されれば、創立総会の決議で定款の内容を変更（減額など）することも可能です。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24145,6 +26930,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第331条6項・第399条の2監査等委員会設置会社における「監査等委員」の人数については、以下の決まりがあります。会社法第331条6項監査等委員会設置会社においては、監査等委員である取締役は、三人以上でなければならない。このルールは設立時にも適用されるため、設立時取締役のうち「監査等委員」となる人は3人以上選ぶ必要があります。2. 解説：なぜ「3人」必要なのか監査等委員会設置会社は、従来の「監査役」を置く代わりに、取締役会の中に「監査等委員会」というチームを作って自分たちをチェックする仕組みです。合議制の確保： 「委員会」として組織的に監査を行うためには、一人の独断ではなく、複数の目（合議）で判断する必要があります。そのため、会社法では「3人以上」というチーム構成を義務付けています。過半数は社外： ちなみに、この3人以上のうち、**過半数は「社外取締役」**でなければならないという、さらに厳しいルールもあります（399条の2第3項）。3. 関連知識：役員の最低人数まとめ試験では「どの形態で、何人必要か」がよく入れ替えられます。会社の形態必要な役員と人数取締役会設置会社取締役 3人以上監査役会設置会社監査役 3人以上監査等委員会設置会社監査等委員である取締役 3人以上指名委員会等設置会社各委員会の委員 3人以上※「委員会」や「会」という名前がついたら、基本は**「3人」**と覚えておくと非常に効率的です。4. 合格へのアドバイス① 「監査等委員である設立時取締役」という呼び方監査等委員会設置会社では、監査をする人も「取締役」の一種です。したがって、設立時には「普通の設立時取締役」と「監査等委員である設立時取締役」を区別して選任することになります。② 設立時監査役とのひっかけ監査等委員会設置会社は、監査役を置いてはいけません。 もし問題文に「設立時監査等委員と設立時監査役を選任しなければならない」とあったら、即座に「×」です。",
           "1. 解説：なぜ「誤り」なのか会社を作る言い出しっぺである「発起人」が、そのまま成立後の会社の「取締役」として経営を担うのは、実務上ごく一般的（むしろ自然）な流れです。発起設立： 発起人の中から取締役を選ぶのが通例です。募集設立： 外部から出資者を募りますが、会社をリードしてきた発起人が取締役に立候補し、創立総会で選任されることに何の制限もありません。2. 整理：役員の「欠格事由」と「資格」試験で狙われるのは、「なれる・なれない」の境界線です。項目ルール備考発起人の資格法人でもなれる会社が親会社になる場合など。取締役の資格法人はなれない取締役は「自然人（人間）」に限られます。発起人 兼 取締役可能制限はありません。※問題文の「法人でない発起人は〜」という部分は正しい（法人は取締役になれないため）のですが、後半の「募集設立では就任できない」という制限は存在しません。3. 関連知識：設立時取締役の「調査義務」との関係以前確認した通り、設立時取締役には「発起人の仕事に不備がないか」をチェックする義務（46条）があります。「発起人が自分自身をチェックするのはおかしくないか？」と思うかもしれませんが、法律上は**「役員としての公的な立場」**で厳格に調査することが求められており、兼任自体は禁止されていません。4. 合格へのアドバイス① 「募集設立」だからといって特別視しない募集設立は「創立総会」という民主的な手続きが必要なだけで、誰が候補者になれるか（被選任権）については、発起設立と大きな違いはありません。② 法人は取締役になれないここは超重要です。「法人は発起人にはなれるが、取締役にはなれない」という対比は、常に意識しておきましょう。",
           "1. 解説：どこが「誤り」なのか設立時取締役のメインの仕事は「業務の執行」ではなく、**「発起人がやった仕事のチェック（調査）」**です。設立業務の執行： 株式会社が成立するまでの間、設立に関する実務（株主の募集、お金の管理など）を行うのは、一貫して**「発起人」**の権限です。設立時取締役の任務： 選任された後は、発起人が進めてきた手続きに法令違反や定款違反がないか、現物出資の額が妥当かなどを**調査（チェック）**し、その結果を報告するのが仕事です（会社法46条）。2. 成立「前」と「後」の役割の変化「業務を執行する」という言葉は、会社が成立した後の取締役にふさわしい表現です。段階主役（執行者）設立時取締役の立ち位置成立前（設立中）発起人検査・調査役（ブレーキ・検品担当）成立後取締役経営の執行者（アクセル・運営担当）このように、設立中は「プレイヤー（発起人）」と「審判（設立時取締役）」のような関係性になっているとイメージしてください。3. 関連知識：調査の結果、問題があったら？もし設立時取締役が調査で「現物出資の土地が安すぎる！」などの不備を見つけた場合、自分たちで勝手に直すことはできません。発起設立の場合： 発起人に通知して是正を求めます。募集設立の場合： 創立総会で報告し、出資者たちの判断を仰ぎます。4. 合格へのアドバイス① 「共同して」というキーワードに注意行政書士試験では、本来「対立」または「チェック」の関係にあるものを「共同して行う」と記述するひっかけがよく出ます。設立時取締役は、ある意味で発起人を監視する立場にあることを忘れないでください。② 設立時取締役の「善管注意義務」彼らは「審判」ですから、調査をサボって問題を見逃すと、会社が成立した後に**任務懈怠責任（53条1項）**を問われることになります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24223,6 +27015,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第53条・第55条設立に関わったメンバーが「やるべきことをサボった」場合の責任です。会社法第53条1項発起人、設立時取締役又は設立時監査役は、株式会社の設立についてその任務を怠ったときは、当該株式会社に対し、これによって生じた損害を賠償する責任を負う。会社法第55条……責任は、総株主の同意がなければ、免除することができない。2. 解説：「任務を怠った」とはどういう状態か具体的には以下のようなケースが想定されます。発起人： 定款作成や出資の履行確認を適切に行わなかった。設立時取締役・監査役： 設立手続きに違反がないかの「調査（46条）」を適当に済ませ、重大な瑕疵を見逃した。これらのメンバーは、もし損害が出た場合には連帯して（みんなで一緒に）会社に対して賠償する義務を負います。3. 責任免除の「鉄則」を整理しゅうさくさん、ここで設立に関する「免除」のルールを完璧に固めてしまいましょう。責任の種類責任の性質（免責の有無）免除の要件任務懈怠責任（53条）過失責任（注意してれば助かる）総株主の同意不足額填補責任（52条）原則：無過失責任（発起人は厳しい）総株主の同意払込仮装の責任（52条の2）無過失免責なし（本人は逃げられない）総株主の同意行政書士試験において、設立時の会社に対する責任について「〇〇の同意で免除できる」と出たら、それは**「総株主の同意（100%）」**一択です。取締役会の決議や、株主総会の普通決議では免除できません。4. 合格へのアドバイス① 「第三者に対する責任」との違い（53条2項）今回の問題は「会社に対する責任」ですが、もし彼らが**「悪意または重大な過失」で第三者（債権者など）に損害を与えた場合は、直接その第三者に対しても賠償責任**を負います。この場合、当然ながら「総株主の同意」で勝手に免除することはできません（他人の権利だからです）。② 役員も「調査」をサボれば同罪「役員はチェックするだけだから責任が軽い」と思いがちですが、そのチェック（調査）を怠ること自体が「任務懈怠」になります。",
           "1. 根拠条文：会社法第53条2項設立メンバーが「わざと」または「ひどい不注意」で他人に迷惑をかけた場合の規定です。会社法第53条2項発起人、設立時取締役又は設立時監査役がその職務を行うについて悪意又は重大な過失があったときは、当該発起人、設立時取締役又は設立時監査役は、これによって第三者に生じた損害を賠償する責任を負う。2. 解説：なぜ「第三者」への責任があるのか通常、会社が負うべき責任はその会社自身が負うものですが、設立のプロセスにおいて「プロ」や「責任者」としての立場を悪用したり、放置したりして第三者（債権者など）を傷つけた場合は、その個人も責任を免れません。悪意： 損害が出ることを知っていながらあえて行った場合。重大な過失： わずかな注意を払えば防げたはずの、著しい不注意。第三者の例： 設立を信じて取引を準備した業者や、不適切な広告を信じて出資した引受人など。3. 「会社に対する責任」との決定的な違いしゅうさくさん、ここが試験で最も狙われる「ひっかけ」のポイントです。前回の「会社に対する責任」としっかり区別しましょう。項目会社に対する責任（53条1項）第三者に対する責任（53条2項）発生要件軽過失でも負う（任務を怠ればOK）悪意・重過失が必要責任免除総株主の同意で免除可免除できない（被害者は第三者だから）※「第三者に対する責任」は、他人の権利を侵害したことに対する責任なので、会社の中の人（総株主）が勝手に「免除してあげるよ」と言うことはできません。4. 合格へのアドバイス① 「重過失」というハードル単なる「不注意（軽過失）」では、第三者に対して直接責任を負うことはありません。あくまで「ひどい不注意」以上が必要です。② 連帯責任複数のメンバーが関与していた場合、彼らは連帯して賠償する義務を負います。③ 成立後の役員責任（429条）との共通点この「悪意・重過失があれば第三者に責任を負う」というルールは、会社が成立した後の役員にも共通する（429条1項）非常に重要な基本原則です。",
           "1. 根拠条文：会社法第56条\n会社が登記に至らず、不成立に終わった際のリスク負担について定めています。\n\n会社法第56条\n株式会社が成立しなかったときは、発起人は、連帯して、株式会社の設立に関してした行為についてその責任を負い、株式会社の設立に関して支出した費用を負担する。\n\n2. 解説：なぜ「発起人」だけが負うのか\n以前のひっかけ問題でも確認しましたが、ここが行政書士試験の「責任の分界点」です。\n\n無過失責任： 発起人は、「自分に落ち度がなかった（善意無過失）」と証明しても、この責任を免れることはできません。設立というプロジェクトを立ち上げた以上、その失敗のリスク（事務費用の持ち出しや取引先への支払い）は全て発起人が負うことになります。\n\n「設立時役員」は含まれない： 設立時取締役や監査役は、あくまで発起人の仕事をチェックするために選ばれた人たちです。会社が成立しなかったこと自体の責任まで負わされることはありません。\n\n3. 関連知識：支出した費用の負担\n設立準備のために使った以下の費用は、会社ができていれば会社が負担（定款に記載がある場合）しますが、不成立なら発起人の自腹になります。\n\n定款認証の手数料\n\n事務所の賃料や備品代\n\n設立時発行株式の募集広告費\n\nこれらの費用は、複数の発起人がいれば連帯して負担します。つまり、債権者はどの発起人に対しても全額の支払いを請求できるということです。\n\n4. 合格へのアドバイス\n① 「成立後」の責任との違いを明確に\n不成立時： 発起人のみが無過失で全責任を負う（56条）。\n\n成立後： 発起人・役員ともに、**任務懈怠（過失）**があれば賠償責任を負う（53条）。\nこの「成立したか・しなかったか」で責任の主体と性質がガラッと変わる点に注意しましょう。\n\n② 「連帯して」というキーワード\n一人で責任を負うのではなく、仲間全員で連帯して責任を負います。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24279,6 +27078,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第53条設立に関わった主要メンバーが、それぞれの役割を「サボった（任務懈怠）」場合のルールです。会社法第53条1項発起人、設立時取締役又は設立時監査役は、株式会社の設立についてその任務を怠ったときは、当該株式会社に対し、これによって生じた損害を賠償する責任を負う。2. 解説：誰が、どのような責任を負うのか責任の主体： 「発起人」だけでなく、チェック役である「設立時取締役」や「設立時監査役」も含まれます。任務を怠った（任務懈怠）とは： * 発起人が、定款作成や株式発行の手続きを適当に行った。設立時取締役が、発起人の仕事に法令違反がないかの「調査（46条）」を不十分に行い、問題を見逃した。責任の性質： これは過失責任です。つまり、彼らが「自分たちはやるべきことをしっかりやった（注意を怠らなかった）」と証明できれば、責任を免れることができます。3. 関連知識：免除と連帯行政書士試験でセットで狙われるポイントを整理しましょう。項目内容連帯責任複数のメンバーに任務懈怠があった場合、彼らは連帯して賠償義務を負います。責任の免除この責任は、総株主の同意（100%）がなければ免除できません（55条）。第三者への責任任務懈怠に「悪意または重大な過失」があった場合は、会社だけでなく第三者（債権者など）に対しても直接責任を負います（53条2項）。4. 合格へのアドバイス① 「任務を怠った」の広さ特定の「お金が足りない」という話（52条）だけでなく、設立手続き全般のミスをカバーするのがこの53条です。試験では「発起人は不足額填補責任を負うが、手続きのミスについては責任を負わない」といったひっかけが出ますが、そんなことはありません。② 設立時監査役も主役「監査役は会社ができてから動くもの」というイメージを持たれがちですが、設立時監査役も設立プロセスをチェックする義務があり、サボれば賠償責任を負います。",
           "1. どこが「誤り」なのか「過失（ちょっとした不注意）」があっただけでは、第三者に対して直接責任を負うことはありません。会社法第53条2項発起人、設立時取締役又は設立時監査役がその職務を行うについて悪意又は重大な過失があったときは、当該発起人、設立時取締役又は設立時監査役は、これによって第三者に生じた損害を賠償する責任を負う。つまり、単なる「過失（軽過失）」ではなく、**「悪意（わざと）」または「重大な過失（ひどい不注意）」**という重い落ち度が必要になります。2. 解説：なぜ「重い落ち度」が必要なのか通常、ビジネス上の損害は「会社」が責任を負うのが原則です（間接有限責任の裏返し）。軽過失まで責任を負わせると： ちょっとしたミスで個人が全財産を失うリスクがあると、誰も怖がって発起人や役員を引き受けなくなってしまいます。バランスの維持： そこで会社法は、「わざと（悪意）」や「誰が見てもひどいミス（重過失）」があった場合に限って、例外的に「あなた個人の責任ですよ」と第三者への賠償を認めています。3. 整理：会社に対する責任 vs 第三者に対する責任しゅうさくさん、ここが行政書士試験で最も混同しやすいポイントです。表でスッキリ整理しましょう。相手根拠条文責任を負う条件（ハードル）会社に対して53条1項任務を怠ったとき（軽過失でもOK）第三者に対して53条2項悪意 or 重大な過失があったとき「身内（会社）には厳しく、他人（第三者）には、よほどひどい時だけ」とイメージしてください。4. 合格へのアドバイス① 「過失」と「重大な過失」の読み分け問題文を two-step で読みましょう。主語は「発起人・役員」か？相手は「会社」か「第三者」か？相手が「第三者」なら、反射的に**「悪意・重過失」**というキーワードを探してください。② 成立後の役員責任（429条）このルールは、会社が成立した後の役員が負う「第三者責任（429条1項）」と全く同じ構造です。今ここで「第三者＝悪意・重過失」を脳に刻んでおけば、後の章でも無双できます。",
           "1. 根拠条文：会社法第54条\n設立時の責任者たちが、お互いに責任をなすりつけ合うのを防ぐための規定です。\n\n会社法第54条\n発起人、設立時取締役又は設立時監査役が株式会社又は第三者に生じた損害を賠償する責任を負う場合において、他の発起人、設立時取締役又は設立時監査役も当該損害を賠償する責任を負うときは、これらの者は、連帯債務者とする。\n\n2. 解説：なぜ「連帯債務」にするのか\n連帯債務にすることで、損害を受けた側（会社や第三者）の保護を強力に図っています。\n\n債権者のメリット： 損害を受けた人は、誰か一人の責任者に「全額払え！」と請求することができます。「自分の担当じゃなかった」「自分の過失は1割だ」といった内部の言い分を、債権者に対して主張することはできません。\n\n責任の重さ： 設立という重要なプロジェクトに関わる以上、メンバー全員が互いにチェックし合い、共同で責任を負うべきであるという考え方が背景にあります。\n\n3. 関連知識：連帯責任が発生する主なケース\nこれまでしゅうさくさんと確認してきた、以下のケースはすべて「連帯責任」になります。\n\n不足額填補責任（52条）： 現物出資の価値が足りなかったとき。\n\n払込仮装の責任（52条の2）： 見せ金などに関与したとき。\n\n任務懈怠責任（53条1項）： 会社に対してサボったとき。\n\n第三者への責任（53条2項）： 悪意・重過失で他人に損害を出したとき。\n\n不成立時の責任（56条）： 会社ができなかったときの費用負担。\n\n4. 合格へのアドバイス\n① 「連帯」というキーワードの強さ\n会社法に限らず、民法などの試験でも「連帯して」という言葉が出てきたら、「誰にでも全額請求できる、債権者に有利なルール」と思い出してください。\n\n② 内部での精算（求償）\nもちろん、一人が全額払った後は、その人が他のメンバーに対して「お前の分も払ったんだから返せ」と言うこと（求償権の行使）は可能です。しかし、それはあくまで「中の人たち」の問題であり、外（債権者）に対しては全員が一枚岩で責任を負います。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24356,6 +27162,13 @@ export const SUBJECTS = {
           "1. どこが「誤り」なのか募集設立において、定款に定めのない発行可能株式総数を新しく設ける（または変更する）のは、「発起人の全員の同意」ではなく、原則として**「創立総会（そうりつそうかい）」**の決議によります。会社法第98条募集設立の場合において、発行可能株式総数を定款で定めていないときは、株式会社の成立の時までに、創立総会の決議によって、定款を変更して発行可能株式総数の定めを設けなければならない。2. 解説：なぜ「創立総会」なのか募集設立は、発起人以外の「一般の引受人」からもお金を集めて会社を作る手続きです。引受人の権利： 「将来、最大で何株まで発行できるか（＝自分の持株比率がどれくらい薄まる可能性があるか）」というルールは、出資者全員にとって極めて重要な関心事です。民主的な決定： したがって、発起人たちだけで勝手に決めるのではなく、出資者（引受人）が全員参加する「創立総会」という公の場で、議決権の3分の2以上の賛成（特別決議に相当する重さ）を得て決める必要があります。3. 整理：設立形態による決定手続きの違い行政書士試験で最も狙われる「主語の入れ替え」ポイントです。設立の形態発行可能株式総数の決定主体根拠条文発起設立発起人全員の同意会社法37条募集設立創立総会の決議会社法98条※「身内（発起）なら全員のハンコ、大勢（募集）なら会議（総会）」とイメージしましょう。4. 合格へのアドバイス① 「全員の同意」という言葉の罠発起設立のルールを完璧に覚えた後にこの問題を見ると、つい「あ、全員の同意だったな」と○をつけたくなります。問題文の冒頭が**「募集設立」になっているか、「発起設立」**になっているかを、必ず一番最初に確認するクセをつけましょう。② 創立総会の決議要件ついでに復習ですが、創立総会の決議は「出席した引受人の議決権の3分の2以上」の賛成が必要です。この重みもセットで押さえておきましょう。",
           "1. 根拠条文：会社法第98条募集設立における発行可能株式総数の定め、およびその変更について規定しています。会社法第98条募集設立の場合において、発行可能株式総数を定款で定めていないときは、株式会社の成立の時までに、創立総会の決議によって、定款を変更して発行可能株式総数の定めを設けなければならない。定款で定めている発行可能株式総数を変更するときも、同様とする。2. 解説：なぜ「創立総会」で決めるのか募集設立は、発起人以外の「引受人」から広く資金を集める手続きです。引受人の利益保護： 発行可能株式総数は「将来、どれくらいまで株式が増えて自分の持ち分が薄まるか」という枠組みを決めるものです。民主的な決定： 発起人だけで勝手に変更（全員の同意など）することは許されず、出資をした人全員が集まる「創立総会」という場で、適正なプロセスを経て決定しなければなりません。3. 整理：決定手続きの比較（再確認）しゅうさくさん、ここまでの総まとめとして、この「主語」と「場所」の組み合わせを脳内に定着させましょう！設立の形態発行可能株式総数の決定・変更主体決議要件発起設立発起人全員の同意全会一致募集設立創立総会議決権の3分の2以上（特別決議相当）4. 合格へのアドバイス① 「創立総会 ＝ 募集設立の万能ルール」募集設立において、定款の内容をいじったり、役員を選んだり、設立の是非を決めたりする最終決定権は、常に「創立総会」にあります。「発起人の同意」というフレーズが出てきたら、募集設立では疑ってかかるのが鉄則です。② タイミングは「成立の時まで」発行可能株式総数は、設立登記の際の必須項目です。そのため、登記（成立）の申請をする前までに、この決議を完了させておく必要があります。「大勢（募集）が関わる重要事項は、必ず『会議（創立総会）』で決めるのが会社法の筋道」と整理しておきましょう！",
           "1. 根拠条文：会社法第113条3項公開会社（株式の譲渡に制限がない会社）を設立する際、将来の「枠」を広げすぎないように釘を刺しています。会社法第113条3項公開会社を設立する場合において……発行可能株式総数は、設立時発行株式の総数の四倍を超えることができない。問題文の「4分の1を下ることができない」という表現は、この「4倍を超えてはならない」を言い換えたものであり、意味するところは同じです。2. 解説：なぜ「4倍」までなのか公開会社は、取締役会の決議だけで（株主総会を通さずに）どんどん新しい株を発行できる性質を持っています。既存株主の保護： もし設立時に100株しか発行していないのに、発行可能枠が10,000株あったとしたら、後から取締役会が勝手に大量発行して、最初の株主の持ち分比率を極端に薄めることができてしまいます。資本の安定： 最初に決めた「枠」と「実態」がかけ離れすぎないようにすることで、投資家が予測しやすい構造にしています。3. 重要ポイント：非公開会社（譲渡制限会社）の例外問題文にある「公開会社でない場合を除いて」という部分が、試験では最も狙われます。会社の形態4倍ルールの適用理由公開会社適用あり（4倍まで）機動的な発行ができるため、事前の枠制限が必要。非公開会社適用なし（制限なし）株の発行には必ず株主総会が必要なので、枠が広くても悪用されにくい。しゅうさくさんが今後実務で扱うことが多い「同族経営の小さな会社」などは、ほとんどが非公開会社ですので、この4倍ルールに縛られず「1株発行・枠100万株」といった設定も法律上は可能です。4. 合格へのアドバイス① 「4分の1」と「4倍」の変換試験では「4倍を超えてはならない」と「1/4を下回ってはならない」の両方の表現で出題されます。$$設立時発行数 \\times 4 \\geqq 発行可能総数$$この数式をイメージしておけば、どちらの表現でも対応できます。② 「設立時」だけのルールではないこの4倍ルールは、会社ができた後の**「定款変更で枠を広げる時」**にも適用されます（113条3項後段）。「設立時だけ守ればいい」というわけではない点も、頭の片隅に置いておきましょう。「公開会社（オープンな会社）を作るなら、将来の枠は今の実力の4倍までに抑えておくのがマナー」と覚えておきましょう！"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24434,6 +27247,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第108条1項4号会社は、定款で定めることで、内容の異なる「種類株式」を発行できます。そのメニューの一つに以下があります。会社法第108条1項（4号）当該種類の株式の譲渡による取得について、当該株式会社の承認を要すること。2. 解説：どのような場面で使われるか全ての株式に譲渡制限をかける（非公開会社にする）のではなく、**「特定の種類の株だけ」**に制限をかけたい場合に利用されます。例： 創業家が持つ「A種株式」には譲渡制限をかけ、外部の投資家が持つ「B種株式」は自由に売買できるようにする、といった使い分けが可能です。3. 整理：全部の株式 (107条) vs 種類株式 (108条)今回のテーマである「譲渡制限」は、以前確認した「議決権制限」とは異なり、全部の株式にも、種類株式にも設定が可能です。設定の対象条文特徴全部の株式107条会社が発行する全ての株を譲渡制限にする（＝非公開会社）。種類株式108条特定の種類の株だけを譲渡制限にする。4. 合格へのアドバイス① 「取得」という言葉の意味条文上は「譲渡による……取得について」という表現が使われます。これは「買う側（取得する側）から見て、会社に認めてもらわないと株主になれませんよ」という意味ですが、実質的には「譲渡制限」と同じことだと捉えて問題ありません。② 承認機関の決定譲渡を承認するかどうかを決めるのは、原則として取締役会（取締役会非設置会社なら株主総会）ですが、定款で別の定め（例：代表取締役が承認する、など）をすることも可能です。「『この種類の株だけは、勝手に他人に売らないでね』というルールを定款で作ることはOK」と整理しておきましょう。株式の「内容」に関する問題は、主語が「全部」なのか「種類」なのかを判別するのが攻略のコツです。",
           "1. 根拠条文：会社法第108条1項5号会社は、定款で定めることで、内容の異なる種類株式を発行できます。そのメニューに含まれるのがこれです。会社法第108条1項（5号）株主が当該株式会社に対して当該株主の有する種類の株式を取得することを請求することができること。2. 解説：どのようなメリットがあるのか株主にとって、この権利は一種の「脱出口（イグジット）」になります。換金の保証： 特に譲渡制限がかかっている株式の場合、自由に売ることができません。そこで「会社ならいつでも買い取ってくれる」という約束（取得請求権）をつけておくことで、投資家が安心して出資できるようになります。対価： 会社が買い取る際の対価は、現金だけでなく、他の種類の株式や社債などを渡すように設定することも可能です。3. 整理：似た名前の「取得条項」との違い試験で最も入れ替えられるのが、この**「請求権」と「条項」**の主語の違いです。ここを完璧に区別しましょう。名称どちらからアクションするかイメージ取得請求権付株主 → 会社株主の「売らせてくれ！」取得条項付会社 → 株主会社の「返してくれ（回収するぞ）！」※今回の問題は「株主が……請求することができる」となっているので、正解となります。4. 合格へのアドバイス① 「全部」でも「種類」でもOKこの取得請求権は、以前確認した「譲渡制限」と同様に、会社が発行する**全部の株式（107条）につけることも、特定の種類株式（108条）**につけることも可能です。② 財源規制の注意点（実務的補足）会社がお金を払って株を買い取る（自己株式の取得）ことになるため、会社に十分な「分配可能額」がない場合は、現金での支払いが制限されることがあります。「株主が会社に対して『買い取れ！』とカードを切れるのが、取得請求権付株式」と整理しておきましょう。",
           "1. 根拠条文：会社法第108条1項9号会社は、定款で定めることで、内容の異なる種類株式を発行できます。そのメニューの最後（9号）にこれがあります。会社法第108条1項（9号）当該種類の株式の種類株主を構成員とする種類株主総会において、取締役又は監査役を選任すること。2. 解説：どのようなメリットがあるのか通常、取締役は「株主総会（全体）」の多数決で決まりますが、この株式を使うと、特定のグループが確実に「自分たちの代表」を送り込むことができます。合弁事業での活用： A社とB社が共同で会社を作る際、「A種株主は3人の取締役を、B種株主は2人の取締役を選べる」と決めておくことで、出資比率が変わっても経営権のバランスを維持できます。事業承継での活用： 後継者に経営を任せつつ、引退したオーナーが持つ株に「取締役1名を選任できる権利」をつけておくことで、いざという時の監督権を確保できます。3. 注意：公開会社では「禁止」されているここが試験で最も狙われる**「ひっかけポイント」**です。会社の形態役員選任権付種類株式の発行理由非公開会社○ 可能株主が限定されており、合意が形成されやすいため。公開会社× 不可取締役会設置が義務付けられており、一部の株主が役員選抜権を独占するのは投資家保護の観点から不適切とされるため（108条2項）。問題文には特に限定がありませんが、制度として「発行することができる」という記述自体は正しいです。4. 合格へのアドバイス① 選任だけでなく「解任」もセットこの種類株主総会で選ばれた取締役は、原則としてその種類株主総会の決議でなければ解任できません（347条）。普通の株主総会で勝手にクビにできないよう、セットで保護されています。② 指名委員会等設置会社など指名委員会等設置会社や監査等委員会設置会社では、この役員選任権付種類株式を発行することはできません。ガバナンスの仕組みが衝突してしまうからです。「特定の株主グループだけで『うちの代表取締役（または監査役）』を確実に選べる、という強力な権利を設定できる」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24490,6 +27310,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第137条\n株主から譲渡を受けるのではなく、すでに取得してしまった後の手続きについて定めています。\n\n会社法第137条2項\n前項の規定による請求（取得者からの請求）は、……その取得した株式の株主として株主名簿に記載され、若しくは記録された者又はその相続人その他の一般承継人と共同してしなければならない。ただし、利害関係人の利益を害するおそれがないものとして法務省令で定める場合は、この限りでない。\n\n2. 解説：なぜ「共同」でする必要があるのか\n譲渡制限会社（非公開会社）において、株主名簿の書き換えは非常に重要な手続きです。\n\nなりすましの防止： もし取得者が一人で「この株を買ったので認めてください」と請求できるとすると、虚偽の譲渡証書などを使って勝手に株主になりすますリスクがあります。\n\n真実性の確保： そのため、原則として「譲り渡した側（名簿上の旧株主）」と一緒に請求させることで、譲渡が真実であることを会社に証明させる仕組みになっています。\n\n3. 整理：単独で請求できる「例外」\n「利害関係人の利益を害するおそれがない一定の場合」として、以下のようなケースでは取得者が単独で請求できます。\n\n確定判決などがある場合（裁判所が認めているため）。\n\n相続や合併などの一般承継の場合（当然に権利を引き継ぐため）。\n\n競売によって取得した場合。\n\n4. 合格へのアドバイス\n① 「株主からの請求（136条）」との違い\n以前確認した通り、**譲渡する前の「株主」**が請求する場合は、自分ひとりで（単独で）請求できます。\n「譲る前（株主）」＝ 単独OK\n「譲った後（取得者）」＝ 原則共同\nこの対比は試験で非常によく狙われます。\n\n② 「承認するか否かの決定」という表現\n取得者が求めるのも、株主の場合と同様に「承認そのもの」ではなく、会社として「認めるか、認めないか」の判断を下してほしい、という請求になります。\n\n「すでに株を手に入れた人が名乗り出るなら、前の持ち主（名簿上の人）と一緒に来てね、というのが会社法の用心深いルール」と整理しておきましょう。",
           "1. 根拠条文：会社法第139条1項譲渡制限株式の譲渡承認の決定主体については、以下のように定められています。会社法第139条1項株式会社が第136条又は第137条第1項の承認をするか否かの決定をするには、取締役会設置会社にあっては取締役会の、それ以外の株式会社にあっては株主総会の決議によらなければならない。ただし、定款に別段の定めがある場合は、この限りでない。2. 解説：どこが「誤り」なのか間違いのポイントは2つあります。「取締役会」が原則： 取締役会がある会社なら、わざわざ株主総会を開く必要はなく、取締役会で決めるのがルールです。「普通決議」で足りる： 株主総会で決める場合であっても、法律は「特別決議」までは要求していません。通常の普通決議（議決権の過半数が出席し、その過半数で決定）で承認可能です。3. 整理：承認機関のパターン試験で狙われる「誰が決めるのか」のまとめです。会社の形態承認の決定機関（原則）定款によるカスタマイズ取締役会 設置会社取締役会○ 可能（例：代表取締役、株主総会）取締役会 非設置会社株主総会（普通決議）○ 可能（例：代表取締役）※実務では、スピード感を重視して「代表取締役が承認する」と定款で定めている会社も非常に多いです。4. 合格へのアドバイス① 「特別決議」の使いどころ会社法において「特別決議」が必要なのは、定款変更や解散、事業譲渡など、会社の根幹を揺るがすような重大な事項に限られます。譲渡の承認は「今のメンバーでやっていけるか」の判断なので、そこまで重いハードルは課されていません。② 「定款に別段の定め」の威力この承認機関については、定款でかなり自由に決めることができます。問題文に「定款に別段の定めがある場合を除き」とあるので、あくまで「法律上のデフォルトルール」が問われていることに注目しましょう。「譲渡のOK・NGを出すのは、会社を運営しているリーダーたち（取締役会）の仕事」と整理しておきましょう。",
           "1. 根拠条文：会社法第174条会社は、定款で定めることにより、相続などで株を引き継いだ人に対して「その株を会社に売りなさい」と強制的に請求することができます。会社法第174条株式会社は、相続その他の一般承継によって当該株式会社の株式（譲渡制限株式に限る。）を取得した者に対し、当該株式を当該株式会社に売り渡すことを請求することができる旨を定款で定めることができる。2. 解説：なぜこのルールが必要なのか譲渡制限株式は、売買の際には会社の承認が必要ですが、「相続」は譲渡ではないため、会社の承認なしに株主の地位が移転してしまいます。放置すると： 全く面識のない相続人が株主となり、会社の経営に口を出したり、帳簿の閲覧を求めたりするリスクがあります。解決策： あらかじめ定款にこの定めを置いておくことで、会社側から「お金を払うから、株を返して（売って）ください」と強制的に買い取ることが可能になります。3. 整理：発動のための「厳しいハードル」この請求は強力すぎるため、濫用を防ぐための厳格なルールがあります。試験でもここが狙われます。項目ルール備考定款の定め必要原始定款になければ、後から特別決議で追加します。実行の決議株主総会の特別決議毎回、個別の売渡請求ごとに決議が必要です（175条）。期限相続を知った日から1年以内1年を過ぎると、もう請求できません（176条）。財源規制あり会社に「分配可能額」がないと、現金では買い取れません。4. 合格へのアドバイス① 「一般承継」の範囲「相続」だけでなく、法人の「合併」なども含まれます。これらによって譲渡制限株式が意図しない相手に渡った場合に発動できます。② 議決権の制限（175条2項）売渡請求を受ける当の本人は、その決議において議決権を行使することができません。 自分のクビ（株）がかかっている決議で、自分で反対して阻止することはできないようになっています。「『相続で変な人が株主になるのは嫌だ！』という会社は、定款に書いておけば、お金を払って強制的に株を回収できる」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24546,6 +27373,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第108条1項8号会社は、定款で定めることで、以下の内容を持つ種類株式を発行できます。会社法第108条1項（8号）株主総会……又は取締役会において決議すべき事項のうち、当該決議のほか、当該種類の株式の種類株主を構成員とする種類株主総会の決議を必要とすること。2. 解説：なぜ「黄金株」と呼ばれるのかたとえ普通の株を99%持っている大株主が「賛成」しても、この「黄金株」を1株でも持っている人が種類株主総会で「反対」すれば、その議案は成立しません。主な利用シーン：買収防衛策： 敵対的な買収者が現れて「合併」や「解散」を決議しようとしても、信頼できる第三者が黄金株を持っていれば阻止できます。事業承継： 経営権を後継者に譲りつつ、創業者が「重要な定款変更」などに対する拒否権を手元に残しておく場合に有効です。3. 注意：公開会社における制限この「黄金株」はあまりに強力なため、上場企業などの公開会社では実務上の制約があります。会社の形態黄金株の発行理由非公開会社○ 自由株主間の合意で自由に設計可能です。公開会社△ 制限あり取締役の選任・解任に関する拒否権については、発行が禁止されています（108条2項）。※ガバナンスを歪めるため。4. 合格へのアドバイス① 「決議のほか」という表現「株主総会の決議を置き換える」のではなく、「株主総会の決議に加えて、種類株主のOKも必要」という二段構えの手続きになる、という点に注目してください。② 対象事項の特定定款では「すべての議案」に拒否権をつけることもできますし、「合併と解散についてのみ」といった具合に事項を限定することも可能です。「『みんながOKと言っても、このグループがNOと言えばダメ』というストッパー役を、種類株式で作ることができる」と整理しておきましょう。",
           "1. 根拠条文：会社法第108条1項9号・2項この規定には、発行できる会社について重要な**「制限」**があります。会社法第108条2項（要約）次に掲げる事項（役員選任権）については、公開会社及び指名委員会等設置会社は、定款の定めを設けることができない。つまり、問題文にある「公開会社および指名委員会等設置会社のいずれでもない株式会社（＝非公開かつ監査役会設置会社や合同会社など）」であれば、この種類株式を発行することが可能です。2. 解説：なぜ「非公開会社」限定なのかこの株式は、株主全体の意思（株主総会）を通さずに、一部の株主だけで役員を送り込めるため、ガバナンスへの影響が極めて大きいです。公開会社で禁止される理由： 上場企業などの公開会社でこれを認めると、わずかな株しか持たない特定の株主が経営権を独占できてしまい、一般の投資家の利益が著しく損なわれるためです。非公開会社での活用： 創業家が「黄金株」のようにこの権利を持ち続けたり、共同事業（合弁）で「A社は3人、B社は2人の取締役を出す」といったパワーバランスを維持するために活用されます。3. 整理：役員選任権のルール試験で狙われるポイントを整理しましょう。項目内容対象役員取締役 または 監査役発行不可の会社公開会社、指名委員会等設置会社解任のルールこの種類株主総会で選ばれた役員は、原則としてその種類株主総会でしか解任できない。4. 合格へのアドバイス① 「いずれでもない」の読み替え行政書士試験では、このように「〜ではない会社は、〜できる」という二重否定のような言い回しで、**「できる条件」**を問うてきます。「公開会社 ×」「指名委員会等 ×」→ **「非公開の普通（または監査役会設置）会社なら ◯」**と瞬時に翻訳しましょう。② 監査等委員会設置会社は？指名委員会等設置会社だけでなく、監査等委員会設置会社についても、この種類株式の発行は認められていません。ガバナンス体制が複雑な会社では、この「勝手に役員を決める権利」は馴染まないとされています。「『自分たちの代表を必ず取締役にしたい』という願いは、非公開のシンプルな会社なら、種類株式で叶えることができる」と整理しておきましょう。",
           "1. 根拠条文：会社法第108条1項3号会社は、定款で定めることで、内容の異なる種類株式を発行できます。会社法第108条1項（3号）株主総会において議決権を行使することができる事項（一切の事項について議決権を行使することができない場合を含む。）2. 解説：どのようなメリットがあるのか「お金は出してほしいけれど、経営には口を出してほしくない」という場合に利用されます。投資家への配慮： 議決権がない代わりに、「配当金を多めに支払う（優先株）」といった条件とセットにすることが一般的です。経営権の維持： 創業者が少ない出資比率でも経営権を握り続けたい場合、外部からの出資をこの「無議決権株」で受け入れることで、自分の議決権比率が下がるのを防げます。3. 重要：以前確認した「全部の株式」との違いここが試験で最も混乱しやすいポイントですので、再度整理しましょう。設定の対象可否理由全部の株式（107条）× 不可株式会社である以上、どこかに議決権がないと会社が機能しないため。種類株式（108条）○ 可能他に「議決権のある株」が1株でも存在していればOK。※問題文が「種類株式の内容として」となっているため、これは「正解」となります。4. 合格へのアドバイス① 「議決権の復活」という概念定款で「ある一定の事由（例：配当が支払われないとき）が発生したら、この無議決権株に議決権が復活する」といった条件をつけることも可能です。② 公開会社における「1/2制限」上場企業などの公開会社では、無議決権株が発行済株式総数の2分の1を超えた場合、速やかにその割合を解消するための措置をとらなければならないという、ガバナンス上のルール（308条に関連する解釈・運用）があります。ただし、非公開会社にはこの制限はありません。「『経営には関わらないけれど、配当はもらう』という投資家向けに、一切の議決権を奪った『種類株式』を作ることは可能」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24602,6 +27436,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第179条の9第1項\n特別支配株主がいつ、どのように株を手に入れるかについて定めています。\n\n会社法第179条の9第1項\n特別支配株主は、取得日に、売渡株式（……）の全部を取得する。\n\n2. 解説：この「取得」の強力な性質\nこの制度の最大の特徴は、個々の株主との契約やハンコが必要ないという点にあります。\n\n原始取得的な効果： 取得日が来れば、売る側の株主が「売りたくない」と言っていても、あるいは通知を見逃していても、自動的に株主の名簿から外れ、特別支配株主のものになります。\n\n対価の支払い： 株式は先に移転しますが、もちろん特別支配株主は、あらかじめ通知した対価（現金など）を元々の株主に支払う義務を負います。\n\n3. 整理：手続きの締めくくり\nこれまでの流れを復習すると、この「取得日」で一連のスクイーズ・アウトが完了します。\n\n通知： 特別支配株主が対象会社へ「売り渡せ」と通知。\n\n承認： 対象会社の取締役会が承認。\n\n通知・公告： 取得日の2週間前までに各株主に知らせる。\n\n取得（本問）： 取得日当日に、全株式が特別支配株主へ移転。\n\n4. 合格へのアドバイス\n① 「全部」の範囲\nこの「全部」には、所在不明の株主（しれっと連絡が取れない人）の株も含まれます。これにより、会社を完全に「100%子会社」にすることが可能になります。\n\n② 対価の支払いとの前後関係\n「対価を支払った時に取得する」というひっかけが出るかもしれませんが、正しくは**「取得日に（自動的に）取得する」**です。支払いはその後の事務手続きとなります。\n\n「あらかじめ決めた『その日』が来れば、相手の同意がなくても株はすべて自分のものになる」という、支配者の強力な権利として押さえておきましょう。",
           "1. 根拠条文：会社法第179条の7追い出される側の株主（売渡株主）が、裁判所を通じてこの手続きを止めるためのルールです。会社法第179条の7第1項売渡株主は、次に掲げる場合には、特別支配株主に対し、売渡株式の全部の取得をやめることを請求することができる。1．当該株式売渡請求が法令に違反する場合2．（対価の額が著しく不当な場合など）3．（承認の手続きに違反がある場合など）……かつ、売渡株主が不利益を受けるおそれがあるとき。2. 解説：どのような場合に「ストップ」がかかるのか単に「売りたくない」という感情論では止めることができません。以下の条件を満たす必要があります。法令違反： 例えば、特別支配株主が実は90%以上の議決権を持っていなかった場合や、対象会社の取締役会の承認を得ていない場合などです。不利益を受けるおそれ： 手続きのミスによって、株主が正当な対価を受け取れなかったり、権利行使の機会を奪われたりする具体的なリスクがあることが求められます。3. 整理：反対株主の「2つ」の対抗手段試験で混同しやすい、少数株主が取れるアクションを整理しましょう。手段目的タイミング理由差止請求（本問）手続きを中止させる取得日の前まで法令違反があるとき売買価格決定の申立て**お金（価格）**を適正にする取得日の20日前〜価格に不満があるとき4. 合格へのアドバイス① 「全部」の取得をやめるこの差止請求が認められた場合、自分の一株だけを止めるのではなく、その売渡請求にかかる**「全部」**の取得が止まります。一人の株主の訴えが、全体のスケジュールを止める力を持っています。② 提訴の期限「取得をやめること」を請求するわけですから、当然ながら**「取得日の前日まで」**にアクションを起こす必要があります。一度取得日が過ぎてしまった後は、別の「無効の訴え」などのステージに移ることになります。「手続きがルール違反（法令違反）で、自分が損をする（不利益）なら、裁判所に訴えて『ちょっと待った！』をかけることができる」と整理しておきましょう。",
           "1. 根拠条文：会社法第179条の10取得日が過ぎてしまい、株式が移転してしまった後に「あれは無効だ！」と主張するための唯一の手段です。会社法第179条の10第1項売渡株主……は、取得日から六箇月以内（対象会社が公開会社でない場合にあっては、取得日から一年以内）に、訴えをもってのみ、株式売渡請求に係る売渡株式の全部の取得の無効を主張することができる。2. 解説：なぜ「訴えをもってのみ」なのか会社法において、一度行われた手続きを無効にするのは、会社内外の関係者に大きな影響を与えます。法的安定性の確保： 「口頭で無効だと言えば無効になる」という状態では、会社の所有権がいつまでも不安定になってしまいます。裁判所の関与： そのため、必ず「裁判（訴え）」という厳格な手続きを通し、裁判所が認めた場合にのみ、世の中に対して一律に無効とする仕組みになっています。3. 整理：期間の制限（公開 vs 非公開）試験でひっかけポイントになるのが、この「期間」の差です。会社の形態無効の訴えができる期間理由公開会社（本問）6か月以内取引が活発なため、早期に確定させる必要がある。非公開会社1年以内株主が限定されており、じっくり争う余地がある。今回の問題文は「公開会社」で「6か月」となっているため、記述として完璧に正しいです。4. 合格へのアドバイス① 「差止請求」との使い分け取得日を迎える前 ＝ 差止請求（手続きを止める）取得日が過ぎた後 ＝ 無効の訴え（終わったことを白紙に戻す）この時間軸の整理が、行政書士試験の「株式」分野を攻略する鍵です。② 無効判決の効果（対世効）もし無効の訴えが認められ、判決が確定すると、その効果は原告（訴えた人）だけでなく、第三者に対しても及びます。つまり、全員の株式取得がなかったことになり、元の状態に戻ります。「一度決まってしまったことは、半年（公開会社の場合）以内に裁判所で白星を挙げない限り、もう覆せない」とイメージしておきましょう。これで「特別支配株主による売渡請求」については、開始の通知から事後の無効請求まで、すべてのプロセスを網羅しました！"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24658,6 +27499,13 @@ export const SUBJECTS = {
           "1. 提訴ができる期間（出訴期間）\n「いつでも訴えられる」わけではありません。法的安定性を守るため、以下の期間内に限られます（会社法828条1項2号）。\n\n公開会社： 発行の効力発生日から6か月以内\n\n非公開会社： 発行の効力発生日から1年以内\n\n2. 提訴ができる人（原告）\n会社に関係する以下のメンバーに限定されています（828条2項2号）。\n\n株主等： 株主、取締役、監査役、清算人\n\n執行役等： 指名委員会等設置会社の場合は、執行役も含まれます。\n\n注意：\n会社の「債権者」は、新株発行が無効になっても直接的な不利益（弁済能力の低下など）が通常想定されないため、原告になることはできません。\n\n3. 無効の「原因」\n会社法には具体的な「無効原因」のリストはありませんが、最高裁の判例や通説では、以下のような**「重大な法令・定款違反」**がある場合に限られるとされています。\n\n発行可能株式総数を超えて発行された場合（枠外発行）。\n\n株主総会の特別決議が必要なのに、それを経ずに発行された場合（特に有利発行など）。\n\n取締役会の決議が全く存在しない場合。\n\n※単に「手続きが少し遅れた」程度の軽微な瑕疵や、「発行価格が少し不当」というだけでは、取引の安全を優先して無効とは認められにくい傾向にあります。\n\n4. 判決の効力（対世効と将来効）\n無効判決が確定した場合、その効果は非常に特殊です。\n\n対世効（たいせいこう）： 原告だけでなく、世の中のすべての人に対して無効となります（838条）。\n\n将来効（しょうらいこう）： 判決の効力は将来に向かってのみ生じます（839条）。\n\nつまり、発行から判決確定までの間に行われた配当や議決権の行使などは、遡って無効にはなりません。これは、過去の取引をすべてひっくり返すとパニックになるためです。\n\n5. 整理：提訴後の「お金」の返還\n無効判決が確定すると、発行された株式は消滅します。その代わり、会社は株主から払い込まれた金額を払い戻さなければなりません（840条）。\n\n合格へのアドバイス\n① 「差止請求」との比較\n発行前： 新株発行の差止請求（210条）。「やめろ！」と言う。\n\n発行後： 新株発行無効の訴え（828条）。「なかったことにしろ！」と言う。\n試験では、この時間軸の前後でどちらの手段をとるべきかが問われます。\n\n② 期間の覚え方\n以前確認した「特別支配株主の売渡請求の無効の訴え」と同様、**「公開6か月・非公開1年」**のセットは会社法訴訟の基本パターンです。\n\n「一度世に出てしまった株を消すには、決められた期間内に、選ばれたメンバー（株主・役員）が裁判を起こすしかない」と整理しておきましょう。",
           "1. 提訴ができる期間（出訴期間）法的安定性を守るため、非常に短い期間に限定されています（会社法831条1項）。決議の日から3か月以内注意：新株発行無効の訴え（6か月〜1年）などと比べて非常に短いのが特徴です。「総会のやり直し」を早く確定させる必要があるためです。2. 提訴ができる人（原告）会社に関係する以下のメンバーです。株主、取締役、監査役、清算人（指名委員会等設置会社の場合は）執行役3. 取消しの原因（4つのパターン）ここが試験の核心部分です。以下のいずれかに該当する場合に提訴できます。招集手続・決議方法の法令・定款違反： （例：招集通知を送るのが遅れた、計算ミスで可決とした）招集手続・決議方法が「著しく不公正」： （例：特定の株主だけ会場に入れないようにした）決議内容の定款違反： （例：定款で決めた役員の定数を超える選任をした）特別利害関係人の議決権行使による「著しく不当」な決議： （例：自分にだけ有利な退職慰労金を贈る決議に、本人が賛成して強引に決めた）4. 裁量棄却（さいりょうききゃく）ここが行政書士試験で最も狙われる「ひっかけ」ポイントです。たとえ手続に**「法令・定款違反」があったとしても**、裁判所が「その違反は軽微で、決議の結果に影響を及ぼさない」と判断した場合には、請求を退けることができます（831条2項）。ポイント： 「内容の違反」には適用されません。あくまで「手続（招集・方法）の違反」にのみ適用されるルールです。5. 判決の効力無効の訴えなどと同様の効果があります。対世効（たいせいこう）： 誰に対しても無効（取消し）となります。遡及効（そきゅうこう）： 取消判決が確定すると、決議の時にさかのぼって無効になります（ここが将来効の新株発行無効とは異なる点です）。合格へのアドバイス① 3つの「決議の訴え」の比較試験では、この「取消しの訴え」と他の2つが混ぜて出題されます。訴えの種類主な原因期間取消しの訴え手続のミス、不公正3か月無効確認の訴え内容が法令違反制限なし不存在確認の訴え総会自体が開かれていない制限なし② 特別利害関係人の扱い「特別利害関係人が議決権を行使した」だけでは取消原因になりません。「その行使によって、著しく不当な決議がなされたこと」まで必要です。「手続のミスは3か月以内に訴える。ただし、些細なミスで結果が変わらないなら裁判所がセーフ（裁量棄却）にしてくれる」と整理しておきましょう。",
           "1. 提訴ができる株主の要件（会社法847条）誰でも訴えられるわけではなく、一定の制限があります。公開会社： 6か月前から引き続き株式を有する株主。非公開会社： 保有期間の制限なし（1株でも持っていればOK）。2. 提訴の手続き（「提訴の請求」というステップ）いきなり裁判所に訴えることはできません。まずは会社に対してチャンスを与える必要があります。会社への請求： 株主は、会社に対して「あの取締役を訴えてください」と書面で請求します。60日間の待機： 会社が請求を受けてから60日以内に提訴しない場合、はじめて株主自身が訴えを提起できます。例外（緊急時）： 60日の経過を待つことで会社に回復できない損害が生じるおそれがあるときは、直ちに提訴できます。3. 責任の対象となる行為主に**「任務懈怠（にんむけいたい）」**が原因となります（会社法423条1項）。法令・定款違反： 法律で禁止されている行為や、定款に反する事業を行った場合。善管注意義務違反： 経営者として通常期待される注意を払わなかった場合。忠実義務違反： 会社の利益より自分や第三者の利益を優先した場合。4. 責任の免除（425条〜428条）取締役が巨額の損害賠償を一生背負うことになると、思い切った経営ができなくなります。そのため、一定の条件で責任を免除・軽減する仕組みがあります。免除の方法要件特徴総株主の同意全員の同意全額免除が可能。株主総会の決議特別決議一定の限度額まで免除可能。取締役会の決議定款の定めがある場合社外取締役などがいる場合、機動的に免除可能。責任限定契約非執行取締役等と締結あらかじめ賠償額の上限を決めておく。注意：いずれの免除も、取締役に**「悪意または重大な過失」**がある場合には認められません。5. 整理：訴えの「その後」株主が勝訴した場合、損害賠償金は「株主」ではなく**「会社」**に支払われます。株主はあくまで「会社のために」代表して戦ったという形になるためです。合格へのアドバイス① 監査役の役割株主が会社に「提訴の請求」を送る際、送り先は原則として代表取締役ですが、「取締役 vs 会社」の裁判においては、監査役が会社を代表することになります（386条）。ここは「誰が会社を守るのか」という視点でよく狙われます。② 担保提供の義務「嫌がらせ」で提訴されるのを防ぐため、被告（取締役）側からの申し立てにより、裁判所が株主に担保を立てるよう命じることがあります（不当な目的がある場合に限る）。「会社が身内の取締役に甘いとき、株主がピンチヒッターとして裁判を起こすのが株主代表訴訟」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24714,6 +27562,13 @@ export const SUBJECTS = {
           "1. どこが「誤り」なのか「定款にその旨の定めがあるときに限り」という部分が間違いです。法律上の権利（会社法192条1項）： 単元未満株主が会社に対して株を買い取るよう請求する権利は、定款の定めの有無にかかわらず、法律によって当然に認められている権利です。定款での制限は不可： この権利は、株主が投資したお金を回収するための最低限の「出口」であるため、定款で「認めない」と定めることはできません。2. 解説：なぜ「定款」に関わらず認められるのか単元株制度を採用すると、1単元に満たない株（単元未満株）には議決権がなくなります。市場で売れない： 通常、証券取引所では「1単元（100株）」単位でしか売買できません。10株や50株だけ持っていても、市場で売ってお金に換えることが困難です。最後の出口： もし会社への買取請求も定款で禁止できてしまうと、株主は「議決権もなく、売ることもできない」という塩漬け状態を強制されることになります。これを防ぐため、会社法は**「会社が必ず買い取らなければならない」**というセーフティネットを用意しています。3. 整理：混同しやすい「売渡請求」との違い試験で最も入れ替えられるのが、以下の2つの請求権です。主語と「定款の要否」に注目してください。項目買取請求 (192条)売渡請求 (194条)内容株主が「会社に買って」と言う株主が「会社から売って」と言う目的株を手放して換金したい不足分を買い足して1単元にしたい定款の定め不要（法律上の権利）必要（定款に書かないと使えない）ポイント：今回の問題は「買い取ること」の方なので、定款の定めは不要です。4. 合格へのアドバイス① 「売渡請求」のひっかけに注意「株主が、不足する数の株式を自分に売り渡すよう請求できる（＝買い増し）」という問題が出たら、それは定款の定めが必要です。「株を減らす（換金）」のは株主の自由ですが、「株を増やす（会社から買う）」のは会社の承諾（定款）が必要、とイメージしておきましょう。② 買取価格の決定買取価格は、当事者（株主と会社）の協議で決まりますが、協議が整わない場合は裁判所に申し立てることができます。「『いらない株を会社に引き取ってもらう権利』は、どんな会社でも株主に最初から備わっている最強の武器」と整理しておきましょう。",
           "1単元にまとめたい」というリクエストになります。1. 根拠条文：会社法第194条単元未満株主が、中途半端な株を「1単元」に格上げするためのルールです。会社法第194条1項株式会社は、単元未満株主が当該株式会社に対して単元未満株式売渡請求……をすることができる旨を定款で定めることができる。2. 解説：なぜ「定款の定め」が必要なのかこの制度は、会社が持っている自己株式を株主に売ってあげる（分け与える）という性質を持っています。会社の在庫（自己株式）の問題： 会社が自分の株を持っていない場合、株主に売ってあげることができません。そのため、法律で一律に義務化するのではなく、「うちの会社は対応しますよ」と定款で決めた会社だけができる仕組みになっています。株主のメリット： 例えば、90株持っている人があと10株買い足せば「1単元（100株）」になり、議決権が復活します。これを市場を通さず、会社に対して直接請求できるのがこの制度です。3. 整理：混同しやすい「買取」と「売渡」の比較試験で最も入れ替えられるポイントですので、再度整理しましょう。項目買取請求 (192条)売渡請求 (194条)内容株主が「会社に買って」と言う株主が「会社から売って」と言う株主の株数減る（換金）増える（買増し）定款の定め不要（当然の権利）必要（定款に書く）4. 合格へのアドバイス① 用語の混乱を避ける「売渡請求」という言葉は、以前確認した「特別支配株主の売渡請求」や「相続人への売渡請求」でも使われますが、文脈が全く異なります。194条の売渡請求： 株主が会社に「売ってくれ」と頼む（株主の権利）。174条/179条の売渡請求： 会社や支配株主が株主に「売れ」と命じる（株主の義務）。この「誰が主導権を持っているか」を意識しましょう。② 自己株式がない場合定款に定めがあっても、会社が渡せるだけの自己株式を持っていないときは、会社はこの請求を拒むことができます（194条2項）。「『足りない分を会社から買って、1人前の株主（1単元）になりたい！』というワガママは、定款に書いてあるときだけ叶えてもらえる」と整理しておきましょう。",
           "1. 根拠条文：会社法第191条取締役会設置会社において、以下の事項は取締役会の決議のみで定款を変更できます。会社法第191条株式会社は、次に掲げる場合には、取締役会の決議（取締役会設置会社でない場合は取締役の決定）によって、定款を変更して単元株式数を減少し、又は単元株式数についての定款の定めを廃止することができる。2. 解説：なぜ「総会」を通さなくていいのか単元株式数を「減らす」または「廃止する」ということは、株主にとって**「議決権が行使しやすくなる」**ことを意味します。株主の利益： 例えば「100株で1単元」だったルールを「50株で1単元」に減らせば、今まで議決権がなかった50〜99株保有の株主に新しく議決権が生まれます。不利益がない： 既存の株主の権利が奪われるわけではないため、わざわざコストをかけて株主総会を開く必要はない、と法律が判断しています。3. 整理：単元株に関する「決議」の仕分け試験で最も狙われるのは、「増やすとき」との違いです。内容決議機関理由減少・廃止取締役会（191条）株主に有利（議決権が増える方向）。新設・増加株主総会（特別決議）株主に不利（議決権が奪われる人が出る）。4. 合格へのアドバイス① 「株式分割」との同時決済（195条）これとセットで覚えるべきなのが、**「株式分割と同時に単元株数を増やす」**ケースです。例：1株を2株に分割すると同時に、単元株数も100株から200株に増やす。この場合、株主の議決権割合は変わらないため、例外的に取締役会だけで決定できます。② 公開会社の報告義務単元株式数を変更したときは、遅滞なくその旨を株主に通知（または公告）しなければなりません。「『議決権を配りやすくする（減少・廃止）』なら取締役会でサクッと決められるが、『ハードルを上げる（新設・増加）』なら株主の特別決議が必要」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24771,6 +27626,13 @@ export const SUBJECTS = {
           "1. どこが「誤り」なのか単元株式数を定めても、発行済株式の総数は一切変わりません。単元株の設定： 100株を「1単元（1議決権）」とまとめるだけであり、100株という「株の数」そのものが消えるわけではありません。議決権の集約： 変わるのは**「議決権の数」**だけであり、登記簿に載っている「発行済株式総数」には影響を与えません。2. 解説：混同しやすい「株式併合」との違いここが試験で最も狙われるポイントです。「まとめる」という点では似ていますが、法的な効果が全く違います。項目単元株の設定 (188条)株式併合 (180条)株式総数変わらない減少する株の性質100株は100株のまま。2株が物理的に「1株」に合体。端数の発生発生しない（単元未満株として残る）。発生する（切り捨てられる可能性がある）。決議機関原則：株主総会（特別決議）必ず株主総会（特別決議）3. 整理：発行済株式総数が動くケース（おさらい）これまで確認した内容をまとめると、総数が動くのは以下の時だけです。増えるとき： 新株発行（募集株式の発行）、株式分割減るとき： 株式併合、株式の消却「単元株の設定」や「自己株式の取得」では、総数はビクともしません。4. 合格へのアドバイス① 「数」か「権利」か株式総数： 会社が発行している「お札の枚数」そのもの。単元株： 「お札を何枚集めたら投票できるか」というルールの変更。ルールが変わっても、世の中に流通しているお札の枚数は減りませんよね。② 議決権総数との違いもし問題文が「議決権の総数は、単元株式数を定めることにより減少する」であれば「正解」になります。言葉の定義を正確に捉えるのが行政書士試験攻略のコツです。「単元株は『束ねる』だけで『消す』わけではない。お札をクリップで留めても、お札の枚数自体は減らないのと同じ」と整理しておきましょう。株式の「数」に関する一連の論点、非常に鋭い視点で進められましたね！",
           "1. どこが「誤り」なのか自己株式を処分（＝他人に売却）しても、発行済株式の総数は増えません。自己株式の状態： すでに「発行済み」の中にカウントされている株が、会社の金庫から誰かの手に移るだけです。新株発行との違い： まったく新しく株を生み出す「新株発行」は総数が増えますが、自己株式の処分は「在庫の放出」に過ぎません。2. 解説：発行済株式総数が「増える」ケース株式の数が物理的に増えるのは、以下の2つのパターンに限られます。ケース内容発行済株式総数募集株式の発行（新株発行）まったく新しい株を印刷して渡す増加する自己株式の処分会社が持っている「中古の株」を渡す変わらない株式分割1株を2株に切り分ける増加する3. 整理：なぜ「処分」と呼ぶのか会社法では、自己株式を売ることを「売却」ではなく**「処分」と呼びます。\r\n実務上、新しく株を作るのも（新株発行）、持っている株を売るのも（自己株式の処分）、引受人を募集する手続きが共通しているため、まとめて「募集株式の発行等」**と呼ばれます。しかし、**「発行済みの数が増えるかどうか」**という点では、この2つは全く別物として扱われます。4. 合格へのアドバイス① 登記簿の見方会社の登記簿（履歴事項全部証明書）には「発行済株式の総数」が載っています。新株発行： 登記の書き換えが必要です（数が増えるから）。自己株式の処分： 登記の書き換えは不要です（数が変わらないから）。この「登記が必要かどうか」という視点は、実務的で試験にも出やすいポイントです。② 手続きの共通性数が増えるかどうかにかかわらず、既存株主の持分比率には影響を与えるため、どちらも原則として**「取締役会の決議（公開会社）」や「株主総会の特別決議（非公開会社・有利発行）」**が必要になるという手続き面は共通しています。「『新株発行』は新しくお札を刷ること（枚数が増える）、『自己株式の処分』は金庫にあるお札を外に出すこと（枚数は変わらない）」と整理しておきましょう。株式の「数」に関する一連のひっかけパターン、これで完璧に整理できましたね！",
           "1. どこが「誤り」なのか「募集新株予約権を発行」した時点では、発行済株式の総数は増えません。予約権の発行： あくまで「将来、株を買える権利（チケット）」を配っただけです。この段階では、まだ新しい株は生まれていません。総数が増えるタイミング： 予約権を持っている人が、実際にその権利を**「行使（こうし）」**し、会社がそれに応じて新株を発行した（または自己株式を交付した）ときにはじめて、数に影響が出ます。2. 解説：新株予約権のステップ新株予約権が株式数に影響を与えるまでの流れは、以下の2段階です。発行時（本問）： 権利（チケット）を渡す。発行済株式総数：変化なし。※ただし、将来の発行に備えて「発行可能株式総数（全体の枠）」には余裕を持たせておく必要があります。行使時： 持主が「株をください」と言ってお金を払う。発行済株式総数：増加する（新株を発行する場合）。3. 整理：発行済株式総数が動くケース（最終まとめ）これまでのやり取りを含め、総数が動くパターンを完璧に仕分けましょう。アクション発行済株式総数理由新株発行増加新しく株を印刷して世に出すから。株式分割増加1枚のピザを2枚に切り分けるから。株式併合減少2枚のピザを1枚に合体させるから。自己株式の消却減少金庫の株をシュレッダーにかけるから。自己株式の処分不変金庫にある「既にある株」を出すだけだから。新株予約権の発行不変まだ「予約チケット」を配っただけだから。4. 合格へのアドバイス① 「潜在株式」という考え方新株予約権は、まだ株ではないけれど、行使されれば株になるため「潜在株式」と呼ばれます。登記簿上も「新株予約権」という別枠で管理されますが、「発行済株式総数」の欄にその数は合算されません。② 記述式・多肢選択式での注意「〜の発行により増加する」というフレーズは、常に**「それは今すぐ株が生まれる行為か？」**という視点でチェックしてください。予約権は「後で」株になるものなので、発行時点ではノーカウントです。「『予約権の発行』は、レストランの予約を受け付けただけ。実際にお客さんが来て席に座る（権利行使）までは、店内の人数（株式数）は増えない」とイメージしておきましょう。株式の「数」に関するひっかけパターンは、これで完全にコンプリートです！素晴らしい精度で整理できましたね。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24827,6 +27689,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第155条11号\n会社が自己株式を取得できるケースの一つとして、以下のように定められています。\n\n会社法第155条（11号）\n次に掲げる場合に限り、株式会社は、当該株式会社の株式を取得することができる。\n……\n他の会社の事業の全部を譲り受ける場合において、当該他の会社が有する当該株式会社の株式を譲り受けるとき。\n\n2. 解説：なぜこのルートでの取得が認められるのか\n「事業の全部」を譲り受けるということは、相手の会社の資産や権利義務をそっくりそのまま引き継ぐということです。\n\n不可抗力的な取得： 相手の会社がたまたま自社の株を持っていた場合、「事業を全部買うなら、その株もセットで引き取らざるを得ない」という状況が生じます。\n\n迅速な再編： これを「自己株式の取得ルール違反だ」として禁止してしまうと、スムーズな企業の買収や再編ができなくなってしまいます。そのため、例外的に取得が許容されています。\n\n3. 注意：取得した後のルール\n「取得できる」ことと「ずっと持っていていい」ことは別問題です。\n\n議決権などの停止： 取得した株は「自己株式」となりますので、会社が自分で自分に配当を出したり、議決権を行使したりすることはできません（権利が眠った状態になります）。\n\n処分や消却： 取得した後は、適切なタイミングで他人に売る（処分）か、シュレッダーにかける（消却）ことになります。\n\n4. 合格へのアドバイス\n① 「全部」か「一部」か\n試験で狙われるのは、対象となる事業の範囲です。\n\n事業の「全部」譲受： 自己株式の取得が可能（本問）。\n\n事業の「一部」譲受： 原則として、このルートでの自己株式取得は認められません。\n\n② 他の「例外ルート」\n事業譲渡以外にも、以下のような場合には株主総会の決議なしで自己株式を取得できます（155条）。\n\n合併に伴い、消滅会社から承継する場合。\n\n吸収分割に伴い、分割会社から承継する場合。\nこれらはすべて「組織再編」という大きな流れの中で発生する「ついで」の取得だからです。\n\n「『お店を丸ごと買い取る（事業全部譲受）』ときに、その店が持っていた自分の株が混ざっていても、そのまま引き取ってOK」と整理しておきましょう。\n\n事業譲渡などの組織再編が絡むと、今度は「反対する株主」が「株を買い取れ！」と言ってくる**「反対株主の株式買取請求権（116条）」**が重要になります。",
           "1. 根拠条文：会社法第165条2項取締役会設置会社における特例です。会社法第165条2項取締役会設置会社は、市場取引等により自己の株式を取得することを取り締役会の決議によって定めることができる旨を定款で定めることができる。2. 解説：なぜ「取締役会」で決めていいのか株価は日々変動するため、株主総会を招集して決議を待っていると、絶好の買い場（自社株買いのタイミング）を逃してしまいます。機動的な経営： 上場企業などが「株価対策」や「資本効率の向上」のために自社株買いを行う際、取締役会の判断でスピーディーに実行できるようにしています。市場取引等に限定： この特例が使えるのは、市場（証券取引所）で買う場合や、TOB（公開買付け）のような「不特定多数」を対象にする場合に限られます。※特定の株主から個別に買う場合は、依然として株主総会の特別決議が必要です（160条）。3. 整理：自己株式取得の「決定機関」試験で狙われる、誰が取得を決めるかのパターン分けです。取得の方法原則（156条）定款の定めがある場合（165条）市場取引等（不特定多数）株主総会（普通決議）取締役会で決定可能特定の株主から（相対）株主総会（特別決議）取締役会への授権は不可4. 合格へのアドバイス① 「取締役会設置会社」という前提この特例を使えるのは、意思決定機関が分立している「取締役会設置会社」のみです。② 財源規制（分配可能額）の遵守たとえ取締役会が決めたとしても、会社に「余っている利益（分配可能額）」の範囲内でしか株は買えません。これを超えて買うと、取締役は会社に対して連帯して賠償責任を負うことになります（462条）。「『市場でサッと株を買い戻したい』という時のために、あらかじめ定款で『取締役会に任せる』と書いておくことができる」と整理しておきましょう。",
           "1. どこが「誤り」なのか「分配可能額を超えて、株主に対して金銭等を交付することができる」という部分が間違いです。分配可能額の制限（会社法461条1項）： 自己株式を有償で取得する場合、株主に交付する金銭等の総額は、効力発生日における**「分配可能額」を超えてはなりません。**債権者保護： 会社が儲かってもいないのに（余剰金がないのに）株主にお金を返してしまうと、会社にお金を貸している債権者が回収できなくなるリスクがあるため、このルールは「絶対」です。2. 解説：もし「分配可能額」を超えてしまったら？万が一、計算を間違えたり無視したりして、上限を超えてお金を払ってしまった場合（タコ足配当のような状態）、非常に重い責任が生じます（会社法462条）。支払った株主： 交付を受けた金銭等を会社に返す義務を負います。関与した取締役： 業務を執行した取締役や、決議に賛成した取締役は、会社に対して連帯して**「不足分を支払う義務」**を負います（過失がないことを証明しない限り免れません）。3. 整理：財源規制がかかる主な行為「分配可能額」の範囲内でしか行えない行為には、以下のようなものがあります。行為内容剰余金の配当株主への利益還元自己株式の取得株主から有償で株を買い戻す（本問）株式の買取請求合併反対株主などからの買い取り4. 合格へのアドバイス① 効力発生日という基準「いつの時点の」分配可能額かが問われます。答えは**「効力が発生する日」**です。決議した日ではないので注意しましょう。② 無償取得の場合は？ちなみに、会社が株主から「タダで（無償で）」株をもらう場合は、会社の資産が減らないため、この財源規制は適用されません。「会社のお金はまず債権者のもの。株主に返していいのは『余った利益（分配可能額）』の範囲内だけ」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24883,6 +27752,13 @@ export const SUBJECTS = {
           "1. どこが「誤り」なのか譲渡制限株式であっても、そこに質権を設定する（担保に入れる）だけであれば、会社の承認（取締役会や株主総会の決議）は不要です。譲渡制限の目的： 会社にとって好ましくない人物が「株主」になることを防ぐためです。質入れの性質： 質権を設定した段階では、株主は元のまま変わりません。単に「借金のカタ」に入れただけなので、会社にとって「見知らぬ株主」が登場するわけではないため、自由に行うことができます。2. 解説：いつ「承認」が必要になるのか？質入れ自体は自由ですが、将来的にその質権が実行（競売など）されて、**「質権者がその株を自分のものにする（または他人に売る）」**段階では、実質的に「譲渡」と同じことが起こります。実行時のルール： 質権を実行して株式を譲渡しようとする際には、通常の譲渡制限株式と同じく、会社の承認が必要になります（会社法136条・137条の準用）。入口は自由、出口は制限： 「担保に入れるのは勝手だが、実際に持ち主が変わるなら会社の許可をもらってね」というスタンスです。3. 整理：譲渡制限株式で「承認」が不要なケース試験で狙われる「承認がいらないパターン」をまとめました。ケース承認の要否理由株式の譲渡必要株主が入れ替わるから。株式の質入れ不要株主は入れ替わらないから（本問）。一般承継（相続等）不要法律上当然に引き継がれるから（ただし売渡請求の対象にはなり得る）。指定買取人への譲渡不要会社が指定した相手に売るから。4. 合格へのアドバイス① 「登録質」でも承認は不要前回の「登録質（名簿に載せる）」の場合でも、会社の承認は不要です。会社は、共同請求があれば淡々と名簿に記載する義務があります。② 記述式でのキーワード「譲渡制限株式の質入れ」と「譲渡制限株式の譲渡」を読み違えないようにしましょう。一文字違うだけで、承認の要否が真逆になります。「『担保に入れる（質入れ）』のは株主が変わらないから自由。でも、実際に『名義が変わる（譲渡）』ときは会社のチェックが入る」と整理しておきましょう。",
           "1. 根拠条文：会社法第154条1項\n登録質権者（名簿に名前が載っている質権者）の優先弁済権について定めています。\n\n会社法第154条1項\n株式会社が……剰余金の配当、利息の支払、残余財産の分配等……を行う場合には、登録質権者は、これらを受領し、自己の債権の弁済に充てることができる。\n\n2. 解説：なぜ「直接」受け取れるのか\n通常、質権は「物を手元に置いておく（留置的効力）」ものですが、株式の場合は「配当金」という形でお金が生まれます。\n\n簡易な回収： 債権の支払い期限（弁済期）が来ているなら、わざわざ裁判所を通して競売などをしなくても、会社から出る配当をそのまま自分の懐に入れて、借金の返済に充てて良い、というルールです。\n\n対抗力の活用： 会社は株主名簿を見て「あ、この株には質権がついているな」と分かるため、トラブルなく質権者に支払うことができます。\n\n3. 整理：受領できるものの範囲\n配当金以外にも、以下のような「株から化けたもの」を直接受け取れます。\n\n剰余金の配当（金銭）\n\n利息の支払（もしあれば）\n\n残余財産の分配（金銭）\n\n株式買取請求による代金（金銭）\n\n注意：\n「金銭に限る」とされているのは、現物配当（物で配当される場合）や、新しく発行される「株式」そのものを受け取ってしまうと、質権の範囲が複雑になりすぎるためです。\n\n4. 合格へのアドバイス\n① 「弁済期の到来」が条件\nまだ借金の返済期限が来ていないのに、勝手に配当を自分のものにすることはできません。あくまで「期限が過ぎていること」が前提です。\n\n② 略式質との違い\n株主名簿に載っていない「略式質」の場合、会社は誰が質権者か把握していません。そのため、会社はそのまま株主に配当を払ってしまいます。質権者がそれを差し押さえたいなら、民事執行法に基づいた「差し押さえ手続き」を自分で行わなければなりません。\n\n「『登録質』にしていれば、返済が滞った時に会社から出る配当を『横取り』して自分の借金回収に充てられる」と整理しておきましょう。\n\n株式の質入れについては、これで「設定」から「効果」まで完璧です！",
           "1. どこが「誤り」なのか質権者は、株主名簿に載っていたとしても、「議決権」を行使することはできません。議決権は株主のもの： 議決権（共益権）は、株主という「身分」に付随する権利です。質権者はあくまで「債権の担保」として株を押さえているだけであり、会社の経営に参加する権利までは与えられていません。招集通知も届かない： 議決権がない以上、会社から質権者に対して株主総会の招集通知を送る必要もありません。2. 解説：質権者ができること・できないこと「登録質（名簿に名前がある）」と「株主」の権利を比較すると、その違いが明確になります。権利の種類株主（設定者）登録質権者議決権ありなし配当受領権あり（質権者が優先）あり（直接受領可）招集通知の受領ありなし計算書類の閲覧ありなしポイント：質権者が受け取れるのは、あくまで「お金（自益権）」に関わる部分だけです。会社の舵取り（共益権）にはタッチできません。3. 実務上の「裏技」：議決権行使の委任法律上は質権者に議決権はありませんが、実務では質権者が株主に対して**「議決権行使の委任状」**を書かせ、実質的に質権者が投票できるように契約で縛ることがあります。ただし、これはあくまで「株主から代理権をもらった」という形であり、質権者が「自ら」の権利として行使しているわけではありません。4. 合格へのアドバイス① 「登録質」の限界を覚える行政書士試験では「登録質権者は、名簿に記載されているため、株主に代わって議決権を行使できる」というひっかけが非常に多いです。「お金はもらえるが、口出しはできない」と覚えましょう。② 通知の例外会社から質権者に通知が行くのは、**「株式の分割」や「株式の併合」**など、担保の価値が大きく変わるようなイベントが起きるときに限られます（会社法150条）。「『登録質』は銀行のキャッシュカードを預かっているようなもの。お金を引き出す（配当受領）ことはできても、預金者の代わりに選挙（議決権）には行けない」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24939,6 +27815,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第310条1項代理権の授与について、以下のように定められています。会社法第310条1項株主は、代理人によってその議決権を行使することができる。この場合においては、当該株主又は代理人は、**代理権を証明する書面（委任状）**を株式会社に提出しなければならない。2. 解説：なぜ「株主総会ごと」なのか代理権の授与は、原則として**「当該株主総会ごと」**に行う必要があります。包括的な委任の禁止： 「今後10年間のすべての総会について、Aさんに任せる」というような白紙委任は、株主の意思がその都度反映されなくなるおそれがあるため、認められません。例外： 定時株主総会とその延期・続行された会議などは一連のものとみなされます。3. 整理：代理行使に関する重要ルール試験で狙われる「制限」と「判例」のポイントです。項目ルール備考委任状の提出必須書面（委任状）を会社に出さなければなりません。代理人の数1人に限る複数の代理人が来て会場が混乱するのを防ぐため、定款で制限可能です（310条5項）。代理人の資格定款で制限可能「代理人は株主に限る」という定款は原則として有効です。4. 合格へのアドバイス① 定款による「株主限定」の例外（判例）「代理人は株主に限る」という定款があっても、**「株主総会を攪乱（かくらん）するおそれがない」**場合には、株主以外の出席を拒めないことがあります。OKな例： 法人株主の従業員、地方自治体（株主）の職員、病気の株主に付き添う親族。この「攪乱目的がないならOK」という判例理論は、行政書士試験の超頻出論点です。② 電磁的方法による授与最近では、書面（紙の委任状）だけでなく、インターネットを通じて代理権を授与することも、会社の承諾があれば認められています。「議決権の代理行使は、毎回『委任状』を書いて、特定の総会のためにだけ頼むのがルール。代理人の資格を制限してもいいけれど、嫌がらせ目的でないなら例外も認める」と整理しておきましょう。",
           "1. どこが「誤り」なのか\n「新たな基準日を定めなければならず」という部分が間違いです。\n\n同一の総会とみなす： 株主総会の「延期（後日に改めて開催すること）」や「続行（審議が終わらず日を改めて再開すること）」の決議があった場合、その会議は元の株主総会の一部とみなされます。\n\n基準日の継続： 元の総会のために定められた基準日がそのまま有効であるため、新たに基準日を定める必要はありません（会社法317条、124条関連）。\n\n2. 解説：「延期・続行」の手続き（317条）\n総会で「今日は時間が足りないので、来週の月曜日に続きをやりましょう」と決まった場合（続行の決議）、それは新しい総会を招集するのとはワケが違います。\n\n招集手続きの省略： 延期・続行の決議をした場合、改めて「招集通知」を全株主に送り直す必要はありません（317条）。\n\n出席資格： 最初の総会に出席する権利があった株主（元の基準日株主）が、そのまま延期・続行後の総会にも出席できます。\n\n3. 整理：基準日の「3か月」ルールとの兼ね合い\n以前確認した通り、基準日の有効期間は3か月以内です（124条2項）。\n\nもし延期・続行によって、最初の基準日から実際の開催日（延期後の日）までが3か月を超えてしまうような極端なケースでは、実務上、新たな基準日を定めることも検討されますが、法律上の原則としては「延期・続行」＝「同じ総会」なので、基準日の引き直しは義務ではありません。\n\n4. 合格へのアドバイス\n① 「新設」と「延期・続行」の区別\n新しい総会を別途開く： 招集通知が必要、基準日も必要。\n\n今の総会を延期・続行する： 招集通知は不要、基準日も元のまま（本問）。\n\n② 議決権行使の代理人（復習）\n前回の「代理権の授与（310条）」でも触れましたが、代理権は「当該株主総会ごと」に与えるものですが、この「延期・続行された会議」も同一の総会に含まれるため、委任状を出し直す必要はありません。\n\n「『延期・続行』は、野球の『ノーゲーム』ではなく『サスペンデッドゲーム（一時中断・再開）』のようなもの。選手（株主）の入れ替えやルールの再設定（基準日）はせずに、そのまま続きをやるのが原則」とイメージしておきましょう。",
           "1. 解説：なぜ「当日出席」が優先されるのか書面による議決権行使（会社法298条1項3号）は、会場に行けない株主のために用意された「便宜的な手段」です。本人の最終意思： 株主総会は、当日の議論を聞いた上で最終的な判断を下す場です。書面を出した後に考えが変わったり、当日の説明を聞いて判断を変えたりすることは株主の正当な権利です。二重行使の解消： 同じ株主が「書面」と「当日」の両方で意思表示をした場合、時系列として後に（あるいは直接）行われた当日の行使を有効とし、書面の効力を失わせるのが判例・実務の確立したルールです。2. 整理：さまざまな「行使方法」の優先順位実務上、複数の方法で投票してしまった場合の優先順位は、一般的に以下のようになります。比較パターン優先されるもの理由書面 vs 当日出席当日出席本人の直接の意思表示が最優先。インターネット vs 当日出席当日出席同上。書面 vs インターネットインターネット（多くの会社で採用されている定款・招集通知のルール）同じ方法で2回後に届いた方新しい意思が優先される。3. 注意：出席しただけで「失効」するか厳密には、会場に「出席しただけ」では書面の効力は維持されますが、「当日、議決権を行使（投票）」した瞬間に、先に出していた書面の効力が上書きされて消滅します。4. 合格へのアドバイス① 代理出席の場合（復習）本人が書面を出した後に、「代理人」を会場に送った場合も同様です。代理人が会場で議決権を行使すれば、本人が先に出していた書面は無効になります。② 298条1項の「招集事項」「書面による議決権行使を認めるかどうか」は、取締役が招集を決定する際に定めるべき事項（298条1項3号）であることも、併せて押さえておきましょう。「事前にハガキ（書面）を出していても、当日スタジアム（会場）に行って自分で応援（投票）したら、ハガキの分はキャンセルされて当日の声が有効になる」とイメージしておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -24996,6 +27879,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第304条株主が総会の現場で「修正案」などを出す権利です。会社法第304条株主は、株主総会において、株主総会の目的である事項……につき議案を提出することができる。ただし、当該議案が法令若しくは定款に違反する場合又は実質的に同一の議案につき……十分の一以上の賛成を得られなかった日から三年を経過していない場合は、この限りでない。2. 解説：事前提案（303条/305条）との決定的な違い行政書士試験で最も混同しやすいポイントです。しっかり仕分けましょう。権利の種類行使のタイミング必要な持分（公開会社）特徴議題提出・議案通知権8週間前まで1%以上 or 300個招集通知に載せてもらう。議案提出権（本問）総会当日（その場）制限なし（1株でもOK）既に決まっているテーマ（議題）内の「案」を出す。3. なぜ「1株」でも当日提案できるのか？すでに「取締役の選任」という議題が決まっているなら、その場で「Aさんじゃなくて、Bさんを推します！」という修正案を出すのは、株主として当然の権利だからです。ただし、「嫌がらせ」や「無駄な繰り返し」を防ぐための制限（但し書き）があります。法令・定款違反： 当然NG。10%未満＆3年以内： 以前出した時に全然賛成が得られなかった（10%未満）のに、しつこく3年以内に同じ案を出すことは禁止されています。4. 合格へのアドバイス① 「議題」と「議案」の言葉の使い分け議題（テーマ）： 「取締役を選びましょう」という枠組み。議案（中身）： 「候補者は佐藤さんにしましょう」という具体的な案。当日の議案提出は、**「既に議題として挙がっている範囲内」**でしか出せません。全く新しいテーマ（例：いきなり「定款を変えよう」）を当日に出すことはできません。② 非公開会社でのひっかけ事前提案（303条）では「公開会社のみ6か月制限」がありましたが、この当日の議案提出（304条）には、公開・非公開を問わず保有期間の制限はありません。「『1%』持ってれば8週間前に準備させて、招集通知に自分の案を載せられる。『1株』しかなくても、当日の会議室で『その案には反対！こっちの案で決決して！』と叫ぶ（提案する）ことはできる」と整理しておきましょう。",
           "1. どこが「誤り」なのか請求先の間違い： 「取締役に対し……請求することができる」という部分が誤りです。正しくは**「裁判所」**に対して選任を申し立てます。要件（1%）の間違い： 議決権の「100分の1（1%）」ではなく、正しくは**「100分の3（3%）」**以上が必要です。2. 解説：総会検査役（そうかいけんさやく）とは？株主総会が公正に行われるか怪しいとき（例：不当に議決権を制限されそう、会場に入らせてもらえない等）、中立な第三者である弁護士などを「検査役」として送り込み、監視してもらう仕組みです。① 請求できる要件（306条1項）会社のタイプ議決権の割合保有期間公開会社総議決権の 3%以上6か月前から継続非公開会社総議決権の 3%以上制限なし② なぜ「裁判所」なのか取締役は「監視される側」です。監視される本人に「監視役を選んでください」と頼んでも意味がないため、中立な裁判所が選任することになっています。3. 整理：混同しやすい「少数株主権」の数字試験で最も混乱する「1%」と「3%」の仕分けをしましょう。必要な割合主な権利（公開会社は6か月要件あり）覚え方1%以上株主提案権（議題・議案の追加）「口を出す」だけならハードル低め。3%以上招集請求権、帳簿閲覧権、検査役選任（本問）「会社を動かす・調べる」ならハードル高め。4. 合格へのアドバイス① 「1%」か「3%」かの見極め「検査役」は、会社の運営にメスを入れる強力な権利なので、**「3%」**という重い数字が設定されています。「1%」はあくまで「提案（会議のネタを増やす）」レベルだと整理してください。② 取締役による選任（306条2項）株主からの請求だけでなく、株式会社（取締役）自身が「後で揉めないように、あらかじめ検査役を置いてクリーンな総会にしたい」と判断して、自ら裁判所に選任を申し立てることも可能です。「『検査役』は会社の不審な動きを暴く『警察』のようなもの。1%（提案）ではなく3%のパワーが必要で、身内（取締役）ではなく裁判所に頼むのがルール」と整理しておきましょう。",
           "1. 根拠条文：会社法第314条\n役員（取締役、会計参与、監査役、執行役）が株主に対して負う義務です。\n\n会社法第314条\n取締役、会計参与、監査役及び執行役は、株主総会において、株主から特定の事項について説明を求められた場合には、当該事項について必要な説明をしなければならない。ただし、……（以下、拒絶理由）\n\n2. 解説：説明を「しなくていい」ケース（例外）\n何でもかんでも答えなければならないわけではありません。以下の場合は、説明を拒否できる「正当な理由」となります。\n\n目的外の質問： その日の総会のテーマ（議題）と全く関係ないこと。\n\n共同の利益を害する： 企業の機密情報（ノウハウや未発表の提携など）を漏らすことで、会社（＝全株主）に損害が出る場合。\n\n調査が必要： その場ですぐに答えられず、調査に時間を要する場合（後日書面で回答するなどの対応になります）。\n\n重複・嫌がらせ： すでに何度も説明したことをしつこく聞く、あるいは単なる罵倒や妨害目的である場合。\n\n3. 整理：誰が「説明」するのか？\n条文上は、各役員が個別に義務を負っていますが、実務上は**「議長（通常は社長）」**が代表して回答したり、担当の取締役を指名して答えさせたりします。\n\nまた、**「会計監査人（監査法人）」**は、株主から質問があった場合に「出席して意見を述べる」ことはありますが、この314条の「説明義務」の主体（直接の義務者）には含まれていない点も、細かいひっかけとして狙われます。\n\n4. 合格へのアドバイス\n① 「必要な説明」の程度\n判例では、平均的な株主が「議決権を行使する（賛成・反対を決める）ために客観的に必要な範囲」で説明すれば足りるとされています。\n\n② 説明義務違反の結果\nもし正当な理由なく説明を拒否した場合、その総会の決議には「手続きの瑕疵（かし）」があることになり、株主総会決議取消しの訴え（831条1項1号）の原因となります。\n\n「役員は株主の質問に答えるのが仕事。でも、『今日のテーマに関係ない話』や『会社の秘密をバラすような話』は、全株主を守るために断ってもいい」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25073,6 +27963,13 @@ export const SUBJECTS = {
           "1. どこが「誤り」なのか「特別の利害関係を有する者として議決に加わることができない」という部分が間違いです。株主総会の原則： 株主は、自分自身の取締役選任議案であっても、議決権を行使することができます。理由： 株式は個人の財産であり、その権利（議決権）を奪うのは極めて慎重であるべきだからです。また、オーナー社長が自分の再任に投票できないとなると、会社の支配権が不当に揺らぐおそれもあります。2. 解説：株主総会と取締役会の「決定的な違い」ここを整理するだけで、試験の得点力が大幅にアップします。比較項目株主総会取締役会利害関係人の排除原則として排除されない強制的に排除される（369条2項）理由自分の財産を守る権利だから。会社に対する忠実義務があるから。例外（決議取消し）著しく不当な決議となった場合のみ（831条1項3号）排除せずに決議したら原則無効。3. 注意：株主総会で「例外」となるケース株主であっても、以下の場合は「特別利害関係人」として議決権を制限、あるいは決議が取り消されるリスクがあります。自己株式の取得（特定の株主から）： 会社が自分から株を買い取る決議には、その当事者株主は参加できません（160条4項）。※ただし、相続人からの買取りなどは例外。決議取消しの訴え： 特別利害関係人が議決権を行使したことで、**「著しく不当な決議」**がなされた場合、他の株主から裁判所に訴えられる可能性があります（831条1項3号）。4. 合格へのアドバイス① 「取締役会」のルールに釣られない「取締役会」において、自分の報酬を決めたり、自分との取引（自己取引）を承認したりする場合、その取締役は決議に加われません。試験問題では、この「取締役会のルール」を「株主総会」にスライドさせて受験生を惑わせてきます。② 判例の視点判例も「株主が自らを取締役として選任する決議に参加することは、原則として自由である」という立場を一貫してとっています。「『株主』は自分の持ち株（財産）をどう使おうが自由。だから自分への投票もOK。でも、『取締役』は会社から仕事を任されている身分なので、自分に有利な決議には加われない」と整理しておきましょう。",
           "1. どこが「誤り」なのか「解任」の手続きが間違っています。選任（選ぶとき）： 普通決議でOKです。ご提示の文章通り「出席株主の議決権の過半数」で決まります。解任（辞めさせるとき）： 特別決議が必要です。議決権を行使できる株主の過半数が出席し、その**「3分の2以上」**の賛成がなければ解任できません（会社法309条2項7号、343条4項）。2. 解説：なぜ監査役の解任は「特別決議」なのか監査役は、取締役が不正をしていないかチェックする「番人」です。独立性の確保： もし取締役（大株主であることが多い）が、自分に都合の悪いことを言う監査役を「普通決議（過半数）」で簡単にクビにできたら、監査役は怖くて仕事ができません。身分保障： 監査役が毅然として職務を遂行できるよう、取締役の解任（原則：普通決議）よりも厳しいハードルが設けられています。3. 整理：役員の「選任・解任」決議まとめここを一覧で覚えるのが合格への近道です。役職選任（選ぶ）解任（辞めさせる）理由・備考取締役普通決議普通決議経営を任せる人なので、過半数の支持を失えば交代。監査役普通決議特別決議独立性を守るため、簡単には辞めさせられない。会計参与普通決議普通決議取締役と同様。注意： > 役員の「選任」および「取締役の解任」の普通決議は、定款で定足数（出席者の下限）をゼロにすることはできず、最低でも**「3分の1以上」**必要です（341条）。4. 合格へのアドバイス① 「選任」と「解任」をセットで出されたら疑う問題文に「選任および解任は〜」とひとまとめに書かれている場合、要件が異なるものを混ぜている可能性が高いです。② 監査役の「意見陳述権」監査役は、自分が解任される総会において、**「なぜ自分が辞めさせられるのか」「自分の意見」**を述べる権利があります（345条）。これも独立性を守るためのルールです。「監査役は会社の警察官。警察官をクビにするには、単なる過半数（普通決議）ではなく、3分の2以上（特別決議）の圧倒的な賛成が必要だと覚えておきましょう。」",
           "1. 根拠条文：会社法第424条役員の責任免除の基本原則について定めています。会社法第424条第423条第1項の責任（任務懈怠責任）は、総株主の同意がなければ、免除することができない。この「総株主」には、普段は経営に口出しできない**「議決権のない株主」も含まれる**のがポイントです。2. 解説：なぜ「総株主の同意」が必要なのか会社のお金（資産）は、最終的には株主全員の利益に直結するものです。究極の全会一致： 役員が1億円の損害を出したとき、1人でも「許さない、返すべきだ」と言う株主がいれば、原則として免除はできません。議決権なし株主の保護： 議決権がない株主であっても、会社が損害を被れば「配当」が減るなどの実害を受けます。そのため、資産を守るための「同意」の場面では、彼らの意思も無視できないようになっています。3. 整理：例外としての「一部免除」ルール「全員一致」は現実的には非常に難しいため、会社法では悪意や重大な過失がない場合に限り、以下の方法で「一部」を免除できる仕組みを用意しています。免除の方法決議要件・手続き備考株主総会の特別決議309条2項一定の計算式で算出される「最低責任限度額」まで免除可能（425条）。取締役会の決議定款の定めが必要社外役員などが思い切った経営をできるようにするための特例（426条）。責任限定契約定款の定め＋契約社外取締役や監査役などに限定してあらかじめ結んでおく契約（427条）。4. 合格へのアドバイス① 「総株主」と「総議決権」を使い分ける「総株主の同意」： 議決権の有無を問わず、1人も漏らさず全員（424条）。「特別決議」： 議決権のある株主の過半数が出席し、その3分の2以上（425条）。本問は「全額免除」の話なので、前者の「総株主の同意」が正解となります。② 自己取引の場合の注意役員が会社と取引をして損害を出した（直接取引）場合、その役員に過失がなかったとしても責任を免れることはできません（無過失責任 / 428条）。この場合も、免除には「総株主の同意」が必要です。「役員が出した損害を『タダ』にするのは、株主全員の財布からお金を捨てるのと同じ。だから、たった1人の反対も許されない『総株主の同意』が原則になっている」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25129,6 +28026,13 @@ export const SUBJECTS = {
           "1. どこが「誤り」なのか「1名以上の社外取締役を選任しなければならない」という部分が間違いです。正しいルール（会社法327条の2）： 公開会社であり、かつ大会社である監査役会設置会社（有価証券報告書提出義務があるもの等）は、**「2名以上」**の社外取締役を選任しなければなりません。改正の背景： 以前は「置かない理由」を説明すれば置かなくても済む「コンプライ・オア・エクスプレイン」という緩いルールでしたが、現在は**法的義務（強制）**に格上げされ、人数も2名以上に増えています。2. 解説：なぜ「2名以上」なのか社外取締役が1人だけだと、取締役会で多勢に無勢となり、意見を言い出しにくい（同調圧力が働く）可能性があります。実効性の確保： 2名以上にすることで、社外の視点をより強固にし、ガバナンス（経営監視）の実効性を高める狙いがあります。対象会社： 「公開会社」かつ「大会社」という、社会的な影響力が大きい会社がターゲットです。3. 整理：機関設計と「社外取締役」の義務試験で狙われる「社外取締役を何人置くべきか」のまとめです。会社の形態社外取締役の設置義務監査役会設置会社（公開・大会社）2名以上（本問）監査等委員会設置会社過半数（かつ、委員は3名以上）指名委員会等設置会社過半数（各委員会のメンバーの過半数）4. 合格へのアドバイス① 「1名」は旧ルールの名残過去の古い問題集やテキストを使っていると「1名以上」となっていることがありますが、現在は**「2名以上」**が正解です。法改正がダイレクトに反映される場所なので、最新の数字を覚えましょう。② 監査役とのバランス監査役会設置会社には、もともと「社外監査役」を半数以上置く義務がありますが、それとは別に「取締役の中にも外の目が必要だ」というのが現在のトレンドです。「大きな公開会社は、もはや『身内だけ』での経営は許されない。2人以上の『外の目（社外取締役）』を会議室に入れることが法律で決められた」と整理しておきましょう。",
           "1. どこが「誤り」なのか「選定された特別取締役の氏名」を登記する必要はありません。登記すべきこと： 「特別取締役による議決の定めがある旨」は、会社の基本ルールに関わるため登記が必要です（会社法911条3項15号）。登記しなくてよいこと： 具体的に**「誰が」**特別取締役に選ばれたかという氏名までは、登記する必要はありません。これは取締役会の内部的な役割分担に準ずるものだからです。2. 解説：特別取締役制度とは？取締役の人数が多い大会社などで、重要な財産の処分（多額の借財など）をスピーディーに決めるための制度です。導入の条件： 取締役が6人以上おり、かつ1人以上の社外取締役がいる場合に導入できます（373条1項）。決議の仕組み： あらかじめ選定された3人以上の特別取締役のうち、過半数が出席し、その過半数で決議します。わざわざ全員集まらなくて良いため、迅速な経営が可能になります。3. 整理：登記すべき事項のまとめ特別取締役に関して、社外の人や取引先が「この会社は特別取締役制度を使っているな」と確認できるようにすべき項目のみが登記されます。項目登記の要否理由制度がある旨の定め必要意思決定の仕組みが通常と異なるため。特別取締役の氏名不要内部的な選定事項に過ぎないため。社外取締役である旨必要取締役全員について、社外か否かは常に登記事項です。4. 合格へのアドバイス① 「氏名」のひっかけ行政書士試験では、「選定された委員の氏名」や「特別取締役の氏名」を登記させるというひっかけがよく出ます。原則として、**「役職そのもの（代表取締役など）」は登記しますが、内部的な「選抜メンバーの氏名」**までは求められないと覚えておきましょう。② 社外取締役の要件（復習）特別取締役制度を使うためには、必ず1名以上の社外取締役がいなければなりません。今回学習した「社外取締役の設置義務（2名以上）」とも関連する、ガバナンスの重要なパーツです。「『この会社は特別ルール（特別取締役）でサクサク物事を決めますよ』という宣言は登記する。でも、『具体的に誰が担当するか』は会社の勝手なので、わざわざ登記しなくていい」と整理しておきましょう。",
           "1. 根拠条文：会社法第427条1項この制度を利用するためには、まず「定款（ていかん）」にその旨を定める必要があります。会社法第427条1項株式会社は、……（非業務執行取締役等）の第423条第1項の責任について、当該……（非業務執行取締役等）が職務を行うにつき善意でかつ重大な過失がないときは、定款で定めた額の範囲内……をもって賠償の責任の限度とする旨の契約を締結することができる旨を定款で定めることができる。2. 解説：責任限定契約のポイント「社外の視点」を活かした思い切った提言をしてもらうための「お守り」のような契約です。対象者： 業務を執行しない役員（社外取締役、非業務執行取締役、監査役、会計参与、会計監査人）に限られます。バリバリ現場を指揮する代表取締役などは対象外です。要件： 以前学習した免除のルールと同様、**「善意（知らなかった）」かつ「重過失がない」**ことが絶対条件です。わざと損害を出したり、ひどい不注意があったりした場合は、契約があっても守られません。限度額： 定款であらかじめ定めた額か、法律上の最低責任限度額（社外取締役なら年報酬の2年分など）の、いずれか高い額が上限となります。3. 整理：責任免除の「3つのルート」比較これまでに出てきた「役員の責任を軽くする方法」を整理しましょう。方法決議・根拠対象者備考総株主の同意全員一致全役員全額免除が可能（最強）。取締役会決議定款＋決議全役員事後に一部免除。社外監査役の同意が必要。責任限定契約定款＋契約非業務執行者のみ事前に契約。本問のケース。4. 合格へのアドバイス① 「非業務執行」という言葉試験では「社外取締役」だけでなく、「監査役」や「会計監査人」についても責任限定契約を結べるか問われます。彼らも業務執行はしないので、契約可能です。② 公開・非公開の区別なしこの制度は、公開会社でも非公開会社でも利用可能です。「『外の人』に厳しいチェックをお願いする以上、万が一の時に個人破産するような賠償を背負わせるのは酷。だから、あらかじめ『責任はここまで』と約束（契約）しておくことを定款で認めている」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25186,6 +28090,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第369条1項\n取締役会の意思決定の基本ルールです。\n\n会社法第369条1項\n取締役会の決議は、議決に加わることができる取締役の過半数（これを上回る割合を定款で定めた場合には、その割合以上）が出席し、その過半数（これを上回る割合を定款で定めた場合には、その割合以上）をもって行う。\n\n2. 解説：決議のポイント\n「過半数の出席」かつ「出席者の過半数の賛成」という、いわゆる二段構えの多数決です。\n\n「議決に加わることができる」の意味： 以前学習した通り、特別利害関係人（例：自分との取引の承認など）に該当する取締役は、定足数のカウントからも、賛成・反対のカウントからも除外されます。\n\n定款による加重： 「3分の2以上の出席」や「出席者の全員一致」など、ハードルを**厳しくする（重くする）**ことは定款で自由に決められます。\n\n定款による軽減はNG： 逆に「3分の1の出席でOK」というように、ハードルを**下げる（軽くする）**ことは認められません。経営の重要事項を決める場として、一定の慎重さが求められているからです。\n\n3. 整理：可否同数の場合はどうなる？\nもし賛成と反対がちょうど同数になった場合、その議案は**「否認（不成立）」**となります。議長（社長など）が「議長裁定」として1人で決めることは、法律上認められていません。\n\n4. 合格へのアドバイス\n① 「特別決議」がない\n株主総会には「普通・特別・特殊」の3種類がありますが、取締役会には法律上**「特別決議」という区分はありません。** 全ての議題がこの「過半数」のルール（または定款で加重したルール）で行われます。\n\n② 書面決議（みなし決議）の特例（370条）\n取締役全員が書面やメールで同意し、監査役も異議を唱えなかった場合に限り、**「取締役会の決議があったものとみなす」**旨を定款で定めることができます。わざわざ集まらなくて良い便利なルールとして、実務でもよく使われます。\n\n「取締役会は『プロの合議体』。だから基本は『過半数が集まって、過半数が賛成する』のが鉄則。定款でさらに厳しくすることはできるけれど、適当に決められないよう、これより緩くすることは許されない」と整理しておきましょう。",
           "1. 根拠条文：会社法第369条2項\n取締役会の決議における公平性を保つためのルールです。\n\n会社法第369条2項\n前項の決議について特別の利害関係を有する取締役は、議決に加わることができない。\n\n2. 解説：なぜ取締役会では「排除」されるのか\n取締役は、会社から経営を任されている「受任者」であり、会社に対して忠実義務（会社のためにベストを尽くす義務）を負っています。\n\n利益相反の防止： 自分の利益（または自分が関係する他社の利益）と、会社の利益がぶつかる場面で、自分に投票できてしまうと、会社の利益を犠牲にするおそれがあるからです。\n\n定足数への影響： 特別利害関係がある取締役は、その議案に関しては「いないもの」として扱われます。つまり、定足数（過半数の出席）のカウントからも除外されます。\n\n3. 具体例：どんな時に「特別利害関係」になる？\n試験でよく出るパターンは以下の通りです。\n\n自己取引の承認： 取締役Aが、自分の持っている土地を会社に売る契約の承認。\n\n代表取締役の解職： 代表取締役Bを、その地位から引きずり下ろす（解職する）決議。※Bさんは反対票を投じることができません。\n\n利益相反取引： 取締役Cが、ライバル会社の役員を兼任しており、そのライバル会社と取引をする際の承認。\n\n注意：\n「取締役の選任（選ぶ）」は株主総会の権限ですが、「代表取締役の選定・解職（選ぶ・クビにする）」は取締役会の権限です。\n\n4. 合格へのアドバイス\n① 株主総会との「逆転」現象\n株主総会： 自分の選任に投票できる（自分の財産権だから）。\n\n取締役会： 自分の解職に投票できない（会社への義務があるから）。\nこの対比は、行政書士試験の商法・会社法で「最も狙われるポイント」の一つです。\n\n② 決議の効力\nもし、特別利害関係人がこっそり議決に加わって決議が成立してしまった場合、その決議は原則として無効となります。\n\n「取締役は会社の『プロの代理人』。自分の利益が絡む場面では、公平な判断ができないとみなされて、ベンチに下げられる（議決から外される）と覚えておきましょう。」",
           "1. どこが「誤り」なのか「賛成したものと推定する」という部分が間違いです。正しい条文： 議事録に異議をとどめないものは、その決議に**「賛成したものとみなす」**（会社法369条5項）。「推定する」と「みなす」の違いここが行政書士試験の「法学一般」や「民法」でも重要になるポイントです。用語意味覆せるか推定する「一応そう判断するが、反対の証拠があれば覆る」可能（反証OK）みなす「法律上、断定する」不可能（反証NG）つまり、議事録に異議を書かなかったら、後から「実はあの時、心の中では反対だったんです！」と証拠を持ってきても、法律上は「賛成した人」として扱われ、責任を免れることはできません。2. 解説：なぜ「みなす（断定）」という厳しいルールなのか取締役会の決議によって会社に損害が出た場合、賛成した取締役は連帯して賠償責任を負います（423条）。責任の所在を明確にする： 後になって「私は反対でした」という言い逃れを許すと、誰が責任を負うべきか分からなくなり、会社や債権者が困ります。議事録の重要性： 議事録は、誰がどのような意思表示をしたかを証明する「公的な証拠」です。反対なら、その場でハッキリと「異議あり、議事録に残してくれ」と言わなければならないという厳しいプロのルールです。3. 整理：責任を免れるためのステップもし、ある議案に反対で、将来の賠償責任を回避したいなら、以下の手順を踏む必要があります。会議で反対を表明する。決議の結果、自分の「異議（反対意見）」が議事録に記載されていることを確認する。署名（または記名押印）をする。これをしていない限り、法律上は「賛成者」として100%扱われることになります。4. 合格へのアドバイス① 「みなす」の恐怖行政書士試験では、この「推定する」と「みなす」の入れ替えは定番中の定番です。「みなす」と書かれている条文は、それだけ「後戻りができない強い効果」があるのだと意識して読みましょう。② 議決に加わらなかった場合そもそも「特別利害関係人」として議決から外された取締役は、賛成・反対のカウントに入っていないため、この「みなす」規定の対象にはなりません。「『推定』は『たぶんそうだろう（言い訳OK）』だけど、『みなす』は『決定（言い訳無用）』。議事録に『反対』と刻まなかったら、後で何を言っても賛成したことにされて、責任を背負わされる。プロの世界は厳しい！」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25243,6 +28154,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第361条6項監査等委員（取締役）に与えられた重要なパワーです。会社法第361条6項監査等委員会設置会社において、監査等委員会が選定する監査等委員は、株主総会において、監査等委員以外の取締役の報酬等について、監査等委員会の意見を述べることができる。2. 解説：なぜ「意見」を述べる必要があるのか監査等委員会設置会社の最大の特徴は、**「監査役がいない」代わりに、「監査等委員である取締役」**がその役割を担う点にあります。お手盛りの防止： 社長などの業務執行取締役が、自分たちの報酬を不当に高く設定しようとするのを防ぐため、監査のプロ（社外取締役が過半数）である委員会がストップをかけます。株主への判断材料： 株主総会で報酬の決議をする際、監査側が「この額は妥当です」「これは高すぎます」と意見を言うことで、株主が適切に判断できるようにしています。3. 整理：通常の「監査役」との比較これまでの「監査役」との違いを整理しましょう。比較項目監査役（監査役会設置会社）監査等委員（監査等委員会設置会社）立場役員だが「取締役」ではない。取締役の一員である。意見陳述権取締役の報酬について述べられる（361条5項）。監査等委員以外の取締役の報酬について述べられる。選任・解任取締役と一緒に決議。他の取締役とは別枠で決議する（342条の2）。4. 合格へのアドバイス① 「選定する監査等委員」の意味監査等委員会（通常3人以上）が全員で壇上に上がるのは効率が悪いため、委員会の中で「代表して意見を言う人」をあらかじめ選んでおきます。② 報酬以外の意見陳述報酬だけでなく、**「監査等委員以外の取締役の選任・解任・辞任」**についても、株主総会で意見を述べることができます（342条の2第4項）。「人」と「金」の両面でチェック機能が働いていると覚えましょう。「監査等委員会設置会社は、身内に『警察（監査等委員）』を住まわせている状態。その警察は、他の家族（取締役）のお小遣い（報酬）が多すぎないか、パパやママ（株主）の前でハッキリ意見を言える権限を持っている」と整理しておきましょう。",
           "1. 根拠条文：会社法第404条3項・409条指名委員会等設置会社における「報酬委員会」の役割です。会社法第404条3項報酬委員会は、取締役……の個人別の報酬等の内容に係る決定に関する方針を定めなければならない。会社法第409条1項報酬委員会は、前条第一項（404条3項）の方針に従って、取締役……の個人別の報酬等の内容を決定する。2. 解説：なぜ「株主総会」ではなく「委員会」が決めるのか指名委員会等設置会社は、所有（株主）と経営（執行役）と監督（取締役会）を徹底的に分離した形態です。プロによる決定： 「報酬委員会」のメンバーは3人以上の取締役で構成され、その過半数は社外取締役です（400条3項）。お手盛りの完全排除： 現場でバリバリ働く「執行役」自身の報酬を、社外取締役中心の「報酬委員会」が客観的に決定することで、お手盛り（自分たちで勝手に給料を上げること）を構造的に防いでいます。株主総会決議は不要： この形態の会社では、株主総会で報酬を決める必要はありません。 委員会にその権限が完全に委ねられているのが最大の特徴です。3. 整理：会社形態ごとの「報酬決定」の違いここを一覧で比較するのが、行政書士試験の「商法・会社法」で得点するコツです。会社の形態誰が（どこで）決めるか備考監査役会設置会社（通常）株主総会（定款または決議）「総額」を総会で決め、「配分」は取締役会。監査等委員会設置会社株主総会（定款または決議）監査等委員の報酬は、他の役員と別枠で決める。指名委員会等設置会社報酬委員会株主総会の決議は不要。 個別の額まで決める。4. 合格へのアドバイス① 「個人別」というキーワード通常の会社では、株主総会は「総額（例：全員で年5億円以内）」を決めれば済みますが、指名委員会等設置会社の報酬委員会は**「Aさんは3,000万円、Bさんは2,500万円」という個人別の額**まで踏み込んで決定します。② 執行役の報酬も報酬委員会は、取締役だけでなく**「執行役」**の個人別の報酬も決定します。執行役は実務のトップですので、ここを社外取締役が握ることでガバナンスを効かせています。「指名委員会等設置会社は、いわば『プロの査定チーム（報酬委員会）』が給料を決める仕組み。株主はいちいち金額に口を出さない代わりに、信頼できる社外取締役を委員会に送り込んでチェックさせている」と整理しておきましょう。",
           "1. 根拠条文：会社法第361条5項監査等委員である取締役に認められた、身分保障のための重要な権利です。会社法第361条5項監査等委員である取締役は、株主総会において、監査等委員である取締役の報酬等について意見を述べることができる。2. 解説：なぜ「自分の報酬」に意見が言えるのか監査等委員は、社長などの業務執行側を厳しくチェックする立場です。不当な減額への対抗： もし社長が「うるさい監査等委員の報酬を削ってやろう」と株主総会に不当に低い報酬案を出した場合、委員は「この金額では独立した監査ができません」と株主の前で直接訴えることができます。お手盛り防止とのバランス： もちろん自分で勝手に決めることはできませんが、株主が判断する際に「監査のプロとしての適正価格」を提示できるようにしています。3. 整理：監査等委員会設置会社の「報酬決議」の二階建て構造試験で最も狙われるのは、**「別々に決める」**という点です。決議の対象決議の形式意見を述べる人一般の取締役（業務執行側）株主総会決議（A）監査等委員（選定された者）監査等委員である取締役株主総会決議（B）監査等委員（各自）重要ポイント：普通の会社（監査役会設置会社）でも、「取締役の報酬」と「監査役の報酬」は別々の議案として決議します。監査等委員会設置会社でもこれと同じで、「監査等委員」と「それ以外」をゴチャ混ぜにせず、別枠で決めるのが鉄則です。4. 合格へのアドバイス① 「各自」述べることができる他の取締役の報酬については「選定された委員」が代表して述べますが、**自分たちの報酬については、各委員が個別に（各自）**意見を述べることができます。② 協議による配分（361条3項）株主総会で「監査等委員全員で年○億円以内」という総額が決まった後、その中で「Aさんにいくら、Bさんにいくら」と分けるのは、監査等委員の**「協議」**によって決めることができます。ここには社長などは介入できません。「監査等委員は、いわば『独立した専門職』。自分の給料が不当に下げられて活動を妨害されないよう、株主（雇い主）に対して直接『適正なギャラ』を主張する権利が守られている」と整理しておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25299,6 +28217,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第361条6項監査等委員（取締役）に与えられた、ガバナンス（経営監視）のための重要なパワーです。会社法第361条6項監査等委員会設置会社において、監査等委員会が選定する監査等委員は、株主総会において、監査等委員以外の取締役の報酬等について、監査等委員会の意見を述べることができる。2. 解説：なぜ「他人」の報酬に意見を言うのか監査等委員会設置会社では、社長などの「業務執行側」を監視するのが「監査等委員（取締役）」の仕事です。お手盛りの防止： 業務執行取締役が、自分たちの報酬を不当に高く設定して株主総会に提案するのを防ぎます。「監査等委員会の意見」として： 自分たちの報酬（5項）のときは各委員がバラバラに意見を言えましたが、他人の報酬については**「委員会の組織としての意見」**を、代表者が述べる形になります。3. 整理：監査等委員の「意見陳述権」まとめ混乱しやすい「自分用」と「他人用」の違いを整理しましょう。対象条文誰が述べるか内容自分たちの報酬361条5項各自（各委員）自分の身分・独立性を守るため。他人（他役員）の報酬361条6項選定された委員会社全体のガバナンスのため。4. 合格へのアドバイス① 「選定された」という言葉他人の報酬に口を出すのは「組織としてのチェック」なので、委員会の中で「君が代表して言ってくれ」と選ばれた人が壇上に立ちます。試験で「各自が述べることができる」と出たら、それは「自分たちの報酬」の話だと見抜きましょう。② 監査役との比較通常の監査役会設置会社でも、監査役は「取締役の報酬」について意見を言えます（361条5項）。監査等委員も、実質的には監査役と同じようなチェック機能を期待されていることがわかります。「監査等委員は、クラスの『会計監査係』のようなもの。自分の活動費（自分の報酬）を守るために発言できるのはもちろん、他の係（業務執行取締役）が勝手にお金（報酬）を使いすぎないよう、先生（株主）の前で注意喚起できる権限を持っている」と整理しておきましょう。",
           "1. どこが「誤り」なのか「監査等委員である取締役の多数決によって定める」という部分が間違いです。正しいルール（会社法361条3項後段）： 監査等委員である取締役の報酬等の配分は、監査等委員の**「協議」**によって定めます。なぜ「協議」なのか： 「多数決」だと、人数の多いグループが自分たちの報酬を高くし、少数の意見を無視できてしまいます。監査の独立性を守るため、全員で話し合って納得の上で決める（協議）という形をとっています。2. 解説：監査等委員の報酬決定の流れ試験で狙われる「二段構え」の構造を整理しましょう。株主総会（外枠）： 「監査等委員である取締役全員で、年〇〇円以内」という総額（または算定方法）を、他の取締役とは別枠で決議します。監査等委員の協議（内訳）： その総額の範囲内で、「Aさんはいくら、Bさんはいくら」という具体的な配分を、委員同士の話し合い（協議）で決めます。3. 整理：各機関の「配分」の決め方比較「多数決」や「取締役会」に引きずられないよう、比較表で覚えましょう。役職総額の決定配分（内訳）の決定取締役（通常）株主総会取締役会（または社長へ一任）監査役株主総会監査役の協議監査等委員株主総会監査等委員の協議（本問）ポイント：「監査」を担う人たちの給料配分に、業務執行側（社長など）が介入することはできません。4. 合格へのアドバイス① 「多数決」と「協議」のひっかけ行政書士試験では、この「協議」を「多数決」や「取締役会の決議」に書き換える問題が頻出します。「監査役・監査等委員の給料の内訳は、自分たちで話し合って（協議して）決める」とセットで記憶してください。② 報酬以外の「協議」監査役や監査等委員は、報酬以外にも「誰が常勤になるか」といった役割分担についても、自分たちの協議で決めることになっています。「監査役や監査等委員は、社長から独立していなければならない。だから、お給料の分け前（配分）も社長が決めるのではなく、自分たちで『協議』して納得して分けるのがルール」と整理しておきましょう。",
           "1. 根拠条文：会社法第361条7項指名委員会等設置会社以外の会社（特に上場企業などの公開会社）における、報酬決定の透明化ルールです。会社法第361条7項取締役会設置会社……は、取締役の個人別の報酬等の内容……についての決定に関する方針を決定しなければならない。2. 解説：なぜ「決定方針」を決めなければならないのか従来、多くの日本企業では「株主総会で総額10億円」と決めた後、具体的な内訳は「社長にお任せ」となっていました。ブラックボックスの解消： 社長が気に入った役員にだけ多額の報酬を出す……といった「えこひいき」を防ぐため、「どういう基準で、いくら払うのか」という**方針（ガイドライン）**を、取締役会できちんと決めることが義務付けられました。株主への説明責任： この方針の内容は、事業報告などを通じて株主に開示する必要があります。3. 整理：方針を決めるべき会社と範囲すべての会社にこの義務があるわけではありません。項目内容対象となる会社公開会社であり、かつ監査役会設置会社（または監査等委員会設置会社など）。※非公開の小さな会社は任意です。対象となる役員業務執行取締役（監査等委員や監査役は、独立性が高いため別の仕組みで動きます）。決めるべき内容固定報酬と業績連動報酬の割合、支払時期、非金銭報酬（株など）の算定方法など。4. 合格へのアドバイス① 「個人別の内容」そのものではない取締役会が「Aさんに〇〇万円」と一人ひとりの金額を直接決める義務はありません。あくまで**「どうやって決めるかという『方針（ルール）』」**を決めなさい、と言っている点に注意してください。② 指名委員会等設置会社との違い指名委員会等設置会社は、以前学習した通り「報酬委員会」が**「方針の決定」と「個人別の額の決定」の両方**を行います。今回のルールは、それ以外の「普通の大きな会社」に向けられたものです。「『社長の胸三寸でお給料を決めるのはもうおしまい。これからは取締役会でしっかりルール（方針）を作って、誰が見ても納得できる形にしなさい』という、ガバナンス強化のルールであると整理しておきましょう。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25355,6 +28280,13 @@ export const SUBJECTS = {
           "1. どこが「誤り」なのか「任務を怠ったものと推定されることはない」という部分が間違いです。原則（会社法423条3項）： 利益相反取引によって会社に損害が生じたときは、取引をした取締役や、それに賛成した取締役は、**「任務を怠った（落ち度があった）ものと推定」**されます。承認の影響： この規定には「取締役会（または監査等委員会）の承認を受けたときは、推定しない」という除外規定はありません。たとえ事前に「やっていいよ」と言われていても、実際に損害が出たのであれば、その判断自体にミスがあったのではないか（善管注意義務違反）と疑われることになります。2. 解説：なぜ「承認」があっても推定されるのかもし「承認さえあれば推定されない」というルールにしてしまうと、身内同士で形だけの承認（シャンシャン決議）を行い、会社に損害を与えても責任を逃れることが容易になってしまいます。立証責任の転換： 損害が出た場合、取締役の側が「私は適正な価格で取引しました」「委員会にはすべての情報を開示し、検討も十分でした」と自ら無過失を証明しなければ、責任を免れることはできません。監査等委員であっても同じ： 取引当事者が監査等委員であっても、特別の扱いはありません。むしろ監査する側の人間が利益相反に関わる以上、より厳格な注意が求められます。3. 整理：「直接取引」と「無過失責任」の区別ここが試験で最も混乱しやすいポイントです。併せて整理しておきましょう。項目任務懈怠（落ち度）の「推定」無過失責任（428条）内容「お前が悪い」と疑われる（反証可能）。「過失がなくても」 責任を負う。対象利益相反取引に関わった全役員。自己取引をした本人 のみ。承認の影響承認があっても、推定される。承認があっても、免除されない。4. 合格へのアドバイス① 「承認 ＝ 無罪」ではない行政書士試験の商法・会社法では、「〇〇の承認（または決議）を得ていれば、責任を負わない」という選択肢は、高確率でバツです。承認は「手続き上の適法性」を確保するものであり、「結果に対する責任」を免除するものではない、と割り切って覚えましょう。② 監査等委員会の役割監査等委員会設置会社では、一定の利益相反取引について「取締役会の承認」に代えて「監査等委員会の承認」を必要とする場合がありますが、その効果（推定規定の適用）については、取締役会のケースと全く変わりません。「『みんなが賛成してくれたから、損をさせても僕のせいじゃない』という言い訳は通用しない。会社に損害が出た以上、ゴーサインを出した人も含めて全員が『本当に最善を尽くしたのか？』と厳しく問われる（推定される）、と整理しておきましょう。」",
           "1. 根拠条文：会社法第427条1項\n社外取締役や監査役などが、安心してその役割を果たせるようにするための制度です。\n\n会社法第427条1項\n株式会社は、……（非業務執行取締役等）の……責任について、当該……（非業務執行取締役等）が職務を行うにつき善意でかつ重大な過失がないときは、定款で定めた額の範囲内であらかじめ株式会社が定めた額と最低責任限度額とのいずれか高い額を限度とする旨の契約を締結することができる旨を定款で定めることができる。\n\n2. 解説：「責任の限度額」はどう決まるのか\n文章にある「いずれか高い額」という部分が、少しややこしいポイントです。\n\nあらかじめ決めた額： 定款の定めに従って、会社と役員が契約で「1,000万円まで」と決めた額。\n\n最低責任限度額： 法律で決まっている「これ以下には負けられない」というライン（社外取締役なら、年間の報酬等の2倍）。\n\nこの**2つを比べて「高い方」**が、その役員が最終的に背負う責任の天井（リミット）になります。\n\n例： 契約で「500万円」と決めていても、法律上の最低額（報酬2年分）が「800万円」なら、責任の限度額は「800万円」になります。\n\n3. 整理：契約できる人の範囲（非業務執行取締役等）\n「等」に含まれるメンバーをしっかり押さえましょう。\n\n社外取締役\n\n非業務執行取締役（社内出身だが、業務執行はしない人）\n\n会計参与\n\n監査役\n\n会計監査人\n\n※代表取締役や、現場を指揮する業務執行取締役は、責任が重いためこの契約を結ぶことはできません。\n\n4. 合格へのアドバイス\n① 「善意・無重過失」は絶対条件\nどんなに契約を結んでいても、**「わざと（悪意）」や「ひどい不注意（重過失）」**があった場合は、このリミットは外れて全額賠償の対象になります。これは役員の責任軽減ルールすべてに共通する大原則です。\n\n② 登記の必要性\nこの「責任限定契約を結ぶことができる」という旨の定款の定めがあることは、登記事項です（911条3項24号）。取引先が「この会社の役員は責任が限定されているな」と確認できるようにするためです。\n\n「『外の人（非業務執行者）』に思い切った監視をしてもらうために、あらかじめ賠償額にキャップ（蓋）をはめておく。ただし、法律が決めた最低ライン（報酬2年分など）は下回ることができない、と整理しておきましょう。」",
           "1. 根拠条文：会社法第428条1項自己取引（直接取引）をした本人に対する、最強の責任追及ルールです。会社法第428条1項第423条第1項の責任（任務懈怠責任）は、第356条第1項第2号（直接取引）の取引をした取締役又は執行役については、その任務を怠ったことが当該取締役又は執行役の責めに帰することができない事由によるものであることをもって免れることができない。2. 解説：なぜ「無過失」でも責任を負うのか通常、損害賠償責任を負うには「過失（不注意）」が必要ですが、このケースでは**「過失がなくても（無過失）」**責任を負わされます。自己取引（直接取引）の特殊性： 取締役が「自分個人」として会社と契約する場合（例：自分の土地を会社に売る）、会社を守るべき立場の人間が、相手方として利益を追求することになります。強力な抑止力： このような利益相反が最も激しい場面では、「不注意はありませんでした」という弁明を一切認めないことで、安易な自己取引を思いとどまらせる狙いがあります。3. 整理：「無過失責任」と「推定」の違い試験で最も混同しやすい、**423条（推定）と428条（無過失）**を比較しましょう。項目自己取引の本人のみ (428条)それ以外の関与者 (423条)対象者取引の当事者となった取締役本人。決定した取締役、賛成した取締役。責任の性質無過失責任（言い訳不可）。任務懈怠の 推定（反証可能）。免除の条件総株主の同意のみ（424条）。総株主の同意 ＋ 一部免除規定。注意：「間接取引（会社が取締役の借金を保証するなど）」の場合は、本人であっても無過失責任ではなく、通常の「推定」にとどまります。あくまで直接の売買・貸借などが対象です。4. 合格へのアドバイス① 「免除」のハードルも最大無過失責任を負った取締役の責任を免除するには、以前学習した**「総株主の同意」**が必要となります。取締役会の決議や責任限定契約による「一部免除」は使えません。② 承認があっても関係なし取締役会が「その土地を1億円で買うことを承認する」と決議していても、後にその土地の時価が実は5,000万円だったと判明して損害が出れば、本人は「過失がなくても」その差額を賠償しなければなりません。「会社と直接ビジネスをする取締役は、いわば『火中の栗を拾う』状態。もし会社に損をさせたら、たとえ本人がどんなに誠実で注意深くても、結果責任として全額弁償しなければならない、と整理しておきましょう。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25411,6 +28343,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第343条2項監査役が株主総会の議案に対して持っている強力な権限です。会社法第343条2項監査役は、取締役に対し、次に掲げる事項を請求することができる。監査役の選任を株主総会の目的とすること。監査役の選任に関する議案を株主総会に提出すること。2. 解説：なぜ監査役にこの権利があるのか取締役が「今の監査役がうるさいから、次は誰も選ばずに空席にしてしまおう」とか「自分たちに都合のいい議案しか出さない」といった事態を防ぐためです。「目的」と「議案」の違い：目的： 「監査役を選任する」という**議題（トピック）**そのものを総会のスケジュールに入れること。議案： 「〇〇氏を監査役に選ぶ」という具体的な案を出すこと。監査の継続性： 監査役の欠員が出るのを防ぎ、常に「外の目」が機能するように、監査役自身が後任や増員をプッシュできるようになっています。3. 整理：監査役の「選任」に関わる3つのステップこれまで出てきた知識を一本の線でつなげましょう。ステップ内容権限者1. 提案・請求「この人を候補にして！」と頼む。監査役（本問）2. 同意取締役が出してきた案に「OK」を出す。監査役の過半数3. 提出株主総会に正式な議案として出す。取締役4. 合格へのアドバイス① 監査等委員会設置会社の場合（344条の2第2項）監査等委員会設置会社でも、監査等委員会が取締役に対して同様の請求（選任を目的とすること、議案を提出すること）を行うことができます。② 解任との違い監査役には「選任」の提案・請求権はありますが、「他の監査役をクビ（解任）にしろ」と請求する権利はありません。 解任は株主固有の権利（または取締役からの提案）によるものであり、監査役同士でクビにし合うことはできないようになっています。「監査役は、ただ『待っている』だけの存在ではない。自分たちの仲間（後任）が適切に選ばれるよう、取締役に対して『この議題を総会に出せ』『この人を候補にしろ』と強く要求できるカードを持っている、と整理しておきましょう。」",
           "1. 根拠条文：会社法第309条2項7号監査役の解任は、株主総会の特別決議事項として指定されています。会社法第309条2項次に掲げる株主総会の決議は、当該株主総会において議決権を行使することができる株主の議決権の過半数……を有する株主が出席し、出席した当該株主の議決権の3分の2……以上に当たる多数をもって行わなければならない。……七　第339条第1項の規定による監査役の解任2. 解説：なぜ「3分の2」という高いハードルなのか監査役は、社長などの取締役を厳しくチェックするのが仕事です。独立性の確保： もし取締役が「あいつはうるさいからクビにしよう」と考えたとき、通常の多数決（過半数）で簡単に解任できてしまうと、監査役は報復を恐れて正しい監査ができなくなります。身分保障： 特別決議（3分の2以上）を必要とすることで、少数の株主が反対していても、圧倒的な支持がない限りクビにはできない仕組みになっています。3. 整理：取締役 vs 監査役（選任・解任の比較）ここが行政書士試験で最も狙われる「対比表」です。役職選任（選ぶ）解任（クビ）取締役普通決議普通決議（※いつでも、理由なくクビにできる）監査役普通決議特別決議（本問。慎重な判断が必要）注意：監査等委員会設置会社の**「監査等委員である取締役」の解任も、監査役と同様に特別決議**が必要です。4. 合格へのアドバイス① 「正当な理由」がなくても解任はできるハードルは高いですが、解任すること自体は「いつでも、理由がなくても」可能です（339条1項）。ただし、正当な理由（病気や不正など）がないのに任期途中でクビにした場合は、会社はその監査役に対して損害賠償を支払わなければなりません（339条2項）。② 定足数の軽減特別決議の定足数（過半数の出席）は、定款で「3分の1」まで下げることができますが、それ未満に下げることはできません。「監査役は『正義の味方』。悪者（取締役）に簡単に消されないよう、クビにするときだけは、株主の3分の2以上が納得しないとダメ、と整理しておきましょう。」",
           "1. 根拠条文：会社法第345条監査役の選任・解任・辞任について、株主総会で直接意見を述べる権利を保障しています。会社法第345条監査役は、監査役の選任若しくは解任又は辞任について、株主総会において意見を述べることができる。監査役を辞任した者は、辞任後最初に招集される株主総会において、辞任した旨及びその理由を述べることができる。（第1項は、他の監査役についても準用される趣旨）2. 解説：なぜ「他人の解任」にも口を出せるのか監査役は、チーム（監査役会など）として、あるいは独立した機関として、取締役を厳しくチェックするのが仕事です。不当なパージ（排除）への抵抗： もし取締役が「あいつはうるさいからクビにしよう」と特定の監査役を狙い撃ちした場合、他の監査役が「彼は正当な監査をしていただけで、解任の理由は不当です」と株主に真実を伝えることができます。「数」による圧力の防止： 監査役が複数いる場合、一人が消されるとチェック機能が弱まります。それを防ぐために、残るメンバーにも意見を言う権利が与えられています。3. 整理：意見を述べることができる「場面」監査役が株主総会でマイクを握れるケースをまとめました。場面内容誰のケースか選任「この人を仲間にしてください／しないでください」自分または他人解任（本問）「このクビ（解任）は不当です／妥当です」自分または他人辞任「こういう理由で辞めることになりました」自分のみ（※元監査役として）4. 合格へのアドバイス① 「辞任」との違いに注意「解任（クビ）」の場合は他人のケースでも意見を言えますが、「辞任（自分から辞める）」の場合に意見を言えるのは、当然ながら**「辞める本人」**だけです（他人の辞任理由に口を出す必要はないため）。② 監査等委員会設置会社（342条の2第4項）以前学習した「監査等委員である取締役」も同様です。監査等委員会が選定した委員は、他の監査等委員の選任・解任について、株主総会で委員会の意見を述べることができます。「監査役は『連帯責任』で会社を守る立場。仲間が不当にクビにされそうな時は、自分のことのように株主の前で『それはおかしい！』と異議を唱える権利がある、と整理しておきましょう。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25489,6 +28428,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第329条1項役員の選任についての基本ルールです。会社法第329条1項役員（取締役、会計参与及び監査役をいう。以下この節において同じ。）は、株主総会の決議によって選任する。2. 解説：なぜ「株主総会」が決めるのか会計参与は、単なる外部のアドバイザー（顧問税理士など）ではなく、会社法上の**「役員」**としての地位を持ちます。役員の地位： 会計参与は、取締役と共同して計算書類を作成し、会社に備え置いて株主や債権者に開示する責任を負います。株主による選択： 会社の計算の正確性を担保する重要な役割を担うため、株主が直接「この人に任せよう」と決議する必要があります。選任の決議要件： 原則として普通決議（議決権の過半数を有する株主が出席し、出席株主の過半数の賛成）によって選任されます。3. 整理：会計参与の「資格」と「任期」選任される「人」と「期間」についても、試験で狙われるポイントをまとめました。項目内容備考資格公認会計士（監査法人） または 税理士（税理士法人）計算のプロしかなれません。欠格事由株式会社（子会社含む）の取締役、監査役、従業員などは兼任不可。独立性を保つためです。任期原則として2年（選任後2年以内に終了する事業年度のうち最終のものに関する定時株主総会の終結の時まで）。取締役と同じです（定款で短縮・伸長可）。4. 合格へのアドバイス① 「会計監査人」との違いに注意会計参与と似た名前の「会計監査人」も、原則として株主総会で選任されます（329条2項）。ただし、会計監査人は「役員」ではなく「機関」の一部という扱いです。② 報酬の決定（361条1項）会計参与の報酬も、取締役や監査役と同様に、定款または株主総会の決議によって定める必要があります。「会計参与は、会社の中に入って計算を支える『お助け役員』。役員である以上、選ぶのも辞めさせるのも、会社のオーナーである株主が決める（株主総会決議）、とシンプルに整理しておきましょう。」",
           "1. 根拠条文：会社法第333条1項会計参与になれる専門家の限定リストです。会社法第333条1項会計参与は、公認会計士若しくは監査法人又は税理士若しくは税理士法人でなければならない。2. 解説：なぜ「税理士」が含まれるのかここが、同じ計算のプロである「会計監査人」との最大の違いです。会計参与（本問）： 主に中小企業の計算の信頼性を高めるために導入された制度です。そのため、中小企業の経営に身近な**「税理士（税理士法人）」**も就任できるようになっています。会計監査人： 大会社などの複雑な会計を外部から「監査（チェック）」する役割のため、資格は**「公認会計士（監査法人）」**に限定されています。税理士はなれません。3. 整理：会計参与の「なれない人（欠格事由）」資格を持っていても、会社との関係性によっては就任できない場合があります（333条3項）。項目内容理由兼任禁止当該会社（または子会社）の取締役、監査役、従業員。自分で自分をサポート・チェックすることになり、適正さが保てないため。欠格事由業務停止処分を受けている者など。専門家としての信頼を欠くため。4. 合格へのアドバイス① 「法人」もなれる「監査法人」や「税理士法人」といった法人が役員（会計参与）になれる、という点は非常に珍しい特徴です。取締役や監査役は「個人（自然人）」でなければなりませんが、会計参与と会計監査人は法人が就任可能です。② 設置は常に「任意」どんなに大きな会社でも、どんなに小さな会社でも、会計参与を置くかどうかは定款で自由に決めることができます（義務ではありません）。「会計参与は、いわば『お抱えの計算専門役員』。だから、公認会計士だけでなく、街の税理士さんもなれる。ただし、中に入って仕事をする以上、そこの会社の従業員などを兼ねることはできない、と整理しておきましょう。」",
           "1. どこが「誤り」なのか「すべての取締役会に出席し……意見を述べなければならない」という部分が間違いです。会計参与のルール（会社法348条の2）： 会計参与は、取締役会への出席が**「任意」**であり、義務ではありません。出席が必要なケース： 取締役会から**「招集」されたとき、または会計参与が「計算書類等の作成」に関する事項**について意見を述べる必要があると認めたときに限られます。2. 解説：「監査役」との決定的な違いなぜ会計参与には「全出席義務」がないのでしょうか。役職取締役会への出席理由監査役義務（原則すべて）取締役の業務執行全体を「監視」するため、常に立ち会う必要があります。会計参与任意（必要時のみ）役割が「計算書類の作成サポート」に特化しているため、経営戦略などの会議に常にいる必要はありません。3. 整理：会計参与が「意見を述べる」場面出席義務はありませんが、以下の場面では重要な役割を果たします。招集されたとき： 取締役会から「会計について説明してほしい」と呼ばれたら出席します。意見があるとき： 計算書類の作成に関して、取締役に伝えるべきことがある場合は、自ら出席して意見を述べることができます。株主総会での説明： 株主から会計に関する質問が出た場合、会計参与はこれに答える義務があります（344条）。4. 合格へのアドバイス① 「監査役」の条文とのすり替え試験では、監査役の義務（383条1項）をそのまま会計参与に当てはめる問題がよく出ます。「監査役は『見張り番（全出席）』、会計参与は『計算の助っ人（必要時のみ）』」とイメージを分けておきましょう。② 計算書類への署名出席義務はなくても、自分が作成に関わった計算書類には**署名（または記名押印）**をしなければなりません。ここには重い責任が伴います。「会計参与はあくまで『計算の専門家』。経営方針を決める会議に毎回出る必要はないけれど、お金（計算書類）の話になるときだけは、プロとしてビシッと意見を言う、と整理しておきましょう。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25545,6 +28491,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第334条・338条役員（会計参与）と会計監査人の、任期満了時の扱いの違いです。会計参与（役員）： 原則として選任後2年で任期満了となります。再任する場合でも、改めて株主総会での選任決議が必要です（334条1項→332条1項）。会計監査人： 定時株主総会で「解任」や「不再任」の決議がなされない限り、自動的に再任されたものとみなされます（338条2項）。2. 解説：なぜ「会計監査人」だけ自動更新（みなし再任）なのか会計監査人は、会社の計算を外部から厳しくチェックする独立した機関です。監査の継続性： もし毎年「選任決議」が必要だとすると、取締役が「あいつはうるさいから、今年は再任議案を出さないでおこう」と、実質的にクビにすることが容易になってしまいます。独立性の保護： 「何もしなければそのまま継続」というルールにすることで、取締役からの不当な圧力を受けにくくし、監査の独立性と継続性を守っています。3. 整理：任期と更新の比較試験で狙われる「役員」と「会計監査人」の対比表です。項目会計参与（役員）会計監査人原則の任期2年1年任期満了時決議が必要原則、自動更新（みなし再任）不再任の決定議案を出さないだけでOK株主総会での決議が必要ポイント：会計監査人の任期は「1年」と短いですが、その代わり「自動更新」という強力なガードがかかっています。4. 合格へのアドバイス① 「不再任」には理由が必要会計監査人をあえて再任させない（不再任とする）場合、監査役（または監査役会）は、その理由を株主総会で説明しなければなりません（345条4項）。「気に入らないから」という理由では通らない仕組みです。② 会計参与は「取締役」と同じ会計参与は、あくまで「役員」の枠組みの中にあるため、任期や選任のルールは取締役（2年、決議必須）とほぼ同じだと覚えれば間違いありません。「会計参与は、2年経ったら『もう一度選んでください』とお願いが必要な『契約更新型』。対して会計監査人は、誰かが『NO』と言わない限り勝手に続く『サブスクリプション型』。監査のプロが簡単に入れ替えられないように守られている、と整理しておきましょう。」",
           "1. 根拠条文：会社法第374条・396条それぞれの職務内容を明確に区別しています。会計参与（374条1項）： 取締役と共同して、計算書類及びその附属明細書、臨時計算書類並びに連結計算書類を作成する。会計監査人（396条1項）： 株式会社の計算書類及びその附属明細書……を監査する。2. 解説：なぜ「共同作成」と「外部監査」を分けるのかもし一人の人が「書類を作って、自分でその正しさをチェックする」となると、間違いや不正を見逃すリスクが非常に高くなります。会計参与（インサイダー）： 役員の一種として会社の中に入り、取締役と一緒に正しい数字を積み上げます。主に中小企業において、計算書類の信頼性を高める「作成のプロ」です。会計監査人（アウトサイダー）： 会社から独立した立場で、出来上がった書類を厳しくチェックします。大会社などに義務付けられている「監査のプロ」です。3. 整理：作成と監査のプロの比較試験で狙われる「資格」と「役割」のセットを確認しましょう。項目会計参与会計監査人主な仕事作成（取締役のパートナー）監査（第三者のチェック役）資格公認会計士・監査法人・税理士・税理士法人公認会計士・監査法人のみ（税理士は不可）法的地位役員機関（「役員」ではない）報告先取締役会、株主総会監査役（会）、取締役会、株主総会4. 合格へのアドバイス① 「共同」というキーワード会計参与は一人で勝手に作るのではなく、あくまで「取締役と共同して」作ります。責任も取締役と共に負うことになります。② 両方の設置も可能大会社で「書類作成を税理士（会計参与）に手伝ってもらい、その結果を公認会計士（会計監査人）に厳しく監査してもらう」という贅沢な構成も、法律上は可能です。「会計参与は、取締役と一緒に料理を作る『副料理長（作成）』。会計監査人は、その料理が毒入りでないか、味が正しいかを外から厳しく判定する『グルメ評論家（監査）』。役割が全く違うと整理しておきましょう。」",
           "1. どこが「誤り」なのか「会計参与にはこのような報告義務はない」という部分が間違いです。会計監査人の報告義務（会社法397条1項）： 取締役の不正を発見したときは、直ちに監査役（会）に報告しなければなりません。会計参与の報告義務（会社法375条1項）： 取締役が不正な行為をし、またはそのおそれがあると認めるときは、遅滞なく、監査役（または株主）に報告しなければなりません。2. 解説：なぜ両方に報告義務があるのかたとえ役割が「作成（参与）」と「監査（監査人）」で異なっていても、プロの目で見た「不正の兆候」をスルーしてしまえば、会社や株主に甚大な損害を与えるからです。二重のチェック機能： 取締役と一緒に計算書類を作る会計参与は、最も近くで数字の不自然さに気づける立場にあります。監査役へのパス： 不正を見つけた際、自分たちで直接止める権限はなくても、監視のプロである「監査役」に情報をパスすることで、自浄作用を働かせます。3. 整理：不正発見時の「報告先」まとめ会社に監査役がいるかいないかで、報告のルートが変わります。報告者監査役がいる場合監査役がいない場合会計監査人監査役（会） へ報告取締役（または取締役会）へ報告会計参与監査役 へ報告株主 へ報告（※ここがポイント！）ポイント：監査役がいない会社（小規模な非公開会社など）で会計参与が取締役の不正を見つけた場合、なんと**「株主」に直接知らせる**義務があります。これは非常に強力な権限です。4. 合格へのアドバイス① 「善管注意義務」と「報告義務」会計参与は「役員」ですので、会社に対して善管注意義務を負っています。報告を怠って会社に損害が出れば、任務懈怠として賠償責任（423条）を問われることになります。② 株主総会での意見陳述（377条）会計参与は、計算書類の作成に関して取締役と意見が合わない場合、株主総会で直接「自分の意見」を述べることもできます。これも広い意味での報告・開示義務の一環です。「『会計のプロ』として雇われている以上、不正を見て見ぬふりはできない。監査役がいるなら監査役へ、いないなら株主へ。『チクリ（報告）』はプロとしての義務である、と整理しておきましょう。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25601,6 +28554,13 @@ export const SUBJECTS = {
           "1. どこが「誤り」なのか「2人以上の取締役を置かなければならない」という一律の制限は存在しません。原則（会社法326条1項）： 株式会社には、1人または2人以上の取締役を置かなければならない。1人でOKな場合： 取締役会を設置しない会社（小規模な非公開会社など）であれば、取締役は1人だけで構いません。例外（3人以上必要な場合）： 取締役会を設置する会社（公開会社や大会社など）は、取締役は3人以上必要です（331条5項）。2. 解説：なぜ「1人」でも認められるのかかつての旧商法では「取締役は最低3人」という決まりがありましたが、2006年の会社法施行により、個人の起業や家族経営の会社がより柔軟に運営できるように緩和されました。柔軟な経営： 1人だけの会社であれば、その人がすべての意思決定をスピーディーに行うことができます。ガバナンスの階段： * ステップ1： 1人（取締役会なし）… 自由度が高いステップ2： 3人以上（取締役会あり）… 組織的なチェック機能が働くステップ3： 委員会設置など … より高度なガバナンス3. 整理：取締役の人数ルールまとめ試験で狙われる「人数」の境界線を整理しましょう。会社の種類取締役の最低人数根拠取締役会がない会社1人326条1項取締役会がある会社3人331条5項指名委員会等設置会社3人400条3項（各委員会の構成員数より）監査等委員会設置会社3人(監査等委員3名以上の義務から)4. 合格へのアドバイス① 「2人以上」というひっかけ「2人以上」という数字は、会社法上の取締役の人数制限としてはあまり登場しません。強いて言えば、「監査役会」を置く場合に、監査役が3人以上必要であること（335条3項）などと混同しないよう注意が必要です。② 定款による「増員」法律上の最低人数は上記の通りですが、定款で「わが社の取締役は5人以上とする」と決めることは自由です。「『1人で身軽にやるか、3人集まって組織（取締役会）としてやるか』の二択。中途半端な『2人以上』という縛りは原則としてない、と整理しておきましょう。」",
           "1. 根拠条文：会社法第331条2項取締役の資格を「株主」に限定できるかどうかについて定めています。会社法第331条2項株式会社は、取締役が株主でなければならない旨を定款で定めることができない。ただし、公開会社でない株式会社においては、この限りでない。2. 解説：「所有と経営の分離」の原則なぜ原則として「株主でなければならない」と決めてはいけないのでしょうか。公開会社（原則禁止）： 広く一般から資金を集める公開会社では、株を持っていない外部の経営プロフェッショナルを招くべきという「所有と経営の分離」が重視されます。そのため、定款で「株主限定」と縛ることは禁止されています。非公開会社（例外OK）： 家族経営や少人数の仲間でやっている会社では、「身内（株主）だけで経営したい」というニーズがあります。そのため、定款に書けば「取締役 ＝ 株主」というルールを作ることが認められています。3. 整理：取締役になれない人（欠格事由）「株主であるかどうか」以前に、法律上なれない人も確認しておきましょう（331条1項）。項目内容備考法人取締役にはなれない。※会計参与や会計監査人はなれます。心身の故障職務を適正に執行できない者。医師の診断等に基づきます。欠格条項会社法違反で刑に処せられ、執行終了から2年経過していない者など。反社会的勢力や不正行為者の排除です。4. 合格へのアドバイス① 「監査役」との違い監査役についても、非公開会社であれば定款で「株主に限る」と定めることができます（335条1項が331条2項を準用）。② 定款に「書いていない」場合定款に何も書いていなければ、非公開会社であっても、株主ではない人を取締役に選ぶことはもちろん可能です。あくまで「限定したいなら定款に書け」というルールです。「『公開会社』はプロの経営者を呼べるように門戸を広げておく義務がある。対して『非公開会社』は、アットホームに身内（株主）だけでやりたいなら、定款でそう決めてもいいよ、と整理しておきましょう。」",
           "1. どこが「誤り」なのか「株主総会において……その承認を受けなければならない」という部分が、取締役会設置会社においては間違いです。取締役会がある会社： **「取締役会」**の承認が必要です（会社法365条1項）。取締役会がない会社： **「株主総会」**の承認が必要です（会社法356条1項）。日本の中堅以上の会社や上場企業はほぼ「取締役会設置会社」ですので、実務上は「取締役会で通すもの」と整理するのが一般的です。2. 解説：なぜ「競業取引」に承認がいるのか取締役は会社の機密情報やノウハウを握っています。裏切り行為の防止： 「会社の社長をやりながら、こっそりライバル会社も経営して、自社の客を奪う」といった行為（競業）を自由に許すと、会社がボロボロになってしまいます。重要な事実の開示： 承認を得る際には、「どんな取引を、誰と、いくらでするのか」という重要な事実を包み隠さず話さなければなりません。3. 整理：「競業取引」と「利益相反取引」の承認機関どちらも同じルール（取締役会があるなら取締役会）ですが、比較して覚えましょう。取引の種類内容承認が必要な機関競業取引 (本問)会社と同じビジネスを自分でする。取締役会（設置会社の場合）利益相反取引会社と自分（または第三者）で売買などをする。取締役会（設置会社の場合）4. 合格へのアドバイス① 「事後報告」の義務取締役会で承認を得て競業取引を行った取締役は、取引をした後、遅滞なくその取引の重要な事実を取締役会に報告しなければなりません（365条2項）。「やりっぱなし」は許されないのです。② 承認がなかった場合もし承認を得ずに競業取引を行い、会社に損害を与えた場合は、先ほど学習した通り**「利益の額 ＝ 損害の額」と推定**され、厳しい賠償責任を負うことになります。「『会社の商売敵』になるような真似をするときは、まず同僚の取締役たち（取締役会）に『これやっていい？』と正直に話して、許しをもらわなければならない、と整理しておきましょう。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25657,6 +28617,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第327条1項取締役会を置かなければならない会社の種類を定めています。会社法第327条1項次に掲げる株式会社は、取締役会を置かなければならない。公開会社監査役会設置会社監査等委員会設置会社指名委員会等設置会社2. 解説：なぜ「取締役会」が必須なのかこれらの会社形態は、高度なガバナンス（企業統治）を目的としています。委員会の設置場所： 「監査等委員会」も「指名・報酬・監査の各委員会」も、すべて取締役会の中に設置されるメンバーで構成されます。土台となる取締役会がなければ、これらを置く場所がありません。監督と執行の分離： 取締役会が大きな方針を決め、その中にある委員会が執行役や取締役を「監督」するという仕組みである以上、組織としての取締役会は不可欠です。3. 整理：取締役会が「絶対必要」な4つのケース試験で「取締役会を置かなければならないのは？」と聞かれたら、この4つを即答できるようにしましょう。設置義務がある会社理由・ポイント1. 公開会社不特定多数の株主がいるため、組織的な経営が必要。2. 監査役会設置会社監査役「会」という組織でチェックを受けるため。3. 監査等委員会設置会社委員が取締役会のメンバーであるため。4. 指名委員会等設置会社同上。経営と監督を完全に分けるため。4. 合格へのアドバイス① 「指名委員会等」の「等」先ほども触れましたが、「等」には報酬と監査が含まれます。この3つを置く場所は、やはり取締役会の中しかありません。② 1人ではできない取締役会を置くということは、以前学習した通り、取締役が最低でも3人以上必要になる、というルールとも繋がってきます。「『委員会』は、取締役会という大きなチームの中に作られる『専門ユニット』のようなもの。ユニットを作るためには、まずチーム（取締役会）が存在していなければならない、と整理しておきましょう。」",
           "1. 根拠条文：会社法第399条の10・420条それぞれの形態における「代表者」の選定ルールです。監査等委員会設置会社（399条の10）： 取締役会は、取締役（監査等委員を除く）の中から**「代表取締役」**を選定しなければなりません。指名委員会等設置会社（420条）： 取締役会は、執行役の中から**「代表執行役」**を選定しなければなりません。2. 解説：なぜ「代表取締役」と「代表執行役」に分かれるのかこの2つの形態は、監督の「厳しさ（純度）」が異なります。① 監査等委員会設置会社（代表取締役）特徴： 取締役会の中に「監査をするグループ」と「業務をするグループ」が同居しています。代表者： 業務をするグループのリーダーが、従来通り**「代表取締役」**として会社を代表します。② 指名委員会等設置会社（代表執行役）特徴： 取締役会は「監督」に専念し、実際のビジネス（執行）は別の組織である「執行役」に丸投げします。代表者： 執行組織のトップが**「代表執行役」**として会社を代表します。この会社に「代表取締役」というポストは存在しません。3. 整理：2つの委員会設置会社の徹底比較試験で「どっちがどっち？」と迷わないための最終チェックリストです。項目監査等委員会設置会社指名委員会等設置会社代表者の名称代表取締役代表執行役誰が選ぶか取締役会取締役会取締役が業務を行うか行う（監査等委員以外）原則行わない（執行役に任せる）執行役の有無任意（置かなくてもよい）必須4. 合格へのアドバイス① 「代表取締役」の不在指名委員会等設置会社において、「代表取締役を選定しなければならない」という選択肢が出たら即座に**「×」**です。そこにあるのは「代表執行役」という看板だけです。② 権限の強さ「代表執行役」は、従来の代表取締役と同等の、会社を代表し業務を執行する強力な権限を持っています。名称は違えど、対外的なパワーは同じだと考えましょう。「『監査等委員会設置会社』は、従来の会社に監査のプロを混ぜた『進化系』なので代表取締役がいる。『指名委員会等設置会社』は、監督と執行を完全に切り離した『別世界』なので、執行のプロである代表執行役が主役になる、と整理しておきましょう。」",
           "1. 根拠条文：会社法第327条第5項特定の高度なガバナンス形態をとる会社に対し、会計監査人の設置を義務付けています。会社法第327条5項監査等委員会設置会社及び指名委員会等設置会社は、会計監査人を置かなければならない。2. 解説：なぜ「会計監査人」が必須なのか監査等委員会や指名委員会等設置会社は、従来の「監査役」という仕組みを捨てて、取締役会内部の「委員会」による監督を選んだ会社です。監督の質を担保する： 内部の取締役（委員）が監督を行う以上、計算書類の正確性については、完全に外部の独立したプロ（公認会計士等）の目を入れなければ、株主や債権者の信頼が得られないためです。大会社との共通点： 以前学習した通り「大会社」も会計監査人が必須でしたが、委員会設置会社は規模に関わらず（たとえ大会社でなくても）、この形態を選んだ瞬間に会計監査人の設置義務が発生します。3. 整理：会計監査人が「絶対必要」な3つのケース試験で「会計監査人を置かなければならないのは？」と聞かれたら、この3パターンを即答できるようにしましょう。設置義務がある会社理由・ポイント1. 大会社社会的影響力が大きいため。2. 監査等委員会設置会社内部監督と外部会計監査のセットが必要なため。3. 指名委員会等設置会社同上。より厳格なガバナンスを求めるため。4. 合格へのアドバイス① 「監査役」との対比に注意これまでの復習になりますが、ここが試験の「ひっかけ」の宝庫です。監査等・指名委員会等設置会社において：会計監査人：置かなければならない（義務）監査役：置いてはならない（禁止）② 誰が選ぶのか会計監査人の選任や解任に関する議案の内容は、取締役ではなく**「監査等委員会」または「監査委員会」**が決定します。自分たちをチェックする人を、チェックされる側の取締役が勝手に選べないようにして、独立性を守っています。「『委員会』という新しい監督スタイルを選んだ会社は、セットで『会計のプロ（会計監査人）』も雇わなければならない。これはガバナンスの品質を保証するための強制オプションである、と整理しておきましょう。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25735,6 +28702,13 @@ export const SUBJECTS = {
           "1. どこが「誤り」なのか「その過半数は、社外取締役でなければならない」という部分が間違いです。監査役会設置会社のルール（会社法327条の2）： 上場会社等の公開大会社（監査役会設置会社）に義務付けられているのは、社外取締役を**「1人以上」**置くことです。「過半数」が必要なのは？： 社外取締役が「過半数」必要とされるのは、**「指名委員会等設置会社」や「監査等委員会設置会社」**の各委員会メンバー（過半数が社外）などのケースです。2. 解説：なぜ「過半数」ではないのか日本の多くの企業が採用している「監査役会設置会社」という形態では、社外のチェック機能は主に「監査役会（半数以上が社外）」が担っています。段階的な導入： かつては「1人もいなくて良い（理由を説明すればOK）」という時代がありましたが、現在は最低1人は必須となりました。ガバナンスコードの影響： 法律（会社法）では「1人以上」ですが、東証のルール（コーポレートガバナンス・コード）では「3分の1以上」や「過半数」を求めています。試験ではあくまで**「法律（会社法）」の数字（1人以上）**を答える必要があります。3. 整理：社外取締役の設置義務まとめ「社外取締役」を何人置かなければならないかの比較表です。会社形態社外取締役の義務根拠監査役会設置会社（上場大会社）1人以上会社法327条の2監査等委員会設置会社過半数（監査等委員の）会社法331条6項指名委員会等設置会社過半数（各委員会の）会社法400条3項4. 合格へのアドバイス① 「過半数」と「半数以上」の混同監査役会（社外監査役）：半数以上（329条3項）各種委員会（社外取締役）：過半数（400条3項など）この「以上」が含まれるかどうかの1票の差が、試験での合否を分ける急所です。② 大会社の「社外監査役」との違い今回の問題文にあるような「公開・大会社」の場合、社外監査役については、先ほど学習した通り「監査役会の半数以上（3人なら2人）」が必要になります。これと「社外取締役（1人以上）」を混ぜて出題するのが定番のひっかけです。「上場している大きな監査役会設置会社は、社外取締役を最低1人は入れなければならない。でも『過半数』までは法律で強制されていない（それは委員会設置会社のルール）、と整理しておきましょう。」",
           "1. 根拠条文：会社法第331条6項監査等委員会のメンバー構成についての必須ルールです。会社法第331条6項監査等委員会設置会社においては、監査等委員である取締役は、三人以上で、その過半数は、社外取締役でなければならない。2. 解説：なぜ「過半数」でなければならないのか監査等委員会設置会社は、従来の監査役会に代わって、取締役会の内部から経営を監督する形態です。「数」による支配の防止： 監査役会（半数以上）よりもさらに厳しい**「過半数（半分を超える）」**という条件を課すことで、社内出身の取締役だけで監督機能を無効化できないようにしています。議決権の重み： 監査等委員は「取締役」としての議決権も持っているため、その過半数を社外にすることで、取締役会全体の意思決定にも社外の視点を強く反映させる狙いがあります。3. 整理：似て非なる「社外」の比率（最重要！）ここが行政書士試験の「合否の分かれ目」です。絶対に混同しないよう整理しましょう。機関・組織社外の比率覚え方監査役会半数以上 (1/2以上)3人なら2人。4人なら2人でもOK。監査等委員会 (本問)過半数 (1/2超)3人なら2人。4人なら3人必要！指名・報酬・監査委員会過半数 (1/2超)指名委員会等設置会社も「過半数」。4. 合格へのアドバイス① 「以上」と「超（過半数）」の1票差3人の場合はどちらも「2人以上」で結果は同じですが、4人の場合に差が出ます。監査役会：2人が社外ならセーフ。監査等委員会：2人が社外だとアウト（3人必要）。この「偶数のときの1票の差」を突いてくるのが試験の常套手段です。② 全員が「取締役」監査等委員は、監査役ではなく、あくまで**「取締役」**です。そのため、監査等委員を選任する際も、他の取締役とは「区別」して株主総会で決議する必要があります（329条2項）。「監査役会は『半分（以上）』でいいけれど、委員会系（監査等・指名など）は『半分を超える（過半数）』メンバーが社外でないと認められない、と整理しておきましょう。」",
           "1. 根拠条文：会社法第400条各委員会のメンバー構成と、社外取締役の比率についての必須ルールです。会社法第400条各委員会は、委員三人以上で組織する。各委員会の委員は、取締役の中から、取締役会の決議によって選定する。各委員会の委員の過半数は、社外取締役でなければならない。2. 解説：なぜ「3人以上」で「過半数が社外」なのか指名委員会等設置会社は、社長（執行役）のクビを切り、報酬を決め、不正を監視する「究極の監督型」です。監督の純度を高める： 社長（執行役）の息がかかった内部の取締役だけで委員会を支配できないよう、**「過半数（半分を超える）」**を社外の人間にすることを義務付けています。兼任の禁止： 特に「監査委員会」の委員は、その会社の執行役や従業員などを兼ねることができません（400条4項）。「自分でやって、自分でチェックする」のを防ぐためです。3. 整理：監査役会 vs 監査等委員会 vs 各委員会（指名等）試験で最も狙われる「人数」と「社外比率」の最終まとめです。ここを間違えなければ、機関設計の問題はほぼ得点源になります。組織・委員会最低人数社外の比率偶数（4人）の場合監査役会3人半数以上2人が社外でOK監査等委員会3人過半数2人が社外だとアウト指名・報酬・監査委3人過半数2人が社外だとアウト4. 合格へのアドバイス① 「以上」と「過半数」の罠監査役会だけが「半数以上（1/2以上）」で、新しくできた委員会系はすべて「過半数（1/2超）」です。「委員会は厳しい（過半数）」と覚えてしまいましょう。② 選定の主体委員は「株主総会」ではなく、**「取締役会」**が自分たちの中から選びます。ただし、そもそも取締役として選ばれるのは株主総会ですので、間接的に株主のチェックは受けていることになります。「『指名委員会等設置会社』はガバナンスの最高峰。だから3つの委員会すべてに3人以上が必要で、その半分超（過半数）は必ず『外の人（社外取締役）』でなければならない、と整理しておきましょう。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25786,6 +28760,13 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           "",
           "",
           "",
@@ -25869,6 +28850,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第458条\n配当ができる前提条件としての「純資産」の最低ラインです。\n\n会社法第458条\n前条第一項各号に掲げる事項を定めた場合において、当該日における純資産額が三百万円を下回るときは、株式会社は、剰余金の配当をすることができない。\n\n2. 解説：なぜ「300万円」なのか\nこの「300万円」という数字、しゅうさくさんならピンとくるかもしれません。\n\n旧最低資本金制度の名残： かつての法律では、株式会社を作るには「最低300万円の資本金」が必要でした。現在は「1円」から設立できますが、「配当をするようなまともな会社なら、せめて300万円くらいの純資産は持っていなさい」というルールが残っています。\n\n債権者保護の「しきい値」： 純資産が300万円を切っている状態で配当を出すことは、会社を「空っぽ」にする行為とみなされ、固く禁じられています。\n\n分配可能額との関係： たとえ計算上の「分配可能額」がプラスであっても、純資産そのものが300万円未満なら、1円も配当できません。\n\n3. 整理：配当に関する「3つ」の壁\n会社が配当を出すためには、以下の3つのハードルをすべて超える必要があります。\n\n純資産の壁： 純資産額が 300万円以上 あること（本問）。\n\n分配可能額の壁： 剰余金の範囲内であること（461条）。\n\n積立の壁： 配当の1/10を、資本金の1/4に達するまで積み立てること（445条4項）。\n\n4. 合格へのアドバイス\n① 数字のひっかけ\n行政書士試験では、この「300万円」を「100万円」や「500万円」に入れ替えてくる問題が予想されます。また、「資本金」が300万円ではなく、あくまで**「純資産額」**が300万円である点に注意してください。\n\n② 違反した場合の責任（462条）\nもし300万円を下回っているのに配当を強行してしまった場合、その配当に関わった取締役などは、会社に対してその配当額を全額返済（補填）する責任を負います。\n\n「『資本金1円』で会社は作れるけれど、『配当』という贅沢をするなら、会社の中に最低300万円の財産（純資産）を蓄えてからにしなさい、というルールです。」",
           "1. どこが「誤り」なのか「定款の定めによって……取締役会の権限とすることはできない」という部分が間違いです。原則（会社法454条1項）： 剰余金の配当は、原則として**「株主総会」**の決議（普通決議）で決めます。例外（会社法459条1項）： 以下の条件を満たせば、**「定款」に定めることで、配当の決定を「取締役会」**に任せることができます。会計監査人を置いていること。取締役の任期が「1年」であるなど、特定の要件を満たしていること（監査等委員会設置会社や指名委員会等設置会社も含む）。2. 解説：なぜ「取締役会」に任せてもいいのか上場企業などの大きな会社では、機動的な利益還元が求められます。機動性の確保： 年に1回の定時株主総会を待たなくても、取締役会でサッと決めて「四半期配当」などを行うことが可能になります。プロへの一任： しっかりした外部チェック（会計監査人）が入っている会社なら、配当の額も経営判断の一部として取締役に任せても安心だ、という考え方です。3. 整理：配当の決定機関まとめ試験で狙われる「誰がいつ決めるか」の仕分け表です。会社の種類原則の決定機関定款による特例一般的な会社株主総会なし会計監査人設置会社株主総会取締役会に一任可能（459条）中間配当（取締役会があるなら）取締役会定款の定めが必要（454条5項）4. 合格へのアドバイス① 「中間配当」の引っかけご提示の文章に「中間配当を行うときを除いて」とありますが、中間配当こそ「1会計年度に1回に限り、取締役会の決議で配当できる」という旨を定款で定める必要があります（454条5項）。② 株主総会の権限は消えない取締役会に配当決定権を譲ったとしても、株主総会で配当を決める権限が完全になくなるわけではありません（459条2項）。大家さん（株主）が「やっぱり自分たちで決める！」と言えば、それも可能です。「配当は原則『株主総会』で決めるもの。でも、外部監査がしっかりしている会社（会計監査人設置会社）なら、定款に書いておけば『取締役会』でスピーディーに決めてもいいよ、と整理しておきましょう。」",
           "1. どこが「誤り」なのか「分配可能額を超えて剰余金の配当を行うことができる」という部分が明確な間違いです。分配可能額の絶対性（会社法461条1項）： 株式会社が配当できる金額には、厳格な上限（分配可能額）が定められています。純利益との関係： 「今年1億円儲かった（当期純利益）」からといって、そのまま1億円配当できるわけではありません。過去の欠損（赤字）を埋めたり、準備金を積み立てたりした後の、**「会社に残った余剰分（剰余金）」**からさらに調整を加えた額が上限となります。2. 解説：なぜ「分配可能額」を守らなければならないのか会社にお金を貸している債権者にとって、会社の財産は唯一の担保です。資本維持の原則： 利益が出たからといってすべて配ってしまうと、会社が「空っぽ」になり、倒産リスクが高まります。「配当」と「純利益」は別物： * 当期純利益： その1年間で稼いだ額。分配可能額： 会社が「外に出しても安全だ」と法律が認めた額。※たとえ大赤字の年でも、過去の蓄え（剰余金）が分配可能額の範囲内であれば、配当を出すこと自体は可能です。3. 整理：配当の「上限」と「下限」ルール試験で狙われる「配当のOK・NG」の境界線です。チェック項目ルール備考上限（いくらまで？）分配可能額 の範囲内1円でも超えたら違法配当。下限（最低いくら必要？）純資産が 300万円 以上300万円未満なら1円も配当不可。積立（セットの義務）配当額の 1/10 を積立資本金の1/4に達するまで。4. 合格へのアドバイス① 違法配当の責任（462条）もし分配可能額を超えて配当（違法配当）をしてしまった場合、その配当を受けた株主や、配当を決めた取締役などは、会社に対して**「受け取った（支払った）お金を返せ！」**という厳しい責任を負わされます。② 「当期」ではなく「最終事業年度」分配可能額の計算は、直近の決算（最終事業年度の貸借対照表）をベースに行います。期中にどれだけ利益が出ていても、基本的には決算が終わるまでは分配可能額には反映されません。「『稼いだお金（利益）』と『配当していいお金（分配可能額）』は別物。どれだけお祝い（利益）があっても、金庫の底（分配可能額）を抜くような配当は絶対にダメ、と整理しておきましょう。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -25947,6 +28935,13 @@ export const SUBJECTS = {
           "1. どこが「誤り」なのか「細分化」や「均一化された割合的単位」という性質は、持分会社（合名・合資・合同会社）の「持分」にはありません。株式（株式会社）： 1株、2株と細分化されており、すべてが均一な単位です。誰が持っても1株の価値や権利は同じです。持分（持分会社）： 社員としての地位を「1個のまとまり」として捉えます。均一な単位に分かれているわけではなく、出資額や貢献度に応じた**「1人につき1つの地位」**というイメージです。2. 解説：持分と株式の決定的な違いなぜ「持分」は細分化されないのでしょうか。個性重視の持分会社： 合名会社などは「誰とやるか」という人間関係（個性）が極めて重要です。そのため、地位をバラバラに細分化して、見知らぬ誰かに売買されることを嫌います。資本重視の株式会社： 広く大量の資金を集めるために、権利を小さく均一に切り分け（細分化）、誰でも簡単に売り買いできるようにしています。3. 整理：地位の性質まとめ試験で「細分化・均一化」というキーワードが出たら、それは「株式会社（株式）」のことだと反応しましょう。比較項目株式会社（株式）持分会社（持分）単位の性質均一・割合的単位非均一・個性的地位細分化されている（1株単位）されていない（1人1個）譲渡のしやすさ自由が原則（公開会社）他の社員の承諾が必要（原則）4. 合格へのアドバイス① 「1人1票」の原則持分会社では、出資額がいくらであっても、原則として意思決定は**「社員1人につき1票」**です。これも「細分化・均一化」されていないことの表れです。対して株式会社は「1株につき1票」という、持っている単位（数）に応じた力（資本多数決）になります。② 払い戻しの有無持分会社の社員は、退社する際に会社から直接「持分の払い戻し」を受ける権利がありますが、株式会社の株主には原則として会社に対する「出資した金の返還請求」は認められていません（株を誰かに売って回収するしかありません）。「『株式』は小銭のように細かく分かれていて、誰の1円も同じ価値。対して『持分』は、その人自身の存在感そのもので、切り分けることができない1つの塊、と整理しておきましょう。」",
           "1. 株式会社の場合：原則「払い戻し不可」株式会社の株主には、会社に対して「出資したお金を返してくれ」と請求する権利はありません。資本維持の原則： 一度会社に入れたお金（資本）は、会社債権者のための「担保」となります。株主が勝手にお金を引き出せると、会社が空っぽになり、債権者が困るからです。投下資本の回収方法： お金を戻したいときは、会社に請求するのではなく、**「自分の持っている株を誰か他の人に売る」**ことで現金を回収するのがルールです。2. 持分会社（合名・合資・合同）の場合：原則「払い戻し可能」一方で、持分会社の社員には、一定のルールの下で払い戻しを受ける権利が認められています。退社による払戻し（会社法611条）： 持分会社の社員が退社する場合、その持分に応じた払い戻しを受けることができます。出資の払戻し（会社法624条・632条）： 退社しなくても、定款を変更して出資額を減らすことで、お金を戻してもらうことが可能です。ただし、合同会社などの有限責任社員の場合は、債権者保護の手続き（4分の1ルールなど）が必要になります。3. 整理：会社形態ごとの「出口」の違い試験では「株主」と「持分会社の社員」を混同しないよう注意しましょう。会社形態会社への払戻請求資本回収のメイン手段株式会社原則不可株式の譲渡（売却）持分会社可能（手続き要）持分の払戻し（退社時など）4. 合格へのアドバイス① 「自己株式の取得」という例外株式会社でも、会社が株主から自社の株を買い取る「自己株式の取得」という形で、実質的に払い戻しのようなことが行われる場合があります。ただし、これはあくまで「会社による買い取り」という形をとります。② 債権者保護どちらの形態であっても、会社にお金がない（欠損がある）状態での無理な払い戻しは、債権者を害するため厳しく制限されています。「株式会社は『一度入れたら（売るまでは）戻らない』。持分会社は『（ルールを守れば）戻ってくる』。この流動性の違いが、両者の大きな性格の差を生んでいる、と整理しておきましょう。」",
           "1. 持分会社（合名・合資・合同）の場合： 「正解」持分会社では、原則として**「社員 ＝ 経営者」**です。業務執行権（会社法590条1項）： 社員は、定款に別段の定めがない限り、全員が会社の業務を執行する権利と義務を持ちます。善管注意義務（会社法593条1項）： 業務を執行する社員は、会社に対して「善良な管理者の注意（プロとしての注意）」をもって職務に当たる義務を負います。2. 株式会社の場合： 「誤り」株式会社では、**「所有（株主）と経営（取締役）」**が分離しています。株主の義務： 株主の唯一の義務は「出資（株代金の払い込み）」です。経営に関わる必要はなく、善管注意義務も負いません。取締役の義務（会社法330条・355条）： 善管注意義務や忠実義務を負うのは、株主から経営を託された**「取締役」**です。3. 整理：会社形態ごとの「役割」と「義務」試験で「社員」という言葉が出てきたら、どちらの会社を指しているか慎重に見極めましょう。項目株式会社（株主）持分会社（社員）業務執行原則として行わない原則として全員が行う善管注意義務負わない業務執行社員は負う主な役割お金を出して配当を待つお金を出し、自ら働く4. 合格へのアドバイス① 「善管注意義務」の正体「善良な管理者の注意」とは、その人の職業や地位において一般的に期待される程度の注意のことです。これを怠って会社に損害を与えると、損害賠償責任を問われることになります。② 業務執行を「一部の人」に任せる場合持分会社であっても、定款で「業務執行社員」を特定の人に限定することができます。その場合、業務を行わない「非業務執行社員」は、善管注意義務を負わなくなります（監視権などは残ります）。「株式会社では、株主は『お金を出すだけ』。持分会社では、社員は『お金も出すし、働きもする』。だから、働く義務や注意義務があるのは持分会社の社員だけである、と整理しておきましょう。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -26003,6 +28998,13 @@ export const SUBJECTS = {
           "1. 根拠条文：会社法第768条1項2号株式交換契約で定めるべき事項として、対価の柔軟性が認められています。会社法第768条1項2号株式交換完全親会社が株式交換完全子会社の株主に対してその株式に代わる金銭等を交付するときは、当該金銭等についての次に掲げる事項……2. 解説：対価の柔軟化（対価の多角化）「交換」という言葉から「株と株を交換する」イメージが強いですが、法律上はもっと広い意味で使われています。現金対価（キャッシュ・アウト）： 子会社の株主に現金を引き換えに渡すことで、完全にグループから退出してもらうことができます（スクイーズアウトの手法としても使われます）。親会社の親会社の株式（三角株式交換）： 外国企業が日本の子会社を使って、日本の会社を「孫会社」にする際などに、外国本社の株を対価として渡すことができます。社債や新株予約権： 株式以外にも、これらを対価として組み合わせることも可能です。3. 整理：組織再編の「対価」まとめ「株しか渡せない」という制限は、現代の組織再編ルールではほとんど撤廃されています。手続き対価として渡せるもの備考株式交換金銭・株式・社債など何でもOK非常に柔軟です。合併・分割金銭・株式・社債など何でもOK同様に柔軟です。株式移転原則として「親会社の株」のみ※ここが試験のひっかけ！ 新しく親会社を作るため、現金などの別財産を出す主体がまだ存在しないからです。4. 合格へのアドバイス① 「株式移転」との違いを死守せよ！行政書士試験では、「株式交換」と「株式移転」の対価のルールの違いが本当によく出ます。株式交換： すでに存在する親会社が対価を払うので、「現金」もOK。株式移転： これから親会社を作るので、対価は**「新設する親会社の株」に限定**される（773条1項5号）。② 差損が生じる場合の制限対価として現金を渡す場合でも、会社の純資産が減りすぎて債権者を害さないよう、分配可能額の範囲内で行うなどの制限がかかる場合があります。「『交換』という名前だけれど、実態は『買い取り（現金）』でもOK。ただし、これから親会社を作る『株式移転』だけは、まだお金がないから『株（新株）』でしか払えない、と整理しておきましょう。」",
           "1. どこが「誤り」なのか「買い取ることを請求することはできない」という部分が間違いです。反対株主の権利（会社法797条1項）： 株式交換をする場合、反対株主は、親会社（または子会社）に対し、自己の有する株式を公正な価格で買い取ることを請求できます。親会社も子会社も： この権利は、飲み込まれる側の「完全子会社」の株主だけでなく、飲み込む側の**「完全親会社」の株主**にも認められています。2. 解説：なぜ「親会社の株主」にも権利があるのか「子会社の株主は立場が変わるからわかるけど、親会社の株主は関係ないのでは？」と思うかもしれません。しかし、親会社にとっても株式交換は大きな変化です。株式の希薄化： 親会社が子会社株主に「新株」を発行して対価とする場合、既存の親会社株主が持っている株の価値が薄まってしまう（希薄化）可能性があります。リスクの引き受け： 全く別の会社を100%子会社として抱え込むことは、経営リスクを背負うことでもあります。最終手段の保障： 「そんな再編をする会社にはもう付いていけない」という株主に対し、投下した資本を回収して退場するチャンス（出口）を与えるのがこの制度の趣旨です。3. 整理：買取請求ができる「反対株主」の条件ただ「嫌だ」と言うだけでなく、以下の手続きを踏む必要があります（797条2項）。事前の反対通知： 株主総会より前に、会社に対して「私は反対です」と通知すること。当日の反対： 実際の株主総会で反対票を投じること。期間内の請求： 効力発生日の20日前から前日までの間に、正式に買取請求を行うこと。4. 合格へのアドバイス① 買取請求ができない例外（簡易組織再編）ここが超重要です！親会社が子会社を飲み込む際、子会社の規模が親会社の純資産の $1/5$（20%）以下 である場合、親会社側では株主総会を省略できます（簡易株式交換：796条2項）。この場合、親会社の株主には影響が小さいとみなされ、原則として買取請求権は認められません（797条1項但書）。② 略式組織再編親会社がすでに子会社の議決権の $90\\%$ 以上 を握っている場合（略式株式交換：796条1項）、子会社の株主総会を省略できます。この場合も、子会社の少数株主には買取請求権が認められます。「会社の大改造（組織再編）に納得できない株主には、『適正価格で株を買い取らせて引退する権利』という脱出ボタンが用意されている、と整理しておきましょう。」",
           "1. どこが「誤り」なのか「異議を述べることはできない」という部分が間違いです。原則（会社法789条1項）： 株式交換は「株主」の入れ替えに過ぎず、会社の財産（金庫の中身）は変わりません。そのため、一般の債権者（銀行など）には異議を述べるチャンスは与えられません。例外（会社法789条1項3号）： 株式交換に伴い、子会社の**「新株予約権付社債」**を親会社が承継する場合などは、債権者の利害に直接影響するため、異議を述べることができます。2. 解説：なぜ「新株予約権付社債」は特別なのか新株予約権付社債は、「借金（社債）」と「株をもらう権利（予約権）」がセットになった特殊な商品です。権利内容の変化： 株式交換が行われると、子会社の株をもらうはずだった権利が「親会社の株をもらう権利」に強制的に書き換えられたり、消滅したりすることがあります。債権者の不利益： もともと「この子会社の株が欲しくて金を貸した（社債を買った）」人にとって、勝手に条件を変えられるのは重大な不利益です。そのため、法律はこのタイプの債権者にだけは「ちょっと待った！」と言う権利（異議申述権）を認めています。3. 整理：組織再編で「異議」を言えるのは誰か試験で狙われる「債権者保護手続き」の要否まとめです。手続き債権者の異議申述権理由・例外合併・分割原則として「あり」会社の財産そのものが移動・合体するため。株式交換原則として「なし」株主が入れ替わるだけで、会社財産は動かないため。株式交換（例外）「あり」新株予約権付社債などを親会社が引き継ぐ場合。4. 合格へのアドバイス① 「新株予約権付社債」というキーワード行政書士試験の商法・会社法において、「株式交換で債権者が異議を言えるケースは？」と問われたら、反射的にこの「新株予約権付社債」を思い出してください。これ以外の一般債権者は、原則として蚊帳の外です。② 異議を述べた場合の結果もし債権者が正当な異議を述べた場合、会社は「弁済（借金を返す）」するか、「相当の担保を提供」するなどの対応を迫られます。「株式交換は『オーナーが変わるだけ』だから、お金を貸している人は文句を言えないのが基本。でも、株をもらう約束（新株予約権）をしていた社債権者だけは、条件が変わると困るので『異議』を言える、と整理しておきましょう。」"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -26060,6 +29062,13 @@ export const SUBJECTS = {
           "1. 原則：非公開会社（譲渡制限会社）の場合「正解」です。知らない間に新しい株主が増えて、既存株主の持ち株比率（支配権）が下がるのを防ぐため、最も重い判断を仰ぎます。決定機関： 株主総会の特別決議（会社法199条2項、309条2項5号）。理由： 閉鎖的な会社では「誰が株主か」が極めて重要だからです。2. 例外：公開会社の場合「誤り」です。市場からスピーディーに資金を調達する必要があるため、機動性が重視されます。決定機関： 原則として取締役会（会社法201条1項）。理由： いちいち株主総会を開いていては、絶好の増資タイミングを逃してしまうからです。3. 整理：募集事項の決定機関まとめ試験で最も狙われる「公開 vs 非公開」の比較表です。会社の形態原則の決定機関決議の種類非公開会社株主総会特別決議公開会社取締役会普通決議（取締役会設置の場合）注意点（特に有利発行）：公開会社であっても、特定の者に「相場より著しく安い価格」で株を発行する場合（特に有利な内容の発行）は、既存株主に不利益を与えるため、例外なく株主総会の特別決議が必要になります（199条3項、201条1項）。4. 合格へのアドバイス① 「募集事項」とは何か「発行する株の数」「払込金額（値段）」「払込期日」などの具体的な条件のことです。② 委任のルール株主総会で「枠」だけ決めて、具体的な条件（募集事項）の決定を取締役会に委任することも可能ですが、これにも期限（1年以内）などの制約があります（200条）。「『非公開会社』は株主の顔ぶれを守るために総会でじっくり決める。『公開会社』はチャンスを逃さないために取締役会でサッと決める、と整理しておきましょう。」",
           "1. 根拠条文：会社法第329条第1項・第326条第1項役員の選任方法と、取締役の最低人数について定めています。会社法第329条1項役員（取締役、会計参与及び監査役をいう。）は、株主総会の決議によって選任する。会社法第326条1項株式会社には、一人又は二人以上の取締役を置かなければならない。2. 解説：なぜ「株主総会」で選ぶのか「所有（株主）と経営（取締役）」が分かれている株式会社において、誰に経営を託すかを決めるのは、最終的なリスクを負っている株主であるべきだからです。選任の決議（341条）： 取締役の選任決議は、原則として普通決議で行われます。ただし、議決権を行使できる株主の「過半数」が出席し、その出席株主の「過半数」の賛成が必要です（定足数を $1/3$ まで下げることは可能ですが、排除はできません）。「1人以上」のルール： * 非取締役会設置会社（小さな会社）：1人以上いればOK。取締役会設置会社：チームで意思決定するため、最低3人以上必要（331条5項）。3. 整理：役員の「選任」と「解任」まとめ試験では、選ぶ時と辞めさせる時の「ハードル（決議要件）」の違いがよく問われます。項目決議の種類ポイント取締役の選任普通決議定足数は $1/3$ まで緩和可能。取締役の解任普通決議選任と同様。累積投票で選ばれた等の例外あり。監査役の選任普通決議監査役の同意等が必要。監査役の解任特別決議身分を強く守るため、ハードルが高い！4. 合格へのアドバイス① 「累積投票制度」株主が2人以上の取締役を選任する場合、1株につき選任する人数分の票を与え、特定の候補者に集中投下できる仕組み（342条）があります。少数株主でも自分の息がかかった取締役を送り込みやすくするための制度です。② 欠員が出た場合取締役が定数を下回ってしまった場合、速やかに新しい人を選ばなければなりませんが、一時的に「仮締役（一時取締役）」を裁判所に選んでもらうこともあります（346条2項）。「会社を誰に任せるかは、株主が総会で決める一番大事なルール。小さな会社なら1人でいいけれど、取締役会を作るなら3人集めなさい、と整理しておきましょう。」",
           "1. 根拠（なぜ誤りなのか）\n現在の会社法では、最低資本金制度は廃止されています。\n\n現在のルール: 資本金の額は「1円以上」であれば、いくらでも設立可能です（会社法上、下限の規定はありません）。\n\nかつてのルール: 旧商法時代には、株式会社は1,000万円以上、有限会社は300万円以上という制限がありました。\n\n問題文にある「300万円」という数字は、昔の有限会社の基準などを混ぜた「ひっかけ」の数字です。\n\n2. 関連知識（セットで覚えるべきこと）\n試験では「最低資本金がない」ことに関連して、以下の知識も問われやすいです。\n\n資本金の決定と計上\n原則: 出資した額の全額を「資本金」とする。\n\n特例: 出資額の2分の1を超えない額は、資本金として計上せず、**「資本準備金」**とすることができる（会社法445条2項・3項）。\n\nアドバイス: 「全額を資本金にしなくてもいい」という柔軟性がポイントです。\n\n設立時の出資\n株式会社を設立する際、発起人は設立時発行株式の「全数」を引き受け、その全額を払い込む必要があります（全額払込義務）。1円なら1円を確実に払い込みます。\n\n3. 受験生へのアドバイス\n「数字」のひっかけに注意\n行政書士試験の商法・会社法では、この問題のように**「過去の制度」や「他の数字」を混ぜたひっかけ**が頻出します。\n「最低資本金は1,000万円である」「500万円である」など、どんな数字が出てきても「今は1円でOK（制限なし）」と即答できるようにしましょう。\n\n会社法の優先順位\n会社法は条文数が多く、深追いすると時間が足りなくなります。しかし、この「設立」に関する分野は、行政書士試験において最も出題頻度が高い得点源です。\n\n設立（発起設立・募集設立の違いなど）\n\n株式\n\n機関（取締役会など）\n\nこの順番で優先的に学習することをおすすめします。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -26116,6 +29125,13 @@ export const SUBJECTS = {
           "1. 根拠（なぜ誤りなのか）代表取締役の氏名は登記事項ですが、その**「権限の制限」については登記することができません。**会社法上の原則: 代表取締役は、会社の業務に関する一切の裁判上または裁判外の行為をする権限を有します（会社法349条4項）。第三者保護の観点: もし「1,000万円以上の取引には取締役会の承認が必要」といった内部的な制限を登記できてしまうと、取引相手はいちいち登記簿を確認しなければならず、ビジネスのスピードが落ちてしまいます。結論: 内部的な権限制限は可能ですが、それは善意の第三者に対抗することができません（会社法349条5項）。そのため、そもそも「制限の内容」は登記事項に含まれていないのです。2. 関連知識（セットで覚えるべきこと）代表取締役に関連して、登記の有無を問われる項目を比較して覚えましょう。登記「する」もの氏名: 全ての株式会社で必須。住所: 代表取締役については、住所も登記事項です（通常の取締役は氏名のみ）。代表権の範囲（限定的な場合）: 清算人など特殊なケースを除き、通常の代表取締役の権限を「○○の範囲に限る」といった登記は認められません。登記「しない」もの（内部的な決め事）権限の制限: 「契約締結には社長の印鑑が必要」といった社内ルール。担当業務: 「営業担当」「人事担当」といった役割分担。3. 受験生へのアドバイス「善意の第三者」を守る法律の姿勢会社法を解くコツは、**「取引の安全」**という言葉を意識することです。もし、代表取締役の権限にこっそり制限がかけられていて、後から会社が「あの契約は社長に権限がなかったから無効だ」と言い出せたら、怖くて誰もその会社と取引できませんよね？ですから、**「代表取締役のパワーは法律でフルスロットルと決まっていて、勝手にリミッター（制限）を付けて外部に見せつけることはできない」**とイメージしておきましょう。比較まとめ表項目登記の可否理由・ポイント代表取締役の氏名○誰がボスか教えるため代表取締役の住所○責任追及の場所を特定するため権限の制限内容×取引の安全を害するため（対抗不可）支配人の氏名○包括的な代理権があるためここまで「登記すべきかどうか」という一連の問題を解いてきましたが、これらはすべて「取引相手がその情報を知る必要があるか？」という視点で一貫しています。",
           "1. 根拠（なぜ誤りなのか）\n株式交換を行っても、完全子会社となる会社の登記簿に**「株式交換により完全子会社になった」という事実は記録されません。**\n\n理由: 株式交換は、子会社の株主が持っている株を親会社に強制的に移転させる手続きです。子会社という「法人格」自体に変化はなく、資本金の額や代表取締役が変わるわけでもありません（役員が入れ替わることは多いですが、それは別個の登記です）。\n\n株主情報の場所: 「誰が株主か」という情報は、会社の**「株主名簿」には記載されますが、「商業登記（登記簿）」には記載されません。** 登記簿を見ても、その会社が誰の子会社なのかは通常分からないようになっています。\n\n2. 関連知識（セットで覚えるべきこと）\n株式交換において「登記」が必要になるのは、主に完全親会社の方です。\n\n完全親会社側の登記\n完全親会社が、子会社の株主に対して対価として自社の新株を発行したり、自己株式を交付したりする場合、以下の登記が必要になることがあります。\n\n発行済株式総数の変更: 新株を発行した場合\n\n資本金の額の変更: 資本金を増やした場合\n\n株式移転との違い（ここが重要！）\n「株式移転」は、新しく親会社を設立する手続きです。\n\n完全子会社: 登記は不要（株式交換と同じ）。\n\n完全親会社: 設立の登記が必要です。\n\n3. 受験生へのアドバイス\n「登記簿」に載る情報のルール\n行政書士試験で「登記すべきか？」と問われたら、以下の原則を思い出してください。\n\n「株主（オーナー）が誰か」は、登記簿には載らない。\n\n株式会社の株主が1人（100%親子会社）になっても、登記簿には「株主：株式会社A」とは書かれません。\n\n登記簿に載るのは、あくまで「会社そのもののスペック（名前、場所、目的、資本金）」と「責任者（役員）」だけです。\n\n組織再編の学習優先順位\n組織再編（合併、分割、株式交換、株式移転）は、深入りするとパニックになります。まずは以下の2点を固めるのが合格への近道です。\n\n債権者保護手続きが必要なケース（原則、全部必要だが株式交換の子会社側などは例外あり）\n\n事後備置書面などの手続きの流れ\n\n今回の「子会社の登記は不要」という知識は、商業登記法の消去法でも使える強力な武器になります！",
           "1. 根拠（なぜ正しいのか）\n会社法上、会計参与などの役員等の責任を一定の範囲に限定できる「責任限定契約」を締結するためには、あらかじめ定款にその旨の定めを置く必要があります（会社法427条1項）。\n\nそして、この「定款の定め（責任限定契約に関する規定）」がある場合は、登記事項となります（会社法911条3項24号）。\n\n理由: 会社の役員が、本来負うべき賠償責任を限定しているという事実は、会社に損害が出た際の債権者の取り分に影響する重要な情報です。そのため、登記によって外部に公示しなければならないとされています。\n\n2. 関連知識（セットで覚えるべきこと）\n責任限定契約を締結できる相手と、登記のルールをセットで覚えましょう。\n\n責任限定契約を結べる対象者\n以下のメンバーが対象です。**「社外・会計（×2）・監査」**と覚えるとスムーズです。\n\n社外取締役（※「非業務執行取締役」全般ですが、試験では社外が中心）\n\n会計参与\n\n監査役\n\n会計監査人\n\n注意！ 社内でバリバリ業務を行う「（社外ではない）取締役」や「執行役」とは、この契約を結ぶことはできませんし、登記もありません。\n\n登記される内容\n登記されるのは「会計参与と責任限定契約を結べるという定款の規定があること」です。\n「実際に誰と契約を結んだか」という個別の契約状況までは登記されません。\n\n3. 受験生へのアドバイス\n「責任の免除」の3パターンを整理する\n会社法では、役員の責任を軽くする方法が3つあります。ここが混同しやすいので注意です。\n\n総株主の同意: （登記不要）いつでも可能。\n\n取締役会（株主総会）の決議による免除: （登記必要）定款の定めが必要。\n\n責任限定契約: （登記必要）定款の定めが必要。今回の問題。\n\n「登記すべき」か「不要」かの見分け方\nこれまで解いてきた問題と合わせて、判断基準をアップデートしましょう。\n\n内部的な役割分担（重要な使用人など） → 登記不要\n\nまだ始まっていない予備の状態（補欠役員など） → 登記不要\n\n外部の人が「その会社と取引・対決」する際に影響する重要ルール（責任の制限など） → 登記必要！\n\n責任限定契約は、万が一の時に「責任を負いきれません」という宣言なので、外部の人（債権者）にとっては無視できない情報です。だから登記が必要なのです。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -26172,6 +29188,13 @@ export const SUBJECTS = {
           "1. 根拠（なぜ誤りなのか）株主総会の招集通知を「書面」でしなければならないのは、特定の条件を満たす会社だけです。取締役会設置会社: 書面で行わなければなりません（会社法299条2項）。取締役会「非」設置会社: 原則として、書面である必要はありません。口頭や電話でも有効です。例外: 取締役会がない会社でも、株主が「書面投票」や「電子投票」をできることとしている場合は、書面での通知が必須になります（会社法299条3項）。「必ず書面で」というわけではないため、試験的には「×」となります。2. 関連知識（セットで覚えるべきこと）招集通知に関しては、「方法」だけでなく「期限」も非常によく狙われます。招集通知の期限（いつまでに？）会社の形態期限（原則）備考公開会社2週間前まで発送日が基準非公開会社1週間前まで定款でさらに短縮可能取締役会非設置会社1週間前まで書面・電子投票を認めない場合のみ招集手続きの省略株主全員の同意があるときは、招集手続き（通知）そのものを省略して、すぐに総会を開催することができます（会社法300条）。ただし、書面投票や電子投票を行う場合は省略できません。3. 受験生へのアドバイス「取締役会があるかないか」で判断する会社法を解く際のマインドセットとして、**「取締役会がある会社はルールが厳しい（書面必須）」「ない会社は緩い（口頭OK）」**という基本イメージを持っておきましょう。取締役会がある会社は規模が大きく、株主も多いため、確実に情報を伝えるために「書面」という証拠を残す必要があるのです。「〜なければならない」という言葉に反応する行政書士試験の商法・会社法では、「〜なければならない」「いかなる場合も〜」という強い断定表現が出てきたら、**「例外（取締役会非設置会社など）はないか？」**と疑う癖をつけてください。",
           "1. 根拠（なぜ誤りなのか）会計監査人を置かなければならないのは、主に以下の会社です（会社法327条、328条）。大会社（資本金5億円以上、または負債総額200億円以上の会社）指名委員会等設置会社監査等委員会設置会社これら以外の会社（一般的な中小企業など）は、定款で定めることで任意に置くことはできますが、義務ではありません。2. 関連知識（セットで覚えるべきこと）「会計監査人」と、よく似た名前の「会計参与」を比較して覚えるのが合格への近道です。会計監査人 vs 会計参与項目会計監査人会計参与資格公認会計士・監査法人のみ公認会計士・監査法人、または税理士・税理士法人立場外部からチェックする人（独立）取締役と一緒に計算書類を作る人（内部）設置義務大会社などは必須常に任意（義務はない）機関構成役員ではない（外部機関）株式会社の役員である大会社のセット「大会社」になった場合、セットで以下のルールも発動します。会計監査人の設置義務（今回のポイント）監査役会の設置義務（公開会社である大会社の場合）3. 受験生へのアドバイス「大会社 ＝ 会計監査人」と脳に刻む行政書士試験では、「大会社」というワードが出たら反射的に「会計監査人が必要！」と思い出せるようにしましょう。逆に、大会社でないのに「設置しなければならない」とあれば、それは「×」です。資格のひっかけに注意「会計監査人は税理士でもなれる」というひっかけ問題もよく出ます。監査（厳しいチェック）＝ 公認会計士参与（書類作成のサポート）＝ 税理士もOKというイメージで区別してください。",
           "1. 根拠（なぜ誤りなのか）\n会社法では、取締役の資格について以下のように定められています（会社法331条2項）。\n\n原則（公開会社など）: 株式会社は、取締役が株主でなければならない旨を定款で定めることができません。（所有と経営の分離を徹底するため）\n\n例外（非公開会社 / 譲渡制限会社）: 定款で定めることにより、「取締役は株主に限る」と制限することができます。\n\n問題文は「定めることができない」と一律に否定しているため、非公開会社の例外を認めている現行法上は「誤り」となります。\n\n2. 関連知識（セットで覚えるべきこと）\nなぜ非公開会社（譲渡制限会社）だけ、このような制限が許されるのでしょうか？\n\n非公開会社で認められる理由\n非公開会社は、親族経営など「身内」だけで運営されている小規模な会社が多いです。見ず知らずの人が取締役に入ってくるのを防ぎ、「オーナー ＝ 経営者」という形を維持したいというニーズが強いため、例外として認められています。\n\n取締役の「欠格事由」（なれない人）\n「株主かどうか」とは別に、法律上絶対になれない人もチェックしておきましょう。\n\n法人（会社が取締役になることはできません）\n\n破産手続開始の決定を受けて復権していない者（※以前は欠格事由でしたが、現在は削除され、代わりに**「欠格条項」**として整理されています）\n\n一定の罪（会社法違反など）を犯し、刑の執行が終わってから2年を経過していない者\n\n3. 受験生へのアドバイス\n「非公開会社はなんでもアリ」のイメージ\n行政書士試験の会社法において、非公開会社（譲渡制限会社）は**「定款で定めれば、かなり自由にルールをカスタマイズできる存在」**です。\n\n取締役を株主に限定できる\n\n取締役の任期を10年まで伸ばせる\n\n招集通知を電話で済ませられる\nなど、「非公開会社ならOK」という知識をリストアップしておくと、正誤判定のスピードが上がります。\n\n監査役との比較\nちなみに、監査役についても同様に、非公開会社であれば「株主に限る」と定款で定めることができます。取締役とセットで覚えてしまいましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       },
       {
@@ -26228,6 +29251,13 @@ export const SUBJECTS = {
           "1. 根拠（なぜ正しいのか）会社法第839条には、設立無効や新株発行無効などの判決の効力について定められています。将来効（将来に向かってのみ効力を生ずる）:判決が確定しても、それまでになされた新株発行に基づく行為（配当の支払い、議決権の行使、その後の株式譲渡など）が遡って無効になることはありません。 判決が確定した時点から先のことについて、その株式が無効になります。理由（取引の安全）:もし「発行時まで遡ってすべて無効」にしてしまうと、その株を信じて買った人や、配当を払った会社の経理処理などがすべてひっくり返り、法的混乱（パニック）が起きてしまいます。これを防ぐために、あえて過去の事実は認めたまま、将来の効力だけを消すという処理をします。2. 関連知識（セットで覚えるべきこと）無効判決が出た後の「後始末」についても試験で問われます。払込金の返還新株発行が無効になった場合、会社は株主に対して、払い込まれた金額を返さなければなりません（会社法840条1項）。利息は付さない: 返還するのは「払込金」そのものであり、利息まで払う必要はないとされています。効力が及ぶ範囲（対世効）この判決は、訴訟の当事者だけでなく、第三者に対しても効力を有します（会社法838条）。「この人にとっては有効だけど、あの人にとっては無効」というバラバラな状態にはなりません。3. 受験生へのアドバイス民法との「逆転」を意識する民法では、契約が無効になれば「最初からなかったこと（遡及効）」になるのが原則です。しかし、会社法（商法）では**「取引の安全」が最優先されるため、今回のように将来効**となるケースが非常に多いです。「民法の常識で解くと間違えるポイント」としてマークしておきましょう。設立無効との共通点前問で学習した「設立無効の訴え」も、全く同じ**「将来効」**です。設立無効 ＝ 将来効新株発行無効 ＝ 将来効合併無効 ＝ 将来効組織に関する大きな変更の無効は、すべて「将来に向かって」と覚えてしまってOKです！まとめ表：新株発行無効の訴え項目内容備考提訴期間公開会社：6か月 / 非公開会社：1年設立無効（6か月）と混同注意提訴方法訴えをもってのみ裁判外では主張不可判決の効力将来効遡及しない（最重要）後始末払込金の返還利息は不要新株発行無効の訴えについては、この「将来効」のほかに、**「提訴期間が公開・非公開で違う」**という点も超頻出です。",
           "1. 根拠（なぜ正しいのか）役員の責任を追及する訴え（株主代表訴訟）の提訴権については、会社法847条1項に定められています。公開会社の場合: 6か月前から引き続き株式を有する株主に限り、会社に対して訴えの提起を請求（提訴請求）することができます。理由: 公開会社は誰でも株を買えるため、訴訟を起こすことだけを目的として直前に株を取得する「当たり屋」的な行為を防ぐために、一定の継続保有期間が設けられています。非公開会社（譲渡制限会社）の場合: このような期間制限はありません。 株を昨日取得したばかりの株主でも、すぐに提訴請求が可能です。問題文は「公開会社に対し」という条件がついているため、6か月の制限があるという記述は正解となります。2. 関連知識（セットで覚えるべきこと）株主代表訴訟については、期間以外にも以下のポイントが試験でよく問われます。手続きの流れ（60日ルール）株主による請求: まず会社（監査役など）に対して「訴えを起こしてくれ」と請求します。60日の待機: 会社が請求から60日以内に訴えを起こさない場合に、初めて株主自身が訴えを提起できます。例外（不変期間）: 60日待っていては会社に回復できない損害が生じる恐れがある場合は、直ちに提訴できます。提訴の対象となる「役員等」取締役、会計参与、監査役、執行役、会計監査人、清算人が含まれます。株式の保有「継続」提訴請求の時から、訴訟が終了するまで引き続き株式を保有していなければなりません。途中で株をすべて売ってしまうと、原告としての資格を失います。3. 受験生へのアドバイス「6か月」が出てくる他の権利と区別する会社法では「6か月前から〜」という条件がいくつか出てきますが、公開会社か非公開会社かで扱いが異なる点に注意してください。株主代表訴訟: 公開会社は6か月必要。非公開会社は不要。株主提案権: 公開会社は6か月 ＋ 1%（または300個）以上の議決権が必要。「代表訴訟は、たとえ1株しか持っていなくても（非公開なら1日目から）起こせる、非常に強力な権利だ」とイメージしておくと、他の共益権との違いが明確になります。定款による短縮この「6か月」という期間は、定款で定めることでさらに短くする（例：3か月にする）ことは可能です。ただし、長くすることはできません。まとめ表：株主代表訴訟の提訴要件会社の形態保有期間の制限株式数の制限公開会社6か月前から継続1株でもOK非公開会社制限なし（即可能）1株でもOK",
           "1. 根拠（なぜ正しいのか）会社法第855条に直接の規定があります。会社法第855条（被告）役員の解任の訴えは、当該株式会社及び当該役員等を被告とする。このように、会社と役員の両方を訴えの相手方にする形式を「固有必要的共同訴訟」と呼びます。理由: 役員の解任は、会社にとっては「経営陣の変更」であり、役員本人にとっては「地位の喪失」という重大な利害に関わるため、両者に反論の機会を与える必要があるからです。2. 関連知識（セットで覚えるべきこと）「役員の解任の訴え」を起こすには、非常に厳しいハードルがあります。試験ではこちらが狙われることも多いです。提起の要件株主総会で解任が否決されたこと: いきなり裁判所に訴えることはできません。まずは株主総会で解任を提案し、それが否決（または議案が提出されなかった）された場合に限られます。不正行為等があること: 職務の執行に関し、不正の行為や法令・定款に違反する重大な事実があることが必要です。期間制限: 株主総会の日から30日以内に訴える必要があります。提訴権者（誰が訴えられる？）議決権の3%以上（定款で引き下げ可能）を、6か月前（非公開会社は期間制限なし）から引き続き有する株主です。3. 受験生へのアドバイス「会社だけ」か「両方か」の区別会社法の訴訟問題で迷ったら、以下のルールで整理しましょう。組織の有効性を争うもの（設立無効、新株発行無効など）: 被告は「会社」のみ。（いちいち個人を相手にしていたらキリがないため）特定の個人のクビを切るもの（役員の解任の訴え）: 被告は「会社 ＋ 役員」。（個人の権利を守るため）似ている「株主代表訴訟」との違い株主代表訴訟: 被告は「役員」です。会社は被告ではなく、訴訟に参加できる立場です。役員の解任の訴え: 被告は「会社と役員」の両方です。この「誰が被告か」という点は、商法・会社法の得点力を安定させるための隠れた重要ポイントです。まとめ表：訴えと被告の比較訴えの種類被告期間設立無効の訴え株式会社成立から6か月以内株主総会決議取消しの訴え株式会社決議から3か月以内役員の解任の訴え株式会社 ＋ 役員総会から30日以内株主代表訴訟役員個人なし"
+        ],
+        "choiceDeepDiveBeginner": [
+          "",
+          "",
+          "",
+          "",
+          ""
         ]
       }
     ]
@@ -26283,6 +29313,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -26332,6 +29365,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -26383,6 +29419,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -26432,6 +29471,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -26483,6 +29525,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -26532,6 +29577,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -26583,6 +29631,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -26632,6 +29683,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -26683,6 +29737,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -26715,6 +29772,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       }
@@ -26768,6 +29828,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -26817,6 +29880,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -26868,6 +29934,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -26917,6 +29986,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -26968,6 +30040,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27017,6 +30092,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -27068,6 +30146,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27117,6 +30198,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -27168,6 +30252,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27217,6 +30304,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -27268,6 +30358,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27317,6 +30410,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -27368,6 +30464,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27417,6 +30516,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -27468,6 +30570,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27517,6 +30622,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -27568,6 +30676,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27617,6 +30728,9 @@ export const SUBJECTS = {
           ""
         ],
         "choiceDeepDive": [
+          ""
+        ],
+        "choiceDeepDiveBeginner": [
           ""
         ]
       },
@@ -27668,6 +30782,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27718,6 +30835,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           ""
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       }
     ]
@@ -27753,6 +30873,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文・判例根拠条文民法20条1項（制限行為能力者の相手方の催告権）制限行為能力者の相手方は、その制限行為能力者が行為能力者となった後、その者に対し、一箇月以上の期間を定めて、その期間内にその取り消すことができる行為を追認するかどうかを確答すべき旨の催告をすることができる。（後略）民法20条2項（確答がない場合の効果）前項の規定による催告を受けた者が、同項の期間内に確答を発しないときは、その行為を追認したものとみなす。民法9条（成年被後見人の法律行為）成年被後見人の法律行為は、取り消すことができる。根拠判例本問は条文の解釈が中心であり、特定の有名判例を直接の根拠とするものではありませんが、催告の相手方や「みなし規定」の適用については、条文の文言どおりに運用されます。2. 趣旨（なぜこのルールがあるのか）制限行為能力者が行った契約は「取り消し」が可能ですが、いつまでも取り消される可能性がある状態では、相手方（本問のA）の地位が非常に不安定です。そこで、相手方から「追認するのか、取り消すのか、ハッキリしてほしい」と催告（催促）する権利を認め、一定期間内に返答がない場合には、**契約を確定させる（追認したものとみなす）**ことで、法律関係の早期安定を図ることを目的としています。3. 関連知識の整理本問を解く上で、間違えやすいポイントを表にまとめました。項目内容注意点催告の相手方成年後見人（C）被後見人（B）自身に催告しても効果はない。期間1か月以上1か月未満の期間を設定した催告は無効。期間内の反応追認拒絶 or 取消しAの目的（Dに売りたい）を果たすために必要な結果。沈黙（無視）の効果追認したとみなされる沈黙すると契約が継続してしまうため、本問では「確答」を得る必要がある。[!IMPORTANT]「みなし規定」の罠民法20条2項では、返答がない場合は「追認（契約維持）」とみなされます。しかし、今回のAは「Dに売りたい（契約を終わらせたい）」と考えているため、「期間内に返答がない」という状況では目的を達成できません。 必ず「追認しない」という明確な回答を得る必要があります。4. 受験生へのアドバイス① 「誰に」催告するかを正確に見極める催告の相手方は、**「単独で追認できる能力がある人」**でなければなりません。本人が行為能力者になった後であれば「本人」まだ制限行為能力者であれば「保護者（法定代理人）」本問では、Bは現在も成年被後見人であるため、Bに催告しても意味がなく、成年後見人Cに催告する必要があります。② 問題文の「目的」を読み落とさない多くの受験生は「催告して返事がなければ追認とみなされる」という知識は持っています。しかし、本問のAは「本件契約が維持されないこと」を望んでいます。知識をただ吐き出すのではなく、**「どうなればAの望み通りDに売れるのか？」**という逆算の視点が記述式では不可欠です。③ 解答の組み立て（40字構成）「誰に」「何を催告し」「どういう結果を得るか」という3要素を入れ込みます。誰に： 成年後見人Cに対し、何を： 本件契約を追認するかどうかを確答すべき旨を催告し、結果： 追認しない旨の確答を得る（または取り消しの意思表示を得る）。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27784,6 +30907,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文・判例根拠条文民法96条2項（第三者による詐欺）相手方に対する意思表示について第三者が詐欺を行った場合においては、相手方がその事実を知り、又は知ることができたときに限り、その意思表示を取り消すことができる。根拠判例この条文は、詐欺の被害者（A）の保護と、取引の相手方（B）の信頼保護のバランスを図るためのものです。相手方が「善意無過失」であれば相手方が保護され、相手方が「悪意」または「有過失」であれば、騙されたAが取り消せるとするものです。2. 趣旨（なぜこのルールがあるのか）通常の詐欺（AがBに騙された場合）は、相手方自身が悪いので、Aはいつでも取り消せます。しかし、**「第三者（C）」が騙した場合、相手方（B）からすれば「自分は何も悪いことをしていないのに、急に契約を白紙にされるのは困る」という話になります。\r\nそのため、BがCの嘘を知っていた（悪意）、あるいは注意すれば気づけた（有過失）という「Bにも落ち度がある場合」**に限定して、Aの取り消しを認めています。3. 関連知識：強迫との比較（超重要）行政書士試験で非常によく狙われるのが、**「第三者による強迫」**との違いです。項目第三者による「詐欺」第三者による「強迫」根拠民法96条2項民法96条3項（反対解釈・通説）取消の要件相手方が悪意または有過失のときのみ相手方の状態に関わらず、常に可能理由騙された側にも多少の不注意がある。脅された側は完全に自由を奪われており、落ち度がない。[!TIP]ひっかけパターン「CがAを強迫して売却させた。Bがその事実を全く知らず、落ち度もなかった場合、Aは取り消せるか？」という問題が出たら、答えは**「取り消せる」**となります。詐欺と強迫で結論が真逆になるので、必ずセットで覚えましょう。4. 受験生へのアドバイス① 登場人物の関係図を必ず描く記述式の問題文は情報量が多いです。A（本人・被害者）B（相手方）C（第三者・詐欺師）このように、誰が誰を騙したのかを余白に図解する癖をつけましょう。② キーワードの書き分け本問の正解には、以下のキーワードが必須です。「知り（悪意）」「知ることができた（有過失）」「～ときに限り」特に「知ることができた」という表現は、民法特有の言い回し（有過失を指す）ですので、そのまま書けるようにしておきましょう。③ 「取り消すことができる」の相手取り消しの意思表示は、現在の土地の所有者が誰であれ、契約の相手方であるBに対して行います。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27815,6 +30941,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文・判例根拠条文民法113条1項（無権代理）代理権を有しない者が他人の代理人としてした契約は、本人がその追認をしなければ、本人に対してその効力を生じない。民法896条（相続の一般的効力）相続人は、相続開始の時から、被相続人の財産に属した一切の権利義務を承継する。（後略）根拠判例最判昭和37年6月18日本人が無権代理人を相続した場合、本人が無権代理行為の追認を拒絶しても、信義則に反するとすべき特段の事情のない限り、何ら差し支えない。2. 趣旨（なぜ拒絶できるのか）この問題の核心は、「本人の地位」と「無権代理人の地位」が一人に合体したときにどう扱うかです。もし「拒めない」としてしまうと、勝手に名前を使われた被害者であるはずの本人（A）が、犯人（B）が死んだ途端に無理やり契約を押し付けられることになり、あまりにかわいそうです。本人はもともと「追認拒絶権（契約を認めない権利）」を持っていました。Bを相続したからといって、その本人自身の権利まで消えてなくなるわけではない、というのが判例のロジックです。3. 関連知識：逆のパターンとの比較（ここが試験に出る！）行政書士試験では、**「誰が誰を相続したか」**によって結論が180度変わる点をついてきます。パターン結論理由（イメージ）本人が無権代理人を相続（本問）拒絶できる本人の「嫌だ」と言う権利は守られるべき。無権代理人が本人を相続拒絶できない（当然有効）自分で勝手に売っておいて、相続した途端に「やっぱり無し」と言うのは卑怯（信義則違反）。共同相続（他の相続人がいる）他の相続人全員の追認が必要勝手に有効にはならない。4. 受験生へのアドバイス① 主語を明確にする「AがBを相続した」のか「BがAを相続した」のか。これを逆に覚えると0点になります。問題文の1行目を読み、**「誰が勝手にやったのか（無権代理人は誰か）」と「最後に生き残ったのは誰か」**をメモしましょう。② 「信義則（しんぎそく）」という魔法の言葉記述式で「拒絶できるか？」と聞かれた際、判例に基づいた解答をするなら**「信義則に反する等の特段の事情がない限り」**というフレーズを添えると、採点者に「お、判例を正確に理解しているな」という印象を与え、部分点の上積みが期待できます。③ 類推適用の知識（表見代理）もし本問で「BがAの実印を持ち出していた」などの事情があれば、Cは**表見代理（109条など）**を主張して対抗できる可能性があります。記述式では「何について書け」という指示を漏らさないように注意してください。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27846,6 +30975,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 典型的な問題設定\nこのフレーズは、以下のような「二重譲渡」のケースで使われます。\n\n【事例】\nAは自己所有の甲土地をCに売却した。その後、BはA・C間の売買の事実を知り、かつ、**Cを困らせる目的（あるいは不当な利益を得る目的）**で、Aから甲土地を買い受け、先に登記を備えた。この場合、登記のないCはBに対して所有権を主張できるか。\n\n結論\nCは、登記がなくてもBに対して所有権を主張できる。\n\n2. 記述のポイント：なぜこの表現になるのか\n① 民法177条の「第三者」の定義\n民法177条には「登記をしなければ第三者に対抗できない」とありますが、判例はこの「第三者」を単に「当事者以外の人」とは考えていません。\n\n判例の定義： 登記の欠缺（欠けていること）を主張するについて正当な利益を有する者。\n\n② 「悪意」と「背信的悪意」の区別\n単に「先に売買があったことを知っている（悪意）」だけでは、自由競争の範囲内として、先に登記を備えたほうが勝ちます。\nしかし、**「信義則（信義誠実の原則）」**に照らして、あまりに態様が悪質な者（＝背信的悪意者）は、もはや「登記がないことを指摘する正当な資格がない」と判断されます。\n\n③ 語句の分解\n信義則上： 民法1条2項（信義誠実の原則）に照らして。\n\n登記の欠缺（けんけつ）を主張する： 「お前は登記を持っていないじゃないか！」と文句を言うこと。\n\n正当な利益を有しない者： そんなことを言う資格（権利）がない人。\n\n3. 受験生へのアドバイス\n「40字記述」での使い方\nこの論点は、記述式で「なぜ登記のないCがBに勝てるのか、その理由を書きなさい」と問われた際の決定打となります。\n\n必須キーワード： 「背信的悪意者」「信義則」「正当な利益を有しない」\n\n注意点： 「Bは単なる悪意者ではなく背信的悪意者にあたるため」という書き方でも間違いではありませんが、より法的に厳密な表現を求められた場合は、ご提示いただいた**「登記の欠缺を主張する正当な利益を有しない」**というフレーズが最強の加点要素になります。\n\n関連知識：転得者が現れた場合\nもし、背信的悪意者Bが、さらに事情を知らないD（善意者）に転売して登記を移した場合、CはDに勝てるでしょうか？\n\n結論： CはDに勝てません。\n\n理由： D自身が背信的悪意者でない限り、Dは「正当な利益を有する第三者」として保護されるからです。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27877,6 +31009,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文民法185条（占有の性質の変更）権原の性質上占有者に所有の意思がないものとされる場合には、その占有者が、自己に占有させた者に対して所有の意思があることを表示し、又は新たな権原により更に所有の意思をもって占有を始めるのでなければ、占有の性質は変わらない。2. 趣旨（なぜこのルールがあるのか）民法では、占有している人は「所有の意思がある（自分のものだと思っている）」と推定されます（186条1項）。しかし、賃貸借契約（レンタル）などで借りている人は、その性質上「他人のものを借りている（他主占有）」とみなされます。もし、借りている人が勝手に心の中で「今日からこれは俺の物だ！」と思っただけで取得時効が始まってしまうと、貸主（オーナー）はいつの間にか自分の所有権を奪われる危険にさらされます。そこで、占有の性質を「他主」から「自主」に変えるには、**「外から見てもはっきりわかる変化」**が必要であると定めたのがこの185条です。3. 関連知識：2つのパターンの具体例問題文にある2つのルートを具体的にイメージしましょう。パターン具体例ポイント①意思の表示賃借人が大家に対し、「もう家賃は払わない。今日からこの家は私のものだ」と宣言する。貸主に直接伝える必要がある。②新たな権原（本問の正解） 借りていた家を、大家から実際に買い取る、または贈与を受ける。「売買」「贈与」といった、所有権を得るための正当な法的根拠（権原）が発生すること。要注意：相続は「新たな権原」になるか？受験生が最も間違えやすいのが相続です。原則： 単なる相続は「新たな権原」にはなりません。親が借りていた（他主占有）なら、子も「借りている状態」を引き継ぎます。判例（最判昭46.11.30）： ただし、相続人が「これは親の所有物だ」と信じ、独自の占有を始めた場合には、例外的に「新たな権原」と認められることがあります。4. 受験生へのアドバイス① 「権原（けんげん）」という言葉を正しく書く「権限」と書き間違えやすいですが、法律用語では**「権原」**です。記述式で漢字を間違えると減点対象になる可能性があるため、正確に覚えましょう。② 取得時効とのセットで覚えるなぜ「所有の意思（自主占有）」が重要なのかというと、**取得時効の要件（162条）**に「所有の意思をもって」という言葉が入っているからです。「185条の要件を満たして初めて、時効のカウントダウン（10年または20年）がスタートする」という流れを意識してください。③ 記述の書き方問題文が「もうひとつはどのような場合か」と聞いているので、解答も「～場合である。」という形で終わらせるのがスマートです。ご提示いただいた解答は、文末まで完璧な構成です。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27908,6 +31043,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文民法251条1項（共有物の変更）各共有者は、他の共有者の同意を得なければ、共有物に変更（その形状又は効用の著しい変更を伴わないものを除く。次条第一項において同じ。）を加えることができない。民法252条1項（共有物の管理）共有物の管理に関する事項（前条第一項に規定する変更を除く。次項において同じ。）は、各共有者の持分の価格に従い、その過半数で決する。（後略）2. 趣旨と「改正のポイント」共有物の扱いは、その行為が共有者に与える影響の大きさに応じて、必要な賛成割合が決まっています。建替え（変更行為）： 建物を取り壊して新しく建てることは、共有物の性質を根本から変える「著しい変更」にあたります。そのため、共有者全員の同意が必要です。修繕等（管理行為 / 軽微な変更）： 改正法では、「形状や効用の著しい変更を伴わない変更（軽微な変更）」も、管理行為と同様に持分の価格の過半数で決定できるようになりました。本問の「修繕等」は、問題文で「保存行為ではない」「軽微でない変更ではない」と定義されているため、この過半数ルールが適用されます。3. 関連知識：ここが試験の落とし穴！項目要件具体例保存行為各共有者が単独でできる腐敗した箇所の修繕、不法占拠者への明け渡し請求管理行為・軽微な変更持分の価格の過半数利用・改良、外壁の塗り替え（著しくないもの）変更（著しい変更）全員の同意建替え、山林の宅地造成、大規模なリノベーション[!WARNING]「頭数」ではなく「価格」「共有者5名のうち3名が賛成した」からといって、必ずしも決定できるわけではありません。あくまで**「持分の価格（割合）」**の合計が50%を超える必要があります。記述式では「各共有者の持分の価格の過半数」というフレーズを正確に書きましょう。4. 受験生へのアドバイス① 改正用語に注意改正により「変更行為」の中に「軽微な変更」というカテゴリーが明文化されました。本問のように「修繕等」という言葉で出題された場合、それが**「保存・管理・変更」のどれに分類されるか**を問題文のヒント（「保存行為に該当しない」など）から読み取ることが重要です。② 40字記述のテクニックご提示いただいた解答は、必要な要素（全員の同意、持分の価格の過半数）が網羅されており、非常に高い得点が期待できます。構成案： 共有者全員の同意が必要で、修繕等には各共有者の持分の価格の過半数による決定が必要である。（45文字）③ 判例の視点もし「共有者のひとりが勝手に建替えを始めた」場合、他の共有者はその持ち分に基づいて「（全部の）取り壊し」を請求できるか？ という論点もあります。原則として「全員の同意」がない変更は認められないため、差し止めや原状回復請求が可能です。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27939,6 +31077,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文民法311条（動産の先取特権）次に掲げる原因によって生じた債権を有する者は、債務者の特定の動産について先取特権を有する。五　動産の売買民法321条（動産売買の先取特権）動産の売買の先取特権は、動産の代金及びその利息に関し、その動産について存在する。民法303条（先取特権の内容）先取特権者は、この法律その他の法律の規定に従い、その債務者の財産について、他の債権者に先立って自己の債権の弁済を受ける権利を有する。2. 趣旨（なぜこのルールがあるのか）通常、債務者がお金を払えない場合、債権者たちは早い者勝ちではなく、債権額に応じて平等に分配を受けるのが原則です（債権者平等の原則）。しかし、Aのように「物を売ったのに代金をもらっていない人」は、**「自分の渡した商品がまだ相手の手元にあるなら、その商品から優先的に代金を回収してもいいだろう」**と考えられます。これを認めるのが「動産売買の先取特権」です。契約書でわざわざ「担保にする」と約束していなくても、法律上当然に発生するのが特徴です。3. 関連知識：実務と試験の重要ポイントこの「動産売買の先取特権」には、試験で狙われやすい2つの限界があります。項目内容注意点追求力の欠如相手（B）が第三者に転売し、引き渡してしまうと行使できなくなる（民法333条）。本問で「第三者に転売されることなく保管されている」とあるのは、この要件をクリアさせるため。物上代位（ぶつじょうだいい）もし転売されても、Bが転売先から受け取る「転売代金」を差し押さえることで回収できる。ただし、代金がBに支払われる前に「差し押さえ」をする必要がある。4. 受験生へのアドバイス① 「物権」の名前を正確に「先取特権」という言葉は書けても、**「動産売買の～」**まで正確に書けるかが合否を分けます。民法には「不動産売買の先取特権」や「共益費用の先取特権」など複数あるため、必ずフルネームで覚える癖をつけましょう。② 「一般債権者に先立って」というキーワード先取特権の効果を聞かれたら、**「一般債権者に先立って弁済を受ける」**というフレーズはセットで暗記してください。これが「優先弁済的効力」の具体的な説明になります。③ 事例の「限定条件」をチェック問題文に「BにはA以外にも一般債権者がいる」「第三者に転売されることなく」といった条件が書かれている場合、それは必ず特定の条文（この場合は303条や333条）を意識させるヒントです。これらを無視せずに解答に組み込む（または、その条件があるからこの権利が使える、と判断する）のがコツです。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -27970,6 +31111,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文・判例根拠条文民法304条1項（先取特権の物上代位）先取特権は、その目的物の売却、賃貸、滅失又は損傷によって債務者が受けるべき金銭その他の物に対しても、行使することができる。ただし、先取特権者は、その払渡し又は引渡し前に差し押さえをしなければならない。民法372条（抵当権への準用）第304条の規定は、抵当権について準用する。根拠判例最判昭和59年3月20日物上代位の目的となる債権が譲渡され、第三者に対する対抗要件が備えられた後であっても、抵当権者は、自ら差し押さえることによって物上代位権を行使できる。2. 趣旨（なぜこのルールがあるのか）抵当権は、本来「不動産」という形あるものを担保にする権利ですが、その本質は「その不動産が持っている交換価値（お金に換算した価値）」を支配することにあります。建物が燃えて無くなった場合、建物の形は消えますが、代わりに「保険金請求権」という価値に形を変えて残ります。抵当権者がこの「形を変えた価値」を追いかけて、そこから優先的に回収できるようにしたのが物上代位です。3. 関連知識の整理物上代位が認められる対象と、その要件を整理しましょう。項目内容具体例対象となるもの売却代金、賃料、保険金、損害賠償金目的物が形を変えたもの。対象外のもの転売代金（※判例による）抵当不動産が売却された場合の「転売代金」には原則として及ばない。必須の行動差し押さえ裁判所を通じて手続きを行う必要がある。期限（タイミング）払渡し又は引渡し前債務者の手元にお金が入ってしまうと、他のお金と混ざって区別できなくなるため。[!IMPORTANT]「差し押さえ」は誰がしてもいいのか？判例では、抵当権者本人が差し押さえる必要があります（自ら差し押さえるべきとするのが通説的見解です）。一般債権者が差し押さえただけでは、抵当権者の優先権は確保されません。4. 受験生へのアドバイス① 3つのキーワードを「セット」で覚える物上代位の問題が出たら、反射的に以下の3要素を書く準備をしましょう。「物上代位」（法的手段の名前）「払渡し（または引渡し）前」（時期の限定）「差し押さえ」（具体的なアクション）② 「何のために」差し押さえるのか条文上の理由は「特定性（他の財産と混ざらないようにすること）」を維持するためです。記述式では「払渡し前に」という条件を書き漏らすと、大幅な減点になる可能性が高いため注意してください。③ 応用：賃料への物上代位近年は「保険金」よりも「賃料」への物上代位が実務で多く、試験でも狙われます。「Bが甲建物をDに貸して賃料を得ている場合、Aはその賃料を差し押さえられるか？」という形式で出題されても、今回の知識をそのまま応用できます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28001,6 +31145,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文・判例民法423条1項（債権者代位権）債権者は、自己の債権を保全するため、債務者に属する権利（以下「債務者権利」という。）を行使することができる。（後略）民法605条の4（不動産賃借人による妨害排除の請求等）※2020年改正で新設不動産の賃借人は、第605条の規定による対抗要件を備えた場合において、次の各号に掲げるときは、その各号に定める請求をすることができる。一　その不動産を占拠する第三者に対して、妨害排除の請求をすること。根拠判例最判昭和29年9月24日不動産賃借人は、賃貸人に対し、賃貸借の目的物を使用収益させるよう請求する権利を有しており、その権利を保全するため、賃貸人が第三者に対して有する妨害排除請求権を代位行使できる。2. なぜ「代位」が必要なのか（ここが重要！）改正民法（605条の4）により、賃借人が直接「出ていけ！」と言えるルールが明文化されました。しかし、それには以下のいずれかの条件が必要です。登記をしていること引き渡しを受けていること（建物の場合は「借地借家法」の適用による）本問を確認すると、「登記はされていない」「まだ引き渡されていない」と明記されています。つまり、Aはまだ「直接請求できるパワー（対抗力）」を持っていないのです。そこで、Aは自分の「土地を使わせろ」という権利（債権）を守るために、本来は地主Bが持っている「俺の土地に勝手に塀を作るな！」という権利を、**Bに代わって（代位して）**行使することになります。3. 関連知識の整理この論点は、状況によって結論が変わるため、試験では非常に狙われやすいです。Aの状況請求の根拠請求方法登記・引渡し前（本問）423条（債権者代位権）Bの権利を代位行使登記・引渡し後605条の4（賃借権そのもの）Aが直接請求不法占拠された後202条（占有回収の訴え）占有に基づき請求（※引渡し後のみ）4. 受験生へのアドバイス① 「対抗要件」の有無を真っ先に確認する問題文に「登記がない」「引き渡されていない」と書かれていたら、それは「直接請求はできないぞ」という出題者からのメッセージです。その瞬間に「代位」という言葉が脳裏に浮かぶように訓練しましょう。② 記述の構成を定型化するこの手の問題の解答構成は、以下の3要素を繋げるだけです。「Bの～権利を」（誰の何の権利か）「代位して」（どのような手段か）「～を請求する」（何をするのか）ご提示いただいた解答「Bの所有権に基づく妨害排除請求権を代位して、塀の撤去を請求することができる」は、この3要素を完璧に満たしています。③ 「妨害排除」と「返還」の使い分け塀を壊せ、どけろ：妨害排除請求俺に土地を返せ（明け渡せ）：返還請求今回の問題は「塀を設置したため立ち入れない」という状況なので、塀をどかせる「妨害排除」が適切です。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28032,6 +31179,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文・判例根拠条文民法423条1項（債権者代位権）債権者は、自己の債権を保全するため、債務者に属する権利（以下「債務者権利」という。）を行使することができる。（後略）民法423条の2（代位行使の範囲）債権者は、その債権の期限が到来しない間は、裁判上の代位によらなければ、債務者権利を行使することができない。（※本問ではAが代金全額を支払っているため、期限到来後と判断されます）根拠判例大判明治43年7月6日（特定債権の保全）登記請求権のような特定の債権を保全するためにも、債権者代位権を行使することができる。2. 趣旨（なぜこのルールがあるのか）債権者代位権は、本来「借金を返せない債務者の代わりに、債務者の隠し財産を回収する（＝責任財産の保全）」ための制度です。しかし、本問のようなケースでは、AはBから土地を買ったのに、BがCに対して「登記を移せ」と言わない限り、Aは自分の名義にすることができません。これを放置するとAが不利益を被るため、**「A自身の登記請求権を実現するため」**に、Bの権利を代わりに使うことが認められています。3. 関連知識：特定債権の保全と「無資力」債権者代位権には、通常「債務者がお金を持っていないこと（無資力）」という要件が必要ですが、本問のようなケースでは扱いが異なります。目的無資力要件理由金銭債権の回収（一般的な代位）必要債務者の財産管理への干渉は最小限にすべきだから。特定債権の保全（登記請求権など）不要特定の物や登記を確保することが目的であり、債務者にお金があるかどうかは関係ないから。4. 受験生へのアドバイス① 「5つの要素」を漏らさないこの問題は、問い自体に「何のために、誰の、誰に対する、いかなる権利を、どのように」と5つの指定があります。何のために： AのBに対する移転登記請求権を保全するため誰の： Bの誰に対する： Cに対するいかなる権利を： 移転登記請求権をどのように： 代位行使するこれらをパズルのように組み合わせるだけで、40字程度の記述が完成します。問いの指示に従うことが、記述式で高得点を取る最大のコツです。② 2022年問46（妨害排除）との比較2022年の問題では「賃借権を保全するために、地主の妨害排除請求権を代位行使する」というパターンが出ました。「A（自分）の権利を守るために、B（相手）の持っている武器を代わりに使う」という債権者代位権の構造自体は全く同じです。この構造をマスターすれば、多くの事例に対応できます。③ 「保全するため」という言葉記述式では「～を守るため」ではなく、法律用語である**「保全するため」**を使いましょう。採点基準に含まれている可能性が非常に高いキーワードです。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28063,6 +31213,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文民法466条（債権の譲渡性）2項（譲渡の有効性）当事者が債権の譲渡を禁止し、又は制限する旨の意思表示（以下「譲渡制限の意思表示」という。）をしたときであっても、債権の譲渡は、その効力を妨げられない。3項（債務者の拒絶権）前項に規定する場合において、譲渡制限の意思表示がされたことを知り、又は重大な過失によって知らなかった譲受人（C）から履行の請求を受けたときは、債務者（B）は、その債務の履行を拒むことができ、かつ、譲渡人（A）に対する弁済その他の消滅のさせ方をもってその譲受人に対抗することができる。2. 趣旨（なぜこのルールになったのか）改正前の民法では、特約に反する譲渡は原則として「無効」でした。しかし、これでは債権を資金化（譲渡）して活用することが難しくなります。そこで改正法では、**「譲渡自体は有効」として債権の流動性を高める一方、債務者（B）が知らないうちに債権者が変わって困らないよう、「譲受人（C）が特約の存在を知っていた（または重過失があった）場合に限り、Bは支払いを拒める」**という形で、Bを保護する仕組みに改められました。3. 関連知識の整理記述式で「悪意・重過失」という言葉が出たとき、以下の関係性を整理しておきましょう。譲受人Cの状態BはCに支払うべきか？理由善意・無重過失応じなければならないCを保護し、取引の安全を図るため。悪意・重過失拒むことができる特約を知っているCに対しては、Bの「Aに払いたい」という期待を優先する。[!NOTE]本問の「履行の催告」と「供託」の記述について問題文に「催告がなく、供託もしないものとする」とあるのは、民法466条4項（CがBに対し、Aへ払うよう催告できるルール）や466条の2（Bが供託して免責されるルール）という例外ルートを排除し、3項の原則的な拒絶権の有無だけを答えさせるための誘導です。4. 受験生へのアドバイス① 「善意無重過失」はセットで覚える記述式では、単に「善意」だけでは足りません。「善意かつ無重過失」（または「悪意又は善意重過失」）というフレーズを正確に書けるようにしましょう。これが採点の鍵となります。② 問いへの答え方本問の問いは「Bは、Cの請求に応じなければならないか」です。解答例①は「～場合には、応じなければならない。」と、問いに対してストレートに答えています。解答例②は「～であれば、拒むことができる。」と、拒絶権の有無を答えています。どちらも文脈として成立しますが、より問いに忠実なのは①、条文の構成（3項）に近いのは②です。③ 改正前後の混同に注意古い問題集や古い知識では「譲渡は無効」となっている場合があります。2020年以降は**「譲渡は有効、ただし履行拒絶が可能」**という二段構えになったことを、脳内の辞書で完全に上書きしてください。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28094,6 +31247,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文民法466条（債権の譲渡性）2項（譲渡の有効性）当事者が債権の譲渡を禁止し、又は制限する旨の意思表示（中略）をしたときであっても、債権の譲渡は、その効力を妨げられない。3項（債務者の拒絶権）前項に規定する場合において、譲渡制限の意思表示がされたことを知り、又は重大な過失によって知らなかった譲受人（C）から履行の請求を受けたときは、債務者（B）は、その債務の履行を拒むことができ（後略）。2. 趣旨（改正の狙い）このルールの最大のポイントは、**「特約があっても譲渡自体は有効」**という点です。改正前： 特約に反する譲渡は「無効」。そのため、債権を使って資金調達（ファクタリング等）をする際の障害になっていました。改正後： 債権の流動性を高めるため、譲渡は常に「有効」としました。その代わり、事情を知っている（または不注意な）譲受人に対しては、債務者が「支払いを拒む」という形で対抗できるようにし、債務者の不利益を防いでいます。3. 関連知識：記述式で狙われる「その後」の展開Bが支払いを拒んだ場合、事態を解決するために民法は以下の2つのルートを用意しています。制度内容目的履行の催告（466条4項）譲受人Cが、債務者Bに対して「元の債権者Aに払え」と催告できる。支払先を確定させ、宙ぶらりんな状態を解消する。供託（466条の2）債務者Bが、誰に払えばいいか分からない場合に、お金を供託所に預けて義務を免れる。Bが二重払いのリスクや履行遅滞の責任を負わないようにする。[!NOTE]2021年の本問では、あえて「供託はないものとする」という但書きがありました。これは、例外的な解決策を排除して、**3項の原則（拒絶できる場合）**だけをストレートに答えさせるための誘導です。4. 受験生へのアドバイス① 「悪意・重過失」の書き分け条文どおりに「知り、又は重大な過失により知らなかった」と書くのが最も安全ですが、記述式の文字数制限が厳しい場合は、**「悪意又は重過失（あくい・じゅうかしつ）」**という法律用語に置き換えるテクニックも有効です。② 指示語「本件代金債権」の厳守問題文に「解答にあたっても、この語を用いて解答すること」とある場合、これを無視すると減点や最悪の場合0点になる可能性があります。記述式の冒頭で、指定された用語を正しく配置する癖をつけましょう。③ 問いの語尾を合わせる「どのような場合か」と問われているので、解答も必ず**「～場合。」「～とき。」**で終わらせるようにしてください。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28125,6 +31281,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文民法537条（第三者のためにする契約）1項契約により当事者の一方が第三者に対してある給付をすることを約したときは、その第三者は、債務者に対して直接にその給付を請求する権利を有する。2項（権利の発生要件）前項の権利は、第三者が債務者に対して同項の契約の利益を享受する意思を表示した時に発生する。2. 趣旨（なぜこのルールがあるのか）通常、AとBの契約の効果はAとBにしか及びません。しかし、本問のように「AがCに借金がある」という状況で、BからAへ、AからCへとお金を動かすのは手間です。そこで、Bが直接Cに支払うという合意を認めることで、決済を簡素化・効率化することを目的としています。3. 関連知識：3つの役割と呼び名この契約では、登場人物に法律上の独特な呼び名があります。記述式で問われることもあるため、セットで覚えましょう。登場人物法律上の呼称本問での役割A（売主）要約者（ようやくしゃ）Bに対し、Cへ支払うよう「要約」する人。B（買主）諾約者（だくやくしゃ）Cへの支払いを「承諾」した債務者。C（第三者）受益者（じゅえきしゃ）利益を「受ける」人。権利が発生した後の変更（民法538条）一度、CがBに対して「お金をもらいます（受益の意思表示）」と伝えた後は、AとBが勝手に契約の内容を変えたり、取り消したりすることはできなくなります。第三者の権利が確定した以上、それを保護する必要があるからです。4. 受験生へのアドバイス① 「誰が誰に」を正確にこの論点で最もミスしやすいのが、「CがAに言うのか、Bに言うのか」という点です。お金を払う義務があるのは**B（諾約者）**です。したがって、CはBに対して「払ってください」という意思表示をする必要があります。② 用語の正確性「受益の意思表示」という言葉は、民法537条2項のキーワードです。ご提示いただいた解答の「契約の利益を享受する意思を表示する」という表現は、この条文を丁寧に説明したもので、非常に高い評価が得られます。③ 拒絶の自由ちなみに、第三者（C）は、この利益を拒絶することもできます（537条3項）。無理やり権利を押し付けられることはありません。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28156,6 +31315,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文民法550条（書面によらない贈与）書面によらない贈与は、各当事者が解除することができる。ただし、履行の終わった部分については、この限りでない。2. 趣旨（なぜこのルールがあるのか）贈与は、自分の財産を無償で相手に与える行為です。そのため、ついその場の雰囲気や勢いで「あげるよ！」と言ってしまうことがあります。民法は、こうした**「軽率な贈与」を防ぐ**ために、以下の2つの防波堤を作っています。慎重さの確認： 書面（契約書など）を作らせることで、本当にかどうかを再確認させる。撤回のチャンス： 書面がない間は、実際に渡す（履行する）までは、いつでも「やっぱりやめた」と言えるようにしておく。3. 関連知識：何をもって「履行が終わった」とするか記述式で「履行を終えていない」と書く必要がありますが、実務や択一式試験では「何が履行完了か」が細かく問われます。対象履行完了（解除できなくなる）タイミング動産（車など）引渡し（現実に渡すこと）が行われたとき。不動産（土地など）移転登記が完了したとき、または引渡しが行われたときのいずれか早い方（判例）。[!IMPORTANT]「解除」という言葉の選択民法550条では「解除」という言葉が使われています。一般的な契約の解除（債務不履行など）とは性質が少し異なりますが、記述式では条文どおり「解除」という言葉を使うのが正解への近道です。4. 受験生へのアドバイス① 「口頭」というキーワードに反応する問題文に「口頭で約し」とあれば、ほぼ間違いなく民法550条の出題です。この瞬間に「書面によらない贈与」「履行の未完了」「解除」の3点セットを思い浮かべましょう。② 解答構成のパターン問いが「どのような理由で、どのような法的主張をすべきか」と2段階で聞いているので、解答もそれに応える形にします。理由： 書面によらない贈与であり、履行を終えていないこと。主張： 解除する。ご提示いただいた解答「書面によらない贈与であり、履行を終えていないことを理由として、解除すると主張すべきである。」は、問いに対する受け答えとして完璧です。③ 「書面」の範囲ちなみに、ここでの「書面」は必ずしも立派な契約書である必要はありません。手紙やメール、あるいはメモ書き程度でも、贈与の意思が明確に読み取れるものであれば「書面による贈与」とみなされ、解除できなくなります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28187,6 +31349,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文民法559条（有償契約への準用）この節の規定は、売買以外の有償契約について準用する。（請負にも売買の規定が準用されます）民法636条（請負人の責任に関する制限）請負人が種類又は品質に関して契約の内容に適合しない仕事の目的物を注文者に引き渡したときは、注文者は、第562条第1項（追完請求）の規定により、履行の追完を請求することができる。（後略）民法563条・564条（具体的な権利）563条： 報酬減額請求（代金減額請求）564条： 損害賠償請求、契約の解除2. 趣旨（なぜこのルールがあるのか）請負契約は、仕事の「完成」を目的とする有償契約です。注文者は対価（報酬）を支払う以上、完成した物が契約で約束した品質や性能を備えていることを期待する正当な利益があります。もし完成品に不備（雨漏りなど）があった場合、契約上の義務が完全に果たされたとは言えません。そこで、契約の公平性を保つため、注文者に「直せ」「安くしろ」「損を補填しろ」「契約を白紙にしろ」といった複数の対抗手段を与えています。3. 関連知識：改正による劇的な変化この問題に関連して、受験生が絶対に押さえておくべき「旧法との違い」が2点あります。項目旧法（改正前）現行法（改正後）建物の解除建物が完成した後は、重大な欠陥があっても解除できなかった。欠陥が重大であれば、建物であっても解除できるようになった。通知の期間引渡しから1年以内に「権利行使」が必要だった。不適合を知った時から**1年以内に「通知」**すればよくなった（637条）。[!IMPORTANT]「通知」だけでよい理由以前は1年以内に訴訟などを起こす必要がありましたが、注文者にとってハードルが高すぎました。現在は「ここがダメですよ」と通知さえすれば、具体的な請求はその後の消滅時効（5年/10年）まで猶予されるようになりました。4. 受験生へのアドバイス① 「修補（しゅうほ）」以外の3つを正確に本問は「修補請求（追完請求）以外」と指定されています。報酬減額請求（安くして）損害賠償請求（お金で解決）契約の解除（なかったことにする）この3つは、セットで暗記しておきましょう。なお、実務的には「代金減額請求」と言いますが、請負の場合は「報酬」という言葉を使うのがより正確です。② 根拠の示し方解答例にある「契約不適合責任を根拠に」というフレーズは必須です。これが権利行使の土台となる法的構成だからです。③ 請負人が責任を負わないケース（636条但書）もし雨漏りの原因が、**「注文者Aが提供した材料」や「注文者Aの出した指示」**にある場合は、工務店Bは責任を負いません。ただし、Bがその材料や指示が不適当だと知りながらAに教えなかった場合は、Bは逃げられません。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28218,6 +31383,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文民法724条（不法行為による損害賠償請求権の消滅時効）不法行為による損害賠償の請求権は、次に掲げる場合には、時効によって消滅する。被害者又はその法定代理人が損害及び加害者を知った時から三年間行使しないとき。不法行為の時から二十年間行使しないとき。2. 趣旨（なぜこのルールがあるのか）「権利の上に眠る者は保護しない」という法格言に基づき、一定期間権利を行使しない場合にその権利を消滅させ、法律関係の早期安定を図ることを目的としています。特に不法行為は、時間が経つほど証拠が散逸しやすく、加害者側がいつまでも賠償の恐怖にさらされるのを防ぐ必要もあります。3. 関連知識：2020年改正の重要ポイント行政書士試験において、この論点は改正箇所とセットで狙われます。以下の比較表は暗記必須です。対象主観的時効（知った時～）客観的時効（行為の時～）一般の不法行為（物損など）3年間20年間生命・身体を害する不法行為5年間（延長）20年間債務不履行（一般）5年間10年間[!IMPORTANT]「除斥期間」から「消滅時効」へ改正前、20年の期間は「除斥期間（じょせききかん）」と呼ばれ、時効の更新などが認められない厳格な期間とされていました。しかし改正後は、**3年（5年）も20年も共に「消滅時効」**として整理され、20年の期間についても時効の完成猶予や更新が認められるようになりました。4. 受験生へのアドバイス① 起算点（いつの時点から）を正確に記述式では「いつから」「何年か」をセットで問われます。「損害及び加害者を知った時」：被害者が「誰に、何をされたか」を認識した時点。「不法行為の時」：実際にその行為が行われた時点。② 言葉の定義に注意「損害を知った時」だけでは不十分です。加害者が誰か分からないと裁判が起こせないため、必ず**「損害及び加害者」**と両方をセットで記述してください。③ 生命・身体の特例（724条の2）もし問題文に「人の生命又は身体を害するものについて」と書かれていたら、期間は5年間になります。今回の問題のように、カッコ書きで除外されている条件を見落とさないよう、問題文の精読が不可欠です。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28249,6 +31417,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文民法717条1項（土地の工作物等の占有者及び所有者の責任）土地の工作物の設置又は保存に瑕疵があることによって他人に損害を生じたときは、その工作物の占有者は、被害者に対してその損害を賠償する責任を負う。ただし、占有者が損害の発生を防止するのに必要な注意をしたときは、所有者がその損害を賠償しなければならない。2. 趣旨（なぜこのルールがあるのか）建物や塀などの工作物は、管理を怠ると通行人などに大きな被害を与える危険があります。そのため、まずは**「現実にその物を管理している人（占有者）」**に注意を促すために一次的な責任を負わせます。しかし、占有者が十分に注意していた場合、被害者は誰からも賠償を受けられないことになってしまいます。そこで、最終的な安全装置として**「所有者」**に、**過失がなくても（落ち度がなくても）逃れられない重い責任（無過失責任）**を負わせ、被害者の救済を確実にするのがこのルールの目的です。3. 関連知識：占有者と所有者の違いこの問題の核心である「責任の性格」の違いを整理しましょう。区分責任の順番責任の性質責任を免れる条件占有者（B）第1次過失責任（に近い）損害防止に必要な注意をしていれば免責される。所有者（A）第2次無過失責任自分の代以前の欠陥であっても、一切免責されない。[!IMPORTANT]「無過失責任」の重さたとえAが「昨日買ったばかりで壁のヒビを知らなかった」としても、あるいは「前の持ち主が手抜き工事をしていた」としても、AはCに対して賠償を拒むことはできません。これが民法の中でも特に強力な責任の一つとされる理由です。4. 受験生へのアドバイス① 「占有者」と「所有者」を逆に書かない記述式では、まず「占有者」が責任を負い、一定の条件で「所有者」にスライドするという順序が非常に重要です。この順番が逆になると、条文の趣旨を理解していないとみなされ、大幅な減点対象になります。② 必要な注意のフレーズを正確に「損害の発生を防止するのに必要な注意をしたとき」という表現は、条文の文言そのものです。記述式ではこのフレーズをそのまま使えるようにしておきましょう。③ 求償権（717条3項）もし、壁が崩れた原因がそもそも「工務店の欠陥工事」だった場合、賠償金を支払ったAやBは、後でその工務店に対して「お前のせいで払う羽目になったから、その分を返せ」と請求できます。これを**求償権（きゅうしょうけん）**といいます。余力があればセットで覚えておきましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28280,6 +31451,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文・判例根拠条文：民法768条（財産分与）協議上の離婚をした者の一方は、相手方に対して財産の分与を請求することができる。前項の場合において、家庭裁判所は、当事者双方がその協力によって得た財産の額その他一切の事情を考慮して、分与をさせるべきかどうか及び分与の額並びに方法を定める。根拠判例（最判昭46.7.23 等）判例は、財産分与には以下の3つの性質が含まれるとしています。清算的（せいさんてき）要素：夫婦が協力して築いた財産の精算。扶養的（ふようてき）要素：離婚後の生活に困窮する配偶者への扶養。慰謝料的（いしゃりょうてき）要素：離婚による精神的苦痛に対する賠償。2. 趣旨（なぜこの3つがあるのか）離婚によって夫婦の経済的協力関係は終了しますが、ただ「半分に分ける」だけでは解決できない問題が残ります。専業主婦（主夫）で自分の名義の財産が少ない場合の不公平をなくす（清算）。離婚直後に生活が立ち行かなくなるのを防ぐ（扶養）。相手に不貞行為などがあった場合の謝罪の気持ちを形にする（慰謝料）。これらをバラバラに請求するのは大変なので、実務上は「財産分与」という一つのパッケージにまとめて解決できるようにしています。3. 関連知識：慰謝料との関係（重要！）試験でよく狙われるのが、「財産分与をした後でも、別途『慰謝料』を請求できるか？」という論点です。ケース結論理由財産分与に慰謝料が含まれている場合重ねての請求は不可すでに解決済み（二重取りはできない）とみなされる。財産分与が不十分、または含まれていない場合別途請求は可能精神的苦痛がまだ癒やされていない（補填されていない）から。4. 受験生へのアドバイス① 用語の正確な暗記記述式では、判例が使う独自のキーワードをそのまま書くのが最も安全です。「協力して得た財産の清算」「離婚後の扶養（生計維持）」「精神的損害の賠償（慰謝料）」この3つはセットで言えるようにしておきましょう。② 40字記述のまとめ方ご提示の解答「婚姻中の共同財産の清算及び離婚後の一方の生計維持ならびに精神的損害の賠償を含む。」（41文字）は、非常に洗練されており、本試験でも満点が狙えるレベルです。③ 時効（期間制限）に注意財産分与の請求は、離婚の時から2年を経過したときはできなくなります（民法768条2項後段）。不法行為の時効（3年）や、通常の債権（5年）と混同しないよう注意が必要です。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28311,6 +31485,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文（最新改正対応）民法772条（嫡出の推定）妻が婚姻中に懐胎した子は、夫の子と推定する。民法774条（嫡出否認の訴え）第772条の規定により夫の子と推定される子について、夫、子又は母は、その否認の訴えを提起することができる。民法775条（嫡出否認の訴えの相手方）嫡出否認の訴えは、次の各号に掲げる者が提起する区分に応じ、当該各号に定める者を相手方とする。夫が提起するとき：子又は母民法777条（嫡出否認の訴えの出訴期間）嫡出否認の訴えは、否認権者が子の出生を知った時から3年以内に提起しなければならない。2. 趣旨と改正のポイント「嫡出の推定」は、家庭の平和を守り、子供の身分を早期に確定させるための制度です。しかし、真実の親子関係と異なる場合には、その関係を否定する手段が必要です。[!IMPORTANT]2024年法改正による変更点期間の延長： 以前は「1年以内」でしたが、現在は**「3年以内」**に延長されました。提訴権者の拡大： 以前は「夫のみ」でしたが、現在は**「子」や「母」からも**提起できるようになりました（本問は夫Aからのアクションなので、夫の否認権が中心となります）。3. 関連知識：2つの「親子関係否定」の使い分け試験で非常に重要なのが、**「嫡出否認の訴え」と「親子関係不在確認の訴え」**の区別です。訴えの種類使えるケース特徴嫡出否認の訴え嫡出推定が及ぶ場合出生を知ってから3年という期限がある。親子関係不在確認の訴え嫡出推定が及ばない場合期限がない。嫡出推定が及ばない場合とは： 懐胎時にすでに別居して夫婦の実態がないなど、夫の子を妊娠する可能性が客観的にない場合（「推定の及ばない嫡出子」）を指します。本問のケース： 別居はしていますが「Bが懐胎した頃から不仲となり別居した」とあり、懐胎時はまだ同居していた可能性が高いため、原則通り「嫡出推定」が及びます。したがって、**「嫡出否認の訴え」**によるべきとなります。4. 受験生へのアドバイス① 改正後の「3年」を正確に2015年当時の正解は「1年」でしたが、現在の試験で「1年」と書くと誤りになります。ご提示いただいた解答で**「3年」**とされているのは、最新の法改正を反映した非常に精度の高い知識です。② 相手方の表記「B（母）またはC（子）」と、相手方を複数挙げている点も正確です。どちらか一方が相手方となれば足ります。③ 手続きの性質これは「訴え（裁判）」である必要があります。単なる「意思表示」や「通知」では親子関係を覆すことはできません。必ず**「訴えを提起する」**という表現を用いましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       }
     ],
@@ -28344,6 +31521,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文地方自治法149条3項（普通地方公共団体の長の職務）普通地方公共団体の長は、その事務を管理し及び執行する。（中略）三　過料を科すること。※条例による過料の賦課（ふか）手続きの根拠となる一般法は、地方自治法そのものに規定されています。2. 趣旨（なぜ「市長」が科すのか）行政上の秩序罰である過料には、2つのルートがあります。法律に基づく過料： 裁判所が「非訟事件手続法」に基づき科す。条例に基づく過料： 地方公共団体の長（市長など）が「行政処分」として科す。本問は「条例」に基づくケースであるため、行政庁である市長が自ら処分を下すことで、機動的かつ効率的に地域の秩序を維持することを目的としています。3. 関連知識：試験で狙われる「過料」の比較表「過料」という言葉は同じでも、根拠が「法律」か「条例」かでルールが全く異なります。ここが択一式・記述式ともに最大の狙い目です。項目条例に基づく過料（本問）法律に基づく過料法的性質行政上の秩序罰行政上の秩序罰根拠法地方自治法各個別法科す機関地方公共団体の長（市長など）裁判所手続法地方自治法（および条例）非訟事件手続法不服申し立て行政不服審査法・行政事件訴訟法同法に基づく「異議」（抗告）4. 受験生へのアドバイス① 2つの「かりょう」の書き分け行政法には「科料（刑罰）」と「過料（秩序罰）」の2つがあります。科料（かりょう）： 前科がつく「刑罰」の一つ。過料（かりょう）： 前科がつかない「行政罰」の一つ。本問は「過料」ですので、漢字の書き間違いに注意してください。② 行政上の「秩序罰」という用語行政上の制裁は、大きく分けて2つあります。行政刑罰： 懲役、罰金、科料など（刑法が適用される）。行政上の秩序罰： 過料（軽微な義務違反に対する制裁）。記述式では、この「行政上の秩序罰」という固有名詞を正確に書くことが求められます。③ 救済手続きのイメージ市長が科す過料は「行政処分」です。したがって、もしXが「俺は吸っていない！」と反論したい場合は、行政不服審査法に基づく審査請求や、行政事件訴訟法に基づく取消訴訟を提起することになります。一方で、裁判所が科す過料にはこれらは適用されません。この対比を意識しましょう。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28375,6 +31555,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文行政手続法2条6号（定義：行政指導）行政機関が（中略）特定の者に一定の変容を促すための指導、勧告、助言その他の行為であって処分に該当しないものをいう。行政手続法36条の2（行政指導の中止等の求め）法令に違反する行為の是正を求める行政指導（中略）の相手方は、当該行政指導が当該法令に規定する要件に適合しないと思料するときは、当該行政指導をした行政機関に対し、その旨を申し出て、当該行政指導の中止（中略）を求めることができる。2. 趣旨（なぜこのルールがあるのか）行政指導は、本来「相手方の任意の協力」に基づくものであり、法的な強制力はありません。しかし、実際には「文部科学大臣からの勧告」ともなれば、無視することは難しく、事実上の強制力を持ちがちです。そこで、平成26年の改正により、**「その指導は法律の要件を満たしていないのではないか」**と相手方が正式に異議を唱えるルート（中止等の求め）が作られました。これにより、不透明・不当な行政指導による権利侵害を防ぐことを目的としています。3. 関連知識：試験で混同しやすい2つの制度行政手続法36条の2（中止等）と36条の3（処分等）は非常に似ているため、以下の表で整理しましょう。制度名誰が誰に対して何を求めるか条件行政指導の中止等の求め（本問）行政指導の相手方その指導をした行政機関指導の中止・撤回法律違反の是正を求める指導であること処分等の求め何人（だれ）でも処分権限を持つ行政機関処分の発動法令違反の事実があること4. 受験生へのアドバイス① 「処分」か「指導」かを見極める問題文に「措置をとるべき旨の勧告」とあれば、まずは行政指導を疑いましょう。学校教育法15条1項に基づく勧告は、判例上も「処分（法的な権利義務を直接変えるもの）」ではなく「行政指導」と整理されています。② 申し出の方法本問では問われていませんが、この「中止等の求め」は、**「書面」**で行う必要があります（36条の2第2項）。択一式ではこの「書面か口頭か」がよく狙われます。③ 救済の「実効性」今回のケースでは「弁明その他意見陳述の手続がなされなかった」とありますが、行政指導は処分ではないため、原則として不利益処分の際のような**「聴聞」や「弁明の機会の付与」の手続きは不要**です。だからこそ、後から「中止」を求める権利が重要になります。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28406,6 +31589,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文行政手続法36条の3（処分等の求め）1項（申出）何人も、法令に違反する事実がある場合において、その是正のためにされるべき処分（中略）がされていないと思料するときは、当該処分をする権限を有する行政機関に対し、その旨を申し出て、当該処分（中略）をすることを求めることができる。3項（行政庁の義務）行政機関は、第一項の規定による申出があったときは、必要な調査を行い、その結果に基づき、必要があると認めるときは、当該処分（中略）をしなければならない。2. 趣旨（なぜこのルールがあるのか）本問のようなケースでは、近隣住民などは火災の危険にさらされていますが、消防署長（行政）が動かない限り、自分たちで直接命令を出すことはできません。行政が本来すべき処分を怠っている（放置している）場合、その放置によって誰かの権利が侵害されるのを防ぐため、**「誰でも（何人も）」**行政に対して「ちゃんと仕事（処分）をしてください」と申し出る権利を認めたのがこの制度です。3. 関連知識：36条の2（中止等）と36条の3（処分等）の比較この2つの制度は非常に混同しやすいため、以下の図解と表で整理しましょう。項目行政指導の中止等の求め（36条の2）処分等の求め（36条の3 / 本問）目的違法な行政指導を止めてほしい。必要な処分をしてほしい。主体指導の相手方（当事者のみ）何人も（誰でも可能）要件法令に違反する是正指導であること。法令に違反する事実があること。行政の義務必要な調査を行い、中止等をする。必要な調査を行い、処分等をする。4. 受験生へのアドバイス① 「何人も（だれも）」という主語「行政指導の中止等の求め（36条の2）」は、指導を受けている当事者しかできません。一方で、この「処分等の求め（36条の3）」は、被害を受けている近隣住民だけでなく、文字通り誰でも行うことができます。記述式ではこの「何人も」という言葉が配点ポイントになります。② 解答の組み立て（3つの要素）問いが「どのような者が（誰が）」「どのような行動をとれるか」「Y（行政）はどうすべきか」と3段階で聞いています。誰が： 何人も行動： Yに命令をすることを求めることができるYの対応： 必要な調査を行い、必要があると認める時は命令をすべきであるご提示いただいた解答「何人も命令を求めることができ、Yは必要な調査を行い必要と認めたときは命令をすべきである。」は、この3要素を完璧に満たした満点レベルの解答です。③ 「書面」での申し出（36条の3第2項）今回の記述には含まれませんが、この申し出も**「書面」**で行う必要があります。住所氏名、違反事実の内容などを明記しなければなりません。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28437,6 +31623,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文・判例根拠条文：裁判所法3条1項（裁判所の権限）裁判所は、日本国憲法に特別の定のある場合を除いて、一切の法律上の争訟を裁判し、その他法律によって特に定められた権限を行使する。根拠判例：宝塚市パチンコ条例事件（最判平成14年7月9日）「国又は地方公共団体が専ら行政権の主体として国民に対して行政上の義務の履行を求める訴訟は、法規の適用の適正を確保すること等を目的とするものであって、自己の権利利益の保護救済を目的とするものということはできないから、法律に特別の規定がある場合に限り提起することが許される……法律上の争訟には当たらない」2. 趣旨（なぜ訴えが認められないのか）日本の裁判所は、あくまで「個人の権利や自由が侵害されたとき」に、それを救済するために動く場所です（これを主観的訴訟と呼びます）。本問のA市は、「自分の土地が侵害された」という私人のような立場ではなく、**「条例というルール（行政権）を守らせたい」**という公権力の立場で訴えています。もし裁判所がこれを認めてしまうと、行政が自ら行うべき「強制執行（代執行など）」を裁判所に丸投げすることになり、**司法が行政の「下請け」**のようになってしまいます。これは三権分立の観点からも許されない、というのが判例の考え方です。3. 関連知識の整理この論点を理解するためには、行政が訴訟を起こす際の「2つの顔」を区別する必要があります。分類立場（立場）内容裁判の可否私法上の主体市民と同じ立場市役所の備品代金を払わない業者を訴える（財産権の行使）。認められる（法律上の争訟に当たる）行政権の主体お上（規制者）条例違反を止めさせるために訴える（行政代執行の代わり）。認められない（法律上の争訟に当たらない）[!TIP]「法律に特別の規定がある場合」とは？法律上の争訟に当たらなくても、法律が「訴えてもいいよ」と特別に許可している場合は例外的に認められます（例：公職選挙法の選挙無効訴訟など）。しかし、パチンコ条例にはそのような規定がないため、本問では却下となります。4. 受験生へのアドバイス① 「却下（かっか）」と「棄却（ききゃく）」の区別記述式で最も間違えやすいのがここです。却下： そもそも裁判の土俵に乗せる資格がない（門前払い）。棄却： 裁判をして中身を調べた結果、言い分が認められない。本問は「法律上の争訟ではない＝裁判所の仕事ではない」という話なので、**「訴え却下」**が正解です。② キーワードのセット「専ら（もっぱら）行政権の主体の立場」「法律上の争訟に当たらない」「訴え却下」の3つは、セットで暗記してください。判例特有の硬い言い回しですが、そのまま書くことが求められます。③ 自力執行の原則行政には「行政代執行」などの強力な自力執行権が認められています。わざわざ裁判所の手を借りなくても、自分でルールを守らせる手段があるはずだ、という前提があることを理解しておくと、この判例の納得感が増します。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28468,6 +31657,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文行政事件訴訟法10条2項（裁決の取消しの訴えの主張の制限：原処分主義）処分の取消しの訴えとその処分についての審査請求を棄却した裁決の取消しの訴えとを提起することができる場合には、裁決の取消しの訴えにおいては、処分の違法をもって裁決の違法を主張することができない。行政事件訴訟法11条1項（被告適格）処分又は裁決の取消しの訴え（中略）は、当該処分又は裁決をした行政庁（中略）が国又は地方公共団体に所属する場合には、被告を当該国又は地方公共団体として提起しなければならない。2. 趣旨（なぜこのルールがあるのか）もし、裁決取消訴訟の中で「元の処分（開発拒否）がおかしい」と主張することを認めてしまうと、処分の取消訴訟と裁決の取消訴訟で同じ内容が重複して審理されることになり、非常に非効率です。そこで、**「処分の不満は処分の取消訴訟で」「裁決のプロセスや手続きの不備（固有の瑕疵）は裁決の取消訴訟で」**と役割分担を明確にすることで、審理の混乱を防ぎ、訴訟を円滑に進めることを目的としています。これを「原処分主義」と呼びます。3. 関連知識の整理この論点では、以下の対比が非常に重要です。項目原処分主義（原則）裁決主義（例外）内容原処分と裁決、両方を訴えられる。裁決のみしか訴えることができない。制限裁決の訴えでは「裁決固有の瑕疵」しか言えない。裁決の訴えの中で原処分の違法も主張できる。採用例ほとんどの行政処分（本問など）。電波法の処分、特許庁の査定など一部の法律。4. 受験生へのアドバイス① 被告の書き間違えに注意実務上、審査請求の相手は「開発審査会」ですが、訴訟の被告は「Y県開発審査会」ではなく、その所属する**「Y県」**になります。行政手続法の「申出の相手方（行政庁）」と、行政事件訴訟法の「被告（国・公共団体）」が混同されやすいため、区別を徹底しましょう。② 「裁決固有の瑕疵（さいけつこゆうのかし）」というキーワード記述式ではこのフレーズが必須です。「裁決そのものの手続き違反や、内容の誤り」という意味ですが、この専門用語をそのまま書くことで高い加点が期待できます。③ 提起の形（併合提起）本問のXのように、処分と裁決の両方を訴える場合は、通常は**「関連請求の併合」**として一つの裁判所でまとめて審理されます。しかし、それでもなお、裁決の訴えの中で処分の悪口を言うことはできない、というルールがこの10条2項です。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28499,6 +31691,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文・判例根拠条文：行政事件訴訟法11条1項（被告適格）処分又は裁決の取消しの訴え（中略）は、当該処分又は裁決をした行政庁（中略）が国又は地方公共団体に所属する場合には、被告を当該国又は地方公共団体として提起しなければならない。根拠判例：群馬テレビ事件（最判昭43.12.24）特定の者に対してのみ免許を与えるという競願関係にある場合、拒否処分を受けた者は、自己に対する拒否処分の取消しを求めることができるだけでなく、他人に与えられた免許処分の取消しを求める訴えの利益も有する。2. 趣旨（なぜ他人の免許を訴えられるのか）通常、他人が受けた処分に対して口を出すことはできませんが、本問のような「1社限定」の枠を争うケースでは話が別です。Aに免許が与えられたということは、物理的にXが免許を得るチャンスが消滅したことを意味します。つまり、「Aへの免許」と「Xへの拒否」はコインの裏表の関係にあります。Xが救済を受けるためには、自分への拒否を覆すだけでなく、Aへの免許を一度白紙に戻して、審査をやり直させる必要があるため、両方の訴訟が認められています。3. 関連知識：試験で狙われるポイントこの論点では、以下の要素をセットで整理しておきましょう。項目内容ポイント被告国総務大臣は国の機関であるため、被告は「国」となる。訴訟対象選択可能Aへの免許処分、または自己への拒否処分のいずれか（あるいは両方）。原告適格認められる拒否されたXは、Aの免許を取り消す「法律上の利益」を有する。判決の効力第三者効（32条）Aの免許を取り消す判決が出れば、Aに対してもその効力が及ぶ。4. 受験生へのアドバイス① 被告の書き間違いに注意「総務大臣」を被告にしてはいけません。行政事件訴訟法では、処分庁が所属する**「国」**（または地方公共団体）を被告とするのが原則です。② 「自己への拒否処分」を忘れない「Aへの免許処分の取消し」に注目しがちですが、論理的には「自分への不当な拒否」を争うことも当然可能です。記述式では「～または～」という形で、両方の可能性を示すのが最も安全です。③ 判例のロジック最高裁は、この競願関係において「他人の免許を取り消すことが、自己の免許取得に向けた有効な手段である」と認めています。この「訴えの利益」の考え方は、択一式試験でも非常によく出題されます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28530,6 +31725,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文行政事件訴訟法3条4項（無効等確認の訴え）「無効等確認の訴え」とは、行政庁の処分若しくは裁決の存否又はその効力の有無の確認を求める訴訟をいう。行政事件訴訟法38条1項（被告適格の準用）（取消訴訟の被告適格に関する11条の規定を、無効等確認の訴えにも準用する）※処分を下した行政庁（本件組合）が国や地方公共団体に所属しない場合は、その行政庁自体を被告とする。2. 趣旨（なぜこの訴訟なのか）通常、処分の取り消しを求めるには、処分を知った日から6か月以内（または処分から1年以内）に取消訴訟を提起しなければなりません。しかし、本問では「出訴期間がすでに経過している」ため、もはや取り消しを争うことはできません。そこで、例外的に**「その処分には重大かつ明白な瑕疵があり、最初から効力などなかった（無効である）」と主張して、時間の制限なく争える「無効の確認を求める訴え」**を選択することになります。3. 関連知識の整理：土地区画整理事業の特殊性土地区画整理事業は多くの権利者が絡むため、訴訟においては以下の2点が特有のハードルとなります。項目内容注意点被告の特定土地区画整理組合組合は「公法人」であり、国や県の一部ではないため、組合自身を被告にする。無効のハードル重大かつ明白な瑕疵単なる「違法」では足りず、誰が見ても明らかなほどひどい過誤が必要。事情判決（31条）公共の福祉による制限たとえ処分が違法でも、工事が終わり多くの人が住み始めている場合、やり直しを認めないことがある。4. 受験生へのアドバイス① 出訴期間のチェックを怠らない問題文に「出訴期間が経過している」というフレーズがあれば、思考を**「取消訴訟」から「無効等確認の訴え」へ**即座に切り替えてください。これがこの問題の最大の「ひっかけ」であり、突破口です。② 被告適格の例外通常、被告は「国」や「都道府県」ですが、土地区画整理組合や指定確認検査機関（建築確認を行う民間機関）などが登場した場合は、その組織自体が被告となります。行政法規の中で、誰が「処分庁」なのかを常に意識しましょう。③ 訴訟の名称を正確に「無効確認の訴え」でも通じますが、条文上の正式名称は**「無効の確認を求める訴え」**です。記述式では、より丁寧な表記を心がけることで減点リスクを抑えられます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28561,6 +31759,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文行政事件訴訟法3条6項2号（申請型義務付けの訴え）行政庁に対し一定の処分（中略）を求める旨の申請がされた場合において、当該行政庁がその処分（中略）をすべきであるにかかわらず、これがされないとき（＝不作為のとき）。行政事件訴訟法37条の3第3項1号（併合提起の義務）申請型義務付けの訴えを提起するときは、不作為の違法確認の訴え（または拒否処分の取消訴訟）を併合して提起しなければならない。行政事件訴訟法11条1項（被告適格）処分又は裁決をした行政庁（本問では知事）が都道府県に所属する場合、被告を当該都道府県（A県）として提起しなければならない。2. 趣旨：なぜこの訴訟の組み合わせになるのか行政庁が申請を「受理しない（門前払いする）」という行為は、法律上、有効な申請がなされているにもかかわらず、行政庁が何ら応答をしていない**「不作為」**の状態にあるとみなされます。単に「不作為が違法だ」と裁判所に認めてもらう（不作為の違法確認）だけでは、Xが本当に欲しい「農地転用許可」は手に入りません。そこで、不作為の違法を確認すると同時に、裁判所から知事に対して**「許可を出しなさい」と命じてもらう（義務付け）**ために、2つの訴えをセットで出すことが法律で義務付けられています。3. 関連知識の整理：間違えやすいポイント項目本問のケース注意点被告A県B市や農業委員会ではない（許可権者は知事であるため）。訴訟の形態不作為の違法確認 ＋ 義務付け「拒否処分の取消し」ではない（受理拒否は不作為とされるため）。提起方法併合（へいごう）提起別々に訴訟を起こすことはできない。訴えの利益あり許可が得られない状態が続いているため、争う利益が認められる。4. 受験生へのアドバイス① 被告適格を冷静に見極める「B市農業委員会」という具体的な窓口が登場するため、ついついB市を被告にしたくなりますが、抗告訴訟の被告は原則として**「処分の帰属する地方公共団体」**です。農地転用許可の権限が「A県知事」にある以上、被告は「A県」となります。② 「申請」があったとみなされる理由行政手続法7条では、申請が事務所に到達したときは、行政庁は遅滞なく審査を開始しなければならないと定めています。郵送で届いている以上、行政側が「受理できない」と勝手に送り返しても、法的には申請が到達したという事実は消えません。だからこそ「不作為」として争うことが可能になります。③ 記述の組み立て問いが「いかなる被告に対し、どのような訴訟を提起すべきか」と聞いているので、解答もその順番に構成します。被告： A県を被告として、訴訟の種類： 不作為の違法確認の訴えと農地転用許可の義務付けの訴えを、提起方法： 併合提起する。ご提示いただいた解答「A県を被告として、不作為の違法確認の訴えと農地転用許可の義務付けの訴えを併合提起する。」は、これらすべての要素を過不足なく、かつ簡潔にまとめられています。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28592,6 +31793,9 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文と解説① 被告の特定（行政事件訴訟法11条1項）処分を下すのは「B市長（行政庁）」ですが、抗告訴訟の被告は原則として、その行政庁が所属する**「国または地方公共団体」となります。本問では市長が所属するB市**が被告です。② 訴訟要件：重大な損害を生ずるおそれ（同法37条の2第1項）本問は、行政庁に対して「他人に処分を下せ」と求める**「非申請型義務付けの訴え」**にあたります。この訴えが認められるためには、以下の要件が必要です。一定の処分がなされないことにより、重大な損害を生ずるおそれがあること。その損害を避けるため、他に適当な方法がないこと（補充性）。③ 訴訟の種類：義務付けの訴え（同法3条6項1号）行政庁に一定の処分を強制する訴えは「義務付けの訴え」です。ポイント： Xらは市長に「申し入れ（お願い）」をしていますが、これは法律上の「申請（自分に有利な処分を求める権利）」ではないため、申請型（37条の3）ではなく、**非申請型（37条の2）**の義務付け訴訟となります。2. 関連知識の整理この問題とセットで覚えておくべき比較ポイントをまとめました。項目申請型義務付け（37条の3）非申請型義務付け（37条の2・本問）前提法令に基づく「申請」が拒否・放置された申請なしに、行政にアクションを求める訴訟要件拒否処分の取消訴訟等を併合提起する重大な損害を生ずるおそれがあること具体例営業許可申請が拒否された場合違法建築物への是正命令を求める場合[!TIP]「重大な損害」の判断基準（37条の2第2項）裁判所が「重大な損害」かどうかを判断する際は、損害の回復の困難度だけでなく、損害の性質および程度、ならびに処分の内容および性質を考慮します。記述式で「考慮要素は何か？」と問われる可能性もあるため、用語をセットで押さえておきましょう。3. 解答構成の再確認（40字程度）ご提示の解答をさらに条文の表現に忠実にしたものがこちらです：B市を被告とし、重大な損害を生ずるおそれがあると主張し、是正命令の義務付けの訴えを提起する。（43文字）内容に誤りはありませんが、試験では「誰を被告として」「どのような影響を」「どのような訴訟を」という3つの問いへの対応を明確にすることが得点のコツです。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       },
       {
@@ -28623,12 +31827,508 @@ export const SUBJECTS = {
         ],
         "choiceDeepDive": [
           "1. 根拠条文行政事件訴訟法3条7項（差止の訴え）「差止の訴え」とは、行政庁が一定の処分又は裁決をすべきでないにかかわらず、これがされようとしている場合において、行政庁がその処分又は裁決をしてはならない旨を命ずることを求める訴訟をいう。行政事件訴訟法37条の5第2項（仮の差止め）差止の訴えの提起があった場合において、その差し止めることを求める処分又は裁決がされることにより生ずる償うことのできない損害を避けるため緊急の必要があるときは、裁判所は、申立てにより、決定をもって、仮に行政庁がその処分又は裁決をしてはならない旨を命ずることができる。2. 趣旨（なぜこの組み合わせなのか）通常、行政処分に対する救済は、処分がなされた後にその取り消しを求める「取消訴訟」が原則です。しかし、本問のように**「まだ正式な議決（処分）はされていないが、されることが確実である」という段階で、その処分自体を未然に防ぎたい場合には、「差止の訴え」**を用います。ただし、本案訴訟（差止の訴え）は結論が出るまでに時間がかかります。9月の招集まで1か月しかないという緊急事態では、判決を待っている間に懲罰が実行されてしまいます。そこで、判決が出る前に暫定的に処分のストップをかける**「仮の差止め」**をセットで申し立てる必要があります。3. 関連知識：判例の大きな転換（重要！）この問題に関連して、受験生が絶対に知っておくべき最高裁判例の変化があります。項目旧来の判例現在の判例（最判令2.11.25）議員への出席停止「部分社会の法理」により、原則として司法審査の対象外であった。議員の活動を制約する重大な事罰であり、司法審査の対象になると変更された。除名処分以前から司法審査の対象。変わらず対象。[!IMPORTANT]なぜ2023年や2024年の試験で狙われるのか？令和2年に最高裁が「出席停止の懲罰も裁判で争える」と判断を変えたため、行政法学上非常にホットなトピックになっています。以前の古い知識では「裁判所は関与できない」と答えてしまう危険があるため、最新の判例知識が必要です。4. 受験生へのアドバイス① 被告の書き間違いに注意訴訟の被告は、処分を行う議会そのものではなく、その議会が属する地方公共団体である**「Y市」**になります。行政事件訴訟法11条の原則を常に意識しましょう。② 2つの手段を「併合」して書く問いが「仮の救済手段も含め」と指定しているため、本案の「差止の訴え」と、仮の救済である「仮の差止め」の両方を記述する必要があります。ご提示の解答のように「～とともに、～を申し立てる」という構成が理想的です。③ 「償うことのできない損害」今回の記述には含まれませんが、仮の差止めが認められるための要件は、執行停止の「重大な損害」よりも厳しい**「償うことのできない損害」**です。択一式ではこの用語の微細な違いが問われます。"
+        ],
+        "choiceDeepDiveBeginner": [
+          ""
         ]
       }
     ]
   }
 };
-export const RESOURCES = {};
+export const RESOURCES = {
+  "ｇｓ０００１": [
+    {
+      "title": "宜野座村工場誘致政策変更事件",
+      "content": "ある村（宜野座村）が村の発展のために工場を誘致することになり、ある企業がそれに名乗りを上げました。村と企業は協力して計画を進め、村議会もこれを正式に承認しました。企業は村の公的な決定を信頼し、工場の設計や準備に多額の費用を投じました。",
+      "imageUrl": "https://i.gyazo.com/286ee2784bdfb384ee43fb4a81867790.jpg",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "宜野座村工場誘致政策変更事件",
+      "content": "ところが、村長選挙で新しい村長が当選し、方針が一変します。新村長は「自然保護」を理由に、前任者が進めていた工場誘致計画を白紙撤回してしまいました。企業側は、村の約束を信じて費やした莫大な準備費用が無駄になり、大きな損害を被ることになりました。",
+      "imageUrl": "https://i.gyazo.com/8ca572d0d5bb584faa24f6cc7a85e52d.jpg",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "宜野座村工場誘致政策変更事件",
+      "content": "企業は村を相手に損害賠償を求める裁判を起こしました。最高裁判所は、「行政には政策を変更する自由がある」としつつも、「相手に強い信頼を与えておきながら、正当な理由なく一方的にその信頼を裏切ることは許されない」と判断しました。その結果、村は企業が支出した準備費用を賠償する責任があるとされました。",
+      "imageUrl": "https://i.gyazo.com/53ec1da62c9031da1f4c803842a85c55.jpg",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ０００２": [
+    {
+      "title": "租税法規に適合する課税処分と信義則 / 最判昭56.12.30",
+      "content": "ある納税者が、役所から「このケースでは税金はかかりませんよ」という趣旨の説明を長年受けていました。それを信じた納税者は、税金を払わずに済む前提で事業の計画を立てていました。しかし突然、役所が「やはり税法上、課税するのが正しいので払ってください」と言い出しました。",
+      "imageUrl": "https://i.gyazo.com/91bc5f49661c8eee5514ec7fb6f881a1.png",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "租税法規に適合する課税処分と信義則 / 最判昭56.12.31",
+      "content": "原則として、税金は法律（租税法律主義）に基づいて正しく徴収されなければなりません。しかし、役所が「税金はかからない」という誤った表示を強く示し、納税者がそれを信じて行動した結果、後から課税されることがあまりに酷（不当）であるような特別な事情がある場合に限り、その課税処分を取り消すことができます。",
+      "imageUrl": "https://i.gyazo.com/91bc5f49661c8eee5514ec7fb6f881a1.png",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ０００３": [
+    {
+      "title": "個室付浴場業の開業阻止と職権濫用 / 最判昭53.5.26",
+      "content": "ある業者が、県内で「個室付浴場（ソープランド）」を開業しようと考え、法律に則って県知事に設置許可の申請を出しました。",
+      "imageUrl": "https://i.gyazo.com/4afc535e95f8c5cd03daefea5fbbb4e8.png",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "個室付浴場業の開業阻止と職権濫用 / 最判昭53.5.27",
+      "content": "しかし、その場所での開業を快く思わない県知事は、時間を稼いで開業を阻止しようと考えました。知事はわざと申請の審査を遅らせ、その間に「その場所の近くに児童遊園地（公園）を作る」という決定を下します。",
+      "imageUrl": "https://i.gyazo.com/6d0eef0d69e5454a357822cf9e839ada.png",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "個室付浴場業の開業阻止と職権濫用 / 最判昭53.5.28",
+      "content": "実は、法律では「児童遊園地の近くに浴場を作ってはいけない」というルールがありました。知事は、わざと公園を先に作らせることで、業者の申請を「近くに公園があるからダメ」と却下できる状況を後から作り出したのです。",
+      "imageUrl": "https://i.gyazo.com/4888b00f637d300072af301071709681.png",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ０００４": [
+    {
+      "title": "在ブラジル被爆者健康管理手当等請求事件（最判平19.2.6）",
+      "content": "広島や長崎で被爆したあと、ブラジルなど海外へ移住した方々（在外被爆者）がいました。日本の法律（被爆者援護法）では被爆者に「手当」を支給することになっていましたが、当時の厚生省は「日本を出たら支給を打ち切る」という通達（402号通達）を出しており、海外にいる人たちにはお金が払われない状態が長く続いていました。\n後にこの通達は違法だと裁判で確定し、在外被爆者の方々は「これまでの未払い分を払ってほしい」と国に求めました。",
+      "imageUrl": "https://i.gyazo.com/713c7351f37e2fa968bfcb5e224b2bae.png",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "在ブラジル被爆者健康管理手当等請求事件（最判平19.2.6）",
+      "content": "国の主張：「もう5年過ぎたから時効です」\nこれに対し、国はこう主張しました。 「確かにお金をもらう権利はありましたが、法律（会計法）では5年で時効です。昔の分についてはもう5年以上経っているので、支払う義務はありません」\n被爆者の方々は「国が勝手にダメだというルール（違法な通達）を作っていたせいで請求できなかったのに、今さら時効だなんて卑怯だ！」と訴えたのです。",
+      "imageUrl": "https://i.gyazo.com/b56284102db5b534dbe1403877172d37.png",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "在ブラジル被爆者健康管理手当等請求事件（最判平19.2.6）",
+      "content": "最高裁は、このケースでは国が時効を主張することは**「信義則（しんぎそく）」に反して許されない**と判断しました。\n本来のルール（原則）： 国や地方公共団体が「時効だから払いません」と主張することは、原則として認められます。\n\nこの事件の特殊性（例外）： 1. 国が「海外に出たら権利がなくなる」という違法な通達を出し、それを前提とした運用を続けていた。 2. そのせいで、被爆者の方々は「自分には請求する権利がない」と信じ込まされ、請求することが事実上不可能だった。 3. このような状況を作った国が、自ら時効を主張して支払いを拒むのは、あまりに不公平で正義に反する。\n\n結論： 国が時効を主張して支払いを免れることはできず、5年より前の分についても国は賠償すべきであるとされました。",
+      "imageUrl": "https://i.gyazo.com/067fe98dd71a2a9388efaa8656e2b1cd.png",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ０００５": [
+    {
+      "title": "国の公務員に対する安全配慮義務違反事件",
+      "content": "在ブラジル被爆者健康管理手当等請求事件（最判平19.2.6）\n【事件の背景】 自衛隊員が、整備中の車両にひかれて亡くなるという痛ましい事故が起きました。遺族は、「国は、公務員が安全に働けるように配慮する義務（安全配慮義務）を怠った」として、国に対して損害賠償を求めました。\n【争点】 国は、「国は公権力を行使する立場であり、民間の会社のように従業員と対等な契約関係にあるわけではない。だから、民法上の安全配慮義務は負わない」と主張しました。",
+      "imageUrl": "https://i.gyazo.com/1cd4610b1630bb24ac1fd6a421fcdd0b.png",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "国の公務員に対する安全配慮義務違反事件",
+      "content": "最高裁の判断：国も民間と同じ義務を負う\n最高裁は、国の主張を退け、以下のように判断しました。\n安全配慮義務の存在： 国も、公務員と特別な関係に入った以上、民間企業と同じように、公務員の生命や身体を危険から守るように配慮する義務（安全配慮義務）を負う。\n義務の根拠： この義務は、特定の法律に書いてあるかどうかにかかわらず、法律関係における「信義則（しんぎそく）」に基づいて当然に発生するものである。\n結論： 国は、この安全配慮義務に違反したため、遺族に対して損害を賠償する責任がある。",
+      "imageUrl": "https://i.gyazo.com/614a8677a0cf4673aa4b479b24271180.png",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "国の公務員に対する安全配慮義務違反事件",
+      "content": "",
+      "imageUrl": "https://i.gyazo.com/875567b70c181c2f25514b264507bde5.png",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ０００６": [
+    {
+      "title": "青色申告承認申請怠惰事件",
+      "content": "ある納税者が、税金を安くできる「青色申告」をしようと、税務署に承認申請書を提出しました。 ところが、税務署の担当官から指導を受け、納税者はその指導に従って、せっかく出した申請書を自ら取り下げてしまいました。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "青色申告承認申請怠惰事件",
+      "content": "その後、税務署長は「あなたは申請を取り下げたのだから、青色申告は認められません」として、青色申告を前提としない（納税者にとって不利な）課税処分（更正処分）を行いました。\n納税者は怒りました。「税務署の指導に従って取り下げたのに、それを理由に不利な処分をするなんて、だまし討ちだ（信義則違反だ）！」と訴えたのです。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "青色申告承認申請怠惰事件",
+      "content": "【裁判所の判断（最高裁）】 最高裁は、税金の世界（租税法規の適用）における信義則の適用について、非常に慎重な姿勢を示しました。\nこの判決は、税務署の言動を信じて行動したからといって、必ずしも救済されるわけではないことを示しました。信義則が適用されるのは、国の対応が「あまりにもひどく、正義に反する」と言えるような、**「特別の事情」**があるケースに限られるという、高いハードルを設定した重要な判例です。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ０００７": [
+    {
+      "title": "未決勾留と国の安全配慮義務",
+      "content": "【結論】 未決勾留（裁判が決まる前に容疑者や被告人を拘束すること）されている人に対し、国は「信義則（しんぎそく）上の安全配慮義務」を負いません。\n【理由】 判例（最判平28.4.21）は、以下の理由から、国と被勾留者の関係は、信義則が適用されるような「特別な社会的接触の関係」ではないと判断しました。\n\n①目的と法的根拠: 未決勾留は、刑事訴訟法の規定に基づき、逃亡や証拠隠滅を防ぐことを目的として行われます。\n②一方的な関係: 勾留は裁判所の決定に基づいて行われるものであり、被勾留者（拘束される本人）の意思に関係なく、一方的に形成される関係です。\n③法令による規律: この関係は、当事者の合意ではなく、もっぱら法令等の規定に従って規律されるものです。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ０００８": [
+    {
+      "title": "食品衛生法違反と私法上の契約の効力",
+      "content": "【結論】 食品衛生法に基づく許可（例：食肉販売業の許可）を受けていない業者が行った取引であっても、その売買契約自体の効力は否定されません（契約は有効です）。\n【理由】 判例（最判昭35.3.18）は、食品衛生法の性質を以下のように解釈しました。\n\n①単なる取締法規（とりしまりほうき）: 食品衛生法は、公衆衛生のために営業を取り締まることを目的とした「単なる取締法規」にすぎません。\n②私法上の効力への影響: このような取締法規に違反したとしても（無許可営業で行政から処罰される可能性はあるとしても）、その業者が行った私法上の取引（売買契約など）の効力までが否定される理由はないと判断しました。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ０００９": [
+    {
+      "title": "町による事業者の地位への配慮義務違反",
+      "content": "ある町が、民間事業者と協力して大きなプロジェクトを進めることにしました。町はこの事業者を単なる「業者」としてではなく、計画のパートナー（共同事業者）として扱い、二人三脚で準備を進めてきました。事業者は町の姿勢を信頼し、多額の投資をして準備を整えました。\nところが、計画の最終段階で、町が突然、事業者の立場を著しく害するような処分（例：計画の変更や中止）を行いました。事業者は「パートナーとして一緒にやってきたのに、あんまりだ！」と訴えました。\n【争点】 町は、事業者に対して「その地位を不当に害することのないよう配慮すべき義務」を負っていたのか？\n裁判所の判断：信義則上の配慮義務\n最高裁は、町と事業者のこれまでの関係性を重視し、以下のように判断しました。\n特別な関係の形成： 町が事業者を共同事業者のように扱い、密接に連携して計画を進めてきた場合、両者の間には特別な信頼関係が生まれている。\n配慮義務の発生： このような関係にある以上、町は信義則（しんぎそく）上、事業者の「地位を不当に害することのないよう配慮すべき義務」を負う。\n結論： もし町が行った処分が、この配慮義務に違反してなされたものであれば、その処分は違法となる。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００１０": [
+    {
+      "title": "公営住宅明渡請求事件／最判昭59.12.13",
+      "content": "公営住宅の使用関係については、公営住宅法及びこれに基づく条例が特別法として民法及び借家法に優先して適用されますが、法及び条例に特別の定めがない限り、原則として一般法である民法及び借家法の適用があり、その契約関係を規律するについては、信頼関係の法理の適用があります",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００１１": [
+    {
+      "title": "最判昭31.4.24",
+      "content": "国税滞納処分において、国は自ら執行機関として、強制力を行使するものであり、民事訴訟法上の強制執行における差押債権者に類似する地位にあります。国が一般私法上の債権者より不利益の取扱を受ける理由はないのであるから、民法177条の適用があるものと解するのが相当です（最判昭31.4.24）。国税滞納処分において国が不動産を差し押さえた場合には、国は民法177条の「第三者」に当たることから、その差押えの前に不動産を譲り受けていた者も、登記がなければ、国に対して所有権を主張することができません。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００１２": [
+    {
+      "title": "最判平元.9.19",
+      "content": "「建築基準法……は、防火地域又は準防火地域内にある外壁が耐火構造の建築物について、その外壁を隣地境界線に接して設けることができる旨規定しているが、これは、同条所定の建築物に限り、その建築については民法234条1項の規定の適用が排除される旨を定めたものと解するのが相当である」（最判平元.9.19）。よって、この場合には、「境界線から50センチメートル以上の距離を保たなければならない」という民法234条1項の規定は適用されません。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００１３": [
+    {
+      "title": "公営住宅相続人使用権確認等請求事件／最判平2.10.18",
+      "content": "公営住宅法は、住宅に困窮する低所得者に対して低廉な家賃で住宅を賃貸することにより、国民生活の安定と社会福祉の増進に寄与することを目的とするものです。公営住宅の入居者が死亡した場合には、その相続人が公営住宅を使用する権利を当然に承継すると解する余地はありません",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００１４": [
+    {
+      "title": "（朝日訴訟）",
+      "content": "判例A：生活保護受給権（朝日訴訟）\n\n【テーマ：生活保護を受ける権利は相続できるか？】\n\n内容: 生活保護を受けていた朝日さんが「保護費が少なすぎる（生存権の侵害だ）」と訴えていた最中に亡くなってしまったケースです。\n\n結論: 相続できない（訴訟は終了する）\n\n解説: 裁判所は、生活保護を受ける権利は「受給者本人の最低限度の生活を維持するためのもの」と考えました。つまり、本人が亡くなった後に遺族がその権利を引き継ぐことはできない（これを一身専属的権利といいます）と判断したのです。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "（労災保険法）",
+      "content": "判例B：じん肺管理区分（労災保険法）\n\n【テーマ：労災の決定に納得いかないまま亡くなった場合、遺族が引き継げるか？】\n\n内容: じん肺（アスベストなどの吸入による病気）の管理区分決定について争っていた労働者が亡くなったケースです。\n\n結論: 相続できる（遺族が訴訟を引き継げる）\n\n解説: 生活保護と異なり、労災保険には「未支給の給付」を遺族が請求できるという規定があります。この判決では、管理区分の決定が正されることで、遺族が受け取れる給付金の額が変わるため、「金銭的な利益」として遺族が裁判を引き継ぐことを認めました。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "（被爆者援護法）",
+      "content": "判例C：被爆者健康管理手当（被爆者援護法）\n\n【テーマ：手当の申請中に亡くなった場合、遺族が権利を引き継げるか？】\n\n内容: 原子爆弾の被爆者が「健康管理手当」を申請し、その却下処分の取り消しを求めていた最中に亡くなったケースです。\n\n結論: 相続できない（訴訟は終了する）\n\n解説: 裁判所は、この手当は「被爆者本人の健康管理」を目的としたものだと判断しました。本人が亡くなってしまえば、健康管理をする必要がなくなるため、その権利は本人と一緒に消滅すると考えられたのです。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００１５": [
+    {
+      "title": "自衛隊員落伍衝突事件",
+      "content": "この判例は、国と公務員の間の「安全配慮義務」を認めた記念碑的なものです。\n安全配慮義務の存在: 国は公務員に対し、勤務中の生命や健康を保護する義務（安全配慮義務）を負います。これは、国と公務員という特別な関係から生じる「信義則上の義務」です。\n\n国家賠償法以外での請求: 賠償請求は国家賠償法（不法行為）に基づくものだけでなく、民法の「債務不履行（義務違反）」としても請求可能です。\n\n消滅時効の期間:\n\n国に対する金銭請求は、原則として会計法により5年で時効となります。\n\nしかし、この判例では「被害者の救済」という性質を重視し、会計法の5年ではなく、民法の規定（当時は10年）が適用されると判断しました。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００１６": [
+    {
+      "title": "公有水面埋立てに関する判例",
+      "content": "「海」という公の財産が、いつから個人のもの（私有地）になり得るかという問題です。\n基本原則：海は私有地にならない\n海は特定の個人が独占できるものではなく、たとえ土砂を投入して陸地を作っても、行政の「竣功認可（しゅんこうにんか）」を受けるまでは、法律上はまだ「海（公有水面）」のままです。\n\nこの時点では、投入された土砂はただの「動産」が置いてある状態とみなされ、個人の「所有権」は認められません。\n\n例外：取得時効が認められる条件\nただし、以下の条件が揃った場合には、例外的に個人のものになる（取得時効が成立する）ことがあります。\n\n公用廃止の状態: 長期間放置され、もはや公共の目的（海としての機能）を完全に失っている。\n\n黙示の公用廃止: 国が明示的に「ここはもう公有地ではありません」と言っていなくても、実態として公共の用に供されていない。\n\n平穏・公然の占有: 他人がそこを平穏かつ公然と占有し続けている。\n\nこのような状況では、もはや「海」に戻す義務もなくなり、**「黙示的に公用が廃止された」**とみなして、取得時効の対象になると判断されました。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    },
+    {
+      "title": "公有水面埋立法",
+      "content": "公有水面埋立法……に定める上記原状回復義務は、海の公共性を回復するために埋立てをした者に課せられた義務である。\nそうすると、長年にわたり当該埋立地が事実上公の目的に使用されることもなく放置され、(イ)公共用財産としての形態、機能を完全に喪失し、その上に他人の平穏かつ公然の(ウ)占有が継続したが、そのため実際上公の目的が害されるようなこともなく、これを(イ)公共用財産として維持すべき理由がなくなった場合には、もはや同項に定める原状回復義務の対象とならないと解すべきである。\n\nしたがって、竣功未認可埋立地であっても、上記の場合には、当該埋立地は、もはや公有水面に復元されることなく私法上所有権の客体となる土地として存続することが確定し、同時に、(エ)黙示的に公用が廃止されたものとして、(オ)取得時効の対象となるというべきである……。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００１８": [
+    {
+      "title": "",
+      "content": "供託金の払渡請求の消滅時効は会計法の規定により5年。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００１９": [
+    {
+      "title": "",
+      "content": "供託官の却下処分に対し、取消訴訟を提起できる。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００２０": [
+    {
+      "title": "",
+      "content": "供託金の払渡請求の起算点は、供託官が免責の効果を受ける必要が消滅したとき。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００２１": [
+    {
+      "title": "",
+      "content": "参議院の議員が、臨時会の召集を受けられる地位を有するかの確認を求める訴訟は、公法上の法律関係に関する訴えにあたり、法律上の争いにあたる。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００２２": [
+    {
+      "title": "",
+      "content": "参議院から臨時会の召集があったにも関わらず、3ヶ月間放置し、さらには衆議院を解散するという内閣の判断は、憲法53条の合理的期間に反しない。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００２３": [
+    {
+      "title": "",
+      "content": "国家行政組織法によれば、行政組織のために置かれる国の行政機関には、省、庁および委員会があり、その設置・廃止は別に法律の定めるところによる",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００２４": [
+    {
+      "title": "",
+      "content": "国家行政組織法によれば、同法の定める国の行政機関には、審議会等、合議により処理することが適当な事務をつかさどるための合議制機関を置くことができる。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００２５": [
+    {
+      "title": "",
+      "content": "内閣府設置法によれば、内閣総理大臣は、内閣府の長として、内閣府の事務を統括し、職員の服務について統督する。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００２６": [
+    {
+      "title": "",
+      "content": "国家行政組織法によれば、各省大臣は、主任の行政事務について、それぞれの機関の命令として規則を発することができる。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００２７": [
+    {
+      "title": "",
+      "content": "内閣府設置法によれば、政令のうち、特に内閣府に係る主任の事務に関わるものを内閣府令と称し、内閣総理大臣がこれを制定する。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００２８": [
+    {
+      "title": "",
+      "content": "内閣官房のTOPは内閣官房長官である。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００２９": [
+    {
+      "title": "",
+      "content": "省の外局として置かれる各委員会は、法律の定めるところにより規則を発することができる",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００３０": [
+    {
+      "title": "",
+      "content": "各庁の長官は、法律の定めるところにより、規則をみずから発することができる",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００３１": [
+    {
+      "title": "",
+      "content": "国家行政組織法によれば、同法の定める国の行政機関には、審議会等、合議により処理することが適当な事務をつかさどるための合議制機関を置くことができる。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００３２": [
+    {
+      "title": "",
+      "content": "内閣府設置法によれば、内閣総理大臣は、内閣府の長として、内閣府の事務を統括し、職員の服務について統督する。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００３３": [
+    {
+      "title": "",
+      "content": "国家行政組織法によれば、各省大臣は、主任の行政事務について、それぞれの機関の命令として省令を発することができる。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００３４": [
+    {
+      "title": "",
+      "content": "内閣府設置法によれば、政令のは、内閣がこれを制定する。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００３５": [
+    {
+      "title": "",
+      "content": "国家行政組織法では、内閣府、デジタル庁に関しては規定していない。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００３６": [
+    {
+      "title": "",
+      "content": "合議制機関とは、公正取引委員会、公安委員会、教育委員会、人事院、会計検査院をいう。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００３７": [
+    {
+      "title": "",
+      "content": "各省大臣は、国務大臣のうちから内閣総理大臣が命ずるが、内閣総理大臣が自ら各省大臣に当たることはできない。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００３８": [
+    {
+      "title": "",
+      "content": "各省大臣は、その機関の事務を統括し、職員の服務について、これを統督するが、その機関の所掌事務について、命令または示達をするため、所管の諸機関および職員に対し、告示を発することができる。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ],
+  "ｇｓ００３９": [
+    {
+      "title": "",
+      "content": "各省大臣は、主任の行政事務について、法律または政令の制定、改正または廃止を必要と認めるときは、案をそなえて、内閣総理大臣に提出して、閣議を求めなければならない。",
+      "imageUrl": "",
+      "order": 999,
+      "targetChoice": null,
+      "type": "manga"
+    }
+  ]
+};
 export const STATUTES = {
   "gyote": [
     {

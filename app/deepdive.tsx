@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Stack, useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import { Image, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ChachalotAvatar } from '@/components/chachalot-avatar';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MarkdownText } from '@/components/markdown-text';
@@ -55,6 +55,50 @@ function normalizeDeepdiveFlowText(s: string): string {
 
 const CARD_NUM_ONLY_TITLE = /^(?:[1-9][0-9]?|[１-９][０-９]?)[\\.．:：\uFF1A]\s*$/;
 
+function splitContentToImageParts(content: string): Array<{ type: 'text' | 'image'; value: string }> {
+  const parts: Array<{ type: 'text' | 'image'; value: string }> = [];
+  if (!content) return parts;
+  const re = /\[\[image:([^\]]+)\]\]/g;
+  let lastIdx = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(content)) !== null) {
+    if (m.index > lastIdx) {
+      const slice = content.slice(lastIdx, m.index);
+      if (slice.trim()) parts.push({ type: 'text', value: slice });
+    }
+    parts.push({ type: 'image', value: m[1].trim() });
+    lastIdx = re.lastIndex;
+  }
+  if (lastIdx < content.length) {
+    const slice = content.slice(lastIdx);
+    if (slice.trim()) parts.push({ type: 'text', value: slice });
+  }
+  return parts;
+}
+
+/** 本文先頭の連続する [[image:…]] をナビヘッダー直下のヒーロー用に抜き出す */
+function stripLeadingImageTags(text: string): { images: string[]; rest: string } {
+  const images: string[] = [];
+  let t = text.replace(/^\uFEFF?/, '');
+  const tagAtStart = /^\[\[image:([^\]]+)\]\]\s*/;
+  for (;;) {
+    const u = t.trimStart();
+    const m = tagAtStart.exec(u);
+    if (!m) break;
+    images.push(m[1].trim().split(/\s+/)[0]);
+    t = u.slice(m[0].length);
+  }
+  return { images, rest: t.trimStart() };
+}
+
+function stripDeepdiveForTts(s: string): string {
+  return s
+    .replace(/\[\[image:[^\]]+\]\]/g, '')
+    .replace(/\[\[section:[^\]]+\]\]/g, '')
+    .replace(/\[\[[^\]]+\]\]/g, '')
+    .trim();
+}
+
 export default function DeepdiveScreen() {
   const params = useLocalSearchParams<{
     content?: string;
@@ -73,20 +117,44 @@ export default function DeepdiveScreen() {
   const [content, setContent] = useState('');
   const [choiceLabel, setChoiceLabel] = useState('');
   const [fromLearn, setFromLearn] = useState(false);
+  /** 肢が正解なら true・不正解なら false・表示しないときは null（memo 単体・学習など） */
+  const [choiceCorrect, setChoiceCorrect] = useState<boolean | null>(null);
+  /** スプレッドシート AZ 列（肢ごと）。通常の深掘りの下に表示 */
+  const [beginnerContent, setBeginnerContent] = useState('');
+  /** 見て聞いて覚える: スプレッドシート F 列。ヘッダー画像の直下 */
+  const [fExplainHeader, setFExplainHeader] = useState('');
+  /** タップで全画面拡大（require の module 番号） */
+  const [previewImageSource, setPreviewImageSource] = useState<number | null>(null);
   const fromLearnRef = useRef(false);
   useEffect(() => {
     const stored = getDeepdiveParams();
     const paramContent = params.content;
     const fromParams = typeof paramContent === 'string' ? paramContent : Array.isArray(paramContent) ? paramContent[0] : '';
     let raw = stored.content || fromParams || '';
+    let beg = stored.beginnerContent || '';
     const paramLabel = params.choiceLabel;
     const fromParamLabel =
       typeof paramLabel === 'string' ? paramLabel : Array.isArray(paramLabel) ? paramLabel[0] : '';
-    if (!raw) {
-      setContent('');
+    const finishCommon = () => {
       setChoiceLabel(stored.choiceLabel || fromParamLabel || '');
       setFromLearn(stored.fromLearn);
+      setChoiceCorrect(stored.choiceCorrect ?? null);
       fromLearnRef.current = stored.fromLearn;
+    };
+    const learnSubj = (stored.learnSubject || '').trim();
+    const augmentBeginner = (b: string) => {
+      let t = b;
+      if (t.trim() && !mergedDeepdiveHasResolvableImage(t)) {
+        const shared = pickLearnDeepdiveSharedImageKey(t, learnSubj || undefined);
+        if (shared) t = `[[image:${shared}]]\n\n${t}`;
+      }
+      return t;
+    };
+    if (!raw) {
+      setContent('');
+      setBeginnerContent(augmentBeginner(beg));
+      setFExplainHeader((stored.fExplain || '').trim());
+      finishCommon();
       return;
     }
     if (raw.length < 150) {
@@ -100,13 +168,13 @@ export default function DeepdiveScreen() {
       }
     }
     if (raw.trim() && !mergedDeepdiveHasResolvableImage(raw)) {
-      const shared = pickLearnDeepdiveSharedImageKey(raw);
+      const shared = pickLearnDeepdiveSharedImageKey(raw, learnSubj || undefined);
       if (shared) raw = `[[image:${shared}]]\n\n${raw}`;
     }
     setContent(raw);
-    setChoiceLabel(stored.choiceLabel || fromParamLabel || '');
-    setFromLearn(stored.fromLearn);
-    fromLearnRef.current = stored.fromLearn;
+    setBeginnerContent(augmentBeginner(beg));
+    setFExplainHeader((stored.fExplain || '').trim());
+    finishCommon();
   }, []);
 
   useFocusEffect(
@@ -114,6 +182,8 @@ export default function DeepdiveScreen() {
       const stored = getDeepdiveParams();
       fromLearnRef.current = stored.fromLearn;
       setFromLearn(stored.fromLearn);
+      setChoiceCorrect(stored.choiceCorrect ?? null);
+      setFExplainHeader((stored.fExplain || '').trim());
     }, [])
   );
 
@@ -125,11 +195,8 @@ export default function DeepdiveScreen() {
   isTtsPlayingRef.current = isTtsPlaying;
 
   const ttsSegments = useMemo(() => {
-    const textForTTS = content
-      .replace(/\[\[image:[^\]]+\]\]/g, '')
-      .replace(/\[\[section:[^\]]+\]\]/g, '')
-      .replace(/\[\[[^\]]+\]\]/g, '')
-      .trim();
+    const pieces = [stripDeepdiveForTts(content), stripDeepdiveForTts(beginnerContent)].filter(Boolean);
+    const textForTTS = pieces.join('\n\n');
     if (!textForTTS) return [];
     const chunks = textForTTS
       .split(/\n{2,}/)
@@ -140,11 +207,11 @@ export default function DeepdiveScreen() {
       return bySentence.map((s) => applyTTSRules(s)).filter((s) => s.trim());
     }
     return chunks.map((s) => applyTTSRules(s)).filter((s) => s.trim());
-  }, [content]);
+  }, [content, beginnerContent]);
 
   useEffect(() => {
     setTtsSegmentIndex(0);
-  }, [content]);
+  }, [content, beginnerContent]);
 
   useEffect(() => {
     return () => {
@@ -158,24 +225,17 @@ export default function DeepdiveScreen() {
     };
   }, []);
 
-  const parts: Array<{ type: 'text' | 'image'; value: string }> = [];
-  if (content) {
-    const re = /\[\[image:([^\]]+)\]\]/g;
-    let lastIdx = 0;
-    let m;
-    while ((m = re.exec(content)) !== null) {
-      if (m.index > lastIdx) {
-        const text = content.slice(lastIdx, m.index).trim();
-        if (text) parts.push({ type: 'text', value: content.slice(lastIdx, m.index) });
-      }
-      parts.push({ type: 'image', value: m[1].trim() });
-      lastIdx = re.lastIndex;
-    }
-    if (lastIdx < content.length) {
-      const text = content.slice(lastIdx).trim();
-      if (text) parts.push({ type: 'text', value: content.slice(lastIdx) });
-    }
-  }
+  const { images: headerImageKeys, rest: mainContentRest } = useMemo(
+    () => stripLeadingImageTags(content),
+    [content]
+  );
+  const mainParts = useMemo(() => splitContentToImageParts(mainContentRest), [mainContentRest]);
+  const beginnerParts = useMemo(() => splitContentToImageParts(beginnerContent), [beginnerContent]);
+  /** F列解説も B 列と同じくカード化（B が画像のみ等で本文が F に乗るケース対策） */
+  const fExplainParts = useMemo(
+    () => splitContentToImageParts((fExplainHeader || '').trim()),
+    [fExplainHeader]
+  );
 
   /**
    * 改行のない長文でも「2. 」「3．」の前に改行を入れる（問題を解くモードの M 列深掘り向け）。
@@ -183,16 +243,30 @@ export default function DeepdiveScreen() {
    */
   const preInsertNewlinesForNumberedSections = (raw: string): string =>
     raw
+      .replace(/\r\n/g, '\n')
+      .replace(/\r/g, '\n')
       .replace(/\\n/g, '\n')
       .replace(/([^\n])(【[^】]{1,30}】)/g, '$1\n$2')
+      .replace(
+        /([^\n])(考え方のポイント|受験生へのアドバイス|趣旨(?=\s*[\n　\s])|根拠条文：|根拠判例：|結論：)/g,
+        '$1\n$2'
+      )
       .replace(new RegExp(`([^\\n])(${HALFWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
       .replace(new RegExp(`([^\\n])(${FULLWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
       .replace(/([^\n])([①②③④⑤⑥⑦⑧⑨⑩])/g, '$1\n$2')
       .replace(/([^\n])([■💡])/g, '$1\n$2');
 
-  /** 番号付きセクション（1. 2. 3. ／ １． ／ 1： 等）で分割してカード化 */
+  /**
+   * 番号付きセクション（1. 2. 3. ／ １． ／ 1： 等）で分割してカード化。
+   * スプレッドシート連携ルールどおり、先に normalizeDeepdiveFlowText で段落・番号前改行を整えてから preInsert する
+   * （見て聞いて覚える・民法物権の B 列のように「。」直後に「2.」が続く1行データでもカードが分かれる）。
+   */
   const splitIntoCards = (text: string): string[] => {
-    const prepared = preInsertNewlinesForNumberedSections(text.trim());
+    const trimmed = text.trim();
+    if (!trimmed) return [];
+    const withNl = trimmed.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    const flow = normalizeDeepdiveFlowText(withNl);
+    const prepared = preInsertNewlinesForNumberedSections(flow);
     const head = '(?:[1-9][0-9]?|[１-９][０-９]?)[\\.．:：\uFF1A]\\s*';
     let sections = prepared.split(new RegExp(`(?:\\n|^)(?=${head})`, 'm')).map((s) => s.trim()).filter(Boolean);
     if (sections.length >= 2) return sections;
@@ -200,7 +274,7 @@ export default function DeepdiveScreen() {
       .split(new RegExp(`(?<=[\\s\\u3000。．!！?？])(?=${head})`))
       .map((s) => s.trim())
       .filter(Boolean);
-    return sections.length >= 2 ? sections : [prepared.trim() || text.trim()];
+    return sections.length >= 2 ? sections : [prepared.trim() || trimmed];
   };
 
   /** カードの1行目をタイトル、残りを本文に分離（「2.」のみの行は本文にまとめて変な改行を防ぐ） */
@@ -213,7 +287,20 @@ export default function DeepdiveScreen() {
     const title = trimmed.slice(0, firstNewline).trim();
     const body = trimmed.slice(firstNewline + 1).trim();
     if (CARD_NUM_ONLY_TITLE.test(title)) {
-      return { title: '', body: normalizeDeepdiveFlowText(trimmed) };
+      // 「3.」だけが1行・次行から本文、のとき従来は全文を Markdown 本文に回して太字見出しが付かない。
+      // 次行（または続く1行）を見出しにくっつけて太字表示する。
+      if (!body) {
+        return { title: '', body: normalizeDeepdiveFlowText(trimmed) };
+      }
+      const bodyTrim = body.trim();
+      const firstNl = bodyTrim.indexOf('\n');
+      const headLine = firstNl >= 0 ? bodyTrim.slice(0, firstNl).trim() : bodyTrim;
+      const tail = firstNl >= 0 ? bodyTrim.slice(firstNl + 1).trim() : '';
+      const mergedTitle = `${title} ${headLine}`.trim();
+      return {
+        title: mergedTitle,
+        body: tail ? normalizeDeepdiveFlowText(tail) : '',
+      };
     }
     return {
       title,
@@ -230,9 +317,22 @@ export default function DeepdiveScreen() {
     marginBottom: 12,
   };
 
+  const cardBodyTextStyle = { fontSize: 16, lineHeight: 26, color: colors.text };
+  const cardTitleTextStyle = {
+    fontSize: 16,
+    lineHeight: 24,
+    color: colors.text,
+    fontWeight: '700' as const,
+    marginBottom: 0,
+  };
+
   const handleHighlightPress = (title: string, body: string) => {
     setHighlightModal({ title, body });
   };
+
+  const openImagePreview = useCallback((src: number) => {
+    setPreviewImageSource(src);
+  }, []);
 
   const stopTts = () => {
     ttsSessionRef.current += 1;
@@ -288,86 +388,231 @@ export default function DeepdiveScreen() {
     router.back();
   };
 
+  const renderDeepdiveCard = (cardText: string, key: string) => {
+    const { title, body } = splitCardTitle(cardText);
+    return (
+      <ThemedView key={key} style={cardStyle}>
+        {title ? (
+          <ThemedText style={[cardTitleTextStyle, { marginBottom: body ? 10 : 0 }]}>{title}</ThemedText>
+        ) : null}
+        {body ? (
+          <MarkdownText
+            text={body}
+            style={cardBodyTextStyle}
+            onHighlightPress={handleHighlightPress}
+            uniformWeight
+          />
+        ) : null}
+      </ThemedView>
+    );
+  };
+
+  const renderImageTextParts = (
+    blockParts: Array<{ type: 'text' | 'image'; value: string }>,
+    keyPrefix: string,
+    onImagePress: (src: number) => void
+  ) => {
+    if (blockParts.length === 0) return null;
+    return (
+      <View style={{ gap: 4 }}>
+        {blockParts.map((p, i) =>
+          p.type === 'text' ? (
+            <View key={`${keyPrefix}-t-${i}`} style={{ gap: 0 }}>
+              {splitIntoCards(p.value.trim()).map((cardText, j) =>
+                renderDeepdiveCard(cardText, `${keyPrefix}-${i}-${j}`)
+              )}
+            </View>
+          ) : (
+            (() => {
+              const src = resolveImageAsset(p.value);
+              return src ? (
+                <Pressable
+                  key={`${keyPrefix}-img-${i}`}
+                  onPress={() => onImagePress(src)}
+                  accessibilityRole="button"
+                  accessibilityLabel="画像を拡大表示"
+                  style={({ pressed }) => [{ marginBottom: 12, opacity: pressed ? 0.88 : 1 }]}
+                >
+                  <Image
+                    source={src}
+                    style={{ width: '100%', maxHeight: 500, borderRadius: 12 }}
+                    resizeMode="contain"
+                  />
+                </Pressable>
+              ) : (
+                <ThemedView
+                  key={`${keyPrefix}-img-${i}`}
+                  style={{ padding: 12, marginBottom: 12, borderRadius: 12, borderWidth: 1, borderColor: colors.choiceBorder }}
+                >
+                  <ThemedText style={{ color: colors.subText, fontSize: 14 }}>
+                    画像を読み込めません（キー: {p.value}）。imageMap / deepdiveImages / chunkImages を確認してください。
+                  </ThemedText>
+                </ThemedView>
+              );
+            })()
+          )
+        )}
+      </View>
+    );
+  };
+
+  const hasMain = content.trim().length > 0;
+  const hasBeginner = beginnerContent.trim().length > 0;
+
   /** 見て聞いて覚える（学習）画面と連携するミニプレイヤー */
-  const showLinkedPlayer = fromLearn && !!content;
+  const showLinkedPlayer = fromLearn && (hasMain || hasBeginner);
 
   return (
     <>
       <Stack.Screen options={{ title: 'もっと深掘る', headerBackTitle: '戻る' }} />
-      <ScrollView style={[styles.scroll, { backgroundColor: colors.card }]}>
-        <ThemedView style={[styles.content, { backgroundColor: colors.card }]}>
-          {choiceLabel ? (
-            <ThemedText style={{ marginBottom: 12, color: colors.subText, fontSize: 14 }}>
-              {choiceLabel}
-            </ThemedText>
-          ) : null}
-          {parts.length > 0 ? (
-            <View style={{ gap: 4 }}>
-              {parts.map((p, i) =>
-                p.type === 'text' ? (
-                  <View key={i} style={{ gap: 0 }}>
-                    {splitIntoCards(p.value.trim()).map((cardText, j) => {
-                      const { title, body } = splitCardTitle(cardText);
-                      return (
-                        <ThemedView key={j} style={cardStyle}>
-                          {title ? (
-                            <ThemedText style={{ fontSize: 16, lineHeight: 24, color: colors.text, marginBottom: body ? 8 : 0 }}>{title}</ThemedText>
-                          ) : null}
-                          {body ? (
-                            <MarkdownText
-                              text={body}
-                              style={{ fontSize: 16, lineHeight: 24, color: colors.text }}
-                              onHighlightPress={handleHighlightPress}
-                              uniformWeight
-                            />
-                          ) : null}
-                        </ThemedView>
-                      );
-                    })}
-                  </View>
-                ) : (
-                  (() => {
-                    const src = resolveImageAsset(p.value);
-                    return src ? (
-                      <Image key={i} source={src} style={{ width: '100%', maxHeight: 500, borderRadius: 12, marginBottom: 12 }} resizeMode="contain" />
-                    ) : (
-                      <ThemedView key={i} style={{ padding: 12, marginBottom: 12, borderRadius: 12, borderWidth: 1, borderColor: colors.choiceBorder }}>
-                        <ThemedText style={{ color: colors.subText, fontSize: 14 }}>
-                          画像を読み込めません（キー: {p.value}）。imageMap / deepdiveImages / chunkImages を確認してください。
-                        </ThemedText>
-                      </ThemedView>
-                    );
-                  })()
-                )
-              )}
-            </View>
-          ) : content ? (
-            <View style={{ gap: 0 }}>
-              {splitIntoCards(content).map((cardText, j) => {
-                const { title, body } = splitCardTitle(cardText);
+      <View style={{ flex: 1, backgroundColor: colors.card }}>
+        <ScrollView
+          style={[styles.scroll, { backgroundColor: colors.card }]}
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator
+        >
+          {headerImageKeys.length > 0 ? (
+            <View
+              style={[
+                styles.headerHero,
+                { backgroundColor: colors.background, borderBottomColor: colors.choiceBorder },
+              ]}
+            >
+              {headerImageKeys.map((imgKey, hi) => {
+                const src = resolveImageAsset(imgKey);
+                if (!src) return null;
                 return (
-                  <ThemedView key={j} style={cardStyle}>
-                    {title ? (
-                      <ThemedText style={{ fontSize: 16, lineHeight: 24, color: colors.text, marginBottom: body ? 8 : 0 }}>{title}</ThemedText>
-                    ) : null}
-                    {body ? (
-                      <MarkdownText
-                        text={body}
-                        style={{ fontSize: 16, lineHeight: 24, color: colors.text }}
-                        onHighlightPress={handleHighlightPress}
-                        uniformWeight
-                      />
-                    ) : null}
-                  </ThemedView>
+                  <Pressable
+                    key={`deepdive-header-img-${hi}-${imgKey}`}
+                    onPress={() => openImagePreview(src)}
+                    accessibilityRole="button"
+                    accessibilityLabel="画像を拡大表示"
+                    style={({ pressed }) => [
+                      hi < headerImageKeys.length - 1 ? { marginBottom: 12 } : null,
+                      { opacity: pressed ? 0.88 : 1 },
+                    ]}
+                  >
+                    <Image source={src} style={styles.headerHeroImage} resizeMode="contain" />
+                  </Pressable>
                 );
               })}
             </View>
-          ) : (
+          ) : null}
+          {fExplainHeader.trim() ? (
+            <View
+              style={[
+                styles.headerFExplain,
+                { backgroundColor: colors.background, borderBottomColor: colors.choiceBorder },
+              ]}
+            >
+              {fExplainParts.length > 0 ? (
+                renderImageTextParts(fExplainParts, 'f', openImagePreview)
+              ) : (
+                <View style={{ gap: 0 }}>
+                  {splitIntoCards(fExplainHeader).map((cardText, j) =>
+                    renderDeepdiveCard(cardText, `f-${j}`)
+                  )}
+                </View>
+              )}
+            </View>
+          ) : null}
+          <ThemedView style={[styles.content, { backgroundColor: colors.card }]}>
+          {choiceLabel ? (
+            <View style={{ marginBottom: 4 }}>
+              <ThemedText
+                style={{
+                  fontSize: 13,
+                  fontWeight: '600',
+                  color: colors.subText,
+                  marginBottom: 8,
+                  letterSpacing: 0.3,
+                }}
+              >
+                選択肢
+              </ThemedText>
+              <ThemedView style={cardStyle}>
+                <ThemedText style={cardBodyTextStyle}>
+                  {choiceLabel}
+                  {choiceCorrect !== null ? (
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        lineHeight: 26,
+                        fontWeight: '700',
+                        color: choiceCorrect ? '#2E7D32' : '#C62828',
+                      }}
+                    >
+                      {choiceCorrect ? ' 〇 正解' : ' × 誤り'}
+                    </Text>
+                  ) : null}
+                </ThemedText>
+              </ThemedView>
+            </View>
+          ) : choiceCorrect !== null ? (
+            <ThemedView style={[cardStyle, { marginBottom: 12 }]}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  lineHeight: 28,
+                  fontWeight: '700',
+                  color: choiceCorrect ? '#2E7D32' : '#C62828',
+                }}
+              >
+                {choiceCorrect ? '〇 正解' : '× 誤り'}
+              </Text>
+            </ThemedView>
+          ) : null}
+          {choiceLabel && hasMain ? (
+            <ThemedText
+              style={{
+                fontSize: 13,
+                fontWeight: '600',
+                color: colors.subText,
+                marginTop: 4,
+                marginBottom: 8,
+                letterSpacing: 0.3,
+              }}
+            >
+              解説
+            </ThemedText>
+          ) : null}
+          {hasMain ? (
+            mainParts.length > 0 ? (
+              renderImageTextParts(mainParts, 'm', openImagePreview)
+            ) : mainContentRest.trim() ? (
+              <View style={{ gap: 0 }}>
+                {splitIntoCards(mainContentRest).map((cardText, j) => renderDeepdiveCard(cardText, `c-${j}`))}
+              </View>
+            ) : null
+          ) : null}
+          {hasBeginner ? (
+            <View style={{ marginTop: hasMain ? 24 : choiceLabel ? 20 : 0 }}>
+              <ThemedText
+                style={{
+                  fontSize: 17,
+                  fontWeight: '700',
+                  color: colors.text,
+                  marginBottom: 12,
+                }}
+              >
+                ビギナー向け
+              </ThemedText>
+              {beginnerParts.length > 0 ? (
+                renderImageTextParts(beginnerParts, 'b', openImagePreview)
+              ) : (
+                <View style={{ gap: 0 }}>
+                  {splitIntoCards(beginnerContent).map((cardText, j) => renderDeepdiveCard(cardText, `bc-${j}`))}
+                </View>
+              )}
+            </View>
+          ) : null}
+          {!hasMain && !hasBeginner ? (
             <ThemedText style={{ color: colors.subText }}>表示する内容がありません。</ThemedText>
-          )}
+          ) : null}
           <View style={[styles.footerBar, { marginTop: 24 }]}>
             <View style={styles.footerLeft}>
-              {content ? (
+              {hasMain || hasBeginner ? (
                 <Pressable
                   style={[styles.chachalotButton, { borderColor: colors.primary }]}
                   onPress={handleChachalotToggle}
@@ -435,7 +680,31 @@ export default function DeepdiveScreen() {
             ) : null}
           </View>
         </ThemedView>
-      </ScrollView>
+        </ScrollView>
+      </View>
+
+      <Modal
+        visible={previewImageSource !== null}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setPreviewImageSource(null)}
+      >
+        <Pressable
+          style={styles.imagePreviewOverlay}
+          onPress={() => setPreviewImageSource(null)}
+          accessibilityLabel="拡大画像を閉じる"
+        >
+          <View style={styles.imagePreviewInner} pointerEvents="box-none">
+            {previewImageSource !== null ? (
+              <Image
+                source={previewImageSource}
+                style={styles.imagePreviewImage}
+                resizeMode="contain"
+              />
+            ) : null}
+          </View>
+        </Pressable>
+      </Modal>
 
       <Modal visible={!!highlightModal} transparent animationType="fade">
         <Pressable style={styles.modalOverlay} onPress={() => setHighlightModal(null)}>
@@ -460,7 +729,48 @@ export default function DeepdiveScreen() {
 
 const styles = StyleSheet.create({
   scroll: { flex: 1 },
-  content: { flex: 1, padding: 20 },
+  scrollContent: {
+    flexGrow: 1,
+    paddingBottom: Platform.OS === 'ios' ? 32 : 20,
+  },
+  imagePreviewOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.92)',
+    justifyContent: 'center',
+  },
+  imagePreviewInner: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    padding: 12,
+  },
+  imagePreviewImage: {
+    width: '100%',
+    flex: 1,
+    minHeight: 200,
+  },
+  /** ナビバー直下（Stack header のすぐ下）のヒーロー画像エリア */
+  headerHero: {
+    width: '100%',
+    paddingHorizontal: 16,
+    paddingTop: 8,
+    paddingBottom: 12,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  headerHeroImage: {
+    width: '100%',
+    maxHeight: 280,
+    borderRadius: 12,
+  },
+  /** F列解説（ヘッダー画像の直下・本文スクロールの上） */
+  headerFExplain: {
+    width: '100%',
+    paddingHorizontal: 16,
+    paddingTop: 12,
+    paddingBottom: 14,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  content: { padding: 20 },
   footerBar: {
     flexDirection: 'row',
     flexWrap: 'nowrap',

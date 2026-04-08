@@ -3,6 +3,7 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
+    "postinstall": "patch-package",
     "start": "expo start",
     "dev": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
@@ -16,9 +17,12 @@
     "sync:sheets": "node scripts/sync-spreadsheet.js",
     "generate:descriptive-images": "node scripts/generateDescriptiveImages.js",
     "generate:deepdive-images": "node scripts/generateDeepdiveImages.js",
+    "sync:saikensouron-images": "node scripts/syncSaikensouronLearnImages.mjs && node scripts/generateDeepdiveImages.js",
     "sync:kenpou-deepdive": "node scripts/syncKenpouDeepdiveFromTemp.js",
     "inject:kenpou-deepdive-tags": "node scripts/injectKenpouDeepdiveImages.js",
-    "compress:temp-kenpou": "node scripts/compressTempKenpouImages.mjs"
+    "compress:temp-kenpou": "node scripts/compressTempKenpouImages.mjs",
+    "downscale:assets": "node scripts/downscaleAppAssets.mjs",
+    "downscale:assets:dry": "node scripts/downscaleAppAssets.mjs --dry-run"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
@@ -63,6 +67,7 @@
     "@types/react": "~19.1.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
+    "patch-package": "^8.0.1",
     "sharp": "^0.34.5",
     "typescript": "~5.9.2"
   },

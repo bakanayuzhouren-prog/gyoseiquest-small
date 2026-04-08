@@ -12,12 +12,74 @@ import { getDescriptiveImageSource } from '@/src/descriptiveImages';
 import { setDeepdiveParams } from '@/src/deepdiveState';
 import { getDeepdiveImageSource } from '@/src/deepdiveImages';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
-import { PIN_CASES } from '@/src/pinData';
+import { PIN_CASES, type PinCase } from '@/src/pinData';
 import { RESOURCES, STATUTES } from '@/src/questions';
+
+/** 民法物権：結果画面「次の問題へ」直前に出す bukken 解説図（M列等の [[image:…]] と同期） */
+const RESULT_FOOTER_BUKKEN_IMAGE_RE = /\[\[image:(bukken\/(?:5-21|(?:15|18)-21-\d+))\]\]/g;
+
+function getResultFooterBukkenDeepdiveKeys(question: unknown): string[] {
+  if (!question || typeof question !== 'object') return [];
+  const parts: string[] = [];
+  const memo = (question as { memo?: unknown }).memo;
+  if (typeof memo === 'string') parts.push(memo);
+  const choices = (question as { choices?: unknown }).choices;
+  if (Array.isArray(choices)) {
+    for (const c of choices) {
+      const dd = c && typeof c === 'object' ? (c as { choiceDeepDive?: unknown }).choiceDeepDive : undefined;
+      if (typeof dd === 'string') parts.push(dd);
+    }
+  }
+  const text = parts.join('\n');
+  const keys: string[] = [];
+  const seen = new Set<string>();
+  const re = new RegExp(RESULT_FOOTER_BUKKEN_IMAGE_RE.source, 'g');
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(text)) !== null) {
+    const k = match[1];
+    if (!seen.has(k)) {
+      seen.add(k);
+      keys.push(k);
+    }
+  }
+  return keys;
+}
 
 /** シンプルなチャンク画像か（sousoku7 など -1.2.3.4 のような表記がない） */
 function isSimpleChunkImage(path: string): boolean {
   return !!(path && path.trim() && !/-\d/.test(path.trim()));
+}
+
+/**
+ * 「誤っている／妥当でない…を選べ」型の設問。answer に入る肢は試験上の正解だが、記述自体は法上は誤りになりがち。
+ * 深掘りの〇×は記述の法上の正誤で出すため、この型のときは answer との関係を反転する。
+ */
+function isSelectLegallyIncorrectStem(stem: string): boolean {
+  const t = stem.replace(/\s+/g, '');
+  return (
+    /誤っているもの/.test(t) ||
+    /誤りであるもの/.test(t) ||
+    /妥当でないもの/.test(t) ||
+    /正しくないもの/.test(t) ||
+    /不適当なもの/.test(t) ||
+    /適当でないもの/.test(t)
+  );
+}
+
+/** もっと深掘るの〇×用: その肢の記述が法上妥当か（並べ替え・解答未設定は null） */
+function deepdiveChoiceLegallyCorrect(
+  questionStem: string,
+  choiceIdx: number,
+  effectiveCorrectIndices: number[],
+  answerPending: boolean,
+  isReorder: boolean
+): boolean | null {
+  if (answerPending || isReorder) return null;
+  const inAnswer = effectiveCorrectIndices.includes(choiceIdx);
+  if (isSelectLegallyIncorrectStem(questionStem)) {
+    return !inAnswer;
+  }
+  return inAnswer;
 }
 
 /** [[image:xxx]] を解決。問題を解くモード専用: descriptive → deepdive → chunk → imageMap の順で検索 */
@@ -123,22 +185,65 @@ function toKanjiArticle(n: number): string {
   return d[Math.floor(n / 1000)] + '千' + toKanjiArticle(n % 1000);
 }
 
-/** 単一の条文参照（例: 166条1項、724条の2）から該当条文を検索 */
+/** 条文タイトル照合の共通処理（項の表記ゆれ対応） */
+function matchStatuteTitle(
+  statutes: Array<{ title: string; content: string }>,
+  artKanji: string,
+  artKanjiAlt: string | null,
+  kouMatch: RegExpMatchArray | null
+): { title: string; content: string } | null {
+  const kouKanji = kouMatch ? '第' + (parseInt(kouMatch[1], 10) < 10 ? toKanjiArticle(parseInt(kouMatch[1], 10)) : kouMatch[1]) + '項' : '';
+  const kouAlt = kouMatch ? '第' + kouMatch[1] + '項' : '';
+  const kouAltFull = kouMatch && parseInt(kouMatch[1], 10) < 10
+    ? '第' + String.fromCharCode(0xFF10 + parseInt(kouMatch[1], 10)) + '項' : '';
+  const tryMatch = (t: string, kanji: string) =>
+    t.includes(kanji) && (!kouKanji || t.includes(kouKanji) || t.includes(kouAlt) || t.includes(kouAltFull) || (kouMatch && t.includes('第' + kouMatch[1] + '項')));
+  for (const st of statutes) {
+    const t = st.title || '';
+    if (tryMatch(t, artKanji)) return st;
+    if (artKanjiAlt && tryMatch(t, artKanjiAlt)) return st;
+  }
+  for (const st of statutes) {
+    const t = st.title || '';
+    if (t.includes(artKanji)) return st;
+    if (artKanjiAlt && t.includes(artKanjiAlt)) return st;
+  }
+  return null;
+}
+
+/** 単一の条文参照（例: 166条1項、724条の2、269条の2第1項、２８３条）から該当条文を検索 */
 function findStatuteByRef(
   statutes: Array<{ title: string; content: string }>,
   ref: string
 ): { title: string; content: string } | null {
   if (!ref || !statutes.length) return null;
-  const r = ref.trim()
+  let r = ref.trim()
     .replace(/^民法\s*/, '')
     .replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0))
     .trim();
   if (!r) return null;
+  // シートで「269条の第2項第1項」「269条の第2項1項」のように誤結合した場合 → 269条の2第1項
+  r = r.replace(/(\d+)条の第(\d+)[项項]\s*第(\d+)[项項]/g, '$1条の$2第$3項');
+  r = r.replace(/(\d+)条の第(\d+)[项項]\s*(\d+)[项項]/g, '$1条の$2第$3項');
   const norm = (s: string) => (s || '').replace(/\s/g, '');
   const rn = norm(r);
   for (const st of statutes) {
     const t = norm(st.title || '');
     if (t.includes(rn) || (rn.length >= 4 && t.includes(rn.slice(0, -1)))) return st;
+  }
+  // 269条の2 / 第369条の2 など「条のN」（の二・の三…）
+  const no2Article = r.match(/(\d+)条の(\d+)/);
+  if (no2Article) {
+    const artNum = parseInt(no2Article[1], 10);
+    const subNum = parseInt(no2Article[2], 10);
+    if (subNum >= 1 && subNum < 100) {
+      const subKanji = toKanjiArticle(subNum);
+      const artKanji = '第' + toKanjiArticle(artNum) + '条の' + subKanji;
+      const artKanjiAlt = artNum >= 100 && artNum < 200 ? '第百' + toKanjiArticle(artNum % 100) + '条の' + subKanji : null;
+      const kouMatch = r.match(/第(\d+)項/);
+      const hit = matchStatuteTitle(statutes, artKanji, artKanjiAlt, kouMatch);
+      if (hit) return hit;
+    }
   }
   const artMatch = r.match(/(\d+)条/);
   if (artMatch) {
@@ -148,22 +253,8 @@ function findStatuteByRef(
     const artKanji = '第' + toKanjiArticle(artNum) + '条' + no2Suffix;
     const artKanjiAlt = artNum >= 100 && artNum < 200 ? '第百' + toKanjiArticle(artNum % 100) + '条' + no2Suffix : null;
     const kouMatch = r.match(/(\d+)項/);
-    const kouKanji = kouMatch ? '第' + (parseInt(kouMatch[1], 10) < 10 ? toKanjiArticle(parseInt(kouMatch[1], 10)) : kouMatch[1]) + '項' : '';
-    const kouAlt = kouMatch ? '第' + kouMatch[1] + '項' : '';
-    const kouAltFull = kouMatch && parseInt(kouMatch[1], 10) < 10
-      ? '第' + String.fromCharCode(0xFF10 + parseInt(kouMatch[1], 10)) + '項' : ''; // 全角: 第２項
-    const tryMatch = (t: string, kanji: string) =>
-      t.includes(kanji) && (!kouKanji || t.includes(kouKanji) || t.includes(kouAlt) || t.includes(kouAltFull) || (kouMatch && t.includes('第' + kouMatch[1] + '項')));
-    for (const st of statutes) {
-      const t = st.title || '';
-      if (tryMatch(t, artKanji)) return st;
-      if (artKanjiAlt && tryMatch(t, artKanjiAlt)) return st;
-    }
-    for (const st of statutes) {
-      const t = st.title || '';
-      if (t.includes(artKanji)) return st;
-      if (artKanjiAlt && t.includes(artKanjiAlt)) return st;
-    }
+    const hit = matchStatuteTitle(statutes, artKanji, artKanjiAlt, kouMatch);
+    if (hit) return hit;
   }
   return null;
 }
@@ -222,23 +313,108 @@ function findStatutesByRef(
   return result;
 }
 
-function pickRelatedStatutes(
+/** 問題文・肢・解説・深掘りから「298条1項」「269条の2」など条文参照らしき文字列を拾う（I列未入力時の自動根拠用） */
+function extractStatuteRefsFromText(raw: string): string[] {
+  if (!raw || !raw.trim()) return [];
+  const s = String(raw).replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0));
+  const refs: string[] = [];
+  const seen = new Set<string>();
+  const add = (r: string) => {
+    const k = r.replace(/\s/g, '');
+    if (!k || seen.has(k)) return;
+    seen.add(k);
+    refs.push(k);
+  };
+  let m: RegExpExecArray | null;
+  const reSubKou = /(\d{1,4})条の(\d{1,2})\s*第(\d{1,3})項/g;
+  while ((m = reSubKou.exec(s)) !== null) {
+    add(`${m[1]}条の${m[2]}第${m[3]}項`);
+  }
+  const reSub = /(\d{1,4})条の(\d{1,2})(?!\d)/g;
+  while ((m = reSub.exec(s)) !== null) {
+    add(`${m[1]}条の${m[2]}`);
+  }
+  const reMain = /(?:第\s*)?(\d{1,4})\s*条(?!の)(?:\s*第?\s*(\d{1,3})\s*項)?/g;
+  while ((m = reMain.exec(s)) !== null) {
+    if (m[2]) add(`${m[1]}条${m[2]}項`);
+    else add(`${m[1]}条`);
+  }
+  return refs;
+}
+
+const GENERIC_STATUTE_OVERLAP = [
+  '善良な管理者の注意',
+  '善良な管理者をもって',
+  '善良な管理者',
+  '注意をもって',
+  'その権限を行使',
+  'することができる',
+  'することができない',
+  '場合において',
+  '必要があると認める',
+];
+
+function hasNonGenericStatuteOverlap(qNorm: string, statuteNorm: string): boolean {
+  const maxLen = Math.min(qNorm.length, 14);
+  for (let len = maxLen; len >= 5; len--) {
+    for (let i = 0; i + len <= qNorm.length; i++) {
+      const sub = qNorm.slice(i, i + len);
+      if (!statuteNorm.includes(sub)) continue;
+      if (!GENERIC_STATUTE_OVERLAP.some((g) => g.includes(sub))) return true;
+    }
+  }
+  for (let len = 4; len <= maxLen; len++) {
+    for (let i = 0; i + len <= qNorm.length; i++) {
+      const sub = qNorm.slice(i, i + len);
+      if (!statuteNorm.includes(sub)) continue;
+      if (!GENERIC_STATUTE_OVERLAP.some((g) => g.includes(sub))) return true;
+    }
+  }
+  return false;
+}
+
+function titleKeywordMatchesStatute(qNorm: string, titleNorm: string): boolean {
+  const pairs: [string, string][] = [
+    ['留置', '留置'],
+    ['質権', '質権'],
+    ['抵当', '抵当'],
+    ['先取', '先取'],
+    ['地役', '地役'],
+    ['地上', '地上'],
+    ['共有', '共有'],
+    ['隣地', '隣地'],
+    ['登記', '登記'],
+    ['占有', '占有'],
+    ['時効', '時効'],
+    ['代理', '代理'],
+    ['取消', '取消'],
+    ['無効', '無効'],
+    ['意思表示', '意思表示'],
+    ['不当利得', '不当利得'],
+    ['不法行為', '不法行為'],
+    ['債務不履行', '債務不履行'],
+  ];
+  return pairs.some(([a, b]) => qNorm.includes(a) && titleNorm.includes(b));
+}
+
+/** 文字レベル照合のフォールバック（I列なし）。条文タイトル・典型フレーズで誤一致を落とす */
+function pickRelatedStatutesFiltered(
   statutes: Array<{ title: string; content: string }>,
   questionText: string,
-  limit: number = 5
-) {
+  limit: number
+): Array<{ title: string; content: string }> {
   const norm = (s: string) =>
     (s || '')
       .trim()
       .replace(/[\s。、．，,.「」『』【】［］()（）]/g, '');
   const q = norm(questionText);
   if (!q) return [];
-  // 重要フレーズ一致ボーナス（選択肢と条文の文言が一致する場合に優先）
   const phraseBonuses = ['管理権を有しない', '親権を行う者が管理権'];
   const scored = statutes
     .map((st, idx) => {
+      const titleN = norm(st.title || '');
       const t = norm(`${st.title || ''}${st.content || ''}`);
-      if (!t) return { idx, score: 0 };
+      if (!t) return { idx, score: 0, pass: false };
       let hit = 0;
       for (const ch of new Set(q.split(''))) {
         if (t.includes(ch)) hit++;
@@ -247,11 +423,65 @@ function pickRelatedStatutes(
       for (const phrase of phraseBonuses) {
         if (q.includes(phrase) && t.includes(phrase)) score += 0.4;
       }
-      return { idx, score };
+      const pass =
+        score >= 0.32 ||
+        titleKeywordMatchesStatute(q, titleN) ||
+        hasNonGenericStatuteOverlap(q, t) ||
+        phraseBonuses.some((p) => q.includes(p) && t.includes(p));
+      return { idx, score, pass };
     })
-    .filter((s) => s.score > 0.15)
+    .filter((s) => s.score > 0.18 && s.pass)
     .sort((a, b) => b.score - a.score);
   return scored.slice(0, limit).map((s) => statutes[s.idx]);
+}
+
+/** I列なし時: 条文番号の明示 → findStatutesByRef、なければフィルタ付き自動照合 */
+function pickAutoRelatedStatutes(
+  statutes: Array<{ title: string; content: string }>,
+  questionText: string,
+  limit: number
+): Array<{ title: string; content: string }> {
+  if (!statutes.length || !questionText.trim()) return [];
+  const refs = extractStatuteRefsFromText(questionText);
+  const seen = new Set<string>();
+  const out: Array<{ title: string; content: string }> = [];
+  for (const ref of refs) {
+    for (const st of findStatutesByRef(statutes, ref)) {
+      const key = `${st.title}::${st.content}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(st);
+      if (out.length >= limit) return out;
+    }
+  }
+  if (out.length > 0) return out;
+  return pickRelatedStatutesFiltered(statutes, questionText, limit);
+}
+
+/** I列なし時: 判例図解（PIN_CASES）をタグ・事件名で当てる */
+function pickRelatedPinCases(questionText: string, limit: number): PinCase[] {
+  const q = (questionText || '').replace(/\s/g, '');
+  if (q.length < 4) return [];
+  const scored = PIN_CASES.map((c) => {
+    let s = 0;
+    const title = (c.title || '').replace(/\s/g, '');
+    if (title.length >= 4) {
+      for (let n = Math.min(title.length, 10); n >= 4; n--) {
+        if (q.includes(title.slice(0, n))) {
+          s = Math.max(s, n);
+          break;
+        }
+      }
+    }
+    for (const tag of c.tags || []) {
+      const t = String(tag).replace(/\s/g, '');
+      if (t.length >= 3 && q.includes(t)) s += 3;
+    }
+    return { c, s };
+  })
+    .filter((x) => x.s > 0)
+    .sort((a, b) => b.s - a.s);
+  return scored.slice(0, limit).map((x) => x.c);
 }
 
 /** 第1項が選ばれた場合、同条の第2項を取得（チャンク用の周辺知識） */
@@ -386,6 +616,10 @@ export default function ResultScreen() {
   }, [subject, field, mode, hiddenHashes]);
 
   const question = questions[questionIndex] || null;
+  const minpoBukkenResultFooterKeys = useMemo(() => {
+    if (subject !== '民法' || field !== '民法物権') return [];
+    return getResultFooterBukkenDeepdiveKeys(question);
+  }, [subject, field, question]);
   const isReorder = params.isReorder === '1' || (question as any)?.isReorder;
 
   // Fallback or loading state if question not found (shouldn't happen with correct nav)
@@ -397,6 +631,9 @@ export default function ResultScreen() {
   const explain = question?.explain || '';
   const memo = question?.memo || '';
   const choices = question?.choices || [];
+  const choiceStatuteRefs = (question as any)?.choiceStatuteRefs as string[] | undefined;
+  const choiceDeepDive = (question as any)?.choiceDeepDive as string[] | undefined;
+  const choiceDeepDiveBeginner = (question as any)?.choiceDeepDiveBeginner as string[] | undefined;
   const rawAnswer = Array.isArray(question?.answer) ? (question.answer as any[]) : [];
   const correctIndices: number[] = rawAnswer.length > 0 && typeof rawAnswer[0] === 'number' ? (rawAnswer as number[]) : [];
   const correctSlots: string[] = rawAnswer.length > 0 && typeof rawAnswer[0] === 'string' ? (rawAnswer as string[]) : [];
@@ -431,55 +668,81 @@ export default function ResultScreen() {
   const modelAnswer = isDescriptiveScope ? (modelAnswerParam || modelAnswerFromCorrectChoice) : modelAnswerFromQuestion;
   const hasDescriptiveModel = isDescriptive && !!modelAnswer;
   const isCorrectDescriptive = hasDescriptiveModel && isDescriptiveAnswerSimilar(modelAnswer, pickedText);
-  const statutesKey =
-    subject === '行政法' && field ? FIELD_TO_STATUTES_KEY[field]
-    : subject === '民法' && field ? CIVIL_FIELD_TO_STATUTES_KEY[field]
-    : subject === '多肢選択' && field ? TASHI_FIELD_TO_STATUTES_KEY[field]
-    : subject === '商法・会社法' ? 'sho_kai'
-    : null;
-  let statuteItemsRaw: Array<{ title: string; content: string }> = [];
-  if (statutesKey && (STATUTES as any)[statutesKey]) {
-    statuteItemsRaw = [...((STATUTES as any)[statutesKey] as Array<{ title: string; content: string }>)];
-    // 民法総則: 制限行為能力者・後見で minpo_kazoku（838条一号等）も参照
-    if (subject === '民法' && field === '民法総則' && (STATUTES as any)['minpo_kazoku']) {
-      statuteItemsRaw = [...statuteItemsRaw, ...((STATUTES as any)['minpo_kazoku'] as Array<{ title: string; content: string }>)];
-    }
-    // 民法総則: 162条・187条（取得時効・占有承継）等が minpo_bukken にあるため、併せて参照
-    if (subject === '民法' && field === '民法総則' && (STATUTES as any)['minpo_bukken']) {
-      statuteItemsRaw = [...statuteItemsRaw, ...((STATUTES as any)['minpo_bukken'] as Array<{ title: string; content: string }>)];
-    }
-    // 民法総則: 消滅時効（166条・167条・724条・724条の2）等が minpo_saiken にあるため、併せて参照
-    if (subject === '民法' && field === '民法総則') {
-      if ((STATUTES as any)['minpo_saiken_soron']) {
-        statuteItemsRaw = [...statuteItemsRaw, ...((STATUTES as any)['minpo_saiken_soron'] as Array<{ title: string; content: string }>)];
-      }
-      if ((STATUTES as any)['minpo_saiken_kakuron']) {
-        statuteItemsRaw = [...statuteItemsRaw, ...((STATUTES as any)['minpo_saiken_kakuron'] as Array<{ title: string; content: string }>)];
-      }
-    }
-  }
-  const statuteItems = statuteItemsRaw.length > 0 ? pickRelatedStatutes(statuteItemsRaw, text) : [];
 
-  // 肢ごとの関連条文。I列（choiceStatuteRefs）に指定があれば優先、なければ自動照合
-  const choiceStatuteRefs = (question as any)?.choiceStatuteRefs as string[] | undefined;
-  const choiceDeepDive = (question as any)?.choiceDeepDive as string[] | undefined;
-  const choiceStatutes: Array<Array<{ title: string; content: string }>> = [];
-  if (statuteItemsRaw.length > 0 && Array.isArray(choices) && choices.length > 0 && (subject === '行政法' || subject === '民法' || subject === '多肢選択' || subject === '商法・会社法')) {
-    for (let i = 0; i < choices.length; i++) {
+  // 条文バンドル＋肢ごとの自動照合は O(条文数×肢数) が重い。メモ入力等の再レンダーで毎回走らせない
+  const statuteItemsRaw = useMemo(() => {
+    const statutesKey =
+      subject === '行政法' && field ? FIELD_TO_STATUTES_KEY[field]
+      : subject === '民法' && field ? CIVIL_FIELD_TO_STATUTES_KEY[field]
+      : subject === '多肢選択' && field ? TASHI_FIELD_TO_STATUTES_KEY[field]
+      : subject === '商法・会社法' ? 'sho_kai'
+      : null;
+    let raw: Array<{ title: string; content: string }> = [];
+    if (statutesKey && (STATUTES as any)[statutesKey]) {
+      raw = [...((STATUTES as any)[statutesKey] as Array<{ title: string; content: string }>)];
+      if (subject === '民法' && field === '民法総則' && (STATUTES as any)['minpo_kazoku']) {
+        raw = [...raw, ...((STATUTES as any)['minpo_kazoku'] as Array<{ title: string; content: string }>)];
+      }
+      if (subject === '民法' && field === '民法総則' && (STATUTES as any)['minpo_bukken']) {
+        raw = [...raw, ...((STATUTES as any)['minpo_bukken'] as Array<{ title: string; content: string }>)];
+      }
+      if (subject === '民法' && field === '民法物権' && (STATUTES as any)['minpo_sosoku']) {
+        raw = [...raw, ...((STATUTES as any)['minpo_sosoku'] as Array<{ title: string; content: string }>)];
+      }
+      if (subject === '民法' && field === '民法総則') {
+        if ((STATUTES as any)['minpo_saiken_soron']) {
+          raw = [...raw, ...((STATUTES as any)['minpo_saiken_soron'] as Array<{ title: string; content: string }>)];
+        }
+        if ((STATUTES as any)['minpo_saiken_kakuron']) {
+          raw = [...raw, ...((STATUTES as any)['minpo_saiken_kakuron'] as Array<{ title: string; content: string }>)];
+        }
+      }
+    }
+    return raw;
+  }, [subject, field]);
+
+  const statuteItems = useMemo(
+    () =>
+      statuteItemsRaw.length > 0 ? pickAutoRelatedStatutes(statuteItemsRaw, text, 5) : [],
+    [statuteItemsRaw, text]
+  );
+
+  const { choiceStatutes, choicePinCasesAuto } = useMemo(() => {
+    const emptyS: Array<Array<{ title: string; content: string }>> = [];
+    const emptyP: PinCase[][] = [];
+    const ch = question && Array.isArray((question as any).choices) ? ((question as any).choices as string[]) : [];
+    if (
+      !question ||
+      statuteItemsRaw.length === 0 ||
+      ch.length === 0 ||
+      !(subject === '行政法' || subject === '民法' || subject === '多肢選択' || subject === '商法・会社法')
+    ) {
+      return { choiceStatutes: emptyS, choicePinCasesAuto: emptyP };
+    }
+    const choiceStatuteRefs = (question as any)?.choiceStatuteRefs as string[] | undefined;
+    const choiceDeepDive = (question as any)?.choiceDeepDive as string[] | undefined;
+    const choiceDeepDiveBeginner = (question as any)?.choiceDeepDiveBeginner as string[] | undefined;
+    const choiceExplanationsEarly = (question as any)?.choiceExplanations as string[] | undefined;
+    const outS: Array<Array<{ title: string; content: string }>> = [];
+    const outP: PinCase[][] = [];
+    for (let i = 0; i < ch.length; i++) {
       const ref = choiceStatuteRefs?.[i]?.trim();
+      const c = ch[i] || '';
+      const expl = choiceExplanationsEarly?.[i] ?? '';
+      const deep = choiceDeepDive?.[i] ?? '';
+      const deepBeg = choiceDeepDiveBeginner?.[i] ?? '';
+      const bundle = `${text}\n${c}\n${expl}\n${deep}\n${deepBeg}`;
       if (ref) {
         const found = findStatutesByRef(statuteItemsRaw, ref);
-        choiceStatutes.push(found.length > 0 ? found : []);
+        outS.push(found.length > 0 ? found : []);
+        outP.push([]);
         continue;
       }
-      const c = choices[i];
-      if (!c) {
-        choiceStatutes.push([]);
-        continue;
-      }
-      choiceStatutes.push(pickRelatedStatutes(statuteItemsRaw, `${text}\n${c}`, 1));
+      outS.push(pickAutoRelatedStatutes(statuteItemsRaw, bundle, 1));
+      outP.push(pickRelatedPinCases(bundle, 2));
     }
-  }
+    return { choiceStatutes: outS, choicePinCasesAuto: outP };
+  }, [statuteItemsRaw, question, subject, text]);
 
   // [NEW] Resolve User Selection & Validation
   const pickedIndex = pickedIndexParam ? parseInt(pickedIndexParam, 10) : -1;
@@ -805,7 +1068,7 @@ export default function ResultScreen() {
                   <View style={{ marginTop: 12 }}>
                     <Pressable
                       onPress={() => {
-                        setDeepdiveParams(memo.trim(), '');
+                        setDeepdiveParams(memo.trim(), '', { choiceCorrect: null });
                         router.push({
                           pathname: '/deepdive',
                           params: { content: memo.trim(), choiceLabel: '' },
@@ -853,6 +1116,7 @@ export default function ResultScreen() {
               const explText = choiceExpls?.[choiceIdx] ?? '';
               const statutes = choiceStatutes[choiceIdx] || [];
               const deepContent = choiceDeepDive?.[choiceIdx]?.trim();
+              const deepBeginner = choiceDeepDiveBeginner?.[choiceIdx]?.trim();
               return (
                 <View key={gi} style={[styles.choiceStatuteItem, styles.choiceStatuteCard]}>
                   <View style={styles.choiceStatuteNumRow}>
@@ -893,7 +1157,16 @@ export default function ResultScreen() {
                             <Pressable
                               onPress={() => {
                                 const choiceLabel = `${label}${choiceText}`;
-                                setDeepdiveParams(deepContent || '', choiceLabel);
+                                setDeepdiveParams(deepContent || '', choiceLabel, {
+                                  choiceCorrect: deepdiveChoiceLegallyCorrect(
+                                    text,
+                                    choiceIdx,
+                                    effectiveCorrectIndices,
+                                    answerPending,
+                                    !!isReorder
+                                  ),
+                                  beginnerContent: deepBeginner || undefined,
+                                });
                                 router.push({
                                   pathname: '/deepdive',
                                   params: { content: deepContent || '', choiceLabel },
@@ -964,7 +1237,16 @@ export default function ResultScreen() {
                         <Pressable
                           onPress={() => {
                             const choiceLabel = `${label}${choiceText}`;
-                            setDeepdiveParams(deepContent || '', choiceLabel);
+                            setDeepdiveParams(deepContent || '', choiceLabel, {
+                              choiceCorrect: deepdiveChoiceLegallyCorrect(
+                                text,
+                                choiceIdx,
+                                effectiveCorrectIndices,
+                                answerPending,
+                                !!isReorder
+                              ),
+                              beginnerContent: deepBeginner || undefined,
+                            });
                             router.push({
                               pathname: '/deepdive',
                               params: { content: deepContent || '', choiceLabel },
@@ -1026,6 +1308,20 @@ export default function ResultScreen() {
                       </View>
                     </View>
                   )}
+                  {(choicePinCasesAuto[choiceIdx] || []).length > 0 ? (
+                    <View style={{ marginTop: 10 }}>
+                      <ThemedText style={[styles.choiceStatuteLabel, { color: colors.subText }]}>
+                        関連判例（自動）
+                      </ThemedText>
+                      {(choicePinCasesAuto[choiceIdx] || []).map((pc) => (
+                        <Link key={pc.id} href={`/pin/${pc.category}/${pc.id}`} asChild>
+                          <Pressable style={{ marginTop: 6, alignSelf: 'flex-start' }}>
+                            <ThemedText style={{ color: colors.primary, fontSize: 15 }}>📌 {pc.title}</ThemedText>
+                          </Pressable>
+                        </Link>
+                      ))}
+                    </View>
+                  ) : null}
                 </View>
               );
             })}
@@ -1051,7 +1347,7 @@ export default function ResultScreen() {
             <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 10 }]}>解説</ThemedText>
             <Pressable
               onPress={() => {
-                setDeepdiveParams(memo.trim(), '');
+                setDeepdiveParams(memo.trim(), '', { choiceCorrect: null });
                 router.push({
                   pathname: '/deepdive',
                   params: { content: memo.trim(), choiceLabel: '' },
@@ -1119,7 +1415,9 @@ export default function ResultScreen() {
             {explain ? (
               <Pressable
                 onPress={() => {
-                  setDeepdiveParams(explain, '');
+                  setDeepdiveParams(explain, '', {
+                    choiceCorrect: answerPending ? null : isCorrectDescriptive,
+                  });
                   router.push({
                     pathname: '/deepdive',
                     params: { content: explain, choiceLabel: '' },
@@ -1143,17 +1441,30 @@ export default function ResultScreen() {
         </ThemedText>
                 {(() => {
                   const deepDiveContent = choiceDeepDive?.[expandedChoiceIndex]?.trim();
-                  if (deepDiveContent) {
+                  const deepDiveBeginner = choiceDeepDiveBeginner?.[expandedChoiceIndex]?.trim();
+                  if (deepDiveContent || deepDiveBeginner) {
                     const choiceLabel = expandedChoiceIndex != null && choices[expandedChoiceIndex]
                       ? `${(expandedChoiceIndex + 1)}. ${(choices[expandedChoiceIndex] || '').replace(/※/g, '')}`
                       : '';
                     return (
         <Pressable
                         onPress={() => {
-                          setDeepdiveParams(deepDiveContent, choiceLabel);
+                          setDeepdiveParams(deepDiveContent || '', choiceLabel, {
+                            choiceCorrect:
+                              expandedChoiceIndex == null || answerPending
+                                ? null
+                                : deepdiveChoiceLegallyCorrect(
+                                    text,
+                                    expandedChoiceIndex,
+                                    effectiveCorrectIndices,
+                                    answerPending,
+                                    !!isReorder
+                                  ),
+                            beginnerContent: deepDiveBeginner || undefined,
+                          });
                           router.push({
                             pathname: '/deepdive',
-                            params: { content: deepDiveContent, choiceLabel },
+                            params: { content: deepDiveContent || '', choiceLabel },
                           });
                         }}
                         style={[styles.deepDiveButton, { borderColor: colors.primary, alignSelf: 'flex-start' }]}
@@ -1252,6 +1563,23 @@ export default function ResultScreen() {
             </Pressable>
           </Link>
         )}
+
+        {minpoBukkenResultFooterKeys.length > 0 ? (
+          <View style={{ marginTop: 16, marginBottom: 4, width: '100%' }}>
+            {minpoBukkenResultFooterKeys.map((key) => {
+              const src = getDeepdiveImageSource(key);
+              if (!src) return null;
+              return (
+                <Image
+                  key={key}
+                  source={src}
+                  style={{ width: '100%', maxHeight: 560, marginBottom: 12 }}
+                  resizeMode="contain"
+                />
+              );
+            })}
+          </View>
+        ) : null}
 
         <Link href={{
           pathname: '/question',

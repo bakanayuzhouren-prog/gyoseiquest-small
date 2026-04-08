@@ -18,6 +18,35 @@ const OUTPUT_FILE = path.join(__dirname, '../src/questions.js');
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+/** Google Sheets API: シート名に日本語・記号がある場合は '...'!A:F 形式が安全 */
+function sheetRangeA1F(sheetTitle) {
+    const s = String(sheetTitle).replace(/'/g, "''");
+    return `'${s}'!A:F`;
+}
+
+/** スプレッドシート上の実タブ名を候補から解決（表記ゆれ・NFKC） */
+function resolveSheetTitleByCandidates(sheetList, candidates) {
+    const titles = sheetList.map((sh) => sh.properties?.title).filter(Boolean);
+    const norm = (t) => (t || '').normalize('NFKC').trim();
+    for (const cand of candidates) {
+        const nc = norm(cand);
+        const hit = titles.find((t) => norm(t) === nc);
+        if (hit) return hit;
+    }
+    return null;
+}
+
+/** 解説資料（漫画）系。環境変数で上書き可: QUIZ_SYNC_RESOURCE_SHEET */
+const MANGA_RESOURCE_SHEET_CANDIDATES = [
+    '解説資料',
+    '解説資料（漫画）',
+    '解説資料(漫画)',
+    '解説資料（マンガ）',
+    '解説資料(マンガ)',
+    /** 単独「解説資料」が無く、行政法総論用タブに ID 列がある構成 */
+    '解説資料（行政法総論）',
+];
+
 function getForegroundRgb(fmt) {
     return fmt?.foregroundColor || fmt?.foregroundColorStyle?.rgbColor;
 }
@@ -279,6 +308,7 @@ async function sync() {
 
         // 主要列のフォーマット（文字色・太字）を取得 — values の H/K/L と行番号を対応させる
         let mColFormatMap = {};
+        let azColFormatMap = {};
         let bColFormatMap = {};
         let hColFormatMap = {};
         let kColFormatMap = {};
@@ -298,6 +328,7 @@ async function sync() {
                     `${title}!L2:L${n}`,
                     `${title}!C2:C${n}`,
                     `${title}!F2:F${n}`,
+                    `${title}!AZ2:AZ${n}`,
                 ],
                 includeGridData: true,
             });
@@ -319,6 +350,7 @@ async function sync() {
             if (data[4]) fillMap(data[4], lColFormatMap);
             if (data[5]) fillMap(data[5], cColFormatMap);
             if (data[6]) fillMap(data[6], fColFormatMap);
+            if (data[7]) fillMap(data[7], azColFormatMap);
         } catch (e) {
             console.warn(`[WARN] 列フォーマット取得スキップ: ${e.message}`);
         }
@@ -539,6 +571,8 @@ async function sync() {
                 const choiceChunkImages = [];
                 const choiceStatuteRefs = [];
                 const choiceDeepDive = [];
+                // ビギナー向けもっと深掘り: AZ列(index 51)。M列と同形式・[[image:]]可。AY列が空ならチャンク(U〜)の誤ペアにならない
+                const choiceDeepDiveBeginner = [];
                 const valChunkImg = (r) => (r && r[24] ? String(r[24]).trim() : '');
                 const valStatuteRef = (r) => (r && r[8] ? String(r[8]).trim() : '');
                 // もっと深掘る: 問題を解くモードはM列(index 12)のみ。太字・赤はフォーマットから反映
@@ -546,6 +580,12 @@ async function sync() {
                     const raw = r && r[12] ? String(r[12]).trim() : '';
                     if (!raw) return '';
                     const cellData = mColFormatMap[rowIdx];
+                    return cellData ? applyBoldFromFormatRuns(raw, cellData) : raw;
+                };
+                const valDeepDiveBeginner = (r, rowIdx) => {
+                    const raw = r && r[51] ? String(r[51]).trim() : '';
+                    if (!raw) return '';
+                    const cellData = azColFormatMap[rowIdx];
                     return cellData ? applyBoldFromFormatRuns(raw, cellData) : raw;
                 };
                 const firstChoice = useGyosei1Layout ? valC : valK;
@@ -564,6 +604,7 @@ async function sync() {
                     choiceExplanations.push(valExplanWithFmt(row, firstRowNum));
                     choiceStatuteRefs.push(valStatuteRef(row));
                     choiceDeepDive.push(valDeepDive(row, i + 1));
+                    choiceDeepDiveBeginner.push(valDeepDiveBeginner(row, i + 1));
                 }
 
                 let offset = 1;
@@ -601,6 +642,7 @@ async function sync() {
                         choiceExplanations.push(valExplanWithFmt(nextRow, contRowNum));
                         choiceStatuteRefs.push(valStatuteRef(nextRow));
                         choiceDeepDive.push(valDeepDive(nextRow, contRowNum));
+                        choiceDeepDiveBeginner.push(valDeepDiveBeginner(nextRow, contRowNum));
                     }
                     offset++;
                 }
@@ -612,12 +654,14 @@ async function sync() {
                     choiceExplanations.push('');
                     choiceStatuteRefs.push('');
                     choiceDeepDive.push('');
+                    choiceDeepDiveBeginner.push('');
                 }
                 // choiceChunkImages / choiceExplanations / choiceStatuteRefs / choiceDeepDive を choices の長さに合わせる
                 while (choiceChunkImages.length < choices.length) choiceChunkImages.push('');
                 while (choiceExplanations.length < choices.length) choiceExplanations.push('');
                 while (choiceStatuteRefs.length < choices.length) choiceStatuteRefs.push('');
                 while (choiceDeepDive.length < choices.length) choiceDeepDive.push('');
+                while (choiceDeepDiveBeginner.length < choices.length) choiceDeepDiveBeginner.push('');
                 if (choices.length >= 1) {
                     const correctIndices = [];
                     const cleanChoices = currentSubject === '記述'
@@ -695,6 +739,7 @@ async function sync() {
                     const finalChoiceExplanations = isReorder ? [] : choiceExplanations;
                     const finalChoiceStatuteRefs = isReorder ? [] : choiceStatuteRefs;
                     const finalChoiceDeepDive = isReorder ? [] : choiceDeepDive;
+                    const finalChoiceDeepDiveBeginner = isReorder ? [] : choiceDeepDiveBeginner;
                     if (!isReorder && slotAnswersFromNtoP && slotAnswersFromNtoP.length > 0) {
                         finalAnswer = slotAnswersFromNtoP;
                     } else if (!isReorder && currentSubject === '多肢選択' && valR) {
@@ -760,7 +805,8 @@ async function sync() {
                         choiceChunkImages: choiceChunkImages,
                         choiceExplanations: finalChoiceExplanations,
                         choiceStatuteRefs: finalChoiceStatuteRefs,
-                        choiceDeepDive: finalChoiceDeepDive
+                        choiceDeepDive: finalChoiceDeepDive,
+                        choiceDeepDiveBeginner: finalChoiceDeepDiveBeginner
                     });
                 } else {
                     // Extract chunks for non-choice questions too
@@ -818,7 +864,7 @@ async function sync() {
 
     const syncResourceSheet = async (sheetName, type) => {
         try {
-            const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: `${sheetName}!A:F` });
+            const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: sheetRangeA1F(sheetName) });
             const rows = resp.data.values;
             if (rows && rows.length > 0) {
                 let start = (rows[0][0] === 'ID' || rows[0][1] === 'タイトル') ? 1 : 0;
@@ -842,7 +888,7 @@ async function sync() {
 
     const syncStatutes = async (sheetName, key) => {
         try {
-            const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: `${sheetName}!A:F` });
+            const resp = await sheets.spreadsheets.values.get({ spreadsheetId, range: sheetRangeA1F(sheetName) });
             const rows = resp.data.values;
             if (rows && rows.length > 0) {
                 statutesData[key] = [];
@@ -862,7 +908,19 @@ async function sync() {
         } catch (e) { console.warn(`Skip ${sheetName}: ${e.message}`); }
     };
 
-    await syncResourceSheet('解説資料', 'manga');
+    const mangaCandidates = [
+        ...(process.env.QUIZ_SYNC_RESOURCE_SHEET ? [String(process.env.QUIZ_SYNC_RESOURCE_SHEET).trim()] : []),
+        ...MANGA_RESOURCE_SHEET_CANDIDATES,
+    ];
+    const mangaSheetTitle = resolveSheetTitleByCandidates(sheetList, mangaCandidates);
+    if (mangaSheetTitle) {
+        await syncResourceSheet(mangaSheetTitle, 'manga');
+        console.log(`Resources (manga): tab "${mangaSheetTitle}"`);
+    } else {
+        console.warn(
+            `Skip 解説資料: no matching tab. Tried: ${mangaCandidates.filter((c, i, a) => a.indexOf(c) === i).join(', ')}`
+        );
+    }
     await syncStatutes('解説資料（行手）', 'gyote');
     await syncStatutes('解説資料（行審）', 'gyoshin');
     await syncStatutes('解説資料（行訴）', 'gyoso');
