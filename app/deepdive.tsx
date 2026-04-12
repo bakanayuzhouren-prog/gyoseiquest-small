@@ -1,8 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Stack, useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import { Image, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ChachalotAvatar } from '@/components/chachalot-avatar';
-import { MaterialIcons } from '@expo/vector-icons';
 import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -14,7 +10,11 @@ import { LEARN_DEEPDIVE } from '@/src/learn';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
 import { CHACHALOT_SPEECH_OPTIONS } from '@/utils/chachalot-tts';
 import { applyTTSRules } from '@/utils/tts-rules';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Stack, useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Image, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 const CHACHALOT_IMG = require('@/assets/images/characters/chachalot.png');
 

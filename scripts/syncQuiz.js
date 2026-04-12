@@ -173,14 +173,28 @@ const KIJUTSU_SUB_ORDER = [
     '行政法'
 ];
 
+/**
+ * 行政法１（総論まとめ）シート: B/C列レイアウト。
+ * `includes('行政法1')` だと「行政法15」等に誤爆するため、1 の直後が数字でないときのみ true。
+ */
+function isGyosei1CombinedSheet(title) {
+    const t = String(title).normalize('NFKC').trim();
+    if (t.includes('行政法総論')) return true;
+    return /行政法\s*[1１](?![0-9０-９])/.test(t);
+}
+
 const getMapping = (title) => {
+    const nt = String(title).normalize('NFKC').trim();
     if (title.includes('基礎法学')) return { subject: '基礎法学', category: title };
     if (title.includes('憲法')) {
         if (title.includes('多肢選択')) return { subject: '多肢選択', category: '憲法' };
         return { subject: '憲法', category: title };
     }
     if (title === '行政法総論' || title.includes('行政法総論')) return { subject: '行政法', category: '行政法総論' };
-    if (title.includes('行政手続法')) return { subject: '行政法', category: '行政手続法' };
+    // 行政手続法: タブ名の表記ゆれ（行政手続・行手 等）。syncLearn の「全手」「行手」と揃える
+    if (nt.includes('行政手続法') || nt.includes('行政手続')) return { subject: '行政法', category: '行政手続法' };
+    if (nt === '行手' || /^行手[_・·\-]/.test(nt)) return { subject: '行政法', category: '行政手続法' };
+    if (nt === '全手' || /^全手[_・·\-]/.test(nt)) return { subject: '行政法', category: '行政手続法' };
     if (title.includes('行政不服審査法')) return { subject: '行政法', category: '行政不服審査法' };
     if (title.includes('行政事件訴訟法')) return { subject: '行政法', category: '行政事件訴訟法' };
     if (title.includes('国家賠償法')) return { subject: '行政法', category: '国家賠償法・損失訴訟' };
@@ -257,8 +271,8 @@ async function sync() {
         let sheetDefaultSubject = mapping ? mapping.subject : null;
         let sheetDefaultCategory = mapping ? mapping.category : null;
 
-        // 行政法総論シート（行政法１、行政法1、行政法 1 等の表記ゆれに対応）
-        if (title.includes('行政法 1') || title.includes('行政法１') || title.includes('行政法1') || title === '行政法総論' || title.includes('行政法総論')) {
+        // 行政法総論シート（行政法１・行政法総論）。行政法15 等は除外
+        if (isGyosei1CombinedSheet(title)) {
             sheetDefaultSubject = '行政法';
             sheetDefaultCategory = '行政法総論';
         }
@@ -359,7 +373,7 @@ async function sync() {
         let currentCategory = sheetDefaultCategory;
 
         // 行政法１（ここに全部入ってる）: B列=問題文, C列=第1肢, 続く行のB列=残り肢。他: H列=問題文, K列=肢
-        const useGyosei1Layout = title.includes('行政法１') || title.includes('行政法 1') || title.includes('行政法1');
+        const useGyosei1Layout = isGyosei1CombinedSheet(title);
 
         for (let i = 1; i < rows.length; i++) {
             const row = rows[i];

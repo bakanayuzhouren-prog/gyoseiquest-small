@@ -102,10 +102,11 @@ export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ chi
             const replacement = userReplacement || defaultValue;
             // 「父母」を二重に壊さない（父→J・母→K が連続で JK になるのを防ぐ）
             let regex: RegExp;
+            // 条文・引用の「父から認知」等は置換しない（「父」「（父」の直後の父は登場人物ではない）
             if (original === '父') {
-                regex = /父(?![母])/g;
+                regex = /(?<![「（『［])父(?![母])/g;
             } else if (original === '母') {
-                regex = /(?<!父)母/g;
+                regex = /(?<![「（『［])(?<!父)母/g;
             } else {
                 regex = new RegExp(original.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
             }

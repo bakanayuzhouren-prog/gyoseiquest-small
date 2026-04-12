@@ -1350,6 +1350,7 @@ export const SUBJECTS = {
         ],
         "answer": [
           1,
+          2,
           6
         ],
         "explain": "",

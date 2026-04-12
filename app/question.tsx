@@ -1,7 +1,7 @@
 import Constants from 'expo-constants';
 import { Link, router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Alert, Animated, Image, Modal, PanResponder, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, Animated, Image, Modal, PanResponder, Platform, Pressable, ScrollView, StyleSheet, TextInput, View, type StyleProp, type ViewStyle } from 'react-native';
 
 import { DiagramModal } from '@/components/diagram-modal';
 import { MarkdownText } from '@/components/markdown-text';
@@ -33,12 +33,15 @@ function DraggableWordBankItem({
   onPress,
   borderColor,
   textColor,
+  itemStyle,
 }: {
   value: string;
   onDrop: (value: string, pageX: number, pageY: number) => void;
   onPress: () => void;
   borderColor: string;
   textColor: string;
+  /** 長文語群などは width 100% にする */
+  itemStyle?: StyleProp<ViewStyle>;
 }) {
   const pan = useRef(new Animated.ValueXY()).current;
   const [dragging, setDragging] = useState(false);
@@ -78,6 +81,7 @@ function DraggableWordBankItem({
         styles.wordBankItem,
         styles.wordBankItemPressable,
         { borderColor, transform: pan.getTranslateTransform() },
+        itemStyle,
         dragging && styles.wordBankItemDragging,
       ]}
     >
@@ -1083,28 +1087,54 @@ export default function QuestionScreen() {
                     const rPattern = /[\(（]\s*[rｒ]\s*[\)）]/gi;
                     const parts = optStr.split(/\n+|(?=[①②])|(?=\d+[\.．]\s*)|[\/／]|\t+/).filter((p: string) => p.trim());
                     return parts.map((p: string, idx: number) => {
-                      const clean = p.replace(rPattern, '').trim();
+                      const clean = p
+                        .replace(rPattern, '')
+                        .replace(/^\d+\s*[\.．:：\uFF1A]\s*/, '')
+                        .trim();
                       if (!clean) return null;
                       return (
-                        <Pressable
-                          key={idx}
-                          style={[styles.wordBankItem, styles.wordBankItemPressable, { borderColor: colors.choiceBorder }]}
-                          onPress={() => handleSlotSelect(clean)}
-                        >
-                          <ThemedText style={{ color: colors.text, fontSize: 14 }}>{clean}</ThemedText>
-                        </Pressable>
+                        <View key={idx} style={{ width: '100%', flexBasis: '100%' }}>
+                          <DraggableWordBankItem
+                            value={clean}
+                            onDrop={handleWordBankDrop}
+                            onPress={() => handleWordBankTap(clean)}
+                            borderColor={colors.choiceBorder}
+                            textColor={colors.text}
+                            itemStyle={styles.wordBankItemBlock}
+                          />
+                        </View>
                       );
                     });
                   })()
                 : (String((question as any).wordBank || '')).split('\n').filter((l: string) => l.trim().length > 0).map((line: string, index: number) => {
                     const item = line.trim().replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim();
                     if (!item) return null;
-                    const hasNumber = /^\d+/.test(item);
-                    const text = hasNumber ? item : `${index + 1}. ${item}`;
+                    // シートの「1. ①…」のような行頭番号は表示しない（①②や【A】だけ見せる）
+                    const text = item.replace(/^\d+\s*[\.．:：\uFF1A]\s*/, '').trim();
+                    if (!text) return null;
+                    // 【A】などの小見出しだけはドラッグ対象にしない
+                    const isSectionHeader = /^【[^】]{1,8}】\s*$/.test(text);
+                    if (isSectionHeader) {
+                      return (
+                        <ThemedText
+                          key={index}
+                          style={[styles.wordBankItem, { color: colors.text, width: '100%', flexBasis: '100%' }]}
+                        >
+                          {text}
+                        </ThemedText>
+                      );
+                    }
                     return (
-                      <ThemedText key={index} style={[styles.wordBankItem, { color: colors.text }]}>
-                        {text}
-                      </ThemedText>
+                      <View key={index} style={{ width: '100%', flexBasis: '100%' }}>
+                        <DraggableWordBankItem
+                          value={text}
+                          onDrop={handleWordBankDrop}
+                          onPress={() => handleWordBankTap(text)}
+                          borderColor={colors.choiceBorder}
+                          textColor={colors.text}
+                          itemStyle={styles.wordBankItemBlock}
+                        />
+                      </View>
                     );
                   })}
             </View>
@@ -1930,6 +1960,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
     marginBottom: 4,
+  },
+  /** 改行語群・長文スロット用（ドラッグしやすい1列） */
+  wordBankItemBlock: {
+    width: '100%',
+    maxWidth: '100%',
+    flexBasis: '100%',
+    alignSelf: 'stretch',
   },
   wordBankItemPressable: {
     padding: 8,

@@ -6,14 +6,27 @@ import { ActivityIndicator, Image, Modal, Platform, Pressable, ScrollView, Style
 import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { useTheme } from '@/src/context/ThemeContext';
 import { getChunkImageSource } from '@/src/chunkImages';
-import { getDescriptiveImageSource } from '@/src/descriptiveImages';
-import { setDeepdiveParams } from '@/src/deepdiveState';
+import { useTheme } from '@/src/context/ThemeContext';
 import { getDeepdiveImageSource } from '@/src/deepdiveImages';
+import { setDeepdiveParams } from '@/src/deepdiveState';
+import { getDescriptiveImageSource } from '@/src/descriptiveImages';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { PIN_CASES, type PinCase } from '@/src/pinData';
 import { RESOURCES, STATUTES } from '@/src/questions';
+import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitNumberPrefix } from '@/utils/choiceNumber';
+import { addPoints } from '@/utils/points';
+import { incrementLoopCount } from '@/utils/progress';
+import { getHiddenHashes, peekHiddenHashesSync } from '@/utils/question-hidden';
+import { getQuestionTextHash, updateQuestionStats } from '@/utils/question-stats';
+import {
+    filterHiddenFromQuestions,
+    filterQuizQuestionsByMode,
+    getMergedSubjectData,
+    pickQuestionsForField,
+} from '@/utils/quiz-question-pipeline';
+import { gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
+import { USER_KEY } from './login';
 
 /** 民法物権：結果画面「次の問題へ」直前に出す bukken 解説図（M列等の [[image:…]] と同期） */
 const RESULT_FOOTER_BUKKEN_IMAGE_RE = /\[\[image:(bukken\/(?:5-21|(?:15|18)-21-\d+))\]\]/g;
@@ -502,19 +515,6 @@ function getParagraph2ForChunk(
       !/第[2２]項\s*[一二三四五六七八九十]/.test(st.title || '')
   ) || null;
 }
-import { gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
-import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitNumberPrefix } from '@/utils/choiceNumber';
-import { addPoints } from '@/utils/points';
-import { getHiddenHashes, peekHiddenHashesSync } from '@/utils/question-hidden';
-import {
-  filterHiddenFromQuestions,
-  filterQuizQuestionsByMode,
-  getMergedSubjectData,
-  pickQuestionsForField,
-} from '@/utils/quiz-question-pipeline';
-import { getQuestionTextHash, updateQuestionStats } from '@/utils/question-stats';
-import { incrementLoopCount } from '@/utils/progress';
-import { USER_KEY } from './login';
 
 const GEMINI_API_KEY = (typeof Constants?.expoConfig?.extra !== 'undefined' && (Constants.expoConfig.extra as any)?.geminiApiKey) || (typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_GEMINI_API_KEY) || (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) || '';
 
@@ -743,6 +743,11 @@ export default function ResultScreen() {
     }
     return { choiceStatutes: outS, choicePinCasesAuto: outP };
   }, [statuteItemsRaw, question, subject, text]);
+
+  /** 問題を解くモード結果画面: 根拠条文はM列（深掘り）に寄せるため一旦非表示 */
+  const hideStatutesOnResult = true;
+  /** 行政手続法: 関連判例（自動）も非表示 */
+  const hideGyotePinCasesAuto = subject === '行政法' && field === '行政手続法';
 
   // [NEW] Resolve User Selection & Validation
   const pickedIndex = pickedIndexParam ? parseInt(pickedIndexParam, 10) : -1;
@@ -1047,7 +1052,7 @@ export default function ResultScreen() {
             return (
               <ThemedView style={[styles.choiceStatuteBlock, styles.choiceStatuteCard]}>
                 <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 10 }]}>解説</ThemedText>
-                {statuteItems.length > 0 ? (
+                {statuteItems.length > 0 && !hideStatutesOnResult ? (
                   statuteItems.map((item, idx) => (
                     <ThemedView key={idx} style={styles.choiceStatuteArticle}>
                       {(item.title || item.content) ? (
@@ -1102,6 +1107,15 @@ export default function ResultScreen() {
           const footerImages = fallbackSousoku78
             ? [{ path: 'sousoku7,8', source: fallbackSousoku78 }]
             : simpleChunkImages;
+          const deepByVisible = visibleIndices.map((i) => (choiceDeepDive?.[i] ?? '').trim());
+          const begByVisible = visibleIndices.map((i) => (choiceDeepDiveBeginner?.[i] ?? '').trim());
+          const consolidateDeepDive =
+            visibleIndices.length >= 2 &&
+            (deepByVisible[0] ?? '').length > 0 &&
+            deepByVisible.every((d) => d === deepByVisible[0]) &&
+            begByVisible.every((b) => b === begByVisible[0]);
+          const consolidatedDeepContent = consolidateDeepDive ? deepByVisible[0] : '';
+          const consolidatedDeepBeginner = consolidateDeepDive ? begByVisible[0] : '';
           return (
           <>
           <ThemedView style={[styles.choiceStatuteBlock, { borderColor: colors.choiceBorder }]}>
@@ -1132,10 +1146,12 @@ export default function ResultScreen() {
                       <MarkdownText text={explText} style={{ fontSize: 15, lineHeight: 22 }} />
                     </View>
                   ) : null}
-                  <ThemedText style={[styles.choiceStatuteLabel, { color: colors.subText }]}>
-                    根拠条文
-                  </ThemedText>
-                  {statutes.length > 0 ? (
+                  {!hideStatutesOnResult ? (
+                    <ThemedText style={[styles.choiceStatuteLabel, { color: colors.subText }]}>
+                      根拠条文
+                    </ThemedText>
+                  ) : null}
+                  {!hideStatutesOnResult && statutes.length > 0 ? (
                     <>
                       {statutes.map((statute, si) => (
                         <View key={si} style={styles.choiceStatuteArticle}>
@@ -1154,6 +1170,7 @@ export default function ResultScreen() {
                       ))}
                       <View style={styles.keywordRow}>
                           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flex: 1, justifyContent: 'flex-end' }}>
+                            {!consolidateDeepDive ? (
                             <Pressable
                               onPress={() => {
                                 const choiceLabel = `${label}${choiceText}`;
@@ -1178,6 +1195,7 @@ export default function ResultScreen() {
                                 📖 もっと深掘る
                               </ThemedText>
                             </Pressable>
+                            ) : null}
                             {(() => {
                               let chunkImg = (question as any)?.choiceChunkImages?.[choiceIdx] || '';
                               if (!chunkImg && subject === '民法' && field === '民法総則' && qIdx === 10 && /114条|催告/.test((statutes[0]?.title || '') + (statutes[0]?.content || '') + (choices[choiceIdx] || ''))) {
@@ -1225,7 +1243,7 @@ export default function ResultScreen() {
                           </View>
                       </View>
                     </>
-                  ) : (
+                  ) : !hideStatutesOnResult ? (
                     <View>
                       {choiceStatuteRefs?.[choiceIdx]?.trim() ? (
                         <ThemedText style={[styles.choiceStatuteNote, { color: colors.subText }]}>
@@ -1234,6 +1252,7 @@ export default function ResultScreen() {
                       ) : null}
                       <View style={[styles.keywordRow, { marginTop: 8 }]}>
                         <View style={{ flex: 1 }} />
+                        {!consolidateDeepDive ? (
                         <Pressable
                           onPress={() => {
                             const choiceLabel = `${label}${choiceText}`;
@@ -1258,6 +1277,7 @@ export default function ResultScreen() {
                             📖 もっと深掘る
                           </ThemedText>
                         </Pressable>
+                        ) : null}
                         {(() => {
                           let chunkImg = (question as any)?.choiceChunkImages?.[choiceIdx] || '';
                           const choiceTxt = (choices[choiceIdx] || '') + (explText || '');
@@ -1307,8 +1327,83 @@ export default function ResultScreen() {
                         })()}
                       </View>
                     </View>
+                  ) : (
+                    <View style={[styles.keywordRow, { marginTop: explText ? 8 : 0 }]}>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flex: 1, justifyContent: 'flex-end' }}>
+                        {!consolidateDeepDive ? (
+                        <Pressable
+                          onPress={() => {
+                            const choiceLabel = `${label}${choiceText}`;
+                            setDeepdiveParams(deepContent || '', choiceLabel, {
+                              choiceCorrect: deepdiveChoiceLegallyCorrect(
+                                text,
+                                choiceIdx,
+                                effectiveCorrectIndices,
+                                answerPending,
+                                !!isReorder
+                              ),
+                              beginnerContent: deepBeginner || undefined,
+                            });
+                            router.push({
+                              pathname: '/deepdive',
+                              params: { content: deepContent || '', choiceLabel },
+                            });
+                          }}
+                          style={[styles.deepDiveButton, { borderColor: colors.primary }]}
+                        >
+                          <ThemedText style={[styles.deepDiveButtonText, { color: colors.primary }]}>
+                            📖 もっと深掘る
+                          </ThemedText>
+                        </Pressable>
+                        ) : null}
+                        {(() => {
+                          let chunkImg = (question as any)?.choiceChunkImages?.[choiceIdx] || '';
+                          if (!chunkImg && subject === '民法' && field === '民法総則' && qIdx === 10 && /114条|催告/.test((statutes[0]?.title || '') + (statutes[0]?.content || '') + (choices[choiceIdx] || ''))) {
+                            chunkImg = 'minnpou/sousoku/sousoku11-2';
+                          }
+                          if (!getChunkImageSource(chunkImg)) return null;
+                          return (
+                            <Pressable
+                              onPress={() => {
+                                const p2 = getParagraph2ForChunk(statutes[0], statuteItemsRaw);
+                                const statuteContent = p2
+                                  ? `**${getStatuteDisplayTitle(p2, statuteItemsRaw)}**\n\n${p2.content || ''}`
+                                  : '';
+                                router.push({
+                                  pathname: '/chunk',
+                                  params: {
+                                    subject: subject || '',
+                                    field: field || '',
+                                    questionIndex: String(questionIndex),
+                                    choiceIndex: String(choiceIdx),
+                                    statuteTitle: getStatuteDisplayTitle(statutes[0], statuteItemsRaw),
+                                    statuteContent,
+                                    chunkImage: chunkImg,
+                                    correctCountSession: String(correctCountSessionCurrent),
+                                    wrongCounts: JSON.stringify(updatedWrongCounts),
+                                    ...(mode ? { mode } : {}),
+                                    ...(shuffleParam ? { shuffle: shuffleParam } : {}),
+                                  },
+                                });
+                              }}
+                              hitSlop={12}
+                              style={[styles.infinityPressable, { backgroundColor: '#D6EAF8' }]}
+                            >
+                              <View style={styles.chainMarkContainer}>
+                                <Image
+                                  source={require('@/assets/images/chain-mark.png')}
+                                  style={styles.chainMarkImage}
+                                  resizeMode="contain"
+                                />
+                                <ThemedText style={[styles.chainMarkLabel, { color: colors.text }]}>チャンク</ThemedText>
+                              </View>
+                            </Pressable>
+                          );
+                        })()}
+                      </View>
+                    </View>
                   )}
-                  {(choicePinCasesAuto[choiceIdx] || []).length > 0 ? (
+                  {!hideGyotePinCasesAuto && (choicePinCasesAuto[choiceIdx] || []).length > 0 ? (
                     <View style={{ marginTop: 10 }}>
                       <ThemedText style={[styles.choiceStatuteLabel, { color: colors.subText }]}>
                         関連判例（自動）
@@ -1325,6 +1420,27 @@ export default function ResultScreen() {
                 </View>
               );
             })}
+            {consolidateDeepDive ? (
+              <View style={{ marginTop: 12, alignItems: 'flex-end' }}>
+                <Pressable
+                  onPress={() => {
+                    setDeepdiveParams(consolidatedDeepContent, '', {
+                      choiceCorrect: null,
+                      beginnerContent: consolidatedDeepBeginner || undefined,
+                    });
+                    router.push({
+                      pathname: '/deepdive',
+                      params: { content: consolidatedDeepContent, choiceLabel: '' },
+                    });
+                  }}
+                  style={[styles.deepDiveButton, { borderColor: colors.primary }]}
+                >
+                  <ThemedText style={[styles.deepDiveButtonText, { color: colors.primary }]}>
+                    📖 もっと深掘る
+                  </ThemedText>
+                </Pressable>
+              </View>
+            ) : null}
           </ThemedView>
             {footerImages.length > 0 ? (
               <View style={{ marginTop: 16, marginBottom: 16, paddingVertical: 12 }}>
@@ -1432,8 +1548,7 @@ export default function ResultScreen() {
             ) : null}
           </ThemedView>
         ) : null}
-        {!(subject === '行政法' && field === '行政手続法') ? (
-          <>
+        <>
             {expandedChoiceIndex !== null ? (
               <View>
         <ThemedText type="subtitle" style={styles.explainTitle}>
@@ -1477,7 +1592,7 @@ export default function ResultScreen() {
                   }
                   return (
                     <>
-                      {statuteItems.length > 0 ? (
+                      {!hideStatutesOnResult && statuteItems.length > 0 ? (
                         <ThemedView style={[styles.statutesBlock, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
                           <View style={styles.statutesBlockHeaderRow}>
                             <ThemedText style={[styles.statutesBlockLabelLeft, { color: colors.text }]}>根拠条文</ThemedText>
@@ -1536,7 +1651,6 @@ export default function ResultScreen() {
               </Link>
             </View>
           </>
-        ) : null}
 
         {/* Resources Button */}
         {resourcePages.length > 0 && (

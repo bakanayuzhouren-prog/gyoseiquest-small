@@ -11,13 +11,12 @@ import { ThemedView } from '@/components/themed-view';
 import { characterPlaceholders, defaultCharacterMap, useCharacter } from '@/src/context/CharacterContext';
 import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
 import { useTheme } from '@/src/context/ThemeContext';
-import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { mergedDeepdiveHasResolvableImage, pickAutoLearnDeepdiveImageKey } from '@/src/deepdiveLearnAutoImage';
-import { resolveImageAsset } from '@/src/resolveImageAsset';
-import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_SOURCE } from '@/src/learn';
 import { setDeepdiveParams } from '@/src/deepdiveState';
+import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_SOURCE } from '@/src/learn';
 import { PIN_CASES } from '@/src/pinData';
 import { SUBJECTS } from '@/src/questions';
+import { resolveImageAsset } from '@/src/resolveImageAsset';
 import { getLearnNotes, LearnNote, saveLearnNotes } from '@/utils/learn-notes';
 import { addPoints } from '@/utils/points';
 import { getStickyNotes, toggleStickyNote } from '@/utils/sticky-notes';
@@ -64,6 +63,11 @@ function sliceTashiSyncedByField<T>(
   return full;
 }
 
+function pickByIndices<T>(arr: T[], indices: number[] | null): T[] {
+  if (!indices) return arr;
+  return indices.map((i) => arr[i]).filter((v) => v !== undefined);
+}
+
 export default function LearnSubjectScreen() {
   const params = useLocalSearchParams<{ subject?: string; index?: string; field?: string }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
@@ -82,6 +86,17 @@ export default function LearnSubjectScreen() {
 
   const learnScopeKey =
     subject === '多肢選択' && tashiField ? `多肢選択:${tashiField}` : subject || '';
+
+  // 行政法総論（見て聞いて覚える）は「行政法総論」シート由来の 2〜134行のみ表示。
+  const gyoseiSoronVisibleIndices = useMemo(() => {
+    if (subject !== '行政法総論') return null;
+    const src = (LEARN_SOURCE as any)?.['行政法総論'];
+    if (!Array.isArray(src)) return null;
+    const onlyGyoseiSoron = src
+      .map((sheetName: string, idx: number) => (sheetName === '行政法総論' ? idx : -1))
+      .filter((idx: number) => idx >= 0);
+    return onlyGyoseiSoron.slice(0, 133);
+  }, [subject]);
 
   const flattenedSubjectQuestions = useMemo(() => {
     if (!subject) return [];
@@ -130,13 +145,14 @@ export default function LearnSubjectScreen() {
       const legacy = (LEARN_CONTENT as any)['民法総論'];
       fromLearn = Array.isArray(legacy) ? legacy : legacy ? [legacy] : [];
     }
+    fromLearn = pickByIndices(fromLearn, gyoseiSoronVisibleIndices);
     if (fromLearn.length > 0) return fromLearn;
     const fallbackSubjects = ['基礎法学'];
     if (fallbackSubjects.includes(subject || '') && flattenedSubjectQuestions.length > 0) {
       return flattenedSubjectQuestions.map((q: any) => q?.text || '').filter(Boolean);
     }
     return fromLearn;
-  }, [subject, flattenedSubjectQuestions, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo]);
+  }, [subject, flattenedSubjectQuestions, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo, gyoseiSoronVisibleIndices]);
 
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [currentReadCount, setCurrentReadCount] = useState(1); // Counter for the 3 repeats
@@ -286,6 +302,10 @@ export default function LearnSubjectScreen() {
   }, [isPriorityMode, learnScopeKey, contentList]);
 
   const originalContentIndex = displayIndexList[currentIndex] ?? currentIndex;
+  const learnAlignedIndex =
+    subject === '多肢選択'
+      ? originalContentIndex
+      : (gyoseiSoronVisibleIndices?.[originalContentIndex] ?? originalContentIndex);
 
   useEffect(() => {
     displayListLenRef.current = displayContentList.length;
@@ -321,7 +341,7 @@ export default function LearnSubjectScreen() {
   const deepdiveContent: string =
     subject === '多肢選択' && deepdiveTashiSlice
       ? deepdiveTashiSlice[originalContentIndex] || ''
-      : (LEARN_DEEPDIVE as any)?.[subject as string]?.[originalContentIndex] || '';
+      : (LEARN_DEEPDIVE as any)?.[subject as string]?.[learnAlignedIndex] || '';
 
   const deepdiveColumnArr: string[] = useMemo(() => {
     if (subject === '多肢選択' && deepdiveTashiSlice) return deepdiveTashiSlice;
@@ -353,7 +373,7 @@ export default function LearnSubjectScreen() {
     return Array.isArray(raw) ? raw : [];
   }, [subject, deepdiveTashiSlice, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo]);
 
-  const learnFExplainText = (learnFExplainColumnArr[originalContentIndex] || '').trim();
+  const learnFExplainText = (learnFExplainColumnArr[learnAlignedIndex] || '').trim();
 
   const learnSourceSheetLabel = useMemo(() => {
     if (subject === '多肢選択') {
@@ -378,8 +398,8 @@ export default function LearnSubjectScreen() {
       const sliced = sliceTashiSyncedByField(arr, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo);
       return sliced[originalContentIndex];
     }
-    return (LEARN_SOURCE as any)?.[subject as string]?.[originalContentIndex];
-  }, [subject, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo, originalContentIndex]);
+    return (LEARN_SOURCE as any)?.[subject as string]?.[learnAlignedIndex];
+  }, [subject, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo, originalContentIndex, learnAlignedIndex]);
 
   // Extract LINK tag first if present
   const linkMatch = currentDisplayContent.match(/\[\[LINK:(.+?)\]\]/);
@@ -395,14 +415,14 @@ export default function LearnSubjectScreen() {
     () =>
       subject
         ? pickAutoLearnDeepdiveImageKey(
-            originalContentIndex,
+            learnAlignedIndex,
             (deepdiveContent || '').trim(),
             deepdiveColumnArr,
             contentList as string[],
             subject
           )
         : undefined,
-    [subject, originalContentIndex, deepdiveContent, deepdiveColumnArr, contentList]
+    [subject, learnAlignedIndex, deepdiveContent, deepdiveColumnArr, contentList]
   );
 
   const learnAutoImageResolved = !!(learnAutoImageKey && resolveImageAsset(learnAutoImageKey));
@@ -425,7 +445,7 @@ export default function LearnSubjectScreen() {
   } else if (subject) {
     for (const category of Object.values(SUBJECTS as any)) {
       if ((category as any)[subject]) {
-        foundQuestion = (category as any)[subject]?.[originalContentIndex];
+        foundQuestion = (category as any)[subject]?.[learnAlignedIndex];
         break;
       }
     }
@@ -444,7 +464,7 @@ export default function LearnSubjectScreen() {
     let merged = parts.join('\n\n');
     if (merged.trim() && !mergedDeepdiveHasResolvableImage(merged)) {
       const autoKey = pickAutoLearnDeepdiveImageKey(
-        originalContentIndex,
+        learnAlignedIndex,
         fromB,
         deepdiveColumnArr,
         contentList as string[],
@@ -453,7 +473,7 @@ export default function LearnSubjectScreen() {
       if (autoKey && resolveImageAsset(autoKey)) merged = `[[image:${autoKey}]]\n\n${merged}`;
     } else if (!merged.trim()) {
       const autoKey = pickAutoLearnDeepdiveImageKey(
-        originalContentIndex,
+        learnAlignedIndex,
         fromB,
         deepdiveColumnArr,
         contentList as string[],
