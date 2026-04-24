@@ -123,6 +123,9 @@ export default function DeepdiveScreen() {
   const [beginnerContent, setBeginnerContent] = useState('');
   /** 見て聞いて覚える: スプレッドシート F 列。ヘッダー画像の直下 */
   const [fExplainHeader, setFExplainHeader] = useState('');
+  /** クイズ結果から開いたときの科目・分野（地方自治法の深掘り調整用） */
+  const [quizSubject, setQuizSubject] = useState('');
+  const [quizField, setQuizField] = useState('');
   /** タップで全画面拡大（require の module 番号） */
   const [previewImageSource, setPreviewImageSource] = useState<number | null>(null);
   const fromLearnRef = useRef(false);
@@ -140,6 +143,8 @@ export default function DeepdiveScreen() {
       setFromLearn(stored.fromLearn);
       setChoiceCorrect(stored.choiceCorrect ?? null);
       fromLearnRef.current = stored.fromLearn;
+      setQuizSubject((stored.quizSubject || '').trim());
+      setQuizField((stored.quizField || '').trim());
     };
     const learnSubj = (stored.learnSubject || '').trim();
     const augmentBeginner = (b: string) => {
@@ -184,44 +189,21 @@ export default function DeepdiveScreen() {
       setFromLearn(stored.fromLearn);
       setChoiceCorrect(stored.choiceCorrect ?? null);
       setFExplainHeader((stored.fExplain || '').trim());
+      setQuizSubject((stored.quizSubject || '').trim());
+      setQuizField((stored.quizField || '').trim());
     }, [])
   );
 
   const [highlightModal, setHighlightModal] = useState<{ title: string; body: string } | null>(null);
   const [ttsSegmentIndex, setTtsSegmentIndex] = useState(0);
   const [isTtsPlaying, setIsTtsPlaying] = useState(false);
-  const isTtsPlayingRef = useRef(false);
   const ttsSessionRef = useRef(0);
-  isTtsPlayingRef.current = isTtsPlaying;
-
-  const ttsSegments = useMemo(() => {
-    const pieces = [stripDeepdiveForTts(content), stripDeepdiveForTts(beginnerContent)].filter(Boolean);
-    const textForTTS = pieces.join('\n\n');
-    if (!textForTTS) return [];
-    const chunks = textForTTS
-      .split(/\n{2,}/)
-      .map((s) => s.trim())
-      .filter(Boolean);
-    if (chunks.length <= 1 && textForTTS.length > 500) {
-      const bySentence = textForTTS.split(/(?<=[。．!！?？])\s+/).map((s) => s.trim()).filter(Boolean);
-      return bySentence.map((s) => applyTTSRules(s)).filter((s) => s.trim());
-    }
-    return chunks.map((s) => applyTTSRules(s)).filter((s) => s.trim());
-  }, [content, beginnerContent]);
-
-  useEffect(() => {
-    setTtsSegmentIndex(0);
-  }, [content, beginnerContent]);
 
   useEffect(() => {
     return () => {
-      if (isTtsPlayingRef.current) {
-        ttsSessionRef.current += 1;
-        Speech.stop();
-      } else if (!fromLearnRef.current) {
-        ttsSessionRef.current += 1;
-        Speech.stop();
-      }
+      // アンマウント時は状態に依らず必ず止める（学習モード由来で未再生でも予約発話の残りを潰す）
+      ttsSessionRef.current += 1;
+      Speech.stop();
     };
   }, []);
 
@@ -308,6 +290,51 @@ export default function DeepdiveScreen() {
     };
   };
 
+  /** 地方自治法（問題を解く）: 深掘りカードの「関連条文」「関連判例」ブロックを出さない */
+  const jichihouHideRelatedSections =
+    !fromLearn && quizSubject === '行政法' && quizField === '地方自治法';
+
+  const normalizedDeepdiveCardHead = (title: string) =>
+    title
+      .replace(/\*\*/g, '')
+      .replace(/^【(.+)】$/, '$1')
+      .replace(/^[1-9][0-9]?[.．:：\uFF1A]\s*/, '')
+      .replace(/^[１-９][０-９]?[.．:：\uFF1A]\s*/, '')
+      .trim();
+
+  const dropJichihouRelatedStatuteCaseCard = (cardText: string) => {
+    if (!jichihouHideRelatedSections) return false;
+    const { title } = splitCardTitle(cardText);
+    const head = normalizedDeepdiveCardHead(title);
+    return head.startsWith('関連条文') || head.startsWith('関連判例');
+  };
+
+  const deepdiveCardsForRender = (text: string) => {
+    const cards = splitIntoCards(text);
+    return jichihouHideRelatedSections ? cards.filter((c) => !dropJichihouRelatedStatuteCaseCard(c)) : cards;
+  };
+
+  const ttsSegments = useMemo(() => {
+    const mainForTts = jichihouHideRelatedSections ? deepdiveCardsForRender(content).join('\n\n') : content;
+    const begForTts = jichihouHideRelatedSections ? deepdiveCardsForRender(beginnerContent).join('\n\n') : beginnerContent;
+    const pieces = [stripDeepdiveForTts(mainForTts), stripDeepdiveForTts(begForTts)].filter(Boolean);
+    const textForTTS = pieces.join('\n\n');
+    if (!textForTTS) return [];
+    const chunks = textForTTS
+      .split(/\n{2,}/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+    if (chunks.length <= 1 && textForTTS.length > 500) {
+      const bySentence = textForTTS.split(/(?<=[。．!！?？])\s+/).map((s) => s.trim()).filter(Boolean);
+      return bySentence.map((s) => applyTTSRules(s)).filter((s) => s.trim());
+    }
+    return chunks.map((s) => applyTTSRules(s)).filter((s) => s.trim());
+  }, [content, beginnerContent, jichihouHideRelatedSections, fromLearn, quizSubject, quizField]);
+
+  useEffect(() => {
+    setTtsSegmentIndex(0);
+  }, [content, beginnerContent, jichihouHideRelatedSections]);
+
   const cardStyle = {
     backgroundColor: '#E2E8F0',
     borderColor: colors.choiceBorder,
@@ -380,11 +407,7 @@ export default function DeepdiveScreen() {
   };
 
   const handleBack = () => {
-    if (isTtsPlaying) {
-      stopTts();
-    } else if (!fromLearn) {
-      stopTts();
-    }
+    stopTts();
     router.back();
   };
 
@@ -418,7 +441,7 @@ export default function DeepdiveScreen() {
         {blockParts.map((p, i) =>
           p.type === 'text' ? (
             <View key={`${keyPrefix}-t-${i}`} style={{ gap: 0 }}>
-              {splitIntoCards(p.value.trim()).map((cardText, j) =>
+              {deepdiveCardsForRender(p.value.trim()).map((cardText, j) =>
                 renderDeepdiveCard(cardText, `${keyPrefix}-${i}-${j}`)
               )}
             </View>
@@ -510,7 +533,7 @@ export default function DeepdiveScreen() {
                 renderImageTextParts(fExplainParts, 'f', openImagePreview)
               ) : (
                 <View style={{ gap: 0 }}>
-                  {splitIntoCards(fExplainHeader).map((cardText, j) =>
+                  {deepdiveCardsForRender(fExplainHeader).map((cardText, j) =>
                     renderDeepdiveCard(cardText, `f-${j}`)
                   )}
                 </View>
@@ -582,7 +605,7 @@ export default function DeepdiveScreen() {
               renderImageTextParts(mainParts, 'm', openImagePreview)
             ) : mainContentRest.trim() ? (
               <View style={{ gap: 0 }}>
-                {splitIntoCards(mainContentRest).map((cardText, j) => renderDeepdiveCard(cardText, `c-${j}`))}
+                {deepdiveCardsForRender(mainContentRest).map((cardText, j) => renderDeepdiveCard(cardText, `c-${j}`))}
               </View>
             ) : null
           ) : null}
@@ -602,7 +625,7 @@ export default function DeepdiveScreen() {
                 renderImageTextParts(beginnerParts, 'b', openImagePreview)
               ) : (
                 <View style={{ gap: 0 }}>
-                  {splitIntoCards(beginnerContent).map((cardText, j) => renderDeepdiveCard(cardText, `bc-${j}`))}
+                  {deepdiveCardsForRender(beginnerContent).map((cardText, j) => renderDeepdiveCard(cardText, `bc-${j}`))}
                 </View>
               )}
             </View>

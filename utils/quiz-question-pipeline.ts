@@ -45,6 +45,7 @@ export function filterQuizQuestionsByMode(
     if (mode === 'bonus') {
       return hasCb ? cb.some((b: boolean) => b) : !!q.isBonus;
     }
+    // mode === 'shisho'（師匠モード）は過去問と同じ出題プール（ボーナス専用は除外）
     if (q.isBonus && (!hasCb || cb.every((b: boolean) => b) || cb.every((b: boolean) => !b))) return false;
     return hasCb ? cb.some((b: boolean) => !b) : !q.isBonus;
   });

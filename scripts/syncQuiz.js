@@ -18,6 +18,45 @@ const OUTPUT_FILE = path.join(__dirname, '../src/questions.js');
 
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+/**
+ * buildDefaultSlots と同じ判定で、問題文に「空欄［ア］〜［オ］」型の片カナスロットがあるか。
+ * 語句の組合せとして、でも N〜R 語群を使う場合はスキップしないための判定に使う。
+ */
+function wouldBuildKatakanaBlankSlots(problemText) {
+    const p = problemText || '';
+    const tilde = '[〜～\\uFF5E]';
+    if (new RegExp(`空欄\\s*[\\[［]\\s*ア\\s*[\\]］]\\s*${tilde}\\s*[\\[［]\\s*オ\\s*[\\]］]`).test(p)) return true;
+    if (new RegExp(`空欄\\s*[\\[［]\\s*ア\\s*[\\]］]\\s*${tilde}\\s*[\\[［]\\s*エ\\s*[\\]］]`).test(p)) return true;
+    if (/空欄\s*[\[［]\s*ア\s*[\]］]\s*[・\s]*[\[［]\s*イ\s*[\]］]\s*[・\s]*[\[［]\s*ウ\s*[\]］]/.test(p)) return true;
+    if (/空欄\s*[\[［]\s*ア\s*[\]］]\s*[・\s]*[\[［]\s*イ\s*[\]］]/.test(p)) return true;
+    if (new RegExp(`空欄\\s*ア\\s*${tilde}\\s*オ`).test(p)) return true;
+    if (new RegExp(`空欄\\s*ア\\s*${tilde}\\s*エ`).test(p)) return true;
+    if (/空欄\s*ア\s*[・\s]\s*イ\s*[・\s]\s*ウ/.test(p)) return true;
+    if (/空欄\s*ア\s*[・\s]\s*イ/.test(p)) return true;
+    if (new RegExp(`ア\\s*${tilde}\\s*オ`).test(p)) return true;
+    if (new RegExp(`ア\\s*${tilde}\\s*エ`).test(p)) return true;
+    return false;
+}
+
+/**
+ * H列が「次の問題」のトリガーか（条文続きの長文と区別し、N〜Q 語群マージの終端に使う）
+ */
+function looksLikeNewQuestionInHColumn(hText) {
+    if (!hText || typeof hText !== 'string') return false;
+    const t = hText.trim();
+    if (t.length < 60) return false;
+    const valProblemNorm = t
+        .replace(/\s*[＜<][^＞>]*[＞>]\s*$/, '')
+        .replace(/\s*（[^）]{1,20}）\s*$/, '')
+        .trim();
+    return (
+        valProblemNorm &&
+        /どれか(?:[。.]|$)|どれ(?:[。.]|$)|ものか(?:[。.]|$)|なるか(?:[。.]|$)|述べよ(?:[。.]|$)|選びなさい(?:[。.]|$)|いくつある(?:[。.]|$)|正しいものはどれ(?:[。.]|$)|誤っているものはどれ(?:[。.]|$)/.test(
+            valProblemNorm
+        )
+    );
+}
+
 /** Google Sheets API: シート名に日本語・記号がある場合は '...'!A:F 形式が安全 */
 function sheetRangeA1F(sheetTitle) {
     const s = String(sheetTitle).replace(/'/g, "''");
@@ -429,7 +468,7 @@ async function sync() {
             const valP = row[15] ? row[15].trim() : '';
             const valQ = row[16] ? row[16].trim() : '';
             const valS = row[18] ? row[18].trim() : '';
-            const hasNtoSChoices = [valN, valO, valP, valQ, valS].some(v => v.length > 0);
+            const hasNtoSChoices = [valN, valO, valP, valQ, valR, valS].some(v => v.length > 0);
 
             // ＜複数解＞ や （複数解）（正解肢２つ）（複数回）等のサフィックスを除去してから判定
             const valProblemNorm = valProblem
@@ -482,9 +521,9 @@ async function sync() {
                         }
                     };
 
-                    if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[〜～]\s*[\[［]\s*[オ]\s*[\]］]/.test(problemText)) {
+                    if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[〜～\uFF5E]\s*[\[［]\s*[オ]\s*[\]］]/.test(problemText)) {
                         pushLabels(['ア', 'イ', 'ウ', 'エ', 'オ']);
-                    } else if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[〜～]\s*[\[［]\s*[エ]\s*[\]］]/.test(problemText)) {
+                    } else if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[〜～\uFF5E]\s*[\[［]\s*[エ]\s*[\]］]/.test(problemText)) {
                         pushLabels(['ア', 'イ', 'ウ', 'エ']);
                     } else if (/空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[・\s]*[\[［]\s*[イ]\s*[\]］]\s*[・\s]*[\[［]\s*[ウ]\s*[\]］]/.test(problemText)) {
                         pushLabels(['ア', 'イ', 'ウ']);
@@ -502,12 +541,40 @@ async function sync() {
                         pushLabels(['ア', 'イ', 'ウ', 'エ', 'オ'], false);
                     } else if (/ア\s*[〜～]\s*エ/.test(problemText)) {
                         pushLabels(['ア', 'イ', 'ウ', 'エ'], false);
+                    } else if (
+                        /下線部\s*[\(（]ア[\)）]/.test(problemText) &&
+                        /[\(（]イ[\)）]/.test(problemText) &&
+                        /[\(（]ウ[\)）]/.test(problemText) &&
+                        /(正誤|正しい|誤り)/.test(problemText)
+                    ) {
+                        // 会話文の下線部(ア)〜(ウ)・正誤の組合せ。N,O,P列に各枠の語群（正しい/誤りの2択など）
+                        pushLabels(['ア', 'イ', 'ウ']);
+                    } else if (/[\[［]\s*[A-Za-zＡ-Ｚａ-ｚ]\s*[\]］]/.test(problemText)) {
+                        // 英字空欄 [ A ][ B ]…（判例・行政訴訟の穴埋め等）。出現順・重複は1枠にまとめる
+                        const latinRe = /[\[［]\s*([A-Za-zＡ-Ｚａ-ｚ])\s*[\]］]/g;
+                        const order = [];
+                        const seen = new Set();
+                        let lm;
+                        while ((lm = latinRe.exec(problemText)) !== null) {
+                            const ch = String(lm[1]).normalize('NFKC');
+                            const L = ch.length === 1 && ch >= 'a' && ch <= 'z' ? ch.toUpperCase() : ch;
+                            if (/^[A-Z]$/.test(L) && !seen.has(L)) {
+                                seen.add(L);
+                                order.push(L);
+                            }
+                        }
+                        if (order.length > 0) pushLabels(order);
                     }
                 };
-                // 「語句の組合せとして」「語句(ア)と考え方(イ)の組合せ」→ K列選択肢を(ア)(イ)2列で表示。
-                // ただし K列が空で N〜S 列に語群がある場合は通常のスロット問題として扱う。
-                const isComboChoice = /語句の組合せとして|語句\s*[\(（]\s*[ア]\s*[\)）].*考え方\s*[\(（]\s*[イ]\s*[\)）].*組合せ/.test(valProblem || '');
-                const shouldSkipSlotsForCombo = isComboChoice && !!valK;
+                // 「語句(ア)と考え方(イ)の組合せ」型・または「語句の組合せとして」型（ア〜オ空欄）→ K列中心で従来表示。
+                // 英字空欄 [ A ]〜[ Z ] があるときは N〜Q 語群スロットを優先し、上記フレーズがあってもスロットを作る。
+                const isComboChoiceLegacy = /語句\s*[\(（]\s*[ア]\s*[\)）].*考え方\s*[\(（]\s*[イ]\s*[\)）].*組合せ/.test(valProblem || '');
+                const isComboPhrase = /語句の組合せとして|当てはまる語句の組合せとして/.test(valProblem || '');
+                const hasLatinLatinBrackets = /[\[［]\s*[A-Za-zＡ-Ｚａ-ｚ]\s*[\]］]/.test(valProblem || '');
+                const hasKatakanaBlankStemForCombo = wouldBuildKatakanaBlankSlots(valProblem || '');
+                // 片カナの [ア]〜[オ] 空欄があれば、語群は N,O,P,Q,R（ア〜オ）へ。K列は択一肢のまま。
+                const shouldSkipSlotsForCombo =
+                    !!valK && (isComboChoiceLegacy || (isComboPhrase && !hasLatinLatinBrackets && !hasKatakanaBlankStemForCombo));
                 if (!shouldSkipSlotsForCombo) {
                     for (let j = 0; j < 4; j++) {
                         const label = row[3 + j] ? row[3 + j].trim() : '';
@@ -520,34 +587,56 @@ async function sync() {
                 if (slots.length === 0 && !shouldSkipSlotsForCombo) {
                     buildDefaultSlots();
                 }
+                // N列・O列…を問題行＋継続行の同じ列で縦に積んだ場合、語群を「 / 」で結合（ア行・イ行を別セルにした形式）
                 if (slots.length > 0) {
-                    const initialSlotOptions = [valN, valO, valP, valQ, valS];
-                    for (let j = 0; j < Math.min(slots.length, 5); j++) {
-                        if (initialSlotOptions[j] && !slots[j].options) slots[j].options = initialSlotOptions[j];
-                    }
-                }
-
-                // スロットありでN,O,P,Qが空の場合、継続行から取得（選択肢が次の行にある場合）
-                if (slots.length > 0 && ![valN, valO, valP, valQ, valS].some(v => v && v.length > 0)) {
-                    for (let o = 1; o < 10 && (i + o) < rows.length; o++) {
-                        const rw = rows[i + o];
-                        const nextH = rw[7] ? rw[7].trim() : '';
-                        if (nextH && nextH.length > 20) break; // 次の問題に到達
-                        const n = rw[13] ? rw[13].trim() : '';
-                        const oo = rw[14] ? rw[14].trim() : '';
-                        const p = rw[15] ? rw[15].trim() : '';
-                        const q = rw[16] ? rw[16].trim() : '';
-                        const s = rw[18] ? rw[18].trim() : '';
-                        if (n || oo || p || q || s) {
-                            const opts = [n, oo, p, q, s];
-                            for (let j = 0; j < Math.min(slots.length, 5); j++) {
-                                if (opts[j] && !slots[j].options) slots[j].options = opts[j];
-                            }
-                            break;
+                    const mergeSlotCol = (colIdx) => {
+                        const parts = [];
+                        for (let o = 0; o < 25 && i + o < rows.length; o++) {
+                            const rw = rows[i + o];
+                            const nextH = rw[7] ? rw[7].trim() : '';
+                            // 条文続きで H が長くてもマージ継続。H が「新しい問題」らしいときだけ打ち切り。
+                            if (o > 0 && nextH && looksLikeNewQuestionInHColumn(nextH)) break;
+                            const cell = rw[colIdx] ? String(rw[colIdx]).trim() : '';
+                            if (cell) parts.push(cell);
                         }
+                        return parts.join(' / ');
+                    };
+                    const colIdxForSlotLatin = [13, 14, 15, 16, 18]; // N,O,P,Q,S → 英字 A,B,C,D,E の5枠目
+                    const colIdxForSlotKatakana = [13, 14, 15, 16, 17]; // N,O,P,Q,R → ア,イ,ウ,エ,オ
+                    const latinLetterFromSlotLabel = (label) => {
+                        const m = String(label || '').match(/^\[\s*([A-Za-zＡ-Ｚａ-ｚ])\s*\]$/);
+                        if (!m) return null;
+                        const ch = String(m[1]).normalize('NFKC');
+                        const L = ch.length === 1 && ch >= 'a' && ch <= 'z' ? ch.toUpperCase() : ch;
+                        return /^[A-Z]$/.test(L) ? L : null;
+                    };
+                    const allKatakanaBracketSlots =
+                        slots.length > 0 && slots.every((s) => /^\[\s*[ア-オ]\s*\]$/.test(String(s?.label || '')));
+                    for (let j = 0; j < Math.min(slots.length, 5); j++) {
+                        const slot = slots[j];
+                        let colIdx;
+                        const L = latinLetterFromSlotLabel(slot.label);
+                        if (L) {
+                            const idx = L.charCodeAt(0) - 'A'.charCodeAt(0);
+                            if (idx >= 0 && idx < colIdxForSlotLatin.length) colIdx = colIdxForSlotLatin[idx];
+                        }
+                        if (colIdx === undefined) {
+                            colIdx = allKatakanaBracketSlots ? colIdxForSlotKatakana[j] : colIdxForSlotLatin[j];
+                        }
+                        const merged = mergeSlotCol(colIdx);
+                        if (merged) slot.options = merged;
+                    }
+                    // 英字空欄は N=A,O=B… で列は対応済み。配列順は A,B,C,D… に揃えて語群・正解配列の順序を固定する
+                    if (slots.every((s) => latinLetterFromSlotLabel(s.label))) {
+                        slots.sort((a, b) => {
+                            const la = latinLetterFromSlotLabel(a.label);
+                            const lb = latinLetterFromSlotLabel(b.label);
+                            if (!la || !lb) return 0;
+                            return la.charCodeAt(0) - lb.charCodeAt(0);
+                        });
                     }
                 }
-                const hasNtoSChoicesAfter = slots.length > 0 && [valN, valO, valP, valQ].some(v => v && v.length > 0) ||
+                const hasNtoSChoicesAfter = slots.length > 0 && [valN, valO, valP, valQ, valR].some(v => v && v.length > 0) ||
                     slots.some(s => s.options && s.options.length > 0);
 
                 const choices = [];
@@ -559,24 +648,40 @@ async function sync() {
                 };
                 let slotAnswersFromNtoP = null;
 
-                // 語群選択問題: N,O,P,Q,S列がスロットの選択肢。各列内の（ｒ）が付いた語句そのものを正解として保持
-                const nopqsFromSlots = slots.slice(0, 5).map(s => s.options || '');
-                const colsForR = [valN, valO, valP, valQ, valS].map((v, idx) => v || nopqsFromSlots[idx] || '');
+                // 語群選択問題: N,O,P,Q,S列がスロットの選択肢。英字空欄は N=A,O=B,… と列を対応。各列内の（ｒ）が付いた語句を正解として保持
                 if ((hasNtoSChoices || hasNtoSChoicesAfter) && slots.length > 0) {
                     const rPattern = /[\(（]\s*[rｒ]\s*[\)）]/i;
                     const splitSlotOptions = (optStr) => {
                         if (!optStr) return [];
-                        return optStr
+                        const raw = String(optStr).trim().normalize('NFKC');
+                        let parts = raw
                             .split(/\n+|(?=[①②③④⑤])|(?=\d+[\.．]\s*)|[\/／]|\t+/)
                             .map((part) => part.trim())
                             .filter(Boolean);
+                        if (parts.length === 1 && /[アイウエ]\s/.test(parts[0])) {
+                            const expanded = parts[0].split(/\s+(?=[アイウエ]\s)/).map((p) => p.trim()).filter(Boolean);
+                            if (expanded.length > 1) parts = expanded;
+                        }
+                        if (parts.length === 1 && /^[A-Z]\s/.test(parts[0])) {
+                            const expanded = parts[0].split(/\s+(?=[A-Z]\s)/).map((p) => p.trim()).filter(Boolean);
+                            if (expanded.length > 1) parts = expanded;
+                        }
+                        return parts;
                     };
                     const parseSlotCorrectValue = (optStr) => {
                         const parts = splitSlotOptions(optStr);
                         const hit = parts.find((part) => rPattern.test(part));
-                        return hit ? hit.replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim() : '';
+                        if (!hit) return '';
+                        const stripped = hit.replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim();
+                        // 先頭に「ア」「イ」「A」「B」等の見出しが付いていても正解比較で同一視できるよう、JSON には正規化して保持
+                        return stripped
+                            .normalize('NFKC')
+                            .replace(/[\s\u3000]+/g, ' ')
+                            .replace(/^[アイウエ]\s+/, '')
+                            .replace(/^[A-Z]\s+/, '')
+                            .trim();
                     };
-                    const raw = colsForR.slice(0, slots.length).map(parseSlotCorrectValue);
+                    const raw = slots.map((slot) => parseSlotCorrectValue(slot.options || ''));
                     if (raw.every(Boolean)) slotAnswersFromNtoP = raw;
                 }
 
@@ -691,6 +796,28 @@ async function sync() {
                     // 記述式: （ｒ）は使わず K列を模範解答として modelAnswer に保存。正解判定はアプリ側で類似度
                     // (r)未記入の場合は answer:[] のまま（正解未設定）
 
+                    // N〜Q が空でも、K列が「語1　語2　…」（全角スペース区切り）×スロット数のとき語群を肢から推定（ア〜エ型）
+                    const splitJPChoiceTokens = (s) =>
+                        String(s || '')
+                            .replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '')
+                            .trim()
+                            .split(/[\u3000\s]+/)
+                            .filter(Boolean);
+                    const allKatakanaSlotLabelsForInfer =
+                        slots.length > 0 &&
+                        slots.every((s) => /^\[\s*[ア-オ]\s*\]$/.test(String(s?.label || '')));
+                    if (
+                        allKatakanaSlotLabelsForInfer &&
+                        slots.every((s) => !String(s.options || '').trim()) &&
+                        cleanChoices.length >= 2 &&
+                        cleanChoices.every((c) => splitJPChoiceTokens(c).length === slots.length)
+                    ) {
+                        for (let j = 0; j < slots.length; j++) {
+                            const words = [...new Set(cleanChoices.map((c) => splitJPChoiceTokens(c)[j]).filter(Boolean))];
+                            if (words.length) slots[j].options = words.join(' / ');
+                        }
+                    }
+
                     // Extract chunks from Column U (index 20) / V (index 21) / W (index 22)...
                     const chunks = [];
                     // Add potential chunk from F if found
@@ -711,15 +838,23 @@ async function sync() {
                     const parseTashiWordBank = (wordBankText) => {
                         const raw = String(wordBankText || '').replace(/【選択肢】\s*/g, '').trim();
                         if (!raw) return [];
+                        const normMarker = (ch) => {
+                            const s = String(ch);
+                            if (/[A-Za-zＡ-Ｚａ-ｚ]/.test(s)) {
+                                const x = s.normalize('NFKC');
+                                return x.length === 1 && x >= 'a' && x <= 'z' ? x.toUpperCase() : x;
+                            }
+                            return s;
+                        };
                         return raw
                             .split(/\s*\/\s*|\n+/)
                             .map((part) => part.trim())
                             .filter(Boolean)
                             .map((part) => {
-                                const labels = [...part.matchAll(/[\(（]\s*([ア-オ])\s*[\)）]/g)].map((m) => m[1]);
+                                const labels = [...part.matchAll(/[\(（]\s*([ア-オA-Za-zＡ-Ｚａ-ｚ])\s*[\)）]/g)].map((m) => normMarker(m[1]));
                                 const text = part
                                     .replace(/^\d+\s+/, '')
-                                    .replace(/[\(（]\s*([ア-オ]|[rｒ])\s*[\)）]/gi, '')
+                                    .replace(/[\(（]\s*([ア-オA-Za-zＡ-Ｚａ-ｚ]|[rｒ])\s*[\)）]/gi, '')
                                     .trim();
                                 return { text, labels };
                             })
@@ -727,7 +862,14 @@ async function sync() {
                     };
                     const tashiWordBankData = currentSubject === '多肢選択' ? parseTashiWordBank(valR) : [];
                     const tashiSlotLabels = currentSubject === '多肢選択'
-                        ? [...new Set([...(valProblem || '').matchAll(/[\[［]\s*([ア-オ])\s*[\]］]/g)].map((m) => m[1]))]
+                        ? [...new Set([...(valProblem || '').matchAll(/[\[［]\s*([ア-オA-Za-zＡ-Ｚａ-ｚ])\s*[\]］]/g)].map((m) => {
+                            const g = m[1];
+                            if (/[A-Za-zＡ-Ｚａ-ｚ]/.test(g)) {
+                                const x = String(g).normalize('NFKC');
+                                return x.length === 1 && x >= 'a' && x <= 'z' ? x.toUpperCase() : x;
+                            }
+                            return g;
+                        }))]
                         : [];
 
                     // 多肢選択: answer は R列の（ア）（イ）マーカー、または従来の N,O,P,Q 列
@@ -754,7 +896,8 @@ async function sync() {
                     const finalChoiceStatuteRefs = isReorder ? [] : choiceStatuteRefs;
                     const finalChoiceDeepDive = isReorder ? [] : choiceDeepDive;
                     const finalChoiceDeepDiveBeginner = isReorder ? [] : choiceDeepDiveBeginner;
-                    if (!isReorder && slotAnswersFromNtoP && slotAnswersFromNtoP.length > 0) {
+                    // K列に（ｒ）がある択一正解があるときは answer は肢番号のまま（語群は表示・穴埋め用のみ）
+                    if (!isReorder && slotAnswersFromNtoP && slotAnswersFromNtoP.length > 0 && correctIndices.length === 0) {
                         finalAnswer = slotAnswersFromNtoP;
                     } else if (!isReorder && currentSubject === '多肢選択' && valR) {
                         const labels = tashiSlotLabels.length > 0

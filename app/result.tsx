@@ -25,6 +25,7 @@ import {
     getMergedSubjectData,
     pickQuestionsForField,
 } from '@/utils/quiz-question-pipeline';
+import { normalizeSlotAnswerForCompare, splitComboChoiceLineToSlots } from '@/utils/slotNormalize';
 import { gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
 import { USER_KEY } from './login';
 
@@ -571,6 +572,7 @@ export default function ResultScreen() {
   const modelAnswerParam = Array.isArray(params.modelAnswer) ? params.modelAnswer[0] : params.modelAnswer;
   const field = Array.isArray(params.field) ? params.field[0] : params.field;
   const mode = Array.isArray(params.mode) ? params.mode[0] : params.mode;
+  const isShishoMode = mode === 'shisho';
   const shuffleParam = Array.isArray(params.shuffle) ? params.shuffle[0] : params.shuffle;
 
   let wrongCounts: Record<number, number> = {};
@@ -636,8 +638,22 @@ export default function ResultScreen() {
   const choiceDeepDiveBeginner = (question as any)?.choiceDeepDiveBeginner as string[] | undefined;
   const rawAnswer = Array.isArray(question?.answer) ? (question.answer as any[]) : [];
   const correctIndices: number[] = rawAnswer.length > 0 && typeof rawAnswer[0] === 'number' ? (rawAnswer as number[]) : [];
-  const correctSlots: string[] = rawAnswer.length > 0 && typeof rawAnswer[0] === 'string' ? (rawAnswer as string[]) : [];
+  const correctSlotsFromAnswer: string[] = rawAnswer.length > 0 && typeof rawAnswer[0] === 'string' ? (rawAnswer as string[]) : [];
   const hasUsableSlots = Array.isArray((question as any)?.slots) && (question as any).slots.some((s: any) => s?.options);
+  const slotCountForCombo = Array.isArray((question as any)?.slots) ? (question as any).slots.length : 0;
+  const correctSlotsFromChoice =
+    correctSlotsFromAnswer.length === 0 &&
+    hasUsableSlots &&
+    correctIndices.length > 0 &&
+    slotCountForCombo > 0 &&
+    Array.isArray(choices)
+      ? (() => {
+          const idx = correctIndices[0];
+          const line = typeof choices[idx] === 'string' ? choices[idx] : (choices[idx] as any)?.text ?? '';
+          return splitComboChoiceLineToSlots(String(line), slotCountForCombo) ?? [];
+        })()
+      : [];
+  const correctSlots = correctSlotsFromAnswer.length > 0 ? correctSlotsFromAnswer : correctSlotsFromChoice;
   const isSlotQuestion = !isDescriptive && (hasUsableSlots || pickedSlots.length > 0 || correctSlots.length > 0);
   const isSlotStyle = isTashi || isSlotQuestion;
   const refId = question?.refId || '';
@@ -746,8 +762,9 @@ export default function ResultScreen() {
 
   /** 問題を解くモード結果画面: 根拠条文はM列（深掘り）に寄せるため一旦非表示 */
   const hideStatutesOnResult = true;
-  /** 行政手続法: 関連判例（自動）も非表示 */
-  const hideGyotePinCasesAuto = subject === '行政法' && field === '行政手続法';
+  /** 行政手続法・地方自治法: 結果画面の関連判例（自動）を非表示 */
+  const hideGyotePinCasesAuto =
+    subject === '行政法' && (field === '行政手続法' || field === '地方自治法');
 
   // [NEW] Resolve User Selection & Validation
   const pickedIndex = pickedIndexParam ? parseInt(pickedIndexParam, 10) : -1;
@@ -768,7 +785,10 @@ export default function ResultScreen() {
   // Exact Match Validation
   const sortedCorrect = [...effectiveCorrectIndices].sort((a, b) => a - b);
   const sortedUser = [...userSelection].sort((a, b) => a - b);
-  const isCorrectSlots = !answerPending && correctSlots.length === pickedSlots.length && correctSlots.every((v, i) => v === pickedSlots[i]);
+  const isCorrectSlots =
+    !answerPending &&
+    correctSlots.length === pickedSlots.length &&
+    correctSlots.every((v, i) => normalizeSlotAnswerForCompare(v) === normalizeSlotAnswerForCompare(pickedSlots[i] || ''));
   const isCorrectReorder = isReorder && !answerPending && effectiveCorrectIndices.length === userSelection.length && effectiveCorrectIndices.every((v, i) => v === userSelection[i]);
   const isCorrect = isDescriptive && hasDescriptiveModel
     ? isCorrectDescriptive
@@ -832,12 +852,12 @@ export default function ResultScreen() {
     if (resourceModalVisible) setResourcePage(0);
   }, [resourceModalVisible]);
 
-  // 正答率を永続化（回答設定中はスキップ）
+  // 正答率を永続化（回答設定中はスキップ。師匠モードは試験用統計に含めない）
   useEffect(() => {
-    if (!answerPending && subject && field && text) {
+    if (!answerPending && subject && field && text && !isShishoMode) {
       updateQuestionStats(subject, field, text, isCorrect);
     }
-  }, [answerPending, subject, field, text, isCorrect]);
+  }, [answerPending, subject, field, text, isCorrect, isShishoMode]);
 
   // unique key for user memo: user + simple hash of question text
   useEffect(() => {
@@ -888,18 +908,27 @@ export default function ResultScreen() {
   const totalQuestions = parseInt(Array.isArray(params.totalQuestions) ? params.totalQuestions[0] : params.totalQuestions || '0', 10);
   const correctCountSessionCurrent = parseInt(Array.isArray(params.correctCountSession) ? params.correctCountSession[0] : params.correctCountSession || '0', 10);
 
-  // Update count（回答設定中の問題はカウント対象外）
-  const newCorrectCount = (isCorrect && (!answerPending || (isDescriptive && hasDescriptiveModel))) ? correctCountSessionCurrent + 1 : correctCountSessionCurrent;
+  // Update count（回答設定中の問題はカウント対象外。師匠モードはセッション正解数も進めない）
+  const newCorrectCount =
+    isShishoMode
+      ? correctCountSessionCurrent
+      : (isCorrect && (!answerPending || (isDescriptive && hasDescriptiveModel)))
+        ? correctCountSessionCurrent + 1
+        : correctCountSessionCurrent;
 
   // 間違えた場合、wrongCounts を更新（1回=黄、2回以上=赤でサイドバー表示）
   const updatedWrongCounts: Record<number, number> = { ...wrongCounts };
-  if (!isCorrect && !answerPending) {
+  if (!isCorrect && !answerPending && !isShishoMode) {
     updatedWrongCounts[questionIndex] = (wrongCounts[questionIndex] || 0) + 1;
   }
 
   const handleNext = () => {
     // Check if we are looping (Index + 1 >= Total)
     if (totalQuestions > 0 && nextIndex >= totalQuestions) {
+      if (isShishoMode) {
+        alert('このラウンドおつかれさまでした。論点を口に出して整理できていれば十分です。');
+        return;
+      }
       // Session Complete
       let added = 1; // +1 Base
       let message = '1科目完了！ +1ポイント';
@@ -968,7 +997,16 @@ export default function ResultScreen() {
             <ThemedText type="title" style={{ color: '#1565C0', fontSize: 20 }}>📝 記述式{isDescriptiveScope ? '（記述スコープ）' : ''}</ThemedText>
             <ThemedText style={{ color: '#0D47A1', marginTop: 4 }}>解説を読んで自分の解答と照らし合わせてください。</ThemedText>
           </ThemedView>
-        ) : isDescriptive && hasDescriptiveModel ? (
+        ) : isShishoMode && !answerPending ? (
+          <ThemedView style={{ padding: 16, backgroundColor: '#EDE7F6', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#7E57C2', alignItems: 'center' }}>
+            <ThemedText type="title" style={{ color: '#4527A0', fontSize: 20 }}>🎓 師匠モード（参考）</ThemedText>
+            <ThemedText style={{ color: colors.text, marginTop: 10, textAlign: 'center', lineHeight: 22 }}>
+              {isCorrect
+                ? '試験の正解肢と一致しました。弟子にどう説明するか、解説・もっと深掘りで抜けを確認しましょう。'
+                : '試験の正解肢とは異なります。論点を言語化してから、解説で整理しましょう。'}
+            </ThemedText>
+          </ThemedView>
+        ) : !isShishoMode && isDescriptive && hasDescriptiveModel ? (
           isCorrectDescriptive ? (
             <ThemedView style={{ padding: 16, backgroundColor: '#E8F5E9', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#4CAF50', alignItems: 'center' }}>
               <ThemedText type="title" style={{ color: '#2E7D32', fontSize: 24 }}>🎉 正解！お見事！{isDescriptiveScope ? '（記述スコープ）' : ''}</ThemedText>
@@ -983,7 +1021,7 @@ export default function ResultScreen() {
             <ThemedText type="title" style={{ color: '#F57F17', fontSize: 20 }}>⏳ 回答設定中</ThemedText>
             <ThemedText style={{ color: '#E65100', marginTop: 4 }}>正解はスプレッドシートで設定してください。</ThemedText>
           </ThemedView>
-        ) : isSlotStyle ? (
+        ) : !isShishoMode && isSlotStyle ? (
           isCorrect ? (
             <ThemedView style={{ padding: 16, backgroundColor: '#E8F5E9', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#4CAF50', alignItems: 'center' }}>
               <ThemedText type="title" style={{ color: '#2E7D32', fontSize: 24 }}>🎉 正解！お見事！</ThemedText>
@@ -998,14 +1036,14 @@ export default function ResultScreen() {
             <ThemedText type="title" style={{ color: '#F57F17', fontSize: 20 }}>⏳ 回答設定中</ThemedText>
             <ThemedText style={{ color: '#E65100', marginTop: 4 }}>この問題の正解はまだ設定されていません。後日更新されます。</ThemedText>
           </ThemedView>
-        ) : isCorrect ? (
+        ) : !isShishoMode && isCorrect ? (
           <ThemedView style={{ padding: 16, backgroundColor: '#E8F5E9', borderRadius: 12, marginBottom: 16, borderWidth: 2, borderColor: '#4CAF50', alignItems: 'center' }}>
             <ThemedText type="title" style={{ color: '#2E7D32', fontSize: 24 }}>🎉 正解！お見事！</ThemedText>
             <ThemedText style={{ color: '#1B5E20', marginTop: 4, fontWeight: 'bold' }}>その調子だ！この知識を確実に定着させろ！</ThemedText>
           </ThemedView>
-        ) : (
+        ) : !isShishoMode ? (
           <ThemedText type="subtitle" style={{ color: '#D32F2F', marginBottom: 8 }}>不正解... 復習が必要だ！</ThemedText>
-        )}
+        ) : null}
         <View style={styles.questionAnswerOuterCard}>
           <ThemedText style={[styles.questionLabel, { color: colors.text }]}>問題文</ThemedText>
           <View style={styles.questionCard}>
@@ -1045,6 +1083,24 @@ export default function ResultScreen() {
           )}
         </View>
 
+        {subject === '行政法' && field === '行政事件訴訟法' && !isDescriptive
+          ? (() => {
+              const kousokuFigure = getDeepdiveImageSource('gyouseihou/gyouso/karinosasitome-jyunnyou');
+              return kousokuFigure ? (
+                <ThemedView style={{ marginBottom: 16 }}>
+                  <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 10 }]}>
+                    参考図（行訴法25条〜33条ほか・仮の差止め関連）
+                  </ThemedText>
+                  <Image
+                    source={kousokuFigure}
+                    style={{ width: '100%', maxHeight: 520, borderRadius: 12 }}
+                    resizeMode="contain"
+                  />
+                </ThemedView>
+              ) : null;
+            })()
+          : null}
+
         {/* 行政法・民法・多肢選択・商法・会社法: 根拠条文・もっと深掘る（M列）。穴埋めは1本のみ表示、それ以外は肢ごと */}
         {(subject === '行政法' || subject === '民法' || subject === '多肢選択' || subject === '商法・会社法') && statuteItemsRaw.length > 0 && choices.length > 0 && (() => {
           // 穴埋め問題: 同じ条文が繰り返すので1つだけ表示
@@ -1073,7 +1129,11 @@ export default function ResultScreen() {
                   <View style={{ marginTop: 12 }}>
                     <Pressable
                       onPress={() => {
-                        setDeepdiveParams(memo.trim(), '', { choiceCorrect: null });
+                        setDeepdiveParams(memo.trim(), '', {
+                          choiceCorrect: null,
+                          quizSubject: subject,
+                          quizField: field,
+                        });
                         router.push({
                           pathname: '/deepdive',
                           params: { content: memo.trim(), choiceLabel: '' },
@@ -1183,6 +1243,8 @@ export default function ResultScreen() {
                                     !!isReorder
                                   ),
                                   beginnerContent: deepBeginner || undefined,
+                                  quizSubject: subject,
+                                  quizField: field,
                                 });
                                 router.push({
                                   pathname: '/deepdive',
@@ -1265,6 +1327,8 @@ export default function ResultScreen() {
                                 !!isReorder
                               ),
                               beginnerContent: deepBeginner || undefined,
+                              quizSubject: subject,
+                              quizField: field,
                             });
                             router.push({
                               pathname: '/deepdive',
@@ -1343,6 +1407,8 @@ export default function ResultScreen() {
                                 !!isReorder
                               ),
                               beginnerContent: deepBeginner || undefined,
+                              quizSubject: subject,
+                              quizField: field,
                             });
                             router.push({
                               pathname: '/deepdive',
@@ -1427,6 +1493,8 @@ export default function ResultScreen() {
                     setDeepdiveParams(consolidatedDeepContent, '', {
                       choiceCorrect: null,
                       beginnerContent: consolidatedDeepBeginner || undefined,
+                      quizSubject: subject,
+                      quizField: field,
                     });
                     router.push({
                       pathname: '/deepdive',
@@ -1463,7 +1531,11 @@ export default function ResultScreen() {
             <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 10 }]}>解説</ThemedText>
             <Pressable
               onPress={() => {
-                setDeepdiveParams(memo.trim(), '', { choiceCorrect: null });
+                setDeepdiveParams(memo.trim(), '', {
+                  choiceCorrect: null,
+                  quizSubject: subject,
+                  quizField: field,
+                });
                 router.push({
                   pathname: '/deepdive',
                   params: { content: memo.trim(), choiceLabel: '' },
@@ -1533,6 +1605,8 @@ export default function ResultScreen() {
                 onPress={() => {
                   setDeepdiveParams(explain, '', {
                     choiceCorrect: answerPending ? null : isCorrectDescriptive,
+                    quizSubject: subject,
+                    quizField: field,
                   });
                   router.push({
                     pathname: '/deepdive',
@@ -1576,6 +1650,8 @@ export default function ResultScreen() {
                                     !!isReorder
                                   ),
                             beginnerContent: deepDiveBeginner || undefined,
+                            quizSubject: subject,
+                            quizField: field,
                           });
                           router.push({
                             pathname: '/deepdive',

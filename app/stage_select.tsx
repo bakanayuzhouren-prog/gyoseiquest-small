@@ -88,6 +88,7 @@ export default function StageSelectScreen() {
                 <Pressable style={styles.unhideButton} onPress={handleUnhideAll}>
                     <ThemedText style={styles.unhideText}>非表示を解除</ThemedText>
                 </Pressable>
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
                 <Pressable
                     style={styles.shuffleButton}
                     onPress={() => router.push({
@@ -97,6 +98,16 @@ export default function StageSelectScreen() {
                 >
                     <ThemedText style={styles.shuffleText}>🔀 シャッフル</ThemedText>
                 </Pressable>
+                <Pressable
+                    style={[styles.shuffleButton, { backgroundColor: '#7E57C2' }]}
+                    onPress={() => router.push({
+                        pathname: '/question',
+                        params: { subject, field, mode: 'shisho', shuffle: '1' },
+                    })}
+                >
+                    <ThemedText style={styles.shuffleText}>🔀 師匠シャッフル</ThemedText>
+                </Pressable>
+                </View>
             </View>
             <ThemedText style={styles.subtitle}>ステージを選択してください。</ThemedText>
 
@@ -113,6 +124,19 @@ export default function StageSelectScreen() {
                 </Pressable>
             </Link>
 
+            <Link
+                href={{
+                    pathname: '/question',
+                    params: { subject, field, mode: 'shisho' },
+                }}
+                asChild>
+                <Pressable style={StyleSheet.flatten([styles.button, styles.shishoButton])}>
+                    <ThemedText type="defaultSemiBold" style={StyleSheet.flatten([styles.text, styles.shishoText])}>
+                        ② 🎓 師匠モード
+                    </ThemedText>
+                </Pressable>
+            </Link>
+
             {isBonusAvailable && (
                 <Link
                     href={{
@@ -122,7 +146,7 @@ export default function StageSelectScreen() {
                     asChild>
                     <Pressable style={StyleSheet.flatten([styles.button, styles.bonusButton])}>
                         <ThemedText type="defaultSemiBold" style={StyleSheet.flatten([styles.text, styles.bonusText])}>
-                            ② ボーナスステージ ★
+                            ③ ボーナスステージ ★
                         </ThemedText>
                     </Pressable>
                 </Link>
@@ -218,6 +242,13 @@ const styles = StyleSheet.create({
     bonusButton: {
         borderColor: '#E91E63',
         backgroundColor: '#FCE4EC',
+    },
+    shishoButton: {
+        borderColor: '#7E57C2',
+        backgroundColor: '#EDE7F6',
+    },
+    shishoText: {
+        color: '#4527A0',
     },
     text: {
         fontSize: 20,

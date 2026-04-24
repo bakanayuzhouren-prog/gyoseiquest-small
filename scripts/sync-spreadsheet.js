@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
 
-const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
+const SPREADSHEET_ID = process.env.SHEET_ID;
 const SHEET_NAME = process.env.SHEET_NAME || '行政法 1（ここに全部入ってる）';
 const API_KEY = process.env.GOOGLE_SHEETS_API_KEY;
 

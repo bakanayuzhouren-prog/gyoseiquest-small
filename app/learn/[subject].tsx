@@ -87,15 +87,25 @@ export default function LearnSubjectScreen() {
   const learnScopeKey =
     subject === '多肢選択' && tashiField ? `多肢選択:${tashiField}` : subject || '';
 
-  // 行政法総論（見て聞いて覚える）は「行政法総論」シート由来の 2〜134行のみ表示。
-  const gyoseiSoronVisibleIndices = useMemo(() => {
-    if (subject !== '行政法総論') return null;
-    const src = (LEARN_SOURCE as any)?.['行政法総論'];
-    if (!Array.isArray(src)) return null;
-    const onlyGyoseiSoron = src
-      .map((sheetName: string, idx: number) => (sheetName === '行政法総論' ? idx : -1))
-      .filter((idx: number) => idx >= 0);
-    return onlyGyoseiSoron.slice(0, 133);
+  // 行政法総論: 「行政法総論」シート由来のみ（全配列へ混在する他シート行を除外）
+  // 国家賠償法: 「国家賠償法」シート由来のみ（「行政法総合」から A 列で科目が付いた行の混在を除外）
+  const learnSheetFilterIndices = useMemo(() => {
+    if (subject === '行政法総論') {
+      const src = (LEARN_SOURCE as any)?.['行政法総論'];
+      if (!Array.isArray(src)) return null;
+      const only = src
+        .map((sheetName: string, idx: number) => (sheetName === '行政法総論' ? idx : -1))
+        .filter((idx: number) => idx >= 0);
+      return only.slice(0, 133);
+    }
+    if (subject === '国家賠償法') {
+      const src = (LEARN_SOURCE as any)?.['国家賠償法'];
+      if (!Array.isArray(src)) return null;
+      return src
+        .map((sheetName: string, idx: number) => (sheetName === '国家賠償法' ? idx : -1))
+        .filter((idx: number) => idx >= 0);
+    }
+    return null;
   }, [subject]);
 
   const flattenedSubjectQuestions = useMemo(() => {
@@ -145,14 +155,14 @@ export default function LearnSubjectScreen() {
       const legacy = (LEARN_CONTENT as any)['民法総論'];
       fromLearn = Array.isArray(legacy) ? legacy : legacy ? [legacy] : [];
     }
-    fromLearn = pickByIndices(fromLearn, gyoseiSoronVisibleIndices);
+    fromLearn = pickByIndices(fromLearn, learnSheetFilterIndices);
     if (fromLearn.length > 0) return fromLearn;
     const fallbackSubjects = ['基礎法学'];
     if (fallbackSubjects.includes(subject || '') && flattenedSubjectQuestions.length > 0) {
       return flattenedSubjectQuestions.map((q: any) => q?.text || '').filter(Boolean);
     }
     return fromLearn;
-  }, [subject, flattenedSubjectQuestions, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo, gyoseiSoronVisibleIndices]);
+  }, [subject, flattenedSubjectQuestions, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo, learnSheetFilterIndices]);
 
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [currentReadCount, setCurrentReadCount] = useState(1); // Counter for the 3 repeats
@@ -305,7 +315,7 @@ export default function LearnSubjectScreen() {
   const learnAlignedIndex =
     subject === '多肢選択'
       ? originalContentIndex
-      : (gyoseiSoronVisibleIndices?.[originalContentIndex] ?? originalContentIndex);
+      : (learnSheetFilterIndices?.[originalContentIndex] ?? originalContentIndex);
 
   useEffect(() => {
     displayListLenRef.current = displayContentList.length;

@@ -33,6 +33,10 @@ const numberToKanji = (num: number): string => {
     return res || '〇';
 };
 
+/** 検索欄の全角数字を半角に（「２８１」→「281」） */
+const normalizeDigitsToAscii = (s: string) =>
+    (s || '').replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0));
+
 interface StatuteArticle {
     title: string;
     content: string;
@@ -102,7 +106,7 @@ export default function StatuteViewer({ data, title, searchPlaceholder }: Statut
     const executeSearch = (queryText: string) => {
         if (!queryText.trim()) return;
 
-        const query = queryText.trim();
+        const query = normalizeDigitsToAscii(queryText.trim());
         let startIndex = 0;
 
         // If searching for the same thing, start after the last found index
@@ -113,22 +117,24 @@ export default function StatuteViewer({ data, title, searchPlaceholder }: Statut
             startIndex = 0;
         }
 
+        // 「281」「281条」「第281条」「２８１」など → 条番号ジャンプ（本文の偶然の部分一致は使わない）
+        const articleJumpMatch = query.match(/^第?(\d+)条?$/);
+
         // Helper to check if an item matches the query
         const isMatch = (item: any) => {
-            // 1. Article Number Match (e.g. "40" or "40条")
-            const numMatch = query.match(/^(\d+)条?$/);
-            if (numMatch) {
-                const num = parseInt(numMatch[1], 10);
+            if (articleJumpMatch) {
+                const num = parseInt(articleJumpMatch[1], 10);
                 const kanjiNum = numberToKanji(num);
                 const searchPattern = `第${kanjiNum}条`;
-                if (item.title && item.title.includes(searchPattern)) return true;
-                // Also check if title contains the raw number just in case
-                if (item.title && item.title.includes(`第${num}条`)) return true;
+                const t = item.title || '';
+                if (t.includes(searchPattern)) return true;
+                if (t.includes(`第${num}条`)) return true;
+                return false;
             }
 
-            // 2. Text Match (Title or Content)
-            return (item.title && item.title.includes(query)) ||
-                (item.content && item.content.includes(query));
+            const raw = queryText.trim();
+            return (item.title && item.title.includes(raw)) ||
+                (item.content && item.content.includes(raw));
         };
 
         let targetIndex = -1;

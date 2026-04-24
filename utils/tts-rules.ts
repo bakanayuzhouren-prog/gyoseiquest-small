@@ -6,11 +6,43 @@ export const applyTTSRules = (text: string): string => {
         .replace(/国会/g, 'こっかい')
         .replace(/国務/g, 'こくむ')
         .replace(/国民/g, 'こくみん')
+        // 都（地方自治法の「都」＝と。「みやこ」と誤読されがち。京都・首都等を壊さない順）
+        .replace(/東京都は/g, 'とうきょうとわ、')
+        .replace(/東京都/g, 'とうきょうと')
+        .replace(/京都/g, 'きょうと')
+        .replace(/首都/g, 'しゅと')
+        .replace(/定都/g, 'ていと')
+        .replace(/遷都/g, 'せんと')
+        .replace(/帝都/g, 'ていと')
+        .replace(/都道府県/g, 'とどうふけん')
+        .replace(/道府県/g, 'どうふけん')
+        .replace(/都は/g, 'とわ、')
+        // 指定都市・政令指定都市（地方自治法。「してぃとし」等と誤読されがち。長い語を先に）
+        .replace(/政令指定都市/g, 'せいれいしていとし')
+        .replace(/指定都市/g, 'していとし')
         // New rules added
         .replace(/法体系/g, 'ほうたいけい')
         .replace(/事理/g, 'じり')
         .replace(/氏名/g, 'しめい')
         .replace(/家族/g, 'かぞく')
+        // TTS が「ぞくがら」と誤読しがち（戸籍・住民票の用語）
+        .replace(/続柄/g, 'つづきがら')
+        // 森林法・保安林（「ほうあんりん」と誤読されがち）
+        .replace(/保安林/g, 'ほあんりん')
+        // 判決等の主文（「しゅもん」と誤読されがち）
+        .replace(/主文/g, 'しゅぶん')
+        // 民事訴訟の疎明（「しょめい」等と誤読されがち）
+        .replace(/疎明/g, 'そめい')
+        // 行政不服審査・訴訟の裁決前置主義
+        .replace(/裁決前置主義/g, 'さいけつぜんちしゅぎ')
+        // 供託法・訴訟の供託金（「きょうだくきん」等と誤読されがち）
+        .replace(/供託金/g, 'きょうたくきん')
+        // 口頭弁論・審理の陳述時（「ちんじゅつとき」等と誤読されがち）
+        .replace(/陳述時/g, 'ちんじゅつじ')
+        // 訴えの提起時等（「ていきとき」等と誤読されがち）
+        .replace(/提起時/g, 'ていきじ')
+        // 争点・事実の存否（「ぞんひ」と誤読されがち）
+        .replace(/存否/g, 'そんぴ')
         .replace(/家庭裁判所/g, 'かていさいばんしょ')
         .replace(/後順位抵当権者/g, 'こうじゅんいていとうけんしゃ')
         .replace(/事理弁識/g, 'じりべんしき')
@@ -41,6 +73,8 @@ export const applyTTSRules = (text: string): string => {
         .replace(/違約金/g, 'いやくきん')
         .replace(/遅延損害金/g, 'ちえんそんがいきん')
         .replace(/損害賠償金/g, 'そんがいばいしょうきん')
+        .replace(/分担金/g, 'ぶんたんきん')
+        .replace(/加入金/g, 'かにゅうきん')
         .replace(/受傷/g, 'じゅしょう')
         .replace(/定期金/g, 'ていききん')
         .replace(/生命保険金/g, 'せいめいほけんきん')
@@ -58,6 +92,9 @@ export const applyTTSRules = (text: string): string => {
         .replace(/家主/g, 'やぬし')
         .replace(/催告/g, 'さいこく')
         .replace(/急迫/g, 'きゅうはく')
+        .replace(/困却/g, 'こんきゃく')
+        .replace(/受忍限度/g, 'じゅにんげんど')
+        .replace(/失火/g, 'しっか')
         .replace(/追完請求/g, 'ついかんせいきゅう')
         .replace(/求償権/g, 'きゅうしょうけん')
         .replace(/求償/g, 'きゅうしょう')
@@ -81,6 +118,8 @@ export const applyTTSRules = (text: string): string => {
         .replace(/多数人/g, 'たすうにん')
         .replace(/数人の/g, 'すうにんの')
         .replace(/管理人/g, 'かんりにん')
+        // 代表者（「だいひょうしゃ」。誤読対策）
+        .replace(/代表者/g, 'だいひょうしゃ')
         .replace(/留め置く/g, 'とめおく')
         .replace(/備わる/g, 'そなわる')
         .replace(/審理関係人/g, 'しんりかんけいにん')
@@ -106,6 +145,8 @@ export const applyTTSRules = (text: string): string => {
         .replace(/私人/g, 'しじん')
         .replace(/既発生/g, 'きはつせい')
         .replace(/私法上/g, 'しほうじょう')
+        // 国家賠償法「適用上」等（「じょう」と平板で読ませる）
+        .replace(/適用上/g, 'てきようじょう')
         .replace(/私法的/g, 'しほうてき')
         .replace(/原状回復義務/g, 'げんじょうかいふくぎむ')
         .replace(/原状回復/g, 'げんじょおうかいふく')
@@ -152,7 +193,10 @@ export const applyTTSRules = (text: string): string => {
         .replace(/その中には/g, 'そのなかには')
         .replace(/[3３三]月/g, 'さんげつ')
         .replace(/公の利益/g, 'おおやけのりえき')
+        .replace(/公の施設/g, 'おおやけのしせつ')
         .replace(/行った/g, 'おこなった')
+        // 行う＋てはならず（法令・解説の文語。「いっては」と誤読されがち）
+        .replace(/行ってはならず/g, 'おこなってわならず')
         .replace(/行審法/g, 'ぎょうしんほう')
         .replace(/行訴法/g, 'ぎょうそほう')
         .replace(/軟性憲法/g, 'なんせいけんぽう')
@@ -217,6 +261,7 @@ export const applyTTSRules = (text: string): string => {
         .replace(/囲繞地通行券/g, 'いにょうちつうこうけん')
         .replace(/競売/g, 'けいばい')
         .replace(/収去/g, 'しゅうきょ')
+        .replace(/収受/g, 'しゅうじゅ')
         .replace(/権原/g, 'けんげん')
         .replace(/分限裁判/g, 'ぶんげんさいばん')
         .replace(/適否/g, 'てきひ')
@@ -239,6 +284,7 @@ export const applyTTSRules = (text: string): string => {
         .replace(/堤塘/g, 'ていとう')
         .replace(/接見/g, 'せっけん')
         .replace(/被告人/g, 'ひこくにん')
+        .replace(/上告人/g, 'じょうこくにん')
         .replace(/実質上/g, 'じっしつじょう')
         .replace(/所有物/g, 'しょゆうぶつ')
         .replace(/留置物/g, 'りゅうちぶつ')
@@ -250,6 +296,9 @@ export const applyTTSRules = (text: string): string => {
         .replace(/転貸借/g, 'てんたいしゃく')
         .replace(/転借人間/g, 'てんしゃくにんかん')
         .replace(/転借人/g, 'てんしゃくにん')
+        // 国家賠償法・行政法の用語（「えいようぶつ」等と誤読されがち）
+        .replace(/営造物/g, 'えいぞうぶつ')
+        .replace(/防護柵/g, 'ぼうごさく')
         .replace(/工作物/g, 'こうさくぶつ')
         .replace(/造作物/g, 'ぞうさくぶつ')
         .replace(/造作/g, 'ぞうさく')
@@ -260,6 +309,10 @@ export const applyTTSRules = (text: string): string => {
         .replace(/外ならず/g, 'ほかならず')
         .replace(/表裏/g, 'ひょうり')
         .replace(/鑑みれば/g, 'かんがみれば')
+        // 生ず（判例文の文語）—「せぜしめる」と誤読されがち
+        .replace(/生ぜしめる/g, 'しょうぜしめる')
+        // 背く（趣旨に背く等）—「せいた」と誤読されがち
+        .replace(/背いた/g, 'そむいた')
         .replace(/当たつて/g, 'あたって')
         .replace(/児童買春/g, 'じどうばいしゅん')
         .replace(/売春/g, 'ばいしゅん')

@@ -22,8 +22,58 @@ import {
   pickQuestionsForField,
   shuffleQuestionsCopy,
 } from '@/utils/quiz-question-pipeline';
+import { splitSlotOptionParts } from '@/utils/slotNormalize';
 import { getQuestionStats, getQuestionTextHash } from '@/utils/question-stats';
 import { CIVIL_PRECEDENT_IMAGES } from '@/src/civilPrecedentImages';
+
+/** スプレッドシートで「…どれか。ア　…」が1行に詰まったとき用 */
+function normalizeKatakanaChoiceNewlines(body: string): string {
+  if (!body) return body;
+  return body.replace(/([。．）])\s*([アイウエオ])([\u3000 ])/g, '$1\n$2$3');
+}
+
+/** 行頭の「ア　本文」形式（択一の記述肢ブロック） */
+function matchKatakanaChoiceLine(seg: string): { label: string; sep: string; rest: string } | null {
+  const m = seg.match(/^\s*([アイウエオ])([\u3000 ])([\s\S]*)$/);
+  if (!m) return null;
+  const rest = m[3];
+  if (!rest.trim()) return null;
+  return { label: m[1], sep: m[2], rest };
+}
+
+/** 「ア・ウ」「ア･イ」など組合せ肢をラベル配列に分解 */
+function parseComboChoiceParts(choice: string): string[] {
+  return String(choice || '')
+    .replace(/※/g, '')
+    .split(/[・･\s]+/)
+    .map((s) => s.trim())
+    .filter((s) => /^[アイウエオ]$/.test(s));
+}
+
+/** 全肢が「ア・イ」形式の2文字組合せ（茎のア〜オタップと下の択一を同期する対象） */
+function choicesAreKatakanaPairs(choices: unknown): boolean {
+  if (!Array.isArray(choices) || choices.length < 2) return false;
+  const pair = /^[アイウエオ][・･][アイウエオ]$/;
+  return (choices as string[]).every((c) => pair.test(String(c || '').replace(/※/g, '').trim()));
+}
+
+/** wordBank の「【ア】\\n語1 / 語2」ブロックをカード表示用に分解 */
+function parseWordBankKatakanaBlocks(wb: string): { title: string; items: string[] }[] {
+  const raw = String(wb || '').trim();
+  if (!raw) return [];
+  const chunks = raw.split(/\n\n+/).map((c) => c.trim()).filter(Boolean);
+  const out: { title: string; items: string[] }[] = [];
+  for (const ch of chunks) {
+    const lines = ch.split('\n');
+    const head = (lines[0] || '').trim();
+    if (!/^【[アイウエオ]{1,2}】\s*$/.test(head)) continue;
+    const rest = lines.slice(1).join('\n').trim();
+    const items = splitSlotOptionParts(rest);
+    const cleaned = items.map((s) => s.replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim()).filter(Boolean);
+    if (cleaned.length) out.push({ title: head, items: cleaned });
+  }
+  return out;
+}
 
 const GEMINI_API_KEY = (typeof Constants?.expoConfig?.extra !== 'undefined' && (Constants.expoConfig.extra as any)?.geminiApiKey) || (typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_GEMINI_API_KEY) || (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) || '';
 
@@ -218,6 +268,8 @@ export default function QuestionScreen() {
 
   // State for multi-select
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
+  /** 組合せ問題（ア・ウ形式）: 問題文でタップしたア〜オラベル */
+  const [stemComboLetters, setStemComboLetters] = useState<string[]>([]);
 
   // State for 並べ替え問題（表示順のインデックス配列）
   const [reorderOrder, setReorderOrder] = useState<number[]>([]);
@@ -299,6 +351,7 @@ export default function QuestionScreen() {
   useEffect(() => {
     setDimmedIndices([]);
     setSelectedIndices([]);
+    setStemComboLetters([]);
     setDescriptiveAnswer('');
     setDescriptiveScopeOn(false);
     setScopeDescriptiveAnswer('');
@@ -380,6 +433,58 @@ export default function QuestionScreen() {
 
   const stripR = (s: string) => (s || '').replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim();
 
+  /** isCombinationChoicePrompt より前で定義するため、判定はここでインライン（同一正規表現） */
+  const multiSelectGuideText = useMemo(() => {
+    if (!question) return null;
+    const ans = (question as any)?.answer;
+    if (!Array.isArray(ans) || ans.length <= 1) return null;
+    if (
+      Array.isArray((question as any)?.slots) &&
+      (question as any).slots.length > 0 &&
+      typeof ans[0] === 'string'
+    ) {
+      return null;
+    }
+    const cb = (question as any).choiceIsBonus as boolean[] | undefined;
+    const isBonusChoice = (i: number) => (cb && i < cb.length ? cb[i] : !!(question as any).isBonus);
+    const effective = mode !== 'bonus'
+      ? ans.filter((i: number) => !isBonusChoice(i))
+      : ans.filter((i: number) => isBonusChoice(i));
+    const effectiveCount = effective.length > 0 ? effective.length : ans.length;
+    if (effectiveCount <= 1) return null;
+    const t = (question as any)?.text || '';
+    const isComboPrompt = /の組合せはどれ|組み合わせはどれ|組合せはどれか|組合せはどれ。|当てはまるものの組合せ/.test(t);
+    return isComboPrompt ? '２つ以上選んでね' : '１つ若しくは複数選んでください';
+  }, [question, mode]);
+
+  const isStemComboPairQuestion = useMemo(
+    () => choicesAreKatakanaPairs((question as any)?.choices),
+    [(question as any)?.choices]
+  );
+
+  const stemSyncedOriginalIndex = useMemo(() => {
+    if (!question || !isStemComboPairQuestion) return null as number | null;
+    const ch = (question as any).choices as string[];
+    const sel = new Set(stemComboLetters);
+    if (sel.size === 0) return null;
+    for (let i = 0; i < ch.length; i++) {
+      const parts = parseComboChoiceParts(ch[i]);
+      if (parts.length === 0 || parts.length !== sel.size) continue;
+      const ok = parts.every((p) => sel.has(p)) && [...sel].every((s) => parts.includes(s));
+      if (ok) return i;
+    }
+    return null;
+  }, [question, isStemComboPairQuestion, stemComboLetters]);
+
+  const toggleStemComboLetter = useCallback((label: string) => {
+    setStemComboLetters((prev) => {
+      const set = new Set(prev);
+      if (set.has(label)) set.delete(label);
+      else set.add(label);
+      return Array.from(set).sort((a, b) => 'アイウエオ'.indexOf(a) - 'アイウエオ'.indexOf(b));
+    });
+  }, []);
+
   const renderQuestionText = () => {
     if (!question) return null;
     const text = stripR(question.text || '');
@@ -390,7 +495,8 @@ export default function QuestionScreen() {
     const isTashiQuestion = subject === '多肢選択';
 
     // 多肢選択: tashiData からスロットを生成（語群から選択して穴埋め）
-    const effectiveSlots = interactiveSlots.length > 0 ? interactiveSlots : slots;
+    // options が空のダミースロットは無視（「次のア～オ」と誤マッチして本文が壊れるのを防ぐ）
+    const effectiveSlots = interactiveSlots.length > 0 ? interactiveSlots : slots.filter((s: any) => s?.options);
 
     // バッジ用ナンバー（コンテナ直下で外枠角に表示するためここで算出）
     const displayNum = hasNumberPrefix(text) ? splitNumberPrefix(text).prefix : getChoicePrefix(questionIndex ?? 0);
@@ -458,7 +564,7 @@ export default function QuestionScreen() {
       } else {
         // ⑱等は常に上段、問題文は下段に分離（テキストに含まれる場合もgetChoicePrefixで付与する場合も同様）
         const { body: questionBody } = splitNumberPrefix(text);
-        const displayBody = hasNumberPrefix(text) ? questionBody : text;
+        const displayBody = normalizeKatakanaChoiceNewlines(hasNumberPrefix(text) ? questionBody : text);
         const segments = displayBody.split(/\n/);
         if (segments.length === 0) segments.push('');
         content = (
@@ -471,8 +577,50 @@ export default function QuestionScreen() {
                 setHighlightedSegments(next);
               };
               const hasMarkdown = /\*\*|\[\[red:/.test(seg);
+              const choiceLine = !hasMarkdown ? matchKatakanaChoiceLine(seg) : null;
+              const prevSeg = idx > 0 ? segments[idx - 1] : '';
+              const prevWasChoice =
+                idx > 0 && !/\*\*|\[\[red:/.test(prevSeg) && matchKatakanaChoiceLine(prevSeg);
+              const choiceBlockTopMargin = choiceLine && !prevWasChoice ? 10 : 0;
+              const baseTextStyle = [
+                styles.questionText,
+                isTashiQuestion && styles.questionTextTashi,
+                isLongText && styles.questionTextSmall,
+                isTashiQuestion && isLongText && styles.questionTextTashiSmall,
+                {
+                  color: colors.text,
+                  fontFamily: theme === 'paper' ? 'serif' : undefined,
+                  textAlign: 'left' as const,
+                },
+                isHighlighted && !choiceLine && { backgroundColor: '#FFF59D', paddingVertical: 2, paddingHorizontal: 4, borderRadius: 4 },
+              ];
+              const choiceTextStyle = [
+                styles.questionText,
+                isTashiQuestion && styles.questionTextTashi,
+                isLongText && styles.questionTextSmall,
+                isTashiQuestion && isLongText && styles.questionTextTashiSmall,
+                {
+                  color: colors.text,
+                  fontFamily: theme === 'paper' ? 'serif' : undefined,
+                  textAlign: 'left' as const,
+                },
+              ];
+              const stemCardSelected =
+                isStemComboPairQuestion && choiceLine && stemComboLetters.includes(choiceLine.label);
               return (
-                <Pressable key={idx} onPress={handleToggleHighlight} delayLongPress={200}>
+                <Pressable
+                  key={idx}
+                  onPress={() => {
+                    if (isStemComboPairQuestion && choiceLine) {
+                      toggleStemComboLetter(choiceLine.label);
+                      return;
+                    }
+                    handleToggleHighlight();
+                  }}
+                  onLongPress={isStemComboPairQuestion && choiceLine ? handleToggleHighlight : undefined}
+                  delayLongPress={200}
+                  style={{ alignSelf: 'stretch', width: '100%' }}
+                >
                   {hasMarkdown ? (
                     <MarkdownText
                       text={seg}
@@ -481,21 +629,40 @@ export default function QuestionScreen() {
                         isTashiQuestion && styles.questionTextTashi,
                         isLongText && styles.questionTextSmall,
                         isTashiQuestion && isLongText && styles.questionTextTashiSmall,
-                        { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined },
+                        { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined, textAlign: 'left' },
                         isHighlighted && { backgroundColor: '#FFF59D', paddingVertical: 2, paddingHorizontal: 4, borderRadius: 4 }
                       ]}
                     />
+                  ) : choiceLine ? (
+                    <View
+                      style={[
+                        styles.stemChoiceCard,
+                        {
+                          borderColor: colors.choiceBorder,
+                          backgroundColor: colors.card,
+                          marginTop: choiceBlockTopMargin,
+                        },
+                        (stemCardSelected || isHighlighted) && { backgroundColor: '#FFF9C4', borderColor: '#F9A825' },
+                      ]}
+                    >
+                      <View style={{ flexDirection: 'row', alignItems: 'flex-start', width: '100%' }}>
+                        <ThemedText style={[...choiceTextStyle, { minWidth: 40, flexShrink: 0, paddingRight: 4 }]}>
+                          {choiceLine.label}
+                          {choiceLine.sep}
+                        </ThemedText>
+                        <ThemedText
+                          style={[...choiceTextStyle, { flex: 1, flexShrink: 1 }]}
+                          onTextLayout={idx === 0 ? (e) => {
+                            if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
+                          } : undefined}
+                        >
+                          {formatNumberedClauses(choiceLine.rest)}
+                        </ThemedText>
+                      </View>
+                    </View>
                   ) : (
                     <ThemedText
-                      type="title"
-                      style={[
-                        styles.questionText,
-                        isTashiQuestion && styles.questionTextTashi,
-                        isLongText && styles.questionTextSmall,
-                        isTashiQuestion && isLongText && styles.questionTextTashiSmall,
-                        { color: colors.text, fontFamily: theme === 'paper' ? 'serif' : undefined },
-                        isHighlighted && { backgroundColor: '#FFF59D', paddingVertical: 2, paddingHorizontal: 4, borderRadius: 4 }
-                      ]}
+                      style={baseTextStyle}
                       onTextLayout={idx === 0 ? (e) => {
                         if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
                       } : undefined}
@@ -517,10 +684,32 @@ export default function QuestionScreen() {
       // ⑱等は常に上段、問題文は下段に分離
       const { body: questionBody } = splitNumberPrefix(text);
       const textForSlots = hasNumberPrefix(text) ? questionBody : text;
-      // 多肢選択: テキスト内の [ ア ] 等を正規化してマッチ（全角［］も考慮）
+      const latinBracket = (_m: string, p1: string) => {
+        const u = String(p1).normalize('NFKC');
+        const L = u.length === 1 && u >= 'a' && u <= 'z' ? u.toUpperCase() : u;
+        return `[ ${L} ]`;
+      };
+      // 多肢選択・英字空欄: テキスト内の [ ア ][ A ] 等を slot.label の形に正規化してマッチ
+      const hasLatinSlot = effectiveSlots.some((s: any) => /\[ [A-Z] \]/.test(String(s?.label || '')));
+      const hasKatakanaSlot = effectiveSlots.some((s: any) => /^\[\s*[ア-オ]\s*\]$/.test(String(s?.label || '')));
+      // 会話型: (ア)(イ)(ウ) をスロット [ ア ] と同型に変換（正誤組合せ・下線部など）
+      const baseForSlots =
+        !tashiData && hasKatakanaSlot && !hasLatinSlot
+          ? textForSlots.replace(/[\(（]\s*([ア-オ])\s*[\)）]/g, '[ $1 ]')
+          : textForSlots;
       const normalizedText = tashiData
-        ? textForSlots.replace(/［\s*([ア-オ])\s*］/g, '[ $1 ]').replace(/\[\s*([ア-オ])\s*\]/g, '[ $1 ]')
-        : textForSlots;
+        ? textForSlots
+            .replace(/［\s*([ア-オ])\s*］/g, '[ $1 ]')
+            .replace(/\[\s*([ア-オ])\s*\]/g, '[ $1 ]')
+            .replace(/［\s*([A-Za-zＡ-Ｚａ-ｚ])\s*］/g, latinBracket)
+            .replace(/\[\s*([A-Za-zＡ-Ｚａ-ｚ])\s*\]/g, latinBracket)
+        : hasLatinSlot
+          ? textForSlots
+              .replace(/［\s*([A-Za-zＡ-Ｚａ-ｚ])\s*］/g, latinBracket)
+              .replace(/\[\s*([A-Za-zＡ-Ｚａ-ｚ])\s*\]/g, latinBracket)
+          : baseForSlots
+              .replace(/［\s*([ア-オ])\s*］/g, '[ $1 ]')
+              .replace(/\[\s*([ア-オ])\s*\]/g, '[ $1 ]');
       const parts = normalizedText.split(pattern);
 
       content = (
@@ -621,6 +810,11 @@ export default function QuestionScreen() {
               </ThemedText>
             ) : null}
             {content}
+            {multiSelectGuideText ? (
+              <ThemedText style={[styles.descriptiveLabel, { color: colors.subText, marginTop: 10, marginBottom: 0 }]}>
+                {multiSelectGuideText}
+              </ThemedText>
+            ) : null}
           </View>
         </ThemedView>
       </View>
@@ -689,12 +883,16 @@ export default function QuestionScreen() {
     const wb = (question as any).wordBank;
     if (!wb || typeof wb !== 'string') return null;
     const text = (question as any).text || '';
-    // スロットラベル抽出（[ ア ] [ イ ] 等、全角・半角スペース対応）
-    const matches = text.match(/[\[［]\s*([ア-オ])\s*[\]］]/g) || [];
+    // スロットラベル抽出（[ ア ][ イ ]、[ A ][ B ] 等、全角・半角スペース対応）
+    const matches = text.match(/[\[［]\s*([ア-オA-Za-zＡ-Ｚａ-ｚ])\s*[\]］]/g) || [];
     const seen = new Set<string>();
     const slotLabels: string[] = [];
     for (const m of matches) {
-      const label = m.replace(/[\[［\s\]］]/g, '').trim();
+      let label = m.replace(/[\[［\s\]］]/g, '').trim();
+      if (/^[A-Za-zＡ-Ｚａ-ｚ]$/.test(label)) {
+        label = label.normalize('NFKC');
+        if (label.length === 1 && label >= 'a' && label <= 'z') label = label.toUpperCase();
+      }
       if (label && !seen.has(label)) {
         seen.add(label);
         slotLabels.push(label);
@@ -972,7 +1170,7 @@ export default function QuestionScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', marginBottom: 8, gap: 10 }}>
           <ThemedText type="subtitle" style={[styles.subject, { color: colors.text, fontWeight: '800' }]}>
             {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length || 0})` : ''}
-            {mode === 'bonus' ? ' ★ボーナスステージ★' : ''}
+            {mode === 'bonus' ? ' ★ボーナスステージ★' : mode === 'shisho' ? ' 🎓師匠モード' : ''}
           </ThemedText>
           {questionStats && (() => {
             const total = questionStats.correct + questionStats.wrong;
@@ -1005,6 +1203,24 @@ export default function QuestionScreen() {
           ) : null}
         </View>
 
+        {mode === 'shisho' ? (
+          <ThemedView
+            style={{
+              marginBottom: 12,
+              padding: 12,
+              borderRadius: 10,
+              borderWidth: 1,
+              borderColor: '#7E57C2',
+              backgroundColor: colors.card,
+            }}
+          >
+            <ThemedText style={{ color: '#4527A0', fontWeight: '700', fontSize: 16 }}>🎓 師匠モード</ThemedText>
+            <ThemedText style={{ color: colors.text, marginTop: 8, lineHeight: 22, fontSize: 15 }}>
+              弟子に論点を教えるつもりで、「何が争点か」「なぜそうなるか」を声に出してから次へ進みましょう。正解の当たりより、説明の筋道を優先します。
+            </ThemedText>
+          </ThemedView>
+        ) : null}
+
         {renderQuestionText()}
 
         {interactiveSlots.length > 0 ? (
@@ -1018,7 +1234,11 @@ export default function QuestionScreen() {
                   const order = ['ア', 'イ', 'ウ', 'エ', 'オ'];
                   const ka = a.label.replace(/[\[\]\s]/g, '');
                   const kb = b.label.replace(/[\[\]\s]/g, '');
-                  return (order.indexOf(ka) - order.indexOf(kb)) || 0;
+                  const ai = order.indexOf(ka);
+                  const bi = order.indexOf(kb);
+                  if (ai >= 0 || bi >= 0) return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+                  if (/^[A-Z]$/.test(ka) && /^[A-Z]$/.test(kb)) return ka.localeCompare(kb);
+                  return 0;
                 })
                 .map((slot) => {
                 const selected = slotSelections[slot.label];
@@ -1085,7 +1305,7 @@ export default function QuestionScreen() {
                 ? (() => {
                     const optStr = activeSlot.options || '';
                     const rPattern = /[\(（]\s*[rｒ]\s*[\)）]/gi;
-                    const parts = optStr.split(/\n+|(?=[①②])|(?=\d+[\.．]\s*)|[\/／]|\t+/).filter((p: string) => p.trim());
+                    const parts = splitSlotOptionParts(optStr).filter((p: string) => p.trim());
                     return parts.map((p: string, idx: number) => {
                       const clean = p
                         .replace(rPattern, '')
@@ -1106,6 +1326,36 @@ export default function QuestionScreen() {
                       );
                     });
                   })()
+                : parseWordBankKatakanaBlocks(String((question as any).wordBank || '')).length > 0 && !activeSlot
+                ? parseWordBankKatakanaBlocks(String((question as any).wordBank || '')).map((block, bi) => (
+                    <View
+                      key={`wb-${bi}`}
+                      style={[
+                        styles.stemChoiceCard,
+                        {
+                          borderColor: colors.choiceBorder,
+                          backgroundColor: colors.card,
+                          marginBottom: 10,
+                          width: '100%',
+                        },
+                      ]}
+                    >
+                      <ThemedText style={{ fontWeight: '700', marginBottom: 8, color: colors.text }}>{block.title}</ThemedText>
+                      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'flex-start' }}>
+                        {block.items.map((item, ii) => (
+                          <DraggableWordBankItem
+                            key={`${block.title}-${ii}`}
+                            value={item}
+                            onDrop={handleWordBankDrop}
+                            onPress={() => handleWordBankTap(item)}
+                            borderColor={colors.choiceBorder}
+                            textColor={colors.text}
+                            itemStyle={styles.wordBankItemBlock}
+                          />
+                        ))}
+                      </View>
+                    </View>
+                  ))
                 : (String((question as any).wordBank || '')).split('\n').filter((l: string) => l.trim().length > 0).map((line: string, index: number) => {
                     const item = line.trim().replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim();
                     if (!item) return null;
@@ -1443,11 +1693,6 @@ export default function QuestionScreen() {
                   → 説明してほしい選択肢をクリック
                 </ThemedText>
               )}
-              {requiredSelectCount > 0 && (
-                <ThemedText style={[styles.descriptiveLabel, { color: colors.subText, marginBottom: 8 }]}>
-                  {isCombinationChoicePrompt ? '２つ以上選んでね' : '１つ若しくは複数選んでください'}
-                </ThemedText>
-              )}
               {shuffledChoices.map((choiceObj: { text: string; originalIndex: number }, index: number) => {
             if (!choiceObj || !choiceObj.text) return null; // Guard against null/empty choices
 
@@ -1461,6 +1706,11 @@ export default function QuestionScreen() {
             const answer = (question as any).answer || [];
             const isMultiSelect = Array.isArray(answer) && answer.length > 1;
             const isSelected = selectedIndices.includes(choiceObj.originalIndex);
+            const isStemSyncedChoice =
+              !isMultiSelect &&
+              isStemComboPairQuestion &&
+              stemSyncedOriginalIndex !== null &&
+              stemSyncedOriginalIndex === choiceObj.originalIndex;
 
             return (
               <Pressable
@@ -1473,7 +1723,8 @@ export default function QuestionScreen() {
                   },
                   isDisabled && styles.choiceButtonDisabled,
                   isDimmed && { opacity: 0.3 }, // Dim the button
-                  (isMultiSelect && isSelected) && { backgroundColor: '#E3F2FD', borderColor: '#2196F3', borderWidth: 2 }
+                  (isMultiSelect && isSelected) && { backgroundColor: '#E3F2FD', borderColor: '#2196F3', borderWidth: 2 },
+                  isStemSyncedChoice && { backgroundColor: '#E3F2FD', borderColor: '#2196F3', borderWidth: 2 }
                 ]}
                 disabled={isDisabled}
                 onLongPress={() => {
@@ -1525,7 +1776,8 @@ export default function QuestionScreen() {
                   styles.choiceText,
                   { color: colors.choiceText },
                   isDisabled && styles.choiceTextDisabled,
-                  (isMultiSelect && isSelected) && { color: '#1565C0', fontWeight: 'bold' }
+                  (isMultiSelect && isSelected) && { color: '#1565C0', fontWeight: 'bold' },
+                  isStemSyncedChoice && { color: '#1565C0', fontWeight: 'bold' }
                 ]}>{`${choiceObj.originalIndex + 1}. ${displayText}`}</ThemedText>
               </Pressable>
             );
@@ -1925,6 +2177,21 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 29,
     fontWeight: '500',
+  },
+  /** 問題文内のア〜オ記述肢のみカード化（教示＋組合せ問題など） */
+  stemChoiceCard: {
+    width: '100%',
+    alignSelf: 'stretch',
+    borderRadius: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderWidth: 1,
+    marginBottom: 8,
+    ...Platform.select({
+      ios: { shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.07, shadowRadius: 3 },
+      android: { elevation: 2 },
+      web: { boxShadow: '0 1px 4px rgba(0,0,0,0.08)' },
+    }),
   },
   descriptiveFormatted: {
     gap: 12,

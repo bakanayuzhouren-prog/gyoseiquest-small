@@ -10,6 +10,10 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'bukken/18-21-1': require('@/assets/images/deepdive/bukken/18-21-1.png'),
   'bukken/18-21-2': require('@/assets/images/deepdive/bukken/18-21-2.png'),
   'bukken/5-21': require('@/assets/images/deepdive/bukken/5-21.png'),
+  'gyouseihou/gyoushin/saichousajyunnyou': require('@/assets/images/deepdive/gyouseihou/gyoushin/saichousajyunnyou.png'),
+  'gyouseihou/gyoushin/saichousajyunnyou2': require('@/assets/images/deepdive/gyouseihou/gyoushin/saichousajyunnyou2.png'),
+  'gyouseihou/gyouso/karinosasitome-jyunnyou': require('@/assets/images/deepdive/gyouseihou/gyouso/karinosasitome-jyunnyou.png'),
+  'gyouseihou/gyoute/7-31': require('@/assets/images/deepdive/gyouseihou/gyoute/7-31.png'),
   'kenpou/1-230': require('@/assets/images/deepdive/kenpou/1-230.png'),
   'kenpou/10-230': require('@/assets/images/deepdive/kenpou/10-230.png'),
   'kenpou/104-230': require('@/assets/images/deepdive/kenpou/104-230.png'),
@@ -265,7 +269,7 @@ export function resolveMinpoLearnFolderByQuestionNumber(problemNum1Based: number
 
 /**
  * 見て聞いて覚える・債権総論: learn/saikensouron/ 配下、ファイル名が「N-…」（先頭が問番号）。
- * 元画像は temp_images/saikensouron に置き、assets/images/deepdive/learn/saikensouron/ へコピーしてから generateDeepdiveImages を実行。
+ * 元画像は temp_images/saikensouron に置き、assets/images/deepdive/learn/saikensouron/ へコピーしてから本スクリプトを実行。
  */
 export function resolveSaikensouronLearnImageKey(problemNum1Based: number): string | undefined {
   if (problemNum1Based < 1) return undefined;

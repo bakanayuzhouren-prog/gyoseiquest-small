@@ -103,6 +103,13 @@ export default function HomeScreen() {
             </ThemedText>
           </Pressable>
         </Link>
+        <Link href="/shisho" asChild>
+          <Pressable style={buttonStyle}>
+            <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
+              ⑫ 🎓師匠モード（弟子に論点を教える）
+            </ThemedText>
+          </Pressable>
+        </Link>
         {/* ScrollView needs bottom padding to ensure the last item is not covered by tab bar if transparent, 
             but usually contentContainerStyle padding is enough. Adding some extra space at bottom. */}
         <ThemedView style={{ height: 40, backgroundColor: 'transparent' }} />

@@ -11,6 +11,9 @@ let _beginnerContent = '';
 let _fExplain = '';
 /** 見て聞いて覚えるで開いたときの科目キー（例: 債権総論）。共有画像検索の科目スコープ用 */
 let _learnSubject = '';
+/** 問題を解くモードから開いたときの科目・分野（深掘り表示の切り替え用） */
+let _quizSubject = '';
+let _quizField = '';
 
 export function setDeepdiveParams(
   content: string,
@@ -21,6 +24,8 @@ export function setDeepdiveParams(
     beginnerContent?: string;
     fExplain?: string;
     learnSubject?: string;
+    quizSubject?: string;
+    quizField?: string;
   }
 ) {
   _content = content;
@@ -30,6 +35,8 @@ export function setDeepdiveParams(
   _beginnerContent = options?.beginnerContent?.trim() ? options.beginnerContent.trim() : '';
   _fExplain = options?.fExplain?.trim() ? options.fExplain.trim() : '';
   _learnSubject = options?.learnSubject?.trim() ? options.learnSubject.trim() : '';
+  _quizSubject = options?.quizSubject?.trim() ? options.quizSubject.trim() : '';
+  _quizField = options?.quizField?.trim() ? options.quizField.trim() : '';
 }
 
 /** 読み取りでクリアしない（React Strict Mode の二重マウントで内容・[[image:…]] が失われるのを防ぐ）。次の setDeepdiveParams で上書きされる */
@@ -41,6 +48,8 @@ export function getDeepdiveParams(): {
   beginnerContent: string;
   fExplain: string;
   learnSubject: string;
+  quizSubject: string;
+  quizField: string;
 } {
   return {
     content: _content,
@@ -50,5 +59,7 @@ export function getDeepdiveParams(): {
     beginnerContent: _beginnerContent,
     fExplain: _fExplain,
     learnSubject: _learnSubject,
+    quizSubject: _quizSubject,
+    quizField: _quizField,
   };
 }
