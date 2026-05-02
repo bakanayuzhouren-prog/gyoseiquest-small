@@ -44,7 +44,12 @@ export default function RootLayout() {
         <CharacterProvider>
           <LearnPlaybackProvider>
           <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-            <Stack>
+            <Stack
+              /* Web: true だと学習画面の非表示レイヤーが深掘りのタッチを奪う事例がある */
+              screenOptions={
+                Platform.OS === 'web' ? ({ detachInactiveScreens: false } as object) : {}
+              }
+            >
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="login" options={{ headerShown: false }} />
               <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />

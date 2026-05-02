@@ -1,8 +1,8 @@
 import { applyTTSRules } from '@/utils/tts-rules';
-import { Link, router, useLocalSearchParams } from 'expo-router';
+import { Link, router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import * as Speech from 'expo-speech';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { Alert, Modal, PanResponder, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 import { LexiconText, stripLexiconMarkupForPlain } from '@/components/lexicon-text';
 import { MarkdownText } from '@/components/markdown-text';
@@ -11,7 +11,11 @@ import { ThemedView } from '@/components/themed-view';
 import { characterPlaceholders, defaultCharacterMap, useCharacter } from '@/src/context/CharacterContext';
 import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
 import { useTheme } from '@/src/context/ThemeContext';
-import { mergedDeepdiveHasResolvableImage, pickAutoLearnDeepdiveImageKey } from '@/src/deepdiveLearnAutoImage';
+import {
+    buildDeepdiveSiblingTitles,
+    mergedDeepdiveHasResolvableImage,
+    pickAutoLearnDeepdiveImageKey,
+} from '@/src/deepdiveLearnAutoImage';
 import { setDeepdiveParams } from '@/src/deepdiveState';
 import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_SOURCE } from '@/src/learn';
 import { PIN_CASES } from '@/src/pinData';
@@ -21,10 +25,8 @@ import { getLearnNotes, LearnNote, saveLearnNotes } from '@/utils/learn-notes';
 import { addPoints } from '@/utils/points';
 import { getStickyNotes, toggleStickyNote } from '@/utils/sticky-notes';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
-import Animated, { runOnJS, useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
-
-// @ts-ignore
+import { Gesture, GestureDetector, GestureHandlerRootView, ScrollView } from 'react-native-gesture-handler';
+import Animated, { useAnimatedStyle, useSharedValue } from 'react-native-reanimated';
 
 const LAW_MAP: { [key: string]: string } = {
   '行審法': '/statutes/administrative/appeal',
@@ -41,6 +43,8 @@ const LAW_MAP: { [key: string]: string } = {
   '商法': '/statutes/commercial',
   '会社法': '/statutes/commercial',
 };
+
+const webNoHitChild = Platform.OS === 'web' ? { pointerEvents: 'none' as const } : {};
 
 const getCivilPath = (articleNum: number): string => {
   if (articleNum <= 174) return '/statutes/civil/general';
@@ -69,6 +73,17 @@ function pickByIndices<T>(arr: T[], indices: number[] | null): T[] {
 }
 
 export default function LearnSubjectScreen() {
+  /** Web: フォーカス離脱時にクリーンアップが確実に走る（useIsFocused より信頼できる） */
+  const [learnReceivesPointer, setLearnReceivesPointer] = useState(true);
+  useFocusEffect(
+    useCallback(() => {
+      setLearnReceivesPointer(true);
+      return () => {
+        if (Platform.OS === 'web') setLearnReceivesPointer(false);
+      };
+    }, [])
+  );
+
   const params = useLocalSearchParams<{ subject?: string; index?: string; field?: string }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
   const fieldParam = Array.isArray(params.field) ? params.field[0] : params.field;
@@ -327,15 +342,20 @@ export default function LearnSubjectScreen() {
   applyCharacterNamesRef.current = applyCharacterNames;
   const isLastItem = currentIndex >= displayContentList.length - 1;
 
-  // B列由来（LEARN_DEEPDIVE）。多肢選択はシート別キー優先、なければマージ「多肢選択」をスライス
+  // B列由来（LEARN_DEEPDIVE）。憲法／行政法フィールドは専用キーがバンドルにあればそれのみ（空行もマージ「多肢選択」で埋めない）
   const deepdiveTashiSlice = useMemo(() => {
     if (subject !== '多肢選択') return null;
+    const dd = LEARN_DEEPDIVE as Record<string, unknown>;
     if (tashiField === '憲法') {
-      const d = (LEARN_DEEPDIVE as any)?.['多肢選択憲法'];
-      if (Array.isArray(d) && d.length > 0) return d;
+      if (Object.prototype.hasOwnProperty.call(dd, '多肢選択憲法')) {
+        const d = dd['多肢選択憲法'];
+        return Array.isArray(d) ? (d as string[]) : [];
+      }
     } else if (tashiField === '行政法') {
-      const d = (LEARN_DEEPDIVE as any)?.['多肢選択行政法'];
-      if (Array.isArray(d) && d.length > 0) return d;
+      if (Object.prototype.hasOwnProperty.call(dd, '多肢選択行政法')) {
+        const d = dd['多肢選択行政法'];
+        return Array.isArray(d) ? (d as string[]) : [];
+      }
     } else {
       const ken = (LEARN_DEEPDIVE as any)?.['多肢選択憲法'];
       const gyo = (LEARN_DEEPDIVE as any)?.['多肢選択行政法'];
@@ -359,15 +379,26 @@ export default function LearnSubjectScreen() {
     return Array.isArray(raw) ? raw : [];
   }, [subject, deepdiveTashiSlice]);
 
+  /** 長文B列（民法総則等）で兄弟走査のたびに全行パースしない */
+  const deepdiveSiblingTitles = useMemo(
+    () => buildDeepdiveSiblingTitles(deepdiveColumnArr),
+    [deepdiveColumnArr]
+  );
+
   /** F列解説（LEARN_DEEPDIVE と同じキー・インデックスで並ぶ） */
   const learnFExplainColumnArr: string[] = useMemo(() => {
     if (subject === '多肢選択' && deepdiveTashiSlice) {
+      const fe = LEARN_F_EXPLAIN as Record<string, unknown>;
       if (tashiField === '憲法') {
-        const raw = (LEARN_F_EXPLAIN as any)?.['多肢選択憲法'];
-        if (Array.isArray(raw) && raw.length > 0) return raw;
+        if (Object.prototype.hasOwnProperty.call(fe, '多肢選択憲法')) {
+          const raw = fe['多肢選択憲法'];
+          return Array.isArray(raw) ? (raw as string[]) : [];
+        }
       } else if (tashiField === '行政法') {
-        const raw = (LEARN_F_EXPLAIN as any)?.['多肢選択行政法'];
-        if (Array.isArray(raw) && raw.length > 0) return raw;
+        if (Object.prototype.hasOwnProperty.call(fe, '多肢選択行政法')) {
+          const raw = fe['多肢選択行政法'];
+          return Array.isArray(raw) ? (raw as string[]) : [];
+        }
       } else {
         const ken = (LEARN_F_EXPLAIN as any)?.['多肢選択憲法'];
         const gyo = (LEARN_F_EXPLAIN as any)?.['多肢選択行政法'];
@@ -385,14 +416,26 @@ export default function LearnSubjectScreen() {
 
   const learnFExplainText = (learnFExplainColumnArr[learnAlignedIndex] || '').trim();
 
+  /** 画像の自動キー・深掘りの learnSubject。本編「憲法」と「多肢選択・憲法」を混ぜない */
+  const learnSubjectForDeepdive = useMemo(() => {
+    if (subject === '多肢選択' && tashiField === '憲法') return '多肢選択憲法';
+    if (subject === '多肢選択' && tashiField === '行政法') return '多肢選択行政法';
+    return subject || '';
+  }, [subject, tashiField]);
+
   const learnSourceSheetLabel = useMemo(() => {
     if (subject === '多肢選択') {
+      const src = LEARN_SOURCE as Record<string, unknown>;
       if (tashiField === '憲法') {
-        const arr = (LEARN_SOURCE as any)?.['多肢選択憲法'];
-        if (Array.isArray(arr) && arr.length > 0) return arr[originalContentIndex];
+        if (Object.prototype.hasOwnProperty.call(src, '多肢選択憲法')) {
+          const arr = src['多肢選択憲法'];
+          if (Array.isArray(arr)) return (arr as string[])[originalContentIndex];
+        }
       } else if (tashiField === '行政法') {
-        const arr = (LEARN_SOURCE as any)?.['多肢選択行政法'];
-        if (Array.isArray(arr) && arr.length > 0) return arr[originalContentIndex];
+        if (Object.prototype.hasOwnProperty.call(src, '多肢選択行政法')) {
+          const arr = src['多肢選択行政法'];
+          if (Array.isArray(arr)) return (arr as string[])[originalContentIndex];
+        }
       } else {
         const ken = (LEARN_SOURCE as any)?.['多肢選択憲法'];
         const gyo = (LEARN_SOURCE as any)?.['多肢選択行政法'];
@@ -429,10 +472,19 @@ export default function LearnSubjectScreen() {
             (deepdiveContent || '').trim(),
             deepdiveColumnArr,
             contentList as string[],
-            subject
+            learnSubjectForDeepdive,
+            deepdiveSiblingTitles
           )
         : undefined,
-    [subject, learnAlignedIndex, deepdiveContent, deepdiveColumnArr, contentList]
+    [
+      subject,
+      learnAlignedIndex,
+      deepdiveContent,
+      deepdiveColumnArr,
+      contentList,
+      learnSubjectForDeepdive,
+      deepdiveSiblingTitles,
+    ]
   );
 
   const learnAutoImageResolved = !!(learnAutoImageKey && resolveImageAsset(learnAutoImageKey));
@@ -462,6 +514,12 @@ export default function LearnSubjectScreen() {
   }
   const hasChunks = foundQuestion?.chunks && foundQuestion.chunks.length > 0;
 
+  /** 多肢選択憲法／多肢選択行政法のみ: B列か [[LINK:]] があるときだけボタン表示（chunks・画像タグ・他科目混入で出ないようにする） */
+  const digDeeperButtonVisible =
+    learnSubjectForDeepdive === '多肢選択憲法' || learnSubjectForDeepdive === '多肢選択行政法'
+      ? !!(deepdiveContent || '').trim() || !!digDeeperUrl
+      : !!(deepdiveContent || digDeeperUrl || hasChunks || hasValidImage || learnAutoImageResolved || hasImageTagInCard);
+
   /** A列の [[image:…]] を B列（LEARN_DEEPDIVE）と結合して渡す（従来は B のみで A の画像が落ちていた） */
   const buildMergedDeepdivePayload = (): string => {
     const fromB = (deepdiveContent || '').trim();
@@ -478,7 +536,8 @@ export default function LearnSubjectScreen() {
         fromB,
         deepdiveColumnArr,
         contentList as string[],
-        subject
+        learnSubjectForDeepdive,
+        deepdiveSiblingTitles
       );
       if (autoKey && resolveImageAsset(autoKey)) merged = `[[image:${autoKey}]]\n\n${merged}`;
     } else if (!merged.trim()) {
@@ -487,7 +546,8 @@ export default function LearnSubjectScreen() {
         fromB,
         deepdiveColumnArr,
         contentList as string[],
-        subject
+        learnSubjectForDeepdive,
+        deepdiveSiblingTitles
       );
       if (autoKey && resolveImageAsset(autoKey)) merged = `[[image:${autoKey}]]`;
     }
@@ -496,25 +556,34 @@ export default function LearnSubjectScreen() {
 
   const handleOpenDeepDive = () => {
     const mergedPayload = buildMergedDeepdivePayload();
-    if (
-      (!mergedPayload &&
-        !digDeeperUrl &&
-        !hasChunks &&
-        !hasValidImage &&
-        !hasImageTagInCard &&
-        !learnAutoImageResolved) ||
-      !subject
-    )
+    const strictTashi =
+      learnSubjectForDeepdive === '多肢選択憲法' || learnSubjectForDeepdive === '多肢選択行政法';
+
+    if (!subject) return;
+
+    if (strictTashi) {
+      if (!(mergedPayload?.trim() || digDeeperUrl)) return;
+    } else if (
+      !mergedPayload &&
+      !digDeeperUrl &&
+      !hasChunks &&
+      !hasValidImage &&
+      !hasImageTagInCard &&
+      !learnAutoImageResolved
+    ) {
       return;
+    }
 
     // B列＋A列の [[image:…]] を結合して「もっと深掘る」へ
     if (mergedPayload) {
       setDeepdiveParams(mergedPayload, '', {
         fromLearn: true,
         fExplain: learnFExplainText,
-        learnSubject: subject,
+        learnSubject: learnSubjectForDeepdive,
+        learnReturnIndex: currentIndex,
       });
-      router.push({ pathname: '/deepdive' as any, params: { content: mergedPayload, choiceLabel: '' } });
+      // Web では params が URL に載り巨大本文でフリーズし得る。本文は setDeepdiveParams のみで渡す
+      router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
       return;
     }
 
@@ -768,26 +837,38 @@ export default function LearnSubjectScreen() {
   };
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThemedView style={styles.container}>
+    <ThemedView
+      style={styles.container}
+      pointerEvents={Platform.OS === 'web' && !learnReceivesPointer ? 'none' : 'auto'}
+    >
+      <SeekBar
+          currentIndex={currentIndex}
+          totalCount={displayContentList.length}
+          onSeek={(index) => {
+            killLearnTtsPlayback();
+            setIsPlaying(false);
+            setCurrentIndex(index);
+            setCurrentReadCount(1);
+            setSpokenIndex(0);
+          }}
+        />
         <ScrollView
           style={{ flex: 1 }}
           contentContainerStyle={{ gap: 16, paddingBottom: 100 }} // メモを置くスペースを考慮して下部に余白
           showsVerticalScrollIndicator={false}
         >
-          {/* シークバー（ナビゲーター） */}
-          <SeekBar
-            currentIndex={currentIndex}
-            totalCount={displayContentList.length}
-            onSeek={(index) => {
-              killLearnTtsPlayback();
-              setIsPlaying(false);
-              setCurrentIndex(index);
-              setCurrentReadCount(1);
-              setSpokenIndex(0);
-            }}
-            colors={colors}
-          />
+          {subject === '基礎法学' ? (
+            <Pressable
+              style={[styles.kisoSummaryLink, { backgroundColor: colors.card, borderColor: colors.border }]}
+              onPress={() => router.push('/learn/kiso-hougaku-summary')}
+            >
+              <MaterialIcons name="menu-book" size={22} color={colors.primary} />
+              <ThemedText style={[styles.kisoSummaryLinkText, { color: colors.text }]}>
+                基礎法学・解説まとめ（論点一覧）
+              </ThemedText>
+              <MaterialIcons name="chevron-right" size={22} color={colors.subText} />
+            </Pressable>
+          ) : null}
 
           <ThemedView style={styles.headerRow}>
             <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: 'transparent' }}>
@@ -919,14 +1000,15 @@ export default function LearnSubjectScreen() {
             ))}
 
             {/* Deep Dive Button (Moved inside speedContainer) */}
-            {(deepdiveContent || digDeeperUrl || hasChunks || hasValidImage || learnAutoImageResolved || hasImageTagInCard) ? (
+            {(digDeeperButtonVisible) ? (
               <Pressable style={styles.digDeeperButtonSmall} onPress={handleOpenDeepDive}>
                 <MaterialIcons
                   name={(digDeeperUrl === '54' && subject === '民法総則') ? "brush" : "article"}
                   size={16}
                   color="#fff"
+                  style={webNoHitChild}
                 />
-                <ThemedText style={styles.digDeeperTextSmall}>
+                <ThemedText style={[styles.digDeeperTextSmall, webNoHitChild]}>
                   {(digDeeperUrl === '54' && subject === '民法総則') ? "絵で覚える" : "もっと深掘る"}
                 </ThemedText>
               </Pressable>
@@ -974,18 +1056,38 @@ export default function LearnSubjectScreen() {
           </Link>
         </ScrollView>
 
-        {/* ドラッグ可能なメモ一覧 */}
-        {notes.map(note => (
-          <DraggableNote
-            key={note.id}
-            note={note}
-            onUpdatePosition={(x, y) => updateNotePosition(note.id, x, y)}
-            onUpdateSize={(w, h) => updateNoteSize(note.id, w, h)}
-            onUpdateText={(text) => updateNoteText(note.id, text)}
-            onDelete={() => deleteNote(note.id)}
-            themeColors={colors}
-          />
-        ))}
+        {/* DraggableNote の GestureDetector 用。全面 GH は Web で深掘りのタッチを奪うため使わない */}
+        {notes.length > 0 ? (
+          Platform.OS === 'web' ? (
+            <View style={StyleSheet.absoluteFillObject} pointerEvents="box-none">
+              {notes.map((note) => (
+                <DraggableNote
+                  key={note.id}
+                  note={note}
+                  onUpdatePosition={(x, y) => updateNotePosition(note.id, x, y)}
+                  onUpdateSize={(w, h) => updateNoteSize(note.id, w, h)}
+                  onUpdateText={(text) => updateNoteText(note.id, text)}
+                  onDelete={() => deleteNote(note.id)}
+                  themeColors={colors}
+                />
+              ))}
+            </View>
+          ) : (
+            <GestureHandlerRootView style={StyleSheet.absoluteFillObject} pointerEvents="box-none">
+              {notes.map((note) => (
+                <DraggableNote
+                  key={note.id}
+                  note={note}
+                  onUpdatePosition={(x, y) => updateNotePosition(note.id, x, y)}
+                  onUpdateSize={(w, h) => updateNoteSize(note.id, w, h)}
+                  onUpdateText={(text) => updateNoteText(note.id, text)}
+                  onDelete={() => deleteNote(note.id)}
+                  themeColors={colors}
+                />
+              ))}
+            </GestureHandlerRootView>
+          )
+        ) : null}
 
         {/* Character Settings Modal */}
         <Modal
@@ -1073,8 +1175,6 @@ export default function LearnSubjectScreen() {
           </View>
         )}
       </ThemedView>
-
-    </GestureHandlerRootView>
   );
 }
 
@@ -1082,63 +1182,87 @@ function SeekBar({
   currentIndex,
   totalCount,
   onSeek,
-  colors
 }: {
-  currentIndex: number,
-  totalCount: number,
-  onSeek: (index: number) => void,
-  colors: any
+  currentIndex: number;
+  totalCount: number;
+  onSeek: (index: number) => void;
 }) {
-  const [containerWidth, setContainerWidth] = useState(0);
-  const progress = useSharedValue(0);
+  const widthRef = useRef(1);
+  /** ジェスチャ開始時点の 0〜1 進捗（dx を足して追従。measureInWindow に依存しない） */
+  const startProgressRef = useRef(0);
+
+  const [visualProgress, setVisualProgress] = useState(0);
 
   useEffect(() => {
     if (totalCount > 1) {
-      progress.value = currentIndex / (totalCount - 1);
+      setVisualProgress(currentIndex / (totalCount - 1));
     } else {
-      progress.value = 0; // Handle single item case
+      setVisualProgress(0);
     }
   }, [currentIndex, totalCount]);
 
-  const gesture = Gesture.Pan()
-    .onUpdate((event) => {
-      if (containerWidth > 0) {
-        const newProgress = Math.min(Math.max(0, event.x / containerWidth), 1);
-        progress.value = newProgress;
-        const index = Math.round(newProgress * (totalCount - 1));
-        runOnJS(onSeek)(index);
-      }
-    });
+  const commitSeek = useCallback(
+    (p: number) => {
+      if (totalCount <= 1) return;
+      const idx = Math.round(Math.min(1, Math.max(0, p)) * (totalCount - 1));
+      onSeek(idx);
+    },
+    [totalCount, onSeek]
+  );
 
-  const tapGesture = Gesture.Tap()
-    .onEnd((event) => {
-      if (containerWidth > 0) {
-        const newProgress = Math.min(Math.max(0, event.x / containerWidth), 1);
-        progress.value = newProgress;
-        const index = Math.round(newProgress * (totalCount - 1));
-        runOnJS(onSeek)(index);
-      }
-    });
+  const panResponder = useMemo(
+    () =>
+      PanResponder.create({
+        onStartShouldSetPanResponder: () => totalCount > 1,
+        onStartShouldSetPanResponderCapture: () => totalCount > 1,
+        onMoveShouldSetPanResponder: () => totalCount > 1,
+        onMoveShouldSetPanResponderCapture: () => false,
+        onPanResponderTerminationRequest: () => false,
+        onPanResponderGrant: (e) => {
+          const w = widthRef.current;
+          if (w <= 0) return;
+          startProgressRef.current = Math.min(1, Math.max(0, e.nativeEvent.locationX / w));
+          setVisualProgress(startProgressRef.current);
+        },
+        onPanResponderMove: (_e, gs) => {
+          const w = widthRef.current;
+          if (w <= 0) return;
+          const p = Math.min(1, Math.max(0, startProgressRef.current + gs.dx / w));
+          setVisualProgress(p);
+        },
+        onPanResponderRelease: (_e, gs) => {
+          const w = widthRef.current;
+          if (w <= 0) return;
+          const p = Math.min(1, Math.max(0, startProgressRef.current + gs.dx / w));
+          setVisualProgress(p);
+          commitSeek(p);
+        },
+      }),
+    [totalCount, commitSeek]
+  );
 
-  const animatedBarStyle = useAnimatedStyle(() => ({
-    width: `${progress.value * 100}%`,
-  }));
-
-  const animatedThumbStyle = useAnimatedStyle(() => ({
-    left: `${progress.value * 100}%`,
-  }));
+  const pct = totalCount > 1 ? Math.min(100, Math.max(0, visualProgress * 100)) : 0;
 
   return (
-    <ThemedView
-      style={styles.seekBarContainer}
-      onLayout={(e) => setContainerWidth(e.nativeEvent.layout.width)}
-    >
-      <GestureDetector gesture={Gesture.Exclusive(gesture, tapGesture)}>
-        <View style={styles.seekBarTrack}>
-          <Animated.View style={[styles.seekBarProgress, animatedBarStyle, { backgroundColor: '#007BFF' }]} />
-          <Animated.View style={[styles.seekBarThumb, animatedThumbStyle]} />
+    <ThemedView style={styles.seekBarContainer}>
+      <View
+        style={styles.seekBarHitArea}
+        onLayout={(e) => {
+          widthRef.current = e.nativeEvent.layout.width;
+        }}
+        {...panResponder.panHandlers}
+      >
+        <View style={styles.seekBarTrack} pointerEvents="box-none">
+          <View
+            pointerEvents="none"
+            style={[
+              styles.seekBarProgress,
+              { width: `${pct}%`, backgroundColor: '#007BFF' },
+            ]}
+          />
+          <View pointerEvents="none" style={[styles.seekBarThumb, { left: `${pct}%` }]} />
         </View>
-      </GestureDetector>
+      </View>
     </ThemedView>
   );
 }
@@ -1234,6 +1358,21 @@ const styles = StyleSheet.create({
     paddingTop: 48,
     backgroundColor: '#f5f7fa',
   },
+  kisoSummaryLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 12,
+    borderWidth: 1,
+    marginBottom: 10,
+  },
+  kisoSummaryLinkText: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: '600',
+  },
   headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -1284,11 +1423,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   seekBarContainer: {
-    height: 44,
-    justifyContent: 'center',
     marginBottom: 8,
     backgroundColor: 'transparent',
-    // 確実にタッチを拾うための設定
+  },
+  /** タッチ領域（トラック本体は8pxだが、ここで44px確保） */
+  seekBarHitArea: {
+    width: '100%',
+    height: 44,
+    justifyContent: 'center',
   },
   seekBarTrack: {
     height: 8,

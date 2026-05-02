@@ -54,3 +54,21 @@ export async function toggleQuestionHighlight(
     return new Set();
   }
 }
+
+/** 蛍光ペン（ドラッグ）など、ハイライト行をまとめて保存 */
+export async function setQuestionHighlights(
+  subject: string,
+  field: string,
+  questionText: string,
+  segments: Set<number> | number[]
+): Promise<Set<number>> {
+  try {
+    const next = new Set(segments instanceof Set ? [...segments] : segments.map((n) => parseInt(String(n), 10)));
+    const key = buildKey(subject, field, questionText);
+    await AsyncStorage.setItem(key, JSON.stringify([...next]));
+    return next;
+  } catch (e) {
+    console.error('Failed to set highlights', e);
+    return new Set();
+  }
+}

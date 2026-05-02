@@ -223,32 +223,110 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'learn/minnpou/bukken/99-110': require('@/assets/images/deepdive/learn/minnpou/bukken/99-110.png')
 };
 
+const _ALL_DEEPDIVE_KEYS = Object.keys(DEEPDIVE_IMAGES);
+
+/** 見て聞いて覚える・自動画像解決用。毎回 Object.keys 全走査すると民法カード切替で詰まるため1回だけ構築 */
+const _KENPOU_LEARN_BY_QNUM = (() => {
+  const m = new Map<number, string>();
+  for (const k of _ALL_DEEPDIVE_KEYS) {
+    const mm = k.match(/^kenpou\/(\d+)-230(?:$|[\s-])/);
+    if (mm) {
+      const n = parseInt(mm[1], 10);
+      if (!m.has(n)) m.set(n, k);
+    }
+  }
+  for (let i = 1; i <= 250; i++) {
+    const exact = `kenpou/${i}-230`;
+    if (DEEPDIVE_IMAGES[exact]) m.set(i, exact);
+  }
+  return m;
+})();
+
+function buildSortedFirstKeyMap(
+  keyPred: (k: string) => boolean,
+  qnumFromBase: (base: string) => number | undefined
+): Map<number, string> {
+  const lists = new Map<number, string[]>();
+  for (const k of _ALL_DEEPDIVE_KEYS) {
+    if (!keyPred(k)) continue;
+    const base = k.split('/').pop() || '';
+    const n = qnumFromBase(base);
+    if (n == null || n < 1) continue;
+    let arr = lists.get(n);
+    if (!arr) {
+      arr = [];
+      lists.set(n, arr);
+    }
+    arr.push(k);
+  }
+  const out = new Map<number, string>();
+  for (const [n, arr] of lists) {
+    arr.sort();
+    out.set(n, arr[0]);
+  }
+  return out;
+}
+
+const _MINNPOU_MAIN_LEARN_BY_QNUM = buildSortedFirstKeyMap(
+  (k) => k.startsWith('learn/minnpou/') && !k.startsWith('learn/minnpou/bukken/'),
+  (base) => {
+    const mm = /^(\d+)-/.exec(base);
+    return mm ? parseInt(mm[1], 10) : undefined;
+  }
+);
+
+const _MINNPOU_BUKKEN_LEARN_BY_QNUM = buildSortedFirstKeyMap(
+  (k) => k.startsWith('learn/minnpou/bukken/'),
+  (base) => {
+    const mm = /^(\d+)-110/.exec(base);
+    return mm ? parseInt(mm[1], 10) : undefined;
+  }
+);
+
+const _SAIKENSOURON_LEARN_BY_QNUM = buildSortedFirstKeyMap(
+  (k) => k.startsWith('learn/saikensouron/'),
+  (base) => {
+    const mm = /^(\d+)-/.exec(base);
+    return mm ? parseInt(mm[1], 10) : undefined;
+  }
+);
+
+/** getDeepdiveImageSource のフォールバック用（basename → フルキー1件） */
+const _DEEPDIVE_KEY_BY_BASENAME = (() => {
+  const m = new Map<string, string>();
+  for (const k of _ALL_DEEPDIVE_KEYS) {
+    const base = k.includes('/') ? k.split('/').pop()! : k;
+    if (!m.has(base)) m.set(base, k);
+  }
+  return m;
+})();
+
 export function getDeepdiveImageSource(filename: string): number | undefined {
   if (!filename) return undefined;
   const normalized = filename.replace(/\.(png|jpg|jpeg|gif|webp)$/i, '');
   const base = normalized.includes('/') ? normalized.split('/').pop()! : normalized;
   const exact = DEEPDIVE_IMAGES[normalized];
   if (exact) return exact as number;
-  const byBase = Object.keys(DEEPDIVE_IMAGES).find((k) => k === base || k.endsWith('/' + base));
+  const byBaseKey = _DEEPDIVE_KEY_BY_BASENAME.get(base);
+  if (byBaseKey) return DEEPDIVE_IMAGES[byBaseKey] as number;
+  const byBase = _ALL_DEEPDIVE_KEYS.find((k) => k === base || k.endsWith('/' + base));
   return byBase ? (DEEPDIVE_IMAGES[byBase] as number) : undefined;
 }
 
 /** 見て聞いて覚える・憲法: 問番号（1始まり）→ kenpou/N-230（ファイル名の揺れに一部対応） */
 export function resolveKenpouProblemImageKey(problemNum1Based: number): string | undefined {
   if (problemNum1Based < 1) return undefined;
-  const exact = `kenpou/${problemNum1Based}-230`;
-  if (DEEPDIVE_IMAGES[exact]) return exact;
-  const re = new RegExp(`^kenpou/${problemNum1Based}-230(?:$|[\\s-])`);
-  return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
+  return _KENPOU_LEARN_BY_QNUM.get(problemNum1Based);
 }
 
 /** 見て聞いて覚える・民法物権: learn/minnpou/bukken/N-110 */
 export function resolveMinpoBukkenLearnImageKey(problemNum1Based: number): string | undefined {
   if (problemNum1Based < 1) return undefined;
+  const fromMap = _MINNPOU_BUKKEN_LEARN_BY_QNUM.get(problemNum1Based);
+  if (fromMap) return fromMap;
   const exact = `learn/minnpou/bukken/${problemNum1Based}-110`;
   if (DEEPDIVE_IMAGES[exact]) return exact;
-  const re = new RegExp(`^learn/minnpou/bukken/${problemNum1Based}-110(?:$|-)`);
-  return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
+  return undefined;
 }
 
 /**
@@ -257,14 +335,7 @@ export function resolveMinpoBukkenLearnImageKey(problemNum1Based: number): strin
  */
 export function resolveMinpoLearnFolderByQuestionNumber(problemNum1Based: number): string | undefined {
   if (problemNum1Based < 1) return undefined;
-  const head = new RegExp(`^${problemNum1Based}-`);
-  const keys = Object.keys(DEEPDIVE_IMAGES).filter((k) => {
-    if (!k.startsWith('learn/minnpou/') || k.startsWith('learn/minnpou/bukken/')) return false;
-    const base = k.split('/').pop() || '';
-    return head.test(base);
-  });
-  if (keys.length === 0) return undefined;
-  return keys.sort()[0];
+  return _MINNPOU_MAIN_LEARN_BY_QNUM.get(problemNum1Based);
 }
 
 /**
@@ -273,12 +344,5 @@ export function resolveMinpoLearnFolderByQuestionNumber(problemNum1Based: number
  */
 export function resolveSaikensouronLearnImageKey(problemNum1Based: number): string | undefined {
   if (problemNum1Based < 1) return undefined;
-  const head = new RegExp(`^${problemNum1Based}-`);
-  const keys = Object.keys(DEEPDIVE_IMAGES).filter((k) => {
-    if (!k.startsWith('learn/saikensouron/')) return false;
-    const base = k.split('/').pop() || '';
-    return head.test(base);
-  });
-  if (keys.length === 0) return undefined;
-  return keys.sort()[0];
+  return _SAIKENSOURON_LEARN_BY_QNUM.get(problemNum1Based);
 }

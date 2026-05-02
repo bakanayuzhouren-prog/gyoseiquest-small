@@ -209,14 +209,16 @@ async function sync() {
       const rawSubject = row[0];
       // ONLY Column A overrides if it is relatively short (category name) 
       // AND doesn't look like legal text. Long text here is usually content.
-      if (rawSubject && rawSubject.length < 20) {
+      // 「行政法総合」シートはタブでキーが決まる。A列の短い科目名で地方自治法等へ流すと B列のカードが取り込まれない。
+      if (rawSubject && rawSubject.length < 20 && t !== '行政法総合') {
         if (rawSubject.includes('行政法総論')) currentSubject = '行政法総論';
         else if (rawSubject.includes('行政手続法')) currentSubject = '行政手続法';
         else if (rawSubject.includes('行政不服審査法')) currentSubject = '行政不服審査法';
         else if (rawSubject.includes('行政事件訴訟法')) currentSubject = '行政事件訴訟法';
         else if (rawSubject.includes('国家賠償法')) currentSubject = '国家賠償法';
         else if (rawSubject.includes('地方自治法')) currentSubject = '地方自治法';
-        else if (rawSubject.includes('行政法総合')) currentSubject = '行政法総合';
+        // A列の「行政法総合」は他シート（総論など）の分類タグに使われることがある。
+        // ここで currentSubject を切り替えると総合タブの先頭に総論の長文が混入するため切り替えない（総合の本文は「行政法総合」タブのみ）。
         else if (rawSubject.includes('行政法') && rawSubject.includes('記述')) currentSubject = '行政法記述';
 
         else if (rawSubject.includes('民法総則') || rawSubject.includes('民法総論')) currentSubject = '民法総則';
@@ -229,7 +231,16 @@ async function sync() {
         else if (rawSubject.includes('多肢選択') && rawSubject.includes('行政法')) currentSubject = '多肢選択行政法';
         else if (rawSubject.includes('多肢選択')) currentSubject = '多肢選択';
         else if (rawSubject.includes('家族法')) currentSubject = '家族法';
-        else if (rawSubject.includes('憲法') || rawSubject.includes('人権') || rawSubject.includes('統治')) currentSubject = '憲法';
+        /** A列が「憲法」のみ等で本編に差すと、多肢選択シートの行が learnContent['憲法'] に混入する。シート既定が多肢側なら本編『憲法』へ切り替えない */
+        else if (rawSubject.includes('憲法') || rawSubject.includes('人権') || rawSubject.includes('統治')) {
+          if (
+            sheetDefaultSubject !== '多肢選択憲法' &&
+            sheetDefaultSubject !== '多肢選択行政法' &&
+            sheetDefaultSubject !== '多肢選択'
+          ) {
+            currentSubject = '憲法';
+          }
+        }
         else if (rawSubject.includes('商法') || rawSubject.includes('会社法')) currentSubject = '商法・会社法';
         else if (rawSubject.includes('基礎法学')) currentSubject = '基礎法学';
         else if (rawSubject.includes('基礎知識')) currentSubject = '基礎知識';
@@ -247,7 +258,19 @@ async function sync() {
         const looksLikeId = /^[a-z]{2}\d+$/i.test(valA) || /^[ａ-ｚＡ-Ｚ０-９]+\d+$/.test(valA);
         // 行政法総論シート: G列=問題。それ以外の通常シート: H列=問題（syncQuiz と同じ列）
         const useGyoseiSoronLayout = t === '行政法総論';
+        /** 行政法総合シート: 見て聞いて覚えの本文は A 列。K 列はクイズ側の重複のため参照しない。A 空の行のみ B→H の順でフォールバック。 */
+        const gyoseiSogoSheet = t === '行政法総合';
+        const gyoseiSogoValidA =
+          !!(valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢');
         const valH = useGyoseiSoronLayout ? (row[6] ? row[6].trim() : '') : (row[7] ? row[7].trim() : '');
+        /** H列＝問題文の行政法シート。本文に「条文」「解説」が普通に出るため後段のメタ行フィルタ対象外。A空・Hのみの行も取り込む。 */
+        const isAdminLawLearnSubject =
+          currentSubject === '行政法総合' ||
+          currentSubject === '行政手続法' ||
+          currentSubject === '行政不服審査法' ||
+          currentSubject === '行政事件訴訟法' ||
+          currentSubject === '国家賠償法' ||
+          currentSubject === '地方自治法';
         // A列＝本文。B列＝深掘り。C列＝青文字検索（用語/説明）。旧C列以降は1列ずつ繰り下がり（本文フォールバックはD列=index3）
         let content = row[0]; // A列＝問題文
         if (currentSubject === '民法物権') {
@@ -278,6 +301,33 @@ async function sync() {
           currentSubject === '多肢選択憲法' ||
           currentSubject === '多肢選択行政法';
 
+        if (
+          isAdminLawLearnSubject &&
+          !gyoseiSogoSheet &&
+          !(content && String(content).trim()) &&
+          valH &&
+          valH !== '問題' &&
+          !useGyoseiSoronLayout &&
+          !minpoSheetBodyInB &&
+          !tashiLearnSubject
+        ) {
+          content = valH;
+        }
+        if (gyoseiSogoSheet) {
+          if (gyoseiSogoValidA) {
+            content = row[0];
+            usedBAsMainBody = false;
+          } else if (valBTrim) {
+            content = row[1];
+            usedBAsMainBody = true;
+          } else if (valH && valH !== '問題') {
+            content = valH;
+            usedBAsMainBody = false;
+          }
+        }
+        const gyoseiSogoBody =
+          gyoseiSogoSheet && (gyoseiSogoValidA || valBTrim || (valH && valH !== '問題'));
+
         // 民法物権は H列あり＝新グループ開始（A列肢の受け皿更新）
         let isNewQuestion = false;
         if (currentSubject === '民法物権') {
@@ -285,10 +335,18 @@ async function sync() {
         } else if (tashiLearnSubject || t === '憲法') {
           if (valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢') isNewQuestion = true;
         } else if (t !== '憲法') {
-          if (
+          if (minpoSheetBodyInB) {
+            // 見て聞いて覚えるは A列のみ（.cursor 規約）。H列だけの行は問題を解く用の継続行のため新カードにしない
+            if (
+              (valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢') ||
+              (!valA && valBTrim)
+            ) {
+              isNewQuestion = true;
+            }
+          } else if (
             valH ||
             (valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢') ||
-            (minpoSheetBodyInB && !valA && valBTrim)
+            !!gyoseiSogoBody
           ) {
             isNewQuestion = true;
           }
@@ -311,6 +369,7 @@ async function sync() {
           const groupFContents = [];
           let j = i;
           while (j < dataRows.length) {
+            if (gyoseiSogoSheet && j > i) break;
             const colVal = dataRows[j][1] ? dataRows[j][1].trim() : '';
             if (colVal) {
               groupHasDeepDive = true;
@@ -328,10 +387,19 @@ async function sync() {
                 if (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢') break;
               } else if (t !== '憲法') {
                 const nextValB = nextRow[1] ? nextRow[1].trim() : '';
-                if (
+                if (minpoSheetBodyInB) {
+                  // 次の「A列の新しい見出し」まで B/F を継続行からも拾う（A 空・B ありの肢行は !nextValA&&nextValB だが、ここで break すると深掘りが落ちる）
+                  if (
+                    nextValA &&
+                    !nextValA.startsWith('科目') &&
+                    nextValA !== '問題' &&
+                    nextValA !== '肢'
+                  ) {
+                    break;
+                  }
+                } else if (
                   nextValProblem ||
-                  (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢') ||
-                  (minpoSheetBodyInB && !nextValA && nextValB)
+                  (nextValA && !nextValA.startsWith('科目') && nextValA !== '問題' && nextValA !== '肢')
                 ) {
                   break;
                 }
@@ -348,6 +416,14 @@ async function sync() {
 
         if (valA === '問題' || valA === '肢') continue;
         if (valA.startsWith('科目') && !(row[3] && String(row[3]).trim())) continue;
+
+        if (minpoSheetBodyInB) {
+          const hasValidA = valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢';
+          const bOnlyCard = !valA && valBTrim;
+          if (!hasValidA && !bOnlyCard) {
+            continue;
+          }
+        }
 
         if (content) {
           const trimmedContent = content.trim();
@@ -370,7 +446,7 @@ async function sync() {
             const valCLex = row[2] != null ? String(row[2]).trim() : '';
             const hasLexiconTag =
               trimmedContent.includes('[[dict:') || parseLexiconPairsFromCell(valCLex).length > 0;
-            if (currentSubject !== '民法物権' && !tashiLearnSubject && !hasLexiconTag) {
+            if (currentSubject !== '民法物権' && !tashiLearnSubject && !hasLexiconTag && !isAdminLawLearnSubject) {
               if (
                 trimmedContent.includes('条文') ||
                 trimmedContent.includes('解説') ||

@@ -5,26 +5,45 @@ import { ThemedView } from '@/components/themed-view';
 import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import { mergedDeepdiveHasResolvableImage, pickLearnDeepdiveSharedImageKey } from '@/src/deepdiveLearnAutoImage';
-import { getDeepdiveParams } from '@/src/deepdiveState';
+import {
+  getDeepdiveParams,
+  hydrateDeepdiveFromSessionIfEmpty,
+  hydrateLearnBackMetaFromSessionIfMissing,
+  clearDeepdiveSessionWeb,
+  takeDeepdiveReturnHrefWeb,
+  takeDeepdiveLearnBackMetaWeb,
+} from '@/src/deepdiveState';
 import { LEARN_DEEPDIVE } from '@/src/learn';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
 import { CHACHALOT_SPEECH_OPTIONS } from '@/utils/chachalot-tts';
 import { applyTTSRules } from '@/utils/tts-rules';
+import { formatStatuteReferenceForMarkdown } from '@/utils/statute-reference-format';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Stack, useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, startTransition } from 'react';
 import { Image, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useSafeAreaInsets, SafeAreaView } from 'react-native-safe-area-context';
 
 const CHACHALOT_IMG = require('@/assets/images/characters/chachalot.png');
 
-/** 番号見出し行の直前（preInsert と同系）。`4.**見出し` のようにドット直後が ** でも潰さない */
-const NEWLINE_BEFORE_NUM_HEAD =
-  /\n(?=\s*(?:(?:[1-9][0-9]?|[１-９][０-９]?)[\.．:：\uFF1A]\s*(?:\*\*|＊＊)?|[①②③④⑤⑥⑦⑧⑨⑩]))/g;
+/** Web: Pressable 内の Text/Icon がクリックのターゲットになり親の onPress が発火しないことがある */
+const webNoHitChild = Platform.OS === 'web' ? { pointerEvents: 'none' as const } : {};
 
-/** 文中の「N.」の前に改行を入れるときの N. 側（スペースなしで ** が続くケースを含む） */
-const HALFWD_NUM_HEAD_TOKEN = /[1-9][0-9]?[\.．:：\uFF1A]\s*(?:\*\*|＊＊|[^\s\n　])/;
-const FULLWD_NUM_HEAD_TOKEN = /[１-９][０-９]?[\.．:：\uFF1A]\s*(?:\*\*|＊＊|[^\s\n　])/;
+/**
+ * normalize＋lookbehind 付き分割は数万字を超えるとメインスレッドが長時間ブロックする（学習・民法など）。
+ * このサイズ以上は 1 カードとして描画し、滞在を防ぐ。
+ */
+const DEEPDIVE_SPLIT_CHAR_SOFT_CAP = 48_000;
+
+/** 番号見出し行の直前（preInsert と同系）。日付「28.12」の `.` では改行しない */
+const NEWLINE_BEFORE_NUM_HEAD =
+  /\n(?=\s*(?:(?:[1-9][0-9]?|[１-９][０-９]?)[\.．:：\uFF1A](?![0-9０-９])\s*(?:\*\*|＊＊)?|[①②③④⑤⑥⑦⑧⑨⑩]))/g;
+
+/** 文中の「N.」の前に改行を入れるときの N. 側（28.12.8 の「28.」は除外） */
+const HALFWD_NUM_HEAD_TOKEN = /[1-9][0-9]?[\.．:：\uFF1A](?!\d)\s*(?:\*\*|＊＊|[^\s\n　])/;
+const FULLWD_NUM_HEAD_TOKEN = /[１-９][０-９]?[\.．:：\uFF1A](?![０-９])\s*(?:\*\*|＊＊|[^\s\n　])/;
 
 /** スプレッドシート由来の途中改行を詰め、空行のみ段落区切りとする。「。」のあと改行＋番号見出しの前は必ず改行を維持 */
 function normalizeDeepdiveFlowText(s: string): string {
@@ -34,7 +53,15 @@ function normalizeDeepdiveFlowText(s: string): string {
   return t
     .split(/\n{2,}/)
     .map((block) => {
-      let b = block.trim();
+      const trimmedBlock = block.trim();
+      const rowLines = trimmedBlock.split('\n').map((l) => l.trim()).filter((l) => l.length > 0);
+      /** タブを含む複数行は「表っぽい」ので行結合しない（1行でもタブのみなら通常処理へ） */
+      const hasTab = trimmedBlock.includes('\t');
+      const isTabGrid = hasTab && rowLines.length >= 2;
+      if (isTabGrid) {
+        return rowLines.join('\n');
+      }
+      let b = trimmedBlock;
       b = b.replace(NEWLINE_BEFORE_NUM_HEAD, PARA_PROTECT);
       b = b.replace(/[ \t]*\n[ \t]*/g, ' ').replace(/[ \u3000]{2,}/g, ' ');
       b = b.replace(new RegExp(PARA_PROTECT, 'g'), '\n');
@@ -106,6 +133,7 @@ export default function DeepdiveScreen() {
   }>();
   const { colors } = useTheme();
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const {
     isPlaying: learnIsPlaying,
     setIsPlaying: setLearnIsPlaying,
@@ -115,6 +143,9 @@ export default function DeepdiveScreen() {
     learnScreenMounted,
   } = useLearnPlayback();
   const [content, setContent] = useState('');
+  /** スプレッドシート N 列（語群未使用シートの周辺知識） */
+  const [peripheralContent, setPeripheralContent] = useState('');
+  const [deepView, setDeepView] = useState<'main' | 'peripheral'>('main');
   const [choiceLabel, setChoiceLabel] = useState('');
   const [fromLearn, setFromLearn] = useState(false);
   /** 肢が正解なら true・不正解なら false・表示しないときは null（memo 単体・学習など） */
@@ -126,60 +157,111 @@ export default function DeepdiveScreen() {
   /** クイズ結果から開いたときの科目・分野（地方自治法の深掘り調整用） */
   const [quizSubject, setQuizSubject] = useState('');
   const [quizField, setQuizField] = useState('');
+  /** setDeepdiveParams の screenTitle（根拠条文など）。空ならヘッダーは「もっと深掘る」 */
+  const [pageTitle, setPageTitle] = useState(() => (getDeepdiveParams().screenTitle || '').trim());
   /** タップで全画面拡大（require の module 番号） */
   const [previewImageSource, setPreviewImageSource] = useState<number | null>(null);
   const fromLearnRef = useRef(false);
+
+  /** 巨大セルに対する includes が学習スニペット一致で固まるのを防ぐ（先頭〜上限文字のみ見る） */
+  const cellMayContainSnippet = (d: string, snippet: string, headChars: number) => {
+    if (!d || d.length < 200) return false;
+    if (d.length <= headChars) return d.includes(snippet);
+    return d.slice(0, headChars).includes(snippet);
+  };
+
   useEffect(() => {
-    const stored = getDeepdiveParams();
-    const paramContent = params.content;
-    const fromParams = typeof paramContent === 'string' ? paramContent : Array.isArray(paramContent) ? paramContent[0] : '';
-    let raw = stored.content || fromParams || '';
-    let beg = stored.beginnerContent || '';
-    const paramLabel = params.choiceLabel;
-    const fromParamLabel =
-      typeof paramLabel === 'string' ? paramLabel : Array.isArray(paramLabel) ? paramLabel[0] : '';
-    const finishCommon = () => {
-      setChoiceLabel(stored.choiceLabel || fromParamLabel || '');
-      setFromLearn(stored.fromLearn);
-      setChoiceCorrect(stored.choiceCorrect ?? null);
-      fromLearnRef.current = stored.fromLearn;
-      setQuizSubject((stored.quizSubject || '').trim());
-      setQuizField((stored.quizField || '').trim());
-    };
-    const learnSubj = (stored.learnSubject || '').trim();
-    const augmentBeginner = (b: string) => {
-      let t = b;
-      if (t.trim() && !mergedDeepdiveHasResolvableImage(t)) {
-        const shared = pickLearnDeepdiveSharedImageKey(t, learnSubj || undefined);
-        if (shared) t = `[[image:${shared}]]\n\n${t}`;
-      }
-      return t;
-    };
-    if (!raw) {
-      setContent('');
-      setBeginnerContent(augmentBeginner(beg));
-      setFExplainHeader((stored.fExplain || '').trim());
-      finishCommon();
-      return;
-    }
-    if (raw.length < 150) {
-      for (const arr of Object.values(LEARN_DEEPDIVE as Record<string, string[]>)) {
-        if (!Array.isArray(arr)) continue;
-        const found = arr.find((d) => d && d.length > 200 && d.includes(raw));
-        if (found) {
-          raw = found;
-          break;
+    const handle = setTimeout(() => {
+      hydrateDeepdiveFromSessionIfEmpty();
+      hydrateLearnBackMetaFromSessionIfMissing();
+      const stored = getDeepdiveParams();
+      const paramContent = params.content;
+      const fromParams =
+        typeof paramContent === 'string' ? paramContent : Array.isArray(paramContent) ? paramContent[0] : '';
+      let raw = stored.content || fromParams || '';
+      let beg = stored.beginnerContent || '';
+      let periph = stored.peripheralContent || '';
+      const paramLabel = params.choiceLabel;
+      const fromParamLabel =
+        typeof paramLabel === 'string' ? paramLabel : Array.isArray(paramLabel) ? paramLabel[0] : '';
+      const finishCommon = () => {
+        setChoiceLabel(stored.choiceLabel || fromParamLabel || '');
+        setFromLearn(stored.fromLearn);
+        setChoiceCorrect(stored.choiceCorrect ?? null);
+        fromLearnRef.current = stored.fromLearn;
+        setQuizSubject((stored.quizSubject || '').trim());
+        setQuizField((stored.quizField || '').trim());
+        setPageTitle((stored.screenTitle || '').trim());
+      };
+      const learnSubj = (stored.learnSubject || '').trim();
+      const augmentBeginner = (b: string) => {
+        let t = b;
+        if (
+          t.trim() &&
+          !mergedDeepdiveHasResolvableImage(t) &&
+          !(stored.fromLearn && t.length > 80_000)
+        ) {
+          const shared = pickLearnDeepdiveSharedImageKey(t, learnSubj, { fromLearn: stored.fromLearn });
+          if (shared) t = `[[image:${shared}]]\n\n${t}`;
         }
-      }
-    }
-    if (raw.trim() && !mergedDeepdiveHasResolvableImage(raw)) {
-      const shared = pickLearnDeepdiveSharedImageKey(raw, learnSubj || undefined);
-      if (shared) raw = `[[image:${shared}]]\n\n${raw}`;
-    }
-    setContent(raw);
-    setBeginnerContent(augmentBeginner(beg));
-    setFExplainHeader((stored.fExplain || '').trim());
-    finishCommon();
+        return t;
+      };
+      const applyToState = () => {
+        if (!raw.trim()) {
+          setContent('');
+          setBeginnerContent(augmentBeginner(beg));
+          setPeripheralContent(periph.trim());
+          setDeepView('main');
+          setFExplainHeader((stored.fExplain || '').trim());
+          finishCommon();
+          return;
+        }
+        const snippet = raw.trim();
+        if (stored.fromLearn && snippet.length > 0 && snippet.length < 150) {
+          const dd = LEARN_DEEPDIVE as Record<string, string[] | undefined>;
+          let arraysToSearch: string[][] = [];
+          if (learnSubj && dd[learnSubj] && Array.isArray(dd[learnSubj])) {
+            arraysToSearch = [dd[learnSubj]];
+          } else if (learnSubj === '多肢選択憲法' || learnSubj === '多肢選択行政法') {
+            arraysToSearch = [];
+          } else if (stored.fromLearn) {
+            arraysToSearch = [];
+          } else {
+            arraysToSearch = Object.values(dd).filter(Array.isArray) as string[][];
+          }
+          const headChars = 80_000;
+          for (const arr of arraysToSearch) {
+            const found = arr.find((d) => cellMayContainSnippet(d, snippet, headChars));
+            if (found) {
+              raw = found;
+              break;
+            }
+          }
+        }
+        if (
+          raw.trim() &&
+          !mergedDeepdiveHasResolvableImage(raw) &&
+          !(stored.fromLearn && raw.length > 80_000)
+        ) {
+          const shared = pickLearnDeepdiveSharedImageKey(raw, learnSubj, { fromLearn: stored.fromLearn });
+          if (shared) raw = `[[image:${shared}]]\n\n${raw}`;
+        }
+        setContent(raw);
+        setBeginnerContent(augmentBeginner(beg));
+        if (periph.trim() && !mergedDeepdiveHasResolvableImage(periph)) {
+          if (!(stored.fromLearn && periph.length > 80_000)) {
+            const shared = pickLearnDeepdiveSharedImageKey(periph, learnSubj, { fromLearn: stored.fromLearn });
+            if (shared) periph = `[[image:${shared}]]\n\n${periph}`;
+          }
+        }
+        setPeripheralContent(periph.trim());
+        setDeepView('main');
+        setFExplainHeader((stored.fExplain || '').trim());
+        finishCommon();
+      };
+      startTransition(applyToState);
+    }, 0);
+    return () => clearTimeout(handle);
   }, []);
 
   useFocusEffect(
@@ -191,6 +273,7 @@ export default function DeepdiveScreen() {
       setFExplainHeader((stored.fExplain || '').trim());
       setQuizSubject((stored.quizSubject || '').trim());
       setQuizField((stored.quizField || '').trim());
+      setPageTitle((stored.screenTitle || '').trim());
     }, [])
   );
 
@@ -198,6 +281,12 @@ export default function DeepdiveScreen() {
   const [ttsSegmentIndex, setTtsSegmentIndex] = useState(0);
   const [isTtsPlaying, setIsTtsPlaying] = useState(false);
   const ttsSessionRef = useRef(0);
+
+  const scrollRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ y: 0, animated: true });
+  }, [deepView]);
 
   useEffect(() => {
     return () => {
@@ -211,7 +300,15 @@ export default function DeepdiveScreen() {
     () => stripLeadingImageTags(content),
     [content]
   );
+  const { images: peripheralHeaderKeys, rest: peripheralMainRest } = useMemo(
+    () => stripLeadingImageTags(peripheralContent),
+    [peripheralContent]
+  );
   const mainParts = useMemo(() => splitContentToImageParts(mainContentRest), [mainContentRest]);
+  const peripheralParts = useMemo(
+    () => splitContentToImageParts(peripheralMainRest),
+    [peripheralMainRest]
+  );
   const beginnerParts = useMemo(() => splitContentToImageParts(beginnerContent), [beginnerContent]);
   /** F列解説も B 列と同じくカード化（B が画像のみ等で本文が F に乗るケース対策） */
   const fExplainParts = useMemo(
@@ -246,6 +343,9 @@ export default function DeepdiveScreen() {
   const splitIntoCards = (text: string): string[] => {
     const trimmed = text.trim();
     if (!trimmed) return [];
+    if (trimmed.length > DEEPDIVE_SPLIT_CHAR_SOFT_CAP) {
+      return [trimmed];
+    }
     const withNl = trimmed.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     const flow = normalizeDeepdiveFlowText(withNl);
     const prepared = preInsertNewlinesForNumberedSections(flow);
@@ -314,10 +414,67 @@ export default function DeepdiveScreen() {
     return jichihouHideRelatedSections ? cards.filter((c) => !dropJichihouRelatedStatuteCaseCard(c)) : cards;
   };
 
+  const isStatuteRefDeepdivePage =
+    (pageTitle.trim() || (getDeepdiveParams().screenTitle || '').trim()) === '根拠条文';
+
+  /** 民法総則など超長文のカード分割は毎再レンダーで走らせない */
+  const mainCardsForRender = useMemo(() => {
+    const t = mainContentRest.trim();
+    if (!t) return [];
+    if (isStatuteRefDeepdivePage) {
+      return [formatStatuteReferenceForMarkdown(t)];
+    }
+    const cards = splitIntoCards(t);
+    return jichihouHideRelatedSections ? cards.filter((c) => !dropJichihouRelatedStatuteCaseCard(c)) : cards;
+  }, [mainContentRest, jichihouHideRelatedSections, isStatuteRefDeepdivePage]);
+
+  const peripheralCardsForRender = useMemo(() => {
+    const t = peripheralMainRest.trim();
+    if (!t) return [];
+    const cards = splitIntoCards(t);
+    return jichihouHideRelatedSections ? cards.filter((c) => !dropJichihouRelatedStatuteCaseCard(c)) : cards;
+  }, [peripheralMainRest, jichihouHideRelatedSections]);
+
+  const beginnerCardsForRender = useMemo(() => {
+    const t = beginnerContent.trim();
+    if (!t) return [];
+    const cards = splitIntoCards(t);
+    return jichihouHideRelatedSections ? cards.filter((c) => !dropJichihouRelatedStatuteCaseCard(c)) : cards;
+  }, [beginnerContent, jichihouHideRelatedSections]);
+
+  const fExplainCardsForRender = useMemo(() => {
+    const t = (fExplainHeader || '').trim();
+    if (!t) return [];
+    const cards = splitIntoCards(t);
+    return jichihouHideRelatedSections ? cards.filter((c) => !dropJichihouRelatedStatuteCaseCard(c)) : cards;
+  }, [fExplainHeader, jichihouHideRelatedSections]);
+
   const ttsSegments = useMemo(() => {
-    const mainForTts = jichihouHideRelatedSections ? deepdiveCardsForRender(content).join('\n\n') : content;
+    if (deepView === 'peripheral' && peripheralContent.trim()) {
+      const perForTts = jichihouHideRelatedSections
+        ? deepdiveCardsForRender(peripheralContent).join('\n\n')
+        : peripheralContent;
+      const textForTTS = stripDeepdiveForTts(perForTts);
+      if (!textForTTS) return [];
+      const chunks = textForTTS
+        .split(/\n{2,}/)
+        .map((s) => s.trim())
+        .filter(Boolean);
+      if (chunks.length <= 1 && textForTTS.length > 500) {
+        const bySentence = textForTTS.split(/(?<=[。．!！?？])\s+/).map((s) => s.trim()).filter(Boolean);
+        return bySentence.map((s) => applyTTSRules(s)).filter((s) => s.trim());
+      }
+      return chunks.map((s) => applyTTSRules(s)).filter((s) => s.trim());
+    }
+    const mainRaw =
+      isStatuteRefDeepdivePage && content.trim()
+        ? formatStatuteReferenceForMarkdown(content.trim())
+        : jichihouHideRelatedSections
+          ? deepdiveCardsForRender(content).join('\n\n')
+          : content;
+    const mainForTts = stripDeepdiveForTts(String(mainRaw)).replace(/\*\*/g, '');
     const begForTts = jichihouHideRelatedSections ? deepdiveCardsForRender(beginnerContent).join('\n\n') : beginnerContent;
-    const pieces = [stripDeepdiveForTts(mainForTts), stripDeepdiveForTts(begForTts)].filter(Boolean);
+    const pieces = [mainForTts, stripDeepdiveForTts(begForTts).replace(/\*\*/g, '')].filter(Boolean);
     const textForTTS = pieces.join('\n\n');
     if (!textForTTS) return [];
     const chunks = textForTTS
@@ -329,11 +486,11 @@ export default function DeepdiveScreen() {
       return bySentence.map((s) => applyTTSRules(s)).filter((s) => s.trim());
     }
     return chunks.map((s) => applyTTSRules(s)).filter((s) => s.trim());
-  }, [content, beginnerContent, jichihouHideRelatedSections, fromLearn, quizSubject, quizField]);
+  }, [deepView, peripheralContent, content, beginnerContent, jichihouHideRelatedSections, isStatuteRefDeepdivePage]);
 
   useEffect(() => {
     setTtsSegmentIndex(0);
-  }, [content, beginnerContent, jichihouHideRelatedSections]);
+  }, [deepView, peripheralContent, content, beginnerContent, jichihouHideRelatedSections, isStatuteRefDeepdivePage]);
 
   const cardStyle = {
     backgroundColor: '#E2E8F0',
@@ -363,7 +520,11 @@ export default function DeepdiveScreen() {
 
   const stopTts = () => {
     ttsSessionRef.current += 1;
-    Speech.stop();
+    try {
+      Speech.stop();
+    } catch {
+      /* expo-speech / Web で例外になる場合がある */
+    }
     setIsTtsPlaying(false);
   };
 
@@ -406,12 +567,108 @@ export default function DeepdiveScreen() {
     speakFromIndex(0, true);
   };
 
-  const handleBack = () => {
-    stopTts();
-    router.back();
-  };
+  const handleBack = useCallback(() => {
+    try {
+      stopTts();
+    } catch {
+      /* noop */
+    }
+    if (Platform.OS === 'web' && typeof window !== 'undefined') {
+      if (router.canGoBack()) {
+        clearDeepdiveSessionWeb();
+        router.back();
+        return;
+      }
+
+      const href = takeDeepdiveReturnHrefWeb();
+      const learnBackMeta = takeDeepdiveLearnBackMetaWeb();
+      const wstored = getDeepdiveParams();
+      clearDeepdiveSessionWeb();
+
+      const pathPrefer =
+        (learnBackMeta?.path && learnBackMeta.path.trim()) ||
+        (wstored.learnReturnPath && wstored.learnReturnPath.trim()) ||
+        '';
+      if (pathPrefer.startsWith('/')) {
+        router.replace(pathPrefer as any);
+        return;
+      }
+      if (href && href.startsWith('/')) {
+        router.replace(href as any);
+        return;
+      }
+
+      const sub = (learnBackMeta?.sub || wstored.learnSubject || '').trim();
+      const idx = learnBackMeta?.idx ?? wstored.learnReturnIndex;
+      if (wstored.fromLearn && sub) {
+        router.replace({
+          pathname: '/learn/[subject]',
+          params: {
+            subject: sub,
+            ...(idx != null ? { index: String(idx) } : {}),
+          },
+        } as any);
+        return;
+      }
+
+      const wqSub = (wstored.quizSubject || '').trim();
+      const wqField = (wstored.quizField || '').trim();
+      if (wqSub && wqField) {
+        router.replace({
+          pathname: '/question',
+          params: { subject: wqSub, field: wqField },
+        } as any);
+        return;
+      }
+
+      router.replace('/learn' as any);
+      return;
+    }
+    if (router.canGoBack()) {
+      router.back();
+      return;
+    }
+    const stored = getDeepdiveParams();
+    const sub = (stored.learnSubject || '').trim();
+    if (sub) {
+      const idx = stored.learnReturnIndex;
+      router.replace({
+        pathname: '/learn/[subject]',
+        params: { subject: sub, ...(idx != null ? { index: String(idx) } : {}) },
+      } as any);
+      return;
+    }
+    const qSub = (stored.quizSubject || '').trim();
+    const qField = (stored.quizField || '').trim();
+    if (qSub && qField) {
+      router.replace({ pathname: '/question', params: { subject: qSub, field: qField } } as any);
+      return;
+    }
+    router.replace('/learn' as any);
+  }, [router]);
 
   const renderDeepdiveCard = (cardText: string, key: string) => {
+    const trimmed = cardText.trim();
+    const firstLine = trimmed.split('\n')[0] ?? '';
+    /** 先頭行がタブ／パイプ表なら splitCardTitle しない（タイトルをプレーン描画すると列が潰れる） */
+    const spreadsheetLikeFirstRow =
+      firstLine.includes('\t') ||
+      (firstLine.trimStart().startsWith('|') && firstLine.includes('|'));
+
+    if (spreadsheetLikeFirstRow) {
+      const normBody = normalizeDeepdiveFlowText(trimmed);
+      return (
+        <ThemedView key={key} style={cardStyle}>
+          <MarkdownText
+            text={normBody}
+            style={cardBodyTextStyle}
+            onHighlightPress={handleHighlightPress}
+            uniformWeight
+          />
+        </ThemedView>
+      );
+    }
+
     const { title, body } = splitCardTitle(cardText);
     return (
       <ThemedView key={key} style={cardStyle}>
@@ -481,28 +738,63 @@ export default function DeepdiveScreen() {
 
   const hasMain = content.trim().length > 0;
   const hasBeginner = beginnerContent.trim().length > 0;
+  const hasPeripheral = peripheralContent.trim().length > 0;
+  const showingPeripheral = deepView === 'peripheral' && hasPeripheral;
+  const heroImageKeys = showingPeripheral ? peripheralHeaderKeys : headerImageKeys;
 
   /** 見て聞いて覚える（学習）画面と連携するミニプレイヤー */
   const showLinkedPlayer = fromLearn && (hasMain || hasBeginner);
 
+  const headerTitle = deepView === 'peripheral' ? '周辺知識' : pageTitle.trim() || 'もっと深掘る';
+
+  const DeepdiveRoot = Platform.OS === 'web' ? View : GestureHandlerRootView;
+
   return (
     <>
-      <Stack.Screen options={{ title: 'もっと深掘る', headerBackTitle: '戻る' }} />
-      <View style={{ flex: 1, backgroundColor: colors.card }}>
+      {/* Web: ネイティブヘッダーの戻るがタッチを取れないことがあるため、画面内バーで戻る */}
+      <Stack.Screen options={{ headerShown: false }} />
+      <DeepdiveRoot style={styles.gestureRoot}>
+      <SafeAreaView style={[styles.safeFill, { backgroundColor: colors.card }]} edges={['top', 'left', 'right']}>
+        <View
+          style={[
+            styles.inlineHeader,
+            {
+              borderBottomColor: colors.choiceBorder,
+              backgroundColor: colors.card,
+            },
+          ]}
+        >
+          <Pressable
+            onPress={handleBack}
+            hitSlop={{ top: 14, bottom: 14, left: 14, right: 14 }}
+            style={({ pressed }) => [styles.headerBackBtn, pressed && styles.headerBackBtnPressed]}
+            accessibilityRole="button"
+            accessibilityLabel="解説ページに戻る"
+          >
+            <MaterialIcons name="arrow-back" size={22} color={colors.primary} style={webNoHitChild} />
+            <ThemedText style={[styles.headerBackLabel, { color: colors.primary }, webNoHitChild]}>戻る</ThemedText>
+          </Pressable>
+          <ThemedText style={[styles.headerTitle, { color: colors.text }, webNoHitChild]} numberOfLines={1}>
+            {headerTitle}
+          </ThemedText>
+          <View style={styles.headerSpacer} />
+        </View>
+        <View style={[styles.mainColumn, { backgroundColor: colors.card }]}>
         <ScrollView
+          ref={scrollRef}
           style={[styles.scroll, { backgroundColor: colors.card }]}
           contentContainerStyle={styles.scrollContent}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator
         >
-          {headerImageKeys.length > 0 ? (
+          {heroImageKeys.length > 0 ? (
             <View
               style={[
                 styles.headerHero,
                 { backgroundColor: colors.background, borderBottomColor: colors.choiceBorder },
               ]}
             >
-              {headerImageKeys.map((imgKey, hi) => {
+              {heroImageKeys.map((imgKey, hi) => {
                 const src = resolveImageAsset(imgKey);
                 if (!src) return null;
                 return (
@@ -512,7 +804,7 @@ export default function DeepdiveScreen() {
                     accessibilityRole="button"
                     accessibilityLabel="画像を拡大表示"
                     style={({ pressed }) => [
-                      hi < headerImageKeys.length - 1 ? { marginBottom: 12 } : null,
+                      hi < heroImageKeys.length - 1 ? { marginBottom: 12 } : null,
                       { opacity: pressed ? 0.88 : 1 },
                     ]}
                   >
@@ -522,7 +814,7 @@ export default function DeepdiveScreen() {
               })}
             </View>
           ) : null}
-          {fExplainHeader.trim() ? (
+          {!showingPeripheral && fExplainHeader.trim() ? (
             <View
               style={[
                 styles.headerFExplain,
@@ -533,9 +825,7 @@ export default function DeepdiveScreen() {
                 renderImageTextParts(fExplainParts, 'f', openImagePreview)
               ) : (
                 <View style={{ gap: 0 }}>
-                  {deepdiveCardsForRender(fExplainHeader).map((cardText, j) =>
-                    renderDeepdiveCard(cardText, `f-${j}`)
-                  )}
+                  {fExplainCardsForRender.map((cardText, j) => renderDeepdiveCard(cardText, `f-${j}`))}
                 </View>
               )}
             </View>
@@ -586,7 +876,7 @@ export default function DeepdiveScreen() {
               </Text>
             </ThemedView>
           ) : null}
-          {choiceLabel && hasMain ? (
+          {choiceLabel && hasMain && !showingPeripheral ? (
             <ThemedText
               style={{
                 fontSize: 13,
@@ -600,16 +890,54 @@ export default function DeepdiveScreen() {
               解説
             </ThemedText>
           ) : null}
-          {hasMain ? (
+          {showingPeripheral ? (
+            <>
+              <ThemedText
+                style={{
+                  fontSize: 13,
+                  fontWeight: '600',
+                  color: colors.subText,
+                  marginTop: 4,
+                  marginBottom: 8,
+                  letterSpacing: 0.3,
+                }}
+              >
+                周辺知識
+              </ThemedText>
+              {peripheralParts.length > 0 ? (
+                renderImageTextParts(peripheralParts, 'p', openImagePreview)
+              ) : peripheralMainRest.trim() ? (
+                <View style={{ gap: 0 }}>
+                  {peripheralCardsForRender.map((cardText, j) => renderDeepdiveCard(cardText, `p-${j}`))}
+                </View>
+              ) : (
+                <ThemedText style={{ color: colors.subText }}>表示する内容がありません。</ThemedText>
+              )}
+            </>
+          ) : null}
+          {!showingPeripheral && hasMain ? (
             mainParts.length > 0 ? (
               renderImageTextParts(mainParts, 'm', openImagePreview)
             ) : mainContentRest.trim() ? (
               <View style={{ gap: 0 }}>
-                {deepdiveCardsForRender(mainContentRest).map((cardText, j) => renderDeepdiveCard(cardText, `c-${j}`))}
+                {mainCardsForRender.map((cardText, j) =>
+                  isStatuteRefDeepdivePage ? (
+                    <ThemedView key={`c-${j}`} style={cardStyle}>
+                      <MarkdownText
+                        text={cardText}
+                        style={cardBodyTextStyle}
+                        onHighlightPress={handleHighlightPress}
+                        uniformWeight={false}
+                      />
+                    </ThemedView>
+                  ) : (
+                    renderDeepdiveCard(cardText, `c-${j}`)
+                  )
+                )}
               </View>
             ) : null
           ) : null}
-          {hasBeginner ? (
+          {!showingPeripheral && hasBeginner ? (
             <View style={{ marginTop: hasMain ? 24 : choiceLabel ? 20 : 0 }}>
               <ThemedText
                 style={{
@@ -625,29 +953,67 @@ export default function DeepdiveScreen() {
                 renderImageTextParts(beginnerParts, 'b', openImagePreview)
               ) : (
                 <View style={{ gap: 0 }}>
-                  {deepdiveCardsForRender(beginnerContent).map((cardText, j) => renderDeepdiveCard(cardText, `bc-${j}`))}
+                  {beginnerCardsForRender.map((cardText, j) => renderDeepdiveCard(cardText, `bc-${j}`))}
                 </View>
               )}
             </View>
           ) : null}
-          {!hasMain && !hasBeginner ? (
+          {!showingPeripheral && !hasMain && !hasBeginner ? (
             <ThemedText style={{ color: colors.subText }}>表示する内容がありません。</ThemedText>
           ) : null}
-          <View style={[styles.footerBar, { marginTop: 24 }]}>
+        </ThemedView>
+        </ScrollView>
+        <View
+          style={[
+            styles.footerDock,
+            {
+              backgroundColor: colors.card,
+              borderTopColor: colors.choiceBorder,
+              paddingBottom: Math.max(insets.bottom, 12),
+            },
+          ]}
+        >
+          <View style={styles.footerBar}>
             <View style={styles.footerLeft}>
-              {hasMain || hasBeginner ? (
+              {((deepView === 'main' && (hasMain || hasBeginner)) || (deepView === 'peripheral' && hasPeripheral)) ? (
                 <Pressable
                   style={[styles.chachalotButton, { borderColor: colors.primary }]}
                   onPress={handleChachalotToggle}
                 >
-                  <ChachalotAvatar source={CHACHALOT_IMG} size={36} active={isTtsPlaying} />
-                  <ThemedText style={[styles.chachalotButtonText, { color: colors.primary }]}>
+                  <ChachalotAvatar source={CHACHALOT_IMG} size={36} active={isTtsPlaying} style={webNoHitChild} />
+                  <ThemedText style={[styles.chachalotButtonText, { color: colors.primary }, webNoHitChild]}>
                     {isTtsPlaying ? '停止' : 'おしえてちゃちゃロット'}
                   </ThemedText>
                 </Pressable>
               ) : null}
+              {deepView === 'main' && hasPeripheral ? (
+                <Pressable
+                  style={[styles.peripheralNavButton, { borderColor: colors.primary }]}
+                  onPress={() => {
+                    stopTts();
+                    setDeepView('peripheral');
+                  }}
+                  accessibilityLabel="周辺知識を表示"
+                >
+                  <ThemedText style={[styles.peripheralNavButtonText, { color: colors.primary }, webNoHitChild]}>周辺知識</ThemedText>
+                </Pressable>
+              ) : null}
+              {deepView === 'peripheral' ? (
+                <Pressable
+                  style={[styles.peripheralNavButton, { borderColor: colors.primary }]}
+                  onPress={() => {
+                    stopTts();
+                    setDeepView('main');
+                  }}
+                  accessibilityLabel="もっと深掘るの本文に戻る"
+                >
+                  <ThemedText style={[styles.peripheralNavButtonText, { color: colors.primary }, webNoHitChild]}>
+                    もっと深掘るに戻る
+                  </ThemedText>
+                </Pressable>
+              ) : null}
               <Pressable style={[styles.backButton, { backgroundColor: colors.accent }]} onPress={handleBack}>
-                <ThemedText style={styles.backButtonText}>解説ページに戻る</ThemedText>
+                <ThemedText style={[styles.backButtonText, webNoHitChild]}>解説ページに戻る</ThemedText>
               </Pressable>
             </View>
             {showLinkedPlayer ? (
@@ -669,6 +1035,7 @@ export default function DeepdiveScreen() {
                       name="skip-previous"
                       size={22}
                       color={!learnScreenMounted ? colors.subText : colors.text}
+                      style={webNoHitChild}
                     />
                   </Pressable>
                   <Pressable
@@ -680,6 +1047,7 @@ export default function DeepdiveScreen() {
                       name={learnIsPlaying ? 'pause' : 'play-arrow'}
                       size={26}
                       color={colors.primary}
+                      style={webNoHitChild}
                     />
                   </Pressable>
                   <Pressable
@@ -696,15 +1064,17 @@ export default function DeepdiveScreen() {
                       name="skip-next"
                       size={22}
                       color={!learnScreenMounted ? colors.subText : colors.text}
+                      style={webNoHitChild}
                     />
                   </Pressable>
                 </View>
               </View>
             ) : null}
           </View>
-        </ThemedView>
-        </ScrollView>
-      </View>
+        </View>
+        </View>
+      </SafeAreaView>
+      </DeepdiveRoot>
 
       <Modal
         visible={previewImageSource !== null}
@@ -739,7 +1109,7 @@ export default function DeepdiveScreen() {
                   <MarkdownText text={highlightModal.body} style={{ fontSize: 15, lineHeight: 24, color: colors.text }} uniformWeight />
                 </ScrollView>
                 <Pressable style={[styles.highlightModalClose, { backgroundColor: colors.accent }]} onPress={() => setHighlightModal(null)}>
-                  <ThemedText style={styles.highlightModalCloseText}>閉じる</ThemedText>
+                  <ThemedText style={[styles.highlightModalCloseText, webNoHitChild]}>閉じる</ThemedText>
                 </Pressable>
               </>
             ) : null}
@@ -751,7 +1121,44 @@ export default function DeepdiveScreen() {
 }
 
 const styles = StyleSheet.create({
-  scroll: { flex: 1 },
+  gestureRoot: { flex: 1 },
+  safeFill: { flex: 1 },
+  inlineHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: 4,
+    paddingRight: 8,
+    minHeight: 48,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    zIndex: 10_000,
+    ...Platform.select({
+      web: {
+        position: 'sticky' as const,
+        top: 0,
+        isolation: 'isolate' as any,
+      },
+      default: {},
+    }),
+  },
+  headerBackBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 2,
+    paddingVertical: 10,
+    paddingHorizontal: 8,
+    borderRadius: 8,
+    ...Platform.select({
+      web: { cursor: 'pointer' as any },
+      default: {},
+    }),
+  },
+  headerBackBtnPressed: { opacity: 0.72 },
+  headerBackLabel: { fontSize: 16, fontWeight: '600' },
+  headerTitle: { flex: 1, textAlign: 'center', fontSize: 17, fontWeight: '600' },
+  headerSpacer: { width: 64 },
+  /** Web: flex 子の minHeight:auto で ScrollView が親をはみ出し下のフッターを覆うのを防ぐ */
+  mainColumn: { flex: 1, minHeight: 0, width: '100%' as const },
+  scroll: { flex: 1, minHeight: 0 },
   scrollContent: {
     flexGrow: 1,
     paddingBottom: Platform.OS === 'ios' ? 32 : 20,
@@ -794,6 +1201,19 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   content: { padding: 20 },
+  /** ScrollView 外に置き、長文でも常に操作できるようにする */
+  footerDock: {
+    flexShrink: 0,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    paddingHorizontal: 16,
+    paddingTop: 12,
+    zIndex: 100,
+    ...Platform.select({
+      android: { elevation: 12 },
+      web: { position: 'relative' as const },
+      default: {},
+    }),
+  },
   footerBar: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
@@ -835,6 +1255,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
+    ...Platform.select({
+      web: { cursor: 'pointer' as any },
+      default: {},
+    }),
   },
   miniPlayerBtnPressed: {
     opacity: 0.7,
@@ -850,6 +1274,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     gap: 8,
+    ...Platform.select({
+      web: { cursor: 'pointer' as any },
+      default: {},
+    }),
   },
   chachalotButtonText: {
     fontSize: 15,
@@ -860,10 +1288,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderRadius: 12,
     alignItems: 'center',
+    ...Platform.select({
+      web: { cursor: 'pointer' as any },
+      default: {},
+    }),
   },
   backButtonText: {
     color: '#fff',
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  peripheralNavButton: {
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+    borderWidth: 2,
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    ...Platform.select({
+      web: { cursor: 'pointer' as any },
+      default: {},
+    }),
+  },
+  peripheralNavButtonText: {
+    fontSize: 15,
     fontWeight: 'bold',
   },
   modalOverlay: {

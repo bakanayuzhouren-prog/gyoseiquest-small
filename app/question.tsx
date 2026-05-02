@@ -13,7 +13,14 @@ import { explainChoiceIntent, generateDescriptiveQuestion } from '@/src/utils/ge
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
 import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitNumberPrefix } from '@/utils/choiceNumber';
 import { getQuestionMark, setQuestionMark, type QuestionMark } from '@/utils/question-marks';
-import { getQuestionHighlights, toggleQuestionHighlight } from '@/utils/question-highlights';
+import {
+  addOrSubtractQuestionHighlightRange,
+  getQuestionHighlightRanges,
+  mergeHighlightRanges,
+  splitTextByHighlightRanges,
+  type HighlightRange,
+} from '@/utils/question-highlight-ranges';
+import { getQuestionHighlights, setQuestionHighlights, toggleQuestionHighlight } from '@/utils/question-highlights';
 import { getHiddenHashes, hideQuestionByHash } from '@/utils/question-hidden';
 import {
   filterHiddenFromQuestions,
@@ -25,6 +32,14 @@ import {
 import { splitSlotOptionParts } from '@/utils/slotNormalize';
 import { getQuestionStats, getQuestionTextHash } from '@/utils/question-stats';
 import { CIVIL_PRECEDENT_IMAGES } from '@/src/civilPrecedentImages';
+
+/** Web: 蛍光ペン ON 時のカーソル（黄色マーカー形、ホットスポットは先端付近） */
+const HIGHLIGHTER_CURSOR_SVG =
+  "<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'><path fill='#FFEB3B' stroke='#F9A825' stroke-width='1.5' d='M7 29 L16 9 L25 5 L30 14 L13 31 Z'/><ellipse cx='10' cy='30' rx='6' ry='3' fill='#FFF59D' opacity='0.95'/></svg>";
+const webHighlighterCursor: string | undefined =
+  Platform.OS === 'web'
+    ? `url("data:image/svg+xml,${encodeURIComponent(HIGHLIGHTER_CURSOR_SVG)}") 10 32, crosshair`
+    : undefined;
 
 /** スプレッドシートで「…どれか。ア　…」が1行に詰まったとき用 */
 function normalizeKatakanaChoiceNewlines(body: string): string {
@@ -241,6 +256,11 @@ export default function QuestionScreen() {
 
   const question = questionIndex !== null ? questions[questionIndex] : null;
 
+  const stripQuestionText = useCallback(
+    (s: string) => (s || '').replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim(),
+    []
+  );
+
   const [questionStats, setQuestionStats] = useState<{
     correct: number;
     wrong: number;
@@ -248,16 +268,182 @@ export default function QuestionScreen() {
   } | null>(null);
   const [questionMark, setQuestionMarkState] = useState<QuestionMark>(null);
   const [highlightedSegments, setHighlightedSegments] = useState<Set<number>>(new Set());
+  const [highlightRanges, setHighlightRanges] = useState<HighlightRange[]>([]);
 
   useEffect(() => {
     if (!subject || !field || !question?.text) {
       setQuestionStats(null);
+      setHighlightRanges([]);
       return;
     }
+    const qt = stripQuestionText(question.text);
     getQuestionStats(subject, field, question.text).then(setQuestionStats);
     getQuestionMark(subject, field, question.text).then(setQuestionMarkState);
-    getQuestionHighlights(subject, field, question.text).then(setHighlightedSegments);
-  }, [subject, field, question?.text]);
+    getQuestionHighlights(subject, field, qt).then(setHighlightedSegments);
+    getQuestionHighlightRanges(subject, field, qt).then(setHighlightRanges);
+  }, [subject, field, question?.text, stripQuestionText]);
+
+  /** 記述スコープ・教えて先生・蛍光ペン（同時に ON にできない） */
+  type ActionMode = 'descriptiveScope' | 'teachMe' | 'highlighterPen' | null;
+  const [activeActionMode, setActiveActionMode] = useState<ActionMode>(null);
+  const highlighterPenOn = activeActionMode === 'highlighterPen';
+
+  /** 問題文 蛍光ペン（ドラッグで行／段落単位にハイライトを連続追加） */
+  const [penScrollLock, setPenScrollLock] = useState(false);
+  const highlighterPenOnRef = useRef(false);
+  const highlightedSegmentsRef = useRef<Set<number>>(highlightedSegments);
+  const penSegRefs = useRef<Record<number, View | null>>({});
+  const penBoundsRef = useRef<Record<number, { l: number; t: number; r: number; b: number }>>({});
+  const penLastHitRef = useRef<number | null>(null);
+  const penDragAccRef = useRef<Set<number>>(new Set());
+  /** なぞり開始時の行ハイライト（消し／追加の判定用） */
+  const penDragStartHighlightsRef = useRef<Set<number>>(new Set());
+  const penDragTouchedRef = useRef<Set<number>>(new Set());
+  const penPersistRef = useRef({ subject: '', field: '', text: '' });
+  const applyPenAtXYRef = useRef<(x: number, y: number) => void>(() => {});
+  /** Web: プレーン問題文で選択範囲ハイライト表示中のみ true（renderQuestionText 内で更新） */
+  const webPenSelectionActiveRef = useRef(false);
+  const webHighlightLayoutRef = useRef({ canonical: '', storageText: '' });
+
+  highlightedSegmentsRef.current = highlightedSegments;
+  highlighterPenOnRef.current = highlighterPenOn;
+
+  const remeasurePenBounds = useCallback(() => {
+    const refs = penSegRefs.current;
+    for (const k of Object.keys(refs)) {
+      const idx = Number(k);
+      const v = refs[idx];
+      if (v && typeof (v as any).measureInWindow === 'function') {
+        (v as any).measureInWindow((x: number, y: number, w: number, h: number) => {
+          penBoundsRef.current[idx] = { l: x, t: y, r: x + w, b: y + h };
+        });
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    penSegRefs.current = {};
+    penBoundsRef.current = {};
+  }, [question?.text]);
+
+  useEffect(() => {
+    if (!highlighterPenOn) return;
+    const id = requestAnimationFrame(() => remeasurePenBounds());
+    return () => cancelAnimationFrame(id);
+  }, [highlighterPenOn, questionIndex, remeasurePenBounds]);
+
+  applyPenAtXYRef.current = (pageX: number, pageY: number) => {
+    const bounds = penBoundsRef.current;
+    const indices = Object.keys(bounds)
+      .map(Number)
+      .filter((n) => Number.isFinite(n))
+      .sort((a, b) => a - b);
+    let hit: number | null = null;
+    for (const idx of indices) {
+      const b = bounds[idx];
+      if (!b) continue;
+      if (pageX >= b.l && pageX <= b.r && pageY >= b.t && pageY <= b.b) {
+        hit = idx;
+        break;
+      }
+    }
+    if (hit === null) return;
+    const last = penLastHitRef.current;
+    const touched = penDragTouchedRef.current;
+    if (last === null) {
+      touched.add(hit);
+    } else if (last !== hit) {
+      const lo = Math.min(last, hit);
+      const hi = Math.max(last, hit);
+      for (let i = lo; i <= hi; i++) touched.add(i);
+    }
+    penLastHitRef.current = hit;
+    const base = penDragStartHighlightsRef.current;
+    const eraseStroke = touched.size > 0 && [...touched].every((i) => base.has(i));
+    const acc = eraseStroke
+      ? new Set([...base].filter((i) => !touched.has(i)))
+      : new Set([...base, ...touched]);
+    penDragAccRef.current = acc;
+    setHighlightedSegments(acc);
+  };
+
+  penPersistRef.current = {
+    subject: subject ?? '',
+    field: field ?? '',
+    text: (question as any)?.text ?? '',
+  };
+
+  const capturePenSegmentRef = useCallback((idx: number) => (el: View | null) => {
+    if (el) penSegRefs.current[idx] = el;
+    else delete penSegRefs.current[idx];
+  }, []);
+
+  const penPanResponder = useMemo(
+    () =>
+      PanResponder.create({
+        onStartShouldSetPanResponder: () => highlighterPenOnRef.current,
+        onStartShouldSetPanResponderCapture: () => highlighterPenOnRef.current,
+        onMoveShouldSetPanResponder: () => highlighterPenOnRef.current,
+        onMoveShouldSetPanResponderCapture: () => highlighterPenOnRef.current,
+        onPanResponderGrant: (e) => {
+          setPenScrollLock(true);
+          penLastHitRef.current = null;
+          penDragStartHighlightsRef.current = new Set(highlightedSegmentsRef.current);
+          penDragTouchedRef.current = new Set();
+          penDragAccRef.current = new Set(highlightedSegmentsRef.current);
+          applyPenAtXYRef.current(e.nativeEvent.pageX, e.nativeEvent.pageY);
+        },
+        onPanResponderMove: (_, g) => {
+          applyPenAtXYRef.current(g.moveX, g.moveY);
+        },
+        onPanResponderRelease: () => {
+          setPenScrollLock(false);
+          penLastHitRef.current = null;
+          const { subject: subj, field: fld, text: qt } = penPersistRef.current;
+          if (subj && fld && qt) {
+            void setQuestionHighlights(subj, fld, qt, penDragAccRef.current);
+          }
+        },
+        onPanResponderTerminate: () => {
+          setPenScrollLock(false);
+          penLastHitRef.current = null;
+        },
+      }),
+    []
+  );
+
+  const handleWebQuestionMouseUp = useCallback(
+    (e: any) => {
+      if (Platform.OS !== 'web' || !highlighterPenOn || !subject || !field || !webPenSelectionActiveRef.current) return;
+      const { canonical, storageText } = webHighlightLayoutRef.current;
+      if (!canonical.length || !storageText) return;
+      const sel = typeof window !== 'undefined' && window.getSelection?.();
+      if (!sel || sel.isCollapsed || sel.rangeCount === 0) return;
+      const root = e?.currentTarget as { contains?: (n: Node | null) => unknown } | undefined;
+      if (!root || typeof root.contains !== 'function') return;
+      const range = sel.getRangeAt(0);
+      const anchor = (range as unknown as { commonAncestorContainer: Node | null }).commonAncestorContainer;
+      if (!anchor || !root.contains(anchor)) return;
+      const pre = document.createRange();
+      pre.selectNodeContents(root as unknown as Node);
+      pre.setEnd(range.startContainer, range.startOffset);
+      const start = pre.toString().length;
+      pre.selectNodeContents(root as unknown as Node);
+      pre.setEnd(range.endContainer, range.endOffset);
+      const end = pre.toString().length;
+      if (start >= end) return;
+      sel.removeAllRanges();
+      void addOrSubtractQuestionHighlightRange(
+        subject,
+        field,
+        storageText,
+        start,
+        end,
+        canonical.length
+      ).then(setHighlightRanges);
+    },
+    [highlighterPenOn, subject, field]
+  );
 
   useEffect(() => {
     setIsLongText(false);
@@ -282,9 +468,6 @@ export default function QuestionScreen() {
   const [descriptiveScopeOn, setDescriptiveScopeOn] = useState(false);
   const [scopeDescriptiveAnswer, setScopeDescriptiveAnswer] = useState('');
 
-  // 記述スコープ・教えて先生: アイコンクリック→肢クリックで効果
-  type ActionMode = 'descriptiveScope' | 'teachMe' | null;
-  const [activeActionMode, setActiveActionMode] = useState<ActionMode>(null);
   const [scopeGeneratedQuestion, setScopeGeneratedQuestion] = useState('');
   const [scopeGeneratedModelAnswer, setScopeGeneratedModelAnswer] = useState('');
   const [scopeGenerateLoading, setScopeGenerateLoading] = useState(false);
@@ -349,6 +532,7 @@ export default function QuestionScreen() {
 
   // Reset dimmed choices and selections when question changes
   useEffect(() => {
+    setPenScrollLock(false);
     setDimmedIndices([]);
     setSelectedIndices([]);
     setStemComboLetters([]);
@@ -431,8 +615,6 @@ export default function QuestionScreen() {
     });
   };
 
-  const stripR = (s: string) => (s || '').replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim();
-
   /** isCombinationChoicePrompt より前で定義するため、判定はここでインライン（同一正規表現） */
   const multiSelectGuideText = useMemo(() => {
     if (!question) return null;
@@ -487,7 +669,9 @@ export default function QuestionScreen() {
 
   const renderQuestionText = () => {
     if (!question) return null;
-    const text = stripR(question.text || '');
+    webPenSelectionActiveRef.current = false;
+    let penUsesLineDrag = true;
+    const text = stripQuestionText(question.text || '');
     const slots = (question as any).slots || [];
     const answer = (question as any).answer || [];
     const correctCount = Array.isArray(answer) ? answer.length : 0;
@@ -497,6 +681,7 @@ export default function QuestionScreen() {
     // 多肢選択: tashiData からスロットを生成（語群から選択して穴埋め）
     // options が空のダミースロットは無視（「次のア～オ」と誤マッチして本文が壊れるのを防ぐ）
     const effectiveSlots = interactiveSlots.length > 0 ? interactiveSlots : slots.filter((s: any) => s?.options);
+    const canUseHighlighterPen = effectiveSlots.length === 0;
 
     // バッジ用ナンバー（コンテナ直下で外枠角に表示するためここで算出）
     const displayNum = hasNumberPrefix(text) ? splitNumberPrefix(text).prefix : getChoicePrefix(questionIndex ?? 0);
@@ -533,30 +718,35 @@ export default function QuestionScreen() {
                 setHighlightedSegments(next);
               };
               return (
-                <Pressable key={pi} onPress={handleToggleHighlight}>
-                  <View
-                    style={StyleSheet.flatten([
-                      styles.descriptiveParagraph,
-                      para.spacing === 'before' && { marginTop: 16 },
-                      para.spacing === 'after' && { marginBottom: 16 },
-                      para.spacing === 'both' && { marginVertical: 16 },
-                      isHighlighted && { backgroundColor: '#FFF59D', padding: 8, borderRadius: 4 },
-                    ].filter(Boolean))}
+                <View key={pi} ref={capturePenSegmentRef(pi)} collapsable={false} style={{ alignSelf: 'stretch' }}>
+                  <Pressable
+                    pointerEvents={highlighterPenOn ? 'none' : 'auto'}
+                    onPress={handleToggleHighlight}
                   >
-                    <ThemedText
-                      style={[
-                        styles.questionText,
-                        { color: colors.text, lineHeight: 28, fontFamily: theme === 'paper' ? 'serif' : undefined }
-                      ]}
+                    <View
+                      style={StyleSheet.flatten([
+                        styles.descriptiveParagraph,
+                        para.spacing === 'before' && { marginTop: 16 },
+                        para.spacing === 'after' && { marginBottom: 16 },
+                        para.spacing === 'both' && { marginVertical: 16 },
+                        isHighlighted && { backgroundColor: '#FFF59D', padding: 8, borderRadius: 4 },
+                      ].filter(Boolean))}
                     >
-                      {para.segments.map((seg, si) => (
-                        <ThemedText key={si} style={segmentStyle(seg)}>
-                          {formatNumberedClauses(seg.text)}
-                        </ThemedText>
-                      ))}
-                    </ThemedText>
-                  </View>
-                </Pressable>
+                      <ThemedText
+                        style={[
+                          styles.questionText,
+                          { color: colors.text, lineHeight: 28, fontFamily: theme === 'paper' ? 'serif' : undefined }
+                        ]}
+                      >
+                        {para.segments.map((seg, si) => (
+                          <ThemedText key={si} style={segmentStyle(seg)}>
+                            {formatNumberedClauses(seg.text)}
+                          </ThemedText>
+                        ))}
+                      </ThemedText>
+                    </View>
+                  </Pressable>
+                </View>
               );
             })}
           </View>
@@ -567,6 +757,57 @@ export default function QuestionScreen() {
         const displayBody = normalizeKatakanaChoiceNewlines(hasNumberPrefix(text) ? questionBody : text);
         const segments = displayBody.split(/\n/);
         if (segments.length === 0) segments.push('');
+        const anySpecial = segments.some(
+          (seg) => /\*\*|\[\[red:/.test(seg) || matchKatakanaChoiceLine(seg) !== null
+        );
+        const useWebSelectionHighlighter = Platform.OS === 'web' && !anySpecial;
+
+        if (useWebSelectionHighlighter) {
+          penUsesLineDrag = false;
+          webPenSelectionActiveRef.current = true;
+          const canonicalBody = segments.map((s) => formatNumberedClauses(s)).join('\n');
+          webHighlightLayoutRef.current = { canonical: canonicalBody, storageText: text };
+          const mergedRanges = mergeHighlightRanges(highlightRanges);
+          const parts = splitTextByHighlightRanges(canonicalBody, mergedRanges);
+          const baseTextStyleOuter = [
+            styles.questionText,
+            isTashiQuestion && styles.questionTextTashi,
+            isLongText && styles.questionTextSmall,
+            isTashiQuestion && isLongText && styles.questionTextTashiSmall,
+            {
+              color: colors.text,
+              fontFamily: theme === 'paper' ? 'serif' : undefined,
+              textAlign: 'left' as const,
+            },
+            Platform.OS === 'web' && highlighterPenOn ? ({ userSelect: 'text' } as object) : null,
+          ].filter(Boolean);
+          content = (
+            <View style={{ alignSelf: 'stretch', width: '100%' }}>
+              <ThemedText
+                style={baseTextStyleOuter as any}
+                selectable={!!highlighterPenOn}
+                onTextLayout={(e) => {
+                  if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
+                }}
+              >
+                {parts.map((p, i) =>
+                  p.text ? (
+                    <ThemedText
+                      key={i}
+                      style={
+                        p.highlighted
+                          ? { backgroundColor: '#FFF59D', borderRadius: 2 }
+                          : undefined
+                      }
+                    >
+                      {p.text}
+                    </ThemedText>
+                  ) : null
+                )}
+              </ThemedText>
+            </View>
+          );
+        } else {
         content = (
           <View>
             {segments.map((seg, idx) => {
@@ -608,19 +849,20 @@ export default function QuestionScreen() {
               const stemCardSelected =
                 isStemComboPairQuestion && choiceLine && stemComboLetters.includes(choiceLine.label);
               return (
-                <Pressable
-                  key={idx}
-                  onPress={() => {
-                    if (isStemComboPairQuestion && choiceLine) {
-                      toggleStemComboLetter(choiceLine.label);
-                      return;
-                    }
-                    handleToggleHighlight();
-                  }}
-                  onLongPress={isStemComboPairQuestion && choiceLine ? handleToggleHighlight : undefined}
-                  delayLongPress={200}
-                  style={{ alignSelf: 'stretch', width: '100%' }}
-                >
+                <View key={idx} ref={capturePenSegmentRef(idx)} collapsable={false} style={{ alignSelf: 'stretch', width: '100%' }}>
+                  <Pressable
+                    pointerEvents={highlighterPenOn ? 'none' : 'auto'}
+                    onPress={() => {
+                      if (isStemComboPairQuestion && choiceLine) {
+                        toggleStemComboLetter(choiceLine.label);
+                        return;
+                      }
+                      handleToggleHighlight();
+                    }}
+                    onLongPress={isStemComboPairQuestion && choiceLine ? handleToggleHighlight : undefined}
+                    delayLongPress={200}
+                    style={{ alignSelf: 'stretch', width: '100%' }}
+                  >
                   {hasMarkdown ? (
                     <MarkdownText
                       text={seg}
@@ -670,11 +912,13 @@ export default function QuestionScreen() {
                       {formatNumberedClauses(seg)}
                     </ThemedText>
                   )}
-                </Pressable>
+                  </Pressable>
+                </View>
               );
             })}
           </View>
         );
+        }
       }
     } else {
       // Escape regex characters for labels（多肢選択は [ ア ] 形式、他はラベルそのまま）
@@ -797,7 +1041,10 @@ export default function QuestionScreen() {
             backgroundColor: isTashiQuestion ? '#f5f7fa' : '#e8e8e8',
           },
           displayNum && { paddingTop: 0, paddingLeft: 0 },
-        ]}>
+          Platform.OS === 'web' && highlighterPenOn && webHighlighterCursor
+            ? ({ cursor: webHighlighterCursor } as object)
+            : null,
+        ].filter(Boolean)}>
           {displayNum ? (
             <View style={[styles.questionNumBadge, { backgroundColor: isTashiQuestion ? '#f5f7fa' : '#e8e8e8', borderWidth: 2, borderColor: colors.choiceBorder }]}>
               <ThemedText style={styles.questionNumBadgeText}>{displayNum}</ThemedText>
@@ -809,7 +1056,29 @@ export default function QuestionScreen() {
                 {suffix.trim()}
               </ThemedText>
             ) : null}
-            {content}
+            {canUseHighlighterPen ? (
+              <View
+                style={[
+                  { alignSelf: 'stretch' },
+                  Platform.OS === 'web' && highlighterPenOn && webHighlighterCursor
+                    ? ({ cursor: webHighlighterCursor } as object)
+                    : null,
+                ].filter(Boolean) as any}
+                onLayout={() => {
+                  if (highlighterPenOn) {
+                    requestAnimationFrame(() => remeasurePenBounds());
+                  }
+                }}
+                {...(highlighterPenOn && penUsesLineDrag ? penPanResponder.panHandlers : {})}
+                {...(highlighterPenOn && Platform.OS === 'web' && !penUsesLineDrag
+                  ? ({ onMouseUp: handleWebQuestionMouseUp } as object)
+                  : {})}
+              >
+                {content}
+              </View>
+            ) : (
+              content
+            )}
             {multiSelectGuideText ? (
               <ThemedText style={[styles.descriptiveLabel, { color: colors.subText, marginTop: 10, marginBottom: 0 }]}>
                 {multiSelectGuideText}
@@ -924,6 +1193,19 @@ export default function QuestionScreen() {
     const rawSlots = ((question as any)?.slots || []) as Array<{ label: string; options: string }>;
     return rawSlots.filter((slot) => slot?.options);
   }, [tashiData, question]);
+
+  /** Web ヘルプ文: プレーン本文はドラッグ選択で部分マーカー、それ以外は従来の行単位 */
+  const webHelpUsesDragSelection = useMemo(() => {
+    if (Platform.OS !== 'web' || !question?.text) return false;
+    const t = stripQuestionText(question.text);
+    if (subject === '記述' && t.length > 150) return false;
+    const { body: questionBody } = splitNumberPrefix(t);
+    const displayBody = normalizeKatakanaChoiceNewlines(hasNumberPrefix(t) ? questionBody : t);
+    const segments = displayBody.split(/\n/).length ? displayBody.split(/\n/) : [''];
+    return !segments.some(
+      (seg) => /\*\*|\[\[red:/.test(seg) || matchKatakanaChoiceLine(seg) !== null
+    );
+  }, [question?.text, subject, stripQuestionText]);
 
   const handleWordBankTap = (value: string) => {
     const fallbackLabel =
@@ -1123,7 +1405,7 @@ export default function QuestionScreen() {
 
   return (
     <ThemedView style={[styles.container, { backgroundColor: colors.background }]}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView scrollEnabled={!penScrollLock} contentContainerStyle={styles.scrollContent}>
         {/* 問題番号サイドバー: タップでジャンプ */}
         {questions.length > 0 && questionIndex !== null && (
           <ScrollView
@@ -1812,6 +2094,38 @@ export default function QuestionScreen() {
                     {activeActionMode === 'teachMe' ? '教えて先生 ON' : '教えて先生'}
                   </ThemedText>
                 </Pressable>
+                {interactiveSlots.length === 0 ? (
+                  <Pressable
+                    style={[
+                      styles.scopeChip,
+                      {
+                        borderColor: '#F9A825',
+                        backgroundColor: activeActionMode === 'highlighterPen' ? '#F9A825' : colors.choiceBg,
+                      },
+                    ]}
+                    onPress={() =>
+                      setActiveActionMode((prev) => (prev === 'highlighterPen' ? null : 'highlighterPen'))
+                    }
+                  >
+                    <ThemedText
+                      style={[
+                        styles.scopeChipText,
+                        { color: activeActionMode === 'highlighterPen' ? '#fff' : '#F9A825' },
+                      ]}
+                    >
+                      {activeActionMode === 'highlighterPen' ? '蛍光ペン ON' : '蛍光ペン'}
+                    </ThemedText>
+                  </Pressable>
+                ) : null}
+                {activeActionMode === 'highlighterPen' && interactiveSlots.length === 0 ? (
+                  <ThemedText style={{ fontSize: 11, color: colors.subText, lineHeight: 16, maxWidth: 320 }}>
+                    {Platform.OS === 'web'
+                      ? webHelpUsesDragSelection
+                        ? 'カーソルが黄色マーカー形になります。本文をドラッグして選択した部分だけがハイライトされます。もう一度ハイライト上を選ぶとその部分は消えます。'
+                        : 'カーソルが黄色マーカー形になります。問題文になぞると行がハイライトされます。マークだけをなぞると行が消えます。'
+                      : '問題文になぞると行がハイライトされます。ハイライト上だけをなぞるとその行が消えます。オフにすると行タップでトグルできます。'}
+                  </ThemedText>
+                ) : null}
                 {isDiagramEligible ? (
                   <>
                     <Pressable

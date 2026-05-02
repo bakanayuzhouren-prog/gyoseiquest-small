@@ -25,6 +25,7 @@ import {
     getMergedSubjectData,
     pickQuestionsForField,
 } from '@/utils/quiz-question-pipeline';
+import { formatStatuteReferenceForMarkdown, looksLikeMergedStatuteBlock } from '@/utils/statute-reference-format';
 import { normalizeSlotAnswerForCompare, splitComboChoiceLineToSlots } from '@/utils/slotNormalize';
 import { gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
 import { USER_KEY } from './login';
@@ -94,6 +95,28 @@ function deepdiveChoiceLegallyCorrect(
     return !inAnswer;
   }
   return inAnswer;
+}
+
+/** 民法総則・結果画面: スプレッドシート I 列を別ページで表示（根拠条文） */
+function openMinpoSosokuStatuteRefPage(
+  router: { push: (href: object) => void },
+  statuteRefText: string,
+  choiceLabel: string,
+  quizSubject: string,
+  quizField: string
+) {
+  const body = statuteRefText.trim();
+  if (!body) return;
+  setDeepdiveParams(body, choiceLabel, {
+    choiceCorrect: null,
+    quizSubject,
+    quizField,
+    screenTitle: '根拠条文',
+  });
+  router.push({
+    pathname: '/deepdive',
+    params: { choiceLabel },
+  });
 }
 
 /** [[image:xxx]] を解決。問題を解くモード専用: descriptive → deepdive → chunk → imageMap の順で検索 */
@@ -592,6 +615,7 @@ export default function ResultScreen() {
 
   const { colors, theme } = useTheme();
   const router = useRouter();
+  const isMinpoSosokuQuizResult = subject === '民法' && field === '民法総則';
 
   // Calculate next index
   const questionIndex = params.questionIndex ? parseInt(Array.isArray(params.questionIndex) ? params.questionIndex[0] : params.questionIndex, 10) : 0;
@@ -636,6 +660,12 @@ export default function ResultScreen() {
   const choiceStatuteRefs = (question as any)?.choiceStatuteRefs as string[] | undefined;
   const choiceDeepDive = (question as any)?.choiceDeepDive as string[] | undefined;
   const choiceDeepDiveBeginner = (question as any)?.choiceDeepDiveBeginner as string[] | undefined;
+  const choiceDeepDivePeripheral = (question as any)?.choiceDeepDivePeripheral as string[] | undefined;
+  /** 行政法総合など条文バンドル未設定の分野でも、M列・memo があれば解説・もっと深掘るを出す */
+  const hasImportedQuizDeepDive =
+    (!!memo && memo.trim().length > 0) ||
+    (Array.isArray(choiceDeepDive) && choiceDeepDive.some((s) => (s || '').trim())) ||
+    (Array.isArray(choiceDeepDiveBeginner) && choiceDeepDiveBeginner.some((s) => (s || '').trim()));
   const rawAnswer = Array.isArray(question?.answer) ? (question.answer as any[]) : [];
   const correctIndices: number[] = rawAnswer.length > 0 && typeof rawAnswer[0] === 'number' ? (rawAnswer as number[]) : [];
   const correctSlotsFromAnswer: string[] = rawAnswer.length > 0 && typeof rawAnswer[0] === 'string' ? (rawAnswer as string[]) : [];
@@ -1101,8 +1131,11 @@ export default function ResultScreen() {
             })()
           : null}
 
-        {/* 行政法・民法・多肢選択・商法・会社法: 根拠条文・もっと深掘る（M列）。穴埋めは1本のみ表示、それ以外は肢ごと */}
-        {(subject === '行政法' || subject === '民法' || subject === '多肢選択' || subject === '商法・会社法') && statuteItemsRaw.length > 0 && choices.length > 0 && (() => {
+        {/* 行政法・民法・多肢選択・商法・会社法: 根拠条文・もっと深掘る（M列）。条文データが無くても M列/memo があれば表示（行政法総合など） */}
+        {(subject === '行政法' || subject === '民法' || subject === '多肢選択' || subject === '商法・会社法') &&
+          (statuteItemsRaw.length > 0 || hasImportedQuizDeepDive) &&
+          choices.length > 0 &&
+          (() => {
           // 穴埋め問題: 同じ条文が繰り返すので1つだけ表示
           if (isSlotStyle) {
             return (
@@ -1118,8 +1151,9 @@ export default function ResultScreen() {
                       ) : null}
                       {item.content ? (
                         <MarkdownText
-                          text={item.content}
+                          text={subject === '民法' ? formatStatuteReferenceForMarkdown(item.content) : item.content}
                           style={{ fontSize: 17, lineHeight: 26, fontWeight: '500' }}
+                          uniformWeight={subject !== '民法'}
                         />
                       ) : null}
                     </ThemedView>
@@ -1136,7 +1170,7 @@ export default function ResultScreen() {
                         });
                         router.push({
                           pathname: '/deepdive',
-                          params: { content: memo.trim(), choiceLabel: '' },
+                          params: { choiceLabel: '' },
                         });
                       }}
                       style={[styles.deepDiveButton, { borderColor: colors.primary, alignSelf: 'flex-start' }]}
@@ -1169,13 +1203,19 @@ export default function ResultScreen() {
             : simpleChunkImages;
           const deepByVisible = visibleIndices.map((i) => (choiceDeepDive?.[i] ?? '').trim());
           const begByVisible = visibleIndices.map((i) => (choiceDeepDiveBeginner?.[i] ?? '').trim());
+          const perByVisible = visibleIndices.map((i) => (choiceDeepDivePeripheral?.[i] ?? '').trim());
           const consolidateDeepDive =
             visibleIndices.length >= 2 &&
             (deepByVisible[0] ?? '').length > 0 &&
             deepByVisible.every((d) => d === deepByVisible[0]) &&
             begByVisible.every((b) => b === begByVisible[0]);
+          const consolidatePeripheral =
+            consolidateDeepDive &&
+            (perByVisible[0] ?? '').length > 0 &&
+            perByVisible.every((p) => p === perByVisible[0]);
           const consolidatedDeepContent = consolidateDeepDive ? deepByVisible[0] : '';
           const consolidatedDeepBeginner = consolidateDeepDive ? begByVisible[0] : '';
+          const consolidatedPeripheral = consolidatePeripheral ? perByVisible[0] : '';
           return (
           <>
           <ThemedView style={[styles.choiceStatuteBlock, { borderColor: colors.choiceBorder }]}>
@@ -1191,6 +1231,7 @@ export default function ResultScreen() {
               const statutes = choiceStatutes[choiceIdx] || [];
               const deepContent = choiceDeepDive?.[choiceIdx]?.trim();
               const deepBeginner = choiceDeepDiveBeginner?.[choiceIdx]?.trim();
+              const deepPeripheral = choiceDeepDivePeripheral?.[choiceIdx]?.trim();
               return (
                 <View key={gi} style={[styles.choiceStatuteItem, styles.choiceStatuteCard]}>
                   <View style={styles.choiceStatuteNumRow}>
@@ -1203,7 +1244,15 @@ export default function ResultScreen() {
                   </View>
                   {explText ? (
                     <View style={{ marginBottom: 8 }}>
-                      <MarkdownText text={explText} style={{ fontSize: 15, lineHeight: 22 }} />
+                      <MarkdownText
+                        text={
+                          subject === '民法' && looksLikeMergedStatuteBlock(explText)
+                            ? formatStatuteReferenceForMarkdown(explText)
+                            : explText
+                        }
+                        style={{ fontSize: 15, lineHeight: 22 }}
+                        uniformWeight={!(subject === '民法' && looksLikeMergedStatuteBlock(explText))}
+                      />
                     </View>
                   ) : null}
                   {!hideStatutesOnResult ? (
@@ -1222,14 +1271,38 @@ export default function ResultScreen() {
                           ) : null}
                           {statute.content ? (
                             <MarkdownText
-                              text={statute.content}
+                              text={
+                                subject === '民法'
+                                  ? formatStatuteReferenceForMarkdown(statute.content)
+                                  : statute.content
+                              }
                               style={{ fontSize: 17, lineHeight: 26, fontWeight: '500' }}
+                              uniformWeight={subject !== '民法'}
                             />
                           ) : null}
                         </View>
                       ))}
                       <View style={styles.keywordRow}>
                           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flex: 1, justifyContent: 'flex-end' }}>
+                            {isMinpoSosokuQuizResult && (choiceStatuteRefs?.[choiceIdx] ?? '').trim() ? (
+                              <Pressable
+                                onPress={() => {
+                                  const cl = `${label}${choiceText}`;
+                                  openMinpoSosokuStatuteRefPage(
+                                    router,
+                                    choiceStatuteRefs![choiceIdx],
+                                    cl,
+                                    subject || '',
+                                    field || ''
+                                  );
+                                }}
+                                style={[styles.deepDiveButton, { borderColor: colors.subText }]}
+                              >
+                                <ThemedText style={[styles.deepDiveButtonText, { color: colors.text }]}>
+                                  根拠条文
+                                </ThemedText>
+                              </Pressable>
+                            ) : null}
                             {!consolidateDeepDive ? (
                             <Pressable
                               onPress={() => {
@@ -1243,12 +1316,13 @@ export default function ResultScreen() {
                                     !!isReorder
                                   ),
                                   beginnerContent: deepBeginner || undefined,
+                                  peripheralContent: deepPeripheral || undefined,
                                   quizSubject: subject,
                                   quizField: field,
                                 });
                                 router.push({
                                   pathname: '/deepdive',
-                                  params: { content: deepContent || '', choiceLabel },
+                                  params: { choiceLabel },
                                 });
                               }}
                               style={[styles.deepDiveButton, { borderColor: colors.primary }]}
@@ -1314,6 +1388,26 @@ export default function ResultScreen() {
                       ) : null}
                       <View style={[styles.keywordRow, { marginTop: 8 }]}>
                         <View style={{ flex: 1 }} />
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                        {isMinpoSosokuQuizResult && (choiceStatuteRefs?.[choiceIdx] ?? '').trim() ? (
+                          <Pressable
+                            onPress={() => {
+                              const cl = `${label}${choiceText}`;
+                              openMinpoSosokuStatuteRefPage(
+                                router,
+                                choiceStatuteRefs![choiceIdx],
+                                cl,
+                                subject || '',
+                                field || ''
+                              );
+                            }}
+                            style={[styles.deepDiveButton, { borderColor: colors.subText }]}
+                          >
+                            <ThemedText style={[styles.deepDiveButtonText, { color: colors.text }]}>
+                              根拠条文
+                            </ThemedText>
+                          </Pressable>
+                        ) : null}
                         {!consolidateDeepDive ? (
                         <Pressable
                           onPress={() => {
@@ -1327,12 +1421,13 @@ export default function ResultScreen() {
                                 !!isReorder
                               ),
                               beginnerContent: deepBeginner || undefined,
+                              peripheralContent: deepPeripheral || undefined,
                               quizSubject: subject,
                               quizField: field,
                             });
                             router.push({
                               pathname: '/deepdive',
-                              params: { content: deepContent || '', choiceLabel },
+                              params: { choiceLabel },
                             });
                           }}
                           style={[styles.deepDiveButton, { borderColor: colors.primary }]}
@@ -1389,11 +1484,31 @@ export default function ResultScreen() {
                             </Pressable>
                           );
                         })()}
+                        </View>
                       </View>
                     </View>
                   ) : (
                     <View style={[styles.keywordRow, { marginTop: explText ? 8 : 0 }]}>
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flex: 1, justifyContent: 'flex-end' }}>
+                        {isMinpoSosokuQuizResult && (choiceStatuteRefs?.[choiceIdx] ?? '').trim() ? (
+                          <Pressable
+                            onPress={() => {
+                              const cl = `${label}${choiceText}`;
+                              openMinpoSosokuStatuteRefPage(
+                                router,
+                                choiceStatuteRefs![choiceIdx],
+                                cl,
+                                subject || '',
+                                field || ''
+                              );
+                            }}
+                            style={[styles.deepDiveButton, { borderColor: colors.subText }]}
+                          >
+                            <ThemedText style={[styles.deepDiveButtonText, { color: colors.text }]}>
+                              根拠条文
+                            </ThemedText>
+                          </Pressable>
+                        ) : null}
                         {!consolidateDeepDive ? (
                         <Pressable
                           onPress={() => {
@@ -1407,12 +1522,13 @@ export default function ResultScreen() {
                                 !!isReorder
                               ),
                               beginnerContent: deepBeginner || undefined,
+                              peripheralContent: deepPeripheral || undefined,
                               quizSubject: subject,
                               quizField: field,
                             });
                             router.push({
                               pathname: '/deepdive',
-                              params: { content: deepContent || '', choiceLabel },
+                              params: { choiceLabel },
                             });
                           }}
                           style={[styles.deepDiveButton, { borderColor: colors.primary }]}
@@ -1493,12 +1609,13 @@ export default function ResultScreen() {
                     setDeepdiveParams(consolidatedDeepContent, '', {
                       choiceCorrect: null,
                       beginnerContent: consolidatedDeepBeginner || undefined,
+                      peripheralContent: consolidatedPeripheral || undefined,
                       quizSubject: subject,
                       quizField: field,
                     });
                     router.push({
                       pathname: '/deepdive',
-                      params: { content: consolidatedDeepContent, choiceLabel: '' },
+                      params: { choiceLabel: '' },
                     });
                   }}
                   style={[styles.deepDiveButton, { borderColor: colors.primary }]}
@@ -1538,7 +1655,7 @@ export default function ResultScreen() {
                 });
                 router.push({
                   pathname: '/deepdive',
-                  params: { content: memo.trim(), choiceLabel: '' },
+                  params: { choiceLabel: '' },
                 });
               }}
               style={[styles.deepDiveButton, { borderColor: colors.primary, alignSelf: 'flex-start' }]}
@@ -1610,7 +1727,7 @@ export default function ResultScreen() {
                   });
                   router.push({
                     pathname: '/deepdive',
-                    params: { content: explain, choiceLabel: '' },
+                    params: { choiceLabel: '' },
                   });
                 }}
                 style={[styles.deepDiveButton, { borderColor: colors.primary, alignSelf: 'flex-start' }]}
@@ -1631,11 +1748,24 @@ export default function ResultScreen() {
                 {(() => {
                   const deepDiveContent = choiceDeepDive?.[expandedChoiceIndex]?.trim();
                   const deepDiveBeginner = choiceDeepDiveBeginner?.[expandedChoiceIndex]?.trim();
+                  const deepDivePeripheral = choiceDeepDivePeripheral?.[expandedChoiceIndex]?.trim();
                   if (deepDiveContent || deepDiveBeginner) {
                     const choiceLabel = expandedChoiceIndex != null && choices[expandedChoiceIndex]
                       ? `${(expandedChoiceIndex + 1)}. ${(choices[expandedChoiceIndex] || '').replace(/※/g, '')}`
                       : '';
+                    const expRef = expandedChoiceIndex != null ? (choiceStatuteRefs?.[expandedChoiceIndex] ?? '').trim() : '';
                     return (
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center', alignSelf: 'flex-start' }}>
+                      {isMinpoSosokuQuizResult && expRef ? (
+                        <Pressable
+                          onPress={() => {
+                            openMinpoSosokuStatuteRefPage(router, expRef, choiceLabel, subject || '', field || '');
+                          }}
+                          style={[styles.deepDiveButton, { borderColor: colors.subText }]}
+                        >
+                          <ThemedText style={[styles.deepDiveButtonText, { color: colors.text }]}>根拠条文</ThemedText>
+                        </Pressable>
+                      ) : null}
         <Pressable
                         onPress={() => {
                           setDeepdiveParams(deepDiveContent || '', choiceLabel, {
@@ -1650,20 +1780,22 @@ export default function ResultScreen() {
                                     !!isReorder
                                   ),
                             beginnerContent: deepDiveBeginner || undefined,
+                            peripheralContent: deepDivePeripheral || undefined,
                             quizSubject: subject,
                             quizField: field,
                           });
                           router.push({
                             pathname: '/deepdive',
-                            params: { content: deepDiveContent || '', choiceLabel },
+                            params: { choiceLabel },
                           });
                         }}
-                        style={[styles.deepDiveButton, { borderColor: colors.primary, alignSelf: 'flex-start' }]}
+                        style={[styles.deepDiveButton, { borderColor: colors.primary }]}
                       >
                         <ThemedText style={[styles.deepDiveButtonText, { color: colors.primary }]}>
                           📖 もっと深掘る（別ページで表示）
           </ThemedText>
         </Pressable>
+                    </View>
                     );
                   }
                   return (

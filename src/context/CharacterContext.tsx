@@ -104,9 +104,11 @@ export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ chi
             let regex: RegExp;
             // 条文・引用の「父から認知」等は置換しない（「父」「（父」の直後の父は登場人物ではない）
             if (original === '父') {
-                regex = /(?<![「（『［])父(?![母])/g;
+                // 「父のJ」のように、役割語の直後にプレースホルダー英字がある場合は置換しない
+                regex = /(?<![「（『［])父(?![母])(?!の(?:[A-Z]|[\uFF21-\uFF3A]))/g;
             } else if (original === '母') {
-                regex = /(?<![「（『［])(?<!父)母/g;
+                // 「母のK」（母＝役割、K＝記号）を「KのK」に壊さない
+                regex = /(?<![「（『［])(?<!父)母(?!の(?:[A-Z]|[\uFF21-\uFF3A]))/g;
             } else {
                 regex = new RegExp(original.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
             }

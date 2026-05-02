@@ -33,6 +33,8 @@ export const applyTTSRules = (text: string): string => {
         .replace(/主文/g, 'しゅぶん')
         // 民事訴訟の疎明（「しょめい」等と誤読されがち）
         .replace(/疎明/g, 'そめい')
+        // 民事訴訟の書証（「しょしょう」と読ませる）
+        .replace(/書証/g, 'しょしょう')
         // 行政不服審査・訴訟の裁決前置主義
         .replace(/裁決前置主義/g, 'さいけつぜんちしゅぎ')
         // 供託法・訴訟の供託金（「きょうだくきん」等と誤読されがち）
@@ -47,6 +49,7 @@ export const applyTTSRules = (text: string): string => {
         .replace(/後順位抵当権者/g, 'こうじゅんいていとうけんしゃ')
         .replace(/事理弁識/g, 'じりべんしき')
         .replace(/制限行為能力者/g, 'せいげんこういのうりょくしゃ')
+        .replace(/意思無能力者/g, 'いしむのうりょくしゃ')
         .replace(/意思能力者/g, 'いしのうりょくしゃ')
         .replace(/責任無能力者/g, 'せきにんむのうりょくしゃ')
         .replace(/仮装譲受人/g, 'かそうゆずりうけにん')
@@ -73,7 +76,10 @@ export const applyTTSRules = (text: string): string => {
         .replace(/違約金/g, 'いやくきん')
         .replace(/遅延損害金/g, 'ちえんそんがいきん')
         .replace(/損害賠償金/g, 'そんがいばいしょうきん')
+        .replace(/賠償金/g, 'ばいしょうきん')
         .replace(/分担金/g, 'ぶんたんきん')
+        .replace(/負担金/g, 'ふたんきん')
+        .replace(/寄付金/g, 'きふきん')
         .replace(/加入金/g, 'かにゅうきん')
         .replace(/受傷/g, 'じゅしょう')
         .replace(/定期金/g, 'ていききん')
@@ -93,6 +99,12 @@ export const applyTTSRules = (text: string): string => {
         .replace(/催告/g, 'さいこく')
         .replace(/急迫/g, 'きゅうはく')
         .replace(/困却/g, 'こんきゃく')
+        // 通達・所謂・懲戒免官（判例・行訴で TTS が誤読しがち）
+        .replace(/通達中/g, 'つうたつちゅう')
+        .replace(/所謂/g, 'いわゆる')
+        .replace(/懲戒免官部分/g, 'ちょうかいめんかんぶぶん')
+        .replace(/懲戒免官/g, 'ちょうかいめんかん')
+        .replace(/受忍義務/g, 'じゅにんぎむ')
         .replace(/受忍限度/g, 'じゅにんげんど')
         .replace(/失火/g, 'しっか')
         .replace(/追完請求/g, 'ついかんせいきゅう')
@@ -128,6 +140,10 @@ export const applyTTSRules = (text: string): string => {
         .replace(/差押え債権者/g, 'さしおさえさいけんしゃ')
         .replace(/差押債権者/g, 'さしおさえさいけんしゃ')
         .replace(/差押え/g, 'さしおさえ')
+        // 行訴など「差止訴訟」（めなし）と「差止め」
+        .replace(/差止め訴訟/g, 'さしとめそしょう')
+        .replace(/差止訴訟/g, 'さしとめそしょう')
+        .replace(/差止める/g, 'さしとめる')
         .replace(/差止め/g, 'さしとめ')
         .replace(/取立/g, 'とりたて')
         .replace(/認容/g, 'にんよう')
@@ -155,6 +171,10 @@ export const applyTTSRules = (text: string): string => {
         .replace(/掌理/g, 'しょうり')
         .replace(/分限処分/g, 'ぶんげんしょぶん')
         .replace(/〇〇施行規則/g, 'まるまるせこうきそく')
+        // 日付の丸埋め（TTS が記号を読み飛ばしたり崩すのを防ぐ）
+        .replace(/◯年◯月◯日/g, 'まるねんまるがつまるにち')
+        .replace(/○年○月○日/g, 'まるねんまるがつまるにち')
+        .replace(/〇年〇月〇日/g, 'まるねんまるがつまるにち')
         .replace(/細目/g, 'さいもく')
         .replace(/施行/g, 'せこう')
         .replace(/薬事法/g, 'やくじほう')
@@ -194,6 +214,7 @@ export const applyTTSRules = (text: string): string => {
         .replace(/[3３三]月/g, 'さんげつ')
         .replace(/公の利益/g, 'おおやけのりえき')
         .replace(/公の施設/g, 'おおやけのしせつ')
+        .replace(/公の営造物/g, 'おおやけのえいぞうぶつ')
         .replace(/行った/g, 'おこなった')
         // 行う＋てはならず（法令・解説の文語。「いっては」と誤読されがち）
         .replace(/行ってはならず/g, 'おこなってわならず')
@@ -235,6 +256,7 @@ export const applyTTSRules = (text: string): string => {
         .replace(/法の下/g, 'ほうのもと')
         .replace(/供される/g, 'きょうされる')
         .replace(/次年度/g, 'じねんど')
+        .replace(/毎年度/g, 'まいねんど')
         .replace(/早い時間/g, 'はやいじかん')
         .replace(/早い時代/g, 'はやいじだい')
         .replace(/早い時刻/g, 'はやいじこく')
@@ -282,6 +304,8 @@ export const applyTTSRules = (text: string): string => {
         .replace(/態様/g, 'たいよう')
         .replace(/要指導医薬品/g, 'ようしどういやくひん')
         .replace(/堤塘/g, 'ていとう')
+        // 河川・水道の用語（「しゅすいげん」と読ませる）
+        .replace(/取水源/g, 'しゅすいげん')
         .replace(/接見/g, 'せっけん')
         .replace(/被告人/g, 'ひこくにん')
         .replace(/上告人/g, 'じょうこくにん')
@@ -301,6 +325,8 @@ export const applyTTSRules = (text: string): string => {
         .replace(/防護柵/g, 'ぼうごさく')
         .replace(/工作物/g, 'こうさくぶつ')
         .replace(/造作物/g, 'ぞうさくぶつ')
+        // 著作権法・判例（「ちょうさくぶつ」と誤読されがち）
+        .replace(/著作物/g, 'ちょさくぶつ')
         .replace(/造作/g, 'ぞうさく')
         .replace(/明渡し/g, 'あけわたし')
         .replace(/明渡/g, 'あけわたし')

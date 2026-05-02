@@ -361,6 +361,7 @@ async function sync() {
 
         // 主要列のフォーマット（文字色・太字）を取得 — values の H/K/L と行番号を対応させる
         let mColFormatMap = {};
+        let nColFormatMap = {};
         let azColFormatMap = {};
         let bColFormatMap = {};
         let hColFormatMap = {};
@@ -382,6 +383,7 @@ async function sync() {
                     `${title}!C2:C${n}`,
                     `${title}!F2:F${n}`,
                     `${title}!AZ2:AZ${n}`,
+                    `${title}!N2:N${n}`,
                 ],
                 includeGridData: true,
             });
@@ -404,6 +406,7 @@ async function sync() {
             if (data[5]) fillMap(data[5], cColFormatMap);
             if (data[6]) fillMap(data[6], fColFormatMap);
             if (data[7]) fillMap(data[7], azColFormatMap);
+            if (data[8]) fillMap(data[8], nColFormatMap);
         } catch (e) {
             console.warn(`[WARN] 列フォーマット取得スキップ: ${e.message}`);
         }
@@ -511,6 +514,11 @@ async function sync() {
                     isBonus = true;
                     questionText = questionText.replace(/^※\s*/, '').trim();
                 }
+                // 「次のア〜オの記述のうち…組合せはどれか」＝記述肢ア〜オの択一・複数択。穴埋め空欄ではない。
+                const isEnumerateKanaStatementsCombo =
+                    (/ア\s*[〜～\uFF5E]\s*オ\s*の記述/.test(questionText) ||
+                        /ア\s*[〜～\uFF5E]\s*エ\s*の記述/.test(questionText)) &&
+                    /組合せはどれ|妥当なものの組合せ|組合せとして正しいもの|当てはまる組合せ/.test(questionText);
 
                 const slots = [];
                 const buildDefaultSlots = () => {
@@ -537,9 +545,15 @@ async function sync() {
                         pushLabels(['ア', 'イ', 'ウ'], false);
                     } else if (/空欄\s*ア\s*[・\s]\s*イ/.test(problemText)) {
                         pushLabels(['ア', 'イ'], false);
-                    } else if (/ア\s*[〜～]\s*オ/.test(problemText)) {
+                    } else if (
+                        /ア\s*[〜～\uFF5E]\s*オ/.test(problemText) &&
+                        !/ア\s*[〜～\uFF5E]\s*オ\s*の記述/.test(problemText)
+                    ) {
                         pushLabels(['ア', 'イ', 'ウ', 'エ', 'オ'], false);
-                    } else if (/ア\s*[〜～]\s*エ/.test(problemText)) {
+                    } else if (
+                        /ア\s*[〜～\uFF5E]\s*エ/.test(problemText) &&
+                        !/ア\s*[〜～\uFF5E]\s*エ\s*の記述/.test(problemText)
+                    ) {
                         pushLabels(['ア', 'イ', 'ウ', 'エ'], false);
                     } else if (
                         /下線部\s*[\(（]ア[\)）]/.test(problemText) &&
@@ -575,7 +589,7 @@ async function sync() {
                 // 片カナの [ア]〜[オ] 空欄があれば、語群は N,O,P,Q,R（ア〜オ）へ。K列は択一肢のまま。
                 const shouldSkipSlotsForCombo =
                     !!valK && (isComboChoiceLegacy || (isComboPhrase && !hasLatinLatinBrackets && !hasKatakanaBlankStemForCombo));
-                if (!shouldSkipSlotsForCombo) {
+                if (!shouldSkipSlotsForCombo && !isEnumerateKanaStatementsCombo) {
                     for (let j = 0; j < 4; j++) {
                         const label = row[3 + j] ? row[3 + j].trim() : '';
                         const choice = row[13 + j] ? row[13 + j].trim() : '';
@@ -584,7 +598,7 @@ async function sync() {
                     if (row[8]) slots.push({ label: row[8].trim(), options: row[18] ? row[18].trim() : '' });
                 }
                 // 問題文に空欄表記があるがスロット未設定の場合、デフォルトスロットを作成
-                if (slots.length === 0 && !shouldSkipSlotsForCombo) {
+                if (slots.length === 0 && !shouldSkipSlotsForCombo && !isEnumerateKanaStatementsCombo) {
                     buildDefaultSlots();
                 }
                 // N列・O列…を問題行＋継続行の同じ列で縦に積んだ場合、語群を「 / 」で結合（ア行・イ行を別セルにした形式）
@@ -692,6 +706,8 @@ async function sync() {
                 const choiceDeepDive = [];
                 // ビギナー向けもっと深掘り: AZ列(index 51)。M列と同形式・[[image:]]可。AY列が空ならチャンク(U〜)の誤ペアにならない
                 const choiceDeepDiveBeginner = [];
+                /** N列(index 13): 語群スロット未使用のシートのみ「周辺知識」。語群・アイイ組合せ・多肢選択では使わない */
+                const choiceDeepDivePeripheral = [];
                 const valChunkImg = (r) => (r && r[24] ? String(r[24]).trim() : '');
                 const valStatuteRef = (r) => (r && r[8] ? String(r[8]).trim() : '');
                 // もっと深掘る: 問題を解くモードはM列(index 12)のみ。太字・赤はフォーマットから反映
@@ -705,6 +721,17 @@ async function sync() {
                     const raw = r && r[51] ? String(r[51]).trim() : '';
                     if (!raw) return '';
                     const cellData = azColFormatMap[rowIdx];
+                    return cellData ? applyBoldFromFormatRuns(raw, cellData) : raw;
+                };
+                const isComboWithWordBankForN =
+                    /空欄\s*[\[［]\s*[ア]\s*[\]］]\s*[・\s]*[\[［]\s*[イ]\s*[\]］].*語句の組合せ|語句\s*[\(（]\s*[ア]\s*[\)）].*考え方\s*[\(（]\s*[イ]\s*[\)）].*組合せ/.test(valProblem || '');
+                const useNColumnForPeripheral =
+                    slots.length === 0 && !isComboWithWordBankForN && currentSubject !== '多肢選択';
+                const valPeripheral = (r, rowIdx) => {
+                    if (!useNColumnForPeripheral) return '';
+                    const raw = r && r[13] ? String(r[13]).trim() : '';
+                    if (!raw) return '';
+                    const cellData = nColFormatMap[rowIdx];
                     return cellData ? applyBoldFromFormatRuns(raw, cellData) : raw;
                 };
                 const firstChoice = useGyosei1Layout ? valC : valK;
@@ -724,6 +751,7 @@ async function sync() {
                     choiceStatuteRefs.push(valStatuteRef(row));
                     choiceDeepDive.push(valDeepDive(row, i + 1));
                     choiceDeepDiveBeginner.push(valDeepDiveBeginner(row, i + 1));
+                    choiceDeepDivePeripheral.push(valPeripheral(row, i + 1));
                 }
 
                 let offset = 1;
@@ -762,6 +790,7 @@ async function sync() {
                         choiceStatuteRefs.push(valStatuteRef(nextRow));
                         choiceDeepDive.push(valDeepDive(nextRow, contRowNum));
                         choiceDeepDiveBeginner.push(valDeepDiveBeginner(nextRow, contRowNum));
+                        choiceDeepDivePeripheral.push(valPeripheral(nextRow, contRowNum));
                     }
                     offset++;
                 }
@@ -774,6 +803,7 @@ async function sync() {
                     choiceStatuteRefs.push('');
                     choiceDeepDive.push('');
                     choiceDeepDiveBeginner.push('');
+                    choiceDeepDivePeripheral.push('');
                 }
                 // choiceChunkImages / choiceExplanations / choiceStatuteRefs / choiceDeepDive を choices の長さに合わせる
                 while (choiceChunkImages.length < choices.length) choiceChunkImages.push('');
@@ -781,6 +811,7 @@ async function sync() {
                 while (choiceStatuteRefs.length < choices.length) choiceStatuteRefs.push('');
                 while (choiceDeepDive.length < choices.length) choiceDeepDive.push('');
                 while (choiceDeepDiveBeginner.length < choices.length) choiceDeepDiveBeginner.push('');
+                while (choiceDeepDivePeripheral.length < choices.length) choiceDeepDivePeripheral.push('');
                 if (choices.length >= 1) {
                     const correctIndices = [];
                     const cleanChoices = currentSubject === '記述'
@@ -896,6 +927,7 @@ async function sync() {
                     const finalChoiceStatuteRefs = isReorder ? [] : choiceStatuteRefs;
                     const finalChoiceDeepDive = isReorder ? [] : choiceDeepDive;
                     const finalChoiceDeepDiveBeginner = isReorder ? [] : choiceDeepDiveBeginner;
+                    const finalChoiceDeepDivePeripheral = isReorder ? [] : choiceDeepDivePeripheral;
                     // K列に（ｒ）がある択一正解があるときは answer は肢番号のまま（語群は表示・穴埋め用のみ）
                     if (!isReorder && slotAnswersFromNtoP && slotAnswersFromNtoP.length > 0 && correctIndices.length === 0) {
                         finalAnswer = slotAnswersFromNtoP;
@@ -963,7 +995,8 @@ async function sync() {
                         choiceExplanations: finalChoiceExplanations,
                         choiceStatuteRefs: finalChoiceStatuteRefs,
                         choiceDeepDive: finalChoiceDeepDive,
-                        choiceDeepDiveBeginner: finalChoiceDeepDiveBeginner
+                        choiceDeepDiveBeginner: finalChoiceDeepDiveBeginner,
+                        choiceDeepDivePeripheral: finalChoiceDeepDivePeripheral
                     });
                 } else {
                     // Extract chunks for non-choice questions too
