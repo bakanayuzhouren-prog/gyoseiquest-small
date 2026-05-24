@@ -18,6 +18,40 @@ export function splitNumberPrefix(text: string): { prefix: string; body: string 
   return { prefix: '', body: t };
 }
 
+/** `<u>…</u>` 区間（大小・空白許容）を分割。タグは表示から除き、下線用フラグのみ付与 */
+export type HtmlUnderlinePiece = { text: string; underline: boolean };
+
+export function splitHtmlUnderlineTags(input: string): HtmlUnderlinePiece[] {
+  const s = input ?? '';
+  if (!s || !/<\s*u\s*>/i.test(s)) return [{ text: s, underline: false }];
+  const out: HtmlUnderlinePiece[] = [];
+  let pos = 0;
+  const openTag = /<\s*u\s*>/gi;
+  const closeTag = /<\s*\/\s*u\s*>/gi;
+
+  while (pos < s.length) {
+    openTag.lastIndex = pos;
+    const mo = openTag.exec(s);
+    if (!mo || mo.index === undefined) {
+      out.push({ text: s.slice(pos), underline: false });
+      break;
+    }
+    if (mo.index > pos) {
+      out.push({ text: s.slice(pos, mo.index), underline: false });
+    }
+    const contentStart = mo.index + mo[0].length;
+    closeTag.lastIndex = contentStart;
+    const mc = closeTag.exec(s);
+    if (!mc || mc.index === undefined) {
+      out.push({ text: s.slice(contentStart), underline: false });
+      break;
+    }
+    out.push({ text: s.slice(contentStart, mc.index), underline: true });
+    pos = mc.index + mc[0].length;
+  }
+  return out;
+}
+
 /** 「1.2. A / B」または「1.2. 1,A\n2,B」形式を「１，A」改行「２，B」に変換（問題文・解説肢表示用）。「1.2.」および「1,」「2,」の重複を除去 */
 export function formatNumberedClauses(text: string): string {
   if (!text) return text;

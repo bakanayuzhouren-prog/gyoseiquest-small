@@ -42,12 +42,20 @@ export function filterQuizQuestionsByMode(
 
     const cb = q.choiceIsBonus as boolean[] | undefined;
     const hasCb = cb && cb.length > 0;
+
+    /** 過去問・師匠と同じプール（※専用・全肢※の問題は除外） */
+    const inPastPool =
+      !(q.isBonus && (!hasCb || cb.every((b: boolean) => b) || cb.every((b: boolean) => !b))) &&
+      (hasCb ? cb.some((b: boolean) => !b) : !q.isBonus);
+
+    /** スプレッドシートの ※ 問題・※ 肢のみのセット */
+    const inBonusOnlyPool = hasCb ? cb.some((b: boolean) => b) : !!q.isBonus;
+
     if (mode === 'bonus') {
-      return hasCb ? cb.some((b: boolean) => b) : !!q.isBonus;
+      return inPastPool || inBonusOnlyPool;
     }
-    // mode === 'shisho'（師匠モード）は過去問と同じ出題プール（ボーナス専用は除外）
-    if (q.isBonus && (!hasCb || cb.every((b: boolean) => b) || cb.every((b: boolean) => !b))) return false;
-    return hasCb ? cb.some((b: boolean) => !b) : !q.isBonus;
+    // mode === 'past' | 'shisho': 師匠は過去問と同一プール
+    return inPastPool;
   });
 }
 

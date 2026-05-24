@@ -242,6 +242,69 @@ export interface GradeDescriptiveResult {
   analysis: string;
 }
 
+/** 質問するモード: アプリ内検索結果のみを根拠に回答 */
+export const answerChatFromContext = async (
+  apiKey: string,
+  params: { userQuery: string; contextChunks: { source: string; title: string; text: string }[] }
+): Promise<string> => {
+  const { userQuery, contextChunks } = params;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+  const ctx =
+    contextChunks.length === 0
+      ? '（該当するアプリ内テキストは見つかりませんでした）'
+      : contextChunks
+          .map((c, i) => `---\n[${i + 1}] 出典: ${c.source} / ${c.title}\n${c.text}`)
+          .join('\n');
+
+  const qHints = userQuery.normalize('NFKC').toLowerCase();
+  let topicStructure = '';
+  if (qHints.includes('理由の提示') || qHints.includes('理由提示')) {
+    topicStructure = `
+【この質問の回答構成（必須）】
+ユーザーが「理由の提示」を尋ねている場合は、行政手続法の論点として、次の**2つを必ず区別して**説明すること。
+1）**不利益処分**をするときの理由の提示（第8条第1項の系統）
+2）**申請に対する拒否・不許可・却下**等、申請拒否類型の理由の提示（第8条第2項第1号の系統）
+参考テキストや論点ガイドにない条文の但書・細部は創作しないこと。`;
+  }
+
+  const prompt = `【指示】
+あなたは行政書士試験の学習アシスタントです。次の「参考テキスト」**のみ**を根拠に、ユーザーの質問に日本語で答えてください。
+${topicStructure}
+【厳守】
+- 参考テキストに根拠がない内容は「手元のデータには載っていません」と書き、推測や一般知識で補わない。
+- 参考テキストの趣旨を要約・整理して分かりやすく。必要なら出典番号 [1] などを括弧で示す。
+- 条文番号・判例名が参考にある場合はそのまま引用してよい。
+
+【ユーザーの質問】
+${userQuery}
+
+【参考テキスト】
+${ctx}`;
+
+  const body = {
+    contents: [{ parts: [{ text: prompt }] }],
+    generationConfig: { temperature: 0.25, maxOutputTokens: 8192 },
+  };
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!response.ok) {
+    const errText = await response.text();
+    throw new Error(`Gemini API Error: ${response.status} ${response.statusText} - ${errText}`);
+  }
+  const data = await response.json();
+  let raw = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '回答を取得できませんでした。';
+  const reason = data.candidates?.[0]?.finishReason;
+  if (reason === 'MAX_TOKENS' && !raw.endsWith('。') && !raw.endsWith('．')) {
+    raw += '\n\n…（出力上限に達しました。短い質問に分けると全文が得られやすいです。）';
+  }
+  return raw;
+};
+
 export const gradeDescriptiveAnswer = async (
   apiKey: string,
   request: GradeDescriptiveRequest

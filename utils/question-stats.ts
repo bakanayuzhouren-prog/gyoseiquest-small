@@ -126,6 +126,29 @@ let lastUpdateSig = '';
 let lastUpdateTime = 0;
 const DEDUPE_MS = 2000;
 
+/**
+ * 誤不正解などで wrong が付いたあと、当該問題の試行回数をすべて「正解」として扱い直す（正答率 100%）。
+ * UI: 問題画面の「正答率: x/y」を長押しで実行。
+ */
+export async function reconcileAllAttemptsAsCorrect(
+  subject: string,
+  field: string,
+  questionText: string
+): Promise<QuestionStats> {
+  const current = await getQuestionStats(subject, field, questionText);
+  const total = current.correct + current.wrong;
+  if (total <= 0) return current;
+  const next: QuestionStats = {
+    correct: total,
+    wrong: 0,
+    consecutiveCorrect: Math.max(current.consecutiveCorrect ?? 0, total),
+    previewText: current.previewText,
+  };
+  const key = buildKey(subject, field, questionText);
+  await AsyncStorage.setItem(key, JSON.stringify(next));
+  return next;
+}
+
 export async function updateQuestionStats(
   subject: string,
   field: string,

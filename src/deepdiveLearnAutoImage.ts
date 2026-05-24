@@ -4,7 +4,7 @@ import {
   resolveMinpoLearnFolderByQuestionNumber,
   resolveSaikensouronLearnImageKey,
 } from '@/src/deepdiveImages';
-import { resolveImageAsset } from '@/src/resolveImageAsset';
+import { resolveDeepdiveImageTagInner, resolveImageAsset } from '@/src/resolveImageAsset';
 import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/learn';
 
 function firstLine(s: string): string {
@@ -69,9 +69,22 @@ function resolveLearnAutoProblemImageKey(learnSubject: string | undefined, probl
   }
   /** kenpou/N-230 は本編「憲法」のみ。「多肢選択」単独で問番号を付けると多肢選択・憲法と混ざるので付けない */
   if (learnSubject === '憲法') {
+    if (problemNum1Based === 218) {
+      const alias184 = resolveKenpouProblemImageKey(184);
+      if (alias184 && resolveImageAsset(alias184)) return alias184;
+    }
     return resolveKenpouProblemImageKey(problemNum1Based);
   }
   return undefined;
+}
+
+/** 憲法 90〜93問目: 共通の補助図を既存 kenpou/N-230 と併記する（見出し: 人権の制約態様） */
+const KENPOU_PARALLEL_SUPPLEMENT_90_93 = 'kenpou/90-230-2';
+
+export function kenpouParallelSupplementImageKey(problemNum1Based: number): string | undefined {
+  if (problemNum1Based < 90 || problemNum1Based > 93) return undefined;
+  if (!resolveImageAsset(KENPOU_PARALLEL_SUPPLEMENT_90_93)) return undefined;
+  return KENPOU_PARALLEL_SUPPLEMENT_90_93;
 }
 
 export function mergedDeepdiveHasResolvableImage(merged: string): boolean {
@@ -80,8 +93,7 @@ export function mergedDeepdiveHasResolvableImage(merged: string): boolean {
   const re = /\[\[image:([^\]]+)\]\]/g;
   let m;
   while ((m = re.exec(merged)) !== null) {
-    const key = m[1].trim().split(/\s+/)[0];
-    if (resolveImageAsset(key)) return true;
+    if (resolveDeepdiveImageTagInner(m[1])) return true;
   }
   return false;
 }
@@ -128,8 +140,8 @@ export function pickAutoLearnDeepdiveImageKey(
     const b = (deepdiveColumn[i] || '').trim();
     const imgMatch = b.match(/\[\[image:([^\]]+)\]\]/);
     if (imgMatch) {
-      const k = imgMatch[1].trim().split(/\s+/)[0];
-      if (resolveImageAsset(k)) return k;
+      const k = resolveDeepdiveImageTagInner(imgMatch[1]);
+      if (k) return k;
     }
   }
 
@@ -142,8 +154,8 @@ export function pickAutoLearnDeepdiveImageKey(
     for (const i of sorted) {
       const m = (learnContentColumn[i] || '').match(/\[\[image:([^\]]+)\]\]/);
       if (m) {
-        const k = m[1].trim().split(/\s+/)[0];
-        if (resolveImageAsset(k)) return k;
+        const k = resolveDeepdiveImageTagInner(m[1]);
+        if (k) return k;
       }
     }
   }

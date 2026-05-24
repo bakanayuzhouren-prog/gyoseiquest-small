@@ -1,10 +1,11 @@
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useCharacter } from '@/src/context/CharacterContext';
+import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
 import { useTheme } from '@/src/context/ThemeContext';
-import { pickAutoLearnDeepdiveImageKey } from '@/src/deepdiveLearnAutoImage';
+import { kenpouParallelSupplementImageKey, pickAutoLearnDeepdiveImageKey } from '@/src/deepdiveLearnAutoImage';
 import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/learn';
-import { resolveImageAsset } from '@/src/resolveImageAsset';
+import { resolveDeepdiveImageTagInner, resolveImageAsset } from '@/src/resolveImageAsset';
 import { SUBJECTS } from '@/src/questions';
 import { applyTTSRules } from '@/utils/tts-rules';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -18,7 +19,7 @@ import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 
 /** deepdive / chunk / imageMap を含めて参照（民法物権 learn/bukken 等） */
 function getReferenceImageSource(key: string): number | undefined {
-  const k = key.trim().split(/\s+/)[0];
+  const k = resolveDeepdiveImageTagInner(key) ?? key.trim().split(/\s+/)[0];
   if (!k) return undefined;
   const resolved = resolveImageAsset(k);
   if (resolved) return resolved;
@@ -34,7 +35,8 @@ function stripLeadingImageTags(text: string): { images: string[]; rest: string }
     const u = t.trimStart();
     const m = tagAtStart.exec(u);
     if (!m) break;
-    images.push(m[1].trim().split(/\s+/)[0]);
+    const resolvedKey = resolveDeepdiveImageTagInner(m[1]);
+    images.push(resolvedKey ?? m[1].trim());
     t = u.slice(m[0].length);
   }
   return { images, rest: t.trimStart() };
@@ -45,6 +47,7 @@ export default function ReferencePage() {
     const router = useRouter();
     const { theme, colors } = useTheme();
     const { applyCharacterNames } = useCharacter();
+    const { voiceSpeechOptions } = useLearnPlayback();
 
     const questionIndex = parseInt(Array.isArray(id) ? id[0] : id || '0', 10);
     const subjectName = Array.isArray(subject) ? subject[0] : subject || '';
@@ -101,6 +104,16 @@ export default function ReferencePage() {
         }
     }
 
+    if (subjectName === '憲法') {
+        const sup = kenpouParallelSupplementImageKey(questionIndex + 1);
+        if (sup) {
+            const tag = `[[image:${sup}]]`;
+            if (!explainText.includes(tag)) {
+                explainText = `${tag}\n\n${explainText}`;
+            }
+        }
+    }
+
     // Override for Agency Personation Diagram (Workaround for large questions.js)
     if (subjectName === '民法総則' && questionIndex === 54) {
         explainText = "[[image:agency_diagram]]";
@@ -149,7 +162,7 @@ export default function ReferencePage() {
                 }
                 count++;
                 Speech.speak(spokenText, {
-                    language: 'ja-JP',
+                    ...voiceSpeechOptions,
                     rate: 2.0,
                     onDone: speak,
                     onError: () => setIsPlaying(false),

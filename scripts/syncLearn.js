@@ -57,6 +57,28 @@ function applyLexiconColumn(text, valC) {
   return out;
 }
 
+function normalizeLearnLinkKey(value) {
+  if (value == null) return '';
+  const normalized = String(value)
+    .normalize('NFKC')
+    .replace(/[０-９]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xFEE0))
+    .replace(/＃/g, '#')
+    .trim();
+  const match = normalized.match(/#\s*([0-9]{1,6})/);
+  return match ? `#${match[1].padStart(3, '0')}` : '';
+}
+
+function extractLearnLinkKey(text) {
+  if (!text) return '';
+  const matches = [...String(text).matchAll(/[＃#]\s*([0-9０-９]{1,6})/g)];
+  if (matches.length === 0) return '';
+  return normalizeLearnLinkKey(matches[matches.length - 1][0]);
+}
+
+function stripLearnLinkTag(text) {
+  return String(text || '').replace(/\s*[＃#]\s*[0-9０-９]{1,6}\s*$/g, '').trim();
+}
+
 async function sync() {
   const spreadsheetId = process.env.SHEET_ID;
   console.log(`Syncing from spreadsheet: ${spreadsheetId}`);
@@ -80,6 +102,7 @@ async function sync() {
   const learnDeepDive = {};
   const learnFExplain = {};
   const learnSource = {};
+  const learnLinks = {};
 
   // 2. Iterate through sheets and aggregate content
   for (const sheet of sheetList) {
@@ -427,6 +450,8 @@ async function sync() {
 
         if (content) {
           const trimmedContent = content.trim();
+          const learnLinkKey = extractLearnLinkKey(trimmedContent);
+          const displayContent = learnLinkKey ? stripLearnLinkTag(trimmedContent) : trimmedContent;
 
           if (!learnContent[currentSubject]) {
             learnContent[currentSubject] = [];
@@ -485,10 +510,19 @@ async function sync() {
           if (!learnFExplain[currentSubject]) learnFExplain[currentSubject] = [];
           learnFExplain[currentSubject].push(fPush);
           const valCLexPush = row[2] != null ? String(row[2]).trim() : '';
-          const contentFinal = applyLexiconColumn(trimmedContent, valCLexPush);
+          const contentFinal = applyLexiconColumn(displayContent, valCLexPush);
+          const pushedIndex = learnContent[currentSubject].length;
           learnContent[currentSubject].push(typeof contentFinal === 'string' ? contentFinal : String(contentFinal));
           if (!learnSource[currentSubject]) learnSource[currentSubject] = [];
           learnSource[currentSubject].push(title);
+          if (learnLinkKey) {
+            if (!learnLinks[learnLinkKey]) learnLinks[learnLinkKey] = [];
+            learnLinks[learnLinkKey].push({
+              subject: currentSubject,
+              index: pushedIndex,
+              source: title,
+            });
+          }
         }
       }
     }
@@ -515,7 +549,7 @@ async function sync() {
   }
 
   // Write to src/learn.js
-  const fileContent = `export const LEARN_CONTENT = ${JSON.stringify(learnContent, null, 2)};\nexport const LEARN_DEEPDIVE = ${JSON.stringify(learnDeepDive, null, 2)};\nexport const LEARN_F_EXPLAIN = ${JSON.stringify(learnFExplain, null, 2)};\nexport const LEARN_SOURCE = ${JSON.stringify(learnSource, null, 2)};`;
+  const fileContent = `export const LEARN_CONTENT = ${JSON.stringify(learnContent, null, 2)};\nexport const LEARN_DEEPDIVE = ${JSON.stringify(learnDeepDive, null, 2)};\nexport const LEARN_F_EXPLAIN = ${JSON.stringify(learnFExplain, null, 2)};\nexport const LEARN_SOURCE = ${JSON.stringify(learnSource, null, 2)};\nexport const LEARN_LINKS = ${JSON.stringify(learnLinks, null, 2)};`;
   fs.writeFileSync(OUTPUT_FILE, fileContent);
   console.log(`learn.js synced successfully to ${OUTPUT_FILE}`);
 }

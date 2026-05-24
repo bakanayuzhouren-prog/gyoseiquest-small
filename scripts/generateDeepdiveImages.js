@@ -106,6 +106,84 @@ export function resolveSaikensouronLearnImageKey(problemNum1Based: number): stri
   if (keys.length === 0) return undefined;
   return keys.sort()[0];
 }
+
+/**
+ * 問題を解く・民法 債権各論: assets/images/deepdive/kakuronn/kakuronnN-M-C
+ * N=問題番号（1始まり）、M=当該分野の問題数、C=選択肢番号（1始まり）。
+ */
+export function resolveKakuronnQuizChoiceImageKey(
+  questionNum1Based: number,
+  totalQuestions: number,
+  choiceNum1Based: number
+): string | undefined {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return undefined;
+  const exact = \`kakuronn/kakuronn\${questionNum1Based}-\${totalQuestions}-\${choiceNum1Based}\`;
+  if (DEEPDIVE_IMAGES[exact]) return exact;
+  const re = new RegExp(\`^kakuronn/kakuronn\${questionNum1Based}-\\\\d+-\${choiceNum1Based}$\`);
+  return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
+}
+
+/**
+ * 問題を解く・憲法: kennpou-toku/kenpouN があれば全肢共通で最優先。
+ * 次に kenpou/N-M-C（存在すれば）、なければ kenpou/N-230。218問目は 184 へエイリアス。
+ */
+export function resolveKenpouQuizChoiceImageKey(
+  questionNum1Based: number,
+  totalQuestions: number,
+  choiceNum1Based: number
+): string | undefined {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return undefined;
+
+  const tokuExact = \`kennpou-toku/kenpou\${questionNum1Based}\`;
+  if (DEEPDIVE_IMAGES[tokuExact]) return tokuExact;
+
+  const tryWithN = (n: number) => {
+    const exact = \`kenpou/\${n}-\${totalQuestions}-\${choiceNum1Based}\`;
+    if (DEEPDIVE_IMAGES[exact]) return exact;
+    const re = new RegExp(\`^kenpou/\${n}-\\\\d+-\${choiceNum1Based}$\`);
+    return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
+  };
+
+  let key = tryWithN(questionNum1Based);
+  if (!key && questionNum1Based === 218) key = tryWithN(184);
+  if (key) return key;
+
+  if (questionNum1Based === 218) {
+    const alias184 = resolveKenpouProblemImageKey(184);
+    if (alias184) return alias184;
+  }
+  return resolveKenpouProblemImageKey(questionNum1Based);
+}
+
+/**
+ * 問題を解く・記述（行政法）: assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihouN-S
+ * N=行政法記述の問番号（1始まり）、S=【ケースA】などの末尾英字または数字。
+ * 例: kijyutu-gyouseihou3-A.png
+ */
+export function resolveKijyutuGyouseihouCaseImageKey(
+  questionNum1Based: number,
+  caseSuffix: string,
+): string | undefined {
+  if (questionNum1Based < 1 || !caseSuffix) return undefined;
+  const flat = String(caseSuffix).normalize('NFKC').trim();
+  if (!flat) return undefined;
+  const c0 = flat[0];
+  const token =
+    /^[a-z]$/i.test(c0) ? c0.toUpperCase() : /^[0-9]$/u.test(c0) ? c0 : '';
+  if (!token) return undefined;
+  const exact = \`kijyutu/gyouseihou/kijyutu-gyouseihou\${questionNum1Based}-\${token}\`;
+  if (DEEPDIVE_IMAGES[exact]) return exact;
+  // 過去資産など「kijyutu-gyouseihou-{N}-{S}.png」（N の前にもハイフン）にも対応
+  const hyphenBeforeNum = \`kijyutu/gyouseihou/kijyutu-gyouseihou-\${questionNum1Based}-\${token}\`;
+  if (DEEPDIVE_IMAGES[hyphenBeforeNum]) return hyphenBeforeNum;
+  const base = \`kijyutu-gyouseihou\${questionNum1Based}-\${token}\`;
+  const baseHyphenBeforeNum = \`kijyutu-gyouseihou-\${questionNum1Based}-\${token}\`;
+  const hitKey = Object.keys(DEEPDIVE_IMAGES).find((k) => {
+    const b = k.split('/').pop() || '';
+    return b === base || b === baseHyphenBeforeNum;
+  });
+  return hitKey;
+}
 `;
 
   fs.writeFileSync(OUTPUT_FILE, content, 'utf8');

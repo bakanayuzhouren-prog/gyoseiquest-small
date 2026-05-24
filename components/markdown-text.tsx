@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Platform, Pressable, StyleProp, TextStyle, View } from 'react-native';
 import { segmentDeepdiveTextForRender } from '@/utils/deepdive-tab-table';
+import { normalizeMarkupForRender } from '@/utils/markup-tags';
 import { ThemedText } from './themed-text';
 
 type Props = {
@@ -27,7 +28,7 @@ function parseLine(line: string): LinePart[] {
     const parts: LinePart[] = [];
     let rest = line;
     while (rest.length > 0) {
-        const redMatch = rest.match(/^\[\[red:(.+?)\]\]/);
+        const redMatch = rest.match(/^\[\[red:([\s\S]+?)\]\]/);
         if (redMatch) {
             parts.push({ type: 'red', text: redMatch[1] });
             rest = rest.slice(redMatch[0].length);
@@ -71,6 +72,12 @@ function parseLine(line: string): LinePart[] {
         if (candidates.length > 0) end = Math.min(...candidates);
         if (end > 0) parts.push({ type: 'plain', text: rest.slice(0, end) });
         rest = rest.slice(end);
+        if (end === 0 && rest.startsWith(']]')) {
+            rest = rest.slice(2);
+        }
+        if (end === 0 && rest.startsWith('[[red:')) {
+            rest = rest.slice(6);
+        }
     }
     return parts;
 }
@@ -175,7 +182,7 @@ function MarkdownPlainBlock({
     uniformWeight?: boolean;
     keyPrefix: string;
 }) {
-    const lines = text.split('\n');
+    const lines = normalizeMarkupForRender(text).split('\n');
     return (
         <View style={{ gap: lineGap }}>
             {lines.map((line, lineIndex) => {

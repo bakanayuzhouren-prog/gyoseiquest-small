@@ -7,7 +7,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
 import { unhideAllInField } from '@/utils/question-hidden';
-import { debugForceUnlock, hasSeenBonusReveal, isBonusUnlocked, markBonusRevealSeen } from '@/utils/progress';
+import { debugForceUnlock, getLoopCount, hasSeenBonusReveal, markBonusRevealSeen } from '@/utils/progress';
 
 const isLightBg = (hex: string) => {
     if (!hex || hex.startsWith('rgba')) return false;
@@ -28,6 +28,7 @@ export default function StageSelectScreen() {
     const displayTitle = field || subject;
 
     const [isBonusAvailable, setIsBonusAvailable] = useState(false);
+    const [bonusLoopCount, setBonusLoopCount] = useState(0);
     const [showConfetti, setShowConfetti] = useState(false);
     const [showUnlockModal, setShowUnlockModal] = useState(false);
     const [debugTapCount, setDebugTapCount] = useState(0);
@@ -36,7 +37,10 @@ export default function StageSelectScreen() {
     const loadStatus = async () => {
         if (!subject) return;
 
-        const unlocked = await isBonusUnlocked(subject, field || '');
+        const loops = await getLoopCount(subject, field || '');
+        setBonusLoopCount(loops);
+
+        const unlocked = loops >= 3;
         if (unlocked) {
             setIsBonusAvailable(true);
             const alreadySeen = await hasSeenBonusReveal();
@@ -124,20 +128,7 @@ export default function StageSelectScreen() {
                 </Pressable>
             </Link>
 
-            <Link
-                href={{
-                    pathname: '/question',
-                    params: { subject, field, mode: 'shisho' },
-                }}
-                asChild>
-                <Pressable style={StyleSheet.flatten([styles.button, styles.shishoButton])}>
-                    <ThemedText type="defaultSemiBold" style={StyleSheet.flatten([styles.text, styles.shishoText])}>
-                        ② 🎓 師匠モード
-                    </ThemedText>
-                </Pressable>
-            </Link>
-
-            {isBonusAvailable && (
+            {isBonusAvailable ? (
                 <Link
                     href={{
                         pathname: '/question',
@@ -146,11 +137,42 @@ export default function StageSelectScreen() {
                     asChild>
                     <Pressable style={StyleSheet.flatten([styles.button, styles.bonusButton])}>
                         <ThemedText type="defaultSemiBold" style={StyleSheet.flatten([styles.text, styles.bonusText])}>
-                            ③ ボーナスステージ ★
+                            ② ボーナスステージ ★
                         </ThemedText>
                     </Pressable>
                 </Link>
+            ) : (
+                <Pressable
+                    style={StyleSheet.flatten([styles.button, styles.bonusLockedButton])}
+                    onPress={() =>
+                        Alert.alert(
+                            'ボーナスステージ',
+                            `過去問モードでこの分野を最後まで1周すると1カウントされます（現在 ${Math.min(bonusLoopCount, 3)}/3周）。3周で解禁されます。`,
+                        )}
+                >
+                    <View>
+                        <ThemedText type="defaultSemiBold" style={StyleSheet.flatten([styles.text, styles.bonusLockedText])}>
+                            ② ボーナスステージ ★
+                        </ThemedText>
+                        <ThemedText style={{ fontSize: 14, textAlign: 'center', marginTop: 6, color: '#546E7A' }}>
+                            解放まで あと{Math.max(0, 3 - bonusLoopCount)}周（過去問）
+                        </ThemedText>
+                    </View>
+                </Pressable>
             )}
+
+            <Link
+                href={{
+                    pathname: '/question',
+                    params: { subject, field, mode: 'shisho' },
+                }}
+                asChild>
+                <Pressable style={StyleSheet.flatten([styles.button, styles.shishoButton])}>
+                    <ThemedText type="defaultSemiBold" style={StyleSheet.flatten([styles.text, styles.shishoText])}>
+                        ③ 🎓 師匠モード
+                    </ThemedText>
+                </Pressable>
+            </Link>
 
             {showConfetti && (
                 <ConfettiCannon
@@ -242,6 +264,14 @@ const styles = StyleSheet.create({
     bonusButton: {
         borderColor: '#E91E63',
         backgroundColor: '#FCE4EC',
+    },
+    bonusLockedButton: {
+        borderColor: '#CFD8DC',
+        backgroundColor: '#ECEFF1',
+        opacity: 0.95,
+    },
+    bonusLockedText: {
+        color: '#546E7A',
     },
     shishoButton: {
         borderColor: '#7E57C2',

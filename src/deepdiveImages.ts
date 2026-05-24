@@ -10,10 +10,33 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'bukken/18-21-1': require('@/assets/images/deepdive/bukken/18-21-1.png'),
   'bukken/18-21-2': require('@/assets/images/deepdive/bukken/18-21-2.png'),
   'bukken/5-21': require('@/assets/images/deepdive/bukken/5-21.png'),
+  'bukken/bukkenn1-3': require('@/assets/images/deepdive/bukken/bukkenn1-3.png'),
+  'bukken/bukkenn15-1': require('@/assets/images/deepdive/bukken/bukkenn15-1.png'),
+  'bukken/bukkenn15-1-2': require('@/assets/images/deepdive/bukken/bukkenn15-1-2.png'),
+  'bukken/bukkenn16-3': require('@/assets/images/deepdive/bukken/bukkenn16-3.png'),
+  'bukken/bukkenn18-1': require('@/assets/images/deepdive/bukken/bukkenn18-1.png'),
+  'bukken/bukkenn2-5': require('@/assets/images/deepdive/bukken/bukkenn2-5.png'),
+  'bukken/hikiwatasi': require('@/assets/images/deepdive/bukken/hikiwatasi.png'),
+  'bukken/sennyuukaitei-marubatu': require('@/assets/images/deepdive/bukken/sennyuukaitei-marubatu.png'),
+  'bukken/syutokujikou-sokujisyutoku': require('@/assets/images/deepdive/bukken/syutokujikou-sokujisyutoku.png'),
+  'bukken/taikouyouken-no': require('@/assets/images/deepdive/bukken/taikouyouken-no.png'),
   'gyouseihou/gyoushin/saichousajyunnyou': require('@/assets/images/deepdive/gyouseihou/gyoushin/saichousajyunnyou.png'),
   'gyouseihou/gyoushin/saichousajyunnyou2': require('@/assets/images/deepdive/gyouseihou/gyoushin/saichousajyunnyou2.png'),
   'gyouseihou/gyouso/karinosasitome-jyunnyou': require('@/assets/images/deepdive/gyouseihou/gyouso/karinosasitome-jyunnyou.png'),
   'gyouseihou/gyoute/7-31': require('@/assets/images/deepdive/gyouseihou/gyoute/7-31.png'),
+  'gyouseihou/kokubai/26-136': require('@/assets/images/deepdive/gyouseihou/kokubai/26-136.png'),
+  'gyouseihou/sougou/jyunhouritukoui': require('@/assets/images/deepdive/gyouseihou/sougou/jyunhouritukoui.png'),
+  'gyouseihou/sougou/sougou15-1-1': require('@/assets/images/deepdive/gyouseihou/sougou/sougou15-1-1.png'),
+  'kakuronn/kakuronn1-22-1': require('@/assets/images/deepdive/kakuronn/kakuronn1-22-1.png'),
+  'kakuronn/kakuronn1-22-2': require('@/assets/images/deepdive/kakuronn/kakuronn1-22-2.png'),
+  'kakuronn/kakuronn1-22-3': require('@/assets/images/deepdive/kakuronn/kakuronn1-22-3.png'),
+  'kakuronn/kakuronn1-22-4': require('@/assets/images/deepdive/kakuronn/kakuronn1-22-4.png'),
+  'kakuronn/kakuronn1-22-5': require('@/assets/images/deepdive/kakuronn/kakuronn1-22-5.png'),
+  'kakuronn/kakuronn18-22-3': require('@/assets/images/deepdive/kakuronn/kakuronn18-22-3.png'),
+  'kakuronn/kakuronn18-22-4': require('@/assets/images/deepdive/kakuronn/kakuronn18-22-4.png'),
+  'kakuronn/kakuronn4': require('@/assets/images/deepdive/kakuronn/kakuronn4.png'),
+  'kakuronn/kauronn4-2': require('@/assets/images/deepdive/kakuronn/kauronn4-2.png'),
+  'kakuronn/tinntai-siyoutai': require('@/assets/images/deepdive/kakuronn/tinntai-siyoutai.png'),
   'kenpou/1-230': require('@/assets/images/deepdive/kenpou/1-230.png'),
   'kenpou/10-230': require('@/assets/images/deepdive/kenpou/10-230.png'),
   'kenpou/104-230': require('@/assets/images/deepdive/kenpou/104-230.png'),
@@ -40,6 +63,7 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/138-230': require('@/assets/images/deepdive/kenpou/138-230.png'),
   'kenpou/139-230': require('@/assets/images/deepdive/kenpou/139-230.png'),
   'kenpou/14-230 旭川学テ': require('@/assets/images/deepdive/kenpou/14-230 旭川学テ.png'),
+  'kenpou/140-130': require('@/assets/images/deepdive/kenpou/140-130.png'),
   'kenpou/143-230': require('@/assets/images/deepdive/kenpou/143-230.png'),
   'kenpou/144-230': require('@/assets/images/deepdive/kenpou/144-230.png'),
   'kenpou/145-230': require('@/assets/images/deepdive/kenpou/145-230.png'),
@@ -48,6 +72,7 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/16-230': require('@/assets/images/deepdive/kenpou/16-230.png'),
   'kenpou/17-230': require('@/assets/images/deepdive/kenpou/17-230.png'),
   'kenpou/18-230': require('@/assets/images/deepdive/kenpou/18-230.png'),
+  'kenpou/184-230': require('@/assets/images/deepdive/kenpou/184-230.png'),
   'kenpou/19-230': require('@/assets/images/deepdive/kenpou/19-230.png'),
   'kenpou/190-230': require('@/assets/images/deepdive/kenpou/190-230.png'),
   'kenpou/191-230': require('@/assets/images/deepdive/kenpou/191-230.png'),
@@ -74,11 +99,16 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/30-230': require('@/assets/images/deepdive/kenpou/30-230.png'),
   'kenpou/35-230': require('@/assets/images/deepdive/kenpou/35-230.png'),
   'kenpou/4-230': require('@/assets/images/deepdive/kenpou/4-230.png'),
+  'kenpou/4-230-p1': require('@/assets/images/deepdive/kenpou/4-230-p1.png'),
+  'kenpou/4-230-p2': require('@/assets/images/deepdive/kenpou/4-230-p2.png'),
+  'kenpou/4-230-p3': require('@/assets/images/deepdive/kenpou/4-230-p3.png'),
+  'kenpou/4-230-p4': require('@/assets/images/deepdive/kenpou/4-230-p4.png'),
   'kenpou/40-230': require('@/assets/images/deepdive/kenpou/40-230.png'),
   'kenpou/41-230': require('@/assets/images/deepdive/kenpou/41-230.png'),
   'kenpou/42-230': require('@/assets/images/deepdive/kenpou/42-230.png'),
   'kenpou/43-230': require('@/assets/images/deepdive/kenpou/43-230.png'),
   'kenpou/45-230': require('@/assets/images/deepdive/kenpou/45-230.png'),
+  'kenpou/5-230': require('@/assets/images/deepdive/kenpou/5-230.png'),
   'kenpou/50-230': require('@/assets/images/deepdive/kenpou/50-230.png'),
   'kenpou/51-230': require('@/assets/images/deepdive/kenpou/51-230.png'),
   'kenpou/52-230': require('@/assets/images/deepdive/kenpou/52-230.png'),
@@ -108,11 +138,23 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/88-230': require('@/assets/images/deepdive/kenpou/88-230.png'),
   'kenpou/89-230': require('@/assets/images/deepdive/kenpou/89-230.png'),
   'kenpou/90-230': require('@/assets/images/deepdive/kenpou/90-230.png'),
+  'kenpou/90-230-2': require('@/assets/images/deepdive/kenpou/90-230-2.png'),
   'kenpou/91-230': require('@/assets/images/deepdive/kenpou/91-230.png'),
   'kenpou/92-230': require('@/assets/images/deepdive/kenpou/92-230.png'),
   'kenpou/93-230': require('@/assets/images/deepdive/kenpou/93-230.png'),
   'kenpou/94-230': require('@/assets/images/deepdive/kenpou/94-230.jpg'),
   'kenpou/99-230': require('@/assets/images/deepdive/kenpou/99-230.png'),
+  'kennpou-toku/kenpou36': require('@/assets/images/deepdive/kennpou-toku/kenpou36.png'),
+  'kijyutu/gyouseihou/kijyutu-gyouseihou-3-A': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-A.png'),
+  'kijyutu/gyouseihou/kijyutu-gyouseihou-3-B': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-B.png'),
+  'kijyutu/gyouseihou/kijyutu-gyouseihou-3-C': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-C.png'),
+  'kijyutu/gyouseihou/kijyutu-gyouseihou-3-D': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-D.png'),
+  'kijyutu/gyouseihou/kijyutu-gyouseihou-4': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-4.png'),
+  'kijyutu/gyouseihou/kijyutu-gyouseihou-4-p1': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-4-p1.png'),
+  'kijyutu/gyouseihou/kijyutu-gyouseihou-4-p2': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-4-p2.png'),
+  'kijyutu/gyouseihou/kijyutu-gyouseihou-4-p3': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-4-p3.png'),
+  'kijyutu/gyouseihou/kijyutu-gyouseihou-4-p4': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-4-p4.png'),
+  'kijyutu/gyouseihou/kijyutu-gyouseihou10': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou10.png'),
   'learn/minnpou/54-105-1': require('@/assets/images/deepdive/learn/minnpou/54-105-1.png'),
   'learn/minnpou/54-105-2': require('@/assets/images/deepdive/learn/minnpou/54-105-2.png'),
   'learn/minnpou/54-105-3': require('@/assets/images/deepdive/learn/minnpou/54-105-3.png'),
@@ -223,110 +265,32 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'learn/minnpou/bukken/99-110': require('@/assets/images/deepdive/learn/minnpou/bukken/99-110.png')
 };
 
-const _ALL_DEEPDIVE_KEYS = Object.keys(DEEPDIVE_IMAGES);
-
-/** 見て聞いて覚える・自動画像解決用。毎回 Object.keys 全走査すると民法カード切替で詰まるため1回だけ構築 */
-const _KENPOU_LEARN_BY_QNUM = (() => {
-  const m = new Map<number, string>();
-  for (const k of _ALL_DEEPDIVE_KEYS) {
-    const mm = k.match(/^kenpou\/(\d+)-230(?:$|[\s-])/);
-    if (mm) {
-      const n = parseInt(mm[1], 10);
-      if (!m.has(n)) m.set(n, k);
-    }
-  }
-  for (let i = 1; i <= 250; i++) {
-    const exact = `kenpou/${i}-230`;
-    if (DEEPDIVE_IMAGES[exact]) m.set(i, exact);
-  }
-  return m;
-})();
-
-function buildSortedFirstKeyMap(
-  keyPred: (k: string) => boolean,
-  qnumFromBase: (base: string) => number | undefined
-): Map<number, string> {
-  const lists = new Map<number, string[]>();
-  for (const k of _ALL_DEEPDIVE_KEYS) {
-    if (!keyPred(k)) continue;
-    const base = k.split('/').pop() || '';
-    const n = qnumFromBase(base);
-    if (n == null || n < 1) continue;
-    let arr = lists.get(n);
-    if (!arr) {
-      arr = [];
-      lists.set(n, arr);
-    }
-    arr.push(k);
-  }
-  const out = new Map<number, string>();
-  for (const [n, arr] of lists) {
-    arr.sort();
-    out.set(n, arr[0]);
-  }
-  return out;
-}
-
-const _MINNPOU_MAIN_LEARN_BY_QNUM = buildSortedFirstKeyMap(
-  (k) => k.startsWith('learn/minnpou/') && !k.startsWith('learn/minnpou/bukken/'),
-  (base) => {
-    const mm = /^(\d+)-/.exec(base);
-    return mm ? parseInt(mm[1], 10) : undefined;
-  }
-);
-
-const _MINNPOU_BUKKEN_LEARN_BY_QNUM = buildSortedFirstKeyMap(
-  (k) => k.startsWith('learn/minnpou/bukken/'),
-  (base) => {
-    const mm = /^(\d+)-110/.exec(base);
-    return mm ? parseInt(mm[1], 10) : undefined;
-  }
-);
-
-const _SAIKENSOURON_LEARN_BY_QNUM = buildSortedFirstKeyMap(
-  (k) => k.startsWith('learn/saikensouron/'),
-  (base) => {
-    const mm = /^(\d+)-/.exec(base);
-    return mm ? parseInt(mm[1], 10) : undefined;
-  }
-);
-
-/** getDeepdiveImageSource のフォールバック用（basename → フルキー1件） */
-const _DEEPDIVE_KEY_BY_BASENAME = (() => {
-  const m = new Map<string, string>();
-  for (const k of _ALL_DEEPDIVE_KEYS) {
-    const base = k.includes('/') ? k.split('/').pop()! : k;
-    if (!m.has(base)) m.set(base, k);
-  }
-  return m;
-})();
-
 export function getDeepdiveImageSource(filename: string): number | undefined {
   if (!filename) return undefined;
   const normalized = filename.replace(/\.(png|jpg|jpeg|gif|webp)$/i, '');
   const base = normalized.includes('/') ? normalized.split('/').pop()! : normalized;
   const exact = DEEPDIVE_IMAGES[normalized];
   if (exact) return exact as number;
-  const byBaseKey = _DEEPDIVE_KEY_BY_BASENAME.get(base);
-  if (byBaseKey) return DEEPDIVE_IMAGES[byBaseKey] as number;
-  const byBase = _ALL_DEEPDIVE_KEYS.find((k) => k === base || k.endsWith('/' + base));
+  const byBase = Object.keys(DEEPDIVE_IMAGES).find((k) => k === base || k.endsWith('/' + base));
   return byBase ? (DEEPDIVE_IMAGES[byBase] as number) : undefined;
 }
 
 /** 見て聞いて覚える・憲法: 問番号（1始まり）→ kenpou/N-230（ファイル名の揺れに一部対応） */
 export function resolveKenpouProblemImageKey(problemNum1Based: number): string | undefined {
   if (problemNum1Based < 1) return undefined;
-  return _KENPOU_LEARN_BY_QNUM.get(problemNum1Based);
+  const exact = `kenpou/${problemNum1Based}-230`;
+  if (DEEPDIVE_IMAGES[exact]) return exact;
+  const re = new RegExp(`^kenpou/${problemNum1Based}-230(?:$|[\\s-])`);
+  return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
 }
 
 /** 見て聞いて覚える・民法物権: learn/minnpou/bukken/N-110 */
 export function resolveMinpoBukkenLearnImageKey(problemNum1Based: number): string | undefined {
   if (problemNum1Based < 1) return undefined;
-  const fromMap = _MINNPOU_BUKKEN_LEARN_BY_QNUM.get(problemNum1Based);
-  if (fromMap) return fromMap;
   const exact = `learn/minnpou/bukken/${problemNum1Based}-110`;
   if (DEEPDIVE_IMAGES[exact]) return exact;
-  return undefined;
+  const re = new RegExp(`^learn/minnpou/bukken/${problemNum1Based}-110(?:$|-)`);
+  return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
 }
 
 /**
@@ -335,7 +299,14 @@ export function resolveMinpoBukkenLearnImageKey(problemNum1Based: number): strin
  */
 export function resolveMinpoLearnFolderByQuestionNumber(problemNum1Based: number): string | undefined {
   if (problemNum1Based < 1) return undefined;
-  return _MINNPOU_MAIN_LEARN_BY_QNUM.get(problemNum1Based);
+  const head = new RegExp(`^${problemNum1Based}-`);
+  const keys = Object.keys(DEEPDIVE_IMAGES).filter((k) => {
+    if (!k.startsWith('learn/minnpou/') || k.startsWith('learn/minnpou/bukken/')) return false;
+    const base = k.split('/').pop() || '';
+    return head.test(base);
+  });
+  if (keys.length === 0) return undefined;
+  return keys.sort()[0];
 }
 
 /**
@@ -344,5 +315,91 @@ export function resolveMinpoLearnFolderByQuestionNumber(problemNum1Based: number
  */
 export function resolveSaikensouronLearnImageKey(problemNum1Based: number): string | undefined {
   if (problemNum1Based < 1) return undefined;
-  return _SAIKENSOURON_LEARN_BY_QNUM.get(problemNum1Based);
+  const head = new RegExp(`^${problemNum1Based}-`);
+  const keys = Object.keys(DEEPDIVE_IMAGES).filter((k) => {
+    if (!k.startsWith('learn/saikensouron/')) return false;
+    const base = k.split('/').pop() || '';
+    return head.test(base);
+  });
+  if (keys.length === 0) return undefined;
+  return keys.sort()[0];
+}
+
+/**
+ * 問題を解く・民法 債権各論: assets/images/deepdive/kakuronn/kakuronnN-M-C
+ * N=問題番号（1始まり）、M=当該分野の問題数、C=選択肢番号（1始まり）。
+ */
+export function resolveKakuronnQuizChoiceImageKey(
+  questionNum1Based: number,
+  totalQuestions: number,
+  choiceNum1Based: number
+): string | undefined {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return undefined;
+  const exact = `kakuronn/kakuronn${questionNum1Based}-${totalQuestions}-${choiceNum1Based}`;
+  if (DEEPDIVE_IMAGES[exact]) return exact;
+  const re = new RegExp(`^kakuronn/kakuronn${questionNum1Based}-\\d+-${choiceNum1Based}$`);
+  return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
+}
+
+/**
+ * 問題を解く・憲法: `kennpou-toku/kenpouN`（全肢共通の特別図）があれば最優先。
+ * 次に kenpou/N-M-C（存在すれば）、なければ問ごとの kenpou/N-230。
+ * 218問目は学習と同様 184 の図へエイリアス。
+ */
+export function resolveKenpouQuizChoiceImageKey(
+  questionNum1Based: number,
+  totalQuestions: number,
+  choiceNum1Based: number
+): string | undefined {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return undefined;
+
+  const tokuExact = `kennpou-toku/kenpou${questionNum1Based}`;
+  if (DEEPDIVE_IMAGES[tokuExact]) return tokuExact;
+
+  const tryWithN = (n: number) => {
+    const exact = `kenpou/${n}-${totalQuestions}-${choiceNum1Based}`;
+    if (DEEPDIVE_IMAGES[exact]) return exact;
+    const re = new RegExp(`^kenpou/${n}-\\d+-${choiceNum1Based}$`);
+    return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
+  };
+
+  let key = tryWithN(questionNum1Based);
+  if (!key && questionNum1Based === 218) key = tryWithN(184);
+  if (key) return key;
+
+  if (questionNum1Based === 218) {
+    const alias184 = resolveKenpouProblemImageKey(184);
+    if (alias184) return alias184;
+  }
+  return resolveKenpouProblemImageKey(questionNum1Based);
+}
+
+/**
+ * 問題を解く・記述（行政法）: assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihouN-S
+ * N=行政法記述の問番号（1始まり）、S=【ケースA】などの末尾英字または数字。
+ * 例: kijyutu-gyouseihou3-A.png
+ */
+export function resolveKijyutuGyouseihouCaseImageKey(
+  questionNum1Based: number,
+  caseSuffix: string,
+): string | undefined {
+  if (questionNum1Based < 1 || !caseSuffix) return undefined;
+  const flat = String(caseSuffix).normalize('NFKC').trim();
+  if (!flat) return undefined;
+  const c0 = flat[0];
+  const token =
+    /^[a-z]$/i.test(c0) ? c0.toUpperCase() : /^[0-9]$/u.test(c0) ? c0 : '';
+  if (!token) return undefined;
+  const exact = `kijyutu/gyouseihou/kijyutu-gyouseihou${questionNum1Based}-${token}`;
+  if (DEEPDIVE_IMAGES[exact]) return exact;
+  // 過去資産など「kijyutu-gyouseihou-{N}-{S}.png」（N の前にもハイフン）にも対応
+  const hyphenBeforeNum = `kijyutu/gyouseihou/kijyutu-gyouseihou-${questionNum1Based}-${token}`;
+  if (DEEPDIVE_IMAGES[hyphenBeforeNum]) return hyphenBeforeNum;
+  const base = `kijyutu-gyouseihou${questionNum1Based}-${token}`;
+  const baseHyphenBeforeNum = `kijyutu-gyouseihou-${questionNum1Based}-${token}`;
+  const hitKey = Object.keys(DEEPDIVE_IMAGES).find((k) => {
+    const b = k.split('/').pop() || '';
+    return b === base || b === baseHyphenBeforeNum;
+  });
+  return hitKey;
 }

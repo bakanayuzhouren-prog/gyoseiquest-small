@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 import { Link, router, useLocalSearchParams } from 'expo-router';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, Animated, Image, Modal, PanResponder, Platform, Pressable, ScrollView, StyleSheet, TextInput, View, type StyleProp, type ViewStyle } from 'react-native';
 
 import { DiagramModal } from '@/components/diagram-modal';
@@ -9,9 +9,10 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
 import { RESOURCES } from '@/src/questions';
+import { mergeQuizResourcePages, parseQuizRefIds } from '@/utils/quizResources';
 import { explainChoiceIntent, generateDescriptiveQuestion } from '@/src/utils/geminiService';
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
-import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitNumberPrefix } from '@/utils/choiceNumber';
+import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitHtmlUnderlineTags, splitNumberPrefix } from '@/utils/choiceNumber';
 import { getQuestionMark, setQuestionMark, type QuestionMark } from '@/utils/question-marks';
 import {
   addOrSubtractQuestionHighlightRange,
@@ -29,9 +30,10 @@ import {
   pickQuestionsForField,
   shuffleQuestionsCopy,
 } from '@/utils/quiz-question-pipeline';
-import { splitSlotOptionParts } from '@/utils/slotNormalize';
-import { getQuestionStats, getQuestionTextHash } from '@/utils/question-stats';
+import { parseComboChoiceParts, splitSlotOptionParts } from '@/utils/slotNormalize';
+import { getQuestionStats, getQuestionTextHash, reconcileAllAttemptsAsCorrect } from '@/utils/question-stats';
 import { CIVIL_PRECEDENT_IMAGES } from '@/src/civilPrecedentImages';
+import { resolveMondaibunnGazoItems } from '@/src/mondaibunn-gazou';
 
 /** Web: 蛍光ペン ON 時のカーソル（黄色マーカー形、ホットスポットは先端付近） */
 const HIGHLIGHTER_CURSOR_SVG =
@@ -47,6 +49,20 @@ function normalizeKatakanaChoiceNewlines(body: string): string {
   return body.replace(/([。．）])\s*([アイウエオ])([\u3000 ])/g, '$1\n$2$3');
 }
 
+/** `<u>…</u>` を下線表示にしタグは除く（formatNumberedClauses 後に適用）。親 ThemedText に style があるときは内側は下線のみ付与 */
+function questionLineWithUnderlineNodes(rawLine: string, keyPrefix: string): React.ReactNode {
+  const formatted = formatNumberedClauses(rawLine);
+  const pieces = splitHtmlUnderlineTags(formatted);
+  if (pieces.length === 1 && !pieces[0].underline) {
+    return pieces[0].text;
+  }
+  return pieces.map((p, i) => (
+    <ThemedText key={`${keyPrefix}-${i}`} style={p.underline ? { textDecorationLine: 'underline' as const } : undefined}>
+      {p.text}
+    </ThemedText>
+  ));
+}
+
 /** 行頭の「ア　本文」形式（択一の記述肢ブロック） */
 function matchKatakanaChoiceLine(seg: string): { label: string; sep: string; rest: string } | null {
   const m = seg.match(/^\s*([アイウエオ])([\u3000 ])([\s\S]*)$/);
@@ -57,7 +73,7 @@ function matchKatakanaChoiceLine(seg: string): { label: string; sep: string; res
 }
 
 /** 「ア・ウ」「ア･イ」など組合せ肢をラベル配列に分解 */
-function parseComboChoiceParts(choice: string): string[] {
+function splitChoiceIntoKatakanaPairLabels(choice: string): string[] {
   return String(choice || '')
     .replace(/※/g, '')
     .split(/[・･\s]+/)
@@ -629,9 +645,15 @@ export default function QuestionScreen() {
     }
     const cb = (question as any).choiceIsBonus as boolean[] | undefined;
     const isBonusChoice = (i: number) => (cb && i < cb.length ? cb[i] : !!(question as any).isBonus);
-    const effective = mode !== 'bonus'
-      ? ans.filter((i: number) => !isBonusChoice(i))
-      : ans.filter((i: number) => isBonusChoice(i));
+    const hasBonusChoices = cb ? cb.some((b: boolean) => b) : !!(question as any).isBonus;
+    const hasNormalChoices = cb ? cb.some((b: boolean) => !b) : !(question as any).isBonus;
+    const isMixedBonus = hasBonusChoices && hasNormalChoices;
+    const effective =
+      mode !== 'bonus'
+        ? ans.filter((i: number) => !isBonusChoice(i))
+        : isMixedBonus || !hasBonusChoices
+          ? ans
+          : ans.filter((i: number) => isBonusChoice(i));
     const effectiveCount = effective.length > 0 ? effective.length : ans.length;
     if (effectiveCount <= 1) return null;
     const t = (question as any)?.text || '';
@@ -650,7 +672,7 @@ export default function QuestionScreen() {
     const sel = new Set(stemComboLetters);
     if (sel.size === 0) return null;
     for (let i = 0; i < ch.length; i++) {
-      const parts = parseComboChoiceParts(ch[i]);
+      const parts = splitChoiceIntoKatakanaPairLabels(ch[i]);
       if (parts.length === 0 || parts.length !== sel.size) continue;
       const ok = parts.every((p) => sel.has(p)) && [...sel].every((s) => parts.includes(s));
       if (ok) return i;
@@ -740,7 +762,7 @@ export default function QuestionScreen() {
                       >
                         {para.segments.map((seg, si) => (
                           <ThemedText key={si} style={segmentStyle(seg)}>
-                            {formatNumberedClauses(seg.text)}
+                            {questionLineWithUnderlineNodes(seg.text, `d-${pi}-${si}`)}
                           </ThemedText>
                         ))}
                       </ThemedText>
@@ -758,7 +780,10 @@ export default function QuestionScreen() {
         const segments = displayBody.split(/\n/);
         if (segments.length === 0) segments.push('');
         const anySpecial = segments.some(
-          (seg) => /\*\*|\[\[red:/.test(seg) || matchKatakanaChoiceLine(seg) !== null
+          (seg) =>
+            /\*\*|\[\[red:/.test(seg) ||
+            /<\s*u\s*>/i.test(seg) ||
+            matchKatakanaChoiceLine(seg) !== null
         );
         const useWebSelectionHighlighter = Platform.OS === 'web' && !anySpecial;
 
@@ -800,7 +825,7 @@ export default function QuestionScreen() {
                           : undefined
                       }
                     >
-                      {p.text}
+                      {questionLineWithUnderlineNodes(p.text, `web-${i}`)}
                     </ThemedText>
                   ) : null
                 )}
@@ -898,7 +923,7 @@ export default function QuestionScreen() {
                             if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
                           } : undefined}
                         >
-                          {formatNumberedClauses(choiceLine.rest)}
+                          {questionLineWithUnderlineNodes(choiceLine.rest, `ch-rest-${idx}`)}
                         </ThemedText>
                       </View>
                     </View>
@@ -909,7 +934,7 @@ export default function QuestionScreen() {
                         if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
                       } : undefined}
                     >
-                      {formatNumberedClauses(seg)}
+                      {questionLineWithUnderlineNodes(seg, `stem-${idx}`)}
                     </ThemedText>
                   )}
                   </Pressable>
@@ -987,7 +1012,7 @@ export default function QuestionScreen() {
                   isTashiQuestion && isLongText && styles.questionTextTashiSmall
                 ]}
               >
-                {formatNumberedClauses(part)}
+                {questionLineWithUnderlineNodes(part, `slotp-${index}`)}
               </ThemedText>
             );
           })}
@@ -1031,6 +1056,15 @@ export default function QuestionScreen() {
           >
             <ThemedText style={[styles.questionMarkText, questionMark === 'x' && { color: '#fff' }]}>×</ThemedText>
           </Pressable>
+          {mondaibunnGazoItems.length > 0 ? (
+            <Pressable
+              accessibilityLabel="問題文の模範図"
+              onPress={() => setMondaibunnGazoModalVisible(true)}
+              style={[styles.mondaibunnGazoOpenButton, { borderColor: '#00897B', backgroundColor: '#E0F7FA' }]}
+            >
+              <ThemedText style={[styles.mondaibunnGazoOpenButtonText, { color: '#00695C' }]}>模範</ThemedText>
+            </Pressable>
+          ) : null}
         </View>
         <ThemedView style={[
           styles.questionContainer,
@@ -1130,12 +1164,11 @@ export default function QuestionScreen() {
   // resource can be an Object (single) or Array (multi). Normalize to Array.
   // GUARD: RESOURCES might be undefined if import fails or file is incomplete
   const resourcesData = (RESOURCES as any) || {};
-  const rawResource = resourceId && resourcesData[resourceId] ? resourcesData[resourceId] : null;
   const resourcePages = useMemo(() => {
-    if (!rawResource) return [];
-    if (Array.isArray(rawResource)) return rawResource;
-    return [rawResource];
-  }, [rawResource]);
+    const ids = parseQuizRefIds(resourceId);
+    if (ids.length === 0) return [];
+    return mergeQuizResourcePages(ids, resourcesData);
+  }, [resourceId, resourcesData]);
 
   const currentResource = resourcePages.length > 0 && resourcePage < resourcePages.length ? resourcePages[resourcePage] : null;
 
@@ -1203,7 +1236,10 @@ export default function QuestionScreen() {
     const displayBody = normalizeKatakanaChoiceNewlines(hasNumberPrefix(t) ? questionBody : t);
     const segments = displayBody.split(/\n/).length ? displayBody.split(/\n/) : [''];
     return !segments.some(
-      (seg) => /\*\*|\[\[red:/.test(seg) || matchKatakanaChoiceLine(seg) !== null
+      (seg) =>
+        /\*\*|\[\[red:/.test(seg) ||
+        /<\s*u\s*>/i.test(seg) ||
+        matchKatakanaChoiceLine(seg) !== null
     );
   }, [question?.text, subject, stripQuestionText]);
 
@@ -1247,15 +1283,35 @@ export default function QuestionScreen() {
     const cb = (question as any).choiceIsBonus as boolean[] | undefined;
     let list = question.choices.map((c: string, idx: number) => {
       const t = (c || '').replace(/^[\d\.．]+\s*/, '').trim();
-      const parts = t.replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim().split(/\s*[\/／]\s*|[　\t\r\n]+|\s{2,}/);
+      const stripped = t.replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim();
+      const parsed = parseComboChoiceParts(stripped);
+      if (parsed) {
+        return { partA: parsed.partA, partB: parsed.partB, originalIndex: idx, isBonus: cb && idx < cb.length ? cb[idx] : false };
+      }
+      const parts = stripped.split(/\s*[\/／]\s*|[　\t\r\n]+|\s{2,}/);
       return { partA: parts[0] || t, partB: parts[1] || '', originalIndex: idx, isBonus: cb && idx < cb.length ? cb[idx] : false };
     });
-    if (mode === 'bonus') list = list.filter((x: { isBonus: boolean }) => x.isBonus);
-    else if (cb?.some((b: boolean) => b)) list = list.filter((x: { isBonus: boolean }) => !x.isBonus);
+    const hasBonusChoices = cb ? cb.some((b: boolean) => b) : !!(question as any).isBonus;
+    const hasNormalChoices = cb ? cb.some((b: boolean) => !b) : !(question as any).isBonus;
+    const isMixedBonus = hasBonusChoices && hasNormalChoices;
+    if (mode === 'bonus') {
+      if (!(isMixedBonus || !hasBonusChoices)) list = list.filter((x: { isBonus: boolean }) => x.isBonus);
+    } else if (cb?.some((b: boolean) => b)) list = list.filter((x: { isBonus: boolean }) => !x.isBonus);
     if (list.length === 0) return null;
     if (!list.every((p: { partB: string }) => p.partB)) return null;
     return list;
   }, [question, mode]);
+
+  const slotWordBankOps =
+    !tashiData &&
+    !!(question as any)?.slots?.length &&
+    !!(question as any).slots?.some((s: any) => s.options);
+  const hasComboChoiceTable = Array.isArray(comboFormatData) && comboFormatData.length > 0;
+  const slotFillAndComboTable = slotWordBankOps && hasComboChoiceTable;
+  const slotFillOnly = !!tashiData || (slotWordBankOps && !hasComboChoiceTable);
+  /** 憲法46問目:  stem・穴埋め・語群を出さず組合せ表のみ（行タップで回答） */
+  const hideKenpou46StemAndWordBank =
+    subject === '憲法' && field === '憲法' && questionIndex === 45 && slotFillAndComboTable;
 
   // 肢単位の※フィルタ（shuffledChoices・並べ替え共通）
   const filteredChoicesWithIndex = useMemo(() => {
@@ -1266,7 +1322,13 @@ export default function QuestionScreen() {
     if (mode !== 'bonus') {
       list = list.filter((c) => !isBonusChoice(c.originalIndex));
     } else {
-      list = list.filter((c) => isBonusChoice(c.originalIndex));
+      const hasBonusChoices = cb ? cb.some((b: boolean) => b) : !!(question as any).isBonus;
+      const hasNormalChoices = cb ? cb.some((b: boolean) => !b) : !(question as any).isBonus;
+      const isMixedBonus = hasBonusChoices && hasNormalChoices;
+      // ボーナス: 混在・通常肢のみは全肢。※のみの問題は※肢のみ（一覧はすべて※のため実質全肢）
+      if (!(isMixedBonus || !hasBonusChoices)) {
+        list = list.filter((c) => isBonusChoice(c.originalIndex));
+      }
     }
     return list;
   }, [question, mode]);
@@ -1289,9 +1351,15 @@ export default function QuestionScreen() {
     if (!Array.isArray(ans) || ans.length <= 1) return 0;
     const cb = (question as any).choiceIsBonus as boolean[] | undefined;
     const isBonusChoice = (i: number) => (cb && i < cb.length ? cb[i] : !!(question as any).isBonus);
-    const effective = mode !== 'bonus'
-      ? ans.filter((i: number) => !isBonusChoice(i))
-      : ans.filter((i: number) => isBonusChoice(i));
+    const hasBonusChoices = cb ? cb.some((b: boolean) => b) : !!(question as any).isBonus;
+    const hasNormalChoices = cb ? cb.some((b: boolean) => !b) : !(question as any).isBonus;
+    const isMixedBonus = hasBonusChoices && hasNormalChoices;
+    const effective =
+      mode !== 'bonus'
+        ? ans.filter((i: number) => !isBonusChoice(i))
+        : isMixedBonus || !hasBonusChoices
+          ? ans
+          : ans.filter((i: number) => isBonusChoice(i));
     return effective.length > 0 ? effective.length : ans.length;
   }, [question, mode]);
 
@@ -1354,6 +1422,21 @@ export default function QuestionScreen() {
 
   const [diagramModalVisible, setDiagramModalVisible] = useState(false);
   const [diagramMode, setDiagramMode] = useState<'self' | 'model'>('self');
+
+  const [mondaibunnGazoModalVisible, setMondaibunnGazoModalVisible] = useState(false);
+
+  const mondaibunnGazoItems = useMemo(
+    () =>
+      subject && field && question?.text != null
+        ? resolveMondaibunnGazoItems({
+            subject,
+            field,
+            questionText: question.text,
+            questionIndex: questionIndex ?? 0,
+          })
+        : [],
+    [subject, field, question?.text, questionIndex],
+  );
 
   const showDescriptiveMark = useMemo(() => {
     if (subject === '記述') return true;
@@ -1458,9 +1541,29 @@ export default function QuestionScreen() {
             const total = questionStats.correct + questionStats.wrong;
             if (total <= 0) return null;
             return (
-              <ThemedText style={{ color: colors.subText, fontSize: 14 }}>
-                正答率: {questionStats.correct}/{total}
-              </ThemedText>
+              <Pressable
+                onLongPress={() => {
+                  if (!subject || !field || !question?.text) return;
+                  Alert.alert(
+                    '正答率の訂正',
+                    'この問題の累計（正解＋不正解の回数）を、すべて正解として扱い直します。よろしいですか？',
+                    [
+                      { text: 'キャンセル', style: 'cancel' },
+                      {
+                        text: '訂正する',
+                        onPress: () => {
+                          reconcileAllAttemptsAsCorrect(subject, field, question.text).then(setQuestionStats);
+                        },
+                      },
+                    ]
+                  );
+                }}
+                delayLongPress={480}
+              >
+                <ThemedText style={{ color: colors.subText, fontSize: 14 }}>
+                  正答率: {questionStats.correct}/{total}
+                </ThemedText>
+              </Pressable>
             );
           })()}
           {questionStats && questionStats.wrong > 0 ? (
@@ -1503,9 +1606,9 @@ export default function QuestionScreen() {
           </ThemedView>
         ) : null}
 
-        {renderQuestionText()}
+        {!hideKenpou46StemAndWordBank ? renderQuestionText() : null}
 
-        {interactiveSlots.length > 0 ? (
+        {!hideKenpou46StemAndWordBank && interactiveSlots.length > 0 ? (
           <ThemedView style={[styles.slotTargetContainer, { borderColor: colors.choiceBorder, backgroundColor: colors.card }]}>
             <ThemedText style={[styles.wordBankTitle, { color: colors.subText }]}>
               【空欄】語群をドラッグして入れるか、空欄を選んで語群をタップ
@@ -1561,7 +1664,7 @@ export default function QuestionScreen() {
         ) : null}
 
         {/* Word Bank: 多肢選択・N,O列語群ではタップで穴埋め、他は表示のみ */}
-        {(question as any).wordBank ? (
+        {!hideKenpou46StemAndWordBank && (question as any).wordBank ? (
           <ThemedView style={[styles.wordBankContainer, { borderColor: colors.choiceBorder, backgroundColor: colors.card }]}>
             <ThemedText style={[styles.wordBankTitle, { color: colors.subText }]}>
               【語群】{activeSlot ? ` → 空欄 [ ${activeSlot.label.replace(/[\[\]\s]/g, '')} ] に入れます` : ''}
@@ -1676,7 +1779,95 @@ export default function QuestionScreen() {
         <ThemedView style={[styles.choices, { backgroundColor: colors.background }]}>
           <View style={styles.choicesRow}>
             <View style={styles.choicesBody}>
-          {(tashiData || ((question as any).slots?.length > 0 && (question as any).slots?.some((s: any) => s.options))) ? (
+          {slotFillAndComboTable ? (
+            <>
+              {!hideKenpou46StemAndWordBank ? (
+                <Pressable
+                  style={[
+                    styles.answerButton,
+                    (() => {
+                      const labels = ((question as any).slots || []).map((s: any) => s.label);
+                      const allFilled = labels.every((l: string) => slotSelections[l]);
+                      return !allFilled && styles.answerButtonDisabled;
+                    })(),
+                  ]}
+                  disabled={!((question as any).slots || []).every((s: any) => slotSelections[s.label])}
+                  onPress={() => {
+                    const ans = ((question as any).slots || []).map((s: any) => slotSelections[s.label] || '');
+                    router.push({
+                      pathname: '/result',
+                      params: {
+                        subject,
+                        field,
+                        questionIndex: String(questionIndex),
+                        pickedIndex: '-1',
+                        pickedSlots: JSON.stringify(ans),
+                        totalQuestions: String(questions.length),
+                        correctCountSession: params.correctCountSession || '0',
+                        wrongCounts: JSON.stringify(wrongCounts),
+                        ...(mode ? { mode } : {}),
+                        ...(isShuffle ? { shuffle: '1' } : {}),
+                      },
+                    });
+                  }}
+                >
+                  <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
+                </Pressable>
+              ) : null}
+              {activeActionMode === 'descriptiveScope' && (
+                <ThemedText style={[styles.descriptiveLabel, { color: colors.primary, marginBottom: 8, fontWeight: 'bold' }]}>
+                  → 記述問題を生成する組合せをクリック
+                </ThemedText>
+              )}
+              {activeActionMode === 'teachMe' && (
+                <ThemedText style={[styles.descriptiveLabel, { color: colors.primary, marginBottom: 8, fontWeight: 'bold' }]}>
+                  → 説明してほしい組合せをクリック
+                </ThemedText>
+              )}
+              <View style={[styles.comboTable, { borderColor: colors.choiceBorder, marginTop: 12 }]}>
+                <View style={[styles.comboTableHeader, { backgroundColor: colors.card }]}>
+                  <ThemedText style={[styles.comboTableHeaderCell, { color: colors.text }]}>(ア)</ThemedText>
+                  <ThemedText style={[styles.comboTableHeaderCell, { color: colors.text }]}>(イ)</ThemedText>
+                </View>
+                {comboFormatData!.map((item: { partA: string; partB: string; originalIndex: number }, idx: number) => (
+                  <Pressable
+                    key={idx}
+                    style={[styles.comboTableRow, { borderColor: colors.choiceBorder, backgroundColor: colors.choiceBg }]}
+                    onPress={() => {
+                      if (activeActionMode === 'descriptiveScope') {
+                        setActiveActionMode(null);
+                        requestDescriptiveScope(`${item.partA} ${item.partB}`);
+                        return;
+                      }
+                      if (activeActionMode === 'teachMe') {
+                        requestTeachMe(`${item.partA} ${item.partB}`);
+                        setActiveActionMode(null);
+                        return;
+                      }
+                      router.push({
+                        pathname: '/result',
+                        params: {
+                          subject,
+                          field,
+                          questionIndex: String(questionIndex),
+                          pickedIndex: String(item.originalIndex),
+                          totalQuestions: String(questions.length),
+                          correctCountSession: params.correctCountSession || '0',
+                          wrongCounts: JSON.stringify(wrongCounts),
+                          ...(mode ? { mode } : {}),
+                          ...(isShuffle ? { shuffle: '1' } : {}),
+                        },
+                      });
+                    }}
+                  >
+                    <ThemedText style={[styles.comboTableNum, { color: colors.text }]}>{idx + 1}.</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{item.partA}</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{item.partB}</ThemedText>
+                  </Pressable>
+                ))}
+              </View>
+            </>
+          ) : slotFillOnly ? (
             <>
               <Pressable
                 style={[
@@ -1861,7 +2052,7 @@ export default function QuestionScreen() {
                 <ThemedText style={styles.answerButtonText}>回答する</ThemedText>
               </Pressable>
             </>
-          ) : comboFormatData ? (
+          ) : comboFormatData && !slotWordBankOps ? (
             <>
               {activeActionMode === 'descriptiveScope' && (
                 <ThemedText style={[styles.descriptiveLabel, { color: colors.primary, marginBottom: 8, fontWeight: 'bold' }]}>
@@ -2355,6 +2546,42 @@ export default function QuestionScreen() {
           </View>
         </Modal>
 
+        <Modal
+          animationType="slide"
+          transparent
+          visible={mondaibunnGazoModalVisible}
+          onRequestClose={() => setMondaibunnGazoModalVisible(false)}
+        >
+          <View style={styles.modalOverlay}>
+            <View style={[styles.modalContent, { maxHeight: '90%' }]}>
+              <ThemedText type="subtitle" style={styles.modalTitle}>問題文・模範図</ThemedText>
+              {mondaibunnGazoItems.length > 0 ? (
+                <ScrollView style={{ maxHeight: '80%' }} showsVerticalScrollIndicator>
+                  {mondaibunnGazoItems.map((item, idx) => (
+                    <View key={idx} style={{ marginBottom: 16 }}>
+                      <Image
+                        source={item.source}
+                        style={{ width: '100%', aspectRatio: 1.4, maxHeight: 560 }}
+                        resizeMode="contain"
+                      />
+                      {item.caption ? (
+                        <ThemedText style={{ marginTop: 8, color: colors.subText, fontSize: 14 }}>{item.caption}</ThemedText>
+                      ) : null}
+                    </View>
+                  ))}
+                </ScrollView>
+              ) : (
+                <ThemedText style={{ color: colors.subText, padding: 16 }}>
+                  画像がありません。
+                </ThemedText>
+              )}
+              <Pressable style={styles.modalCloseButton} onPress={() => setMondaibunnGazoModalVisible(false)}>
+                <ThemedText style={{ color: '#fff' }}>閉じる</ThemedText>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+
         <DiagramModal
           visible={diagramModalVisible}
           onClose={() => setDiagramModalVisible(false)}
@@ -2420,6 +2647,22 @@ const styles = StyleSheet.create({
   questionMarkText: {
     fontSize: 18,
     fontWeight: '700',
+  },
+  mondaibunnGazoOpenButton: {
+    width: 36,
+    minHeight: 36,
+    borderRadius: 8,
+    borderWidth: 1.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 2,
+    paddingVertical: 4,
+  },
+  mondaibunnGazoOpenButtonText: {
+    fontSize: 10,
+    fontWeight: '700',
+    textAlign: 'center',
+    lineHeight: 12,
   },
   questionContainer: {
     position: 'relative',

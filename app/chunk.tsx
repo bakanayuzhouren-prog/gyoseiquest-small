@@ -1,10 +1,12 @@
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import { useState } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
 import { getChunkImageSource } from '@/src/chunkImages';
+import { takeChunkTextBody } from '@/src/chunkSessionState';
 
 export default function ChunkScreen() {
   const params = useLocalSearchParams<{
@@ -22,6 +24,7 @@ export default function ChunkScreen() {
   }>();
   const { colors } = useTheme();
   const router = useRouter();
+  const [chunkMarkdownBody] = useState(() => takeChunkTextBody());
   const statuteTitle = params.statuteTitle || '';
   const statuteContent = params.statuteContent || '';
   let chunkImage = params.chunkImage || '';
@@ -51,20 +54,25 @@ export default function ChunkScreen() {
               <MarkdownText text={statuteContent} style={{ fontSize: 16, lineHeight: 24 }} />
             </View>
           ) : null}
+          {chunkMarkdownBody ? (
+            <View style={{ marginBottom: 16 }}>
+              <MarkdownText text={chunkMarkdownBody} style={{ fontSize: 16, lineHeight: 24 }} />
+            </View>
+          ) : null}
           {imageSource ? (
             <Image
               source={imageSource}
               style={{ width: '100%', maxHeight: 800, marginLeft: -30, marginRight: -30, marginBottom: 16 }}
               resizeMode="contain"
             />
-          ) : chunkImage ? (
+          ) : chunkImage && !chunkMarkdownBody ? (
             <ThemedText style={{ marginBottom: 16, color: colors.subText, fontSize: 14 }}>
               ※ 画像「{chunkImage}」は src/chunkImages.ts に登録してください。
             </ThemedText>
           ) : null}
-          {!imageSource && !chunkImage ? (
+          {!imageSource && !chunkImage && !chunkMarkdownBody ? (
             <ThemedText style={{ color: colors.subText, fontSize: 14 }}>
-              スプレッドシートY列に画像ファイル名を記入すると表示されます。
+              スプレッドシートのY列に画像ファイル名または解説本文を記入すると表示されます。
             </ThemedText>
           ) : null}
           <Pressable

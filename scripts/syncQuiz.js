@@ -45,7 +45,7 @@ function looksLikeNewQuestionInHColumn(hText) {
     if (!hText || typeof hText !== 'string') return false;
     const t = hText.trim();
     if (t.length < 60) return false;
-    const valProblemNorm = t
+    const valProblemNorm = stripLearnLinkTag(t)
         .replace(/\s*[＜<][^＞>]*[＞>]\s*$/, '')
         .replace(/\s*（[^）]{1,20}）\s*$/, '')
         .trim();
@@ -86,8 +86,70 @@ const MANGA_RESOURCE_SHEET_CANDIDATES = [
     '解説資料（行政法総論）',
 ];
 
+/**
+ * Google Sheets の ThemeColor（数値 enum / 文字列）をキーに正規化する。
+ * TEXT / BACKGROUND / UNSPECIFIED は既定文字色 → null（無装飾）。
+ */
+function normalizeThemeColorKey(themeColor) {
+    if (themeColor == null) return null;
+    const enumToKey = {
+        0: 'UNSPECIFIED',
+        1: 'TEXT',
+        2: 'BACKGROUND',
+        3: 'ACCENT1',
+        4: 'ACCENT2',
+        5: 'ACCENT3',
+        6: 'ACCENT4',
+        7: 'ACCENT5',
+        8: 'ACCENT6',
+        9: 'LINK',
+    };
+    if (typeof themeColor === 'number') {
+        return enumToKey[themeColor] ?? null;
+    }
+    const asStr = String(themeColor).trim();
+    if (/^\d+$/.test(asStr)) {
+        return enumToKey[Number(asStr)] ?? null;
+    }
+    let s = asStr;
+    s = s.replace(/^THEME_COLOR_TYPE_/i, '').replace(/^ThemeColorType\./i, '');
+    s = s.replace(/_/g, '');
+    return s.toUpperCase() || null;
+}
+
+/** スプレッドシート既定テーマに近い近似 RGB（0–1）。カスタムテーマではズレうる */
+const SHEET_THEME_DEFAULT_RGB = {
+    ACCENT1: { red: 66 / 255, green: 133 / 255, blue: 244 / 255 },
+    ACCENT2: { red: 234 / 255, green: 67 / 255, blue: 53 / 255 },
+    ACCENT3: { red: 251 / 255, green: 188 / 255, blue: 4 / 255 },
+    ACCENT4: { red: 52 / 255, green: 168 / 255, blue: 83 / 255 },
+    ACCENT5: { red: 255 / 255, green: 109 / 255, blue: 1 / 255 },
+    ACCENT6: { red: 70 / 255, green: 189 / 255, blue: 198 / 255 },
+    LINK: { red: 17 / 255, green: 85 / 255, blue: 204 / 255 },
+};
+
+function themeColorKeyToRgb(key) {
+    if (!key || key === 'UNSPECIFIED' || key === 'TEXT' || key === 'BACKGROUND') return null;
+    return SHEET_THEME_DEFAULT_RGB[key] || null;
+}
+
+function rgbColorHasComponents(c) {
+    if (!c || typeof c !== 'object') return false;
+    return c.red != null || c.green != null || c.blue != null;
+}
+
+function resolveForegroundColorStyle(style) {
+    if (!style) return null;
+    if (rgbColorHasComponents(style.rgbColor)) return style.rgbColor;
+    const key = normalizeThemeColorKey(style.themeColor);
+    return themeColorKeyToRgb(key);
+}
+
 function getForegroundRgb(fmt) {
-    return fmt?.foregroundColor || fmt?.foregroundColorStyle?.rgbColor;
+    if (!fmt) return null;
+    const fromStyle = resolveForegroundColorStyle(fmt.foregroundColorStyle);
+    if (fromStyle) return fromStyle;
+    return fmt.foregroundColor || null;
 }
 
 function rgbToHex6(c) {
@@ -169,6 +231,28 @@ function formatCellText(text, colMap, sheetRow1Based) {
     if (!s) return '';
     const cell = colMap[sheetRow1Based];
     return cell ? applyTextFormatRuns(s, cell) : s;
+}
+
+function normalizeLearnLinkKey(value) {
+    if (value == null) return '';
+    const normalized = String(value)
+        .normalize('NFKC')
+        .replace(/[０-９]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xFEE0))
+        .replace(/＃/g, '#')
+        .trim();
+    const match = normalized.match(/#\s*([0-9]{1,6})/);
+    return match ? `#${match[1].padStart(3, '0')}` : '';
+}
+
+function extractLearnLinkKey(text) {
+    if (!text) return '';
+    const matches = [...String(text).matchAll(/[＃#]\s*([0-9０-９]{1,6})/g)];
+    if (matches.length === 0) return '';
+    return normalizeLearnLinkKey(matches[matches.length - 1][0]);
+}
+
+function stripLearnLinkTag(text) {
+    return String(text || '').replace(/\s*[＃#]\s*[0-9０-９]{1,6}/g, '').trim();
 }
 
 const SUBJECT_ORDER = [
@@ -361,6 +445,8 @@ async function sync() {
 
         // 主要列のフォーマット（文字色・太字）を取得 — values の H/K/L と行番号を対応させる
         let mColFormatMap = {};
+        let iColFormatMap = {};
+        let jColFormatMap = {};
         let nColFormatMap = {};
         let azColFormatMap = {};
         let bColFormatMap = {};
@@ -372,19 +458,23 @@ async function sync() {
         try {
             await sleep(500);
             const n = Math.min(rows.length + 50, 2000);
+            const columnCount = sheet.properties?.gridProperties?.columnCount ?? 26;
+            const formatRanges = [
+                { col: 13, range: `${title}!M2:M${n}`, map: mColFormatMap },
+                { col: 2, range: `${title}!B2:B${n}`, map: bColFormatMap },
+                { col: 8, range: `${title}!H2:H${n}`, map: hColFormatMap },
+                { col: 11, range: `${title}!K2:K${n}`, map: kColFormatMap },
+                { col: 12, range: `${title}!L2:L${n}`, map: lColFormatMap },
+                { col: 3, range: `${title}!C2:C${n}`, map: cColFormatMap },
+                { col: 6, range: `${title}!F2:F${n}`, map: fColFormatMap },
+                { col: 52, range: `${title}!AZ2:AZ${n}`, map: azColFormatMap },
+                { col: 14, range: `${title}!N2:N${n}`, map: nColFormatMap },
+                { col: 10, range: `${title}!J2:J${n}`, map: jColFormatMap },
+                { col: 9, range: `${title}!I2:I${n}`, map: iColFormatMap },
+            ].filter(({ col }) => col <= columnCount);
             const gridResp = await sheets.spreadsheets.get({
                 spreadsheetId,
-                ranges: [
-                    `${title}!M2:M${n}`,
-                    `${title}!B2:B${n}`,
-                    `${title}!H2:H${n}`,
-                    `${title}!K2:K${n}`,
-                    `${title}!L2:L${n}`,
-                    `${title}!C2:C${n}`,
-                    `${title}!F2:F${n}`,
-                    `${title}!AZ2:AZ${n}`,
-                    `${title}!N2:N${n}`,
-                ],
+                ranges: formatRanges.map(({ range }) => range),
                 includeGridData: true,
             });
             const targetSheet = gridResp.data.sheets?.find((s) => (s.properties?.title || '') === title);
@@ -398,15 +488,9 @@ async function sync() {
                 });
             };
             const data = targetSheet?.data || [];
-            if (data[0]) fillMap(data[0], mColFormatMap);
-            if (data[1]) fillMap(data[1], bColFormatMap);
-            if (data[2]) fillMap(data[2], hColFormatMap);
-            if (data[3]) fillMap(data[3], kColFormatMap);
-            if (data[4]) fillMap(data[4], lColFormatMap);
-            if (data[5]) fillMap(data[5], cColFormatMap);
-            if (data[6]) fillMap(data[6], fColFormatMap);
-            if (data[7]) fillMap(data[7], azColFormatMap);
-            if (data[8]) fillMap(data[8], nColFormatMap);
+            formatRanges.forEach(({ map }, idx) => {
+                if (data[idx]) fillMap(data[idx], map);
+            });
         } catch (e) {
             console.warn(`[WARN] 列フォーマット取得スキップ: ${e.message}`);
         }
@@ -414,7 +498,7 @@ async function sync() {
         let currentSubject = sheetDefaultSubject;
         let currentCategory = sheetDefaultCategory;
 
-        // 行政法１（ここに全部入ってる）: B列=問題文, C列=第1肢, 続く行のB列=残り肢。他: H列=問題文, K列=肢
+        // 行政法１（ここに全部入ってる）: B列=問題文。肢は K列優先（問題を解くモードと同一）、無ければ C列＋続く行のB列（従来）
         const useGyosei1Layout = isGyosei1CombinedSheet(title);
 
         for (let i = 1; i < rows.length; i++) {
@@ -426,7 +510,6 @@ async function sync() {
             const valK = row[10] ? row[10].trim() : '';
 
             const valProblem = useGyosei1Layout ? valB : valH;
-            const valChoice = useGyosei1Layout ? (valC || valB) : valK;
 
             // Check if it has choices (Columns C-G, indices 2-6)
             const valC1 = row[2] ? row[2].trim() : '';
@@ -464,7 +547,7 @@ async function sync() {
                 const valL = row[11] ? row[11].trim() : '';
                 const valM = row[12] ? row[12].trim() : '';
             const valR = row[17] ? row[17].trim() : '';
-            const valRefId = row[19] ? row[19].trim() : '';
+            const valRefId = row[19] ? row[19].trim() : ''; // 解説資料 A 列 ID。カンマ・読点区切りで複数可（例: ｇｓ０００１,ｇｓ０００２）
             // N,O,P,Q,S列（選択肢A〜E）: 語群選択問題
             const valN = row[13] ? row[13].trim() : '';
             const valO = row[14] ? row[14].trim() : '';
@@ -474,7 +557,7 @@ async function sync() {
             const hasNtoSChoices = [valN, valO, valP, valQ, valR, valS].some(v => v.length > 0);
 
             // ＜複数解＞ や （複数解）（正解肢２つ）（複数回）等のサフィックスを除去してから判定
-            const valProblemNorm = valProblem
+            const valProblemNorm = stripLearnLinkTag(valProblem)
                 .replace(/\s*[＜<][^＞>]*[＞>]\s*$/, '')   // ＜...＞ 除去
                 .replace(/\s*（[^）]{1,20}）\s*$/, '')       // （...） 除去（最大20文字）
                 .trim();
@@ -504,6 +587,8 @@ async function sync() {
                 const problemRow = i + 1;
                 const problemCell = useGyosei1Layout ? bColFormatMap[problemRow] : hColFormatMap[problemRow];
                 if (problemCell) questionText = applyBoldFromFormatRuns(questionText, problemCell);
+                let learnLinkKey = extractLearnLinkKey(questionText);
+                if (learnLinkKey) questionText = stripLearnLinkTag(questionText);
 
                 // ノイズフィルタ（明らかなヘッダー行のみ除外）
                 const trimmedContent = questionText.trim();
@@ -595,7 +680,7 @@ async function sync() {
                         const choice = row[13 + j] ? row[13 + j].trim() : '';
                         if (label) slots.push({ label, options: choice });
                     }
-                    if (row[8]) slots.push({ label: row[8].trim(), options: row[18] ? row[18].trim() : '' });
+                    // I列(index 8)は根拠条文専用。語群スロットのラベルとして使わない
                 }
                 // 問題文に空欄表記があるがスロット未設定の場合、デフォルトスロットを作成
                 if (slots.length === 0 && !shouldSkipSlotsForCombo && !isEnumerateKanaStatementsCombo) {
@@ -699,17 +784,33 @@ async function sync() {
                     if (raw.every(Boolean)) slotAnswersFromNtoP = raw;
                 }
 
-                // 第1肢（行政法１はC列、通常はK列）
+                // 第1肢（行政法総論シートは K 優先・無ければ C。他シートは K）
                 // Y列（index 24）= チャンク用ローカル画像ファイル名（例: cancel-vs-invalid.png）
                 const choiceChunkImages = [];
+                const choiceLearnLinkKeys = [];
                 const choiceStatuteRefs = [];
+                /** 民法・債権各論・憲法など: J列(index 9) にインポートした条文・関連条文テキスト */
+                const choiceRelatedStatutes = [];
                 const choiceDeepDive = [];
                 // ビギナー向けもっと深掘り: AZ列(index 51)。M列と同形式・[[image:]]可。AY列が空ならチャンク(U〜)の誤ペアにならない
                 const choiceDeepDiveBeginner = [];
                 /** N列(index 13): 語群スロット未使用のシートのみ「周辺知識」。語群・アイイ組合せ・多肢選択では使わない */
                 const choiceDeepDivePeripheral = [];
                 const valChunkImg = (r) => (r && r[24] ? String(r[24]).trim() : '');
-                const valStatuteRef = (r) => (r && r[8] ? String(r[8]).trim() : '');
+                const valStatuteRef = (r, rowIdx) => {
+                    if (!r || !r[8]) return '';
+                    const raw = String(r[8]).replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+                    if (!raw) return '';
+                    const cellData = iColFormatMap[rowIdx];
+                    return cellData ? applyTextFormatRuns(raw, cellData) : raw;
+                };
+                const valRelatedStatutesFromJ = (r, rowIdx) => {
+                    if (!r || !r[9]) return '';
+                    const raw = String(r[9]).replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+                    if (!raw) return '';
+                    const cellData = jColFormatMap[rowIdx];
+                    return cellData ? applyTextFormatRuns(raw, cellData) : raw;
+                };
                 // もっと深掘る: 問題を解くモードはM列(index 12)のみ。太字・赤はフォーマットから反映
                 const valDeepDive = (r, rowIdx) => {
                     const raw = r && r[12] ? String(r[12]).trim() : '';
@@ -734,21 +835,27 @@ async function sync() {
                     const cellData = nColFormatMap[rowIdx];
                     return cellData ? applyBoldFromFormatRuns(raw, cellData) : raw;
                 };
-                const firstChoice = useGyosei1Layout ? valC : valK;
+                const firstChoice = useGyosei1Layout ? (valK || valC) : valK;
                 if (firstChoice) {
                     choiceIsBonus.push(/^※/.test(firstChoice));
                     if (/^※/.test(firstChoice)) isBonus = true;
                     const firstRowNum = i + 1;
                     let fc = firstChoice;
                     if (useGyosei1Layout) {
-                        if (cColFormatMap[firstRowNum]) fc = applyTextFormatRuns(fc, cColFormatMap[firstRowNum]);
+                        if (valK && kColFormatMap[firstRowNum]) fc = applyTextFormatRuns(fc, kColFormatMap[firstRowNum]);
+                        else if (valC && cColFormatMap[firstRowNum]) fc = applyTextFormatRuns(fc, cColFormatMap[firstRowNum]);
                     } else if (kColFormatMap[firstRowNum]) {
                         fc = applyTextFormatRuns(fc, kColFormatMap[firstRowNum]);
                     }
-                    choices.push(fc.replace(/^※\s*/, '').trim() || fc);
+                    const choiceLearnLinkKey = extractLearnLinkKey(fc);
+                    if (!learnLinkKey && choiceLearnLinkKey) learnLinkKey = choiceLearnLinkKey;
+                    const cleanedFirstChoice = stripLearnLinkTag(fc);
+                    choices.push(cleanedFirstChoice.replace(/^※\s*/, '').trim() || cleanedFirstChoice);
                     choiceChunkImages.push(valChunkImg(row));
+                    choiceLearnLinkKeys.push(choiceLearnLinkKey);
                     choiceExplanations.push(valExplanWithFmt(row, firstRowNum));
-                    choiceStatuteRefs.push(valStatuteRef(row));
+                    choiceStatuteRefs.push(valStatuteRef(row, firstRowNum));
+                    choiceRelatedStatutes.push(valRelatedStatutesFromJ(row, i + 1));
                     choiceDeepDive.push(valDeepDive(row, i + 1));
                     choiceDeepDiveBeginner.push(valDeepDiveBeginner(row, i + 1));
                     choiceDeepDivePeripheral.push(valPeripheral(row, i + 1));
@@ -774,20 +881,35 @@ async function sync() {
                         const nextLNorm = nextL.replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0));
                         if (/^[\d\s,\.、．]+$/.test(nextLNorm)) valLFromContinuation = nextL;
                     }
-                    let choiceText = useGyosei1Layout ? (nextRow[2] ? nextRow[2].trim() : nextB) : nextK;
+                    let choiceText = '';
+                    if (useGyosei1Layout) {
+                        if (nextK) choiceText = nextK;
+                        else choiceText = (nextRow[2] ? nextRow[2].trim() : '') || nextB;
+                    } else {
+                        choiceText = nextK;
+                    }
                     if (choiceText) {
                         choiceIsBonus.push(/^※/.test(choiceText));
                         if (/^※/.test(choiceText)) isBonus = true;
                         const contRowNum = i + offset + 1;
                         if (useGyosei1Layout) {
-                            if (cColFormatMap[contRowNum]) choiceText = applyTextFormatRuns(choiceText, cColFormatMap[contRowNum]);
+                            if (nextK && kColFormatMap[contRowNum]) {
+                                choiceText = applyTextFormatRuns(choiceText, kColFormatMap[contRowNum]);
+                            } else if (cColFormatMap[contRowNum]) {
+                                choiceText = applyTextFormatRuns(choiceText, cColFormatMap[contRowNum]);
+                            }
                         } else if (kColFormatMap[contRowNum]) {
                             choiceText = applyTextFormatRuns(choiceText, kColFormatMap[contRowNum]);
                         }
-                        choices.push(choiceText.replace(/^※\s*/, '').trim() || choiceText);
+                        const choiceLearnLinkKey = extractLearnLinkKey(choiceText);
+                        if (!learnLinkKey && choiceLearnLinkKey) learnLinkKey = choiceLearnLinkKey;
+                        const cleanedChoiceText = stripLearnLinkTag(choiceText);
+                        choices.push(cleanedChoiceText.replace(/^※\s*/, '').trim() || cleanedChoiceText);
                         choiceChunkImages.push(valChunkImg(nextRow));
+                        choiceLearnLinkKeys.push(choiceLearnLinkKey);
                         choiceExplanations.push(valExplanWithFmt(nextRow, contRowNum));
-                        choiceStatuteRefs.push(valStatuteRef(nextRow));
+                        choiceStatuteRefs.push(valStatuteRef(nextRow, contRowNum));
+                        choiceRelatedStatutes.push(valRelatedStatutesFromJ(nextRow, contRowNum));
                         choiceDeepDive.push(valDeepDive(nextRow, contRowNum));
                         choiceDeepDiveBeginner.push(valDeepDiveBeginner(nextRow, contRowNum));
                         choiceDeepDivePeripheral.push(valPeripheral(nextRow, contRowNum));
@@ -799,27 +921,32 @@ async function sync() {
                 if (choices.length === 0 && questionText.length > 20) {
                     choices.push('（選択肢はスプレッドシートのK列で設定してください）');
                     choiceChunkImages.push('');
+                    choiceLearnLinkKeys.push('');
                     choiceExplanations.push('');
-                    choiceStatuteRefs.push('');
+                    choiceStatuteRefs.push(valStatuteRef(row, i + 1));
+                    choiceRelatedStatutes.push('');
                     choiceDeepDive.push('');
                     choiceDeepDiveBeginner.push('');
                     choiceDeepDivePeripheral.push('');
                 }
                 // choiceChunkImages / choiceExplanations / choiceStatuteRefs / choiceDeepDive を choices の長さに合わせる
-                while (choiceChunkImages.length < choices.length) choiceChunkImages.push('');
+                while (choiceLearnLinkKeys.length < choices.length) choiceLearnLinkKeys.push('');
                 while (choiceExplanations.length < choices.length) choiceExplanations.push('');
                 while (choiceStatuteRefs.length < choices.length) choiceStatuteRefs.push('');
+                while (choiceRelatedStatutes.length < choices.length) choiceRelatedStatutes.push('');
                 while (choiceDeepDive.length < choices.length) choiceDeepDive.push('');
                 while (choiceDeepDiveBeginner.length < choices.length) choiceDeepDiveBeginner.push('');
                 while (choiceDeepDivePeripheral.length < choices.length) choiceDeepDivePeripheral.push('');
                 if (choices.length >= 1) {
                     const correctIndices = [];
+                    // N,O,P,Q からスロット正解が取れる問題では K 列の（ｒ）は表示除去のみ（正解索引にしない）
+                    const useSlotCorrectFromNtoP = Array.isArray(slotAnswersFromNtoP) && slotAnswersFromNtoP.length > 0;
                     const cleanChoices = currentSubject === '記述'
                         ? choices.map((c) => (c || '').trim())
                         : choices.map((c, idx) => {
                             const rPattern = /[\(（]\s*[rｒ]\s*[\)）]/i;
                             if (rPattern.test(c)) {
-                                correctIndices.push(idx);
+                                if (!useSlotCorrectFromNtoP) correctIndices.push(idx);
                                 return c.replace(rPattern, '').trim();
                             }
                             return c;
@@ -917,6 +1044,35 @@ async function sync() {
                             isReorder = true;
                         }
                     }
+                    // 問題行のMのみ記入で継続行が空のとき、全肢へ同一深掘りを複製（各K行にMを書かない運用向け）
+                    if (!isReorder && choiceDeepDive.length > 1) {
+                        const head = String(choiceDeepDive[0] ?? '').trim();
+                        const anyTail = choiceDeepDive.slice(1).some((d) => String(d ?? '').trim());
+                        if (head && !anyTail) {
+                            for (let di = 1; di < choiceDeepDive.length; di += 1) {
+                                choiceDeepDive[di] = choiceDeepDive[0];
+                            }
+                        }
+                    }
+                    if (!isReorder && choiceDeepDiveBeginner.length > 1) {
+                        const headB = String(choiceDeepDiveBeginner[0] ?? '').trim();
+                        const anyTailB = choiceDeepDiveBeginner.slice(1).some((d) => String(d ?? '').trim());
+                        if (headB && !anyTailB) {
+                            for (let di = 1; di < choiceDeepDiveBeginner.length; di += 1) {
+                                choiceDeepDiveBeginner[di] = choiceDeepDiveBeginner[0];
+                            }
+                        }
+                    }
+                    // 問題行のIのみ記入で継続行が空のとき、全肢へ同一根拠条文を複製
+                    if (!isReorder && choiceStatuteRefs.length > 1) {
+                        const headRef = String(choiceStatuteRefs[0] ?? '').trim();
+                        const anyTailRef = choiceStatuteRefs.slice(1).some((d) => String(d ?? '').trim());
+                        if (headRef && !anyTailRef) {
+                            for (let di = 1; di < choiceStatuteRefs.length; di += 1) {
+                                choiceStatuteRefs[di] = choiceStatuteRefs[0];
+                            }
+                        }
+                    }
                     // L列 = 解説。並べ替えでない場合のみ使用。全体解説 = F列 || L列、肢別解説 = choiceExplanations
                     // I列 = 根拠条文。肢ごとに指定があれば優先表示
                     const explRow = i + 1;
@@ -925,11 +1081,12 @@ async function sync() {
                         : formatCellText(valF, fColFormatMap, explRow) || formatCellText(valL, lColFormatMap, explRow);
                     const finalChoiceExplanations = isReorder ? [] : choiceExplanations;
                     const finalChoiceStatuteRefs = isReorder ? [] : choiceStatuteRefs;
+                    const finalChoiceRelatedStatutes = isReorder ? [] : choiceRelatedStatutes;
                     const finalChoiceDeepDive = isReorder ? [] : choiceDeepDive;
                     const finalChoiceDeepDiveBeginner = isReorder ? [] : choiceDeepDiveBeginner;
                     const finalChoiceDeepDivePeripheral = isReorder ? [] : choiceDeepDivePeripheral;
-                    // K列に（ｒ）がある択一正解があるときは answer は肢番号のまま（語群は表示・穴埋め用のみ）
-                    if (!isReorder && slotAnswersFromNtoP && slotAnswersFromNtoP.length > 0 && correctIndices.length === 0) {
+                    // スロット語群（N,O,…）で（ｒ）正解が取れるときは answer は語句配列。K 列の（ｒ）は上で索引に入れていない
+                    if (!isReorder && slotAnswersFromNtoP && slotAnswersFromNtoP.length > 0) {
                         finalAnswer = slotAnswersFromNtoP;
                     } else if (!isReorder && currentSubject === '多肢選択' && valR) {
                         const labels = tashiSlotLabels.length > 0
@@ -992,11 +1149,14 @@ async function sync() {
                         isBonus: isBonus,
                         chunks: chunks,
                         choiceChunkImages: choiceChunkImages,
+                        choiceLearnLinkKeys: choiceLearnLinkKeys,
                         choiceExplanations: finalChoiceExplanations,
                         choiceStatuteRefs: finalChoiceStatuteRefs,
+                        choiceRelatedStatutes: finalChoiceRelatedStatutes,
                         choiceDeepDive: finalChoiceDeepDive,
                         choiceDeepDiveBeginner: finalChoiceDeepDiveBeginner,
-                        choiceDeepDivePeripheral: finalChoiceDeepDivePeripheral
+                        choiceDeepDivePeripheral: finalChoiceDeepDivePeripheral,
+                        ...(learnLinkKey && { learnLinkKey })
                     });
                 } else {
                     // Extract chunks for non-choice questions too
@@ -1037,11 +1197,17 @@ async function sync() {
                     const explanationNoChoices =
                         formatCellText(valF, fColFormatMap, explRowNoChoices) ||
                         formatCellText(valL, lColFormatMap, explRowNoChoices);
+                    const descriptiveDeepM = currentSubject === '記述' ? valDeepDive(row, explRowNoChoices) : '';
+                    const descriptiveMemoM =
+                        currentSubject === '記述' && valM ? formatCellText(valM, mColFormatMap, explRowNoChoices) : '';
                     questionsData[currentSubject][currentCategory].push({
                         text: questionText,
                         explain: explanationNoChoices || questionText, // Use question text as explanation fallback
                         chunks: chunks,
-                        ...(modelAnswerForDescriptiveOnly !== undefined && { modelAnswer: modelAnswerForDescriptiveOnly })
+                        ...(learnLinkKey && { learnLinkKey }),
+                        ...(modelAnswerForDescriptiveOnly !== undefined && { modelAnswer: modelAnswerForDescriptiveOnly }),
+                        ...(descriptiveMemoM && { memo: descriptiveMemoM }),
+                        ...(descriptiveDeepM && { choiceDeepDive: [descriptiveDeepM] })
                     });
                 }
             }
