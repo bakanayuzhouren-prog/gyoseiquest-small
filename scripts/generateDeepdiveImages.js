@@ -93,7 +93,7 @@ export function resolveMinpoLearnFolderByQuestionNumber(problemNum1Based: number
 
 /**
  * 見て聞いて覚える・債権総論: learn/saikensouron/ 配下、ファイル名が「N-…」（先頭が問番号）。
- * 元画像は temp_images/saikensouron に置き、assets/images/deepdive/learn/saikensouron/ へコピーしてから本スクリプトを実行。
+ * 元画像は temp_images/learn/saikensouron に置き、assets/images/deepdive/learn/saikensouron/ へコピーしてから本スクリプトを実行。
  */
 export function resolveSaikensouronLearnImageKey(problemNum1Based: number): string | undefined {
   if (problemNum1Based < 1) return undefined;
@@ -153,6 +153,40 @@ export function resolveKenpouQuizChoiceImageKey(
     if (alias184) return alias184;
   }
   return resolveKenpouProblemImageKey(questionNum1Based);
+}
+
+/**
+ * 見て聞いて覚える・国家賠償法: gyouseihou/kokubai/N-M（先頭 N = 問番号）
+ * 例: 26-136.png → 26問目
+ */
+export function resolveKokubaiLearnImageKey(problemNum1Based: number): string | undefined {
+  if (problemNum1Based < 1) return undefined;
+  const head = new RegExp(\`^\${problemNum1Based}-\`);
+  const keys = Object.keys(DEEPDIVE_IMAGES).filter((k) => {
+    if (!k.startsWith('gyouseihou/kokubai/')) return false;
+    const base = k.split('/').pop() || '';
+    return head.test(base);
+  });
+  if (keys.length === 0) return undefined;
+  return keys.sort()[0];
+}
+
+/**
+ * 問題を解く・国家賠償法: gyouseihou/kokubai/M-N-C
+ * M=全問数、N=問題番号、C=選択肢番号（いずれも1始まり）。例: 20-1-1.png
+ */
+export function resolveKokubaiQuizChoiceImageKey(
+  questionNum1Based: number,
+  totalQuestions: number,
+  choiceNum1Based: number
+): string | undefined {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return undefined;
+  const exact = \`gyouseihou/kokubai/\${totalQuestions}-\${questionNum1Based}-\${choiceNum1Based}\`;
+  if (DEEPDIVE_IMAGES[exact]) return exact;
+  const re = new RegExp(
+    \`^gyouseihou/kokubai/\\\\d+-\${questionNum1Based}-\${choiceNum1Based}$\`
+  );
+  return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
 }
 
 /**

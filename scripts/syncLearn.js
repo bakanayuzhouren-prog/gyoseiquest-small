@@ -2,6 +2,7 @@ require('dotenv').config();
 const { google } = require('googleapis');
 const fs = require('fs');
 const path = require('path');
+const { formatCellText, loadSheetColumnFormats } = require('./sheetTextFormat');
 
 let sheets;
 if (process.env.GOOGLE_SHEETS_API_KEY) {
@@ -101,8 +102,17 @@ async function sync() {
   const learnContent = {};
   const learnDeepDive = {};
   const learnFExplain = {};
+  const learnStatuteRefs = {};
   const learnSource = {};
   const learnLinks = {};
+
+  const ADMIN_LAW_LEARN_SHEET_SUBJECTS = new Set([
+    '行政手続法',
+    '行政不服審査法',
+    '行政事件訴訟法',
+    '国家賠償法',
+    '地方自治法',
+  ]);
 
   // 2. Iterate through sheets and aggregate content
   for (const sheet of sheetList) {
@@ -211,6 +221,25 @@ async function sync() {
     // Skip the first row (memo/header row)
     const dataRows = rows.slice(1);
 
+    /** 行政法各論: I列根拠条文・M列深掘りの書式付き同期 */
+    let adminLearnColFormats = null;
+    if (sheetDefaultSubject && ADMIN_LAW_LEARN_SHEET_SUBJECTS.has(sheetDefaultSubject)) {
+      await sleep(500);
+      adminLearnColFormats = await loadSheetColumnFormats(
+        sheets,
+        spreadsheetId,
+        title,
+        dataRows.length,
+        ['B', 'I', 'M', 'F']
+      );
+    }
+    const fmtCell = (letter, text, sheetRow1Based) => {
+      if (!text || !String(text).trim()) return '';
+      const colMap = adminLearnColFormats?.[letter];
+      if (!colMap) return String(text).replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+      return formatCellText(text, colMap, sheetRow1Based);
+    };
+
     // A列がIDで始まるシートは関係ないシート → スキップ（行政代執行法は例外：行政法総論に取り込む）
     const firstValA = (dataRows[0] && dataRows[0][0]) ? String(dataRows[0][0]).trim() : '';
     const looksLikeId = /^[a-z]{2}\d+$/i.test(firstValA) || /^[ａ-ｚＡ-Ｚ０-９]+\d+$/.test(firstValA);
@@ -225,6 +254,8 @@ async function sync() {
     let currentGroupHasDeepDive = false;
     let currentGroupDeepDiveContent = '';
     let currentGroupFExplain = '';
+    let currentGroupStatuteRefContent = '';
+    let currentGroupMDeepDiveContent = '';
 
     for (let i = 0; i < dataRows.length; i++) {
       const row = dataRows[i];
@@ -323,10 +354,13 @@ async function sync() {
           currentSubject === '多肢選択' ||
           currentSubject === '多肢選択憲法' ||
           currentSubject === '多肢選択行政法';
+        /** 行政法各論（総合除く）: 見て聞いて覚えるは A 列のみ。H 列は問題を解く用 */
+        const adminLawLearnAOnly = isAdminLawLearnSubject && !gyoseiSogoSheet;
 
         if (
           isAdminLawLearnSubject &&
           !gyoseiSogoSheet &&
+          !adminLawLearnAOnly &&
           !(content && String(content).trim()) &&
           valH &&
           valH !== '問題' &&
@@ -366,6 +400,10 @@ async function sync() {
             ) {
               isNewQuestion = true;
             }
+          } else if (adminLawLearnAOnly) {
+            if (valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢') {
+              isNewQuestion = true;
+            }
           } else if (
             valH ||
             (valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢') ||
@@ -386,20 +424,32 @@ async function sync() {
             currentQuestionStartIndex = learnContent[currentSubject].length;
           }
 
-          // Look ahead: グループ内のB列・F列（解説）全文を収集（複数行にまたがる場合も結合）
+          // Look ahead: グループ内のB列・F列（解説）・I列（根拠条文）・M列（深掘り）を収集
           let groupHasDeepDive = false;
           const groupBContents = [];
           const groupFContents = [];
+          const groupIContents = [];
+          const groupMContents = [];
           let j = i;
           while (j < dataRows.length) {
             if (gyoseiSogoSheet && j > i) break;
+            const sheetRowNum = j + 2;
             const colVal = dataRows[j][1] ? dataRows[j][1].trim() : '';
             if (colVal) {
               groupHasDeepDive = true;
-              groupBContents.push(colVal);
+              groupBContents.push(fmtCell('B', colVal, sheetRowNum));
             }
             const colF = dataRows[j][5] ? String(dataRows[j][5]).trim() : '';
-            if (colF) groupFContents.push(colF);
+            if (colF) groupFContents.push(fmtCell('F', colF, sheetRowNum));
+            if (adminLawLearnAOnly) {
+              const colI = dataRows[j][8] ? String(dataRows[j][8]).trim() : '';
+              if (colI) groupIContents.push(fmtCell('I', colI, sheetRowNum));
+              const colM = dataRows[j][12] ? String(dataRows[j][12]).trim() : '';
+              if (colM) {
+                groupHasDeepDive = true;
+                groupMContents.push(fmtCell('M', colM, sheetRowNum));
+              }
+            }
             if (j + 1 < dataRows.length) {
               const nextRow = dataRows[j + 1];
               const nextValProblem = useGyoseiSoronLayout ? (nextRow[6] ? nextRow[6].trim() : '') : (nextRow[7] ? nextRow[7].trim() : '');
@@ -412,6 +462,15 @@ async function sync() {
                 const nextValB = nextRow[1] ? nextRow[1].trim() : '';
                 if (minpoSheetBodyInB) {
                   // 次の「A列の新しい見出し」まで B/F を継続行からも拾う（A 空・B ありの肢行は !nextValA&&nextValB だが、ここで break すると深掘りが落ちる）
+                  if (
+                    nextValA &&
+                    !nextValA.startsWith('科目') &&
+                    nextValA !== '問題' &&
+                    nextValA !== '肢'
+                  ) {
+                    break;
+                  }
+                } else if (adminLawLearnAOnly) {
                   if (
                     nextValA &&
                     !nextValA.startsWith('科目') &&
@@ -435,6 +494,8 @@ async function sync() {
           currentGroupHasDeepDive = groupHasDeepDive;
           currentGroupDeepDiveContent = groupBContents.join('\n\n');
           currentGroupFExplain = groupFContents.join('\n\n');
+          currentGroupStatuteRefContent = groupIContents.join('\n\n');
+          currentGroupMDeepDiveContent = groupMContents.join('\n\n');
         }
 
         if (valA === '問題' || valA === '肢') continue;
@@ -446,6 +507,10 @@ async function sync() {
           if (!hasValidA && !bOnlyCard) {
             continue;
           }
+        }
+        if (adminLawLearnAOnly) {
+          const hasValidA = valA && !valA.startsWith('科目') && valA !== '問題' && valA !== '肢';
+          if (!hasValidA) continue;
         }
 
         if (content) {
@@ -490,25 +555,37 @@ async function sync() {
           }
 
           if (!learnDeepDive[currentSubject]) learnDeepDive[currentSubject] = [];
-          const deepPush = usedBAsMainBody
+          const sheetRowNum = i + 2;
+          let deepPush = usedBAsMainBody
             ? (row[0] && String(row[0]).trim() ? String(row[0]).trim() : '')
             : currentGroupHasDeepDive
               ? currentGroupDeepDiveContent
               : row[1]
-                ? row[1].trim()
+                ? fmtCell('B', row[1], sheetRowNum)
                 : '';
+          if (adminLawLearnAOnly && !String(deepPush || '').trim() && currentGroupMDeepDiveContent) {
+            deepPush = currentGroupMDeepDiveContent;
+          } else if (adminLawLearnAOnly && !String(deepPush || '').trim() && row[12]) {
+            deepPush = fmtCell('M', row[12], sheetRowNum);
+          }
           learnDeepDive[currentSubject].push(deepPush);
           const fPush = usedBAsMainBody
             ? row[5]
-              ? String(row[5]).trim()
+              ? fmtCell('F', row[5], sheetRowNum)
               : ''
             : currentGroupHasDeepDive
               ? currentGroupFExplain
               : row[5]
-                ? String(row[5]).trim()
+                ? fmtCell('F', row[5], sheetRowNum)
                 : '';
           if (!learnFExplain[currentSubject]) learnFExplain[currentSubject] = [];
           learnFExplain[currentSubject].push(fPush);
+          if (!learnStatuteRefs[currentSubject]) learnStatuteRefs[currentSubject] = [];
+          const statutePush = adminLawLearnAOnly
+            ? currentGroupStatuteRefContent ||
+              (row[8] ? fmtCell('I', row[8], sheetRowNum) : '')
+            : '';
+          learnStatuteRefs[currentSubject].push(statutePush);
           const valCLexPush = row[2] != null ? String(row[2]).trim() : '';
           const contentFinal = applyLexiconColumn(displayContent, valCLexPush);
           const pushedIndex = learnContent[currentSubject].length;
@@ -531,6 +608,7 @@ async function sync() {
   learnContent['商法・会社法'] = [];
   learnDeepDive['商法・会社法'] = [];
   learnFExplain['商法・会社法'] = [];
+  learnStatuteRefs['商法・会社法'] = [];
   learnSource['商法・会社法'] = [];
 
   // LEARN_DEEPDIVE が LEARN_CONTENT より短いと、末尾カードで deepdive が undefined になる
@@ -546,10 +624,15 @@ async function sync() {
     while (f.length < c.length) {
       f.push('');
     }
+    if (!learnStatuteRefs[key]) learnStatuteRefs[key] = [];
+    const s = learnStatuteRefs[key];
+    while (s.length < c.length) {
+      s.push('');
+    }
   }
 
   // Write to src/learn.js
-  const fileContent = `export const LEARN_CONTENT = ${JSON.stringify(learnContent, null, 2)};\nexport const LEARN_DEEPDIVE = ${JSON.stringify(learnDeepDive, null, 2)};\nexport const LEARN_F_EXPLAIN = ${JSON.stringify(learnFExplain, null, 2)};\nexport const LEARN_SOURCE = ${JSON.stringify(learnSource, null, 2)};\nexport const LEARN_LINKS = ${JSON.stringify(learnLinks, null, 2)};`;
+  const fileContent = `export const LEARN_CONTENT = ${JSON.stringify(learnContent, null, 2)};\nexport const LEARN_DEEPDIVE = ${JSON.stringify(learnDeepDive, null, 2)};\nexport const LEARN_F_EXPLAIN = ${JSON.stringify(learnFExplain, null, 2)};\nexport const LEARN_STATUTE_REFS = ${JSON.stringify(learnStatuteRefs, null, 2)};\nexport const LEARN_SOURCE = ${JSON.stringify(learnSource, null, 2)};\nexport const LEARN_LINKS = ${JSON.stringify(learnLinks, null, 2)};`;
   fs.writeFileSync(OUTPUT_FILE, fileContent);
   console.log(`learn.js synced successfully to ${OUTPUT_FILE}`);
 }

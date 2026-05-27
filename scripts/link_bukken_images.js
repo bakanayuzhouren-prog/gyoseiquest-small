@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const SRC_DIR = path.join(__dirname, '../temp_images/minpo_bukken');
+const { PATHS } = require('./tempImagesPaths');
+const SRC_DIR = PATHS.learnMinnpouBukken;
 const LEARN_PATH = path.join(__dirname, '../src/learn.js');
 
 const imageFiles = fs.readdirSync(SRC_DIR)

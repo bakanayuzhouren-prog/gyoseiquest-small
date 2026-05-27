@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const QUEST_PATH = path.join(__dirname, '../src/questions.js');
-const IMAGE_DIR = path.join(__dirname, '../temp_images/kenpou');
+const { PATHS } = require('./tempImagesPaths');
+const IMAGE_DIR = PATHS.learnKenpou;
 
 function importWithGapFilling() {
     console.log("Reading questions.js...");
@@ -30,7 +31,7 @@ function importWithGapFilling() {
     }
     if (kenEnd === -1) kenEnd = lines.length - 1;
 
-    // 2. Map existing images in temp_images/kenpou
+    // 2. Map existing images in temp_images/learn/kenpou
     const files = fs.readdirSync(IMAGE_DIR);
     const availableImages = new Map(); // pageIndex (1-based) -> fileName (no ext)
 

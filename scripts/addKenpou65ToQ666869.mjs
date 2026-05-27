@@ -1,11 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
+const require = createRequire(import.meta.url);
+const { PATHS } = require('./tempImagesPaths.js');
 const learnPath = path.join(root, 'src', 'learn.js');
-const tempPng = path.join(root, 'temp_images', 'kenpou', '65-230.png');
+const tempPng = path.join(PATHS.learnKenpou, '65-230.png');
 const assetPng = path.join(root, 'assets', 'images', 'deepdive', 'kenpou', '65-230.png');
 
 function extractBalancedArraySource(s, openBracketIdx) {

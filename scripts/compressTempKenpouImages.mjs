@@ -1,5 +1,5 @@
 /**
- * temp_images/kenpou 配下の PNG / JPEG を再圧縮（上書き）。
+ * temp_images/learn/kenpou 配下の PNG / JPEG を再圧縮（上書き）。
  * 出力が元より大きい場合はスキップしてファイルを触らない。
  *
  *   node scripts/compressTempKenpouImages.mjs
@@ -8,11 +8,13 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 import sharp from 'sharp';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.join(__dirname, '..');
-const TARGET_DIR = path.join(root, 'temp_images', 'kenpou');
+const require = createRequire(import.meta.url);
+const { PATHS } = require('./tempImagesPaths.js');
+const TARGET_DIR = PATHS.learnKenpou;
 
 const dryRun = process.argv.includes('--dry-run');
 

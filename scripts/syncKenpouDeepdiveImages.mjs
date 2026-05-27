@@ -1,15 +1,18 @@
 /**
- * temp_images/kenpou の PNG を問番号（1..231）に対応させ、
+ * temp_images/learn/kenpou の PNG を問番号（1..231）に対応させ、
  * LEARN_DEEPDIVE['憲法'] の先頭に [[image:kenpou/...]] を付与する。
  * node scripts/syncKenpouDeepdiveImages.mjs
  */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const tempDir = path.join(root, 'temp_images', 'kenpou');
+const require = createRequire(import.meta.url);
+const { PATHS } = require('./tempImagesPaths.js');
+const tempDir = PATHS.learnKenpou;
 const assetDir = path.join(root, 'assets', 'images', 'deepdive', 'kenpou');
 const learnPath = path.join(root, 'src', 'learn.js');
 

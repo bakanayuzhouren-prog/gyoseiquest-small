@@ -1,16 +1,19 @@
 /**
- * temp_images/saikensouron の画像をアプリ用にコピーする。
+ * temp_images/learn/saikensouron の画像をアプリ用にコピーする。
  * その後: node scripts/generateDeepdiveImages.js
  *
- * ファイル名: 「問番号」を先頭にした N-xxx.png（例: 3-200.png）→ learn/saikensouron で N 問目に紐づく
+ * ファイル名: 「問番号」を先頭にした N-xxx.png（例: 3-76.png）→ learn/saikensouron で N 問目に紐づく
  */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, '..');
-const SRC = path.join(root, 'temp_images', 'saikensouron');
+const require = createRequire(import.meta.url);
+const { PATHS } = require('./tempImagesPaths.js');
+const SRC = PATHS.learnSaikensouron;
 const DEST = path.join(root, 'assets', 'images', 'deepdive', 'learn', 'saikensouron');
 
 const EXT = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif']);

@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const QUEST_PATH = path.join(__dirname, '../src/questions.js');
-const IMAGE_DIR = path.join(__dirname, '../temp_images/kenpou');
+const { PATHS } = require('./tempImagesPaths');
+const IMAGE_DIR = PATHS.learnKenpou;
 
 function importWithAbsoluteQuestionCount() {
     console.log("Reading questions.js...");

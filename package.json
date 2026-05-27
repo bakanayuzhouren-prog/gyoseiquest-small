@@ -22,6 +22,7 @@
     "generate:deepdive-images": "node scripts/generateDeepdiveImages.js",
     "sync:saikensouron-images": "node scripts/syncSaikensouronLearnImages.mjs && node scripts/generateDeepdiveImages.js",
     "sync:kenpou-deepdive": "node scripts/syncKenpouDeepdiveFromTemp.js",
+    "sync:quiz-deepdive": "node scripts/syncQuizDeepdiveFromTemp.mjs",
     "inject:kenpou-deepdive-tags": "node scripts/injectKenpouDeepdiveImages.js",
     "compress:temp-kenpou": "node scripts/compressTempKenpouImages.mjs",
     "downscale:assets": "node scripts/downscaleAppAssets.mjs",

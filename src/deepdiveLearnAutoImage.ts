@@ -1,5 +1,6 @@
 import {
   resolveKenpouProblemImageKey,
+  resolveKokubaiLearnImageKey,
   resolveMinpoBukkenLearnImageKey,
   resolveMinpoLearnFolderByQuestionNumber,
   resolveSaikensouronLearnImageKey,
@@ -66,6 +67,9 @@ function resolveLearnAutoProblemImageKey(learnSubject: string | undefined, probl
     const k = resolveMinpoLearnFolderByQuestionNumber(problemNum1Based);
     if (k) return k;
     return undefined;
+  }
+  if (learnSubject === '国家賠償法') {
+    return resolveKokubaiLearnImageKey(problemNum1Based);
   }
   /** kenpou/N-230 は本編「憲法」のみ。「多肢選択」単独で問番号を付けると多肢選択・憲法と混ざるので付けない */
   if (learnSubject === '憲法') {

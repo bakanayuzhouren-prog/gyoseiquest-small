@@ -18,7 +18,7 @@ import {
     pickAutoLearnDeepdiveImageKey,
 } from '@/src/deepdiveLearnAutoImage';
 import { setDeepdiveParams, setLearnDeepdiveReturnCursor } from '@/src/deepdiveState';
-import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_LINKS, LEARN_SOURCE } from '@/src/learn';
+import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_LINKS, LEARN_SOURCE, LEARN_STATUTE_REFS } from '@/src/learn';
 import { LEARN_VOICE_PRESETS } from '@/src/learnVoices';
 import { PIN_CASES } from '@/src/pinData';
 import { SUBJECTS } from '@/src/questions';
@@ -564,6 +564,16 @@ export default function LearnSubjectScreen() {
     return findRelatedStatutesForLearnLink(linkKey);
   }, [learnSubjectForDeepdive, learnDataIndexForLinks]);
 
+  /** 行政法各論: syncLearn の I列（LEARN_STATUTE_REFS）。無ければクイズ連携の linkedRelatedStatutes */
+  const learnStatuteRefText = useMemo(() => {
+    const fromLearn = (LEARN_STATUTE_REFS as Record<string, string[]>)?.[learnSubjectForDeepdive]?.[
+      learnAlignedIndex
+    ];
+    const direct = typeof fromLearn === 'string' ? fromLearn.trim() : '';
+    if (direct) return direct;
+    return linkedRelatedStatutes?.content?.trim() || '';
+  }, [learnSubjectForDeepdive, learnAlignedIndex, linkedRelatedStatutes]);
+
   useEffect(() => {
     if (!subject || !learnSubjectForDeepdive) {
       setLearnDeepdiveReturnCursor(null);
@@ -672,7 +682,15 @@ export default function LearnSubjectScreen() {
   const digDeeperButtonVisible =
     learnSubjectForDeepdive === '多肢選択憲法' || learnSubjectForDeepdive === '多肢選択行政法'
       ? !!(deepdiveContent || '').trim() || !!digDeeperUrl
-      : !!(deepdiveContent || digDeeperUrl || hasChunks || hasValidImage || learnAutoImageResolved || hasImageTagInCard);
+      : !!(
+          (deepdiveContent || '').trim() ||
+          learnStatuteRefText ||
+          digDeeperUrl ||
+          hasChunks ||
+          hasValidImage ||
+          learnAutoImageResolved ||
+          hasImageTagInCard
+        );
 
   /** A列の [[image:…]] を B列（LEARN_DEEPDIVE）と結合して渡す（従来は B のみで A の画像が落ちていた） */
   const buildMergedDeepdivePayload = (): string => {
@@ -728,6 +746,7 @@ export default function LearnSubjectScreen() {
       if (!(mergedPayload?.trim() || digDeeperUrl)) return;
     } else if (
       !mergedPayload &&
+      !learnStatuteRefText &&
       !digDeeperUrl &&
       !hasChunks &&
       !hasValidImage &&
@@ -737,12 +756,12 @@ export default function LearnSubjectScreen() {
       return;
     }
 
-    // B列＋A列の [[image:…]] を結合して「もっと深掘る」へ
-    if (mergedPayload) {
-      setDeepdiveParams(mergedPayload, '', {
+    // B列＋A列の [[image:…]] を結合して「もっと深掘る」へ（根拠条文のみのカードも deepdive へ）
+    if (mergedPayload || learnStatuteRefText) {
+      setDeepdiveParams(mergedPayload || '', '', {
         fromLearn: true,
         fExplain: learnFExplainText,
-        learnRelatedStatutesContent: linkedRelatedStatutes?.content,
+        learnRelatedStatutesContent: learnStatuteRefText,
         learnSubject: learnSubjectForDeepdive,
         learnReturnIndex: currentIndex,
       });

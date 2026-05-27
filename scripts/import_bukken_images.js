@@ -1,6 +1,6 @@
 /**
  * import_bukken_images.js
- * temp_images/minpo_bukken/ の画像を:
+ * temp_images/learn/minnpou/bukken/ の画像を:
  *   1. assets/images/ にコピー
  *   2. src/imageMap.js に登録
  *   3. src/questions.js の民法物権[N].explain に [[image:{N}-110]] を追加
@@ -9,7 +9,9 @@
 const fs = require('fs');
 const path = require('path');
 
-const SRC_DIR = path.join(__dirname, '../temp_images/minpo_bukken');
+const { PATHS } = require('./tempImagesPaths');
+
+const SRC_DIR = PATHS.learnMinnpouBukken;
 const DEST_DIR = path.join(__dirname, '../assets/images');
 const IMAGE_MAP_PATH = path.join(__dirname, '../src/imageMap.js');
 const QUESTIONS_PATH = path.join(__dirname, '../src/questions.js');

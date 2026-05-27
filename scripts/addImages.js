@@ -2,7 +2,8 @@
  * 画像一括追加スクリプト
  * 
  * 使い方:
- * 1. すべての画像を temp_images/ フォルダに配置
+ * 1. 画像を temp_images/learn/ または temp_images/quiz/ に配置（深掘り用）
+ *    レガシー一括追加は temp_images/ 直下も可（addImages.js）
  * 2. node scripts/addImages.js を実行
  * 
  * このスクリプトは以下を自動で行います:

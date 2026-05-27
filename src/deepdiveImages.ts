@@ -20,10 +20,24 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'bukken/sennyuukaitei-marubatu': require('@/assets/images/deepdive/bukken/sennyuukaitei-marubatu.png'),
   'bukken/syutokujikou-sokujisyutoku': require('@/assets/images/deepdive/bukken/syutokujikou-sokujisyutoku.png'),
   'bukken/taikouyouken-no': require('@/assets/images/deepdive/bukken/taikouyouken-no.png'),
+  'gyouseihou/gyoushin/33-35jyounojyunyouhanasi': require('@/assets/images/deepdive/gyouseihou/gyoushin/33-35jyounojyunyouhanasi.png'),
+  'gyouseihou/gyoushin/33jyou': require('@/assets/images/deepdive/gyouseihou/gyoushin/33jyou.png'),
+  'gyouseihou/gyoushin/ayamattakyoujigajyunnyousarenairiyuu': require('@/assets/images/deepdive/gyouseihou/gyoushin/ayamattakyoujigajyunnyousarenairiyuu.png'),
+  'gyouseihou/gyoushin/fusakuigajyunnyousarenai': require('@/assets/images/deepdive/gyouseihou/gyoushin/fusakuigajyunnyousarenai.png'),
+  'gyouseihou/gyoushin/izuredemonai-sikkouteisi': require('@/assets/images/deepdive/gyouseihou/gyoushin/izuredemonai-sikkouteisi.png'),
+  'gyouseihou/gyoushin/jyoukyuu-syobunntyou-sikkouteisi': require('@/assets/images/deepdive/gyouseihou/gyoushin/jyoukyuu-syobunntyou-sikkouteisi.png'),
+  'gyouseihou/gyoushin/jyunyou-saityousa': require('@/assets/images/deepdive/gyouseihou/gyoushin/jyunyou-saityousa.png'),
   'gyouseihou/gyoushin/saichousajyunnyou': require('@/assets/images/deepdive/gyouseihou/gyoushin/saichousajyunnyou.png'),
   'gyouseihou/gyoushin/saichousajyunnyou2': require('@/assets/images/deepdive/gyouseihou/gyoushin/saichousajyunnyou2.png'),
+  'gyouseihou/gyoushin/saityousanobunnri': require('@/assets/images/deepdive/gyouseihou/gyoushin/saityousanobunnri.png'),
+  'gyouseihou/gyoushin/saityousanoheigou': require('@/assets/images/deepdive/gyouseihou/gyoushin/saityousanoheigou.png'),
+  'gyouseihou/gyoushin/satyousa-9jyou4kou': require('@/assets/images/deepdive/gyouseihou/gyoushin/satyousa-9jyou4kou.png'),
+  'gyouseihou/gyoushin/sikkouteisi-torikesi': require('@/assets/images/deepdive/gyouseihou/gyoushin/sikkouteisi-torikesi.png'),
+  'gyouseihou/gyoushin/sinnsaseikyuutya-to': require('@/assets/images/deepdive/gyouseihou/gyoushin/sinnsaseikyuutya-to.png'),
+  'gyouseihou/gyoushin/syobunntyou-jyoukyuu-izuredemonai': require('@/assets/images/deepdive/gyouseihou/gyoushin/syobunntyou-jyoukyuu-izuredemonai.png'),
   'gyouseihou/gyouso/karinosasitome-jyunnyou': require('@/assets/images/deepdive/gyouseihou/gyouso/karinosasitome-jyunnyou.png'),
   'gyouseihou/gyoute/7-31': require('@/assets/images/deepdive/gyouseihou/gyoute/7-31.png'),
+  'gyouseihou/kokubai/20-1-1': require('@/assets/images/deepdive/gyouseihou/kokubai/20-1-1.png'),
   'gyouseihou/kokubai/26-136': require('@/assets/images/deepdive/gyouseihou/kokubai/26-136.png'),
   'gyouseihou/sougou/jyunhouritukoui': require('@/assets/images/deepdive/gyouseihou/sougou/jyunhouritukoui.png'),
   'gyouseihou/sougou/sougou15-1-1': require('@/assets/images/deepdive/gyouseihou/sougou/sougou15-1-1.png'),
@@ -37,6 +51,7 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kakuronn/kakuronn4': require('@/assets/images/deepdive/kakuronn/kakuronn4.png'),
   'kakuronn/kauronn4-2': require('@/assets/images/deepdive/kakuronn/kauronn4-2.png'),
   'kakuronn/tinntai-siyoutai': require('@/assets/images/deepdive/kakuronn/tinntai-siyoutai.png'),
+  'kennpou-toku/kenpou36': require('@/assets/images/deepdive/kennpou-toku/kenpou36.png'),
   'kenpou/1-230': require('@/assets/images/deepdive/kenpou/1-230.png'),
   'kenpou/10-230': require('@/assets/images/deepdive/kenpou/10-230.png'),
   'kenpou/104-230': require('@/assets/images/deepdive/kenpou/104-230.png'),
@@ -144,7 +159,6 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/93-230': require('@/assets/images/deepdive/kenpou/93-230.png'),
   'kenpou/94-230': require('@/assets/images/deepdive/kenpou/94-230.jpg'),
   'kenpou/99-230': require('@/assets/images/deepdive/kenpou/99-230.png'),
-  'kennpou-toku/kenpou36': require('@/assets/images/deepdive/kennpou-toku/kenpou36.png'),
   'kijyutu/gyouseihou/kijyutu-gyouseihou-3-A': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-A.png'),
   'kijyutu/gyouseihou/kijyutu-gyouseihou-3-B': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-B.png'),
   'kijyutu/gyouseihou/kijyutu-gyouseihou-3-C': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-C.png'),
@@ -311,7 +325,7 @@ export function resolveMinpoLearnFolderByQuestionNumber(problemNum1Based: number
 
 /**
  * 見て聞いて覚える・債権総論: learn/saikensouron/ 配下、ファイル名が「N-…」（先頭が問番号）。
- * 元画像は temp_images/saikensouron に置き、assets/images/deepdive/learn/saikensouron/ へコピーしてから本スクリプトを実行。
+ * 元画像は temp_images/learn/saikensouron に置き、assets/images/deepdive/learn/saikensouron/ へコピーしてから本スクリプトを実行。
  */
 export function resolveSaikensouronLearnImageKey(problemNum1Based: number): string | undefined {
   if (problemNum1Based < 1) return undefined;
@@ -342,9 +356,8 @@ export function resolveKakuronnQuizChoiceImageKey(
 }
 
 /**
- * 問題を解く・憲法: `kennpou-toku/kenpouN`（全肢共通の特別図）があれば最優先。
- * 次に kenpou/N-M-C（存在すれば）、なければ問ごとの kenpou/N-230。
- * 218問目は学習と同様 184 の図へエイリアス。
+ * 問題を解く・憲法: kennpou-toku/kenpouN があれば全肢共通で最優先。
+ * 次に kenpou/N-M-C（存在すれば）、なければ kenpou/N-230。218問目は 184 へエイリアス。
  */
 export function resolveKenpouQuizChoiceImageKey(
   questionNum1Based: number,
@@ -372,6 +385,40 @@ export function resolveKenpouQuizChoiceImageKey(
     if (alias184) return alias184;
   }
   return resolveKenpouProblemImageKey(questionNum1Based);
+}
+
+/**
+ * 見て聞いて覚える・国家賠償法: gyouseihou/kokubai/N-M（先頭 N = 問番号）
+ * 例: 26-136.png → 26問目
+ */
+export function resolveKokubaiLearnImageKey(problemNum1Based: number): string | undefined {
+  if (problemNum1Based < 1) return undefined;
+  const head = new RegExp(`^${problemNum1Based}-`);
+  const keys = Object.keys(DEEPDIVE_IMAGES).filter((k) => {
+    if (!k.startsWith('gyouseihou/kokubai/')) return false;
+    const base = k.split('/').pop() || '';
+    return head.test(base);
+  });
+  if (keys.length === 0) return undefined;
+  return keys.sort()[0];
+}
+
+/**
+ * 問題を解く・国家賠償法: gyouseihou/kokubai/M-N-C
+ * M=全問数、N=問題番号、C=選択肢番号（いずれも1始まり）。例: 20-1-1.png
+ */
+export function resolveKokubaiQuizChoiceImageKey(
+  questionNum1Based: number,
+  totalQuestions: number,
+  choiceNum1Based: number
+): string | undefined {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return undefined;
+  const exact = `gyouseihou/kokubai/${totalQuestions}-${questionNum1Based}-${choiceNum1Based}`;
+  if (DEEPDIVE_IMAGES[exact]) return exact;
+  const re = new RegExp(
+    `^gyouseihou/kokubai/\\d+-${questionNum1Based}-${choiceNum1Based}$`
+  );
+  return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
 }
 
 /**

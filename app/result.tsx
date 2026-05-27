@@ -10,7 +10,12 @@ import { getChunkImageSource } from '@/src/chunkImages';
 import { setChunkTextBodyForNavigation } from '@/src/chunkSessionState';
 import { TEITOUKEN_TEXTBOOK_MARKDOWN } from '@/src/content/teitoukenTextbookMarkdown';
 import { useTheme } from '@/src/context/ThemeContext';
-import { getDeepdiveImageSource, resolveKakuronnQuizChoiceImageKey, resolveKenpouQuizChoiceImageKey } from '@/src/deepdiveImages';
+import {
+  getDeepdiveImageSource,
+  resolveKakuronnQuizChoiceImageKey,
+  resolveKenpouQuizChoiceImageKey,
+  resolveKokubaiQuizChoiceImageKey,
+} from '@/src/deepdiveImages';
 import { setDeepdiveParams } from '@/src/deepdiveState';
 import { mergeKijyutuGyouseihouQuizCaseImages } from '@/src/kijyutuGyouseihouQuizDeepdiveMerge';
 import { getDescriptiveImageSource } from '@/src/descriptiveImages';
@@ -941,6 +946,13 @@ export default function ResultScreen() {
       return resolveKenpouQuizChoiceImageKey(
         sourceQuestionNum1BasedKenpouForAutoImages,
         sourceQuestionsKenpouForAutoImages.length || questions.length,
+        choiceIndex0 + 1
+      );
+    }
+    if (subject === '行政法' && field === '国家賠償法・損失訴訟') {
+      return resolveKokubaiQuizChoiceImageKey(
+        questionIndex + 1,
+        questions.length,
         choiceIndex0 + 1
       );
     }
