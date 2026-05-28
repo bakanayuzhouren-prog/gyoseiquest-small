@@ -28,6 +28,7 @@ import {
     type QuizDeepdiveSource,
 } from '@/utils/quizDeepdiveRestore';
 import { formatStatuteReferenceForMarkdown } from '@/utils/statute-reference-format';
+import { isPreservableTableBlock } from '@/utils/deepdive-tab-table';
 import { applyTTSRules } from '@/utils/tts-rules';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
@@ -115,10 +116,8 @@ function normalizeDeepdiveFlowText(s: string): string {
     .map((block) => {
       const trimmedBlock = block.trim();
       const rowLines = trimmedBlock.split('\n').map((l) => l.trim()).filter((l) => l.length > 0);
-      /** タブを含む複数行は「表っぽい」ので行結合しない（1行でもタブのみなら通常処理へ） */
-      const hasTab = trimmedBlock.includes('\t');
-      const isTabGrid = hasTab && rowLines.length >= 2;
-      if (isTabGrid) {
+      /** タブ表・Markdown パイプ表は行結合しない */
+      if (isPreservableTableBlock(trimmedBlock)) {
         return rowLines.join('\n');
       }
       let b = trimmedBlock;

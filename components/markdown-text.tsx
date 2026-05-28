@@ -154,8 +154,11 @@ const TABLE_ROW_GAP_WEB_PX = 2;
 /** 3列：左ラベル狭め・中央本文・右は判定（短文〜中くらいまで想定） */
 const FLEX_3_COL_PROJECT = [1, 3.35, 1.45];
 const FLEX_2_COL = [1, 2.35];
+/** 4列（数字・要件表など）：制度・数字・請求先・条文 */
+const FLEX_4_COL_NUMBERS = [1.35, 1.1, 0.95, 0.7];
 
 function columnFlexWeights(colCount: number): number[] {
+    if (colCount === 4) return FLEX_4_COL_NUMBERS;
     if (colCount === 3) return FLEX_3_COL_PROJECT;
     if (colCount === 2) return FLEX_2_COL;
     return Array(colCount).fill(1);

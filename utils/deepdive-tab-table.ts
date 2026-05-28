@@ -63,19 +63,47 @@ export function splitTableLineToColumns(line: string): string[] {
   return [t];
 }
 
+function isMarkdownPipeTableRow(line: string): boolean {
+  const t = line.trim();
+  if (!t.startsWith('|')) return false;
+  const pipeCount = (t.match(/\|/g) ?? []).length;
+  return pipeCount >= 2;
+}
+
 function isSpreadsheetTableRow(line: string): boolean {
   const t = line.trim();
   if (!t) return false;
   if (line.includes('\t')) return true;
-  if (t.startsWith('|') && t.endsWith('|')) {
-    const pipeCount = (t.match(/\|/g) ?? []).length;
-    return pipeCount >= 3;
-  }
+  if (isMarkdownPipeTableRow(line)) return true;
   const cols = splitTableLineToColumns(line);
   if (cols.length >= 3) return true;
   /** 2列は全角スペース列のときのみ（本文の偶然の分割を避ける） */
   if (cols.length === 2 && /\u3000{2,}/.test(line)) return true;
   return false;
+}
+
+/** ブロック全体が Markdown パイプ表（2行以上・各行が | で始まる） */
+export function isMarkdownPipeTableBlock(block: string): boolean {
+  const rows = block
+    .replace(/\r\n/g, '\n')
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean);
+  if (rows.length < 2) return false;
+  return rows.every((line) => isMarkdownPipeTableRow(line));
+}
+
+/** normalizeDeepdiveFlowText で行結合しない表ブロック（タブ表・Markdown パイプ表） */
+export function isPreservableTableBlock(block: string): boolean {
+  const trimmedBlock = block.trim();
+  if (!trimmedBlock) return false;
+  const rowLines = trimmedBlock
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => l.length > 0);
+  if (rowLines.length < 2) return false;
+  if (trimmedBlock.includes('\t')) return true;
+  return isMarkdownPipeTableBlock(trimmedBlock);
 }
 
 export function segmentDeepdiveTextForRender(raw: string): DeepdiveTextSegment[] {
@@ -95,7 +123,10 @@ export function segmentDeepdiveTextForRender(raw: string): DeepdiveTextSegment[]
     if (tableBuf.length === 0) return;
     let rows = tableBuf.map((line) => splitTableLineToColumns(line));
     rows = rows.filter((r) => !isMarkdownPipeSeparatorCells(r));
-    rows = collapseWideRowsToThreeColumns(rows);
+    const isPipeTable = tableBuf.every((line) => isMarkdownPipeTableRow(line));
+    if (!isPipeTable) {
+      rows = collapseWideRowsToThreeColumns(rows);
+    }
     const maxCols = rows.reduce((m, r) => Math.max(m, r.length), 0);
     const padded = rows.map((r) => {
       if (r.length >= maxCols) return r;

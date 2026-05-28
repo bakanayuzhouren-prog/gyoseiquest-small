@@ -182,12 +182,7 @@ async function sync() {
       sheetDefaultSubject = '基礎知識';
     }
 
-    // 商法・会社法: 見て聞いて覚えるは未連携（問題を解く・もっと深掘るは syncQuiz のみ）
-    if (sheetDefaultSubject === '商法・会社法') {
-      console.log(`Skipping learn sync (quiz/deepdive via syncQuiz only): ${title}`);
-      continue;
-    }
-
+    // 商法・会社法: 見て聞いて覚えるは A列（短縮）＋M/I列。H/K は syncQuiz
     let range = `${title}!A:Z`;
     let response;
     for (let attempt = 1; attempt <= 3; attempt++) {
@@ -354,8 +349,9 @@ async function sync() {
           currentSubject === '多肢選択' ||
           currentSubject === '多肢選択憲法' ||
           currentSubject === '多肢選択行政法';
-        /** 行政法各論（総合除く）: 見て聞いて覚えるは A 列のみ。H 列は問題を解く用 */
-        const adminLawLearnAOnly = isAdminLawLearnSubject && !gyoseiSogoSheet;
+        /** 行政法各論（総合除く）・商法・会社法: 見て聞いて覚えるは A 列のみ。H/K 列は問題を解く用 */
+        const adminLawLearnAOnly =
+          (isAdminLawLearnSubject && !gyoseiSogoSheet) || currentSubject === '商法・会社法';
 
         if (
           isAdminLawLearnSubject &&
@@ -536,7 +532,7 @@ async function sync() {
             const valCLex = row[2] != null ? String(row[2]).trim() : '';
             const hasLexiconTag =
               trimmedContent.includes('[[dict:') || parseLexiconPairsFromCell(valCLex).length > 0;
-            if (currentSubject !== '民法物権' && !tashiLearnSubject && !hasLexiconTag && !isAdminLawLearnSubject) {
+            if (currentSubject !== '民法物権' && !tashiLearnSubject && !hasLexiconTag && !isAdminLawLearnSubject && currentSubject !== '商法・会社法') {
               if (
                 trimmedContent.includes('条文') ||
                 trimmedContent.includes('解説') ||
@@ -604,12 +600,6 @@ async function sync() {
       }
     }
   }
-
-  learnContent['商法・会社法'] = [];
-  learnDeepDive['商法・会社法'] = [];
-  learnFExplain['商法・会社法'] = [];
-  learnStatuteRefs['商法・会社法'] = [];
-  learnSource['商法・会社法'] = [];
 
   // LEARN_DEEPDIVE が LEARN_CONTENT より短いと、末尾カードで deepdive が undefined になる
   for (const key of Object.keys(learnContent)) {
