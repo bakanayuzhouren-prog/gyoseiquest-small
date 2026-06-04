@@ -6,7 +6,9 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
 import { getChunkImageSource } from '@/src/chunkImages';
-import { takeChunkTextBody } from '@/src/chunkSessionState';
+import { takeChunkNavigationPayload } from '@/src/chunkSessionState';
+
+const SOUSOKU602_IMAGE = 'minnpou/sousoku/sousoku602';
 
 export default function ChunkScreen() {
   const params = useLocalSearchParams<{
@@ -24,10 +26,12 @@ export default function ChunkScreen() {
   }>();
   const { colors } = useTheme();
   const router = useRouter();
-  const [chunkMarkdownBody] = useState(() => takeChunkTextBody());
-  const statuteTitle = params.statuteTitle || '';
+  const [navPayload] = useState(() => takeChunkNavigationPayload());
+  const statuteTitle = (params.statuteTitle as string) || navPayload.statuteTitle || '';
   const statuteContent = params.statuteContent || '';
-  let chunkImage = params.chunkImage || '';
+  const chunkMarkdownBody = navPayload.body;
+  let chunkImage = (params.chunkImage as string) || navPayload.chunkImage || '';
+
   // 命名規則フォールバック
   if (!chunkImage && params.subject === '民法' && params.field === '民法総則') {
     const q = parseInt(params.questionIndex || '0', 10);
@@ -36,6 +40,15 @@ export default function ChunkScreen() {
     if (q === 5 && [0, 1, 2, 3, 4].includes(c)) chunkImage = 'minnpou/sousoku/sousoku6-1.2.3.4.5';
     if (/114条|催告/.test(statuteTitle + statuteContent)) chunkImage = 'minnpou/sousoku/sousoku11-2';
   }
+
+  // 深掘り（13条9号・602条）からの遷移
+  if (
+    !chunkImage &&
+    /602|六百二|短期賃貸|13条.*9|9号.*602/.test(statuteTitle + chunkMarkdownBody + statuteContent)
+  ) {
+    chunkImage = SOUSOKU602_IMAGE;
+  }
+
   const imageSource = getChunkImageSource(chunkImage);
 
   return (
@@ -54,18 +67,20 @@ export default function ChunkScreen() {
               <MarkdownText text={statuteContent} style={{ fontSize: 16, lineHeight: 24 }} />
             </View>
           ) : null}
-          {chunkMarkdownBody ? (
-            <View style={{ marginBottom: 16 }}>
-              <MarkdownText text={chunkMarkdownBody} style={{ fontSize: 16, lineHeight: 24 }} />
-            </View>
-          ) : null}
           {imageSource ? (
             <Image
               source={imageSource}
               style={{ width: '100%', maxHeight: 800, marginLeft: -30, marginRight: -30, marginBottom: 16 }}
               resizeMode="contain"
+              accessibilityLabel="民法602条の期間表"
             />
-          ) : chunkImage && !chunkMarkdownBody ? (
+          ) : null}
+          {chunkMarkdownBody ? (
+            <View style={{ marginBottom: 16 }}>
+              <MarkdownText text={chunkMarkdownBody} style={{ fontSize: 16, lineHeight: 24 }} />
+            </View>
+          ) : null}
+          {chunkImage && !imageSource ? (
             <ThemedText style={{ marginBottom: 16, color: colors.subText, fontSize: 14 }}>
               ※ 画像「{chunkImage}」は src/chunkImages.ts に登録してください。
             </ThemedText>
@@ -79,7 +94,7 @@ export default function ChunkScreen() {
             style={StyleSheet.flatten([styles.backToQuestionButton, { backgroundColor: colors.accent }])}
             onPress={() => router.back()}
           >
-            <ThemedText style={styles.backToQuestionText}>← 解説画面に戻る</ThemedText>
+            <ThemedText style={styles.backToQuestionText}>← 戻る</ThemedText>
           </Pressable>
         </ThemedView>
       </ScrollView>

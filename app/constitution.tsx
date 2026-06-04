@@ -2,31 +2,79 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
+import type { Href } from 'expo-router';
 import { useMemo, useRef, useState } from 'react';
 import { FlatList, Image, LayoutChangeEvent, Modal, Pressable, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { CONSTITUTION_MARKDOWN } from '../src/constitutionContent';
+import { DEEPDIVE_IMAGES } from '../src/deepdiveImages';
 import { useTheme } from '../src/context/ThemeContext';
 
-// Static Asset Imports (using ES6 import)
 import AsahiLawsuitImage from '../assets/images/asahi_lawsuit.png';
 import AsahikawaTestImage from '../assets/images/asahikawa_test.png';
-// import ConstitutionOverviewImage from '../assets/images/constitution_overview.png';
-// import CustomsInspectionImage from '../assets/images/customs_inspection.png';
-// import ForestActImage from '../assets/images/forest_act.png';
-// import HorikiLawsuitImage from '../assets/images/horiki_lawsuit.png';
-// import IllegitimateChildImage from '../assets/images/illegitimate_child.png';
-// import KajiKitoImage from '../assets/images/kaji_kito.png';
-// import LockheedScandalImage from '../assets/images/lockheed_scandal.png';
-// import MitsubishiResinImage from '../assets/images/mitsubishi_resin_diagram.png';
-// import OverseasVotersImage from '../assets/images/overseas_voters.png';
-// import PatricideImage from '../assets/images/patricide_unconstitutionality.png';
-// import PharmacyDistanceImage from '../assets/images/pharmacy_distance.png';
-// import PoliceReserveImage from '../assets/images/police_reserve.png';
-// import RemarriageBanImage from '../assets/images/remarriage_ban.png';
-// import RetailMarketImage from '../assets/images/retail_market_distance.png';
-// import ShowaWomensUnivImage from '../assets/images/showa_womens_univ.png';
-// import TsuGroundbreakingImage from '../assets/images/tsu_groundbreaking.png';
-// import ZennorinStrikeImage from '../assets/images/zennorin_strike.png';
+
+/** legacy {{diagram:}} → kenpou 深掘り画像（assets/images/*.png 未配置分） */
+const DIAGRAM_KENPOU_FALLBACK: Record<string, string> = {
+    constitution_overview: 'kenpou/1-230',
+    patricide_unconstitutionality: 'kenpou/13-230',
+    mitsubishi_resin: 'kenpou/19-230',
+    tsu_groundbreaking: 'kenpou/20-230 yodogou',
+    customs_inspection: 'kenpou/78-230',
+    pharmacy_distance: 'kenpou/62-230',
+    retail_market_distance: 'kenpou/63-230',
+    overseas_voters: 'kenpou/40-230',
+    police_reserve: 'kenpou/5-230',
+    horiki_lawsuit: 'kenpou/121-230',
+    forest_act: 'kenpou/64-230',
+    showa_womens_univ: 'kenpou/51-230',
+    kaji_kito: 'kenpou/35-230',
+    illegitimate_child: 'kenpou/52-230',
+    remarriage_ban: 'kenpou/184-230',
+    lockheed_scandal: 'kenpou/222-230',
+    zennorin_strike: 'kenpou/70-230',
+};
+
+const LEGACY_DIAGRAM_MAP: Record<string, ReturnType<typeof require>> = {
+    asahi_lawsuit: AsahiLawsuitImage,
+    asahikawa_test: AsahikawaTestImage,
+};
+
+const DIAGRAM_CAPTIONS: Record<string, string> = {
+    constitution_overview: '図解：憲法全体マップ',
+    mitsubishi_resin: '図解：三菱樹脂事件',
+    patricide_unconstitutionality: '図解：尊属殺重罰規定違憲判決',
+    tsu_groundbreaking: '図解：津地鎮祭訴訟',
+    customs_inspection: '図解：税関検査事件',
+    showa_womens_univ: '図解：昭和女子大事件',
+    kaji_kito: '図解：加持祈祷事件',
+    police_reserve: '図解：警察予備隊訴訟',
+    pharmacy_distance: '図解：薬局距離制限事件',
+    retail_market_distance: '図解：小売市場距離制限事件',
+    asahi_lawsuit: '図解：朝日訴訟',
+    horiki_lawsuit: '図解：堀木訴訟',
+    asahikawa_test: '図解：旭川学テ事件',
+    forest_act: '図解：森林法共有林分割制限事件',
+    overseas_voters: '図解：在外邦人選挙権訴訟',
+    illegitimate_child: '図解：非嫡出子相続差別訴訟',
+    remarriage_ban: '図解：再婚禁止期間訴訟',
+    lockheed_scandal: '図解：ロッキード事件',
+    zennorin_strike: '図解：全農林警職法事件',
+};
+
+function resolveImageSource(key: string): ReturnType<typeof require> | undefined {
+    return LEGACY_DIAGRAM_MAP[key] ?? DEEPDIVE_IMAGES[key];
+}
+
+function resolveDiagramSource(name: string): ReturnType<typeof require> | undefined {
+    const legacy = LEGACY_DIAGRAM_MAP[name];
+    if (legacy) return legacy;
+    const kenpouKey = DIAGRAM_KENPOU_FALLBACK[name];
+    if (kenpouKey) return DEEPDIVE_IMAGES[kenpouKey];
+    return undefined;
+}
+
+function isTableSeparator(line: string): boolean {
+    return /^\|[\s\-:|]+\|$/.test(line.trim());
+}
 
 type TOCItem = {
     id: string;
@@ -85,72 +133,69 @@ export default function ConstitutionScreen() {
     const renderMarkdownLine = (line: string, index: number) => {
         const id = `line-${index}`;
 
+        const renderZoomableImage = (imageSource: ReturnType<typeof require>, caption: string) => (
+            <ThemedView key={index} style={styles.diagramContainer} onLayout={(e) => handleLayout(id, e)}>
+                <TouchableOpacity onPress={() => { setCurrentZoomImage(imageSource); setZoomVisible(true); }} activeOpacity={0.9}>
+                    <Image source={imageSource as any} style={styles.diagramImage} resizeMode="contain" />
+                </TouchableOpacity>
+                <ThemedText style={styles.diagramCaption}>{caption}</ThemedText>
+                <ThemedText style={styles.diagramHint}>※タップで拡大</ThemedText>
+            </ThemedView>
+        );
+
+        // [[image:kenpou/N-230]]
+        const imageTagMatch = line.trim().match(/^\[\[image:([^\]]+)\]\]$/);
+        if (imageTagMatch) {
+            const imageKey = imageTagMatch[1];
+            const imageSource = resolveImageSource(imageKey);
+            if (imageSource) {
+                return renderZoomableImage(imageSource, `図解：${imageKey}`);
+            }
+            return null;
+        }
+
         // Diagram Tag {{diagram:name}}
         if (line.trim().startsWith('{{diagram:') && line.trim().endsWith('}}')) {
             const diagramName = line.trim().replace('{{diagram:', '').replace('}}', '');
-            const diagramMap: { [key: string]: any } = {
-                // 'constitution_overview': ConstitutionOverviewImage,
-                // 'mitsubishi_resin': MitsubishiResinImage,
-                // 'patricide_unconstitutionality': PatricideImage,
-                // 'tsu_groundbreaking': TsuGroundbreakingImage,
-                // 'customs_inspection': CustomsInspectionImage,
-                // 'showa_womens_univ': ShowaWomensUnivImage,
-                // 'kaji_kito': KajiKitoImage,
-                // 'police_reserve': PoliceReserveImage,
-                // 'pharmacy_distance': PharmacyDistanceImage,
-                // 'retail_market_distance': RetailMarketImage,
-                'asahi_lawsuit': AsahiLawsuitImage,
-                // 'horiki_lawsuit': HorikiLawsuitImage,
-                'asahikawa_test': AsahikawaTestImage,
-                // 'forest_act': ForestActImage,
-                // 'overseas_voters': OverseasVotersImage,
-                // 'illegitimate_child': IllegitimateChildImage,
-                // 'remarriage_ban': RemarriageBanImage,
-                // 'lockheed_scandal': LockheedScandalImage,
-                // 'zennorin_strike': ZennorinStrikeImage,
-            };
-
-            const imageSource = diagramMap[diagramName];
-
-            const getCaption = (name: string) => {
-                const captions: { [key: string]: string } = {
-                    'constitution_overview': '図解：憲法全体マップ',
-                    'mitsubishi_resin': '図解：三菱樹脂事件',
-                    'patricide_unconstitutionality': '図解：尊属殺重罰規定違憲判決',
-                    'tsu_groundbreaking': '図解：津地鎮祭訴訟',
-                    'customs_inspection': '図解：税関検査事件',
-                    'showa_womens_univ': '図解：昭和女子大事件',
-                    'kaji_kito': '図解：加持祈祷事件',
-                    'police_reserve': '図解：警察予備隊訴訟',
-                    'pharmacy_distance': '図解：薬局距離制限事件',
-                    'retail_market_distance': '図解：小売市場距離制限事件',
-                    'asahi_lawsuit': '図解：朝日訴訟',
-                    'horiki_lawsuit': '図解：堀木訴訟',
-                    'asahikawa_test': '図解：旭川学テ事件',
-                    'forest_act': '図解：森林法共有林分割制限事件',
-                    'overseas_voters': '図解：在外邦人選挙権訴訟',
-                    'illegitimate_child': '図解：非嫡出子相続差別訴訟',
-                    'remarriage_ban': '図解：再婚禁止期間訴訟',
-                    'lockheed_scandal': '図解：ロッキード事件',
-                    'zennorin_strike': '図解：全農林警職法事件',
-                };
-                return captions[name] || '図解';
-            };
-
+            const imageSource = resolveDiagramSource(diagramName);
             if (imageSource) {
-                return (
-                    <ThemedView key={index} style={styles.diagramContainer} onLayout={(e) => handleLayout(id, e)}>
-                        <TouchableOpacity onPress={() => { setCurrentZoomImage(imageSource); setZoomVisible(true); }} activeOpacity={0.9}>
-                            <Image source={imageSource} style={styles.diagramImage} resizeMode="contain" />
-                        </TouchableOpacity>
-                        <ThemedText style={styles.diagramCaption}>
-                            {getCaption(diagramName)}
-                        </ThemedText>
-                        <ThemedText style={styles.diagramHint}>※タップで拡大</ThemedText>
-                    </ThemedView>
-                );
+                return renderZoomableImage(imageSource, DIAGRAM_CAPTIONS[diagramName] ?? '図解');
             }
             return null;
+        }
+
+        // Markdown table row
+        if (line.trim().startsWith('|')) {
+            if (isTableSeparator(line)) {
+                return null;
+            }
+            const cells = line
+                .trim()
+                .replace(/^\|/, '')
+                .replace(/\|$/, '')
+                .split('|')
+                .map((c) => c.trim());
+            const isHeaderRow = index + 1 < lines.length && isTableSeparator(lines[index + 1] ?? '');
+            return (
+                <View
+                    key={index}
+                    style={[styles.tableRow, isHeaderRow && styles.tableHeaderRow]}
+                    onLayout={(e) => handleLayout(id, e)}
+                >
+                    {cells.map((cell, ci) => (
+                        <ThemedText
+                            key={ci}
+                            style={[
+                                styles.tableCell,
+                                { color: colors.text, flex: ci === 0 ? 1.2 : 1 },
+                                isHeaderRow && styles.tableHeaderCell,
+                            ]}
+                        >
+                            {parseBold(cell, colors.primary)}
+                        </ThemedText>
+                    ))}
+                </View>
+            );
         }
 
         // H1 Header (# Title)
@@ -225,10 +270,10 @@ export default function ConstitutionScreen() {
     return (
         <ThemedView style={styles.container}>
             <ThemedView style={styles.header}>
-                <Link href="/" asChild>
+                <Link href={'/textbook' as Href} asChild>
                     <Pressable style={styles.backButton}>
                         <ThemedText type="defaultSemiBold" style={{ color: '#007BFF' }}>
-                            ← メニューへ戻る
+                            ← 教科書一覧へ
                         </ThemedText>
                     </Pressable>
                 </Link>
@@ -409,6 +454,26 @@ const styles = StyleSheet.create({
         color: '#666',
         marginTop: 2,
         textAlign: 'center',
+    },
+    tableRow: {
+        flexDirection: 'row',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: '#ccc',
+        paddingVertical: 6,
+        gap: 4,
+    },
+    tableHeaderRow: {
+        backgroundColor: 'rgba(0,0,0,0.04)',
+        borderTopWidth: StyleSheet.hairlineWidth,
+        borderTopColor: '#ccc',
+    },
+    tableCell: {
+        fontSize: 13,
+        lineHeight: 20,
+        flex: 1,
+    },
+    tableHeaderCell: {
+        fontWeight: '600',
     },
     // Modal Styles
     modalOverlay: {

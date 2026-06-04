@@ -4,24 +4,33 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { MarkdownText } from '@/components/markdown-text';
+import { PersonFlowDiagramModal } from '@/components/person-flow-diagram-modal';
+import { SaikokuCompareModal } from '@/components/saikoku-compare-modal';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { getChunkImageSource } from '@/src/chunkImages';
 import { setChunkTextBodyForNavigation } from '@/src/chunkSessionState';
 import { TEITOUKEN_TEXTBOOK_MARKDOWN } from '@/src/content/teitoukenTextbookMarkdown';
+import { useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import {
-  getDeepdiveImageSource,
-  resolveKakuronnQuizChoiceImageKey,
-  resolveKenpouQuizChoiceImageKey,
-  resolveKokubaiQuizChoiceImageKey,
+    getDeepdiveImageSource,
+    resolveKakuronnQuizChoiceImageKey,
+    resolveKenpouQuizChoiceImageKey,
+    resolveKokubaiQuizChoiceImageKey,
 } from '@/src/deepdiveImages';
 import { setDeepdiveParams } from '@/src/deepdiveState';
-import { mergeKijyutuGyouseihouQuizCaseImages } from '@/src/kijyutuGyouseihouQuizDeepdiveMerge';
 import { getDescriptiveImageSource } from '@/src/descriptiveImages';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
-import * as LearnData from '@/src/learn';
+import { mergeKijyutuGyouseihouQuizCaseImages } from '@/src/kijyutuGyouseihouQuizDeepdiveMerge';
+import * as LearnData from '@/src/learnExports';
 import { PIN_CASES } from '@/src/pinData';
+import { extractQuestionCast } from '@/src/castRegistry';
+import { isMinpoPersonFlowField, resolvePersonFlowDiagram } from '@/src/personFlowDiagram';
+import {
+  pickCompareTable,
+  resolveCompareTableImage,
+} from '@/src/compareTables';
 import { RESOURCES, STATUTES, SUBJECTS } from '@/src/questions';
 import {
     extractLearnLinkKey,
@@ -33,7 +42,6 @@ import {
     type QuizLearnReturnParams,
 } from '@/src/quizLearnBridge';
 import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitHtmlUnderlineTags, splitNumberPrefix } from '@/utils/choiceNumber';
-import { filterResourcePagesForChoice, mergeQuizResourcePages, parseQuizRefIds } from '@/utils/quizResources';
 import { addPoints } from '@/utils/points';
 import { incrementLoopCount } from '@/utils/progress';
 import { getHiddenHashes, peekHiddenHashesSync } from '@/utils/question-hidden';
@@ -44,9 +52,10 @@ import {
     getMergedSubjectData,
     pickQuestionsForField,
 } from '@/utils/quiz-question-pipeline';
+import type { QuizDeepdiveSource } from '@/utils/quizDeepdiveRestore';
+import { filterResourcePagesForChoice, mergeQuizResourcePages, parseQuizRefIds } from '@/utils/quizResources';
 import { normalizeSlotAnswerForCompare, splitComboChoiceLineToSlotsFlexible } from '@/utils/slotNormalize';
 import { convertStatuteKanjiNumeralsToArabic, formatStatuteReferenceForMarkdown, looksLikeMergedStatuteBlock } from '@/utils/statute-reference-format';
-import type { QuizDeepdiveSource } from '@/utils/quizDeepdiveRestore';
 import { gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
 import { USER_KEY } from './login';
 
@@ -307,16 +316,18 @@ function ResultReadableMarkdownText({
   style,
   uniformWeight,
   subject,
+  applyNames,
 }: {
   text: string;
   style?: any;
   uniformWeight?: boolean;
   subject?: string;
+  applyNames?: (text: string) => string;
 }) {
   const formatted = formatResultMarkdownText(text, subject);
   const cards = splitResultReadableCards(formatted);
   if (cards.length < 2) {
-    return <MarkdownText text={formatted} style={style} uniformWeight={uniformWeight} />;
+    return <MarkdownText text={formatted} style={style} uniformWeight={uniformWeight} applyNames={applyNames} />;
   }
   return (
     <View style={{ gap: 10 }}>
@@ -331,7 +342,7 @@ function ResultReadableMarkdownText({
             padding: 12,
           }}
         >
-          <MarkdownText text={card} style={style} uniformWeight={uniformWeight} />
+          <MarkdownText text={card} style={style} uniformWeight={uniformWeight} applyNames={applyNames} />
         </ThemedView>
       ))}
     </View>
@@ -807,6 +818,7 @@ export default function ResultScreen() {
   } catch (_) {}
 
   const { colors, theme } = useTheme();
+  const { applyCharacterNames, characterMap } = useCharacter();
   const router = useRouter();
   // Calculate next index
   const questionIndex = params.questionIndex ? parseInt(Array.isArray(params.questionIndex) ? params.questionIndex[0] : params.questionIndex, 10) : 0;
@@ -903,8 +915,45 @@ export default function ResultScreen() {
       : '');
   const text = learnLinkKey ? stripLearnLinkTag(rawQuestionText) : rawQuestionText;
   const explain = question?.explain || '';
+  const [personFlowModalVisible, setPersonFlowModalVisible] = useState(false);
+  const [saikokuCompareModalVisible, setSaikokuCompareModalVisible] = useState(false);
+  const showPersonFlowButton = useMemo(
+    () => subject === '民法' && !!field && isMinpoPersonFlowField(field),
+    [subject, field],
+  );
+  const personFlowDiagram = useMemo(
+    () =>
+      subject && field && text
+        ? resolvePersonFlowDiagram({
+            mode: 'quiz',
+            subject,
+            field,
+            text,
+            index: questionIndex,
+            applyNames: applyCharacterNames,
+          })
+        : null,
+    [subject, field, text, questionIndex, applyCharacterNames],
+  );
+  const questionCast = useMemo(
+    () => (text ? extractQuestionCast(text, characterMap) : []),
+    [text, characterMap],
+  );
   const memo = question?.memo || '';
   const choices = (question?.choices || []).map((choice: string) => stripLearnLinkTag(choice));
+  const compareSearchText = useMemo(
+    () => [text, explain, memo, ...choices].filter(Boolean).join('\n'),
+    [text, explain, memo, choices],
+  );
+  const compareDef = useMemo(
+    () => (compareSearchText ? pickCompareTable(compareSearchText, { subject, field }) : undefined),
+    [compareSearchText, subject, field],
+  );
+  const showCompareTable = !!compareDef;
+  const compareTableImage = useMemo(
+    () => resolveCompareTableImage(compareDef?.imageKey),
+    [compareDef?.imageKey],
+  );
   const choiceStatuteRefs = (question as any)?.choiceStatuteRefs as string[] | undefined;
   const choiceDeepDive = (question as any)?.choiceDeepDive as string[] | undefined;
   const choiceDeepDiveBeginner = (question as any)?.choiceDeepDiveBeginner as string[] | undefined;
@@ -1382,7 +1431,7 @@ export default function ResultScreen() {
               { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder, marginBottom: 8 }
             ]}>
                   <ThemedText style={{ fontSize: 16, color: colors.text, textAlign: 'left', alignSelf: 'stretch' }}>
-                {choices[idx] ? choices[idx].replace(/※/g, '') : ''}
+                {choices[idx] ? applyCharacterNames(choices[idx].replace(/※/g, '')) : ''}
               </ThemedText>
             </Pressable>
               ))
@@ -1442,7 +1491,43 @@ export default function ResultScreen() {
           <ThemedText type="subtitle" style={{ color: '#D32F2F', marginBottom: 8 }}>不正解... 復習が必要だ！</ThemedText>
         ) : null}
         <View style={styles.questionAnswerOuterCard}>
-          <ThemedText style={[styles.questionLabel, { color: colors.text }]}>問題文</ThemedText>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+            <ThemedText style={[styles.questionLabel, { color: colors.text }]}>問題文</ThemedText>
+            {showPersonFlowButton ? (
+              <Pressable
+                accessibilityLabel="登場人物関係図"
+                onPress={() => setPersonFlowModalVisible(true)}
+                style={{
+                  borderWidth: 1,
+                  borderColor: '#5C6BC0',
+                  backgroundColor: '#E8EAF6',
+                  borderRadius: 8,
+                  paddingVertical: 4,
+                  paddingHorizontal: 10,
+                  marginLeft: 8,
+                }}
+              >
+                <ThemedText style={{ color: '#3949AB', fontSize: 13, fontWeight: '600' }}>登場人物</ThemedText>
+              </Pressable>
+            ) : null}
+            {showCompareTable ? (
+              <Pressable
+                accessibilityLabel={compareDef?.title ?? '比較表'}
+                onPress={() => setSaikokuCompareModalVisible(true)}
+                style={{
+                  borderWidth: 1,
+                  borderColor: '#EF6C00',
+                  backgroundColor: '#FFF3E0',
+                  borderRadius: 8,
+                  paddingVertical: 4,
+                  paddingHorizontal: 10,
+                  marginLeft: 8,
+                }}
+              >
+                <ThemedText style={{ color: '#E65100', fontSize: 13, fontWeight: '600' }}>比較表</ThemedText>
+              </Pressable>
+            ) : null}
+          </View>
           <View style={styles.questionCard}>
             {(() => {
               const { prefix: numPrefix, body: questionBody } = splitNumberPrefix(text);
@@ -1457,7 +1542,7 @@ export default function ResultScreen() {
                   ) : null}
                   {displayBody ? (
                     /^\*\*|\[\[red:/.test(displayBody) ? (
-                      <MarkdownText text={displayBody} style={[styles.questionText, { color: '#212121', fontFamily: theme === 'paper' ? 'serif' : undefined, marginTop: 6 }]} />
+                      <MarkdownText text={displayBody} applyNames={applyCharacterNames} style={[styles.questionText, { color: '#212121', fontFamily: theme === 'paper' ? 'serif' : undefined, marginTop: 6 }]} />
                     ) : (
                       <ThemedText style={[styles.questionText, { color: '#212121', fontFamily: theme === 'paper' ? 'serif' : undefined, fontWeight: 'bold', marginTop: 6 }]}>
                         {displayBody.split(/\n/).map((ln, lineIdx) => (
@@ -1465,10 +1550,10 @@ export default function ResultScreen() {
                             {lineIdx > 0 ? '\n' : null}
                             {(() => {
                               const pieces = splitHtmlUnderlineTags(formatNumberedClauses(ln));
-                              if (pieces.length === 1 && !pieces[0].underline) return pieces[0].text;
+                              if (pieces.length === 1 && !pieces[0].underline) return applyCharacterNames(pieces[0].text);
                               return pieces.map((p, j) => (
                                 <ThemedText key={j} style={p.underline ? { textDecorationLine: 'underline' as const } : undefined}>
-                                  {p.text}
+                                  {applyCharacterNames(p.text)}
                                 </ThemedText>
                               ));
                             })()}
@@ -1537,6 +1622,7 @@ export default function ResultScreen() {
                       {item.content ? (
                         <MarkdownText
                           text={formatResultMarkdownText(item.content, subject)}
+                          applyNames={applyCharacterNames}
                           style={{ fontSize: 17, lineHeight: 26, fontWeight: '500' }}
                           uniformWeight={subject !== '民法' && !/\[\[red:|\[\[c:#/.test(item.content || '')}
                         />
@@ -1669,7 +1755,7 @@ export default function ResultScreen() {
                       {label}
                     </ThemedText>
                     <ThemedText style={[styles.choiceStatuteChoiceBody, { color: colors.text }]} numberOfLines={3}>
-                      {choiceText ? formattedBody : '—'}
+                      {choiceText ? applyCharacterNames(formattedBody) : '—'}
                     </ThemedText>
                   </View>
                   {explText ? (
@@ -1677,6 +1763,7 @@ export default function ResultScreen() {
                       <ResultReadableMarkdownText
                         text={explText}
                         subject={subject}
+                        applyNames={applyCharacterNames}
                         style={{ fontSize: 15, lineHeight: 22 }}
                         uniformWeight={!(subject === '民法' && looksLikeMergedStatuteBlock(explText))}
                       />
@@ -2084,6 +2171,22 @@ export default function ResultScreen() {
             </View>
           </View>
         </Modal>
+
+        <SaikokuCompareModal
+          visible={saikokuCompareModalVisible}
+          onClose={() => setSaikokuCompareModalVisible(false)}
+          imageSource={compareTableImage}
+          title={compareDef?.title}
+          body={compareDef?.body}
+          caption={compareDef?.caption}
+        />
+
+        <PersonFlowDiagramModal
+          visible={personFlowModalVisible}
+          onClose={() => setPersonFlowModalVisible(false)}
+          item={personFlowDiagram}
+          castMembers={questionCast}
+        />
       </ScrollView>
     </ThemedView>
   );

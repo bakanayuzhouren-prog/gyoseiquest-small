@@ -7,10 +7,16 @@ import { ThemedText } from './themed-text';
 type Props = {
     text: string;
     style?: StyleProp<TextStyle>;
+    /** 登場人物・役割名の表示置換（A/B/C、連帯債務者A 等） */
+    applyNames?: (text: string) => string;
     /** 赤字部分タップ時のコールバック。**text::tooltip** 形式のとき、tooltip を渡す */
     onHighlightPress?: (displayText: string, tooltip: string) => void;
     /** true のとき **太字**・赤字・ツールチップ表示を通常ウェイトに揃える（もっと深掘る等） */
     uniformWeight?: boolean;
+    /** 行間（px）。未指定時は uniformWeight なら 4、そうでなければ 8 */
+    lineGap?: number;
+    /** `- 項目` 行を箇条書きとして字下げ・中黒表示 */
+    bulletList?: boolean;
 };
 
 const defaultTextStyle = { lineHeight: 28, fontSize: 16 };
@@ -58,6 +64,8 @@ function parseLine(line: string): LinePart[] {
             const sep = inner.indexOf('::');
             if (sep >= 0) {
                 parts.push({ type: 'tooltip', text: inner.slice(0, sep), tooltip: inner.slice(sep + 2) });
+            } else if (/\[\[red:|\[\[c:#/.test(inner)) {
+                parts.push(...parseLine(inner));
             } else {
                 parts.push({ type: 'bold', text: inner });
             }
@@ -77,6 +85,11 @@ function parseLine(line: string): LinePart[] {
         }
         if (end === 0 && rest.startsWith('[[red:')) {
             rest = rest.slice(6);
+        }
+        if (end === 0 && rest.startsWith('**')) {
+            parts.push({ type: 'plain', text: '**' });
+            rest = rest.slice(2);
+            continue;
         }
     }
     return parts;
@@ -170,12 +183,15 @@ function minWidthForColumn(colCount: number, colIndex: number): number | undefin
     return m[colIndex];
 }
 
+const BULLET_LINE_RE = /^-\s+(.*)$/;
+
 function MarkdownPlainBlock({
     text,
     lineStyle,
     lineGap,
     onHighlightPress,
     uniformWeight,
+    bulletList,
     keyPrefix,
 }: {
     text: string;
@@ -183,20 +199,60 @@ function MarkdownPlainBlock({
     lineGap: number;
     onHighlightPress: Props['onHighlightPress'];
     uniformWeight?: boolean;
+    bulletList?: boolean;
     keyPrefix: string;
 }) {
     const lines = normalizeMarkupForRender(text).split('\n');
     return (
-        <View style={{ gap: lineGap }}>
+        <View style={{ gap: lineGap, width: '100%', alignSelf: 'stretch' }}>
             {lines.map((line, lineIndex) => {
-                const parsed = parseLine(line);
+                const bulletMatch = bulletList ? BULLET_LINE_RE.exec(line) : null;
+                const displayLine = bulletMatch ? bulletMatch[1] : line;
+                if (!displayLine.trim()) return null;
+                const parsed = parseLine(displayLine);
+                const parts = renderLineParts(
+                    parsed,
+                    lineStyle,
+                    onHighlightPress,
+                    `L${keyPrefix}-${lineIndex}`,
+                    uniformWeight
+                );
+                if (bulletMatch) {
+                    return (
+                        <ThemedText
+                            key={`${keyPrefix}-${lineIndex}`}
+                            style={[
+                                lineStyle,
+                                {
+                                    width: '100%',
+                                    alignSelf: 'stretch',
+                                    ...(Platform.OS === 'web'
+                                        ? ({ display: 'block' } as TextStyle)
+                                        : null),
+                                },
+                            ]}
+                        >
+                            {'• '}
+                            {parts}
+                        </ThemedText>
+                    );
+                }
                 return (
-                    <View
+                    <ThemedText
                         key={`${keyPrefix}-${lineIndex}`}
-                        style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', gap: 0 }}
+                        style={[
+                            lineStyle,
+                            {
+                                width: '100%',
+                                alignSelf: 'stretch',
+                                ...(Platform.OS === 'web'
+                                    ? ({ display: 'block' } as TextStyle)
+                                    : null),
+                            },
+                        ]}
                     >
-                        {renderLineParts(parsed, lineStyle, onHighlightPress, `L${keyPrefix}-${lineIndex}`, uniformWeight)}
-                    </View>
+                        {parts}
+                    </ThemedText>
                 );
             })}
         </View>
@@ -210,6 +266,7 @@ function DeepdiveRichSegments({
     lineGap,
     onHighlightPress,
     uniformWeight,
+    bulletList,
     keyPrefix,
 }: {
     text: string;
@@ -217,11 +274,12 @@ function DeepdiveRichSegments({
     lineGap: number;
     onHighlightPress: Props['onHighlightPress'];
     uniformWeight?: boolean;
+    bulletList?: boolean;
     keyPrefix: string;
 }) {
     const segments = segmentDeepdiveTextForRender(text);
     return (
-        <View style={{ gap: lineGap }}>
+        <View style={{ gap: lineGap, width: '100%', alignSelf: 'stretch' }}>
             {segments.map((seg, si) => {
                 if (seg.type === 'plain') {
                     const t = seg.text;
@@ -234,6 +292,7 @@ function DeepdiveRichSegments({
                             lineGap={lineGap}
                             onHighlightPress={onHighlightPress}
                             uniformWeight={uniformWeight}
+                            bulletList={bulletList}
                             keyPrefix={`${keyPrefix}-p-${si}`}
                         />
                     );
@@ -342,19 +401,22 @@ function MarkdownTabTable({
     );
 }
 
-export function MarkdownText({ text, style, onHighlightPress, uniformWeight }: Props) {
+export function MarkdownText({ text, style, applyNames, onHighlightPress, uniformWeight, lineGap: lineGapProp, bulletList }: Props) {
     if (!text) return null;
 
+    const displayText = applyNames ? applyNames(text) : text;
+
     const lineStyle = style ? [defaultTextStyle, style] : defaultTextStyle;
-    const lineGap = uniformWeight ? 4 : 8;
+    const lineGap = lineGapProp ?? (uniformWeight ? 4 : 8);
 
     return (
         <DeepdiveRichSegments
-            text={text}
+            text={displayText}
             lineStyle={lineStyle}
             lineGap={lineGap}
             onHighlightPress={onHighlightPress}
             uniformWeight={uniformWeight}
+            bulletList={bulletList}
             keyPrefix="md"
         />
     );

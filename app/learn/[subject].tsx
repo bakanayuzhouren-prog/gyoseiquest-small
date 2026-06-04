@@ -6,6 +6,8 @@ import { Alert, Modal, PanResponder, Platform, Pressable, StyleSheet, TextInput,
 
 import { LexiconText, stripLexiconMarkupForPlain } from '@/components/lexicon-text';
 import { MarkdownText } from '@/components/markdown-text';
+import { PersonFlowDiagramModal } from '@/components/person-flow-diagram-modal';
+import { SaikokuCompareModal } from '@/components/saikoku-compare-modal';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { characterPlaceholders, defaultCharacterMap, useCharacter } from '@/src/context/CharacterContext';
@@ -17,13 +19,29 @@ import {
     mergedDeepdiveHasResolvableImage,
     pickAutoLearnDeepdiveImageKey,
 } from '@/src/deepdiveLearnAutoImage';
-import { setDeepdiveParams, setLearnDeepdiveReturnCursor } from '@/src/deepdiveState';
-import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_LINKS, LEARN_SOURCE, LEARN_STATUTE_REFS } from '@/src/learn';
+import {
+    getLearnDeepdiveReturnCursor,
+    isLearnDeepdiveReturnCursorFrozen,
+    publishLearnDeepdiveReturnCursorForOpen,
+    setDeepdiveParams,
+    setLearnDeepdiveReturnCursor,
+    setLearnScreenPointerActive,
+} from '@/src/deepdiveState';
+import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_LINKS, LEARN_SOURCE, LEARN_STATUTE_REFS } from '@/src/learnExports';
 import { LEARN_VOICE_PRESETS } from '@/src/learnVoices';
+import {
+  isMinpoPersonFlowField,
+  resolvePersonFlowDiagram,
+} from '@/src/personFlowDiagram';
+import { extractQuestionCast } from '@/src/castRegistry';
 import { PIN_CASES } from '@/src/pinData';
 import { SUBJECTS } from '@/src/questions';
 import { clearQuizLearnReturnParams, getQuizLearnReturnHref, stripLearnLinkTag } from '@/src/quizLearnBridge';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
+import {
+  pickCompareTable,
+  resolveCompareTableImage,
+} from '@/src/compareTables';
 import { getLearnNotes, LearnNote, saveLearnNotes } from '@/utils/learn-notes';
 import { addPoints } from '@/utils/points';
 import { getStickyNotes, toggleStickyNote } from '@/utils/sticky-notes';
@@ -170,8 +188,10 @@ export default function LearnSubjectScreen() {
   useFocusEffect(
     useCallback(() => {
       setLearnReceivesPointer(true);
+      setLearnScreenPointerActive(true);
       return () => {
         setLearnReceivesPointer(false);
+        setLearnScreenPointerActive(false);
       };
     }, [])
   );
@@ -295,6 +315,8 @@ export default function LearnSubjectScreen() {
   const [isPriorityMode, setIsPriorityMode] = useState(false);
   const [notes, setNotes] = useState<LearnNote[]>([]);
   const [isCharacterModalVisible, setIsCharacterModalVisible] = useState(false);
+  const [personFlowModalVisible, setPersonFlowModalVisible] = useState(false);
+  const [saikokuCompareModalVisible, setSaikokuCompareModalVisible] = useState(false);
   const [dictionaryEntry, setDictionaryEntry] = useState<{ word: string; def: string } | null>(null);
 
   const { characterMap, updateCharacterName, applyCharacterNames } = useCharacter();
@@ -307,6 +329,7 @@ export default function LearnSubjectScreen() {
   const currentIndexRef = useRef(currentIndex);
   const currentReadCountRef = useRef(currentReadCount);
   const displayListLenRef = useRef(0);
+  const displayContentListRef = useRef<string[]>([]);
   const routeCursorKey = `${learnScopeKey}\u001f${routeIndex}`;
   const lastAppliedRouteCursorRef = useRef(routeCursorKey);
   /** await 後も最新のカード本文・速度を参照（クロージャずれ防止） */
@@ -316,6 +339,10 @@ export default function LearnSubjectScreen() {
   const applyCharacterNamesRef = useRef(applyCharacterNames);
   /** 画面が非フォーカス（深掘りを開いた等）でも isPlaying は維持する。Web の poll と同期 */
   const learnReceivesPointerRef = useRef(learnReceivesPointer);
+  /** 深掘りを開く直前に再生中だったら、戻って index が揃ったあと再開する */
+  const pendingResumePlaybackAfterDeepdiveRef = useRef(false);
+  /** 深掘りを開いた瞬間の index。戻り時に URL の index より優先（カーソル消去後も矯正） */
+  const deepdiveReturnTargetIndexRef = useRef<number | null>(null);
 
   const { theme, colors } = useTheme();
 
@@ -343,6 +370,52 @@ export default function LearnSubjectScreen() {
     isPlayingRef.current = false;
     Speech.stop();
   }, []);
+
+  /** 深掘りから戻った直後: 凍結 index で矯正し、古い読み上げを止めてから必要なら再開 */
+  useFocusEffect(
+    useCallback(() => {
+      const cursor = getLearnDeepdiveReturnCursor();
+      const returnTarget = deepdiveReturnTargetIndexRef.current;
+      const returningFromDeepdive =
+        pendingResumePlaybackAfterDeepdiveRef.current ||
+        returnTarget != null ||
+        !!(cursor && isLearnDeepdiveReturnCursorFrozen());
+      if (!returningFromDeepdive) return undefined;
+
+      const listLen = displayContentListRef.current.length;
+      const routeTarget =
+        listLen > 0 ? Math.min(routeIndex, listLen - 1) : routeIndex;
+      const targetIdx =
+        cursor &&
+        isLearnDeepdiveReturnCursorFrozen() &&
+        subject &&
+        cursor.routeSubject === subject
+          ? cursor.displayIndex
+          : returnTarget != null
+            ? returnTarget
+            : routeTarget;
+
+      deepdiveReturnTargetIndexRef.current = null;
+
+      if (targetIdx >= 0 && currentIndexRef.current !== targetIdx) {
+        setCurrentIndex(targetIdx);
+        setCurrentReadCount(1);
+        setSpokenIndex(0);
+      }
+
+      killLearnTtsPlayback();
+      setIsPlaying(false);
+
+      const shouldResume = pendingResumePlaybackAfterDeepdiveRef.current;
+      pendingResumePlaybackAfterDeepdiveRef.current = false;
+      if (!shouldResume) return undefined;
+
+      const timer = setTimeout(() => {
+        if (currentIndexRef.current === targetIdx) setIsPlaying(true);
+      }, 80);
+      return () => clearTimeout(timer);
+    }, [subject, routeIndex, killLearnTtsPlayback, setSpokenIndex, setIsPlaying])
+  );
 
   useEffect(() => {
     setLearnScreenMounted(true);
@@ -431,12 +504,12 @@ export default function LearnSubjectScreen() {
       displayContentList.length > 0
         ? Math.min(routeIndex, displayContentList.length - 1)
         : routeIndex;
-    /** 深掘りから戻ると URL の index だけ付くことがあり、カードは同じなのに 3 回読みがリセットされていた */
     const prevIdx = currentIndexRef.current;
-    if (prevIdx === nextIndex) return;
-    setCurrentIndex(nextIndex);
-    setCurrentReadCount(1);
-    setSpokenIndex(0);
+    if (prevIdx !== nextIndex) {
+      setCurrentIndex(nextIndex);
+      setCurrentReadCount(1);
+      setSpokenIndex(0);
+    }
   }, [displayContentList.length, routeCursorKey, routeIndex, setSpokenIndex]);
 
   // 優先モード時に元の contentList インデックスを復元するためのマッピング
@@ -459,9 +532,19 @@ export default function LearnSubjectScreen() {
 
   useEffect(() => {
     displayListLenRef.current = displayContentList.length;
-  }, [displayContentList.length]);
+    displayContentListRef.current = displayContentList;
+  }, [displayContentList]);
 
   const currentDisplayContent = displayContentList[currentIndex] || '';
+  /** 深掘り表示中は凍結 index の本文を読む（裏で currentIndex だけ進んだときの取り違え防止） */
+  const resolveLearnPlaybackRaw = useCallback((): string => {
+    const cursor = getLearnDeepdiveReturnCursor();
+    if (cursor && isLearnDeepdiveReturnCursorFrozen()) {
+      const frozen = displayContentListRef.current[cursor.displayIndex];
+      if (typeof frozen === 'string' && frozen.trim()) return frozen;
+    }
+    return currentDisplayContentRef.current;
+  }, []);
   /** index と同一文でも並び変わったとき effect を再実行するため、content だけに依存しない */
   const learnPlaybackSentenceKey = useMemo(
     () => `${currentIndex}\u001f${currentDisplayContent}`,
@@ -579,6 +662,7 @@ export default function LearnSubjectScreen() {
       setLearnDeepdiveReturnCursor(null);
       return;
     }
+    if (isLearnDeepdiveReturnCursorFrozen()) return;
     setLearnDeepdiveReturnCursor({
       learnSubjectKey: learnSubjectForDeepdive,
       routeSubject: subject,
@@ -663,6 +747,32 @@ export default function LearnSubjectScreen() {
     : [contentToProcess, ''];
   const mainText = mainTextRaw.trim();
 
+  const personFlowDiagram = useMemo(() => {
+    if (!subject || !isMinpoPersonFlowField(subject)) return null;
+    return resolvePersonFlowDiagram({
+      mode: 'learn',
+      subject: '民法',
+      field: subject,
+      text: mainText,
+      index: learnAlignedIndex,
+      applyNames: applyCharacterNames,
+    });
+  }, [subject, mainText, learnAlignedIndex, applyCharacterNames]);
+
+  const questionCast = useMemo(
+    () => extractQuestionCast(mainText, characterMap),
+    [mainText, characterMap],
+  );
+
+  const compareDef = useMemo(
+    () => (mainText ? pickCompareTable(mainText, { subject }) : undefined),
+    [mainText, subject],
+  );
+  const showCompareTable = !!compareDef;
+  const compareTableImage = useMemo(
+    () => resolveCompareTableImage(compareDef?.imageKey),
+    [compareDef?.imageKey],
+  );
 
   // Check for chunks in SUBJECTS
   let foundQuestion: any = null;
@@ -756,14 +866,40 @@ export default function LearnSubjectScreen() {
       return;
     }
 
+    const freezeReturnCursor = () => {
+      if (!subject || !learnSubjectForDeepdive) return;
+      const openDisplayIndex = currentIndexRef.current;
+      publishLearnDeepdiveReturnCursorForOpen({
+        learnSubjectKey: learnSubjectForDeepdive,
+        routeSubject: subject,
+        field: tashiField ?? null,
+        displayIndex: openDisplayIndex,
+      });
+    };
+
+    /** 深掘り中は裏で読み進めない。戻ったら同じカードから再開できるよう保留 */
+    pendingResumePlaybackAfterDeepdiveRef.current = isPlayingRef.current;
+    killLearnTtsPlayback();
+    setIsPlaying(false);
+
+    const openDisplayIndex = currentIndexRef.current;
+    deepdiveReturnTargetIndexRef.current = openDisplayIndex;
+    const openOriginalIndex = displayIndexList[openDisplayIndex] ?? openDisplayIndex;
+    const openLearnAlignedIndex =
+      subject === '多肢選択'
+        ? openOriginalIndex
+        : (learnSheetFilterIndices?.[openOriginalIndex] ?? openOriginalIndex);
+
     // B列＋A列の [[image:…]] を結合して「もっと深掘る」へ（根拠条文のみのカードも deepdive へ）
     if (mergedPayload || learnStatuteRefText) {
+      freezeReturnCursor();
       setDeepdiveParams(mergedPayload || '', '', {
         fromLearn: true,
         fExplain: learnFExplainText,
         learnRelatedStatutesContent: learnStatuteRefText,
         learnSubject: learnSubjectForDeepdive,
-        learnReturnIndex: currentIndex,
+        learnContentIndex: openLearnAlignedIndex,
+        learnReturnIndex: openDisplayIndex,
       });
       // Web では params が URL に載り巨大本文でフリーズし得る。本文は setDeepdiveParams のみで渡す
       router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
@@ -772,6 +908,7 @@ export default function LearnSubjectScreen() {
 
     // [[LINK:/columns/...]] など URL パスの場合はそのまま遷移
     if (digDeeperUrl && digDeeperUrl.startsWith('/')) {
+      freezeReturnCursor();
       router.push(digDeeperUrl as any);
       return;
     }
@@ -786,6 +923,7 @@ export default function LearnSubjectScreen() {
 
     if (isNaN(questionIndex)) return;
 
+    freezeReturnCursor();
     router.push({
       pathname: `/learn/reference/[subject]/[id]` as any,
       params: {
@@ -867,6 +1005,11 @@ export default function LearnSubjectScreen() {
       return;
     }
 
+    /** 深掘り画面では学習 TTS を開始しない（フッターの再生は戻ってから） */
+    if (!learnReceivesPointerRef.current && isLearnDeepdiveReturnCursorFrozen()) {
+      return;
+    }
+
     const sessionId = ++ttsUtteranceIdRef.current;
     let cancelled = false;
 
@@ -882,7 +1025,7 @@ export default function LearnSubjectScreen() {
         webUtterancePollCleanupRef.current?.();
         webUtterancePollCleanupRef.current = null;
 
-        const raw = currentDisplayContentRef.current;
+        const raw = resolveLearnPlaybackRaw();
         const currentMainText = raw.includes('※') ? raw.split('※')[0] : raw;
         const basePlainForSync = stripLexiconMarkupForPlain(currentMainText).replace(/\[\[.*?\]\]/g, '');
         const processedText = applyCharacterNamesRef.current(basePlainForSync);
@@ -922,6 +1065,8 @@ export default function LearnSubjectScreen() {
         const afterUtteranceComplete = () => {
           if (completionHandled) return;
           if (cancelled || sessionId !== ttsUtteranceIdRef.current || !isPlayingRef.current) return;
+          /** 深掘り表示中・非フォーカス中は onDone だけ進んで index がずれるのを防ぐ */
+          if (isLearnDeepdiveReturnCursorFrozen() || !learnReceivesPointerRef.current) return;
           completionHandled = true;
           clearWebGuards();
 
@@ -1028,7 +1173,7 @@ export default function LearnSubjectScreen() {
       Speech.stop();
     };
   /** playbackRate / voiceId は ref で参照する。依存に含めると非フォーカス（深掘り表示中）の更新で effect が巻き直り Speech.stop される */
-  }, [isPlaying, learnPlaybackSentenceKey, killLearnTtsPlayback, setIsPlaying]);
+  }, [isPlaying, learnPlaybackSentenceKey, killLearnTtsPlayback, setIsPlaying, resolveLearnPlaybackRaw]);
 
   const handleToggleSticky = () => {
     if (learnScopeKey) {
@@ -1176,13 +1321,30 @@ export default function LearnSubjectScreen() {
                 <ThemedText style={[styles.stickyText, isSticky && styles.stickyTextActive]}>付箋</ThemedText>
               </Pressable>
 
-              {/* Character Settings Button */}
+              {isMinpoPersonFlowField(subject) ? (
+                <Pressable
+                  style={styles.stickyButton}
+                  onPress={() => setPersonFlowModalVisible(true)}
+                >
+                  <MaterialIcons name="people" size={20} color={colors.text} />
+                  <ThemedText style={styles.stickyText}>登場人物</ThemedText>
+                </Pressable>
+              ) : null}
+              {showCompareTable ? (
+                <Pressable
+                  style={styles.stickyButton}
+                  onPress={() => setSaikokuCompareModalVisible(true)}
+                >
+                  <MaterialIcons name="table-chart" size={20} color={colors.text} />
+                  <ThemedText style={styles.stickyText}>比較表</ThemedText>
+                </Pressable>
+              ) : null}
               <Pressable
                 style={styles.stickyButton}
                 onPress={() => setIsCharacterModalVisible(true)}
               >
-                <MaterialIcons name="people" size={20} color={colors.text} />
-                <ThemedText style={styles.stickyText}>登場人物</ThemedText>
+                <MaterialIcons name="settings" size={20} color={colors.text} />
+                <ThemedText style={styles.stickyText}>名前設定</ThemedText>
               </Pressable>
             </ThemedView>
           </ThemedView>
@@ -1430,10 +1592,26 @@ export default function LearnSubjectScreen() {
           </View>
         </Modal>
 
+        <PersonFlowDiagramModal
+          visible={personFlowModalVisible}
+          onClose={() => setPersonFlowModalVisible(false)}
+          item={personFlowDiagram}
+          castMembers={questionCast}
+        />
+
+        <SaikokuCompareModal
+          visible={saikokuCompareModalVisible}
+          onClose={() => setSaikokuCompareModalVisible(false)}
+          imageSource={compareTableImage}
+          title={compareDef?.title}
+          body={compareDef?.body}
+          caption={compareDef?.caption}
+        />
+
         {isCharacterModalVisible && (
           <View style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' }]}>
             <ThemedView style={{ width: '80%', padding: 20, borderRadius: 10, backgroundColor: colors.card, maxHeight: '80%' }}>
-              <ThemedText type="subtitle" style={{ marginBottom: 15 }}>登場人物の設定</ThemedText>
+              <ThemedText type="subtitle" style={{ marginBottom: 15 }}>名前の設定</ThemedText>
               <ScrollView style={{ marginBottom: 15 }}>
                 {Object.entries(characterMap).map(([original, current]) => (
                   <View key={original} style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
@@ -1935,6 +2113,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     marginRight: 8,
     flex: 1,
+    zIndex: 20,
   },
   digDeeperTextSmall: {
     color: '#fff',

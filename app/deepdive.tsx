@@ -1,12 +1,21 @@
 import { ChachalotAvatar } from '@/components/chachalot-avatar';
+import { DeepdiveChunkLinkButton } from '@/components/deepdive-chunk-link-button';
 import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { expandComic4DeepdiveTags } from '@/src/comic4DeepdiveExpand';
 import { TEITOUKEN_TEXTBOOK_MARKDOWN } from '@/src/content/teitoukenTextbookMarkdown';
 import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
+import { useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
-import { mergedDeepdiveHasResolvableImage, pickLearnDeepdiveSharedImageKey } from '@/src/deepdiveLearnAutoImage';
+import { getChunkImageSource } from '@/src/chunkImages';
+import { setChunkNavigationPayload } from '@/src/chunkSessionState';
+import { getMinpo13Article602Hotspot, isMinpo13DiagramImageKey, type DeepdiveImageHotspot } from '@/src/deepdiveImageHotspots';
+import {
+  mergedDeepdiveHasResolvableImage,
+  pickLearnDeepdiveSharedImageKey,
+  resolveLearnDeepdiveAutoImageByCardIndex,
+} from '@/src/deepdiveLearnAutoImage';
 import {
     applyLearnIndexToLearnReturnPath,
     clearDeepdiveSessionWeb,
@@ -14,13 +23,14 @@ import {
     getLearnDeepdiveReturnCursor,
     hydrateDeepdiveFromSessionIfEmpty,
     hydrateLearnBackMetaFromSessionIfMissing,
+    parseLearnReturnHref,
     peekDeepdiveReturnHrefWeb,
     takeDeepdiveLearnBackMetaWeb,
     takeDeepdiveReturnHrefWeb,
 } from '@/src/deepdiveState';
-import { LEARN_DEEPDIVE } from '@/src/learn';
 import { resolveDeepdiveImageTagInner, resolveImageAsset } from '@/src/resolveImageAsset';
 import { CHACHALOT_SPEECH_OPTIONS } from '@/utils/chachalot-tts';
+import { isPreservableTableBlock } from '@/utils/deepdive-tab-table';
 import {
     inferQuizDeepdiveSourceFromScreenTitle,
     parseChoiceIndexFromLabel,
@@ -28,7 +38,6 @@ import {
     type QuizDeepdiveSource,
 } from '@/utils/quizDeepdiveRestore';
 import { formatStatuteReferenceForMarkdown } from '@/utils/statute-reference-format';
-import { isPreservableTableBlock } from '@/utils/deepdive-tab-table';
 import { applyTTSRules } from '@/utils/tts-rules';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
@@ -120,13 +129,17 @@ function normalizeDeepdiveFlowText(s: string): string {
       if (isPreservableTableBlock(trimmedBlock)) {
         return rowLines.join('\n');
       }
+      /** 箇条書き（- ）ブロックは行結合しない（Web で1行に潰れると flex 崩れの原因） */
+      if (rowLines.some((l) => /^-\s+/.test(l.trim()))) {
+        return rowLines.join('\n');
+      }
       let b = trimmedBlock;
       b = b.replace(NEWLINE_BEFORE_NUM_HEAD, PARA_PROTECT);
       b = b.replace(/[ \t]*\n[ \t]*/g, ' ').replace(/[ \u3000]{2,}/g, ' ');
       b = b.replace(new RegExp(PARA_PROTECT, 'g'), '\n');
       b = b
-        .replace(new RegExp(`([^\\n])(${HALFWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
-        .replace(new RegExp(`([^\\n])(${FULLWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
+        .replace(new RegExp(`([^\\n*])(${HALFWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
+        .replace(new RegExp(`([^\\n*])(${FULLWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
         .replace(/([^\n])([①②③④⑤⑥⑦⑧⑨⑩])/g, '$1\n$2');
       b = String(b).replace(/(【ケース\s*[A-Za-zＡ-Ｚ0-9０-９]】)\s*(?=\S)/gu, '$1\n');
       b = b.replace(/。(?!\n)(?![」』）])/g, '。\n');
@@ -268,16 +281,10 @@ export default function DeepdiveScreen() {
   /** Local が空のとき Web でクエリがまだ載らない事例を補う（グローバルはフォーカス外でも更新される） */
   const globalSearchParams = useGlobalSearchParams<{ textbookSlug?: string }>();
   const { colors } = useTheme();
+  const { applyCharacterNames } = useCharacter();
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const {
-    isPlaying: learnIsPlaying,
-    setIsPlaying: setLearnIsPlaying,
-    togglePlay: learnTogglePlay,
-    manualPrev: learnManualPrev,
-    manualNext: learnManualNext,
-    learnScreenMounted,
-  } = useLearnPlayback();
+  const { setIsPlaying: setLearnIsPlaying } = useLearnPlayback();
   const [content, setContent] = useState('');
   /** スプレッドシート N 列（語群未使用シートの周辺知識） */
   const [peripheralContent, setPeripheralContent] = useState('');
@@ -301,6 +308,7 @@ export default function DeepdiveScreen() {
   );
   /** タップで全画面拡大（require の module 番号） */
   const [previewImageSource, setPreviewImageSource] = useState<number | null>(null);
+  const [chunkHotspotModal, setChunkHotspotModal] = useState<DeepdiveImageHotspot | null>(null);
   const fromLearnRef = useRef(false);
   const paramsRef = useRef(params);
   paramsRef.current = params;
@@ -410,20 +418,31 @@ export default function DeepdiveScreen() {
         };
 
         const learnSubj = (stored.learnSubject || '').trim();
-        const augmentBeginner = (b: string) => {
-          let t = b;
-          if (
-            t.trim() &&
-            !mergedDeepdiveHasResolvableImage(t) &&
-            !(stored.fromLearn && t.length > 80_000)
-          ) {
-            const shared = pickLearnDeepdiveSharedImageKey(t, learnSubj, {
-              fromLearn: stored.fromLearn,
-            });
-            if (shared) t = `[[image:${shared}]]\n\n${t}`;
+        const learnIdx =
+          typeof stored.learnContentIndex === 'number' && stored.learnContentIndex >= 0
+            ? stored.learnContentIndex
+            : typeof stored.learnReturnIndex === 'number' && stored.learnReturnIndex >= 0
+              ? stored.learnReturnIndex
+              : null;
+
+        const prependAutoImageIfNeeded = (text: string): string => {
+          let t = text;
+          if (!t.trim() || mergedDeepdiveHasResolvableImage(t)) return t;
+          if (stored.fromLearn && t.length > 80_000) return t;
+          if (stored.fromLearn && learnIdx != null && learnSubj) {
+            const byIdx = resolveLearnDeepdiveAutoImageByCardIndex(learnSubj, learnIdx);
+            if (byIdx) return `[[image:${byIdx}]]\n\n${t}`;
           }
+          if (stored.fromLearn) return t;
+          const shared = pickLearnDeepdiveSharedImageKey(t, learnSubj, {
+            fromLearn: false,
+            allowGlobalSubjectScan: true,
+          });
+          if (shared) t = `[[image:${shared}]]\n\n${t}`;
           return t;
         };
+
+        const augmentBeginner = (b: string) => prependAutoImageIfNeeded(b);
 
         const applyToState = () => {
           if (!raw.trim()) {
@@ -436,16 +455,26 @@ export default function DeepdiveScreen() {
             finishCommon();
             return;
           }
+          /** 見て聞いて覚える: 学習画面で本文確定済み。LEARN_DEEPDIVE 再走査・画像推定はしない */
+          if (stored.fromLearn) {
+            setContent(raw);
+            setBeginnerContent(beg);
+            setPeripheralContent(periph.trim());
+            setLearnRelatedStatutesContent((stored.learnRelatedStatutesContent || '').trim());
+            setDeepView('main');
+            setFExplainHeader((stored.fExplain || '').trim());
+            finishCommon();
+            return;
+          }
           const snippet = raw.trim();
-          if (stored.fromLearn && snippet.length > 0 && snippet.length < 150) {
-            const dd = LEARN_DEEPDIVE as Record<string, string[] | undefined>;
+          if (!stored.fromLearn && snippet.length > 0 && snippet.length < 150) {
+            const { LEARN_DEEPDIVE } = require('@/src/learn') as {
+              LEARN_DEEPDIVE: Record<string, string[] | undefined>;
+            };
+            const dd = LEARN_DEEPDIVE;
             let arraysToSearch: string[][] = [];
             if (learnSubj && dd[learnSubj] && Array.isArray(dd[learnSubj])) {
               arraysToSearch = [dd[learnSubj]];
-            } else if (learnSubj === '多肢選択憲法' || learnSubj === '多肢選択行政法') {
-              arraysToSearch = [];
-            } else if (stored.fromLearn) {
-              arraysToSearch = [];
             } else {
               arraysToSearch = Object.values(dd).filter(Array.isArray) as string[][];
             }
@@ -458,25 +487,11 @@ export default function DeepdiveScreen() {
               }
             }
           }
-          if (
-            raw.trim() &&
-            !mergedDeepdiveHasResolvableImage(raw) &&
-            !(stored.fromLearn && raw.length > 80_000)
-          ) {
-            const shared = pickLearnDeepdiveSharedImageKey(raw, learnSubj, {
-              fromLearn: stored.fromLearn,
-            });
-            if (shared) raw = `[[image:${shared}]]\n\n${raw}`;
-          }
+          raw = prependAutoImageIfNeeded(raw);
           setContent(raw);
           setBeginnerContent(augmentBeginner(beg));
-          if (periph.trim() && !mergedDeepdiveHasResolvableImage(periph)) {
-            if (!(stored.fromLearn && periph.length > 80_000)) {
-              const shared = pickLearnDeepdiveSharedImageKey(periph, learnSubj, {
-                fromLearn: stored.fromLearn,
-              });
-              if (shared) periph = `[[image:${shared}]]\n\n${periph}`;
-            }
+          if (periph.trim()) {
+            periph = prependAutoImageIfNeeded(periph);
           }
           setPeripheralContent(periph.trim());
           setLearnRelatedStatutesContent((stored.learnRelatedStatutesContent || '').trim());
@@ -485,7 +500,15 @@ export default function DeepdiveScreen() {
           finishCommon();
         };
 
-        applyToState();
+        const finish = () => {
+          if (aborted) return;
+          applyToState();
+        };
+        if (Platform.OS === 'web' && typeof requestAnimationFrame === 'function') {
+          requestAnimationFrame(finish);
+        } else {
+          finish();
+        }
       }, 0);
 
       return () => {
@@ -565,8 +588,8 @@ export default function DeepdiveScreen() {
         /([^\n■💡🏠👉🔍📚📝 \t　])(考え方のポイント|受験生へのアドバイス|趣旨(?=\s*[\n　\s])|根拠条文[:：]|根拠判例[:：]|結論[:：]|具体的な事例|ここが試験の勝負どころ|関連知識)/g,
         '$1\n$2'
       )
-      .replace(new RegExp(`([^\\n])(${HALFWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
-      .replace(new RegExp(`([^\\n])(${FULLWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
+      .replace(new RegExp(`([^\\n*])(${HALFWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
+      .replace(new RegExp(`([^\\n*])(${FULLWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
       .replace(/([^\n])([①②③④⑤⑥⑦⑧⑨⑩])/g, '$1\n$2')
       .replace(new RegExp(`([^\\n])(${DEEPDIVE_SECTION_MARK})`, 'gu'), '$1\n$2');
 
@@ -578,6 +601,14 @@ export default function DeepdiveScreen() {
   const splitIntoCards = (text: string): string[] => {
     const trimmed = text.trim();
     if (!trimmed) return [];
+    /** 見て聞いて覚える: **1. 根拠** 形式は Markdown 番号見出しでだけ分割 */
+    if (fromLearn && /\*\*[1-4][\.．][^*\n]+?\*\*/.test(trimmed)) {
+      const mdCards = trimmed
+        .split(/\n\n(?=\*\*[1-4][\.．][^*]*\*\*)/)
+        .map((s) => s.trim())
+        .filter(Boolean);
+      if (mdCards.length >= 2) return splitEmbeddedDeepdiveCaseChunks(mdCards);
+    }
     if (pageTitle === '判例') {
       return splitEmbeddedDeepdiveCaseChunks([trimmed.replace(/\s*\n\s*/g, '')]);
     }
@@ -790,6 +821,18 @@ export default function DeepdiveScreen() {
     marginBottom: 12,
   };
 
+  /** 見て聞いて覚える深掘り：白地・太字活かし・行間広め */
+  const learnDeepdiveCardStyle = {
+    backgroundColor: colors.card,
+    borderColor: colors.choiceBorder,
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: 18,
+    marginBottom: 14,
+    alignSelf: 'stretch' as const,
+    width: '100%' as const,
+  };
+
   const cardBodyTextStyle = {
     fontSize: 16,
     lineHeight: 26,
@@ -797,6 +840,11 @@ export default function DeepdiveScreen() {
     alignSelf: 'stretch' as const,
     width: '100%' as const,
     textAlign: 'left' as const,
+  };
+  const learnDeepdiveBodyTextStyle = {
+    ...cardBodyTextStyle,
+    fontSize: 17,
+    lineHeight: 28,
   };
   const cardTitleTextStyle = {
     fontSize: 16,
@@ -808,6 +856,12 @@ export default function DeepdiveScreen() {
     width: '100%' as const,
     textAlign: 'left' as const,
   };
+  const learnDeepdiveTitleTextStyle = {
+    ...cardTitleTextStyle,
+    fontSize: 18,
+    lineHeight: 28,
+  };
+  const stripMarkdownBoldMarkers = (s: string) => s.replace(/\*\*/g, '');
 
   const handleHighlightPress = (title: string, body: string) => {
     setHighlightModal({ title, body });
@@ -816,6 +870,20 @@ export default function DeepdiveScreen() {
   const openImagePreview = useCallback((src: number) => {
     setPreviewImageSource(src);
   }, []);
+
+  const openChunkFromDeepdiveHotspot = useCallback((hotspot: DeepdiveImageHotspot) => {
+    setChunkNavigationPayload({
+      body: hotspot.statuteMarkdown?.trim() || '',
+      chunkImage: hotspot.chunkImage,
+      statuteTitle: hotspot.statuteTitle || '',
+    });
+    setChunkHotspotModal(hotspot);
+  }, []);
+
+  const minpo602Chunk = getMinpo13Article602Hotspot();
+  const openMinpo602Chunk = useCallback(() => {
+    if (minpo602Chunk) openChunkFromDeepdiveHotspot(minpo602Chunk);
+  }, [minpo602Chunk, openChunkFromDeepdiveHotspot]);
 
   /** 見て聞いて覚えている最中に深掘りへ来てチャチャロット未使用で戻るときは、学習の読み上げを切らない */
   const stopOwnedSpeechUnlessLearnBackground = () => {
@@ -894,14 +962,36 @@ export default function DeepdiveScreen() {
       clearDeepdiveSessionWeb();
     };
 
+    const replaceLearnRoute = (opts: {
+      routeSubject: string;
+      field?: string | null;
+      index?: number | null;
+    }) => {
+      const params: Record<string, string> = { subject: opts.routeSubject };
+      if (opts.field) params.field = opts.field;
+      if (opts.index != null && opts.index >= 0) params.index = String(opts.index);
+      router.replace({ pathname: '/learn/[subject]', params } as any);
+      finishBack();
+    };
+
+    const replaceHrefOrPath = (href: string) => {
+      const parsedLearn = parseLearnReturnHref(href);
+      if (parsedLearn) {
+        router.replace({ pathname: parsedLearn.pathname as any, params: parsedLearn.params } as any);
+      } else {
+        router.replace(href as any);
+      }
+      finishBack();
+    };
+
     const tryQuizReturnTo = (): boolean => {
       const target = stored.quizReturnTo;
       if (!target?.pathname?.trim()) return false;
-      finishBack();
       router.replace({
         pathname: target.pathname as any,
         params: target.params,
       } as any);
+      finishBack();
       return true;
     };
 
@@ -909,9 +999,8 @@ export default function DeepdiveScreen() {
       const href = peekDeepdiveReturnHrefWeb();
       const h = (href || '').trim();
       if (!h.startsWith('/')) return false;
-      finishBack();
       takeDeepdiveReturnHrefWeb();
-      router.replace(h as any);
+      replaceHrefOrPath(h);
       return true;
     };
 
@@ -921,21 +1010,14 @@ export default function DeepdiveScreen() {
       const cursorMatchesStored = !!(learnCursor && learnCursor.learnSubjectKey === sub);
       const idxNative =
         cursorMatchesStored && learnCursor ? learnCursor.displayIndex : stored.learnReturnIndex;
-      finishBack();
       if (cursorMatchesStored && learnCursor) {
-        router.replace({
-          pathname: '/learn/[subject]',
-          params: {
-            subject: learnCursor.routeSubject,
-            ...(learnCursor.field ? { field: learnCursor.field } : {}),
-            ...(idxNative != null ? { index: String(idxNative) } : {}),
-          },
-        } as any);
+        replaceLearnRoute({
+          routeSubject: learnCursor.routeSubject,
+          field: learnCursor.field,
+          index: idxNative,
+        });
       } else {
-        router.replace({
-          pathname: '/learn/[subject]',
-          params: { subject: sub, ...(idxNative != null ? { index: String(idxNative) } : {}) },
-        } as any);
+        replaceLearnRoute({ routeSubject: sub, index: idxNative });
       }
       return true;
     };
@@ -953,13 +1035,38 @@ export default function DeepdiveScreen() {
       if (pathPreferRaw.startsWith('/')) {
         const sub = (learnBackMeta?.sub || stored.learnSubject || '').trim();
         const cursorMatchesLearn = !!(learnCursor && sub && learnCursor.learnSubjectKey === sub);
+        const idx =
+          cursorMatchesLearn && learnCursor
+            ? learnCursor.displayIndex
+            : learnBackMeta?.idx ?? stored.learnReturnIndex;
         const path =
           stored.fromLearn && cursorMatchesLearn && learnCursor
             ? applyLearnIndexToLearnReturnPath(pathPreferRaw, learnCursor.displayIndex)
             : pathPreferRaw;
-        finishBack();
         takeDeepdiveReturnHrefWeb();
-        router.replace(path as any);
+        const parsed = parseLearnReturnHref(path);
+        if (parsed) {
+          if (cursorMatchesLearn && learnCursor) {
+            parsed.params.subject = learnCursor.routeSubject;
+            if (learnCursor.field) parsed.params.field = learnCursor.field;
+            if (idx != null && idx >= 0) parsed.params.index = String(idx);
+          } else if (sub && !parsed.params.subject) {
+            parsed.params.subject = sub;
+            if (idx != null && idx >= 0) parsed.params.index = String(idx);
+          }
+          router.replace({ pathname: parsed.pathname as any, params: parsed.params } as any);
+          finishBack();
+        } else if (cursorMatchesLearn && learnCursor) {
+          replaceLearnRoute({
+            routeSubject: learnCursor.routeSubject,
+            field: learnCursor.field,
+            index: idx,
+          });
+        } else if (sub) {
+          replaceLearnRoute({ routeSubject: sub, index: idx });
+        } else {
+          replaceHrefOrPath(path);
+        }
         return;
       }
 
@@ -972,25 +1079,15 @@ export default function DeepdiveScreen() {
         cursorMatchesLearn && learnCursor ? learnCursor.displayIndex : fallbackIdx;
 
       if (stored.fromLearn && sub) {
-        finishBack();
         takeDeepdiveReturnHrefWeb();
         if (cursorMatchesLearn && learnCursor) {
-          router.replace({
-            pathname: '/learn/[subject]',
-            params: {
-              subject: learnCursor.routeSubject,
-              ...(learnCursor.field ? { field: learnCursor.field } : {}),
-              ...(idx != null ? { index: String(idx) } : {}),
-            },
-          } as any);
+          replaceLearnRoute({
+            routeSubject: learnCursor.routeSubject,
+            field: learnCursor.field,
+            index: idx,
+          });
         } else {
-          router.replace({
-            pathname: '/learn/[subject]',
-            params: {
-              subject: sub,
-              ...(idx != null ? { index: String(idx) } : {}),
-            },
-          } as any);
+          replaceLearnRoute({ routeSubject: sub, index: idx });
         }
         return;
       }
@@ -998,25 +1095,25 @@ export default function DeepdiveScreen() {
       const wqSub = (stored.quizSubject || '').trim();
       const wqField = (stored.quizField || '').trim();
       if (wqSub && wqField) {
-        finishBack();
         takeDeepdiveReturnHrefWeb();
         router.replace({
           pathname: '/question',
           params: buildQuizReturnParams(stored),
         } as any);
+        finishBack();
         return;
       }
 
       if (router.canGoBack()) {
-        finishBack();
         takeDeepdiveReturnHrefWeb();
         router.back();
+        finishBack();
         return;
       }
 
-      finishBack();
       takeDeepdiveReturnHrefWeb();
       router.replace('/learn' as any);
+      finishBack();
       return;
     }
 
@@ -1024,8 +1121,8 @@ export default function DeepdiveScreen() {
     if (stored.fromLearn && tryLearnReturn()) return;
 
     if (router.canGoBack()) {
-      finishBack();
       router.back();
+      finishBack();
       return;
     }
 
@@ -1034,13 +1131,13 @@ export default function DeepdiveScreen() {
     const qSub = (stored.quizSubject || '').trim();
     const qField = (stored.quizField || '').trim();
     if (qSub && qField) {
-      finishBack();
       router.replace({ pathname: '/question', params: buildQuizReturnParams(stored) } as any);
+      finishBack();
       return;
     }
 
-    finishBack();
     router.replace('/learn' as any);
+    finishBack();
   }, [router]);
 
   useEffect(() => {
@@ -1055,13 +1152,23 @@ export default function DeepdiveScreen() {
   const renderDeepdiveCard = (cardText: string, key: string, nestedInsideCaseWrap = false) => {
     const trimmed = cardText.trim();
     const firstLine = trimmed.split('\n')[0] ?? '';
+    const isLearnCard = fromLearn && !nestedInsideCaseWrap;
+    const shellStyle = nestedInsideCaseWrap
+      ? { marginBottom: 10 }
+      : isLearnCard
+        ? learnDeepdiveCardStyle
+        : cardStyle;
+    const bodyTextStyle = isLearnCard ? learnDeepdiveBodyTextStyle : cardBodyTextStyle;
+    const titleTextStyle = isLearnCard ? learnDeepdiveTitleTextStyle : cardTitleTextStyle;
+    const markdownUniformWeight = isLearnCard ? false : true;
+    const markdownLineGap = isLearnCard ? 10 : undefined;
+    const markdownBulletList = isLearnCard;
     /** 先頭行がタブ／パイプ表なら splitCardTitle しない（タイトルをプレーン描画すると列が潰れる） */
     const spreadsheetLikeFirstRow =
       firstLine.includes('\t') ||
       (firstLine.trimStart().startsWith('|') && firstLine.includes('|'));
 
     /** ケースネストでは ThemedView の theme.background（白っぽい）が親の Slate と連続しない */
-    const shellStyle = nestedInsideCaseWrap ? { marginBottom: 10 } : cardStyle;
     const Wrapper = nestedInsideCaseWrap ? View : ThemedView;
 
     if (spreadsheetLikeFirstRow) {
@@ -1070,9 +1177,12 @@ export default function DeepdiveScreen() {
         <Wrapper key={key} style={shellStyle}>
           <MarkdownText
             text={normBody}
-            style={cardBodyTextStyle}
+            style={bodyTextStyle}
             onHighlightPress={handleHighlightPress}
-            uniformWeight
+            applyNames={applyCharacterNames}
+            uniformWeight={markdownUniformWeight}
+            lineGap={markdownLineGap}
+            bulletList={markdownBulletList}
           />
         </Wrapper>
       );
@@ -1083,6 +1193,8 @@ export default function DeepdiveScreen() {
       nestedInsideCaseWrap &&
       title.trim() !== '' &&
       DESCRIPTIVE_CASE_TITLE_BADGE_HEAD_RE.test(title.trim());
+
+    const titleDisplay = applyCharacterNames(isLearnCard ? stripMarkdownBoldMarkers(title) : title);
 
     const titleNode =
       title &&
@@ -1099,12 +1211,12 @@ export default function DeepdiveScreen() {
             marginBottom: body ? 10 : 0,
           }}
           accessibilityRole="text"
-          accessibilityLabel={title}
+          accessibilityLabel={titleDisplay}
         >
-          <ThemedText style={[cardTitleTextStyle, { marginBottom: 0 }]}>{title.trim()}</ThemedText>
+          <ThemedText style={[titleTextStyle, { marginBottom: 0 }]}>{titleDisplay.trim()}</ThemedText>
         </View>
       ) : (
-        <ThemedText style={[cardTitleTextStyle, { marginBottom: body ? 10 : 0 }]}>{title}</ThemedText>
+        <ThemedText style={[titleTextStyle, { marginBottom: body ? 12 : 0 }]}>{titleDisplay.trim()}</ThemedText>
       ));
 
     return (
@@ -1113,9 +1225,12 @@ export default function DeepdiveScreen() {
         {body ? (
           <MarkdownText
             text={body}
-            style={cardBodyTextStyle}
+            style={bodyTextStyle}
             onHighlightPress={handleHighlightPress}
-            uniformWeight
+            applyNames={applyCharacterNames}
+            uniformWeight={markdownUniformWeight}
+            lineGap={markdownLineGap}
+            bulletList={markdownBulletList}
           />
         ) : null}
       </Wrapper>
@@ -1159,34 +1274,39 @@ export default function DeepdiveScreen() {
             </View>
           ) : (
             (() => {
+              const imageKey = resolveDeepdiveImageTagInner(p.value) || p.value.trim();
               const src = resolveImageAsset(p.value);
+              const imgStyle = [
+                { width: '100%' as const, maxHeight: 500, borderRadius: 12 },
+                isDescriptiveQuizDeepdive && {
+                  maxHeight: DESCRIPTIVE_QUIZ_DEEPDIVE_INLINE_MAX_H,
+                },
+              ];
+              const containerStyle = isDescriptiveQuizDeepdive
+                ? {
+                    alignSelf: 'center' as const,
+                    width: `${Math.round(DESCRIPTIVE_QUIZ_DEEPDIVE_SCALE * 100)}%` as `${number}%`,
+                  }
+                : undefined;
               return src ? (
-                <Pressable
-                  key={`${keyPrefix}-img-${i}`}
-                  onPress={() => onImagePress(src)}
-                  accessibilityRole="button"
-                  accessibilityLabel="画像を拡大表示"
-                  style={({ pressed }) => [
-                    { marginBottom: 12 },
-                    isDescriptiveQuizDeepdive && {
-                      alignSelf: 'center' as const,
-                      width: `${Math.round(DESCRIPTIVE_QUIZ_DEEPDIVE_SCALE * 100)}%` as `${number}%`,
-                    },
-                    { opacity: pressed ? 0.88 : 1 },
-                  ]}
-                >
-                  <Image
-                    source={src}
-                    style={[
-                      { width: '100%', maxHeight: 500, borderRadius: 12 },
-                      isDescriptiveQuizDeepdive && {
-                        maxHeight: DESCRIPTIVE_QUIZ_DEEPDIVE_INLINE_MAX_H,
-                      },
-                    ]}
-                    resizeMode="contain"
-                    resizeMethod={isDescriptiveQuizDeepdive && Platform.OS === 'android' ? 'resize' : undefined}
-                  />
-                </Pressable>
+                <View key={`${keyPrefix}-img-${i}`} style={[{ marginBottom: 12 }, containerStyle]}>
+                  <Pressable
+                    onPress={() => onImagePress(src)}
+                    accessibilityRole="button"
+                    accessibilityLabel="画像を拡大表示"
+                    style={({ pressed }) => [{ opacity: pressed ? 0.88 : 1 }]}
+                  >
+                    <Image
+                      source={src}
+                      style={imgStyle}
+                      resizeMode="contain"
+                      resizeMethod={isDescriptiveQuizDeepdive && Platform.OS === 'android' ? 'resize' : undefined}
+                    />
+                  </Pressable>
+                  {isMinpo13DiagramImageKey(imageKey) && minpo602Chunk ? (
+                    <DeepdiveChunkLinkButton onPress={openMinpo602Chunk} />
+                  ) : null}
+                </View>
               ) : (
                 <ThemedView
                   key={`${keyPrefix}-img-${i}`}
@@ -1305,37 +1425,41 @@ export default function DeepdiveScreen() {
               {heroImageKeys.map((imgKey, hi) => {
                 const src = resolveImageAsset(imgKey);
                 if (!src) return null;
+                const heroWrapStyle = [
+                  { width: '100%', alignItems: 'center' as const },
+                  hi < heroImageKeys.length - 1 ? { marginBottom: 12 } : null,
+                ];
+                const heroImgStyle = [
+                  styles.headerHeroImage,
+                  isDescriptiveQuizDeepdive && { maxHeight: DESCRIPTIVE_QUIZ_DEEPDIVE_HERO_MAX_H },
+                ];
+                const heroContainerStyle = isDescriptiveQuizDeepdive
+                  ? ({
+                      width: `${Math.round(DESCRIPTIVE_QUIZ_DEEPDIVE_SCALE * 100)}%` as `${number}%`,
+                    } as const)
+                  : ({ width: '100%' as const } as const);
                 return (
-                  <View
-                    key={`deepdive-header-img-${hi}-${imgKey}`}
-                    style={[
-                      { width: '100%', alignItems: 'center' as const },
-                      hi < heroImageKeys.length - 1 ? { marginBottom: 12 } : null,
-                    ]}
-                  >
-                    <Pressable
-                      onPress={() => openImagePreview(src)}
-                      accessibilityRole="button"
-                      accessibilityLabel="画像を拡大表示"
-                      style={({ pressed }) => [
-                        { opacity: pressed ? 0.88 : 1 },
-                        isDescriptiveQuizDeepdive
-                          ? ({
-                              width: `${Math.round(DESCRIPTIVE_QUIZ_DEEPDIVE_SCALE * 100)}%` as `${number}%`,
-                            } as const)
-                          : { width: '100%' as const },
-                      ]}
-                    >
-                      <Image
-                        source={src}
-                        style={[
-                          styles.headerHeroImage,
-                          isDescriptiveQuizDeepdive && { maxHeight: DESCRIPTIVE_QUIZ_DEEPDIVE_HERO_MAX_H },
-                        ]}
-                        resizeMode="contain"
-                        resizeMethod={isDescriptiveQuizDeepdive && Platform.OS === 'android' ? 'resize' : undefined}
-                      />
-                    </Pressable>
+                  <View key={`deepdive-header-img-${hi}-${imgKey}`} style={heroWrapStyle}>
+                    <View style={heroContainerStyle}>
+                      <Pressable
+                        onPress={() => openImagePreview(src)}
+                        accessibilityRole="button"
+                        accessibilityLabel="画像を拡大表示"
+                        style={({ pressed }) => [{ opacity: pressed ? 0.88 : 1 }]}
+                      >
+                        <Image
+                          source={src}
+                          style={heroImgStyle}
+                          resizeMode="contain"
+                          resizeMethod={
+                            isDescriptiveQuizDeepdive && Platform.OS === 'android' ? 'resize' : undefined
+                          }
+                        />
+                      </Pressable>
+                      {isMinpo13DiagramImageKey(imgKey) && minpo602Chunk ? (
+                        <DeepdiveChunkLinkButton onPress={openMinpo602Chunk} />
+                      ) : null}
+                    </View>
                   </View>
                 );
               })}
@@ -1466,6 +1590,7 @@ export default function DeepdiveScreen() {
                         text={cardText}
                         style={cardBodyTextStyle}
                         onHighlightPress={handleHighlightPress}
+                        applyNames={applyCharacterNames}
                         uniformWeight={false}
                       />
                     </ThemedView>
@@ -1490,6 +1615,7 @@ export default function DeepdiveScreen() {
                         text={cardText}
                         style={cardBodyTextStyle}
                         onHighlightPress={handleHighlightPress}
+                        applyNames={applyCharacterNames}
                         uniformWeight={false}
                       />
                     </ThemedView>
@@ -1614,28 +1740,15 @@ export default function DeepdiveScreen() {
                     style={({ pressed }) => [
                       styles.miniPlayerBtn,
                       pressed && styles.miniPlayerBtnPressed,
-                      !learnScreenMounted && styles.miniPlayerBtnDisabled,
+                      styles.miniPlayerBtnDisabled,
                     ]}
-                    onPress={learnManualPrev}
-                    disabled={!learnScreenMounted}
-                    accessibilityLabel="前へ（学習カード）"
+                    disabled
+                    accessibilityLabel="前へ（深掘り中は学習画面で操作してください）"
                   >
                     <MaterialIcons
                       name="skip-previous"
                       size={22}
-                      color={!learnScreenMounted ? colors.subText : colors.text}
-                      style={webNoHitChild}
-                    />
-                  </Pressable>
-                  <Pressable
-                    style={({ pressed }) => [styles.miniPlayerBtn, pressed && styles.miniPlayerBtnPressed]}
-                    onPress={learnTogglePlay}
-                    accessibilityLabel={learnIsPlaying ? '一時停止' : '再生'}
-                  >
-                    <MaterialIcons
-                      name={learnIsPlaying ? 'pause' : 'play-arrow'}
-                      size={26}
-                      color={colors.primary}
+                      color={colors.subText}
                       style={webNoHitChild}
                     />
                   </Pressable>
@@ -1643,16 +1756,31 @@ export default function DeepdiveScreen() {
                     style={({ pressed }) => [
                       styles.miniPlayerBtn,
                       pressed && styles.miniPlayerBtnPressed,
-                      !learnScreenMounted && styles.miniPlayerBtnDisabled,
+                      styles.miniPlayerBtnDisabled,
                     ]}
-                    onPress={learnManualNext}
-                    disabled={!learnScreenMounted}
-                    accessibilityLabel="次へ（学習カード）"
+                    disabled
+                    accessibilityLabel="再生（深掘り中は学習画面で操作してください）"
+                  >
+                    <MaterialIcons
+                      name="play-arrow"
+                      size={26}
+                      color={colors.subText}
+                      style={webNoHitChild}
+                    />
+                  </Pressable>
+                  <Pressable
+                    style={({ pressed }) => [
+                      styles.miniPlayerBtn,
+                      pressed && styles.miniPlayerBtnPressed,
+                      styles.miniPlayerBtnDisabled,
+                    ]}
+                    disabled
+                    accessibilityLabel="次へ（深掘り中は学習画面で操作してください）"
                   >
                     <MaterialIcons
                       name="skip-next"
                       size={22}
-                      color={!learnScreenMounted ? colors.subText : colors.text}
+                      color={colors.subText}
                       style={webNoHitChild}
                     />
                   </Pressable>
@@ -1688,6 +1816,50 @@ export default function DeepdiveScreen() {
         </Pressable>
       </Modal>
 
+      <Modal visible={!!chunkHotspotModal} transparent animationType="fade" onRequestClose={() => setChunkHotspotModal(null)}>
+        <Pressable style={styles.modalOverlay} onPress={() => setChunkHotspotModal(null)}>
+          <Pressable
+            style={[styles.highlightModal, { backgroundColor: colors.card, borderColor: colors.choiceBorder, maxWidth: 560 }]}
+            onPress={(e) => e.stopPropagation()}
+          >
+            {chunkHotspotModal ? (
+              <>
+                <ThemedText style={[styles.highlightModalTitle, { color: colors.primary }]}>
+                  チャンク｜{chunkHotspotModal.statuteTitle || '関連知識'}
+                </ThemedText>
+                <ScrollView style={{ maxHeight: '80%' }} showsVerticalScrollIndicator>
+                  {(() => {
+                    const chunkSrc = getChunkImageSource(chunkHotspotModal.chunkImage);
+                    return chunkSrc ? (
+                      <Image
+                        source={chunkSrc}
+                        style={{ width: '100%', maxHeight: 480, marginBottom: 12, borderRadius: 8 }}
+                        resizeMode="contain"
+                        accessibilityLabel="602条の期間表"
+                      />
+                    ) : null;
+                  })()}
+                  {chunkHotspotModal.statuteMarkdown?.trim() ? (
+                    <MarkdownText
+                      text={chunkHotspotModal.statuteMarkdown.trim()}
+                      style={{ fontSize: 15, lineHeight: 24, color: colors.text }}
+                      applyNames={applyCharacterNames}
+                      uniformWeight
+                    />
+                  ) : null}
+                </ScrollView>
+                <Pressable
+                  style={[styles.highlightModalClose, { backgroundColor: colors.accent }]}
+                  onPress={() => setChunkHotspotModal(null)}
+                >
+                  <ThemedText style={[styles.highlightModalCloseText, webNoHitChild]}>閉じる</ThemedText>
+                </Pressable>
+              </>
+            ) : null}
+          </Pressable>
+        </Pressable>
+      </Modal>
+
       <Modal visible={!!highlightModal} transparent animationType="fade">
         <Pressable style={styles.modalOverlay} onPress={() => setHighlightModal(null)}>
           <Pressable style={[styles.highlightModal, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]} onPress={(e) => e.stopPropagation()}>
@@ -1695,7 +1867,7 @@ export default function DeepdiveScreen() {
               <>
                 <ThemedText style={[styles.highlightModalTitle, { color: colors.primary }]}>{highlightModal.title}</ThemedText>
                 <ScrollView style={{ maxHeight: 300 }} showsVerticalScrollIndicator>
-                  <MarkdownText text={highlightModal.body} style={{ fontSize: 15, lineHeight: 24, color: colors.text }} uniformWeight />
+                  <MarkdownText text={highlightModal.body} style={{ fontSize: 15, lineHeight: 24, color: colors.text }} applyNames={applyCharacterNames} uniformWeight />
                 </ScrollView>
                 <Pressable style={[styles.highlightModalClose, { backgroundColor: colors.accent }]} onPress={() => setHighlightModal(null)}>
                   <ThemedText style={[styles.highlightModalCloseText, webNoHitChild]}>閉じる</ThemedText>

@@ -6,7 +6,17 @@ import {
   resolveSaikensouronLearnImageKey,
 } from '@/src/deepdiveImages';
 import { resolveDeepdiveImageTagInner, resolveImageAsset } from '@/src/resolveImageAsset';
-import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/learn';
+
+function getLearnDeepdiveTables(): {
+  dd: Record<string, string[] | undefined>;
+  lc: Record<string, string[] | undefined>;
+} {
+  const { LEARN_DEEPDIVE, LEARN_CONTENT } = require('@/src/learn') as {
+    LEARN_DEEPDIVE: Record<string, string[] | undefined>;
+    LEARN_CONTENT: Record<string, string[] | undefined>;
+  };
+  return { dd: LEARN_DEEPDIVE, lc: LEARN_CONTENT };
+}
 
 function firstLine(s: string): string {
   const t = s.trimStart();
@@ -89,6 +99,17 @@ export function kenpouParallelSupplementImageKey(problemNum1Based: number): stri
   if (problemNum1Based < 90 || problemNum1Based > 93) return undefined;
   if (!resolveImageAsset(KENPOU_PARALLEL_SUPPLEMENT_90_93)) return undefined;
   return KENPOU_PARALLEL_SUPPLEMENT_90_93;
+}
+
+/** 見て聞いて覚える: 問番号（0始まり）だけで自動画像キーを返す（兄弟走査なし） */
+export function resolveLearnDeepdiveAutoImageByCardIndex(
+  learnSubject: string | undefined,
+  contentIndex0: number
+): string | undefined {
+  if (!learnSubject?.trim() || contentIndex0 < 0) return undefined;
+  const key = resolveLearnAutoProblemImageKey(learnSubject.trim(), contentIndex0 + 1);
+  if (key && resolveImageAsset(key)) return key;
+  return undefined;
 }
 
 export function mergedDeepdiveHasResolvableImage(merged: string): boolean {
@@ -174,20 +195,21 @@ export function pickAutoLearnDeepdiveImageKey(
 export function pickLearnDeepdiveSharedImageKey(
   bodyTrimmed: string,
   learnSubject?: string | null,
-  options?: { fromLearn?: boolean }
+  options?: { fromLearn?: boolean; /** クイズ復元など。未指定時は全科目走査しない */ allowGlobalSubjectScan?: boolean }
 ): string | undefined {
   const b = bodyTrimmed.trim();
   if (!b) return undefined;
   const fromLearn = options?.fromLearn === true;
-  const dd = LEARN_DEEPDIVE as Record<string, string[] | undefined>;
-  const lc = LEARN_CONTENT as Record<string, string[] | undefined>;
+  /** 学習画面で本文・画像は既に確定している。深掘りで LEARN_DEEPDIVE 全走査しない */
+  if (fromLearn) return undefined;
+  const { dd, lc } = getLearnDeepdiveTables();
   const subjNorm = learnSubject != null ? String(learnSubject).trim() : '';
   const subjectList =
     subjNorm && dd[subjNorm]
       ? [subjNorm]
-      : fromLearn
-        ? []
-        : Object.keys(dd);
+      : options?.allowGlobalSubjectScan === true
+        ? Object.keys(dd)
+        : [];
   for (const subj of subjectList) {
     const arr = dd[subj];
     if (!Array.isArray(arr)) continue;

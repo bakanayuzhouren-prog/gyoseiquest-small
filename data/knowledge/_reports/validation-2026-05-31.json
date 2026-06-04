@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-05-31T10:43:45.054Z",
+  "stats": {
+    "quiz": 469,
+    "learn": 2131,
+    "written": 8,
+    "skipped": 2592,
+    "warnings": 2
+  },
+  "warnings": [
+    {
+      "file": "data/knowledge/quiz/民法/債権各論/q005.md",
+      "ruleId": "senkyoten-192",
+      "message": "192条/即時取得の「占有を始めた」に占有改定は含まれない（最判昭35.2.11）。",
+      "severity": "warning"
+    },
+    {
+      "file": "data/knowledge/learn/民法物権/a031.md",
+      "ruleId": "senkyoten-192",
+      "message": "192条/即時取得の「占有を始めた」に占有改定は含まれない（最判昭35.2.11）。",
+      "severity": "warning"
+    }
+  ]
+}

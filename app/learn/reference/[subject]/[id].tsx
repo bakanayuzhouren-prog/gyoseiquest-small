@@ -4,7 +4,7 @@ import { useCharacter } from '@/src/context/CharacterContext';
 import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import { kenpouParallelSupplementImageKey, pickAutoLearnDeepdiveImageKey } from '@/src/deepdiveLearnAutoImage';
-import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/learn';
+import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/learnExports';
 import { resolveDeepdiveImageTagInner, resolveImageAsset } from '@/src/resolveImageAsset';
 import { SUBJECTS } from '@/src/questions';
 import { applyTTSRules } from '@/utils/tts-rules';

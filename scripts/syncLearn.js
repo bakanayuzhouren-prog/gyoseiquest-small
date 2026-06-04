@@ -554,11 +554,15 @@ async function sync() {
           const sheetRowNum = i + 2;
           let deepPush = usedBAsMainBody
             ? (row[0] && String(row[0]).trim() ? String(row[0]).trim() : '')
-            : currentGroupHasDeepDive
-              ? currentGroupDeepDiveContent
-              : row[1]
+            : currentSubject === '民法物権'
+              ? row[1]
                 ? fmtCell('B', row[1], sheetRowNum)
-                : '';
+                : ''
+              : currentGroupHasDeepDive
+                ? currentGroupDeepDiveContent
+                : row[1]
+                  ? fmtCell('B', row[1], sheetRowNum)
+                  : '';
           if (adminLawLearnAOnly && !String(deepPush || '').trim() && currentGroupMDeepDiveContent) {
             deepPush = currentGroupMDeepDiveContent;
           } else if (adminLawLearnAOnly && !String(deepPush || '').trim() && row[12]) {
@@ -569,11 +573,15 @@ async function sync() {
             ? row[5]
               ? fmtCell('F', row[5], sheetRowNum)
               : ''
-            : currentGroupHasDeepDive
-              ? currentGroupFExplain
-              : row[5]
+            : currentSubject === '民法物権'
+              ? row[5]
                 ? fmtCell('F', row[5], sheetRowNum)
-                : '';
+                : ''
+              : currentGroupHasDeepDive
+                ? currentGroupFExplain
+                : row[5]
+                  ? fmtCell('F', row[5], sheetRowNum)
+                  : '';
           if (!learnFExplain[currentSubject]) learnFExplain[currentSubject] = [];
           learnFExplain[currentSubject].push(fPush);
           if (!learnStatuteRefs[currentSubject]) learnStatuteRefs[currentSubject] = [];

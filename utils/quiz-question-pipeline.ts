@@ -1,16 +1,25 @@
 import { BONUS_QUESTIONS } from '@/src/bonus_questions';
 import { SUBJECTS } from '@/src/questions';
+import { TAC_KISO_QUIZ_QUESTIONS } from '@/src/tac_kiso_quiz_questions';
 
-/** SUBJECTS とボーナス問題をマージ（問題を解く画面と同一） */
+function mergeFieldQuestions(
+  base: Record<string, any[]>,
+  extra: Record<string, any[]>,
+): Record<string, any[]> {
+  const merged: Record<string, any[]> = { ...base };
+  Object.keys(extra).forEach((k) => {
+    merged[k] = [...(merged[k] || []), ...(extra[k] || [])];
+  });
+  return merged;
+}
+
+/** SUBJECTS ＋ TAC通常問題 ＋ ボーナス問題（問題を解く画面と同一） */
 export function getMergedSubjectData(subject: string | undefined): Record<string, any[]> {
   if (!subject) return {};
   const main = (SUBJECTS as any)[subject] || {};
+  const tac = (TAC_KISO_QUIZ_QUESTIONS as any)[subject] || {};
   const bonus = (BONUS_QUESTIONS as any)[subject] || {};
-  const merged: Record<string, any[]> = { ...main };
-  Object.keys(bonus).forEach((k) => {
-    merged[k] = [...(merged[k] || []), ...bonus[k]];
-  });
-  return merged;
+  return mergeFieldQuestions(mergeFieldQuestions(main, tac), bonus);
 }
 
 export function pickQuestionsForField(

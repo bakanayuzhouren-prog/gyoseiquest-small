@@ -5,8 +5,11 @@ import { ActivityIndicator, Alert, Animated, Image, Modal, PanResponder, Platfor
 
 import { DiagramModal } from '@/components/diagram-modal';
 import { MarkdownText } from '@/components/markdown-text';
+import { PersonFlowDiagramModal } from '@/components/person-flow-diagram-modal';
+import { SaikokuCompareModal } from '@/components/saikoku-compare-modal';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import { RESOURCES } from '@/src/questions';
 import { mergeQuizResourcePages, parseQuizRefIds } from '@/utils/quizResources';
@@ -34,6 +37,12 @@ import { parseComboChoiceParts, splitSlotOptionParts } from '@/utils/slotNormali
 import { getQuestionStats, getQuestionTextHash, reconcileAllAttemptsAsCorrect } from '@/utils/question-stats';
 import { CIVIL_PRECEDENT_IMAGES } from '@/src/civilPrecedentImages';
 import { resolveMondaibunnGazoItems } from '@/src/mondaibunn-gazou';
+import { extractQuestionCast } from '@/src/castRegistry';
+import { isMinpoPersonFlowField, isPersonFlowEligible, resolvePersonFlowDiagram } from '@/src/personFlowDiagram';
+import {
+  pickCompareTable,
+  resolveCompareTableImage,
+} from '@/src/compareTables';
 
 /** Web: 蛍光ペン ON 時のカーソル（黄色マーカー形、ホットスポットは先端付近） */
 const HIGHLIGHTER_CURSOR_SVG =
@@ -276,6 +285,7 @@ export default function QuestionScreen() {
     (s: string) => (s || '').replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').trim(),
     []
   );
+  const { applyCharacterNames, characterMap } = useCharacter();
 
   const [questionStats, setQuestionStats] = useState<{
     correct: number;
@@ -762,7 +772,7 @@ export default function QuestionScreen() {
                       >
                         {para.segments.map((seg, si) => (
                           <ThemedText key={si} style={segmentStyle(seg)}>
-                            {questionLineWithUnderlineNodes(seg.text, `d-${pi}-${si}`)}
+                            {questionLineWithUnderlineNodes(applyCharacterNames(seg.text), `d-${pi}-${si}`)}
                           </ThemedText>
                         ))}
                       </ThemedText>
@@ -825,7 +835,7 @@ export default function QuestionScreen() {
                           : undefined
                       }
                     >
-                      {questionLineWithUnderlineNodes(p.text, `web-${i}`)}
+                      {questionLineWithUnderlineNodes(applyCharacterNames(p.text), `web-${i}`)}
                     </ThemedText>
                   ) : null
                 )}
@@ -891,6 +901,7 @@ export default function QuestionScreen() {
                   {hasMarkdown ? (
                     <MarkdownText
                       text={seg}
+                      applyNames={applyCharacterNames}
                       style={[
                         styles.questionText,
                         isTashiQuestion && styles.questionTextTashi,
@@ -923,7 +934,7 @@ export default function QuestionScreen() {
                             if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
                           } : undefined}
                         >
-                          {questionLineWithUnderlineNodes(choiceLine.rest, `ch-rest-${idx}`)}
+                          {questionLineWithUnderlineNodes(applyCharacterNames(choiceLine.rest), `ch-rest-${idx}`)}
                         </ThemedText>
                       </View>
                     </View>
@@ -934,7 +945,7 @@ export default function QuestionScreen() {
                         if (e.nativeEvent.lines.length >= 15) setIsLongText(true);
                       } : undefined}
                     >
-                      {questionLineWithUnderlineNodes(seg, `stem-${idx}`)}
+                      {questionLineWithUnderlineNodes(applyCharacterNames(seg), `stem-${idx}`)}
                     </ThemedText>
                   )}
                   </Pressable>
@@ -1056,6 +1067,24 @@ export default function QuestionScreen() {
           >
             <ThemedText style={[styles.questionMarkText, questionMark === 'x' && { color: '#fff' }]}>×</ThemedText>
           </Pressable>
+          {showCompareTable ? (
+            <Pressable
+              accessibilityLabel={compareDef?.title ?? '比較表'}
+              onPress={() => setSaikokuCompareModalVisible(true)}
+              style={[styles.mondaibunnGazoOpenButton, { borderColor: '#EF6C00', backgroundColor: '#FFF3E0' }]}
+            >
+              <ThemedText style={[styles.mondaibunnGazoOpenButtonText, { color: '#E65100' }]}>比較表</ThemedText>
+            </Pressable>
+          ) : null}
+          {showPersonFlowButton ? (
+            <Pressable
+              accessibilityLabel="登場人物関係図"
+              onPress={() => setPersonFlowModalVisible(true)}
+              style={[styles.mondaibunnGazoOpenButton, { borderColor: '#5C6BC0', backgroundColor: '#E8EAF6' }]}
+            >
+              <ThemedText style={[styles.mondaibunnGazoOpenButtonText, { color: '#3949AB' }]}>登場人物</ThemedText>
+            </Pressable>
+          ) : null}
           {mondaibunnGazoItems.length > 0 ? (
             <Pressable
               accessibilityLabel="問題文の模範図"
@@ -1412,18 +1441,53 @@ export default function QuestionScreen() {
   // 人の関係がある問題（A,B,C等）→ 図モード表示
   const isDiagramEligible = useMemo(() => {
     const text = (question?.text || '') + (Array.isArray(question?.choices) ? question.choices.join('') : '');
-    return (
-      /[A-Z][、,]?\s*[A-Z][、,]?\s*[A-Z]/.test(text) ||
-      /[A-Z]は.*[A-Z]から/.test(text) ||
-      /[A-Z]が.*[A-Z].*を/.test(text) ||
-      /保証|譲渡|借り受け|債務|債権/.test(text)
-    );
+    return isPersonFlowEligible(text);
   }, [question?.text, question?.choices]);
 
   const [diagramModalVisible, setDiagramModalVisible] = useState(false);
   const [diagramMode, setDiagramMode] = useState<'self' | 'model'>('self');
 
   const [mondaibunnGazoModalVisible, setMondaibunnGazoModalVisible] = useState(false);
+  const [personFlowModalVisible, setPersonFlowModalVisible] = useState(false);
+  const [saikokuCompareModalVisible, setSaikokuCompareModalVisible] = useState(false);
+
+  const showPersonFlowButton = useMemo(
+    () => subject === '民法' && !!field && isMinpoPersonFlowField(field),
+    [subject, field],
+  );
+
+  const personFlowDiagram = useMemo(
+    () =>
+      subject && field && question?.text != null
+        ? resolvePersonFlowDiagram({
+            mode: 'quiz',
+            subject,
+            field,
+            text: question.text,
+            index: questionIndex ?? 0,
+            applyNames: applyCharacterNames,
+          })
+        : null,
+    [subject, field, question?.text, questionIndex, applyCharacterNames],
+  );
+
+  const questionCast = useMemo(
+    () => (question?.text ? extractQuestionCast(question.text, characterMap) : []),
+    [question?.text, characterMap],
+  );
+
+  const compareDef = useMemo(
+    () =>
+      question?.text
+        ? pickCompareTable(question.text, { subject, field })
+        : undefined,
+    [question?.text, subject, field],
+  );
+  const showCompareTable = !!compareDef;
+  const compareTableImage = useMemo(
+    () => resolveCompareTableImage(compareDef?.imageKey),
+    [compareDef?.imageKey],
+  );
 
   const mondaibunnGazoItems = useMemo(
     () =>
@@ -1861,8 +1925,8 @@ export default function QuestionScreen() {
                     }}
                   >
                     <ThemedText style={[styles.comboTableNum, { color: colors.text }]}>{idx + 1}.</ThemedText>
-                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{item.partA}</ThemedText>
-                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{item.partB}</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{applyCharacterNames(item.partA)}</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{applyCharacterNames(item.partB)}</ThemedText>
                   </Pressable>
                 ))}
               </View>
@@ -1992,7 +2056,7 @@ export default function QuestionScreen() {
                 const label = String(origIdx + 1);
                 const isSelected = reorderSelection.includes(origIdx);
                 const selectedPos = reorderSelection.indexOf(origIdx) + 1;
-                const displayText = (item.text || '').replace(/※/g, '');
+                const displayText = applyCharacterNames((item.text || '').replace(/※/g, ''));
                 return (
                   <Pressable
                     key={origIdx}
@@ -2101,8 +2165,8 @@ export default function QuestionScreen() {
                     }}
                   >
                     <ThemedText style={[styles.comboTableNum, { color: colors.text }]}>{idx + 1}.</ThemedText>
-                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{item.partA}</ThemedText>
-                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{item.partB}</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{applyCharacterNames(item.partA)}</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{applyCharacterNames(item.partB)}</ThemedText>
                   </Pressable>
                 ))}
               </View>
@@ -2170,7 +2234,7 @@ export default function QuestionScreen() {
             if (!choiceObj || !choiceObj.text) return null; // Guard against null/empty choices
 
             // [NEW] Display Logic: Strip '※'
-            const displayText = choiceObj.text.replace(/※/g, '');
+            const displayText = applyCharacterNames(choiceObj.text.replace(/※/g, ''));
             // In Bonus mode, they are enabled, so no disabled logic based on ※ anymore
             const isDisabled = false;
             const isDimmed = dimmedIndices.includes(index);
@@ -2581,6 +2645,22 @@ export default function QuestionScreen() {
             </View>
           </View>
         </Modal>
+
+        <SaikokuCompareModal
+          visible={saikokuCompareModalVisible}
+          onClose={() => setSaikokuCompareModalVisible(false)}
+          imageSource={compareTableImage}
+          title={compareDef?.title}
+          body={compareDef?.body}
+          caption={compareDef?.caption}
+        />
+
+        <PersonFlowDiagramModal
+          visible={personFlowModalVisible}
+          onClose={() => setPersonFlowModalVisible(false)}
+          item={personFlowDiagram}
+          castMembers={questionCast}
+        />
 
         <DiagramModal
           visible={diagramModalVisible}

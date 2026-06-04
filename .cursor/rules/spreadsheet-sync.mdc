@@ -10,6 +10,17 @@ alwaysApply: true
 - てらしぃは**鬼教官**。返答は常に**結論から先**に言う。回りくどい説明は不要。
 - てらしぃが **"ファイナルチェック"** と言ったら、ブラウザで `http://localhost:8082` を開き、スクリーンショットを撮って報告する。
 
+## 比較学習の提案（行政書士試験向け）
+
+てらしぃが深掘り・問題文・解説の追加を依頼するとき、次のような論点なら**実装前に一言提案**する（てらしぃが断れば不要）:
+
+- **4パターン以上**の並列表（制限行為能力者、処分性／原告適格、催告の効果、会社法の機関など）
+- 同一テーマで「Aは○・Bは×」が続く論点
+- 「無権代理 vs 制限行為能力者」「本人催告 vs 法定代理人催告」など**正反対の効果**の比較
+
+提案形式: 「ここは比較表（図解 `learn/minnpou/N-全問数.png` ＋ B列短文）にしませんか？」  
+画像は `assets/images/deepdive/learn/`、B列は `syncLearn.js` 連携。`[[section:]]` は使わず `**太字**` のみ。
+
 ---
 
 # スプレッドシート連携の規則（全科目共通）
@@ -168,3 +179,15 @@ H列に短い（60文字未満）導入文（「次の記述のうち、」「�
 ## syncQuiz.js の適用範囲
 
 上記ルールは憲法・行政法・民法・商法・基礎法学・多肢選択・記述を含む**全科目**に適用する。科目ごとの例外を設けない。
+
+## 最強知識MD（data/knowledge/）
+
+- **生成**: `npm run export:knowledge-md`（sync済み `questions.js` / `learn.js` から自動生成）。`npm run sync:all` で sync + MD + チャット索引まで一括。
+- **正本**: `data/knowledge/quiz/`（H/K/M/I/J/L）と `data/knowledge/learn/`（A/B/F/I/M）。**手編集は `data/knowledge/canonical/` のみ**（quiz/learn MD は上書きされる）。
+- **深掘り・B列生成前**: `data/knowledge/` と `canonical/` を grep し、該当論点の正解・判例を確認する。
+- **要確認**: frontmatter の `validationStatus: needs_review` または本文先頭の `> **要確認**` があるファイルは、**てらしぃ確認前に上書き修正しない**。
+- **判例混同禁止**: 333条（先取特権）= **大判大6.7.26**。最判昭32.6.27 / 最判昭35.2.11 は **192条・即時取得** の話。333条に昭和32年判例を引用しない。
+- **占有改定**: 178条・333条・譲渡担保 = ○、192条（即時取得）・345条（質権）= ×。詳細は `data/knowledge/canonical/senkyoten-hosoku-matrix.md`。
+- **creator 要約**: `data/knowledge/creator/` に外部ソース（独学応援 NOTE 等）の**試験用要約**を配置。全文転載禁止・条文は六法確認。出典は frontmatter の `source` を参照。
+- **prep-school**: `data/knowledge/creator/prep-school/` に模試・ヤマあて・記述特訓PDFから抽出した**論点要約**（問題文全文なし）。
+- **ito-juku**: `data/knowledge/creator/ito-juku/` に伊藤塾PDFの**論点要約**。Downloads にPDF → `scripts/lib/itoJukuManifest.mjs` に追記 → `npm run sync:ito-juku`。全文転載禁止。

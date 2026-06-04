@@ -2,7 +2,7 @@ import { KISO_HOUGAKU_SUMMARY_MARKDOWN } from '@/src/content/kisoHougakuSummary'
 import { TEITOUKEN_TEXTBOOK_MARKDOWN } from '@/src/content/teitoukenTextbookMarkdown';
 import { CHAT_MARKDOWN_CHUNKS } from '@/src/generated/chatMarkdownChunks';
 import { PIN_CASES } from '@/src/pinData';
-import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/learn';
+import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/learnExports';
 // @ts-ignore
 import { LINE_HISTORY } from '@/src/data/lineHistory';
 
@@ -82,6 +82,29 @@ const CHAT_TOPIC_BRIEFS: { triggers: string[]; title: string; text: string }[] =
       '※但書、手続の簡素化、通知、公表、大量処分等の特例は、参考にある条文・解説の範囲に限って補足してください。',
     ].join('\n'),
   },
+  {
+    triggers: ['占有改定の要件', '占有改定とは', '183条 占有改定', '占有改定 183'],
+    title: '論点ガイド：占有改定の要件（民法183条）',
+    text: [
+      '## 占有改定の要件（民法183条）',
+      '',
+      '**条文**',
+      '「代理人が自己の占有物を以後**本人のために占有する意思を表示**したときは、本人は、これによって**占有権を取得**する。」',
+      '',
+      '### 要件',
+      '1. **代理人**：引き続き物を占有する者（売主・譲渡担保設定者など）',
+      '2. **本人**：占有権を取得する者（買主・譲渡担保権者など）',
+      '3. **自己の占有物**：代理人が占有している動産',
+      '4. **意思表示**：「以後本人のために占有する」旨（現実の引渡し不要）',
+      '',
+      '### 効果',
+      '占有権が本人に移転し、**178条の「引渡し」**に含まれる（対抗要件・譲渡担保の引渡し等）。',
+      '',
+      '### 各条との関係（別論点）',
+      '- 178条・333条・譲渡担保：占有改定も「引渡し」に**含む**',
+      '- 192条（即時取得）・345条（質権）：占有改定は**含まない／不可**',
+    ].join('\n'),
+  },
 ];
 
 function normalizeQueryForMatch(s: string): string {
@@ -120,6 +143,9 @@ function expandSearchTokens(trimmed: string): { fullNormalized: string; tokens: 
   }
   if (fullNormalized.includes('理由の提示') || fullNormalized.includes('理由提示')) {
     ['行政手続法', '不利益処分', '申請', '拒否', '第8条', '却下', '不許可'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (fullNormalized.includes('占有改定')) {
+    ['183条', '第183条', '意思を表示', '占有権', '178条'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
   }
 
   let m: RegExpExecArray | null;
@@ -176,6 +202,28 @@ function scoreHaystack(haystackNorm: string, tokens: string[], fullNormalized: s
   return s;
 }
 
+/** 複合クエリ（占有改定＋要件等）で無関係ヒットを下げ、関連チャンクを上げる */
+function queryCoherenceBonus(fullNormalized: string, haystackNorm: string): number {
+  let b = 0;
+  const wantsSenkyoten = fullNormalized.includes('占有改定');
+  const wantsYoken = fullNormalized.includes('要件');
+  const hasSenkyoten = haystackNorm.includes('占有改定') || haystackNorm.includes('183条');
+  const hasYoken =
+    haystackNorm.includes('要件') ||
+    haystackNorm.includes('183条') ||
+    haystackNorm.includes('意思を表示');
+
+  if (wantsSenkyoten && wantsYoken) {
+    if (hasSenkyoten && hasYoken) b += 12;
+    else if (hasYoken && !hasSenkyoten) b -= 10;
+    else if (hasSenkyoten) b += 4;
+  } else if (wantsSenkyoten && hasSenkyoten) {
+    b += 4;
+  }
+  if (fullNormalized.includes('183') && haystackNorm.includes('183条')) b += 6;
+  return b;
+}
+
 function pushCandidate(
   list: ScoredKnowledgeChunk[],
   source: string,
@@ -190,7 +238,7 @@ function pushCandidate(
   if (!t) return;
   const slice = t.length > maxLen ? `${t.slice(0, maxLen)}…` : t;
   const low = normalizeQueryForMatch(slice);
-  const sc = scoreHaystack(low, tokens, fullNormalized) + extraScore;
+  const sc = scoreHaystack(low, tokens, fullNormalized) + extraScore + queryCoherenceBonus(fullNormalized, low);
   if (sc <= 0) return;
   list.push({ source, title, text: slice, score: sc });
 }
@@ -355,7 +403,17 @@ export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledg
   );
 
   for (const row of CHAT_MARKDOWN_CHUNKS) {
-    pushCandidate(candidates, `MD:${row.path.replace(/\\/g, '/')}`, row.title || row.path, row.text, tokens, fullNormalized, 3500);
+    const rel = row.path.replace(/\\/g, '/');
+    const isKnowledge = rel.startsWith('data/knowledge/');
+    const isCreator = rel.includes('/creator/');
+    const subjectMatch = isKnowledge ? rel.match(/data\/knowledge\/(?:quiz|learn|creator)\/([^/]+)/) : null;
+    const sourceLabel = isCreator
+      ? `知識MD · ${subjectMatch?.[1] || 'creator'}（要約）`
+      : isKnowledge
+        ? `知識MD · ${subjectMatch?.[1] || 'canonical'}`
+        : `MD:${rel}`;
+    const boost = isKnowledge ? (isCreator ? 4 : 3) : 0;
+    pushCandidate(candidates, sourceLabel, row.title || row.path, row.text, tokens, fullNormalized, 3500, boost);
   }
 
   try {

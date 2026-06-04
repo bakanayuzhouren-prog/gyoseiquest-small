@@ -43,6 +43,8 @@ let _quizDeepdiveSource = '';
 let _screenTitle = '';
 /** 見て聞いて覚えるから開いたときのカード番号（0 始まり）。Web 戻り URL 失敗時の合成用 */
 let _learnReturnIndex: number | null = null;
+/** 見て聞いて覚える: シート上の問 index（0 始まり）。深掘りで兄弟走査せず問番号画像を付ける */
+let _learnContentIndex: number | null = null;
 /** 学習を開いていた URL（pathname + search）。静的書き出しでそのまま router.replace に渡す */
 let _learnReturnPath = '';
 
@@ -56,13 +58,41 @@ export type LearnDeepdiveReturnCursor = {
 };
 
 let _learnDeepdiveReturnCursor: LearnDeepdiveReturnCursor | null = null;
+/** 深掘り表示中は currentIndex の自動追従を止める（開いた瞬間の index で戻す） */
+let _learnDeepdiveCursorFrozen = false;
 
 export function setLearnDeepdiveReturnCursor(c: LearnDeepdiveReturnCursor | null): void {
+  if (_learnDeepdiveCursorFrozen && c !== null) return;
   _learnDeepdiveReturnCursor = c;
 }
 
 export function getLearnDeepdiveReturnCursor(): LearnDeepdiveReturnCursor | null {
   return _learnDeepdiveReturnCursor;
+}
+
+export function isLearnDeepdiveReturnCursorFrozen(): boolean {
+  return _learnDeepdiveCursorFrozen;
+}
+
+/** もっと深掘るを開く直前: 当時の index を固定し、裏の自動読み進めで上書きしない */
+export function publishLearnDeepdiveReturnCursorForOpen(c: LearnDeepdiveReturnCursor): void {
+  _learnDeepdiveReturnCursor = c;
+  _learnDeepdiveCursorFrozen = true;
+}
+
+export function unfreezeLearnDeepdiveReturnCursor(): void {
+  _learnDeepdiveCursorFrozen = false;
+}
+
+/** 見て聞いて覚える画面がフォーカス中か（深掘り表示中は false）。学習 TTS の誤再生防止用 */
+let _learnScreenPointerActive = true;
+
+export function setLearnScreenPointerActive(active: boolean): void {
+  _learnScreenPointerActive = active;
+}
+
+export function isLearnScreenPointerActive(): boolean {
+  return _learnScreenPointerActive;
 }
 
 /** Web: /learn/... の戻り URL に index を上書き（query がなければ付与） */
@@ -76,6 +106,33 @@ export function applyLearnIndexToLearnReturnPath(pathPrefer: string, index: numb
   const qs = params.toString();
   return qs ? `${pathnameOnly}?${qs}` : `${pathnameOnly}?index=${index}`;
 }
+
+/** `/learn/民法総則?index=2` 等を Expo Router の pathname + params に変換（Web の replace 文字列失敗対策） */
+export function parseLearnReturnHref(
+  href: string
+): { pathname: '/learn/[subject]'; params: Record<string, string> } | null {
+  const raw = href.trim();
+  if (!raw.startsWith('/learn/')) return null;
+  const q = raw.indexOf('?');
+  const pathPart = q >= 0 ? raw.slice(0, q) : raw;
+  const queryPart = q >= 0 ? raw.slice(q + 1) : '';
+  const segments = pathPart.split('/').filter(Boolean);
+  if (segments.length < 2 || segments[0] !== 'learn') return null;
+  try {
+    const subject = decodeURIComponent(segments[1]);
+    if (!subject) return null;
+    const params: Record<string, string> = { subject };
+    if (queryPart) {
+      const sp = new URLSearchParams(queryPart);
+      sp.forEach((v, k) => {
+        params[k] = v;
+      });
+    }
+    return { pathname: '/learn/[subject]', params };
+  } catch {
+    return null;
+  }
+}
 export function setDeepdiveParams(
   content: string,
   choiceLabel: string,
@@ -87,6 +144,8 @@ export function setDeepdiveParams(
     fExplain?: string;
     learnRelatedStatutesContent?: string;
     learnSubject?: string;
+    /** 見て聞いて覚える: LEARN_DEEPDIVE / LEARN_CONTENT の行 index（0 始まり） */
+    learnContentIndex?: number;
     /** 見て聞いて覚えるで開いた直前のカード index（オプション） */
     learnReturnIndex?: number;
     quizSubject?: string;
@@ -149,6 +208,10 @@ export function setDeepdiveParams(
   _learnReturnIndex =
     typeof options?.learnReturnIndex === 'number' && options.learnReturnIndex >= 0
       ? Math.floor(options.learnReturnIndex)
+      : null;
+  _learnContentIndex =
+    typeof options?.learnContentIndex === 'number' && options.learnContentIndex >= 0
+      ? Math.floor(options.learnContentIndex)
       : null;
   _learnReturnPath = '';
 
@@ -227,6 +290,10 @@ export function setDeepdiveParams(
       /* noop */
     }
     try {
+      if (_fromLearn) {
+        sessionStorage.removeItem(WEB_SESSION_KEY);
+        sessionStorage.removeItem(QUIZ_DEEPDIVE_META_KEY);
+      }
       const payload = JSON.stringify({
         content: _content,
         choiceLabel: _choiceLabel,
@@ -237,6 +304,7 @@ export function setDeepdiveParams(
         fExplain: _fExplain,
         learnRelatedStatutesContent: _learnRelatedStatutesContent,
         learnSubject: _learnSubject,
+        learnContentIndex: _learnContentIndex,
         learnReturnIndex: _learnReturnIndex,
         learnReturnPath: _learnReturnPath,
         quizSubject: _quizSubject,
@@ -365,10 +433,14 @@ export function hydrateDeepdiveFromSessionIfEmpty(): void {
   if (_content.trim()) return;
   if (Platform.OS !== 'web' || typeof sessionStorage === 'undefined') return;
   try {
+    const learnBackRaw = sessionStorage.getItem(LEARN_BACK_META_KEY);
     const raw = sessionStorage.getItem(WEB_SESSION_KEY);
     if (!raw) return;
     const p = JSON.parse(raw) as Record<string, unknown>;
     if (typeof p.content !== 'string' || !p.content.trim()) return;
+    /** 学習画面から開く直前に残ったクイズ用巨大 session を復元しない */
+    if (learnBackRaw && p.fromLearn !== true) return;
+    if (learnBackRaw && typeof p.content === 'string' && p.content.length > 80_000) return;
     _content = p.content;
     _choiceLabel = typeof p.choiceLabel === 'string' ? p.choiceLabel : '';
     _fromLearn = p.fromLearn === true;
@@ -383,6 +455,11 @@ export function hydrateDeepdiveFromSessionIfEmpty(): void {
       typeof p.learnReturnIndex === 'number' && p.learnReturnIndex >= 0
         ? Math.floor(p.learnReturnIndex)
         : null;
+    _learnContentIndex =
+      typeof (p as { learnContentIndex?: unknown }).learnContentIndex === 'number' &&
+      (p as { learnContentIndex: number }).learnContentIndex >= 0
+        ? Math.floor((p as { learnContentIndex: number }).learnContentIndex)
+        : _learnContentIndex;
     _learnReturnPath =
       typeof p.learnReturnPath === 'string' && p.learnReturnPath.trim().startsWith('/')
         ? p.learnReturnPath.trim()
@@ -427,8 +504,36 @@ export function hydrateDeepdiveFromSessionIfEmpty(): void {
   }
 }
 
+/** 戻る・セッションクリア時にメモリ上の深掘り状態も消す（クイズ巨大本文が learn 経路に残るのを防ぐ） */
+export function resetDeepdiveMemoryState(): void {
+  _content = '';
+  _choiceLabel = '';
+  _fromLearn = false;
+  _choiceCorrect = null;
+  _beginnerContent = '';
+  _peripheralContent = '';
+  _fExplain = '';
+  _learnRelatedStatutesContent = '';
+  _learnSubject = '';
+  _learnReturnIndex = null;
+  _learnContentIndex = null;
+  _learnReturnPath = '';
+  _quizSubject = '';
+  _quizField = '';
+  _quizMode = '';
+  _quizShuffle = '';
+  _quizQuestionIndex = '';
+  _quizReturnTo = null;
+  _quizChoiceIndex = null;
+  _quizDeepdiveSource = '';
+  _screenTitle = '';
+  _learnDeepdiveReturnCursor = null;
+  unfreezeLearnDeepdiveReturnCursor();
+}
+
 /** Web: 解説へ戻ったあとリロードで古い深掘りが復活しないようにする */
 export function clearDeepdiveSessionWeb(): void {
+  resetDeepdiveMemoryState();
   if (Platform.OS !== 'web' || typeof sessionStorage === 'undefined') return;
   try {
     sessionStorage.removeItem(WEB_SESSION_KEY);
@@ -451,6 +556,7 @@ export function getDeepdiveParams(): {
   fExplain: string;
   learnRelatedStatutesContent: string;
   learnSubject: string;
+  learnContentIndex: number | null;
   learnReturnIndex: number | null;
   learnReturnPath: string;
   quizSubject: string;
@@ -473,6 +579,7 @@ export function getDeepdiveParams(): {
     fExplain: _fExplain,
     learnRelatedStatutesContent: _learnRelatedStatutesContent,
     learnSubject: _learnSubject,
+    learnContentIndex: _learnContentIndex,
     learnReturnIndex: _learnReturnIndex,
     learnReturnPath: _learnReturnPath,
     quizSubject: _quizSubject,

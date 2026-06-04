@@ -1,4 +1,5 @@
 import { Link } from 'expo-router';
+import type { Href } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
@@ -89,10 +90,10 @@ export default function HomeScreen() {
             </ThemedText>
           </Pressable>
         </Link>
-        <Link href="/constitution" asChild>
+        <Link href={'/textbook' as Href} asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
-              ⑩憲法を学ぶ
+              ⑩教科書
             </ThemedText>
           </Pressable>
         </Link>

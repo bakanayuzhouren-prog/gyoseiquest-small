@@ -13,9 +13,10 @@ const ROOTS = [
   path.join(ROOT, 'data', 'pin'),
   path.join(ROOT, 'data', 'learn'),
   path.join(ROOT, 'data', 'bonus'),
+  path.join(ROOT, 'data', 'knowledge'),
 ];
 
-const SKIP_DIR = new Set(['node_modules', '.git', 'archive']);
+const SKIP_DIR = new Set(['node_modules', '.git', 'archive', '_reports']);
 
 /** @param {string} dir */
 function collectMarkdownFiles(dir, acc = []) {
@@ -39,6 +40,20 @@ function collectMarkdownFiles(dir, acc = []) {
 function firstHeading(md) {
   const m = md.match(/^#\s+(.+)$/m);
   return m ? m[1].trim() : '';
+}
+
+/**
+ * data/knowledge/ 用: YAML frontmatter を除去し tags 行だけ本文先頭に残す
+ * @param {string} raw
+ * @param {string} rel
+ */
+function prepareMarkdownBody(raw, rel) {
+  if (!rel.replace(/\\/g, '/').startsWith('data/knowledge/')) return raw;
+  const fm = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+  if (!fm) return raw;
+  const tagsLine = fm[1].match(/^tags:\s*(.+)$/m);
+  const prefix = tagsLine ? `tags: ${tagsLine[1].trim()}\n\n` : '';
+  return prefix + fm[2];
 }
 
 /** @param {string} text */
@@ -71,6 +86,7 @@ function main() {
     const rel = path.relative(ROOT, file).replace(/\\/g, '/');
     let raw = fs.readFileSync(file, 'utf8');
     raw = raw.replace(/\r\n/g, '\n');
+    raw = prepareMarkdownBody(raw, rel);
     const title = firstHeading(raw) || rel;
     for (const chunk of splitChunks(raw)) {
       rows.push({ path: rel, title, text: chunk });
