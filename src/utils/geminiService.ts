@@ -230,6 +230,72 @@ ${explain ? `\n【参考: 既存解説】\n${explain}` : ''}
   return data.candidates?.[0]?.content?.parts?.[0]?.text ?? '説明を取得できませんでした。';
 };
 
+/** AI先生: 誤答から復習すべき知識と補講を生成 */
+export const generateWeaknessLesson = async (
+  apiKey: string,
+  params: {
+    subject: string;
+    field: string;
+    topic: string;
+    questionText: string;
+    selectedText?: string;
+    correctText?: string;
+    explanation?: string;
+    mistakeCount?: number;
+  }
+): Promise<string> => {
+  const { subject, field, topic, questionText, selectedText, correctText, explanation, mistakeCount } = params;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+  const prompt = `【指示】
+あなたは行政書士試験のAI先生です。受験生が間違えた問題から、合格に必要な知識を短く補講してください。
+
+【科目・分野】
+${subject} / ${field}
+
+【AIが検出した復習テーマ】
+${topic}
+
+【問題文】
+${questionText}
+
+【受験生の回答】
+${selectedText || '（記録なし）'}
+
+【正解・模範解答】
+${correctText || '（記録なし）'}
+
+【既存解説】
+${explanation || '（なし）'}
+
+【誤答回数】
+${mistakeCount || 1}回
+
+【出力ルール】
+- 350字以内
+- 見出しは「復習テーマ」「なぜ間違えたか」「合格ラインの覚え方」の3つ
+- 問題文と正解から推測できる範囲だけで書く
+- 最後に、音声で読み上げても自然な一文の励ましを入れる
+- Markdownで簡潔に`;
+
+  const body = {
+    contents: [{ parts: [{ text: prompt }] }],
+    generationConfig: { temperature: 0.25, maxOutputTokens: 768 },
+  };
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!response.ok) {
+    const errText = await response.text();
+    throw new Error(`Gemini API Error: ${response.status} ${response.statusText} - ${errText}`);
+  }
+  const data = await response.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text ?? '補講を生成できませんでした。';
+};
+
 /** 記述式: 部分点と分析を返す */
 export interface GradeDescriptiveRequest {
   problemText: string;

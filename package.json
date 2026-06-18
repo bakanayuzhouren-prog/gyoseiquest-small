@@ -29,6 +29,8 @@
     "sync:saikensouron-images": "node scripts/syncSaikensouronLearnImages.mjs && node scripts/generateDeepdiveImages.js",
     "sync:kenpou-deepdive": "node scripts/syncKenpouDeepdiveFromTemp.js",
     "sync:quiz-deepdive": "node scripts/syncQuizDeepdiveFromTemp.mjs",
+    "import:moshi": "node scripts/importMoshiFromLocalImages.mjs",
+    "read:moshi-marksheet": "node scripts/readMoshiMarkSheet.mjs",
     "extract:ito-juku": "node scripts/_extractItoJukuPdfs.js",
     "build:ito-juku-md": "node scripts/_buildItoJukuKnowledgeMd.js",
     "sync:ito-juku": "npm run extract:ito-juku && npm run build:ito-juku-md && npm run build:chat-md-index",

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1180" viewBox="0 0 1440 1180">
+  <rect width="1440" height="1180" fill="#EEF5F1"/>
+  
+    <rect x="48" y="34" width="1344" height="112" rx="24" fill="#FFFDF6" stroke="#C9D8D1" stroke-width="2"/>
+    <rect x="78" y="64" width="132" height="42" rx="21" fill="#277564" stroke="#277564" stroke-width="0"/><text x="144" y="93" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">民法総則</text>
+    <text x="232" y="82" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="38" font-weight="900" fill="#1F2A24">無権代理：相手方の3つの手段</text>
+    <text x="234" y="120" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="700" fill="#5F6F68">元資料の表構造を主役に、催告・取消・117条責任を整理</text>
+  
+  
+      
+    <rect x="78" y="180" width="390" height="225" rx="18" fill="#E5EFFB" stroke="#3F6EA8" stroke-width="2"/>
+    <rect x="96" y="198" width="190" height="42" rx="21" fill="#3F6EA8" stroke="#3F6EA8" stroke-width="0"/><text x="191" y="227" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">催告</text>
+    
+        
+    
+    <path d="M155 250 l8 -10 l5 12 l10 -8" stroke="#B94646" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="185" cy="278" r="28" fill="#fff" stroke="#3F6EA8" stroke-width="5"/>
+    <path d="M161 273 Q173 245 197 251 Q213 257 209 279 Q189 263 161 273" fill="#3F6EA8"/>
+    <circle cx="185" cy="276" r="18" fill="#FFF0D8"/>
+    <circle cx="179" cy="270" r="2.8" fill="#1F2A24"/>
+    <circle cx="192" cy="270" r="2.8" fill="#1F2A24"/>
+    <path d="M177 285 Q185 280 193 285" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M167 304 Q185 288 203 304" fill="#3F6EA8"/>
+    <text x="185" y="333" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">相手方</text>
+  
+  
+        
+    <line x1="230" y1="276" x2="314" y2="276" stroke="#3F6EA8" stroke-width="8" stroke-linecap="round"/>
+    <polygon points="314,276 290,262 290,290" fill="#3F6EA8"/>
+  
+        
+    
+    <path d="M387 256 q10 10 0 22" stroke="#3F6EA8" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="360" cy="278" r="28" fill="#fff" stroke="#277564" stroke-width="5"/>
+    <path d="M336 273 Q348 245 372 251 Q388 257 384 279 Q364 263 336 273" fill="#277564"/>
+    <circle cx="360" cy="276" r="18" fill="#FFF0D8"/>
+    <circle cx="354" cy="270" r="2.8" fill="#1F2A24"/>
+    <circle cx="367" cy="270" r="2.8" fill="#1F2A24"/>
+    <path d="M353 285 Q360 282 367 285" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M342 304 Q360 288 378 304" fill="#277564"/>
+    <text x="360" y="333" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">本人</text>
+  
+  
+      
+    <text x="102" y="351" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="800" fill="#1F2A24">本人へ「追認する？」</text>
+  
+      
+    <rect x="525" y="180" width="390" height="225" rx="18" fill="#FFF0D8" stroke="#D98632" stroke-width="2"/>
+    <rect x="543" y="198" width="190" height="42" rx="21" fill="#D98632" stroke="#D98632" stroke-width="0"/><text x="638" y="227" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">取消</text>
+    
+        
+    
+    <path d="M647 256 q10 10 0 22" stroke="#3F6EA8" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="620" cy="278" r="28" fill="#fff" stroke="#277564" stroke-width="5"/>
+    <path d="M596 273 Q608 245 632 251 Q648 257 644 279 Q624 263 596 273" fill="#277564"/>
+    <circle cx="620" cy="276" r="18" fill="#FFF0D8"/>
+    <circle cx="614" cy="270" r="2.8" fill="#1F2A24"/>
+    <circle cx="627" cy="270" r="2.8" fill="#1F2A24"/>
+    <path d="M613 285 Q620 282 627 285" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M602 304 Q620 288 638 304" fill="#277564"/>
+    <text x="620" y="333" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">本人</text>
+  
+  
+        
+    
+    <path d="M747 256 q10 10 0 22" stroke="#3F6EA8" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="720" cy="278" r="28" fill="#fff" stroke="#D98632" stroke-width="5"/>
+    <path d="M696 273 Q708 245 732 251 Q748 257 744 279 Q724 263 696 273" fill="#D98632"/>
+    <circle cx="720" cy="276" r="18" fill="#FFF0D8"/>
+    <circle cx="714" cy="270" r="2.8" fill="#1F2A24"/>
+    <circle cx="727" cy="270" r="2.8" fill="#1F2A24"/>
+    <path d="M713 285 Q720 282 727 285" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M702 304 Q720 288 738 304" fill="#D98632"/>
+    <text x="720" y="333" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">代理人</text>
+  
+  
+        
+    
+    <path d="M845 248 l6 12 l12 3 l-11 5 l-3 12 l-5 -12 l-12 -3 l11 -5 z" fill="#FFD95A" opacity="0.95"/>
+    <circle cx="820" cy="278" r="28" fill="#fff" stroke="#3F6EA8" stroke-width="5"/>
+    <path d="M796 273 Q808 245 832 251 Q848 257 844 279 Q824 263 796 273" fill="#3F6EA8"/>
+    <circle cx="820" cy="276" r="18" fill="#FFF0D8"/>
+    <circle cx="814" cy="270" r="2.8" fill="#1F2A24"/>
+    <circle cx="827" cy="270" r="2.8" fill="#1F2A24"/>
+    <path d="M813 283 Q820 290 827 283" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M802 304 Q820 288 838 304" fill="#3F6EA8"/>
+    <text x="820" y="333" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">相手方</text>
+  
+  
+      
+    <text x="549" y="351" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="800" fill="#1F2A24">本人・無権代理人へ通知</text>
+  
+      
+    <rect x="972" y="180" width="390" height="225" rx="18" fill="#FBE3E3" stroke="#B94646" stroke-width="2"/>
+    <rect x="990" y="198" width="190" height="42" rx="21" fill="#B94646" stroke="#B94646" stroke-width="0"/><text x="1085" y="227" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">責任追及</text>
+    
+        
+    
+    <path d="M1052 250 l8 -10 l5 12 l10 -8" stroke="#B94646" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="1082" cy="278" r="28" fill="#fff" stroke="#3F6EA8" stroke-width="5"/>
+    <path d="M1058 273 Q1070 245 1094 251 Q1110 257 1106 279 Q1086 263 1058 273" fill="#3F6EA8"/>
+    <circle cx="1082" cy="276" r="18" fill="#FFF0D8"/>
+    <circle cx="1076" cy="270" r="2.8" fill="#1F2A24"/>
+    <circle cx="1089" cy="270" r="2.8" fill="#1F2A24"/>
+    <path d="M1074 285 Q1082 280 1090 285" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M1064 304 Q1082 288 1100 304" fill="#3F6EA8"/>
+    <text x="1082" y="333" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">相手方</text>
+  
+  
+        
+    <line x1="1130" y1="276" x2="1210" y2="276" stroke="#B94646" stroke-width="8" stroke-linecap="round"/>
+    <polygon points="1210,276 1186,262 1186,290" fill="#B94646"/>
+  
+        
+    
+    <path d="M1287 256 q10 10 0 22" stroke="#3F6EA8" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="1260" cy="278" r="28" fill="#fff" stroke="#B94646" stroke-width="5"/>
+    <path d="M1236 273 Q1248 245 1272 251 Q1288 257 1284 279 Q1264 263 1236 273" fill="#B94646"/>
+    <circle cx="1260" cy="276" r="18" fill="#FFF0D8"/>
+    <circle cx="1254" cy="270" r="2.8" fill="#1F2A24"/>
+    <circle cx="1267" cy="270" r="2.8" fill="#1F2A24"/>
+    <path d="M1253 285 Q1260 282 1267 285" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M1242 304 Q1260 288 1278 304" fill="#B94646"/>
+    <text x="1260" y="333" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">無権代理人</text>
+  
+  
+      
+    <text x="996" y="351" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="800" fill="#1F2A24">履行又は損害賠償</text>
+  
+      <rect x="70" y="450" width="1290" height="472" rx="16" fill="#FFFDF6" stroke="#C9D8D1" stroke-width="2"/><rect x="70" y="686" width="1290" height="118" fill="#F1F4F2"/><rect x="70" y="450" width="1290" height="118" rx="16" fill="#277564"/><text x="88" y="488" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="22" font-weight="900" fill="#fff">制度</text><line x1="230" y1="450" x2="230" y2="568" stroke="#C9D8D1" stroke-width="2"/><text x="248" y="488" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="22" font-weight="900" fill="#fff">使う相手</text><line x1="440" y1="450" x2="440" y2="568" stroke="#C9D8D1" stroke-width="2"/><text x="458" y="488" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="22" font-weight="900" fill="#fff">内容</text><line x1="1100" y1="450" x2="1100" y2="568" stroke="#C9D8D1" stroke-width="2"/><text x="1118" y="488" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="22" font-weight="900" fill="#fff">相手方の主観要件</text><line x1="70" y1="568" x2="230" y2="568" stroke="#C9D8D1" stroke-width="2"/><text x="88" y="602" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">催告権</text><line x1="230" y1="568" x2="230" y2="686" stroke="#C9D8D1" stroke-width="2"/><line x1="230" y1="568" x2="440" y2="568" stroke="#C9D8D1" stroke-width="2"/><text x="248" y="602" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">本人</text><line x1="440" y1="568" x2="440" y2="686" stroke="#C9D8D1" stroke-width="2"/><line x1="440" y1="568" x2="1100" y2="568" stroke="#C9D8D1" stroke-width="2"/><text x="458" y="602" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">相当期間を定めて、追認するかどうか確答するよう催告できる。期</text><text x="458" y="630" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">間内に確答がなければ追認拒絶扱い。</text><line x1="1100" y1="568" x2="1100" y2="686" stroke="#C9D8D1" stroke-width="2"/><line x1="1100" y1="568" x2="1360" y2="568" stroke="#C9D8D1" stroke-width="2"/><text x="1118" y="602" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">善悪問わない</text><line x1="70" y1="686" x2="230" y2="686" stroke="#C9D8D1" stroke-width="2"/><text x="88" y="720" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">取消権</text><line x1="230" y1="686" x2="230" y2="804" stroke="#C9D8D1" stroke-width="2"/><line x1="230" y1="686" x2="440" y2="686" stroke="#C9D8D1" stroke-width="2"/><text x="248" y="720" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">本人・無権代理人</text><line x1="440" y1="686" x2="440" y2="804" stroke="#C9D8D1" stroke-width="2"/><line x1="440" y1="686" x2="1100" y2="686" stroke="#C9D8D1" stroke-width="2"/><text x="458" y="720" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">本人が追認するまでは、無権代理人と結んだ契約を取り消せる。本</text><text x="458" y="748" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">人が追認した後は不可。</text><line x1="1100" y1="686" x2="1100" y2="804" stroke="#C9D8D1" stroke-width="2"/><line x1="1100" y1="686" x2="1360" y2="686" stroke="#C9D8D1" stroke-width="2"/><text x="1118" y="720" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">善意</text><line x1="70" y1="804" x2="230" y2="804" stroke="#C9D8D1" stroke-width="2"/><text x="88" y="838" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">117条責任（損</text><text x="88" y="866" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">害賠償）</text><line x1="230" y1="804" x2="230" y2="922" stroke="#C9D8D1" stroke-width="2"/><line x1="230" y1="804" x2="440" y2="804" stroke="#C9D8D1" stroke-width="2"/><text x="248" y="838" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">無権代理人</text><line x1="440" y1="804" x2="440" y2="922" stroke="#C9D8D1" stroke-width="2"/><line x1="440" y1="804" x2="1100" y2="804" stroke="#C9D8D1" stroke-width="2"/><text x="458" y="838" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">代理権を証明できず、本人の追認もないとき、相手方の選択で履行</text><text x="458" y="866" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">又は損害賠償。ただし取消後は不可。</text><line x1="1100" y1="804" x2="1100" y2="922" stroke="#C9D8D1" stroke-width="2"/><line x1="1100" y1="804" x2="1360" y2="804" stroke="#C9D8D1" stroke-width="2"/><text x="1118" y="838" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="700" fill="#1F2A24">善意無過失</text><rect x="70" y="450" width="1290" height="472" rx="16" fill="none" stroke="#C9D8D1" stroke-width="2"/>
+      
+    <rect x="150" y="970" width="1140" height="145" rx="18" fill="#FFFDF6" stroke="#277564" stroke-width="3"/>
+    <rect x="168" y="988" width="230" height="42" rx="21" fill="#277564" stroke="#277564" stroke-width="0"/><text x="283" y="1017" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">試験の急所</text>
+    <text x="174" y="1058" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="24" font-weight="600" fill="#1F2A24">表見代理が成立し得る場面でも、相手方は無権代理人責任を選べることがある。</text><text x="174" y="1096" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="24" font-weight="600" fill="#1F2A24">ただし、相手方が取消権を行使した後は117条責任を追及できない。</text>
+  
+    
+</svg>

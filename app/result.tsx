@@ -1,6 +1,7 @@
 import Constants from 'expo-constants';
 import { Link, useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import * as Speech from 'expo-speech';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { MarkdownText } from '@/components/markdown-text';
@@ -18,6 +19,15 @@ import {
     resolveKakuronnQuizChoiceImageKey,
     resolveKenpouQuizChoiceImageKey,
     resolveKokubaiQuizChoiceImageKey,
+    resolveMinpoBukkenQuizChoiceImageKeys,
+    resolveMinpoBukkenQuizChoiceImageKey,
+    resolveMinpoBukkenSupplementChunkImageKey,
+    resolveMinpoSousokuQuizChoiceImageKey,
+    resolveMinpoSousokuSupplementChunkImageKey,
+    resolveSaikenkakuronQuizChoiceImageKeys,
+    resolveSaikenkakuronSupplementChunkImageKey,
+    resolveSaikensouronQuizChoiceImageKeys,
+    resolveSaikensouronSupplementChunkImageKey,
 } from '@/src/deepdiveImages';
 import { setDeepdiveParams } from '@/src/deepdiveState';
 import { getDescriptiveImageSource } from '@/src/descriptiveImages';
@@ -42,7 +52,9 @@ import {
     type QuizLearnReturnParams,
 } from '@/src/quizLearnBridge';
 import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitHtmlUnderlineTags, splitNumberPrefix } from '@/utils/choiceNumber';
+import { recordWeaknessSupport, type WeaknessProfileItem } from '@/utils/ai-teacher-support';
 import { addPoints } from '@/utils/points';
+import { getChoiceLearnLinkKey, resolveQuizLearnGroup } from '@/utils/quiz-learn-groups';
 import { incrementLoopCount } from '@/utils/progress';
 import { getHiddenHashes, peekHiddenHashesSync } from '@/utils/question-hidden';
 import { getQuestionTextHash, updateQuestionStats } from '@/utils/question-stats';
@@ -56,8 +68,10 @@ import type { QuizDeepdiveSource } from '@/utils/quizDeepdiveRestore';
 import { filterResourcePagesForChoice, mergeQuizResourcePages, parseQuizRefIds } from '@/utils/quizResources';
 import { normalizeSlotAnswerForCompare, splitComboChoiceLineToSlotsFlexible } from '@/utils/slotNormalize';
 import { convertStatuteKanjiNumeralsToArabic, formatStatuteReferenceForMarkdown, looksLikeMergedStatuteBlock } from '@/utils/statute-reference-format';
-import { gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
+import { generateWeaknessLesson, gradeDescriptiveAnswer, type GradeDescriptiveResult } from '../src/utils/geminiService';
 import { USER_KEY } from './login';
+
+type ResultRouter = ReturnType<typeof useRouter>;
 
 /** 民法物権：結果画面「次の問題へ」直前に出す bukken 解説図（M列等の [[image:…]] と同期） */
 const RESULT_FOOTER_BUKKEN_IMAGE_RE = /\[\[image:(bukken\/(?:5-21|(?:15|18)-21-\d+))\]\]/g;
@@ -102,11 +116,11 @@ function isAsciiOnlyPathLikeChunkKey(s: string): boolean {
   return /^[\w.\-/]+$/.test(t) && t.length <= 200;
 }
 
-/** チャンク（鎖）ボタン: chunkImages にあるキー、または Y列の本文 */
+/** チャンク（鎖）ボタン: chunkImages/deepdiveImages にあるキー、または Y列の本文 */
 function shouldShowChoiceChunkButton(raw: string): boolean {
   const t = (raw || '').trim();
   if (!t) return false;
-  if (getChunkImageSource(t)) return true;
+  if (getChunkImageSource(t) || getDeepdiveImageSource(t)) return true;
   if (isAsciiOnlyPathLikeChunkKey(t)) return false;
   return t.length >= 4;
 }
@@ -209,7 +223,7 @@ function getFirstChoiceStatuteRef(refs: string[] | undefined): string {
 }
 
 function openChoiceStatuteRefPage(
-  router: { push: (href: object) => void },
+  router: ResultRouter,
   statuteRefText: string,
   choiceLabel: string,
   quizSubject: string,
@@ -236,7 +250,7 @@ function openChoiceStatuteRefPage(
 
 /** 民法・債権各論・憲法: J列にインポートした条文テキストを別ページで表示 */
 function openRelatedStatutesJColumnPage(
-  router: { push: (href: object) => void },
+  router: ResultRouter,
   jColumnBody: string,
   choiceLabel: string,
   quizSubject: string,
@@ -427,15 +441,6 @@ function resolveLearnLinkTargets(
   if (embedded.length > 0) return embedded;
 
   return inferLearnLinkTargetFromNumber(linkKey, quizSubject, quizField);
-}
-
-function offsetLearnLinkKeyForChoice(linkKey: string, choiceIndex?: number | null): string {
-  if (choiceIndex == null || choiceIndex <= 0) return linkKey;
-  const match = linkKey.trim().match(/^#(\d{1,6})$/);
-  if (!match) return linkKey;
-  const baseNum = parseInt(match[1], 10);
-  if (!Number.isFinite(baseNum) || baseNum <= 0) return linkKey;
-  return `#${String(baseNum + choiceIndex).padStart(3, '0')}`;
 }
 
 /** 行政法の分野 → 条文モード(STATUTES)のキー。もっと深掘るで根拠条文を表示 */
@@ -712,11 +717,6 @@ function getChoiceStatuteRefBodyForPage(
   choiceIdx: number
 ): string {
   return (choiceStatuteRefs?.[choiceIdx] ?? '').trim();
-}
-
-/** M列（choiceDeepDive）にその肢向けの本文があるか */
-function hasChoiceDeepDiveMColumn(choiceDeepDive: string[] | undefined, choiceIdx: number): boolean {
-  return !!(choiceDeepDive?.[choiceIdx] ?? '').trim();
 }
 
 /** 穴埋め等: いずれかの肢に M 列があれば先頭非空を返す */
@@ -1005,16 +1005,50 @@ export default function ResultScreen() {
         choiceIndex0 + 1
       );
     }
+    if (subject === '民法' && field === '民法総則') {
+      return resolveMinpoSousokuQuizChoiceImageKey(
+        questionIndex + 1,
+        choiceIndex0 + 1
+      );
+    }
+    if (subject === '民法' && field === '民法物権') {
+      return resolveMinpoBukkenQuizChoiceImageKey(
+        questionIndex + 1,
+        choiceIndex0 + 1
+      );
+    }
     return undefined;
+  };
+  const resolveAutoChoiceDeepDiveImageKeys = (choiceIndex0: number): string[] => {
+    if (subject === '民法' && field === '債権総論') {
+      return resolveSaikensouronQuizChoiceImageKeys(questionIndex + 1, choiceIndex0 + 1);
+    }
+    if (subject === '民法' && field === '債権各論') {
+      return resolveSaikenkakuronQuizChoiceImageKeys(
+        sourceQuestionNum1BasedForAutoImages,
+        sourceQuestionsForAutoImages.length || questions.length,
+        choiceIndex0 + 1
+      );
+    }
+    if (subject === '民法' && field === '民法物権') {
+      return resolveMinpoBukkenQuizChoiceImageKeys(questionIndex + 1, choiceIndex0 + 1);
+    }
+    const key = resolveAutoChoiceDeepDiveImageKey(choiceIndex0);
+    return key ? [key] : [];
   };
   const mergeAutoChoiceDeepDiveImage = (body: string | undefined, choiceIndex0: number): string => {
     const trimmed = (body || '').trim();
-    const imageKey = resolveAutoChoiceDeepDiveImageKey(choiceIndex0);
-    if (!imageKey) return trimmed;
-    const tag = `[[image:${imageKey}]]`;
-    if (!trimmed) return tag;
-    if (trimmed.includes(tag) || trimmed.includes(`[[image:${imageKey.split('/').pop()}]]`)) return trimmed;
-    return `${tag}\n\n${trimmed}`;
+    const imageKeys = resolveAutoChoiceDeepDiveImageKeys(choiceIndex0);
+    if (imageKeys.length === 0) return trimmed;
+    const tags = imageKeys
+      .filter((imageKey) => {
+        const tag = `[[image:${imageKey}]]`;
+        return !(trimmed.includes(tag) || trimmed.includes(`[[image:${imageKey.split('/').pop()}]]`));
+      })
+      .map((imageKey) => `[[image:${imageKey}]]`);
+    if (tags.length === 0) return trimmed;
+    if (!trimmed) return tags.join('\n\n');
+    return `${tags.join('\n\n')}\n\n${trimmed}`;
   };
   /** 記述・行政法: 【ケースA】直下に kijyutu-gyouseihouN-A 対応 [[image:…]] を補う */
   const mergeKijyutuGyouseihouMemoOrDeepFromQuiz = (body: string): string =>
@@ -1186,8 +1220,29 @@ export default function ResultScreen() {
     : isReorder
       ? effectiveCorrectIndices.map((i: number, pos: number) => ({ prefix: `${pos + 1}. `, text: (choices[i] || '').replace(/※/g, '') }))
       : effectiveCorrectIndices.map((i: number) => ({ prefix: `${i + 1}. `, text: stripR((choices[i] || '').replace(/※/g, '')) }));
+  const selectedAnswerSummary = isSlotStyle && pickedSlots.length > 0
+    ? pickedSlots.map((s, i) => `${i + 1}: ${s}`).join(' / ')
+    : isDescriptive && pickedText
+      ? pickedText
+      : userSelection.map((idx) => choices[idx] ? `${idx + 1}. ${choices[idx].replace(/※/g, '')}` : '').filter(Boolean).join(' / ');
+  const correctAnswerSummary = correctAnswersItems.map((item) => `${item.prefix}${item.text}`).join(' / ');
+  const primaryReviewChoiceIndex = userSelection[0] ?? effectiveCorrectIndices[0] ?? null;
+  const primaryLearnGroupKey = useMemo(
+    () => getChoiceLearnLinkKey(question, primaryReviewChoiceIndex, learnLinkKey),
+    [question, primaryReviewChoiceIndex, learnLinkKey],
+  );
+  const primaryLearnGroup = useMemo(
+    () => resolveQuizLearnGroup(primaryLearnGroupKey),
+    [primaryLearnGroupKey],
+  );
   // Memo State
   const [userMemo, setUserMemo] = useState('');
+
+  const [weaknessSupport, setWeaknessSupport] = useState<WeaknessProfileItem | null>(null);
+  const [weaknessLesson, setWeaknessLesson] = useState('');
+  const [weaknessLessonLoading, setWeaknessLessonLoading] = useState(false);
+  const [weaknessLessonError, setWeaknessLessonError] = useState('');
+  const weaknessRecordedRef = useRef('');
 
   // 記述式: AI部分点・分析
   const [aiGradeLoading, setAiGradeLoading] = useState(false);
@@ -1281,6 +1336,88 @@ export default function ResultScreen() {
     }
   };
 
+  useEffect(() => {
+    if (!subject || !field || !text || answerPending || isCorrect || isShishoMode) return;
+    const sig = `${subject}|${field}|${questionIndex}|${selectedAnswerSummary}|${correctAnswerSummary}`;
+    if (weaknessRecordedRef.current === sig) return;
+    weaknessRecordedRef.current = sig;
+    const learnTarget = primaryLearnGroupKey
+      ? pickLearnLinkTarget(resolveLearnLinkTargets(primaryLearnGroupKey, subject, field), subject, field)
+      : null;
+    recordWeaknessSupport({
+      subject,
+      field,
+      questionText: text,
+      selectedText: selectedAnswerSummary,
+      correctText: correctAnswerSummary || modelAnswer,
+      explanation: explain,
+      memo,
+      learnKey: primaryLearnGroupKey || learnLinkKey || undefined,
+      learnSubject: learnTarget?.subject,
+      learnField: learnTarget?.field,
+      learnIndex: learnTarget?.index,
+      groupKey: primaryLearnGroup?.key,
+      groupQuestionCount: primaryLearnGroup?.items.length,
+    }).then(setWeaknessSupport).catch(() => {});
+  }, [
+    subject,
+    field,
+    text,
+    answerPending,
+    isCorrect,
+    isShishoMode,
+    questionIndex,
+    selectedAnswerSummary,
+    correctAnswerSummary,
+    modelAnswer,
+    explain,
+    memo,
+    learnLinkKey,
+    primaryLearnGroupKey,
+    primaryLearnGroup,
+  ]);
+
+  useEffect(() => () => {
+    Speech.stop();
+  }, []);
+
+  const requestWeaknessLesson = useCallback(async () => {
+    if (!weaknessSupport || !GEMINI_API_KEY) {
+      setWeaknessLessonError(GEMINI_API_KEY ? '' : 'APIキー未設定のため、下のローカル分析を使って復習してください。');
+      return;
+    }
+    setWeaknessLessonError('');
+    setWeaknessLessonLoading(true);
+    try {
+      const lesson = await generateWeaknessLesson(GEMINI_API_KEY, {
+        subject: subject || '',
+        field: field || '',
+        topic: weaknessSupport.topic,
+        questionText: text,
+        selectedText: selectedAnswerSummary,
+        correctText: correctAnswerSummary || modelAnswer,
+        explanation: explain || memo,
+        mistakeCount: weaknessSupport.mistakeCount,
+      });
+      setWeaknessLesson(lesson);
+    } catch (e: any) {
+      setWeaknessLessonError(e?.message || 'AI先生の補講生成に失敗しました。');
+    } finally {
+      setWeaknessLessonLoading(false);
+    }
+  }, [weaknessSupport, subject, field, text, selectedAnswerSummary, correctAnswerSummary, modelAnswer, explain, memo]);
+
+  const speakWeaknessSupport = useCallback(() => {
+    if (!weaknessSupport) return;
+    const body = weaknessLesson || `${weaknessSupport.topic}を復習しましょう。${weaknessSupport.reason}${weaknessSupport.reviewPoint}`;
+    Speech.stop();
+    Speech.speak(body.replace(/[#*_`>\-\[\]()]/g, '').replace(/\s+/g, ' ').trim(), {
+      language: 'ja-JP',
+      rate: 0.9,
+      pitch: 1.0,
+    });
+  }, [weaknessSupport, weaknessLesson]);
+
   if (!subject || !field || !question) {
     return (
       <ThemedView style={styles.container}>
@@ -1314,8 +1451,9 @@ export default function ResultScreen() {
   }
 
   const getLinkedLearnTargetForChoice = (choiceIndex?: number | null): LearnLinkTarget | null => {
-    if (!learnLinkKey || answerPending || isShishoMode) return null;
-    const effectiveKey = offsetLearnLinkKeyForChoice(learnLinkKey, choiceIndex);
+    if (answerPending || isShishoMode) return null;
+    const effectiveKey = getChoiceLearnLinkKey(question, choiceIndex, learnLinkKey);
+    if (!effectiveKey) return null;
     return pickLearnLinkTarget(resolveLearnLinkTargets(effectiveKey, subject, field), subject, field);
   };
 
@@ -1343,12 +1481,16 @@ export default function ResultScreen() {
     return resultParams;
   };
 
-  const handleOpenLinkedLearn = (target: LearnLinkTarget | null) => {
+  const handleOpenLinkedLearn = (target: LearnLinkTarget | null, options?: { autoplay?: boolean }) => {
     if (!target) return;
     setQuizLearnReturnParams(buildQuizLearnReturnParams());
+    const routeParams = getLearnRouteParams(target);
     router.push({
       pathname: '/learn/[subject]',
-      params: getLearnRouteParams(target),
+      params: {
+        ...routeParams,
+        ...(options?.autoplay ? { autoplay: '1', reviewAudio: '1' } : {}),
+      },
     });
   };
 
@@ -1490,6 +1632,91 @@ export default function ResultScreen() {
         ) : !isShishoMode ? (
           <ThemedText type="subtitle" style={{ color: '#D32F2F', marginBottom: 8 }}>不正解... 復習が必要だ！</ThemedText>
         ) : null}
+
+        {!isShishoMode && weaknessSupport ? (
+          <ThemedView style={[styles.aiTeacherCard, { backgroundColor: colors.card, borderColor: colors.primary }]}>
+            <View style={styles.aiTeacherHeaderRow}>
+              <View style={{ flex: 1 }}>
+                <ThemedText style={[styles.aiTeacherEyebrow, { color: colors.primary }]}>AI先生の復習サポート</ThemedText>
+                <ThemedText style={[styles.aiTeacherTitle, { color: colors.text }]}>
+                  復習テーマ: {weaknessSupport.topic}
+                </ThemedText>
+              </View>
+              <ThemedText style={[styles.aiTeacherCount, { color: colors.primary }]}>
+                誤答 {weaknessSupport.mistakeCount}回
+              </ThemedText>
+            </View>
+            <ThemedText style={[styles.aiTeacherBody, { color: colors.text }]}>
+              {weaknessSupport.reason}
+            </ThemedText>
+            <ThemedText style={[styles.aiTeacherBody, { color: colors.text }]}>
+              {weaknessSupport.reviewPoint}
+            </ThemedText>
+            {weaknessSupport.groupKey ? (
+              <ThemedText style={[styles.aiTeacherGroupText, { color: colors.subText }]}>
+                学習リンク {weaknessSupport.groupKey}
+                {weaknessSupport.groupQuestionCount ? ` / 関連問題 ${weaknessSupport.groupQuestionCount}問` : ''}
+              </ThemedText>
+            ) : null}
+            {weaknessLesson ? (
+              <View style={[styles.aiTeacherLessonBox, { borderColor: colors.choiceBorder }]}>
+                <MarkdownText text={weaknessLesson} />
+              </View>
+            ) : null}
+            {weaknessLessonError ? (
+              <ThemedText style={{ color: '#D32F2F', marginTop: 8, fontSize: 13 }}>{weaknessLessonError}</ThemedText>
+            ) : null}
+            <View style={styles.aiTeacherActionRow}>
+              <Pressable
+                onPress={speakWeaknessSupport}
+                style={[styles.deepDiveButton, { borderColor: '#2E7D32' }]}
+              >
+                <ThemedText style={[styles.deepDiveButtonText, { color: '#2E7D32' }]}>音声で聞く</ThemedText>
+              </Pressable>
+              {GEMINI_API_KEY ? (
+                <Pressable
+                  onPress={requestWeaknessLesson}
+                  disabled={weaknessLessonLoading}
+                  style={[styles.deepDiveButton, { borderColor: colors.primary, opacity: weaknessLessonLoading ? 0.7 : 1 }]}
+                >
+                  {weaknessLessonLoading ? (
+                    <ActivityIndicator color={colors.primary} />
+                  ) : (
+                    <ThemedText style={[styles.deepDiveButtonText, { color: colors.primary }]}>AI先生に補講してもらう</ThemedText>
+                  )}
+                </Pressable>
+              ) : null}
+              {weaknessSupport.learnSubject && typeof weaknessSupport.learnIndex === 'number' ? (
+                <Pressable
+                  onPress={() => handleOpenLinkedLearn({
+                    subject: weaknessSupport.learnSubject || subject || '',
+                    field: weaknessSupport.learnField,
+                    index: weaknessSupport.learnIndex || 0,
+                  }, { autoplay: true })}
+                  style={[styles.deepDiveButton, { borderColor: colors.primary }]}
+                >
+                  <ThemedText style={[styles.deepDiveButtonText, { color: colors.primary }]}>音声から学び直す</ThemedText>
+                </Pressable>
+              ) : null}
+              {showPersonFlowButton ? (
+                <Pressable
+                  onPress={() => setPersonFlowModalVisible(true)}
+                  style={[styles.deepDiveButton, { borderColor: '#5C6BC0' }]}
+                >
+                  <ThemedText style={[styles.deepDiveButtonText, { color: '#3949AB' }]}>図で整理</ThemedText>
+                </Pressable>
+              ) : null}
+              {showCompareTable ? (
+                <Pressable
+                  onPress={() => setSaikokuCompareModalVisible(true)}
+                  style={[styles.deepDiveButton, { borderColor: '#EF6C00' }]}
+                >
+                  <ThemedText style={[styles.deepDiveButtonText, { color: '#E65100' }]}>比較表を見る</ThemedText>
+                </Pressable>
+              ) : null}
+            </View>
+          </ThemedView>
+        ) : null}
         <View style={styles.questionAnswerOuterCard}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
             <ThemedText style={[styles.questionLabel, { color: colors.text }]}>問題文</ThemedText>
@@ -1545,7 +1772,7 @@ export default function ResultScreen() {
                       <MarkdownText text={displayBody} applyNames={applyCharacterNames} style={[styles.questionText, { color: '#212121', fontFamily: theme === 'paper' ? 'serif' : undefined, marginTop: 6 }]} />
                     ) : (
                       <ThemedText style={[styles.questionText, { color: '#212121', fontFamily: theme === 'paper' ? 'serif' : undefined, fontWeight: 'bold', marginTop: 6 }]}>
-                        {displayBody.split(/\n/).map((ln, lineIdx) => (
+                        {displayBody.split(/\n/).map((ln: string, lineIdx: number) => (
                           <React.Fragment key={lineIdx}>
                             {lineIdx > 0 ? '\n' : null}
                             {(() => {
@@ -1570,7 +1797,7 @@ export default function ResultScreen() {
             <View style={styles.correctAnswersBlock}>
               <ThemedText style={[styles.answerText, { color: '#C62828', fontWeight: 'bold' }]}>正解肢</ThemedText>
               {correctAnswersItems.map((item, idx) => (
-                <ThemedView key={idx} style={[styles.correctAnswerCard, { borderColor: '#E57373', backgroundColor: theme === 'dark' ? 'rgba(198,40,40,0.2)' : '#FFEBEE' }]}>
+                <ThemedView key={idx} style={[styles.correctAnswerCard, { borderColor: '#E57373', backgroundColor: theme === 'premium' || theme === 'cyberpunk' ? 'rgba(198,40,40,0.2)' : '#FFEBEE' }]}>
                   <View style={styles.correctAnswerRow}>
                     <ThemedText style={[styles.correctAnswerPrefix, { color: colors.text }]}>{item.prefix}</ThemedText>
                     <ThemedText style={[styles.answerText, styles.correctAnswerBody, { color: colors.text }]}>{formatNumberedClauses(item.text)}</ThemedText>
@@ -1678,16 +1905,16 @@ export default function ResultScreen() {
               </ThemedView>
             );
           }
-          const visibleIndices = mode === 'bonus'
-            ? choices.map((_, i) => i)
-            : choices.map((_, i) => i).filter((i) => !isBonusChoice(i));
+          const visibleIndices: number[] = mode === 'bonus'
+            ? choices.map((_: unknown, i: number) => i)
+            : choices.map((_: unknown, i: number) => i).filter((i: number) => !isBonusChoice(i));
           if (visibleIndices.length === 0) return null;
           const choiceChunkImgs = (question as any)?.choiceChunkImages as string[] | undefined;
           const simpleChunkImages = [...new Set(
             (choiceChunkImgs || [])
-              .map((p, i) => (visibleIndices.includes(i) && isSimpleChunkImage(p) ? p.trim() : ''))
+              .map((p: string, i: number) => (visibleIndices.includes(i) && isSimpleChunkImage(p) ? p.trim() : ''))
               .filter(Boolean)
-          )].map((p) => ({ path: p, source: getChunkImageSource(p) })).filter((x) => x.source);
+          )].map((p: string) => ({ path: p, source: getChunkImageSource(p) })).filter((x) => x.source);
           const qIdx = parseInt(String(questionIndex), 10);
           const fallbackSousoku78 = simpleChunkImages.length === 0 && subject === '民法' && field === '民法総則' && (qIdx === 6 || qIdx === 7)
             ? getChunkImageSource('sousoku7,8') || getChunkImageSource('minnpou/sousoku/sousoku7,8')
@@ -1723,7 +1950,7 @@ export default function ResultScreen() {
                 </Pressable>
               </View>
             ) : null}
-            {visibleIndices.map((choiceIdx, gi) => {
+            {visibleIndices.map((choiceIdx: number, gi: number) => {
               const label = `${choiceIdx + 1}. `;
               const choiceText = (choices[choiceIdx] || '').replace(/※/g, '');
               const formattedBody = formatNumberedClauses(choiceText);
@@ -1732,11 +1959,9 @@ export default function ResultScreen() {
               const statutes = choiceStatutes[choiceIdx] || [];
               const statuteRefBody = getChoiceStatuteRefBodyForPage(choiceStatuteRefs, choiceIdx);
               const deepMColumnRaw = (choiceDeepDive?.[choiceIdx] ?? '').trim();
-              const deepContent = deepMColumnRaw
-                ? mergeKijyutuGyouseihouMemoOrDeepFromQuiz(
-                    mergeAutoChoiceDeepDiveImage(deepMColumnRaw, choiceIdx).trim(),
-                  )
-                : '';
+              const deepContent = mergeKijyutuGyouseihouMemoOrDeepFromQuiz(
+                mergeAutoChoiceDeepDiveImage(deepMColumnRaw, choiceIdx).trim(),
+              );
               const deepBeginner = choiceDeepDiveBeginner?.[choiceIdx]?.trim();
               const deepPeripheral = choiceDeepDivePeripheral?.[choiceIdx]?.trim();
               const relatedJBody = (choiceRelatedStatutes?.[choiceIdx] ?? '').trim();
@@ -1812,7 +2037,7 @@ export default function ResultScreen() {
                           <ThemedText style={[styles.deepDiveButtonText, { color: colors.text }]}>関連条文</ThemedText>
                         </Pressable>
                       ) : null}
-                      {hasChoiceDeepDiveMColumn(choiceDeepDive, choiceIdx) ? (
+                      {deepContent ? (
                       <Pressable
                         onPress={() => {
                           const choiceLabel = `${label}${choiceText}`;
@@ -1855,8 +2080,24 @@ export default function ResultScreen() {
                         ) {
                           chunkImg = 'minnpou/sousoku/sousoku11-2';
                         }
+                        if (!chunkImg && subject === '民法' && field === '民法総則') {
+                          chunkImg =
+                            resolveMinpoSousokuSupplementChunkImageKey(questionIndex + 1, choiceIdx + 1) || '';
+                        }
+                        if (!chunkImg && subject === '民法' && field === '民法物権') {
+                          chunkImg =
+                            resolveMinpoBukkenSupplementChunkImageKey(questionIndex + 1, choiceIdx + 1) || '';
+                        }
+                        if (!chunkImg && subject === '民法' && field === '債権総論') {
+                          chunkImg =
+                            resolveSaikensouronSupplementChunkImageKey(questionIndex + 1, choiceIdx + 1) || '';
+                        }
+                        if (!chunkImg && subject === '民法' && field === '債権各論') {
+                          chunkImg =
+                            resolveSaikenkakuronSupplementChunkImageKey(sourceQuestionNum1BasedForAutoImages, choiceIdx + 1) || '';
+                        }
                         if (!shouldShowChoiceChunkButton(chunkImg)) return null;
-                        const hasChunkImgAsset = !!getChunkImageSource(chunkImg);
+                        const hasChunkImgAsset = !!(getChunkImageSource(chunkImg) || getDeepdiveImageSource(chunkImg));
                         return (
                           <Pressable
                             onPress={() => {
@@ -2400,6 +2641,59 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '500',
     lineHeight: 18,
+  },
+  aiTeacherCard: {
+    width: '100%',
+    borderWidth: 1.5,
+    borderRadius: 12,
+    padding: 14,
+    marginBottom: 16,
+  },
+  aiTeacherHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 10,
+    marginBottom: 8,
+  },
+  aiTeacherEyebrow: {
+    fontSize: 12,
+    fontWeight: '700',
+    marginBottom: 3,
+  },
+  aiTeacherTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    lineHeight: 24,
+  },
+  aiTeacherCount: {
+    fontSize: 12,
+    fontWeight: '700',
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    borderRadius: 8,
+    backgroundColor: '#E8F5E9',
+  },
+  aiTeacherBody: {
+    fontSize: 15,
+    lineHeight: 23,
+    marginTop: 4,
+  },
+  aiTeacherGroupText: {
+    fontSize: 12,
+    lineHeight: 18,
+    marginTop: 8,
+  },
+  aiTeacherLessonBox: {
+    marginTop: 10,
+    borderTopWidth: 1,
+    paddingTop: 10,
+  },
+  aiTeacherActionRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginTop: 12,
   },
   nextButton: {
     marginTop: 12,

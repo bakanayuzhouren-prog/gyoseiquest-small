@@ -75,6 +75,236 @@ export function resolveMinpoBukkenLearnImageKey(problemNum1Based: number): strin
   return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
 }
 
+const MINPO_BUKKEN_REFERENCE_IMAGES_BY_QUESTION: Record<number, string[]> = {
+  1: [
+    'bukken/reference/minpo-bukken-emphyteusis-vs-superficies',
+    'bukken/reference/minpo-bukken-aggregate-movables-security',
+  ],
+  3: [
+    'bukken/reference/minpo-bukken-possessory-actions',
+    'bukken/reference/minpo-bukken-possessory-action-periods',
+    'bukken/reference/minpo-bukken-third-party-177',
+  ],
+  4: ['bukken/reference/minpo-bukken-third-party-177'],
+  6: [
+    'bukken/reference/minpo-bukken-delivery-patterns',
+    'bukken/reference/minpo-bukken-immediate-acquisition',
+    'bukken/reference/minpo-bukken-stolen-lost-recovery',
+    'bukken/reference/minpo-bukken-aggregate-movables-security',
+  ],
+  7: [
+    'bukken/reference/minpo-bukken-possession-transfer-cases',
+    'bukken/reference/minpo-bukken-delivery-patterns',
+    'bukken/reference/minpo-bukken-immediate-acquisition',
+    'bukken/reference/minpo-bukken-stolen-lost-recovery',
+  ],
+  8: [
+    'bukken/reference/minpo-bukken-possessory-actions',
+    'bukken/reference/minpo-bukken-possessory-action-periods',
+    'bukken/reference/minpo-bukken-possessor-owner-recovery',
+    'bukken/reference/minpo-bukken-expense-reimbursement',
+  ],
+  9: ['bukken/reference/minpo-bukken-neighboring-land-use'],
+  10: ['bukken/reference/minpo-bukken-co-ownership-use'],
+  11: [
+    'bukken/reference/minpo-bukken-neighboring-land-use',
+    'bukken/reference/minpo-bukken-emphyteusis-vs-superficies',
+    'bukken/reference/minpo-bukken-co-ownership-use',
+  ],
+  12: [
+    'bukken/reference/minpo-bukken-security-real-rights-map',
+    'bukken/reference/minpo-bukken-expense-reimbursement',
+  ],
+  13: [
+    'bukken/reference/minpo-bukken-expense-reimbursement',
+    'bukken/reference/minpo-bukken-security-real-rights-map',
+  ],
+  14: [
+    'bukken/reference/minpo-bukken-real-estate-priority',
+    'bukken/reference/minpo-bukken-security-real-rights-map',
+  ],
+  15: [
+    'bukken/reference/minpo-bukken-security-real-rights-map',
+    'bukken/reference/minpo-bukken-possessory-action-periods',
+  ],
+  16: ['bukken/reference/minpo-bukken-security-real-rights-map'],
+  21: ['bukken/reference/minpo-bukken-aggregate-movables-security'],
+};
+
+const MINPO_SAIKEN_SOURON_REFERENCE_IMAGES_BY_QUESTION: Record<number, string[]> = {
+  2: [
+    'saikensouron/reference/minpo-saikensouron-alternative-obligation-selection',
+    'saikensouron/reference/minpo-saikensouron-specific-obligation-care',
+    'saikensouron/reference/minpo-saikensouron-due-date-delay',
+  ],
+  3: [
+    'saikensouron/reference/minpo-saikensouron-specific-obligation-care',
+    'saikensouron/reference/minpo-saikensouron-creditor-delay-risk',
+    'saikensouron/reference/minpo-saikensouron-nonperformance-remedies',
+  ],
+  4: [
+    'saikensouron/reference/minpo-saikensouron-creditor-delay-risk',
+    'saikensouron/reference/minpo-saikensouron-due-date-delay',
+    'saikensouron/reference/minpo-saikensouron-nonperformance-remedies',
+  ],
+  5: [
+    'saikensouron/reference/minpo-saikensouron-due-date-delay',
+    'saikensouron/reference/minpo-saikensouron-damages-scope-foreseeability',
+    'saikensouron/reference/minpo-saikensouron-nonperformance-remedies',
+  ],
+  6: [
+    'saikensouron/reference/minpo-saikensouron-nonperformance-remedies',
+    'saikensouron/reference/minpo-saikensouron-damages-scope-foreseeability',
+  ],
+  7: ['saikensouron/reference/minpo-saikensouron-creditor-subrogation-vs-fraudulent'],
+  8: ['saikensouron/reference/minpo-saikensouron-creditor-subrogation-vs-fraudulent'],
+  9: ['saikensouron/reference/minpo-saikensouron-multiple-debtors-map'],
+  10: ['saikensouron/reference/minpo-saikensouron-third-party-performance-subrogation'],
+  11: [
+    'saikensouron/reference/minpo-saikensouron-third-party-performance-subrogation',
+    'saikensouron/reference/minpo-saikensouron-multiple-debtors-map',
+  ],
+  12: ['saikensouron/reference/minpo-saikensouron-multiple-debtors-map'],
+  13: ['saikensouron/reference/minpo-saikensouron-third-party-performance-subrogation'],
+  14: ['saikensouron/reference/minpo-saikensouron-third-party-performance-subrogation'],
+  15: ['saikensouron/reference/minpo-saikensouron-damages-scope-foreseeability'],
+};
+
+const MINPO_SAIKEN_KAKURON_REFERENCE_IMAGES_BY_QUESTION: Record<number, string[]> = {
+  1: [
+    'kakuronn/reference/minpo-saikenkakuron-simultaneous-performance-cancellation',
+    'kakuronn/reference/minpo-saikenkakuron-sale-expenses-risk',
+  ],
+  2: [
+    'kakuronn/reference/minpo-saikenkakuron-simultaneous-performance-cancellation',
+    'kakuronn/reference/minpo-saikenkakuron-earnest-money-and-performance',
+  ],
+  3: [
+    'kakuronn/reference/minpo-saikenkakuron-simultaneous-performance-cancellation',
+    'kakuronn/reference/minpo-saikenkakuron-earnest-money-and-performance',
+    'kakuronn/reference/minpo-saikenkakuron-seller-warranty-remedies',
+  ],
+  4: [
+    'kakuronn/reference/minpo-saikenkakuron-simultaneous-performance-cancellation',
+    'kakuronn/reference/minpo-saikenkakuron-earnest-money-and-performance',
+  ],
+  5: ['kakuronn/reference/minpo-saikenkakuron-gift-vs-death-gift'],
+  6: [
+    'kakuronn/reference/minpo-saikenkakuron-seller-warranty-remedies',
+    'kakuronn/reference/minpo-saikenkakuron-sale-expenses-risk',
+  ],
+  7: [
+    'kakuronn/reference/minpo-saikenkakuron-loan-return-timing',
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+  ],
+  8: [
+    'kakuronn/reference/minpo-saikenkakuron-loan-return-timing',
+    'kakuronn/reference/minpo-saikenkakuron-lease-assignment-sublease',
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+  ],
+  9: [
+    'kakuronn/reference/minpo-saikenkakuron-lease-assignment-sublease',
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+  ],
+  10: [
+    'kakuronn/reference/minpo-saikenkakuron-lease-assignment-sublease',
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+  ],
+  11: ['kakuronn/reference/minpo-saikenkakuron-contract-type-map'],
+  12: [
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+    'kakuronn/reference/minpo-saikenkakuron-mandate-termination-reward',
+  ],
+  13: [
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+    'kakuronn/reference/minpo-saikenkakuron-mandate-termination-reward',
+    'kakuronn/reference/minpo-saikenkakuron-management-without-mandate',
+  ],
+  14: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  15: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  16: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  17: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  18: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  19: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  20: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  21: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  22: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+};
+
+function existingDeepdiveImageKeys(keys: string[]): string[] {
+  return keys.filter((key) => DEEPDIVE_IMAGES[key]);
+}
+
+/** 問題を解く・民法物権: 元画像から再構成した横断整理を、対応問題の「もっと深掘る」へ自動配置する。 */
+export function resolveMinpoBukkenQuizChoiceImageKeys(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string[] {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return [];
+  return existingDeepdiveImageKeys(MINPO_BUKKEN_REFERENCE_IMAGES_BY_QUESTION[questionNum1Based] || []);
+}
+
+/** 旧呼び出し互換: 複数候補の先頭だけを返す。 */
+export function resolveMinpoBukkenQuizChoiceImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  return resolveMinpoBukkenQuizChoiceImageKeys(questionNum1Based, choiceNum1Based)[0];
+}
+
+/** 問題を解く・民法物権: チャンクボタン用。関連画像を肢ごとに循環させ、全画像に導線を作る。 */
+export function resolveMinpoBukkenSupplementChunkImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  const keys = resolveMinpoBukkenQuizChoiceImageKeys(questionNum1Based, choiceNum1Based);
+  if (keys.length === 0) return undefined;
+  return keys[(choiceNum1Based - 1) % keys.length];
+}
+
+/** 問題を解く・民法 債権総論: 元画像から再構成した横断整理を関連問題へ自動配置する。 */
+export function resolveSaikensouronQuizChoiceImageKeys(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string[] {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return [];
+  return existingDeepdiveImageKeys(MINPO_SAIKEN_SOURON_REFERENCE_IMAGES_BY_QUESTION[questionNum1Based] || []);
+}
+
+/** 問題を解く・民法 債権各論: 既存の肢別画像に加えて、元画像ベースの横断整理を関連問題へ自動配置する。 */
+export function resolveSaikenkakuronQuizChoiceImageKeys(
+  questionNum1Based: number,
+  totalQuestions: number,
+  choiceNum1Based: number
+): string[] {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return [];
+  const keys = new Set<string>();
+  const exact = resolveKakuronnQuizChoiceImageKey(questionNum1Based, totalQuestions, choiceNum1Based);
+  if (exact) keys.add(exact);
+  for (const key of MINPO_SAIKEN_KAKURON_REFERENCE_IMAGES_BY_QUESTION[questionNum1Based] || []) {
+    if (DEEPDIVE_IMAGES[key]) keys.add(key);
+  }
+  return Array.from(keys);
+}
+
+export function resolveSaikensouronSupplementChunkImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  const keys = resolveSaikensouronQuizChoiceImageKeys(questionNum1Based, choiceNum1Based);
+  if (keys.length === 0) return undefined;
+  return keys[(choiceNum1Based - 1) % keys.length];
+}
+
+export function resolveSaikenkakuronSupplementChunkImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  const keys = existingDeepdiveImageKeys(MINPO_SAIKEN_KAKURON_REFERENCE_IMAGES_BY_QUESTION[questionNum1Based] || []);
+  if (keys.length === 0) return undefined;
+  return keys[(choiceNum1Based - 1) % keys.length];
+}
+
 /**
  * 見て聞いて覚える・民法（物権以外）: learn/minnpou/ 配下で、bukken 以外かつ
  * ファイル名が「問番号N-…」（N-M 形式の先頭N）のものを探す（総則・債権・家族など）
@@ -121,6 +351,67 @@ export function resolveKakuronnQuizChoiceImageKey(
   if (DEEPDIVE_IMAGES[exact]) return exact;
   const re = new RegExp(\`^kakuronn/kakuronn\${questionNum1Based}-\\\\d+-\${choiceNum1Based}$\`);
   return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
+}
+
+const MINPO_SOUSOKU_ITO_IMAGE_KEYS: Record<string, string> = {
+  mukendairiAitegataHogo: 'sousoku/ito-sosoku-01-mukendairi-aitegata-hogo',
+  jikouKanseiyuyoKoushin: 'sousoku/ito-sosoku-02-jikou-kanseiyuyo-koushin',
+  kyougiGoui151: 'sousoku/ito-sosoku-03-kyougi-goui-151',
+  kenriBetsuJikou: 'sousoku/ito-sosoku-04-kenri-betsu-jikou',
+  shoumetsuJikouKikan: 'sousoku/ito-sosoku-05-shoumetsu-jikou-kikan',
+  kisantenRikouchitai: 'sousoku/ito-sosoku-06-kisanten-rikouchitai',
+  dairikenShoumetsu: 'sousoku/ito-sosoku-07-dairiken-shoumetsu',
+  mukendairiSouzoku: 'sousoku/ito-sosoku-08-mukendairi-souzoku',
+};
+
+function existingMinpoSousokuItoImage(key: string | undefined): string | undefined {
+  if (!key) return undefined;
+  return DEEPDIVE_IMAGES[key] ? key : undefined;
+}
+
+/**
+ * 問題を解く・民法総則: 添付教材から生成した横断図を、関連する選択肢の「もっと深掘る」へ自動配置する。
+ * 直接対応が弱い図は resolveMinpoSousokuSupplementChunkImageKey 側でチャンク表示する。
+ */
+export function resolveMinpoSousokuQuizChoiceImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return undefined;
+  const k = MINPO_SOUSOKU_ITO_IMAGE_KEYS;
+  const key =
+    questionNum1Based === 11 && [2, 5, 6].includes(choiceNum1Based)
+      ? k.mukendairiAitegataHogo
+      : questionNum1Based === 11 && choiceNum1Based === 10
+        ? k.dairikenShoumetsu
+        : questionNum1Based === 12 && choiceNum1Based === 4
+          ? k.mukendairiAitegataHogo
+          : questionNum1Based === 13 && [1, 2, 3, 4, 5].includes(choiceNum1Based)
+            ? k.mukendairiSouzoku
+            : questionNum1Based === 14 && choiceNum1Based === 5
+              ? k.kisantenRikouchitai
+              : questionNum1Based === 16 && [1, 2, 3, 4, 5, 6, 7, 8].includes(choiceNum1Based)
+                ? k.shoumetsuJikouKikan
+                : questionNum1Based === 17 && [6, 7, 8, 9].includes(choiceNum1Based)
+                  ? k.kenriBetsuJikou
+                  : undefined;
+  return existingMinpoSousokuItoImage(key);
+}
+
+/**
+ * 民法総則の周辺チャンク表示用。関連問題が薄い横断図は、近い時効問題のチャンクとして出す。
+ */
+export function resolveMinpoSousokuSupplementChunkImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  if (questionNum1Based === 16 && choiceNum1Based === 1) {
+    return existingMinpoSousokuItoImage(MINPO_SOUSOKU_ITO_IMAGE_KEYS.jikouKanseiyuyoKoushin);
+  }
+  if (questionNum1Based === 16 && choiceNum1Based === 2) {
+    return existingMinpoSousokuItoImage(MINPO_SOUSOKU_ITO_IMAGE_KEYS.kyougiGoui151);
+  }
+  return undefined;
 }
 
 /**

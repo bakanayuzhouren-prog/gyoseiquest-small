@@ -40,7 +40,7 @@ const normalizeDigitsToAscii = (s: string) =>
 interface StatuteArticle {
     title: string;
     content: string;
-    order: number;
+    order?: number;
 }
 
 interface StatuteViewerProps {

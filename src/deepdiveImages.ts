@@ -17,6 +17,21 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'bukken/bukkenn18-1': require('@/assets/images/deepdive/bukken/bukkenn18-1.png'),
   'bukken/bukkenn2-5': require('@/assets/images/deepdive/bukken/bukkenn2-5.png'),
   'bukken/hikiwatasi': require('@/assets/images/deepdive/bukken/hikiwatasi.png'),
+  'bukken/reference/minpo-bukken-aggregate-movables-security': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-aggregate-movables-security.png'),
+  'bukken/reference/minpo-bukken-co-ownership-use': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-co-ownership-use.png'),
+  'bukken/reference/minpo-bukken-delivery-patterns': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-delivery-patterns.png'),
+  'bukken/reference/minpo-bukken-emphyteusis-vs-superficies': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-emphyteusis-vs-superficies.png'),
+  'bukken/reference/minpo-bukken-expense-reimbursement': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-expense-reimbursement.png'),
+  'bukken/reference/minpo-bukken-immediate-acquisition': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-immediate-acquisition.png'),
+  'bukken/reference/minpo-bukken-neighboring-land-use': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-neighboring-land-use.png'),
+  'bukken/reference/minpo-bukken-possession-transfer-cases': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-possession-transfer-cases.png'),
+  'bukken/reference/minpo-bukken-possessor-owner-recovery': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-possessor-owner-recovery.png'),
+  'bukken/reference/minpo-bukken-possessory-action-periods': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-possessory-action-periods.png'),
+  'bukken/reference/minpo-bukken-possessory-actions': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-possessory-actions.png'),
+  'bukken/reference/minpo-bukken-real-estate-priority': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-real-estate-priority.png'),
+  'bukken/reference/minpo-bukken-security-real-rights-map': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-security-real-rights-map.png'),
+  'bukken/reference/minpo-bukken-stolen-lost-recovery': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-stolen-lost-recovery.png'),
+  'bukken/reference/minpo-bukken-third-party-177': require('@/assets/images/deepdive/bukken/reference/minpo-bukken-third-party-177.png'),
   'bukken/sennyuukaitei-marubatu': require('@/assets/images/deepdive/bukken/sennyuukaitei-marubatu.png'),
   'bukken/syutokujikou-sokujisyutoku': require('@/assets/images/deepdive/bukken/syutokujikou-sokujisyutoku.png'),
   'bukken/taikouyouken-no': require('@/assets/images/deepdive/bukken/taikouyouken-no.png'),
@@ -205,11 +220,29 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kakuronn/kakuronn18-22-4': require('@/assets/images/deepdive/kakuronn/kakuronn18-22-4.png'),
   'kakuronn/kakuronn4': require('@/assets/images/deepdive/kakuronn/kakuronn4.png'),
   'kakuronn/kauronn4-2': require('@/assets/images/deepdive/kakuronn/kauronn4-2.png'),
+  'kakuronn/reference/minpo-saikenkakuron-contract-type-map': require('@/assets/images/deepdive/kakuronn/reference/minpo-saikenkakuron-contract-type-map.png'),
+  'kakuronn/reference/minpo-saikenkakuron-earnest-money-and-performance': require('@/assets/images/deepdive/kakuronn/reference/minpo-saikenkakuron-earnest-money-and-performance.png'),
+  'kakuronn/reference/minpo-saikenkakuron-gift-vs-death-gift': require('@/assets/images/deepdive/kakuronn/reference/minpo-saikenkakuron-gift-vs-death-gift.png'),
+  'kakuronn/reference/minpo-saikenkakuron-lease-assignment-sublease': require('@/assets/images/deepdive/kakuronn/reference/minpo-saikenkakuron-lease-assignment-sublease.png'),
+  'kakuronn/reference/minpo-saikenkakuron-loan-return-timing': require('@/assets/images/deepdive/kakuronn/reference/minpo-saikenkakuron-loan-return-timing.png'),
+  'kakuronn/reference/minpo-saikenkakuron-management-without-mandate': require('@/assets/images/deepdive/kakuronn/reference/minpo-saikenkakuron-management-without-mandate.png'),
+  'kakuronn/reference/minpo-saikenkakuron-mandate-termination-reward': require('@/assets/images/deepdive/kakuronn/reference/minpo-saikenkakuron-mandate-termination-reward.png'),
+  'kakuronn/reference/minpo-saikenkakuron-sale-expenses-risk': require('@/assets/images/deepdive/kakuronn/reference/minpo-saikenkakuron-sale-expenses-risk.png'),
+  'kakuronn/reference/minpo-saikenkakuron-seller-warranty-remedies': require('@/assets/images/deepdive/kakuronn/reference/minpo-saikenkakuron-seller-warranty-remedies.png'),
+  'kakuronn/reference/minpo-saikenkakuron-simultaneous-performance-cancellation': require('@/assets/images/deepdive/kakuronn/reference/minpo-saikenkakuron-simultaneous-performance-cancellation.png'),
+  'kakuronn/reference/minpo-saikenkakuron-tort-basic-map': require('@/assets/images/deepdive/kakuronn/reference/minpo-saikenkakuron-tort-basic-map.png'),
   'kakuronn/tinntai-siyoutai': require('@/assets/images/deepdive/kakuronn/tinntai-siyoutai.png'),
   'kennpou-toku/kenpou36': require('@/assets/images/deepdive/kennpou-toku/kenpou36.png'),
   'kenpou/1-230': require('@/assets/images/deepdive/kenpou/1-230.png'),
   'kenpou/10-230': require('@/assets/images/deepdive/kenpou/10-230.png'),
+  'kenpou/100-230': require('@/assets/images/deepdive/kenpou/100-230.png'),
+  'kenpou/101-230': require('@/assets/images/deepdive/kenpou/101-230.png'),
+  'kenpou/102-230': require('@/assets/images/deepdive/kenpou/102-230.png'),
+  'kenpou/103-230': require('@/assets/images/deepdive/kenpou/103-230.png'),
   'kenpou/104-230': require('@/assets/images/deepdive/kenpou/104-230.png'),
+  'kenpou/105-230': require('@/assets/images/deepdive/kenpou/105-230.png'),
+  'kenpou/106-230': require('@/assets/images/deepdive/kenpou/106-230.png'),
+  'kenpou/107-230': require('@/assets/images/deepdive/kenpou/107-230.png'),
   'kenpou/108-230': require('@/assets/images/deepdive/kenpou/108-230.png'),
   'kenpou/109-230': require('@/assets/images/deepdive/kenpou/109-230.png'),
   'kenpou/11-230': require('@/assets/images/deepdive/kenpou/11-230.png'),
@@ -217,6 +250,10 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/111-230': require('@/assets/images/deepdive/kenpou/111-230.png'),
   'kenpou/112-230': require('@/assets/images/deepdive/kenpou/112-230.png'),
   'kenpou/113-230': require('@/assets/images/deepdive/kenpou/113-230.png'),
+  'kenpou/114-230': require('@/assets/images/deepdive/kenpou/114-230.png'),
+  'kenpou/115-230': require('@/assets/images/deepdive/kenpou/115-230.png'),
+  'kenpou/116-230': require('@/assets/images/deepdive/kenpou/116-230.png'),
+  'kenpou/117-230': require('@/assets/images/deepdive/kenpou/117-230.png'),
   'kenpou/118-230': require('@/assets/images/deepdive/kenpou/118-230.png'),
   'kenpou/119-230': require('@/assets/images/deepdive/kenpou/119-230.png'),
   'kenpou/12-230': require('@/assets/images/deepdive/kenpou/12-230.png'),
@@ -224,25 +261,78 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/121-230': require('@/assets/images/deepdive/kenpou/121-230.png'),
   'kenpou/122-230': require('@/assets/images/deepdive/kenpou/122-230.png'),
   'kenpou/123-230': require('@/assets/images/deepdive/kenpou/123-230.png'),
+  'kenpou/124-230': require('@/assets/images/deepdive/kenpou/124-230.png'),
+  'kenpou/125-230': require('@/assets/images/deepdive/kenpou/125-230.png'),
+  'kenpou/126-230': require('@/assets/images/deepdive/kenpou/126-230.png'),
+  'kenpou/127-230': require('@/assets/images/deepdive/kenpou/127-230.png'),
+  'kenpou/128-230': require('@/assets/images/deepdive/kenpou/128-230.png'),
   'kenpou/129-230': require('@/assets/images/deepdive/kenpou/129-230.png'),
   'kenpou/13-230': require('@/assets/images/deepdive/kenpou/13-230.png'),
   'kenpou/130-230': require('@/assets/images/deepdive/kenpou/130-230.png'),
+  'kenpou/131-230': require('@/assets/images/deepdive/kenpou/131-230.png'),
+  'kenpou/132-230': require('@/assets/images/deepdive/kenpou/132-230.png'),
   'kenpou/133-230': require('@/assets/images/deepdive/kenpou/133-230.png'),
+  'kenpou/134-230': require('@/assets/images/deepdive/kenpou/134-230.png'),
+  'kenpou/135-230': require('@/assets/images/deepdive/kenpou/135-230.png'),
   'kenpou/136-230': require('@/assets/images/deepdive/kenpou/136-230.png'),
   'kenpou/137-230': require('@/assets/images/deepdive/kenpou/137-230.png'),
   'kenpou/138-230': require('@/assets/images/deepdive/kenpou/138-230.png'),
   'kenpou/139-230': require('@/assets/images/deepdive/kenpou/139-230.png'),
   'kenpou/14-230 旭川学テ': require('@/assets/images/deepdive/kenpou/14-230 旭川学テ.png'),
   'kenpou/140-130': require('@/assets/images/deepdive/kenpou/140-130.png'),
+  'kenpou/140-230': require('@/assets/images/deepdive/kenpou/140-230.png'),
+  'kenpou/142-230': require('@/assets/images/deepdive/kenpou/142-230.png'),
   'kenpou/143-230': require('@/assets/images/deepdive/kenpou/143-230.png'),
   'kenpou/144-230': require('@/assets/images/deepdive/kenpou/144-230.png'),
   'kenpou/145-230': require('@/assets/images/deepdive/kenpou/145-230.png'),
+  'kenpou/146-230': require('@/assets/images/deepdive/kenpou/146-230.png'),
+  'kenpou/147-230': require('@/assets/images/deepdive/kenpou/147-230.png'),
+  'kenpou/148-230': require('@/assets/images/deepdive/kenpou/148-230.png'),
+  'kenpou/149-230': require('@/assets/images/deepdive/kenpou/149-230.png'),
   'kenpou/15-230': require('@/assets/images/deepdive/kenpou/15-230.png'),
+  'kenpou/150-230': require('@/assets/images/deepdive/kenpou/150-230.png'),
+  'kenpou/151-230': require('@/assets/images/deepdive/kenpou/151-230.png'),
+  'kenpou/152-230': require('@/assets/images/deepdive/kenpou/152-230.png'),
+  'kenpou/153-230': require('@/assets/images/deepdive/kenpou/153-230.png'),
   'kenpou/154-230': require('@/assets/images/deepdive/kenpou/154-230.png'),
+  'kenpou/155-230': require('@/assets/images/deepdive/kenpou/155-230.png'),
+  'kenpou/156-230': require('@/assets/images/deepdive/kenpou/156-230.png'),
+  'kenpou/157-230': require('@/assets/images/deepdive/kenpou/157-230.png'),
+  'kenpou/158-230': require('@/assets/images/deepdive/kenpou/158-230.png'),
+  'kenpou/159-230': require('@/assets/images/deepdive/kenpou/159-230.png'),
   'kenpou/16-230': require('@/assets/images/deepdive/kenpou/16-230.png'),
+  'kenpou/160-230': require('@/assets/images/deepdive/kenpou/160-230.png'),
+  'kenpou/161-230': require('@/assets/images/deepdive/kenpou/161-230.png'),
+  'kenpou/162-230': require('@/assets/images/deepdive/kenpou/162-230.png'),
+  'kenpou/163-230': require('@/assets/images/deepdive/kenpou/163-230.png'),
+  'kenpou/164-230': require('@/assets/images/deepdive/kenpou/164-230.png'),
+  'kenpou/165-230': require('@/assets/images/deepdive/kenpou/165-230.png'),
+  'kenpou/166-230': require('@/assets/images/deepdive/kenpou/166-230.png'),
+  'kenpou/167-230': require('@/assets/images/deepdive/kenpou/167-230.png'),
+  'kenpou/168-230': require('@/assets/images/deepdive/kenpou/168-230.png'),
+  'kenpou/169-230': require('@/assets/images/deepdive/kenpou/169-230.png'),
   'kenpou/17-230': require('@/assets/images/deepdive/kenpou/17-230.png'),
+  'kenpou/170-230': require('@/assets/images/deepdive/kenpou/170-230.png'),
+  'kenpou/171-230': require('@/assets/images/deepdive/kenpou/171-230.png'),
+  'kenpou/172-230': require('@/assets/images/deepdive/kenpou/172-230.png'),
+  'kenpou/173-230': require('@/assets/images/deepdive/kenpou/173-230.png'),
+  'kenpou/174-230': require('@/assets/images/deepdive/kenpou/174-230.png'),
+  'kenpou/175-230': require('@/assets/images/deepdive/kenpou/175-230.png'),
+  'kenpou/176-230': require('@/assets/images/deepdive/kenpou/176-230.png'),
+  'kenpou/177-230': require('@/assets/images/deepdive/kenpou/177-230.png'),
+  'kenpou/178-230': require('@/assets/images/deepdive/kenpou/178-230.png'),
+  'kenpou/179-230': require('@/assets/images/deepdive/kenpou/179-230.png'),
   'kenpou/18-230': require('@/assets/images/deepdive/kenpou/18-230.png'),
+  'kenpou/180-230': require('@/assets/images/deepdive/kenpou/180-230.png'),
+  'kenpou/181-230': require('@/assets/images/deepdive/kenpou/181-230.png'),
+  'kenpou/182-230': require('@/assets/images/deepdive/kenpou/182-230.png'),
+  'kenpou/183-230': require('@/assets/images/deepdive/kenpou/183-230.png'),
   'kenpou/184-230': require('@/assets/images/deepdive/kenpou/184-230.png'),
+  'kenpou/185-230': require('@/assets/images/deepdive/kenpou/185-230.png'),
+  'kenpou/186-230': require('@/assets/images/deepdive/kenpou/186-230.png'),
+  'kenpou/187-230': require('@/assets/images/deepdive/kenpou/187-230.png'),
+  'kenpou/188-230': require('@/assets/images/deepdive/kenpou/188-230.png'),
+  'kenpou/189-230': require('@/assets/images/deepdive/kenpou/189-230.png'),
   'kenpou/19-230': require('@/assets/images/deepdive/kenpou/19-230.png'),
   'kenpou/190-230': require('@/assets/images/deepdive/kenpou/190-230.png'),
   'kenpou/191-230': require('@/assets/images/deepdive/kenpou/191-230.png'),
@@ -257,17 +347,57 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/2-230': require('@/assets/images/deepdive/kenpou/2-230.png'),
   'kenpou/20-230 yodogou': require('@/assets/images/deepdive/kenpou/20-230 yodogou.png'),
   'kenpou/200-230': require('@/assets/images/deepdive/kenpou/200-230.png'),
+  'kenpou/201-230': require('@/assets/images/deepdive/kenpou/201-230.png'),
+  'kenpou/202-230': require('@/assets/images/deepdive/kenpou/202-230.png'),
+  'kenpou/203-230': require('@/assets/images/deepdive/kenpou/203-230.png'),
   'kenpou/204-230': require('@/assets/images/deepdive/kenpou/204-230.png'),
   'kenpou/206-230': require('@/assets/images/deepdive/kenpou/206-230.png'),
+  'kenpou/207-230': require('@/assets/images/deepdive/kenpou/207-230.png'),
   'kenpou/208-230': require('@/assets/images/deepdive/kenpou/208-230.png'),
   'kenpou/209-230': require('@/assets/images/deepdive/kenpou/209-230.png'),
+  'kenpou/21-230': require('@/assets/images/deepdive/kenpou/21-230.png'),
+  'kenpou/210-230': require('@/assets/images/deepdive/kenpou/210-230.png'),
+  'kenpou/211-230': require('@/assets/images/deepdive/kenpou/211-230.png'),
+  'kenpou/212-230': require('@/assets/images/deepdive/kenpou/212-230.png'),
   'kenpou/213-230': require('@/assets/images/deepdive/kenpou/213-230.png'),
+  'kenpou/213-230-gpt-v2': require('@/assets/images/deepdive/kenpou/213-230-gpt-v2.png'),
+  'kenpou/214-230': require('@/assets/images/deepdive/kenpou/214-230.png'),
+  'kenpou/215-230': require('@/assets/images/deepdive/kenpou/215-230.png'),
+  'kenpou/216-230': require('@/assets/images/deepdive/kenpou/216-230.png'),
+  'kenpou/217-230': require('@/assets/images/deepdive/kenpou/217-230.png'),
+  'kenpou/218-230': require('@/assets/images/deepdive/kenpou/218-230.png'),
+  'kenpou/219-230': require('@/assets/images/deepdive/kenpou/219-230.png'),
+  'kenpou/22-230': require('@/assets/images/deepdive/kenpou/22-230.png'),
+  'kenpou/220-230': require('@/assets/images/deepdive/kenpou/220-230.png'),
+  'kenpou/221-230': require('@/assets/images/deepdive/kenpou/221-230.png'),
   'kenpou/222-230': require('@/assets/images/deepdive/kenpou/222-230.png'),
   'kenpou/223-230': require('@/assets/images/deepdive/kenpou/223-230.png'),
+  'kenpou/224-230': require('@/assets/images/deepdive/kenpou/224-230.png'),
+  'kenpou/225-230': require('@/assets/images/deepdive/kenpou/225-230.png'),
+  'kenpou/226-230': require('@/assets/images/deepdive/kenpou/226-230.png'),
+  'kenpou/227-230': require('@/assets/images/deepdive/kenpou/227-230.png'),
+  'kenpou/228-230': require('@/assets/images/deepdive/kenpou/228-230.png'),
+  'kenpou/229-230': require('@/assets/images/deepdive/kenpou/229-230.png'),
+  'kenpou/23-230': require('@/assets/images/deepdive/kenpou/23-230.png'),
+  'kenpou/230-230': require('@/assets/images/deepdive/kenpou/230-230.png'),
+  'kenpou/231-230': require('@/assets/images/deepdive/kenpou/231-230.png'),
   'kenpou/24-230 hyakuri': require('@/assets/images/deepdive/kenpou/24-230 hyakuri.png'),
+  'kenpou/25-230': require('@/assets/images/deepdive/kenpou/25-230.png'),
+  'kenpou/26-230': require('@/assets/images/deepdive/kenpou/26-230.png'),
+  'kenpou/27-230': require('@/assets/images/deepdive/kenpou/27-230.png'),
+  'kenpou/28-230': require('@/assets/images/deepdive/kenpou/28-230.png'),
+  'kenpou/29-230': require('@/assets/images/deepdive/kenpou/29-230.png'),
   'kenpou/3-230': require('@/assets/images/deepdive/kenpou/3-230.png'),
   'kenpou/30-230': require('@/assets/images/deepdive/kenpou/30-230.png'),
+  'kenpou/31-230': require('@/assets/images/deepdive/kenpou/31-230.png'),
+  'kenpou/32-230': require('@/assets/images/deepdive/kenpou/32-230.png'),
+  'kenpou/33-230': require('@/assets/images/deepdive/kenpou/33-230.png'),
+  'kenpou/34-230': require('@/assets/images/deepdive/kenpou/34-230.png'),
   'kenpou/35-230': require('@/assets/images/deepdive/kenpou/35-230.png'),
+  'kenpou/36-230': require('@/assets/images/deepdive/kenpou/36-230.png'),
+  'kenpou/37-230': require('@/assets/images/deepdive/kenpou/37-230.png'),
+  'kenpou/38-230': require('@/assets/images/deepdive/kenpou/38-230.png'),
+  'kenpou/39-230': require('@/assets/images/deepdive/kenpou/39-230.png'),
   'kenpou/4-230': require('@/assets/images/deepdive/kenpou/4-230.png'),
   'kenpou/4-230-p1': require('@/assets/images/deepdive/kenpou/4-230-p1.png'),
   'kenpou/4-230-p2': require('@/assets/images/deepdive/kenpou/4-230-p2.png'),
@@ -277,15 +407,23 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/41-230': require('@/assets/images/deepdive/kenpou/41-230.png'),
   'kenpou/42-230': require('@/assets/images/deepdive/kenpou/42-230.png'),
   'kenpou/43-230': require('@/assets/images/deepdive/kenpou/43-230.png'),
+  'kenpou/44-230': require('@/assets/images/deepdive/kenpou/44-230.png'),
   'kenpou/45-230': require('@/assets/images/deepdive/kenpou/45-230.png'),
+  'kenpou/46-230': require('@/assets/images/deepdive/kenpou/46-230.png'),
+  'kenpou/47-230': require('@/assets/images/deepdive/kenpou/47-230.png'),
+  'kenpou/48-230': require('@/assets/images/deepdive/kenpou/48-230.png'),
+  'kenpou/49-230': require('@/assets/images/deepdive/kenpou/49-230.png'),
   'kenpou/5-230': require('@/assets/images/deepdive/kenpou/5-230.png'),
   'kenpou/50-230': require('@/assets/images/deepdive/kenpou/50-230.png'),
   'kenpou/51-230': require('@/assets/images/deepdive/kenpou/51-230.png'),
   'kenpou/52-230': require('@/assets/images/deepdive/kenpou/52-230.png'),
   'kenpou/53-230': require('@/assets/images/deepdive/kenpou/53-230.png'),
   'kenpou/54-230': require('@/assets/images/deepdive/kenpou/54-230.png'),
+  'kenpou/55-230': require('@/assets/images/deepdive/kenpou/55-230.png'),
   'kenpou/56-230': require('@/assets/images/deepdive/kenpou/56-230.png'),
   'kenpou/57-230': require('@/assets/images/deepdive/kenpou/57-230.png'),
+  'kenpou/58-230': require('@/assets/images/deepdive/kenpou/58-230.png'),
+  'kenpou/59-230': require('@/assets/images/deepdive/kenpou/59-230.png'),
   'kenpou/6-230-1': require('@/assets/images/deepdive/kenpou/6-230-1.png'),
   'kenpou/6-230-2': require('@/assets/images/deepdive/kenpou/6-230-2.png'),
   'kenpou/60-230': require('@/assets/images/deepdive/kenpou/60-230.png'),
@@ -294,25 +432,45 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/63-230': require('@/assets/images/deepdive/kenpou/63-230.png'),
   'kenpou/64-230': require('@/assets/images/deepdive/kenpou/64-230.png'),
   'kenpou/65-230': require('@/assets/images/deepdive/kenpou/65-230.png'),
+  'kenpou/66-230': require('@/assets/images/deepdive/kenpou/66-230.png'),
+  'kenpou/67-230': require('@/assets/images/deepdive/kenpou/67-230.png'),
+  'kenpou/68-230': require('@/assets/images/deepdive/kenpou/68-230.png'),
+  'kenpou/69-230': require('@/assets/images/deepdive/kenpou/69-230.png'),
+  'kenpou/7-230': require('@/assets/images/deepdive/kenpou/7-230.png'),
   'kenpou/70-230': require('@/assets/images/deepdive/kenpou/70-230.png'),
+  'kenpou/71-230': require('@/assets/images/deepdive/kenpou/71-230.png'),
   'kenpou/72-230': require('@/assets/images/deepdive/kenpou/72-230.png'),
+  'kenpou/73-230': require('@/assets/images/deepdive/kenpou/73-230.png'),
   'kenpou/74-230': require('@/assets/images/deepdive/kenpou/74-230.png'),
   'kenpou/75-230': require('@/assets/images/deepdive/kenpou/75-230.png'),
+  'kenpou/76-230': require('@/assets/images/deepdive/kenpou/76-230.png'),
   'kenpou/77-230': require('@/assets/images/deepdive/kenpou/77-230.png'),
   'kenpou/78-230': require('@/assets/images/deepdive/kenpou/78-230.png'),
   'kenpou/79-230': require('@/assets/images/deepdive/kenpou/79-230.png'),
+  'kenpou/79-230-gpt-v2': require('@/assets/images/deepdive/kenpou/79-230-gpt-v2.png'),
+  'kenpou/8-230': require('@/assets/images/deepdive/kenpou/8-230.png'),
+  'kenpou/80-230': require('@/assets/images/deepdive/kenpou/80-230.png'),
   'kenpou/81-230': require('@/assets/images/deepdive/kenpou/81-230.png'),
+  'kenpou/82-230': require('@/assets/images/deepdive/kenpou/82-230.png'),
+  'kenpou/83-230': require('@/assets/images/deepdive/kenpou/83-230.png'),
+  'kenpou/84-230': require('@/assets/images/deepdive/kenpou/84-230.png'),
   'kenpou/85-230': require('@/assets/images/deepdive/kenpou/85-230.png'),
   'kenpou/86-230': require('@/assets/images/deepdive/kenpou/86-230.png'),
   'kenpou/87-230': require('@/assets/images/deepdive/kenpou/87-230.png'),
   'kenpou/88-230': require('@/assets/images/deepdive/kenpou/88-230.png'),
   'kenpou/89-230': require('@/assets/images/deepdive/kenpou/89-230.png'),
+  'kenpou/9-230': require('@/assets/images/deepdive/kenpou/9-230.png'),
   'kenpou/90-230': require('@/assets/images/deepdive/kenpou/90-230.png'),
   'kenpou/90-230-2': require('@/assets/images/deepdive/kenpou/90-230-2.png'),
   'kenpou/91-230': require('@/assets/images/deepdive/kenpou/91-230.png'),
   'kenpou/92-230': require('@/assets/images/deepdive/kenpou/92-230.png'),
   'kenpou/93-230': require('@/assets/images/deepdive/kenpou/93-230.png'),
+  'kenpou/93-230-gpt-v2': require('@/assets/images/deepdive/kenpou/93-230-gpt-v2.png'),
   'kenpou/94-230': require('@/assets/images/deepdive/kenpou/94-230.jpg'),
+  'kenpou/95-230': require('@/assets/images/deepdive/kenpou/95-230.png'),
+  'kenpou/96-230': require('@/assets/images/deepdive/kenpou/96-230.png'),
+  'kenpou/97-230': require('@/assets/images/deepdive/kenpou/97-230.png'),
+  'kenpou/98-230': require('@/assets/images/deepdive/kenpou/98-230.png'),
   'kenpou/99-230': require('@/assets/images/deepdive/kenpou/99-230.png'),
   'kijyutu/gyouseihou/kijyutu-gyouseihou-3-A': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-A.png'),
   'kijyutu/gyouseihou/kijyutu-gyouseihou-3-B': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-B.png'),
@@ -435,7 +593,24 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'learn/minnpou/bukken/96-110': require('@/assets/images/deepdive/learn/minnpou/bukken/96-110.png'),
   'learn/minnpou/bukken/97-110': require('@/assets/images/deepdive/learn/minnpou/bukken/97-110.png'),
   'learn/minnpou/bukken/98-110': require('@/assets/images/deepdive/learn/minnpou/bukken/98-110.png'),
-  'learn/minnpou/bukken/99-110': require('@/assets/images/deepdive/learn/minnpou/bukken/99-110.png')
+  'learn/minnpou/bukken/99-110': require('@/assets/images/deepdive/learn/minnpou/bukken/99-110.png'),
+  'saikensouron/reference/minpo-saikensouron-alternative-obligation-selection': require('@/assets/images/deepdive/saikensouron/reference/minpo-saikensouron-alternative-obligation-selection.png'),
+  'saikensouron/reference/minpo-saikensouron-creditor-delay-risk': require('@/assets/images/deepdive/saikensouron/reference/minpo-saikensouron-creditor-delay-risk.png'),
+  'saikensouron/reference/minpo-saikensouron-creditor-subrogation-vs-fraudulent': require('@/assets/images/deepdive/saikensouron/reference/minpo-saikensouron-creditor-subrogation-vs-fraudulent.png'),
+  'saikensouron/reference/minpo-saikensouron-damages-scope-foreseeability': require('@/assets/images/deepdive/saikensouron/reference/minpo-saikensouron-damages-scope-foreseeability.png'),
+  'saikensouron/reference/minpo-saikensouron-due-date-delay': require('@/assets/images/deepdive/saikensouron/reference/minpo-saikensouron-due-date-delay.png'),
+  'saikensouron/reference/minpo-saikensouron-multiple-debtors-map': require('@/assets/images/deepdive/saikensouron/reference/minpo-saikensouron-multiple-debtors-map.png'),
+  'saikensouron/reference/minpo-saikensouron-nonperformance-remedies': require('@/assets/images/deepdive/saikensouron/reference/minpo-saikensouron-nonperformance-remedies.png'),
+  'saikensouron/reference/minpo-saikensouron-specific-obligation-care': require('@/assets/images/deepdive/saikensouron/reference/minpo-saikensouron-specific-obligation-care.png'),
+  'saikensouron/reference/minpo-saikensouron-third-party-performance-subrogation': require('@/assets/images/deepdive/saikensouron/reference/minpo-saikensouron-third-party-performance-subrogation.png'),
+  'sousoku/ito-sosoku-01-mukendairi-aitegata-hogo': require('@/assets/images/deepdive/sousoku/ito-sosoku-01-mukendairi-aitegata-hogo.png'),
+  'sousoku/ito-sosoku-02-jikou-kanseiyuyo-koushin': require('@/assets/images/deepdive/sousoku/ito-sosoku-02-jikou-kanseiyuyo-koushin.png'),
+  'sousoku/ito-sosoku-03-kyougi-goui-151': require('@/assets/images/deepdive/sousoku/ito-sosoku-03-kyougi-goui-151.png'),
+  'sousoku/ito-sosoku-04-kenri-betsu-jikou': require('@/assets/images/deepdive/sousoku/ito-sosoku-04-kenri-betsu-jikou.png'),
+  'sousoku/ito-sosoku-05-shoumetsu-jikou-kikan': require('@/assets/images/deepdive/sousoku/ito-sosoku-05-shoumetsu-jikou-kikan.png'),
+  'sousoku/ito-sosoku-06-kisanten-rikouchitai': require('@/assets/images/deepdive/sousoku/ito-sosoku-06-kisanten-rikouchitai.png'),
+  'sousoku/ito-sosoku-07-dairiken-shoumetsu': require('@/assets/images/deepdive/sousoku/ito-sosoku-07-dairiken-shoumetsu.png'),
+  'sousoku/ito-sosoku-08-mukendairi-souzoku': require('@/assets/images/deepdive/sousoku/ito-sosoku-08-mukendairi-souzoku.png')
 };
 
 export function getDeepdiveImageSource(filename: string): number | undefined {
@@ -464,6 +639,236 @@ export function resolveMinpoBukkenLearnImageKey(problemNum1Based: number): strin
   if (DEEPDIVE_IMAGES[exact]) return exact;
   const re = new RegExp(`^learn/minnpou/bukken/${problemNum1Based}-110(?:$|-)`);
   return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
+}
+
+const MINPO_BUKKEN_REFERENCE_IMAGES_BY_QUESTION: Record<number, string[]> = {
+  1: [
+    'bukken/reference/minpo-bukken-emphyteusis-vs-superficies',
+    'bukken/reference/minpo-bukken-aggregate-movables-security',
+  ],
+  3: [
+    'bukken/reference/minpo-bukken-possessory-actions',
+    'bukken/reference/minpo-bukken-possessory-action-periods',
+    'bukken/reference/minpo-bukken-third-party-177',
+  ],
+  4: ['bukken/reference/minpo-bukken-third-party-177'],
+  6: [
+    'bukken/reference/minpo-bukken-delivery-patterns',
+    'bukken/reference/minpo-bukken-immediate-acquisition',
+    'bukken/reference/minpo-bukken-stolen-lost-recovery',
+    'bukken/reference/minpo-bukken-aggregate-movables-security',
+  ],
+  7: [
+    'bukken/reference/minpo-bukken-possession-transfer-cases',
+    'bukken/reference/minpo-bukken-delivery-patterns',
+    'bukken/reference/minpo-bukken-immediate-acquisition',
+    'bukken/reference/minpo-bukken-stolen-lost-recovery',
+  ],
+  8: [
+    'bukken/reference/minpo-bukken-possessory-actions',
+    'bukken/reference/minpo-bukken-possessory-action-periods',
+    'bukken/reference/minpo-bukken-possessor-owner-recovery',
+    'bukken/reference/minpo-bukken-expense-reimbursement',
+  ],
+  9: ['bukken/reference/minpo-bukken-neighboring-land-use'],
+  10: ['bukken/reference/minpo-bukken-co-ownership-use'],
+  11: [
+    'bukken/reference/minpo-bukken-neighboring-land-use',
+    'bukken/reference/minpo-bukken-emphyteusis-vs-superficies',
+    'bukken/reference/minpo-bukken-co-ownership-use',
+  ],
+  12: [
+    'bukken/reference/minpo-bukken-security-real-rights-map',
+    'bukken/reference/minpo-bukken-expense-reimbursement',
+  ],
+  13: [
+    'bukken/reference/minpo-bukken-expense-reimbursement',
+    'bukken/reference/minpo-bukken-security-real-rights-map',
+  ],
+  14: [
+    'bukken/reference/minpo-bukken-real-estate-priority',
+    'bukken/reference/minpo-bukken-security-real-rights-map',
+  ],
+  15: [
+    'bukken/reference/minpo-bukken-security-real-rights-map',
+    'bukken/reference/minpo-bukken-possessory-action-periods',
+  ],
+  16: ['bukken/reference/minpo-bukken-security-real-rights-map'],
+  21: ['bukken/reference/minpo-bukken-aggregate-movables-security'],
+};
+
+const MINPO_SAIKEN_SOURON_REFERENCE_IMAGES_BY_QUESTION: Record<number, string[]> = {
+  2: [
+    'saikensouron/reference/minpo-saikensouron-alternative-obligation-selection',
+    'saikensouron/reference/minpo-saikensouron-specific-obligation-care',
+    'saikensouron/reference/minpo-saikensouron-due-date-delay',
+  ],
+  3: [
+    'saikensouron/reference/minpo-saikensouron-specific-obligation-care',
+    'saikensouron/reference/minpo-saikensouron-creditor-delay-risk',
+    'saikensouron/reference/minpo-saikensouron-nonperformance-remedies',
+  ],
+  4: [
+    'saikensouron/reference/minpo-saikensouron-creditor-delay-risk',
+    'saikensouron/reference/minpo-saikensouron-due-date-delay',
+    'saikensouron/reference/minpo-saikensouron-nonperformance-remedies',
+  ],
+  5: [
+    'saikensouron/reference/minpo-saikensouron-due-date-delay',
+    'saikensouron/reference/minpo-saikensouron-damages-scope-foreseeability',
+    'saikensouron/reference/minpo-saikensouron-nonperformance-remedies',
+  ],
+  6: [
+    'saikensouron/reference/minpo-saikensouron-nonperformance-remedies',
+    'saikensouron/reference/minpo-saikensouron-damages-scope-foreseeability',
+  ],
+  7: ['saikensouron/reference/minpo-saikensouron-creditor-subrogation-vs-fraudulent'],
+  8: ['saikensouron/reference/minpo-saikensouron-creditor-subrogation-vs-fraudulent'],
+  9: ['saikensouron/reference/minpo-saikensouron-multiple-debtors-map'],
+  10: ['saikensouron/reference/minpo-saikensouron-third-party-performance-subrogation'],
+  11: [
+    'saikensouron/reference/minpo-saikensouron-third-party-performance-subrogation',
+    'saikensouron/reference/minpo-saikensouron-multiple-debtors-map',
+  ],
+  12: ['saikensouron/reference/minpo-saikensouron-multiple-debtors-map'],
+  13: ['saikensouron/reference/minpo-saikensouron-third-party-performance-subrogation'],
+  14: ['saikensouron/reference/minpo-saikensouron-third-party-performance-subrogation'],
+  15: ['saikensouron/reference/minpo-saikensouron-damages-scope-foreseeability'],
+};
+
+const MINPO_SAIKEN_KAKURON_REFERENCE_IMAGES_BY_QUESTION: Record<number, string[]> = {
+  1: [
+    'kakuronn/reference/minpo-saikenkakuron-simultaneous-performance-cancellation',
+    'kakuronn/reference/minpo-saikenkakuron-sale-expenses-risk',
+  ],
+  2: [
+    'kakuronn/reference/minpo-saikenkakuron-simultaneous-performance-cancellation',
+    'kakuronn/reference/minpo-saikenkakuron-earnest-money-and-performance',
+  ],
+  3: [
+    'kakuronn/reference/minpo-saikenkakuron-simultaneous-performance-cancellation',
+    'kakuronn/reference/minpo-saikenkakuron-earnest-money-and-performance',
+    'kakuronn/reference/minpo-saikenkakuron-seller-warranty-remedies',
+  ],
+  4: [
+    'kakuronn/reference/minpo-saikenkakuron-simultaneous-performance-cancellation',
+    'kakuronn/reference/minpo-saikenkakuron-earnest-money-and-performance',
+  ],
+  5: ['kakuronn/reference/minpo-saikenkakuron-gift-vs-death-gift'],
+  6: [
+    'kakuronn/reference/minpo-saikenkakuron-seller-warranty-remedies',
+    'kakuronn/reference/minpo-saikenkakuron-sale-expenses-risk',
+  ],
+  7: [
+    'kakuronn/reference/minpo-saikenkakuron-loan-return-timing',
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+  ],
+  8: [
+    'kakuronn/reference/minpo-saikenkakuron-loan-return-timing',
+    'kakuronn/reference/minpo-saikenkakuron-lease-assignment-sublease',
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+  ],
+  9: [
+    'kakuronn/reference/minpo-saikenkakuron-lease-assignment-sublease',
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+  ],
+  10: [
+    'kakuronn/reference/minpo-saikenkakuron-lease-assignment-sublease',
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+  ],
+  11: ['kakuronn/reference/minpo-saikenkakuron-contract-type-map'],
+  12: [
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+    'kakuronn/reference/minpo-saikenkakuron-mandate-termination-reward',
+  ],
+  13: [
+    'kakuronn/reference/minpo-saikenkakuron-contract-type-map',
+    'kakuronn/reference/minpo-saikenkakuron-mandate-termination-reward',
+    'kakuronn/reference/minpo-saikenkakuron-management-without-mandate',
+  ],
+  14: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  15: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  16: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  17: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  18: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  19: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  20: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  21: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+  22: ['kakuronn/reference/minpo-saikenkakuron-tort-basic-map'],
+};
+
+function existingDeepdiveImageKeys(keys: string[]): string[] {
+  return keys.filter((key) => DEEPDIVE_IMAGES[key]);
+}
+
+/** 問題を解く・民法物権: 元画像から再構成した横断整理を、対応問題の「もっと深掘る」へ自動配置する。 */
+export function resolveMinpoBukkenQuizChoiceImageKeys(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string[] {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return [];
+  return existingDeepdiveImageKeys(MINPO_BUKKEN_REFERENCE_IMAGES_BY_QUESTION[questionNum1Based] || []);
+}
+
+/** 旧呼び出し互換: 複数候補の先頭だけを返す。 */
+export function resolveMinpoBukkenQuizChoiceImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  return resolveMinpoBukkenQuizChoiceImageKeys(questionNum1Based, choiceNum1Based)[0];
+}
+
+/** 問題を解く・民法物権: チャンクボタン用。関連画像を肢ごとに循環させ、全画像に導線を作る。 */
+export function resolveMinpoBukkenSupplementChunkImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  const keys = resolveMinpoBukkenQuizChoiceImageKeys(questionNum1Based, choiceNum1Based);
+  if (keys.length === 0) return undefined;
+  return keys[(choiceNum1Based - 1) % keys.length];
+}
+
+/** 問題を解く・民法 債権総論: 元画像から再構成した横断整理を関連問題へ自動配置する。 */
+export function resolveSaikensouronQuizChoiceImageKeys(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string[] {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return [];
+  return existingDeepdiveImageKeys(MINPO_SAIKEN_SOURON_REFERENCE_IMAGES_BY_QUESTION[questionNum1Based] || []);
+}
+
+/** 問題を解く・民法 債権各論: 既存の肢別画像に加えて、元画像ベースの横断整理を関連問題へ自動配置する。 */
+export function resolveSaikenkakuronQuizChoiceImageKeys(
+  questionNum1Based: number,
+  totalQuestions: number,
+  choiceNum1Based: number
+): string[] {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return [];
+  const keys = new Set<string>();
+  const exact = resolveKakuronnQuizChoiceImageKey(questionNum1Based, totalQuestions, choiceNum1Based);
+  if (exact) keys.add(exact);
+  for (const key of MINPO_SAIKEN_KAKURON_REFERENCE_IMAGES_BY_QUESTION[questionNum1Based] || []) {
+    if (DEEPDIVE_IMAGES[key]) keys.add(key);
+  }
+  return Array.from(keys);
+}
+
+export function resolveSaikensouronSupplementChunkImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  const keys = resolveSaikensouronQuizChoiceImageKeys(questionNum1Based, choiceNum1Based);
+  if (keys.length === 0) return undefined;
+  return keys[(choiceNum1Based - 1) % keys.length];
+}
+
+export function resolveSaikenkakuronSupplementChunkImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  const keys = existingDeepdiveImageKeys(MINPO_SAIKEN_KAKURON_REFERENCE_IMAGES_BY_QUESTION[questionNum1Based] || []);
+  if (keys.length === 0) return undefined;
+  return keys[(choiceNum1Based - 1) % keys.length];
 }
 
 /**
@@ -512,6 +917,67 @@ export function resolveKakuronnQuizChoiceImageKey(
   if (DEEPDIVE_IMAGES[exact]) return exact;
   const re = new RegExp(`^kakuronn/kakuronn${questionNum1Based}-\\d+-${choiceNum1Based}$`);
   return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
+}
+
+const MINPO_SOUSOKU_ITO_IMAGE_KEYS: Record<string, string> = {
+  mukendairiAitegataHogo: 'sousoku/ito-sosoku-01-mukendairi-aitegata-hogo',
+  jikouKanseiyuyoKoushin: 'sousoku/ito-sosoku-02-jikou-kanseiyuyo-koushin',
+  kyougiGoui151: 'sousoku/ito-sosoku-03-kyougi-goui-151',
+  kenriBetsuJikou: 'sousoku/ito-sosoku-04-kenri-betsu-jikou',
+  shoumetsuJikouKikan: 'sousoku/ito-sosoku-05-shoumetsu-jikou-kikan',
+  kisantenRikouchitai: 'sousoku/ito-sosoku-06-kisanten-rikouchitai',
+  dairikenShoumetsu: 'sousoku/ito-sosoku-07-dairiken-shoumetsu',
+  mukendairiSouzoku: 'sousoku/ito-sosoku-08-mukendairi-souzoku',
+};
+
+function existingMinpoSousokuItoImage(key: string | undefined): string | undefined {
+  if (!key) return undefined;
+  return DEEPDIVE_IMAGES[key] ? key : undefined;
+}
+
+/**
+ * 問題を解く・民法総則: 添付教材から生成した横断図を、関連する選択肢の「もっと深掘る」へ自動配置する。
+ * 直接対応が弱い図は resolveMinpoSousokuSupplementChunkImageKey 側でチャンク表示する。
+ */
+export function resolveMinpoSousokuQuizChoiceImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  if (questionNum1Based < 1 || choiceNum1Based < 1) return undefined;
+  const k = MINPO_SOUSOKU_ITO_IMAGE_KEYS;
+  const key =
+    questionNum1Based === 11 && [2, 5, 6].includes(choiceNum1Based)
+      ? k.mukendairiAitegataHogo
+      : questionNum1Based === 11 && choiceNum1Based === 10
+        ? k.dairikenShoumetsu
+        : questionNum1Based === 12 && choiceNum1Based === 4
+          ? k.mukendairiAitegataHogo
+          : questionNum1Based === 13 && [1, 2, 3, 4, 5].includes(choiceNum1Based)
+            ? k.mukendairiSouzoku
+            : questionNum1Based === 14 && choiceNum1Based === 5
+              ? k.kisantenRikouchitai
+              : questionNum1Based === 16 && [1, 2, 3, 4, 5, 6, 7, 8].includes(choiceNum1Based)
+                ? k.shoumetsuJikouKikan
+                : questionNum1Based === 17 && [6, 7, 8, 9].includes(choiceNum1Based)
+                  ? k.kenriBetsuJikou
+                  : undefined;
+  return existingMinpoSousokuItoImage(key);
+}
+
+/**
+ * 民法総則の周辺チャンク表示用。関連問題が薄い横断図は、近い時効問題のチャンクとして出す。
+ */
+export function resolveMinpoSousokuSupplementChunkImageKey(
+  questionNum1Based: number,
+  choiceNum1Based: number
+): string | undefined {
+  if (questionNum1Based === 16 && choiceNum1Based === 1) {
+    return existingMinpoSousokuItoImage(MINPO_SOUSOKU_ITO_IMAGE_KEYS.jikouKanseiyuyoKoushin);
+  }
+  if (questionNum1Based === 16 && choiceNum1Based === 2) {
+    return existingMinpoSousokuItoImage(MINPO_SOUSOKU_ITO_IMAGE_KEYS.kyougiGoui151);
+  }
+  return undefined;
 }
 
 /**

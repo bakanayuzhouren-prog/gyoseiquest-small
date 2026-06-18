@@ -1,19 +1,19 @@
-import { router } from 'expo-router';
-import { useState } from 'react';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useCallback, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
 import { getStickyNotes } from '@/utils/sticky-notes';
-import { useFocusEffect } from 'expo-router';
-import { useCallback } from 'react';
 
 type SubCategory = {
   label: string;
-  key: string;
+  key?: string;
   /** 多肢選択の分野（憲法 / 行政法）→ /learn/多肢選択?field= */
   field?: string;
+  plus?: boolean;
+  subCategories?: SubCategory[];
 };
 
 type Category = {
@@ -21,6 +21,7 @@ type Category = {
   label: string;
   key?: string; // If leaf node
   subCategories?: SubCategory[];
+  plus?: boolean;
 };
 
 const isLightBg = (hex: string) => {
@@ -62,6 +63,40 @@ const CATEGORIES: Category[] = [
   { id: 'commercial', label: '商法・会社法', key: '商法・会社法' },
   { id: 'knowledge', label: '基礎知識', key: '基礎知識' },
   {
+    id: 'learn_plus',
+    label: '見て聞いて覚えるモードぷらす',
+    subCategories: [
+      { label: '基礎法学', key: '基礎法学', plus: true },
+      { label: '憲法', key: '憲法', plus: true },
+      {
+        label: '行政法',
+        subCategories: [
+          { label: '行政法総論', key: '行政法総論', plus: true },
+          { label: '行政手続法', key: '行政手続法', plus: true },
+          { label: '行政不服審査法', key: '行政不服審査法', plus: true },
+          { label: '行政事件訴訟法', key: '行政事件訴訟法', plus: true },
+          { label: '国家賠償法', key: '国家賠償法', plus: true },
+          { label: '地方自治法', key: '地方自治法', plus: true },
+          { label: '行政法総合', key: '行政法総合', plus: true },
+          { label: '多肢選択・行政法', key: '多肢選択', field: '行政法', plus: true },
+        ],
+      },
+      {
+        label: '民法',
+        subCategories: [
+          { label: '民法総則', key: '民法総則', plus: true },
+          { label: '民法物権', key: '民法物権', plus: true },
+          { label: '債権総論', key: '債権総論', plus: true },
+          { label: '債権各論', key: '債権各論', plus: true },
+          { label: '家族法', key: '家族法', plus: true },
+        ],
+      },
+      { label: '商法・会社法', key: '商法・会社法', plus: true },
+      { label: '基礎知識', key: '基礎知識', plus: true },
+      { label: '多肢選択・憲法', key: '多肢選択', field: '憲法', plus: true },
+    ],
+  },
+  {
     id: 'multi_choice',
     label: '多肢選択',
     subCategories: [
@@ -75,8 +110,14 @@ const CATEGORIES: Category[] = [
 
 export default function LearnScreen() {
   const { colors } = useTheme();
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  const params = useLocalSearchParams<{ menu?: string }>();
+  const menuParam = Array.isArray(params.menu) ? params.menu[0] : params.menu;
+  const [menuStack, setMenuStack] = useState<Category[]>(() => {
+    const plusCategory = CATEGORIES.find(category => category.id === 'learn_plus');
+    return menuParam === 'plus' && plusCategory ? [plusCategory] : [];
+  });
   const [stickyCounts, setStickyCounts] = useState<{ [key: string]: number }>({});
+  const selectedCategory = menuStack[menuStack.length - 1] ?? null;
 
   // 画面が表示されるたびに付箋数を更新
   useFocusEffect(
@@ -88,12 +129,16 @@ export default function LearnScreen() {
           if (cat.key) {
             counts[cat.key] = getStickyNotes(cat.key).length;
           }
-          if (cat.subCategories) {
-            cat.subCategories.forEach(sub => {
-              const scope = sub.field ? `${sub.key}:${sub.field}` : sub.key;
-              counts[scope] = getStickyNotes(scope).length;
+          const updateSubCounts = (subs: SubCategory[]) => {
+            subs.forEach(sub => {
+              if (sub.key) {
+                const scope = sub.field ? `${sub.key}:${sub.field}` : sub.key;
+                counts[scope] = getStickyNotes(scope).length;
+              }
+              if (sub.subCategories) updateSubCounts(sub.subCategories);
             });
-          }
+          };
+          if (cat.subCategories) updateSubCounts(cat.subCategories);
         });
       };
 
@@ -104,22 +149,38 @@ export default function LearnScreen() {
 
   const handleCategoryPress = (category: Category) => {
     if (category.subCategories) {
-      setSelectedCategory(category);
+      setMenuStack([category]);
     } else if (category.key) {
-      router.push(`/learn/${category.key}`);
+      if (category.plus) {
+        router.push({ pathname: '/learn/[subject]', params: { subject: category.key, plus: '1' } });
+      } else {
+        router.push(`/learn/${category.key}`);
+      }
     }
   };
 
   const handleSubCategoryPress = (sub: SubCategory) => {
+    if (sub.subCategories) {
+      setMenuStack(prev => [...prev, { id: sub.label, label: sub.label, subCategories: sub.subCategories }]);
+      return;
+    }
+    if (!sub.key) return;
     if (sub.field) {
-      router.push({ pathname: '/learn/[subject]', params: { subject: sub.key, field: sub.field } });
+      router.push({
+        pathname: '/learn/[subject]',
+        params: sub.plus
+          ? { subject: sub.key, field: sub.field, plus: '1' }
+          : { subject: sub.key, field: sub.field },
+      });
+    } else if (sub.plus) {
+      router.push({ pathname: '/learn/[subject]', params: { subject: sub.key, plus: '1' } });
     } else {
       router.push({ pathname: '/learn/[subject]', params: { subject: sub.key } });
     }
   };
 
   const handleBack = () => {
-    setSelectedCategory(null);
+    setMenuStack(prev => prev.slice(0, -1));
   };
 
   return (
@@ -135,15 +196,15 @@ export default function LearnScreen() {
         {selectedCategory ? (
           <>
             {selectedCategory.subCategories?.map((sub, index) => {
-              const stickyScope = sub.field ? `${sub.key}:${sub.field}` : sub.key;
+              const stickyScope = sub.key ? (sub.field ? `${sub.key}:${sub.field}` : sub.key) : null;
               return (
               <Pressable
-                key={`${sub.key}-${sub.field ?? ''}`}
+                key={`${sub.key ?? sub.label}-${sub.field ?? ''}`}
                 style={[styles.subjectButton, { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder }]}
                 onPress={() => handleSubCategoryPress(sub)}>
                 <ThemedText type="defaultSemiBold" style={[styles.subjectText, { color: isLightBg(colors.choiceBg) ? '#000000' : colors.choiceText }]}>
                   {index + 1} {sub.label}
-                  {stickyCounts[stickyScope] > 0 && (
+                  {stickyScope && stickyCounts[stickyScope] > 0 && (
                     <ThemedText style={styles.stickyBadge}> (付箋: {stickyCounts[stickyScope]})</ThemedText>
                   )}
                 </ThemedText>

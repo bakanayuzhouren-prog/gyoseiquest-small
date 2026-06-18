@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from 'react';
-import { Modal, Platform, Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { Modal, Platform, Pressable, ScrollView, StyleSheet, View, useWindowDimensions, type ViewStyle } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated, {
   clamp,
@@ -272,7 +272,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 6,
     paddingVertical: 0,
     cursor: Platform.OS === 'web' ? ('grab' as const) : undefined,
-  },
+  } as ViewStyle,
   headerTextWrap: {
     flex: 1,
     overflow: 'hidden',
@@ -311,7 +311,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     cursor: Platform.OS === 'web' ? ('nwse-resize' as const) : undefined,
-  },
+  } as ViewStyle,
   resizeGrip: {
     width: 10,
     height: 10,

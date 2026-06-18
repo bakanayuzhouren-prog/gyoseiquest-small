@@ -15,6 +15,12 @@ const C = {
 
 const SUBJECTS = [
   {
+    href: '/textbook/kimi' as Href,
+    title: '君の教科書！',
+    description: '誤答・付箋・TAC模試の新知識から、いま読むべき自分用の教科書を生成。',
+    icon: 'auto-stories' as const,
+  },
+  {
     href: '/textbook/kenpou' as Href,
     title: '憲法',
     description: '条文・判例・比較表付き。概念章（硬性/軟性）から統治・司法まで。',

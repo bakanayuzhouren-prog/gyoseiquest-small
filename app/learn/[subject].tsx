@@ -93,6 +93,56 @@ function pickByIndices<T>(arr: T[], indices: number[] | null): T[] {
   return indices.map((i) => arr[i]).filter((v) => v !== undefined);
 }
 
+function parseLearnCardDisplayText(raw: string): { mainText: string; basisText: string } {
+  const contentToProcess = stripLearnLinkTag(raw)
+    .replace(/\[\[LINK:.+?\]\]/g, '')
+    .replace(/\[\[image:.+?\]\]/g, '');
+  if (!contentToProcess.includes('※')) {
+    return { mainText: contentToProcess.trim(), basisText: '' };
+  }
+  const [head, ...rest] = contentToProcess.split('※');
+  return {
+    mainText: (head || '').trim(),
+    basisText: rest.length > 0 ? `※${rest.join('※')}` : '',
+  };
+}
+
+function tacLearnSourceLabel(text: string): string {
+  if (/【TAC3】|TAC第3回/.test(text)) return 'TAC第3回';
+  if (/【TAC2】|TAC第2回/.test(text)) return 'TAC第2回';
+  if (/【TAC】|TAC第1回/.test(text)) return 'TAC第1回';
+  return '';
+}
+
+function buildTacLearnFallbackDeepdive(text: string, subjectLabel: string): string {
+  const clean = text
+    .replace(/\[\[LINK:.+?\]\]/g, '')
+    .replace(/\[\[image:.+?\]\]/g, '')
+    .trim();
+  const sourceLabel = tacLearnSourceLabel(clean);
+  if (!sourceLabel || !clean) return '';
+  const title = clean.replace(/^【TAC(?:2|3)?】\s*/, '').trim();
+  return [
+    `# ${sourceLabel} ${subjectLabel || '論点'}のもっと深掘る`,
+    '## 見て聞いて覚えるカード',
+    title,
+    '## コア解説',
+    'このカードはTAC模試で出た論点を、原文転載ではなく復習用の短い知識に再構成したものです。まず結論を固定し、次に主語・要件・例外・数字を分けて確認します。',
+    '## 図解',
+    '```text',
+    `${sourceLabel}の誤答論点`,
+    '  ↓ 論点だけを抽出',
+    `${subjectLabel || '科目'}の基本ルール`,
+    '  ↓ 主語・要件・例外・数字を分解',
+    '見て聞いて覚える → 問題を解く → 君の教科書で再確認',
+    '```',
+    '## 復習チャンク',
+    '- その制度で「誰が」「何を」できるのかを1文で言う。',
+    '- 例外・制限・数字がある場合は、結論とは別に口頭で確認する。',
+    '- 似た制度との違いを1つだけ挙げてから、ボーナス問題へ戻る。',
+  ].join('\n\n');
+}
+
 type LearnRelatedStatutesPayload = {
   content: string;
   choiceLabel: string;
@@ -196,11 +246,16 @@ export default function LearnSubjectScreen() {
     }, [])
   );
 
-  const params = useLocalSearchParams<{ subject?: string; index?: string; field?: string; returnToResult?: string }>();
+  const params = useLocalSearchParams<{ subject?: string; index?: string; field?: string; plus?: string; returnToResult?: string; autoplay?: string; reviewAudio?: string }>();
   const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
   const fieldParam = Array.isArray(params.field) ? params.field[0] : params.field;
+  const plusParam = Array.isArray(params.plus) ? params.plus[0] : params.plus;
   const returnToResultParam = Array.isArray(params.returnToResult) ? params.returnToResult[0] : params.returnToResult;
+  const autoplayParam = Array.isArray(params.autoplay) ? params.autoplay[0] : params.autoplay;
+  const reviewAudioParam = Array.isArray(params.reviewAudio) ? params.reviewAudio[0] : params.reviewAudio;
   const isQuizLearnReview = returnToResultParam === '1';
+  const shouldAutoplayReviewAudio = isQuizLearnReview && autoplayParam === '1' && reviewAudioParam === '1';
+  const isPlusMode = plusParam === '1';
   const tashiField = fieldParam === '憲法' || fieldParam === '行政法' ? fieldParam : undefined;
   const indexParam = Array.isArray(params.index) ? params.index[0] : params.index;
   const parsedIndex = parseInt(indexParam || '0', 10);
@@ -295,6 +350,56 @@ export default function LearnSubjectScreen() {
     return fromLearn;
   }, [subject, flattenedSubjectQuestions, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo, learnSheetFilterIndices]);
 
+  const learnSourceList = useMemo(() => {
+    if (subject === '多肢選択') {
+      const src = LEARN_SOURCE as Record<string, unknown>;
+      if (tashiField === '憲法') {
+        const raw = Object.prototype.hasOwnProperty.call(src, '多肢選択憲法')
+          ? src['多肢選択憲法']
+          : (LEARN_SOURCE as any)?.['多肢選択'];
+        const arr = Array.isArray(raw) ? (raw as string[]) : [];
+        return Object.prototype.hasOwnProperty.call(src, '多肢選択憲法')
+          ? arr
+          : sliceTashiSyncedByField(arr, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo);
+      }
+      if (tashiField === '行政法') {
+        const raw = Object.prototype.hasOwnProperty.call(src, '多肢選択行政法')
+          ? src['多肢選択行政法']
+          : (LEARN_SOURCE as any)?.['多肢選択'];
+        const arr = Array.isArray(raw) ? (raw as string[]) : [];
+        return Object.prototype.hasOwnProperty.call(src, '多肢選択行政法')
+          ? arr
+          : sliceTashiSyncedByField(arr, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo);
+      }
+      const ken = (LEARN_SOURCE as any)?.['多肢選択憲法'];
+      const gyo = (LEARN_SOURCE as any)?.['多肢選択行政法'];
+      const a = Array.isArray(ken) ? ken : [];
+      const b = Array.isArray(gyo) ? gyo : [];
+      if (a.length + b.length > 0) return [...a, ...b];
+      const full = (LEARN_SOURCE as any)?.['多肢選択'];
+      return Array.isArray(full) ? full : [];
+    }
+    const raw = subject ? (LEARN_SOURCE as any)[subject] : [];
+    let fromLearn = Array.isArray(raw) ? raw : raw ? [raw] : [];
+    if (fromLearn.length === 0 && subject === '民法総則') {
+      const legacy = (LEARN_SOURCE as any)['民法総論'];
+      fromLearn = Array.isArray(legacy) ? legacy : legacy ? [legacy] : [];
+    }
+    return pickByIndices(fromLearn, learnSheetFilterIndices);
+  }, [subject, tashiField, tashiKenGyoLens.ken, tashiKenGyoLens.gyo, learnSheetFilterIndices]);
+
+  const plusOriginalIndexSet = useMemo(() => {
+    if (!isPlusMode) return null;
+    const indices = learnSourceList
+      .map((label, index) => {
+        const sourceLabel = String(label || '');
+        const cardText = String(contentList[index] || '');
+        return /TAC|模試|moshi/i.test(`${sourceLabel} ${cardText}`) ? index : -1;
+      })
+      .filter((index) => index >= 0);
+    return new Set(indices);
+  }, [isPlusMode, learnSourceList, contentList]);
+
   const [currentIndex, setCurrentIndex] = useState(routeIndex);
   const [currentReadCount, setCurrentReadCount] = useState(1); // Counter for the 3 repeats
   const [readCount, setReadCount] = useState(0); // Cumulative total count (optional, but keep for UI)
@@ -343,12 +448,23 @@ export default function LearnSubjectScreen() {
   const pendingResumePlaybackAfterDeepdiveRef = useRef(false);
   /** 深掘りを開いた瞬間の index。戻り時に URL の index より優先（カーソル消去後も矯正） */
   const deepdiveReturnTargetIndexRef = useRef<number | null>(null);
+  const appliedReviewAutoplayKeyRef = useRef('');
 
   const { theme, colors } = useTheme();
 
   useEffect(() => {
     learnReceivesPointerRef.current = learnReceivesPointer;
   }, [learnReceivesPointer]);
+
+  useEffect(() => {
+    if (!shouldAutoplayReviewAudio) return;
+    const key = `${learnScopeKey}\u001f${routeIndex}`;
+    if (appliedReviewAutoplayKeyRef.current === key) return;
+    appliedReviewAutoplayKeyRef.current = key;
+    setCurrentReadCount(1);
+    setSpokenIndex(0);
+    setIsPlaying(true);
+  }, [shouldAutoplayReviewAudio, learnScopeKey, routeIndex, setIsPlaying, setSpokenIndex]);
 
   useEffect(() => {
     isPlayingRef.current = isPlaying;
@@ -490,12 +606,27 @@ export default function LearnSubjectScreen() {
   };
 
   // 優先モード用のリスト構成
-  const displayContentList = isPriorityMode && learnScopeKey
-    ? [
-      ...contentList.filter((_, i) => getStickyNotes(learnScopeKey).includes(i)),
-      ...contentList.filter((_, i) => !getStickyNotes(learnScopeKey).includes(i))
-    ]
-    : contentList;
+  const baseDisplayIndices = useMemo(
+    () =>
+      contentList
+        .map((_, index) => index)
+        .filter((index) => !plusOriginalIndexSet || plusOriginalIndexSet.has(index)),
+    [contentList, plusOriginalIndexSet]
+  );
+
+  const orderedDisplayIndices = useMemo(() => {
+    if (!isPriorityMode || !learnScopeKey) return baseDisplayIndices;
+    const stickyList = getStickyNotes(learnScopeKey);
+    return [
+      ...baseDisplayIndices.filter((i) => stickyList.includes(i)),
+      ...baseDisplayIndices.filter((i) => !stickyList.includes(i)),
+    ];
+  }, [baseDisplayIndices, isPriorityMode, learnScopeKey]);
+
+  const displayContentList = useMemo(
+    () => orderedDisplayIndices.map((index) => contentList[index]).filter((item): item is string => typeof item === 'string'),
+    [contentList, orderedDisplayIndices]
+  );
 
   useEffect(() => {
     if (lastAppliedRouteCursorRef.current === routeCursorKey) return;
@@ -514,15 +645,8 @@ export default function LearnSubjectScreen() {
 
   // 優先モード時に元の contentList インデックスを復元するためのマッピング
   const displayIndexList = useMemo(() => {
-    if (isPriorityMode && learnScopeKey) {
-      const stickyList = getStickyNotes(learnScopeKey);
-      return [
-        ...contentList.map((_, i) => i).filter((i) => stickyList.includes(i)),
-        ...contentList.map((_, i) => i).filter((i) => !stickyList.includes(i)),
-      ];
-    }
-    return contentList.map((_, i) => i);
-  }, [isPriorityMode, learnScopeKey, contentList]);
+    return orderedDisplayIndices;
+  }, [orderedDisplayIndices]);
 
   const originalContentIndex = displayIndexList[currentIndex] ?? currentIndex;
   const learnAlignedIndex =
@@ -737,15 +861,12 @@ export default function LearnSubjectScreen() {
 
   const learnAutoImageResolved = !!(learnAutoImageKey && resolveImageAsset(learnAutoImageKey));
 
-  // Remove LINK and IMAGE tags from content for display processing
-  const contentToProcess = stripLearnLinkTag(currentDisplayContent)
-    .replace(/\[\[LINK:.+?\]\]/g, '')
-    .replace(/\[\[image:.+?\]\]/g, '');
+  const { mainText, basisText } = parseLearnCardDisplayText(currentDisplayContent);
 
-  const [mainTextRaw, basisText] = contentToProcess.includes('※')
-    ? [contentToProcess.split('※')[0], '※' + contentToProcess.split('※')[1]]
-    : [contentToProcess, ''];
-  const mainText = mainTextRaw.trim();
+  const tacLearnFallbackDeepdive = useMemo(
+    () => buildTacLearnFallbackDeepdive(currentDisplayContent, learnSubjectForDeepdive || subject || ''),
+    [currentDisplayContent, learnSubjectForDeepdive, subject]
+  );
 
   const personFlowDiagram = useMemo(() => {
     if (!subject || !isMinpoPersonFlowField(subject)) return null;
@@ -794,6 +915,7 @@ export default function LearnSubjectScreen() {
       ? !!(deepdiveContent || '').trim() || !!digDeeperUrl
       : !!(
           (deepdiveContent || '').trim() ||
+          tacLearnFallbackDeepdive ||
           learnStatuteRefText ||
           digDeeperUrl ||
           hasChunks ||
@@ -833,6 +955,9 @@ export default function LearnSubjectScreen() {
       );
       if (autoKey && resolveImageAsset(autoKey)) merged = `[[image:${autoKey}]]`;
     }
+    if (!merged.trim() && tacLearnFallbackDeepdive) {
+      merged = tacLearnFallbackDeepdive;
+    }
     if (learnSubjectForDeepdive === '憲法') {
       const sup = kenpouParallelSupplementImageKey(learnAlignedIndex + 1);
       if (sup) {
@@ -856,6 +981,7 @@ export default function LearnSubjectScreen() {
       if (!(mergedPayload?.trim() || digDeeperUrl)) return;
     } else if (
       !mergedPayload &&
+      !tacLearnFallbackDeepdive &&
       !learnStatuteRefText &&
       !digDeeperUrl &&
       !hasChunks &&
@@ -1026,8 +1152,8 @@ export default function LearnSubjectScreen() {
         webUtterancePollCleanupRef.current = null;
 
         const raw = resolveLearnPlaybackRaw();
-        const currentMainText = raw.includes('※') ? raw.split('※')[0] : raw;
-        const basePlainForSync = stripLexiconMarkupForPlain(currentMainText).replace(/\[\[.*?\]\]/g, '');
+        const { mainText: currentMainText } = parseLearnCardDisplayText(raw);
+        const basePlainForSync = stripLexiconMarkupForPlain(currentMainText);
         const processedText = applyCharacterNamesRef.current(basePlainForSync);
         const spokenText = applyTTSRules(processedText);
 
@@ -1287,7 +1413,7 @@ export default function LearnSubjectScreen() {
           <ThemedView style={styles.headerRow}>
             <ThemedView style={{ flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: 'transparent' }}>
               <ThemedText type="title">
-                {subject}{tashiField ? `・${tashiField}` : ''}
+                {subject}{tashiField ? `・${tashiField}` : ''}{isPlusMode ? ' ぷらす' : ''}
                 {learnSourceSheetLabel === '行政代執行法' ? '（行政代執行法）' : ''} ({currentIndex + 1}/{displayContentList.length})
               </ThemedText>
               <ThemedView style={styles.bulbContainer}>

@@ -2,7 +2,7 @@ import { GameCenter } from '@/components/GameCenter';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Themes, useTheme } from '@/src/context/ThemeContext';
-import { AVATARS, useUser } from '@/src/context/UserContext';
+import { AVATARS, useUser, type AvatarType } from '@/src/context/UserContext';
 import { getRegionTheme, MUNICIPALITIES, Prefecture, PREFECTURES, REGION_MODIFIERS } from '@/src/data/japan_geo';
 import { addComment, getComments, GuestbookEntry } from '@/src/utils/comment_storage';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -349,7 +349,7 @@ export default function MetaScreen() {
                             ) : (
                                 comments.map(c => (
                                     <View key={c.id} style={[styles.commentItem, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
-                                        <Image source={AVATARS[c.avatarId as any] || AVATARS.default} style={styles.commentAvatar} />
+                                        <Image source={AVATARS[c.avatarId as AvatarType] || AVATARS.default} style={styles.commentAvatar} />
                                         <View style={{ flex: 1 }}>
                                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                                 <ThemedText style={{ fontWeight: 'bold', fontSize: 12 }}>{c.username}</ThemedText>

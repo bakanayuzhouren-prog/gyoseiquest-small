@@ -13,6 +13,7 @@ export interface ThemeColors {
     choiceBorder: string;
     choiceText: string;
     accent: string;
+    border: string;
 
     subText: string;
     tint?: string;
@@ -29,6 +30,7 @@ export const Themes: Record<ThemeType, ThemeColors> = {
         choiceBorder: '#5A9BD5',
         choiceText: '#000000',   // 白背景で黒文字
         accent: '#4299E1',
+        border: '#D1D9E0',
         subText: '#333333'
     },
     paper: {
@@ -41,6 +43,7 @@ export const Themes: Record<ThemeType, ThemeColors> = {
         choiceBorder: '#B8A090',
         choiceText: '#000000',   // 白背景で黒文字
         accent: '#A1887F',
+        border: '#D8CFC1',
         subText: '#333333'
     },
     contrast: {
@@ -53,6 +56,7 @@ export const Themes: Record<ThemeType, ThemeColors> = {
         choiceBorder: '#000000',
         choiceText: '#FFFFFF',  // 白文字
         accent: '#000000',
+        border: '#000000',
         subText: '#000000'
     },
     premium: {
@@ -65,6 +69,7 @@ export const Themes: Record<ThemeType, ThemeColors> = {
         choiceBorder: '#38BDF8',
         choiceText: '#E0F2FE',  // 薄い白で目に優しく
         accent: '#22D3EE',
+        border: '#334155',
         subText: '#94A3B8'
     },
     cyberpunk: {
@@ -77,6 +82,7 @@ export const Themes: Record<ThemeType, ThemeColors> = {
         choiceBorder: '#00FFFF',  // ネオンシアン
         choiceText: '#00FFFF',
         accent: '#FF00FF',
+        border: '#2DD4BF',
         subText: '#A78BFA'
     }
 };

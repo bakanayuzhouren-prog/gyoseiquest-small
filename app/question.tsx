@@ -11,6 +11,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
+import { setDeepdiveParams } from '@/src/deepdiveState';
 import { RESOURCES } from '@/src/questions';
 import { mergeQuizResourcePages, parseQuizRefIds } from '@/utils/quizResources';
 import { explainChoiceIntent, generateDescriptiveQuestion } from '@/src/utils/geminiService';
@@ -34,7 +35,7 @@ import {
   shuffleQuestionsCopy,
 } from '@/utils/quiz-question-pipeline';
 import { parseComboChoiceParts, splitSlotOptionParts } from '@/utils/slotNormalize';
-import { getQuestionStats, getQuestionTextHash, reconcileAllAttemptsAsCorrect } from '@/utils/question-stats';
+import { getQuestionStats, getQuestionTextHash, reconcileAllAttemptsAsCorrect, type QuestionStats } from '@/utils/question-stats';
 import { CIVIL_PRECEDENT_IMAGES } from '@/src/civilPrecedentImages';
 import { resolveMondaibunnGazoItems } from '@/src/mondaibunn-gazou';
 import { extractQuestionCast } from '@/src/castRegistry';
@@ -116,6 +117,124 @@ function parseWordBankKatakanaBlocks(wb: string): { title: string; items: string
 }
 
 const GEMINI_API_KEY = (typeof Constants?.expoConfig?.extra !== 'undefined' && (Constants.expoConfig.extra as any)?.geminiApiKey) || (typeof process !== 'undefined' && process.env?.EXPO_PUBLIC_GEMINI_API_KEY) || (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) || '';
+
+function buildCurrentInsight(stats: QuestionStats | null) {
+  const correct = stats?.correct ?? 0;
+  const wrong = stats?.wrong ?? 0;
+  const consecutiveCorrect = stats?.consecutiveCorrect ?? 0;
+  const attempts = correct + wrong;
+  const rate = attempts > 0 ? Math.round((correct / attempts) * 100) : null;
+
+  if (attempts === 0) {
+    return {
+      level: 1,
+      label: '未測定',
+      rateLabel: '--%',
+      message: 'まず1回解いて、どこで迷うかを記録する段階。',
+      nextInput: '見て聞いて覚える。問題文の主語・要件・例外に線を引く。',
+      accent: '#8D6E63',
+    };
+  }
+  if (wrong >= 3 && (rate ?? 0) < 50) {
+    return {
+      level: 2,
+      label: '入口から再構築',
+      rateLabel: `${rate}%`,
+      message: '知識が断片化していて、問題文の形が変わると崩れやすい。',
+      nextInput: '条文・制度趣旨・典型例を1枚の図に戻してから解き直す。',
+      accent: '#C62828',
+    };
+  }
+  if ((rate ?? 0) < 60 || wrong >= 2) {
+    return {
+      level: 5,
+      label: '基礎あり・変形に弱い',
+      rateLabel: `${rate}%`,
+      message: '基本知識はあるが、ひっかけや横断比較で落としやすい。',
+      nextInput: '似た制度との差、例外、手続の順番を「もっと深掘る」の図で整理する。',
+      accent: '#EF6C00',
+    };
+  }
+  if ((rate ?? 0) < 80 || consecutiveCorrect < 2) {
+    return {
+      level: 7,
+      label: '合格答案に接近中',
+      rateLabel: `${rate}%`,
+      message: '主要論点は取れている。次は理由付けと別角度の出題に耐える段階。',
+      nextInput: '誤答肢のどの文言が決め手かを説明できるまで深掘る。',
+      accent: '#2E7D32',
+    };
+  }
+  if ((rate ?? 0) < 95 || consecutiveCorrect < 5) {
+    return {
+      level: 9,
+      label: '本試験対応圏',
+      rateLabel: `${rate}%`,
+      message: '安定している。時間をかけずに根拠まで言えるかを確認する段階。',
+      nextInput: '1問30秒で要件・結論・理由を口頭チェックする。',
+      accent: '#1565C0',
+    };
+  }
+  return {
+    level: 10,
+    label: '司法試験合格レベル級',
+    rateLabel: `${rate}%`,
+    message: 'この論点はかなり強い。復習頻度を下げ、他の弱点へ時間を回せる。',
+    nextInput: '月1回の確認に落として、類似論点との比較だけ維持する。',
+    accent: '#6A1B9A',
+  };
+}
+
+function tacQuizSourceLabel(question: any): string {
+  const sourceText = `${question?.memo || ''} ${question?.text || ''}`;
+  if (/TAC第3回|TAC3|ボーナスTAC3/.test(sourceText)) return 'TAC第3回';
+  if (/TAC第2回|TAC2|ボーナスTAC2/.test(sourceText)) return 'TAC第2回';
+  if (/TAC第1回|TAC|ボーナスTAC/.test(sourceText)) return 'TAC第1回';
+  return '';
+}
+
+function buildTacQuizDeepdive(question: any, subjectLabel: string, fieldLabel: string): string {
+  const sourceLabel = tacQuizSourceLabel(question);
+  if (!sourceLabel) return '';
+  const choices = Array.isArray(question?.choices)
+    ? question.choices.map((choice: string, index: number) => `${index + 1}. ${String(choice || '').replace(/※/g, '').trim()}`).join('\n')
+    : '';
+  const choiceExplanations = Array.isArray(question?.choiceExplanations)
+    ? question.choiceExplanations.map((explain: string, index: number) => {
+        const body = String(explain || '').trim();
+        return body ? `### ${index + 1}\n${body}` : '';
+      }).filter(Boolean).join('\n\n')
+    : '';
+  const choiceDeepDive = Array.isArray(question?.choiceDeepDive)
+    ? question.choiceDeepDive.map((body: string, index: number) => {
+        const text = String(body || '').trim();
+        return text ? `### 肢${index + 1}\n${text}` : '';
+      }).filter(Boolean).join('\n\n')
+    : '';
+  const fieldText = [subjectLabel, fieldLabel].filter(Boolean).join(' / ');
+  return [
+    `# ${sourceLabel} ボーナス問題のもっと深掘る`,
+    fieldText ? `対象: ${fieldText}` : '',
+    '## 問題',
+    String(question?.text || '').replace(/^【ボーナスTAC(?:2|3)?】\s*/, '').trim(),
+    choices ? `## 選択肢\n${choices}` : '',
+    question?.explain ? `## まず押さえる解説\n${String(question.explain).trim()}` : '',
+    choiceExplanations ? `## 肢別チェック\n${choiceExplanations}` : '',
+    choiceDeepDive ? `## もっと深掘る\n${choiceDeepDive}` : '',
+    '## 図解',
+    '```text',
+    `${sourceLabel}の論点`,
+    '  ↓ 原問の文章は使わず、論点だけを復習化',
+    '問題文の主語・要件・例外を分ける',
+    '  ↓',
+    '正解肢の根拠と、誤答肢のズレを1つずつ説明する',
+    '```',
+    '## 解き直しチャンク',
+    '- 正解番号を覚える前に、各肢の決め手になる語句を1つ拾う。',
+    '- 誤答した肢は、どの要件・例外・数字を取り違えたかをメモする。',
+    '- 同じ論点の見て聞いて覚えるカードへ戻り、短い結論を音読する。',
+  ].filter(Boolean).join('\n\n');
+}
 
 function DraggableWordBankItem({
   value,
@@ -287,14 +406,11 @@ export default function QuestionScreen() {
   );
   const { applyCharacterNames, characterMap } = useCharacter();
 
-  const [questionStats, setQuestionStats] = useState<{
-    correct: number;
-    wrong: number;
-    consecutiveCorrect: number;
-  } | null>(null);
+  const [questionStats, setQuestionStats] = useState<QuestionStats | null>(null);
   const [questionMark, setQuestionMarkState] = useState<QuestionMark>(null);
   const [highlightedSegments, setHighlightedSegments] = useState<Set<number>>(new Set());
   const [highlightRanges, setHighlightRanges] = useState<HighlightRange[]>([]);
+  const [showCurrentInsight, setShowCurrentInsight] = useState(true);
 
   useEffect(() => {
     if (!subject || !field || !question?.text) {
@@ -1347,16 +1463,17 @@ export default function QuestionScreen() {
     if (!question || !question.choices) return [];
     const cb = (question as any).choiceIsBonus as boolean[] | undefined;
     const isBonusChoice = (i: number) => (cb && i < cb.length ? cb[i] : !!(question as any).isBonus);
-    let list = question.choices.map((text: string, index: number) => ({ text, originalIndex: index }));
+    type ChoiceWithIndex = { text: string; originalIndex: number };
+    let list: ChoiceWithIndex[] = question.choices.map((text: string, index: number) => ({ text, originalIndex: index }));
     if (mode !== 'bonus') {
-      list = list.filter((c) => !isBonusChoice(c.originalIndex));
+      list = list.filter((c: ChoiceWithIndex) => !isBonusChoice(c.originalIndex));
     } else {
       const hasBonusChoices = cb ? cb.some((b: boolean) => b) : !!(question as any).isBonus;
       const hasNormalChoices = cb ? cb.some((b: boolean) => !b) : !(question as any).isBonus;
       const isMixedBonus = hasBonusChoices && hasNormalChoices;
       // ボーナス: 混在・通常肢のみは全肢。※のみの問題は※肢のみ（一覧はすべて※のため実質全肢）
       if (!(isMixedBonus || !hasBonusChoices)) {
-        list = list.filter((c) => isBonusChoice(c.originalIndex));
+        list = list.filter((c: ChoiceWithIndex) => isBonusChoice(c.originalIndex));
       }
     }
     return list;
@@ -1438,6 +1555,24 @@ export default function QuestionScreen() {
     !!question?.text &&
     !hiddenHashes.has(getQuestionTextHash(question.text));
 
+  const currentInsight = useMemo(() => buildCurrentInsight(questionStats), [questionStats]);
+  const tacQuestionDeepdive = useMemo(
+    () => (mode === 'bonus' ? buildTacQuizDeepdive(question, subject || '', field || '') : ''),
+    [mode, question, subject, field]
+  );
+
+  const handleOpenTacQuestionDeepdive = useCallback(() => {
+    if (!tacQuestionDeepdive) return;
+    setDeepdiveParams(tacQuestionDeepdive, '', {
+      screenTitle: 'TAC問題のもっと深掘る',
+      quizSubject: subject || '',
+      quizField: field || '',
+      quizMode: mode || '',
+      quizQuestionIndex: questionIndex !== null ? String(questionIndex) : '',
+    });
+    router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
+  }, [tacQuestionDeepdive, subject, field, mode, questionIndex]);
+
   // 人の関係がある問題（A,B,C等）→ 図モード表示
   const isDiagramEligible = useMemo(() => {
     const text = (question?.text || '') + (Array.isArray(question?.choices) ? question.choices.join('') : '');
@@ -1479,7 +1614,7 @@ export default function QuestionScreen() {
   const compareDef = useMemo(
     () =>
       question?.text
-        ? pickCompareTable(question.text, { subject, field })
+        ? pickCompareTable(question.text, { subject: subject || undefined, field: field || undefined })
         : undefined,
     [question?.text, subject, field],
   );
@@ -1651,6 +1786,59 @@ export default function QuestionScreen() {
             </Pressable>
           ) : null}
         </View>
+
+        <ThemedView style={[styles.currentInsightPanel, { borderColor: currentInsight.accent, backgroundColor: colors.card }]}>
+          <View style={styles.currentInsightHeader}>
+            <ThemedText style={[styles.currentInsightTitle, { color: colors.text }]}>現状把握</ThemedText>
+            <View style={[styles.currentInsightBadge, { backgroundColor: currentInsight.accent }]}>
+              <ThemedText style={styles.currentInsightBadgeText}>Lv.{currentInsight.level}</ThemedText>
+            </View>
+            <ThemedText style={[styles.currentInsightLabel, { color: currentInsight.accent }]}>
+              {currentInsight.label}
+            </ThemedText>
+            <Pressable
+              style={[styles.currentInsightToggle, { borderColor: currentInsight.accent }]}
+              onPress={() => setShowCurrentInsight((prev) => !prev)}
+            >
+              <ThemedText style={[styles.currentInsightToggleText, { color: currentInsight.accent }]}>
+                {showCurrentInsight ? '隠す' : '表示'}
+              </ThemedText>
+            </Pressable>
+          </View>
+          {showCurrentInsight ? (
+            <>
+              <View style={styles.currentInsightStats}>
+                <View style={[styles.currentInsightStatBox, { borderColor: colors.choiceBorder, backgroundColor: colors.background }]}>
+                  <ThemedText style={[styles.currentInsightStatValue, { color: colors.text }]}>{currentInsight.rateLabel}</ThemedText>
+                  <ThemedText style={[styles.currentInsightStatLabel, { color: colors.subText }]}>正答率</ThemedText>
+                </View>
+                <View style={[styles.currentInsightStatBox, { borderColor: colors.choiceBorder, backgroundColor: colors.background }]}>
+                  <ThemedText style={[styles.currentInsightStatValue, { color: colors.text }]}>{questionStats?.wrong ?? 0}</ThemedText>
+                  <ThemedText style={[styles.currentInsightStatLabel, { color: colors.subText }]}>累計誤答</ThemedText>
+                </View>
+                <View style={[styles.currentInsightStatBox, { borderColor: colors.choiceBorder, backgroundColor: colors.background }]}>
+                  <ThemedText style={[styles.currentInsightStatValue, { color: colors.text }]}>{questionStats?.consecutiveCorrect ?? 0}</ThemedText>
+                  <ThemedText style={[styles.currentInsightStatLabel, { color: colors.subText }]}>連続正解</ThemedText>
+                </View>
+              </View>
+              <ThemedText style={[styles.currentInsightMessage, { color: colors.text }]}>
+                {currentInsight.message}
+              </ThemedText>
+              <View style={[styles.currentInsightNext, { borderColor: colors.choiceBorder, backgroundColor: colors.background }]}>
+                <ThemedText style={[styles.currentInsightNextTitle, { color: currentInsight.accent }]}>次に入れる知識</ThemedText>
+                <ThemedText style={[styles.currentInsightNextText, { color: colors.subText }]}>
+                  {currentInsight.nextInput}
+                </ThemedText>
+              </View>
+            </>
+          ) : (
+            <View style={[styles.currentInsightCollapsed, { borderColor: colors.choiceBorder, backgroundColor: colors.background }]}>
+              <ThemedText style={[styles.currentInsightNextText, { color: colors.subText }]}>
+                状況把握を隠しています。必要なときだけ表示できます。
+              </ThemedText>
+            </View>
+          )}
+        </ThemedView>
 
         {mode === 'shisho' ? (
           <ThemedView
@@ -1937,15 +2125,15 @@ export default function QuestionScreen() {
                 style={[
                   styles.answerButton,
                   (() => {
-                    const labels = tashiData ? tashiData.slotLabels.map((l) => `[ ${l} ]`) : ((question as any).slots || []).map((s: any) => s.label);
-                    const allFilled = labels.every((l) => slotSelections[l]);
+                    const labels = tashiData ? tashiData.slotLabels.map((l: string) => `[ ${l} ]`) : ((question as any).slots || []).map((s: any) => s.label);
+                    const allFilled = labels.every((l: string) => slotSelections[l]);
                     return !allFilled && styles.answerButtonDisabled;
                   })()
                 ]}
-                disabled={!(tashiData ? tashiData.slotLabels.every((l) => slotSelections[`[ ${l} ]`]) : ((question as any).slots || []).every((s: any) => slotSelections[s.label]))}
+                disabled={!(tashiData ? tashiData.slotLabels.every((l: string) => slotSelections[`[ ${l} ]`]) : ((question as any).slots || []).every((s: any) => slotSelections[s.label]))}
                 onPress={() => {
                   const ans = tashiData
-                    ? tashiData.slotLabels.map((l) => slotSelections[`[ ${l} ]`] || '')
+                    ? tashiData.slotLabels.map((l: string) => slotSelections[`[ ${l} ]`] || '')
                     : ((question as any).slots || []).map((s: any) => slotSelections[s.label] || '');
                   router.push({
                     pathname: '/result',
@@ -2349,6 +2537,14 @@ export default function QuestionScreen() {
                     {activeActionMode === 'teachMe' ? '教えて先生 ON' : '教えて先生'}
                   </ThemedText>
                 </Pressable>
+                {tacQuestionDeepdive ? (
+                  <Pressable
+                    style={[styles.scopeChip, { borderColor: '#00897B', backgroundColor: colors.choiceBg }]}
+                    onPress={handleOpenTacQuestionDeepdive}
+                  >
+                    <ThemedText style={[styles.scopeChipText, { color: '#00897B' }]}>もっと深掘る</ThemedText>
+                  </Pressable>
+                ) : null}
                 {interactiveSlots.length === 0 ? (
                   <Pressable
                     style={[
@@ -2709,6 +2905,98 @@ const styles = StyleSheet.create({
   },
   subject: {
     opacity: 0.7,
+  },
+  currentInsightPanel: {
+    borderWidth: 1.5,
+    borderRadius: 10,
+    padding: 12,
+    marginBottom: 12,
+    gap: 10,
+  },
+  currentInsightHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  currentInsightTitle: {
+    fontSize: 15,
+    fontWeight: '800',
+  },
+  currentInsightBadge: {
+    minWidth: 48,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderRadius: 6,
+    alignItems: 'center',
+  },
+  currentInsightBadgeText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: '800',
+  },
+  currentInsightLabel: {
+    fontSize: 13,
+    fontWeight: '800',
+  },
+  currentInsightToggle: {
+    marginLeft: 'auto',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 14,
+    borderWidth: 1,
+  },
+  currentInsightToggleText: {
+    fontSize: 12,
+    fontWeight: '800',
+  },
+  currentInsightStats: {
+    flexDirection: 'row',
+    gap: 8,
+    flexWrap: 'wrap',
+  },
+  currentInsightStatBox: {
+    minWidth: 88,
+    flexGrow: 1,
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+  },
+  currentInsightStatValue: {
+    fontSize: 18,
+    fontWeight: '800',
+    lineHeight: 22,
+  },
+  currentInsightStatLabel: {
+    fontSize: 11,
+    fontWeight: '700',
+    marginTop: 2,
+  },
+  currentInsightMessage: {
+    fontSize: 13,
+    lineHeight: 20,
+    fontWeight: '600',
+  },
+  currentInsightNext: {
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+  },
+  currentInsightCollapsed: {
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+  },
+  currentInsightNextTitle: {
+    fontSize: 12,
+    fontWeight: '800',
+    marginBottom: 4,
+  },
+  currentInsightNextText: {
+    fontSize: 12,
+    lineHeight: 18,
+    fontWeight: '600',
   },
   questionMarkColumn: {
     flexDirection: 'column',

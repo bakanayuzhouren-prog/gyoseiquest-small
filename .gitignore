@@ -46,6 +46,12 @@ app-example
 
 # debug output
 debug_*.txt
+logs/
+tmp/
+
+# local-only imported exam materials
+app/textbook/模試元画像/
+app/textbook/模試解答/
 
 # Google Sheets sync
 src/questions-from-sheets.json

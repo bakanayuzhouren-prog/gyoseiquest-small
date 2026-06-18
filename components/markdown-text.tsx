@@ -97,7 +97,7 @@ function parseLine(line: string): LinePart[] {
 
 function renderLineParts(
     parsed: LinePart[],
-    lineStyle: typeof defaultTextStyle | (typeof defaultTextStyle | TextStyle)[],
+    lineStyle: StyleProp<TextStyle>,
     onHighlightPress: Props['onHighlightPress'],
     keyPrefix: string,
     uniformWeight?: boolean
@@ -141,9 +141,9 @@ function renderLineParts(
             );
         }
         if (p.type === 'color') {
-            const colorStyle = [lineStyle, { color: p.color }, p.bold && !uniformWeight ? BOLD_STYLE : null].filter(Boolean);
+            const colorStyle: StyleProp<TextStyle> = [lineStyle, { color: p.color }, p.bold && !uniformWeight ? BOLD_STYLE : null];
             return (
-                <ThemedText key={key} type="default" style={colorStyle as TextStyle[]}>
+                <ThemedText key={key} type="default" style={colorStyle}>
                     {renderLineParts(p.children, lineStyle, onHighlightPress, `${key}-c`, uniformWeight)}
                 </ThemedText>
             );
@@ -195,7 +195,7 @@ function MarkdownPlainBlock({
     keyPrefix,
 }: {
     text: string;
-    lineStyle: typeof defaultTextStyle | (typeof defaultTextStyle | TextStyle)[];
+    lineStyle: StyleProp<TextStyle>;
     lineGap: number;
     onHighlightPress: Props['onHighlightPress'];
     uniformWeight?: boolean;
@@ -227,7 +227,7 @@ function MarkdownPlainBlock({
                                     width: '100%',
                                     alignSelf: 'stretch',
                                     ...(Platform.OS === 'web'
-                                        ? ({ display: 'block' } as TextStyle)
+                                        ? ({ display: 'block' } as unknown as TextStyle)
                                         : null),
                                 },
                             ]}
@@ -246,7 +246,7 @@ function MarkdownPlainBlock({
                                 width: '100%',
                                 alignSelf: 'stretch',
                                 ...(Platform.OS === 'web'
-                                    ? ({ display: 'block' } as TextStyle)
+                                    ? ({ display: 'block' } as unknown as TextStyle)
                                     : null),
                             },
                         ]}
@@ -270,7 +270,7 @@ function DeepdiveRichSegments({
     keyPrefix,
 }: {
     text: string;
-    lineStyle: typeof defaultTextStyle | (typeof defaultTextStyle | TextStyle)[];
+    lineStyle: StyleProp<TextStyle>;
     lineGap: number;
     onHighlightPress: Props['onHighlightPress'];
     uniformWeight?: boolean;
@@ -322,7 +322,7 @@ function MarkdownTabTable({
     keyPrefix,
 }: {
     rows: string[][];
-    lineStyle: typeof defaultTextStyle | (typeof defaultTextStyle | TextStyle)[];
+    lineStyle: StyleProp<TextStyle>;
     lineGap: number;
     onHighlightPress: Props['onHighlightPress'];
     uniformWeight?: boolean;
@@ -333,13 +333,13 @@ function MarkdownTabTable({
     const weights = columnFlexWeights(colCount);
 
     /** 先頭行もデータ行も同一（参照：太字・下線・ヘッダ背景なし）。サイズは親のカード本文に追随 */
-    const headerLineStyle = [
-        ...(Array.isArray(lineStyle) ? lineStyle : [lineStyle]),
+    const headerLineStyle: StyleProp<TextStyle> = [
+        lineStyle,
         {
             color: TABLE_TEXT_COLOR,
             fontWeight: '400' as const,
         },
-    ] as const;
+    ];
 
     /** Web でも display:table は RN Web で不安定なことがあるため、ネイティブと同一の flex 行で描画する */
     return (
@@ -385,7 +385,7 @@ function MarkdownTabTable({
                                 >
                                     <DeepdiveRichSegments
                                         text={cell}
-                                        lineStyle={headerLineStyle as typeof lineStyle}
+                                        lineStyle={headerLineStyle}
                                         lineGap={Math.min(lineGap, 4)}
                                         onHighlightPress={onHighlightPress}
                                         uniformWeight={uniformWeight}

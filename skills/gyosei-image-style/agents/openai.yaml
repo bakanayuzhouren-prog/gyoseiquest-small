@@ -1,0 +1,7 @@
+interface:
+  display_name: "Gyosei Image Style"
+  short_description: "教材画像とアバターの生成スタイルを統一"
+  default_prompt: "Use $gyosei-image-style to generate consistent GPT Image prompts for Gyosei Quest learning visuals and avatars."
+
+policy:
+  allow_implicit_invocation: true

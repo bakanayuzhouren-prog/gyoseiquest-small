@@ -6,6 +6,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
 import { getChunkImageSource } from '@/src/chunkImages';
+import { getDeepdiveImageSource } from '@/src/deepdiveImages';
 import { takeChunkNavigationPayload } from '@/src/chunkSessionState';
 
 const SOUSOKU602_IMAGE = 'minnpou/sousoku/sousoku602';
@@ -49,7 +50,7 @@ export default function ChunkScreen() {
     chunkImage = SOUSOKU602_IMAGE;
   }
 
-  const imageSource = getChunkImageSource(chunkImage);
+  const imageSource = getChunkImageSource(chunkImage) || getDeepdiveImageSource(chunkImage);
 
   return (
     <>

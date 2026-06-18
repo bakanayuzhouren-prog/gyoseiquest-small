@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1180" viewBox="0 0 1440 1180">
+  <rect width="1440" height="1180" fill="#EEF5F1"/>
+  
+    <rect x="48" y="34" width="1344" height="112" rx="24" fill="#FFFDF6" stroke="#C9D8D1" stroke-width="2"/>
+    <rect x="78" y="64" width="132" height="42" rx="21" fill="#277564" stroke="#277564" stroke-width="0"/><text x="144" y="93" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">民法総則</text>
+    <text x="232" y="82" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="38" font-weight="900" fill="#1F2A24">151条：協議を行う旨の合意</text>
+    <text x="234" y="120" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="700" fill="#5F6F68">話合い中に時効完成する事故を防ぐ</text>
+  
+  
+      
+    <rect x="92" y="176" width="390" height="220" rx="18" fill="#DDF1EA" stroke="#277564" stroke-width="2"/>
+    <rect x="110" y="194" width="190" height="42" rx="21" fill="#277564" stroke="#277564" stroke-width="0"/><text x="205" y="223" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">合意</text>
+    
+        
+    
+    <path d="M227 220 l6 12 l12 3 l-11 5 l-3 12 l-5 -12 l-12 -3 l11 -5 z" fill="#FFD95A" opacity="0.95"/>
+    <circle cx="202" cy="250" r="28" fill="#fff" stroke="#3F6EA8" stroke-width="5"/>
+    <path d="M178 245 Q190 217 214 223 Q230 229 226 251 Q206 235 178 245" fill="#3F6EA8"/>
+    <circle cx="202" cy="248" r="18" fill="#FFF0D8"/>
+    <circle cx="196" cy="242" r="2.8" fill="#1F2A24"/>
+    <circle cx="209" cy="242" r="2.8" fill="#1F2A24"/>
+    <path d="M195 255 Q202 262 209 255" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M184 276 Q202 260 220 276" fill="#3F6EA8"/>
+    <text x="202" y="305" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">債権者</text>
+  
+  
+        
+    <line x1="248" y1="276" x2="324" y2="276" stroke="#277564" stroke-width="8" stroke-linecap="round"/>
+    <polygon points="324,276 300,262 300,290" fill="#277564"/>
+  
+        
+    
+    <path d="M395 220 l6 12 l12 3 l-11 5 l-3 12 l-5 -12 l-12 -3 l11 -5 z" fill="#FFD95A" opacity="0.95"/>
+    <circle cx="370" cy="250" r="28" fill="#fff" stroke="#D98632" stroke-width="5"/>
+    <path d="M346 245 Q358 217 382 223 Q398 229 394 251 Q374 235 346 245" fill="#D98632"/>
+    <circle cx="370" cy="248" r="18" fill="#FFF0D8"/>
+    <circle cx="364" cy="242" r="2.8" fill="#1F2A24"/>
+    <circle cx="377" cy="242" r="2.8" fill="#1F2A24"/>
+    <path d="M363 255 Q370 262 377 255" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M352 276 Q370 260 388 276" fill="#D98632"/>
+    <text x="370" y="305" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">債務者</text>
+  
+  
+      
+    <text x="116" y="342" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="800" fill="#1F2A24">書面・電磁的記録で残す</text>
+  
+      
+    <rect x="525" y="176" width="390" height="220" rx="18" fill="#FFF0D8" stroke="#D98632" stroke-width="2"/>
+    <rect x="543" y="194" width="190" height="42" rx="21" fill="#D98632" stroke="#D98632" stroke-width="0"/><text x="638" y="223" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">効力</text>
+    
+        
+    <circle cx="720" cy="278" r="42" fill="#fff" stroke="#D98632" stroke-width="7"/>
+    <line x1="720" y1="278" x2="720" y2="254" stroke="#1F2A24" stroke-width="5" stroke-linecap="round"/>
+    <line x1="720" y1="278" x2="744" y2="290" stroke="#1F2A24" stroke-width="5" stroke-linecap="round"/>
+  
+      
+    <text x="549" y="342" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="800" fill="#1F2A24">完成猶予。更新ではない</text>
+  
+      
+    <rect x="958" y="176" width="390" height="220" rx="18" fill="#E5EFFB" stroke="#3F6EA8" stroke-width="2"/>
+    <rect x="976" y="194" width="190" height="42" rx="21" fill="#3F6EA8" stroke="#3F6EA8" stroke-width="0"/><text x="1071" y="223" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">上限</text>
+    
+        <text x="1148" y="292" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="56" font-weight="900" fill="#3F6EA8">5年</text>
+      
+    <text x="982" y="342" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="800" fill="#1F2A24">再合意しても通算5年</text>
+  
+      <rect x="100" y="445" width="1240" height="520" rx="16" fill="#FFFDF6" stroke="#C9D8D1" stroke-width="2"/><rect x="100" y="653" width="1240" height="104" fill="#F1F4F2"/><rect x="100" y="861" width="1240" height="104" fill="#F1F4F2"/><rect x="100" y="445" width="1240" height="104" rx="16" fill="#277564"/><text x="118" y="483" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="22" font-weight="900" fill="#fff">完成猶予が終わる時点</text><line x1="450" y1="445" x2="450" y2="549" stroke="#C9D8D1" stroke-width="2"/><text x="468" y="483" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="22" font-weight="900" fill="#fff">内容</text><line x1="100" y1="549" x2="450" y2="549" stroke="#C9D8D1" stroke-width="2"/><text x="118" y="583" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="23" font-weight="700" fill="#1F2A24">合意から1年</text><line x1="450" y1="549" x2="450" y2="653" stroke="#C9D8D1" stroke-width="2"/><line x1="450" y1="549" x2="1340" y2="549" stroke="#C9D8D1" stroke-width="2"/><text x="468" y="583" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="23" font-weight="700" fill="#1F2A24">期間を定めない合意なら、原則ここまで猶予</text><line x1="100" y1="653" x2="450" y2="653" stroke="#C9D8D1" stroke-width="2"/><text x="118" y="687" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="23" font-weight="700" fill="#1F2A24">協議期間を定めた場合</text><line x1="450" y1="653" x2="450" y2="757" stroke="#C9D8D1" stroke-width="2"/><line x1="450" y1="653" x2="1340" y2="653" stroke="#C9D8D1" stroke-width="2"/><text x="468" y="687" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="23" font-weight="700" fill="#1F2A24">その期間が経過した時まで猶予</text><line x1="100" y1="757" x2="450" y2="757" stroke="#C9D8D1" stroke-width="2"/><text x="118" y="791" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="23" font-weight="700" fill="#1F2A24">協議拒絶の通知</text><line x1="450" y1="757" x2="450" y2="861" stroke="#C9D8D1" stroke-width="2"/><line x1="450" y1="757" x2="1340" y2="757" stroke="#C9D8D1" stroke-width="2"/><text x="468" y="791" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="23" font-weight="700" fill="#1F2A24">一方が続行拒絶を通知したときは、通知から6か月まで猶予</text><line x1="100" y1="861" x2="450" y2="861" stroke="#C9D8D1" stroke-width="2"/><text x="118" y="895" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="23" font-weight="700" fill="#1F2A24">再度の合意</text><line x1="450" y1="861" x2="450" y2="965" stroke="#C9D8D1" stroke-width="2"/><line x1="450" y1="861" x2="1340" y2="861" stroke="#C9D8D1" stroke-width="2"/><text x="468" y="895" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="23" font-weight="700" fill="#1F2A24">再合意は可能。ただし完成猶予の通算は5年を超えられない</text><rect x="100" y="445" width="1240" height="520" rx="16" fill="none" stroke="#C9D8D1" stroke-width="2"/>
+      
+    <rect x="170" y="990" width="1100" height="150" rx="18" fill="#FFFDF6" stroke="#6D5CA8" stroke-width="3"/>
+    <rect x="188" y="1008" width="230" height="42" rx="21" fill="#6D5CA8" stroke="#6D5CA8" stroke-width="0"/><text x="303" y="1037" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">一言で</text>
+    <text x="194" y="1078" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="24" font-weight="600" fill="#1F2A24">151条は「交渉中だけ時効完成を待ってもらう制度」。承認のように時効を更新する制度では</text><text x="194" y="1116" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="24" font-weight="600" fill="#1F2A24">ない。</text>
+  
+    
+</svg>

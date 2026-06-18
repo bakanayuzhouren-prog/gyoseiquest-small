@@ -49,7 +49,7 @@ import {
 } from 'expo-router';
 import * as Speech from 'expo-speech';
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { BackHandler, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { BackHandler, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -1425,19 +1425,19 @@ export default function DeepdiveScreen() {
               {heroImageKeys.map((imgKey, hi) => {
                 const src = resolveImageAsset(imgKey);
                 if (!src) return null;
-                const heroWrapStyle = [
-                  { width: '100%', alignItems: 'center' as const },
-                  hi < heroImageKeys.length - 1 ? { marginBottom: 12 } : null,
+                const heroWrapStyle: ViewStyle[] = [
+                  { width: '100%' as `${number}%`, alignItems: 'center' },
+                  ...(hi < heroImageKeys.length - 1 ? [{ marginBottom: 12 }] : []),
                 ];
                 const heroImgStyle = [
                   styles.headerHeroImage,
                   isDescriptiveQuizDeepdive && { maxHeight: DESCRIPTIVE_QUIZ_DEEPDIVE_HERO_MAX_H },
                 ];
-                const heroContainerStyle = isDescriptiveQuizDeepdive
+                const heroContainerStyle: ViewStyle = isDescriptiveQuizDeepdive
                   ? ({
                       width: `${Math.round(DESCRIPTIVE_QUIZ_DEEPDIVE_SCALE * 100)}%` as `${number}%`,
-                    } as const)
-                  : ({ width: '100%' as const } as const);
+                    } as ViewStyle)
+                  : ({ width: '100%' } as ViewStyle);
                 return (
                   <View key={`deepdive-header-img-${hi}-${imgKey}`} style={heroWrapStyle}>
                     <View style={heroContainerStyle}>

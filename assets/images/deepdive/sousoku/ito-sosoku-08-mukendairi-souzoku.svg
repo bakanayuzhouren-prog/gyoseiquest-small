@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1180" viewBox="0 0 1440 1180">
+  <rect width="1440" height="1180" fill="#EEF5F1"/>
+  
+    <rect x="48" y="34" width="1344" height="112" rx="24" fill="#FFFDF6" stroke="#C9D8D1" stroke-width="2"/>
+    <rect x="78" y="64" width="132" height="42" rx="21" fill="#277564" stroke="#277564" stroke-width="0"/><text x="144" y="93" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">民法総則</text>
+    <text x="232" y="82" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="38" font-weight="900" fill="#1F2A24">無権代理と相続</text>
+    <text x="234" y="120" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="700" fill="#5F6F68">地位融合説と資格併存説を場面で使い分ける</text>
+  
+  
+      
+    <rect x="90" y="180" width="600" height="190" rx="18" fill="#DDF1EA" stroke="#277564" stroke-width="2"/>
+    <rect x="108" y="198" width="190" height="42" rx="21" fill="#277564" stroke="#277564" stroke-width="0"/><text x="203" y="227" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">地位融合説</text>
+    
+    
+    <path d="M277 258 q10 10 0 22" stroke="#3F6EA8" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="250" cy="280" r="28" fill="#fff" stroke="#B94646" stroke-width="5"/>
+    <path d="M226 275 Q238 247 262 253 Q278 259 274 281 Q254 265 226 275" fill="#B94646"/>
+    <circle cx="250" cy="278" r="18" fill="#FFF0D8"/>
+    <circle cx="244" cy="272" r="2.8" fill="#1F2A24"/>
+    <circle cx="257" cy="272" r="2.8" fill="#1F2A24"/>
+    <path d="M243 287 Q250 284 257 287" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M232 306 Q250 290 268 306" fill="#B94646"/>
+    <text x="250" y="335" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">無権代理人</text>
+  
+  
+    <line x1="315" y1="278" x2="410" y2="278" stroke="#277564" stroke-width="8" stroke-linecap="round"/>
+    <polygon points="410,278 386,264 386,292" fill="#277564"/>
+  
+    
+    <path d="M495 250 l6 12 l12 3 l-11 5 l-3 12 l-5 -12 l-12 -3 l11 -5 z" fill="#FFD95A" opacity="0.95"/>
+    <circle cx="470" cy="280" r="28" fill="#fff" stroke="#277564" stroke-width="5"/>
+    <path d="M446 275 Q458 247 482 253 Q498 259 494 281 Q474 265 446 275" fill="#277564"/>
+    <circle cx="470" cy="278" r="18" fill="#FFF0D8"/>
+    <circle cx="464" cy="272" r="2.8" fill="#1F2A24"/>
+    <circle cx="477" cy="272" r="2.8" fill="#1F2A24"/>
+    <path d="M463 285 Q470 292 477 285" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M452 306 Q470 290 488 306" fill="#277564"/>
+    <text x="470" y="335" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">本人地位</text>
+  
+  
+    <text x="114" y="316" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="800" fill="#1F2A24">無権代理人が本人を相続</text>
+  
+      
+    <rect x="750" y="180" width="600" height="190" rx="18" fill="#E5EFFB" stroke="#3F6EA8" stroke-width="2"/>
+    <rect x="768" y="198" width="190" height="42" rx="21" fill="#3F6EA8" stroke="#3F6EA8" stroke-width="0"/><text x="863" y="227" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">資格併存説</text>
+    
+    
+    <path d="M940 250 l6 12 l12 3 l-11 5 l-3 12 l-5 -12 l-12 -3 l11 -5 z" fill="#FFD95A" opacity="0.95"/>
+    <circle cx="915" cy="280" r="28" fill="#fff" stroke="#277564" stroke-width="5"/>
+    <path d="M891 275 Q903 247 927 253 Q943 259 939 281 Q919 265 891 275" fill="#277564"/>
+    <circle cx="915" cy="278" r="18" fill="#FFF0D8"/>
+    <circle cx="909" cy="272" r="2.8" fill="#1F2A24"/>
+    <circle cx="922" cy="272" r="2.8" fill="#1F2A24"/>
+    <path d="M908 285 Q915 292 922 285" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M897 306 Q915 290 933 306" fill="#277564"/>
+    <text x="915" y="335" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">本人</text>
+  
+  
+    <line x1="970" y1="278" x2="1065" y2="278" stroke="#3F6EA8" stroke-width="8" stroke-linecap="round"/>
+    <polygon points="1065,278 1041,264 1041,292" fill="#3F6EA8"/>
+  
+    
+    <path d="M1157 258 q10 10 0 22" stroke="#3F6EA8" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="1130" cy="280" r="28" fill="#fff" stroke="#B94646" stroke-width="5"/>
+    <path d="M1106 275 Q1118 247 1142 253 Q1158 259 1154 281 Q1134 265 1106 275" fill="#B94646"/>
+    <circle cx="1130" cy="278" r="18" fill="#FFF0D8"/>
+    <circle cx="1124" cy="272" r="2.8" fill="#1F2A24"/>
+    <circle cx="1137" cy="272" r="2.8" fill="#1F2A24"/>
+    <path d="M1123 287 Q1130 284 1137 287" stroke="#1F2A24" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M1112 306 Q1130 290 1148 306" fill="#B94646"/>
+    <text x="1130" y="335" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="17" font-weight="900" fill="#1F2A24">代理人責任</text>
+  
+  
+    <text x="774" y="316" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="19" font-weight="800" fill="#1F2A24">本人が無権代理人を相続</text>
+  
+      <rect x="70" y="410" width="1250" height="588" rx="16" fill="#FFFDF6" stroke="#C9D8D1" stroke-width="2"/><rect x="70" y="606" width="1250" height="98" fill="#F1F4F2"/><rect x="70" y="802" width="1250" height="98" fill="#F1F4F2"/><rect x="70" y="410" width="1250" height="98" rx="16" fill="#277564"/><text x="88" y="448" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="22" font-weight="900" fill="#fff">場面</text><line x1="460" y1="410" x2="460" y2="508" stroke="#C9D8D1" stroke-width="2"/><text x="478" y="448" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="22" font-weight="900" fill="#fff">結論</text><line x1="890" y1="410" x2="890" y2="508" stroke="#C9D8D1" stroke-width="2"/><text x="908" y="448" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="22" font-weight="900" fill="#fff">理由・試験処理</text><line x1="70" y1="508" x2="460" y2="508" stroke="#C9D8D1" stroke-width="2"/><text x="88" y="542" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">無権代理人が本人を単独相続</text><line x1="460" y1="508" x2="460" y2="606" stroke="#C9D8D1" stroke-width="2"/><line x1="460" y1="508" x2="890" y2="508" stroke="#C9D8D1" stroke-width="2"/><text x="478" y="542" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">追認拒絶できない</text><line x1="890" y1="508" x2="890" y2="606" stroke="#C9D8D1" stroke-width="2"/><line x1="890" y1="508" x2="1320" y2="508" stroke="#C9D8D1" stroke-width="2"/><text x="908" y="542" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">信義則上、本人の地位で拒絶するのは許さ</text><text x="908" y="571" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">れない</text><line x1="70" y1="606" x2="460" y2="606" stroke="#C9D8D1" stroke-width="2"/><text x="88" y="640" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">本人が無権代理人を相続</text><line x1="460" y1="606" x2="460" y2="704" stroke="#C9D8D1" stroke-width="2"/><line x1="460" y1="606" x2="890" y2="606" stroke="#C9D8D1" stroke-width="2"/><text x="478" y="640" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">追認拒絶できる</text><line x1="890" y1="606" x2="890" y2="704" stroke="#C9D8D1" stroke-width="2"/><line x1="890" y1="606" x2="1320" y2="606" stroke="#C9D8D1" stroke-width="2"/><text x="908" y="640" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">本人としての資格は残る。ただし無権代理</text><text x="908" y="669" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">人責任も相続し得る</text><line x1="70" y1="704" x2="460" y2="704" stroke="#C9D8D1" stroke-width="2"/><text x="88" y="738" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">無権代理人が本人を共同相続</text><line x1="460" y1="704" x2="460" y2="802" stroke="#C9D8D1" stroke-width="2"/><line x1="460" y1="704" x2="890" y2="704" stroke="#C9D8D1" stroke-width="2"/><text x="478" y="738" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">当然有効にはならない</text><line x1="890" y1="704" x2="890" y2="802" stroke="#C9D8D1" stroke-width="2"/><line x1="890" y1="704" x2="1320" y2="704" stroke="#C9D8D1" stroke-width="2"/><text x="908" y="738" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">追認は共同相続人全員で行う必要</text><line x1="70" y1="802" x2="460" y2="802" stroke="#C9D8D1" stroke-width="2"/><text x="88" y="836" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">本人が追認拒絶後、無権代理人が相続</text><line x1="460" y1="802" x2="460" y2="900" stroke="#C9D8D1" stroke-width="2"/><line x1="460" y1="802" x2="890" y2="802" stroke="#C9D8D1" stroke-width="2"/><text x="478" y="836" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">有効化しない</text><line x1="890" y1="802" x2="890" y2="900" stroke="#C9D8D1" stroke-width="2"/><line x1="890" y1="802" x2="1320" y2="802" stroke="#C9D8D1" stroke-width="2"/><text x="908" y="836" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">既に確定した追認拒絶の効果は消えない</text><line x1="70" y1="900" x2="460" y2="900" stroke="#C9D8D1" stroke-width="2"/><text x="88" y="934" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">無権代理人を相続した者が本人も相続</text><line x1="460" y1="900" x2="460" y2="998" stroke="#C9D8D1" stroke-width="2"/><line x1="460" y1="900" x2="890" y2="900" stroke="#C9D8D1" stroke-width="2"/><text x="478" y="934" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">追認拒絶できない方向</text><line x1="890" y1="900" x2="890" y2="998" stroke="#C9D8D1" stroke-width="2"/><line x1="890" y1="900" x2="1320" y2="900" stroke="#C9D8D1" stroke-width="2"/><text x="908" y="934" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">最終的に無権代理人の責任を負う地位を引</text><text x="908" y="963" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="20" font-weight="700" fill="#1F2A24">き継ぐため</text><rect x="70" y="410" width="1250" height="588" rx="16" fill="none" stroke="#C9D8D1" stroke-width="2"/>
+      
+    <rect x="140" y="1032" width="1160" height="100" rx="18" fill="#FFFDF6" stroke="#277564" stroke-width="3"/>
+    <rect x="158" y="1050" width="230" height="42" rx="21" fill="#277564" stroke="#277564" stroke-width="0"/><text x="273" y="1079" text-anchor="middle" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="21" font-weight="900" fill="#fff">試験の急所</text>
+    <text x="164" y="1120" text-anchor="start" font-family="Yu Gothic, Meiryo, Noto Sans CJK JP, sans-serif" font-size="24" font-weight="600" fill="#1F2A24">誰が誰を相続したかを先に固定する。本人資格と無権代理人責任を混ぜると結論を誤る。</text>
+  
+    
+</svg>

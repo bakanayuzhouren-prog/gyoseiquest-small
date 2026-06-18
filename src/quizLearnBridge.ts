@@ -38,7 +38,7 @@ export function stripLearnLinkTag(text: string): string {
 function asTargetArray(value: unknown): LearnLinkTarget[] {
   const list = Array.isArray(value) ? value : value ? [value] : [];
   return list
-    .map((item) => {
+    .map((item): LearnLinkTarget | null => {
       if (!item || typeof item !== 'object') return null;
       const raw = item as Record<string, unknown>;
       const subject = typeof raw.subject === 'string' ? raw.subject.trim() : '';
