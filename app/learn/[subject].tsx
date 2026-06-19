@@ -522,7 +522,7 @@ export default function LearnSubjectScreen() {
     [setSpokenIndex, publishSyncedLearnReturnCursor]
   );
 
-  /** 深掘りから戻った直後: 凍結 index で矯正し、古い読み上げを止めてから必要なら再開 */
+  /** 深掘りから戻った直後: 表示 index だけ同期し、学習音声は止めない */
   useFocusEffect(
     useCallback(() => {
       const cursor = getLearnDeepdiveReturnCursor();
@@ -549,10 +549,8 @@ export default function LearnSubjectScreen() {
 
       if (targetIdx >= 0) syncLearnCardIndex(targetIdx);
 
-      killLearnTtsPlayback();
-      setIsPlaying(false);
       unfreezeLearnDeepdiveReturnCursor();
-    }, [subject, routeIndex, killLearnTtsPlayback, setIsPlaying, syncLearnCardIndex])
+    }, [subject, routeIndex, syncLearnCardIndex])
   );
 
   useEffect(() => {

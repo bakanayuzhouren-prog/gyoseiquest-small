@@ -968,6 +968,16 @@ export default function DeepdiveScreen() {
       clearDeepdiveSessionWeb();
     };
 
+    const backToMountedLearn = (): boolean => {
+      if (!stored.fromLearn || !learnScreenMounted || !router.canGoBack()) return false;
+      if (Platform.OS === 'web') takeDeepdiveReturnHrefWeb();
+      router.back();
+      setTimeout(() => {
+        finishBack();
+      }, 0);
+      return true;
+    };
+
     const replaceLearnRoute = (opts: {
       routeSubject: string;
       field?: string | null;
@@ -1030,6 +1040,8 @@ export default function DeepdiveScreen() {
 
     // 1. 結果画面など明示復帰先（router.back より確実）
     if (tryQuizReturnTo()) return;
+
+    if (backToMountedLearn()) return;
 
     if (Platform.OS === 'web' && typeof window !== 'undefined') {
       const learnBackMeta = takeDeepdiveLearnBackMetaWeb();
@@ -1144,7 +1156,7 @@ export default function DeepdiveScreen() {
 
     router.replace('/learn' as any);
     finishBack();
-  }, [router]);
+  }, [router, learnScreenMounted]);
 
   useEffect(() => {
     if (Platform.OS !== 'android') return;
