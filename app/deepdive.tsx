@@ -284,7 +284,14 @@ export default function DeepdiveScreen() {
   const { applyCharacterNames } = useCharacter();
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const { setIsPlaying: setLearnIsPlaying } = useLearnPlayback();
+  const {
+    isPlaying: isLearnPlaying,
+    setIsPlaying: setLearnIsPlaying,
+    learnScreenMounted,
+    togglePlay: toggleLearnPlay,
+    manualPrev: learnManualPrev,
+    manualNext: learnManualNext,
+  } = useLearnPlayback();
   const [content, setContent] = useState('');
   /** スプレッドシート N 列（語群未使用シートの周辺知識） */
   const [peripheralContent, setPeripheralContent] = useState('');
@@ -1368,6 +1375,25 @@ export default function DeepdiveScreen() {
 
   /** 見て聞いて覚える（学習）画面と連携するミニプレイヤー */
   const showLinkedPlayer = fromLearn && (hasMain || hasBeginner);
+  const linkedPlayerEnabled = showLinkedPlayer && learnScreenMounted;
+
+  const handleLinkedPrev = () => {
+    if (!linkedPlayerEnabled) return;
+    stopTts();
+    learnManualPrev();
+  };
+
+  const handleLinkedTogglePlay = () => {
+    if (!linkedPlayerEnabled) return;
+    stopTts();
+    toggleLearnPlay();
+  };
+
+  const handleLinkedNext = () => {
+    if (!linkedPlayerEnabled) return;
+    stopTts();
+    learnManualNext();
+  };
 
   const headerTitle = showingPeripheral
     ? '周辺知識'
@@ -1740,15 +1766,17 @@ export default function DeepdiveScreen() {
                     style={({ pressed }) => [
                       styles.miniPlayerBtn,
                       pressed && styles.miniPlayerBtnPressed,
-                      styles.miniPlayerBtnDisabled,
+                      !linkedPlayerEnabled && styles.miniPlayerBtnDisabled,
                     ]}
-                    disabled
-                    accessibilityLabel="前へ（深掘り中は学習画面で操作してください）"
+                    disabled={!linkedPlayerEnabled}
+                    onPress={handleLinkedPrev}
+                    accessibilityRole="button"
+                    accessibilityLabel="見て聞いて覚えるを前へ"
                   >
                     <MaterialIcons
                       name="skip-previous"
                       size={22}
-                      color={colors.subText}
+                      color={linkedPlayerEnabled ? colors.primary : colors.subText}
                       style={webNoHitChild}
                     />
                   </Pressable>
@@ -1756,15 +1784,17 @@ export default function DeepdiveScreen() {
                     style={({ pressed }) => [
                       styles.miniPlayerBtn,
                       pressed && styles.miniPlayerBtnPressed,
-                      styles.miniPlayerBtnDisabled,
+                      !linkedPlayerEnabled && styles.miniPlayerBtnDisabled,
                     ]}
-                    disabled
-                    accessibilityLabel="再生（深掘り中は学習画面で操作してください）"
+                    disabled={!linkedPlayerEnabled}
+                    onPress={handleLinkedTogglePlay}
+                    accessibilityRole="button"
+                    accessibilityLabel={isLearnPlaying ? '見て聞いて覚えるを停止' : '見て聞いて覚えるを再生'}
                   >
                     <MaterialIcons
-                      name="play-arrow"
+                      name={isLearnPlaying ? 'pause' : 'play-arrow'}
                       size={26}
-                      color={colors.subText}
+                      color={linkedPlayerEnabled ? colors.primary : colors.subText}
                       style={webNoHitChild}
                     />
                   </Pressable>
@@ -1772,15 +1802,17 @@ export default function DeepdiveScreen() {
                     style={({ pressed }) => [
                       styles.miniPlayerBtn,
                       pressed && styles.miniPlayerBtnPressed,
-                      styles.miniPlayerBtnDisabled,
+                      !linkedPlayerEnabled && styles.miniPlayerBtnDisabled,
                     ]}
-                    disabled
-                    accessibilityLabel="次へ（深掘り中は学習画面で操作してください）"
+                    disabled={!linkedPlayerEnabled}
+                    onPress={handleLinkedNext}
+                    accessibilityRole="button"
+                    accessibilityLabel="見て聞いて覚えるを次へ"
                   >
                     <MaterialIcons
                       name="skip-next"
                       size={22}
-                      color={colors.subText}
+                      color={linkedPlayerEnabled ? colors.primary : colors.subText}
                       style={webNoHitChild}
                     />
                   </Pressable>

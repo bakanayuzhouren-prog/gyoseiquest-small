@@ -22,10 +22,10 @@ import {
 import {
     getLearnDeepdiveReturnCursor,
     isLearnDeepdiveReturnCursorFrozen,
-    publishLearnDeepdiveReturnCursorForOpen,
     setDeepdiveParams,
     setLearnDeepdiveReturnCursor,
     setLearnScreenPointerActive,
+    unfreezeLearnDeepdiveReturnCursor,
 } from '@/src/deepdiveState';
 import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_LINKS, LEARN_SOURCE, LEARN_STATUTE_REFS } from '@/src/learnExports';
 import { LEARN_VOICE_PRESETS } from '@/src/learnVoices';
@@ -444,13 +444,28 @@ export default function LearnSubjectScreen() {
   const applyCharacterNamesRef = useRef(applyCharacterNames);
   /** 画面が非フォーカス（深掘りを開いた等）でも isPlaying は維持する。Web の poll と同期 */
   const learnReceivesPointerRef = useRef(learnReceivesPointer);
-  /** 深掘りを開く直前に再生中だったら、戻って index が揃ったあと再開する */
-  const pendingResumePlaybackAfterDeepdiveRef = useRef(false);
+  /** もっと深掘るへ遷移するときは学習音声を止めない */
+  const preserveSpeechAcrossDeepdiveRef = useRef(false);
   /** 深掘りを開いた瞬間の index。戻り時に URL の index より優先（カーソル消去後も矯正） */
   const deepdiveReturnTargetIndexRef = useRef<number | null>(null);
   const appliedReviewAutoplayKeyRef = useRef('');
 
   const { theme, colors } = useTheme();
+  const learnDeepdiveCursorMetaRef = useRef({
+    learnSubjectKey: '',
+    routeSubject: subject || '',
+    field: tashiField ?? null,
+  });
+
+  const publishSyncedLearnReturnCursor = useCallback((displayIndex: number) => {
+    const meta = learnDeepdiveCursorMetaRef.current;
+    if (!meta.routeSubject || !meta.learnSubjectKey) return;
+    if (isLearnDeepdiveReturnCursorFrozen()) return;
+    setLearnDeepdiveReturnCursor({
+      ...meta,
+      displayIndex,
+    });
+  }, []);
 
   useEffect(() => {
     learnReceivesPointerRef.current = learnReceivesPointer;
@@ -482,10 +497,30 @@ export default function LearnSubjectScreen() {
    * その前に onDone が走ると旧セッションの speakRepeat が続き「前の問題の音声だけ」になる。
    */
   const killLearnTtsPlayback = useCallback(() => {
+    preserveSpeechAcrossDeepdiveRef.current = false;
     ttsUtteranceIdRef.current += 1;
     isPlayingRef.current = false;
     Speech.stop();
   }, []);
+
+  const syncLearnCardIndex = useCallback(
+    (index: number) => {
+      const len = displayListLenRef.current;
+      const nextIndex = len > 0 ? Math.min(Math.max(0, index), len - 1) : Math.max(0, index);
+      const nextContent = displayContentListRef.current[nextIndex];
+      currentIndexRef.current = nextIndex;
+      currentReadCountRef.current = 1;
+      if (typeof nextContent === 'string') {
+        currentDisplayContentRef.current = nextContent;
+      }
+      setCurrentIndex(nextIndex);
+      setCurrentReadCount(1);
+      setSpokenIndex(0);
+      publishSyncedLearnReturnCursor(nextIndex);
+      return nextIndex;
+    },
+    [setSpokenIndex, publishSyncedLearnReturnCursor]
+  );
 
   /** 深掘りから戻った直後: 凍結 index で矯正し、古い読み上げを止めてから必要なら再開 */
   useFocusEffect(
@@ -493,7 +528,6 @@ export default function LearnSubjectScreen() {
       const cursor = getLearnDeepdiveReturnCursor();
       const returnTarget = deepdiveReturnTargetIndexRef.current;
       const returningFromDeepdive =
-        pendingResumePlaybackAfterDeepdiveRef.current ||
         returnTarget != null ||
         !!(cursor && isLearnDeepdiveReturnCursorFrozen());
       if (!returningFromDeepdive) return undefined;
@@ -513,24 +547,12 @@ export default function LearnSubjectScreen() {
 
       deepdiveReturnTargetIndexRef.current = null;
 
-      if (targetIdx >= 0 && currentIndexRef.current !== targetIdx) {
-        setCurrentIndex(targetIdx);
-        setCurrentReadCount(1);
-        setSpokenIndex(0);
-      }
+      if (targetIdx >= 0) syncLearnCardIndex(targetIdx);
 
       killLearnTtsPlayback();
       setIsPlaying(false);
-
-      const shouldResume = pendingResumePlaybackAfterDeepdiveRef.current;
-      pendingResumePlaybackAfterDeepdiveRef.current = false;
-      if (!shouldResume) return undefined;
-
-      const timer = setTimeout(() => {
-        if (currentIndexRef.current === targetIdx) setIsPlaying(true);
-      }, 80);
-      return () => clearTimeout(timer);
-    }, [subject, routeIndex, killLearnTtsPlayback, setSpokenIndex, setIsPlaying])
+      unfreezeLearnDeepdiveReturnCursor();
+    }, [subject, routeIndex, killLearnTtsPlayback, setIsPlaying, syncLearnCardIndex])
   );
 
   useEffect(() => {
@@ -637,11 +659,9 @@ export default function LearnSubjectScreen() {
         : routeIndex;
     const prevIdx = currentIndexRef.current;
     if (prevIdx !== nextIndex) {
-      setCurrentIndex(nextIndex);
-      setCurrentReadCount(1);
-      setSpokenIndex(0);
+      syncLearnCardIndex(nextIndex);
     }
-  }, [displayContentList.length, routeCursorKey, routeIndex, setSpokenIndex]);
+  }, [displayContentList.length, routeCursorKey, routeIndex, syncLearnCardIndex]);
 
   // 優先モード時に元の contentList インデックスを復元するためのマッピング
   const displayIndexList = useMemo(() => {
@@ -760,6 +780,14 @@ export default function LearnSubjectScreen() {
     if (subject === '多肢選択' && tashiField === '行政法') return '多肢選択行政法';
     return subject || '';
   }, [subject, tashiField]);
+
+  useEffect(() => {
+    learnDeepdiveCursorMetaRef.current = {
+      learnSubjectKey: learnSubjectForDeepdive,
+      routeSubject: subject || '',
+      field: tashiField ?? null,
+    };
+  }, [subject, tashiField, learnSubjectForDeepdive]);
 
   const learnDataIndexForLinks =
     learnSubjectForDeepdive === '多肢選択憲法' || learnSubjectForDeepdive === '多肢選択行政法'
@@ -992,10 +1020,10 @@ export default function LearnSubjectScreen() {
       return;
     }
 
-    const freezeReturnCursor = () => {
+    const publishReturnCursor = () => {
       if (!subject || !learnSubjectForDeepdive) return;
       const openDisplayIndex = currentIndexRef.current;
-      publishLearnDeepdiveReturnCursorForOpen({
+      setLearnDeepdiveReturnCursor({
         learnSubjectKey: learnSubjectForDeepdive,
         routeSubject: subject,
         field: tashiField ?? null,
@@ -1003,13 +1031,9 @@ export default function LearnSubjectScreen() {
       });
     };
 
-    /** 深掘り中は裏で読み進めない。戻ったら同じカードから再開できるよう保留 */
-    pendingResumePlaybackAfterDeepdiveRef.current = isPlayingRef.current;
-    killLearnTtsPlayback();
-    setIsPlaying(false);
-
     const openDisplayIndex = currentIndexRef.current;
-    deepdiveReturnTargetIndexRef.current = openDisplayIndex;
+    deepdiveReturnTargetIndexRef.current = null;
+    preserveSpeechAcrossDeepdiveRef.current = true;
     const openOriginalIndex = displayIndexList[openDisplayIndex] ?? openDisplayIndex;
     const openLearnAlignedIndex =
       subject === '多肢選択'
@@ -1018,7 +1042,7 @@ export default function LearnSubjectScreen() {
 
     // B列＋A列の [[image:…]] を結合して「もっと深掘る」へ（根拠条文のみのカードも deepdive へ）
     if (mergedPayload || learnStatuteRefText) {
-      freezeReturnCursor();
+      publishReturnCursor();
       setDeepdiveParams(mergedPayload || '', '', {
         fromLearn: true,
         fExplain: learnFExplainText,
@@ -1034,7 +1058,7 @@ export default function LearnSubjectScreen() {
 
     // [[LINK:/columns/...]] など URL パスの場合はそのまま遷移
     if (digDeeperUrl && digDeeperUrl.startsWith('/')) {
-      freezeReturnCursor();
+      publishReturnCursor();
       router.push(digDeeperUrl as any);
       return;
     }
@@ -1049,7 +1073,7 @@ export default function LearnSubjectScreen() {
 
     if (isNaN(questionIndex)) return;
 
-    freezeReturnCursor();
+    publishReturnCursor();
     router.push({
       pathname: `/learn/reference/[subject]/[id]` as any,
       params: {
@@ -1087,21 +1111,17 @@ export default function LearnSubjectScreen() {
       alert('学習完了！ +1ポイント');
       router.back();
     } else {
-      setCurrentIndex(currentIndex + 1);
-      setCurrentReadCount(1);
-      setSpokenIndex(0);
+      syncLearnCardIndex(currentIndex + 1);
     }
-  }, [isLastItem, currentIndex, setIsPlaying, setSpokenIndex, killLearnTtsPlayback, isQuizLearnReview, quizLearnReturnHref]);
+  }, [isLastItem, currentIndex, setIsPlaying, killLearnTtsPlayback, isQuizLearnReview, quizLearnReturnHref, syncLearnCardIndex]);
 
   const handleManualPrev = useCallback(() => {
     killLearnTtsPlayback();
     setIsPlaying(false);
     if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-      setCurrentReadCount(1);
-      setSpokenIndex(0);
+      syncLearnCardIndex(currentIndex - 1);
     }
-  }, [currentIndex, setIsPlaying, setSpokenIndex, killLearnTtsPlayback]);
+  }, [currentIndex, setIsPlaying, killLearnTtsPlayback, syncLearnCardIndex]);
 
   const handleLearnTogglePlay = useCallback(() => {
     if (isPlaying) {
@@ -1131,7 +1151,7 @@ export default function LearnSubjectScreen() {
       return;
     }
 
-    /** 深掘り画面では学習 TTS を開始しない（フッターの再生は戻ってから） */
+    /** 旧セッションの凍結状態が残っている場合だけ、深掘り中の新規開始を抑止する */
     if (!learnReceivesPointerRef.current && isLearnDeepdiveReturnCursorFrozen()) {
       return;
     }
@@ -1191,8 +1211,8 @@ export default function LearnSubjectScreen() {
         const afterUtteranceComplete = () => {
           if (completionHandled) return;
           if (cancelled || sessionId !== ttsUtteranceIdRef.current || !isPlayingRef.current) return;
-          /** 深掘り表示中・非フォーカス中は onDone だけ進んで index がずれるのを防ぐ */
-          if (isLearnDeepdiveReturnCursorFrozen() || !learnReceivesPointerRef.current) return;
+          /** 凍結された旧セッションでは onDone だけ進んで index がずれるのを防ぐ */
+          if (isLearnDeepdiveReturnCursorFrozen()) return;
           completionHandled = true;
           clearWebGuards();
 
@@ -1217,8 +1237,7 @@ export default function LearnSubjectScreen() {
               alert('学習完了！ +1ポイント');
               router.back();
             } else {
-              setCurrentIndex(idx + 1);
-              setCurrentReadCount(1);
+              syncLearnCardIndex(idx + 1);
             }
           }, 50);
         };
@@ -1250,10 +1269,7 @@ export default function LearnSubjectScreen() {
               void Speech.isSpeakingAsync().then((speaking) => {
                 if (cancelled || sessionId !== ttsUtteranceIdRef.current) return;
                 if (speaking) sawSpeaking = true;
-                else if (
-                  sawSpeaking &&
-                  (Platform.OS !== 'web' || learnReceivesPointerRef.current)
-                ) {
+                else if (sawSpeaking) {
                   afterUtteranceComplete();
                 }
               });
@@ -1265,7 +1281,6 @@ export default function LearnSubjectScreen() {
             );
             safetyTimer = setTimeout(() => {
               safetyTimer = null;
-              if (Platform.OS === 'web' && !learnReceivesPointerRef.current) return;
               afterUtteranceComplete();
             }, maxWaitMs);
 
@@ -1295,6 +1310,9 @@ export default function LearnSubjectScreen() {
       cancelled = true;
       webUtterancePollCleanupRef.current?.();
       webUtterancePollCleanupRef.current = null;
+      if (preserveSpeechAcrossDeepdiveRef.current && isPlayingRef.current) {
+        return;
+      }
       ttsUtteranceIdRef.current += 1;
       Speech.stop();
     };
@@ -1311,8 +1329,7 @@ export default function LearnSubjectScreen() {
   const handleTogglePriorityMode = () => {
     killLearnTtsPlayback();
     setIsPriorityMode(!isPriorityMode);
-    setCurrentIndex(0);
-    setCurrentReadCount(1);
+    syncLearnCardIndex(0);
     setIsPlaying(false);
   };
 
@@ -1387,9 +1404,7 @@ export default function LearnSubjectScreen() {
           onSeek={(index) => {
             killLearnTtsPlayback();
             setIsPlaying(false);
-            setCurrentIndex(index);
-            setCurrentReadCount(1);
-            setSpokenIndex(0);
+            syncLearnCardIndex(index);
           }}
         />
         <ScrollView
