@@ -687,6 +687,8 @@ export default function LearnSubjectScreen() {
       const frozen = displayContentListRef.current[cursor.displayIndex];
       if (typeof frozen === 'string' && frozen.trim()) return frozen;
     }
+    const indexed = displayContentListRef.current[currentIndexRef.current];
+    if (typeof indexed === 'string' && indexed.trim()) return indexed;
     return currentDisplayContentRef.current;
   }, []);
   /** index と同一文でも並び変わったとき effect を再実行するため、content だけに依存しない */
