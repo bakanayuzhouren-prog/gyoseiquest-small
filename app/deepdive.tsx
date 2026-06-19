@@ -288,7 +288,6 @@ export default function DeepdiveScreen() {
     isPlaying: isLearnPlaying,
     setIsPlaying: setLearnIsPlaying,
     learnScreenMounted,
-    togglePlay: toggleLearnPlay,
     manualPrev: learnManualPrev,
     manualNext: learnManualNext,
   } = useLearnPlayback();
@@ -1386,7 +1385,12 @@ export default function DeepdiveScreen() {
   const handleLinkedTogglePlay = () => {
     if (!linkedPlayerEnabled) return;
     stopTts();
-    toggleLearnPlay();
+    if (isLearnPlaying) {
+      Speech.stop();
+      setLearnIsPlaying(false);
+    } else {
+      setLearnIsPlaying(true);
+    }
   };
 
   const handleLinkedNext = () => {

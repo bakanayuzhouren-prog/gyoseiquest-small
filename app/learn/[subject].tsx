@@ -1103,7 +1103,10 @@ export default function LearnSubjectScreen() {
   const handleManualNext = useCallback(() => {
     killLearnTtsPlayback();
     setIsPlaying(false);
-    if (isLastItem) {
+    const idx = currentIndexRef.current;
+    const len = displayListLenRef.current;
+    const last = len > 0 && idx >= len - 1;
+    if (last) {
       addPoints(1);
       if (isQuizLearnReview && quizLearnReturnHref) {
         clearQuizLearnReturnParams();
@@ -1113,17 +1116,18 @@ export default function LearnSubjectScreen() {
       alert('学習完了！ +1ポイント');
       router.back();
     } else {
-      syncLearnCardIndex(currentIndex + 1);
+      syncLearnCardIndex(idx + 1);
     }
-  }, [isLastItem, currentIndex, setIsPlaying, killLearnTtsPlayback, isQuizLearnReview, quizLearnReturnHref, syncLearnCardIndex]);
+  }, [setIsPlaying, killLearnTtsPlayback, isQuizLearnReview, quizLearnReturnHref, syncLearnCardIndex]);
 
   const handleManualPrev = useCallback(() => {
     killLearnTtsPlayback();
     setIsPlaying(false);
-    if (currentIndex > 0) {
-      syncLearnCardIndex(currentIndex - 1);
+    const idx = currentIndexRef.current;
+    if (idx > 0) {
+      syncLearnCardIndex(idx - 1);
     }
-  }, [currentIndex, setIsPlaying, killLearnTtsPlayback, syncLearnCardIndex]);
+  }, [setIsPlaying, killLearnTtsPlayback, syncLearnCardIndex]);
 
   const handleLearnTogglePlay = useCallback(() => {
     if (isPlaying) {
