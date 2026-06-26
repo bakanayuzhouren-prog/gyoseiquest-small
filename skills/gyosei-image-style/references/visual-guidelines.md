@@ -12,6 +12,25 @@
   - Red only for invalidity, prohibition, loss, or common mistake.
 - Typography: large Japanese labels, short phrases, no dense paragraphs inside the image.
 
+## Exciting Learning Diagram System
+
+- Design each diagram as a tiny learning adventure, not a decorated spreadsheet.
+- Choose one topic-fitting visual metaphor:
+  - requirements: gates or checkpoints;
+  - procedure: journey or route;
+  - comparison: split-screen match-up;
+  - priority: race or podium;
+  - legal effect: rescue-tool branches;
+  - parties and claims: character relationship map.
+- Give the learner three anchors: one central deciding axis, one amber exam-trap card, and one short memory ribbon.
+- Use a friendly green owl instructor as the recurring guide when space permits. Keep it in the margin, point it toward the learning target, and never cover labels or arrows.
+- Build a clear visual reading order: title → illustrated rule → deciding axis → trap → memory phrase.
+- Keep semantic colors stable across subjects: blue for procedure, teal/green for valid routes, amber for caution, and red only for prohibition or error.
+- Prefer expressive people, objects, arrows, badges, gates, and signs that reveal who acts and what changes. Avoid characters that exist only as decoration.
+- Preserve statutes, legal relationships, comparison axes, and conclusions exactly when restyling an existing diagram.
+- Remove source filenames, production notes, and template labels from learner-facing images.
+- Reject outputs that remain mostly text boxes or tables without a visible legal relationship or decision path.
+
 ## Legal Diagram Types
 
 Use the diagram type that fits the learning problem:

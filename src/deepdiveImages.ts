@@ -981,8 +981,11 @@ export function resolveMinpoSousokuSupplementChunkImageKey(
 }
 
 /**
- * 問題を解く・憲法: kennpou-toku/kenpouN があれば全肢共通で最優先。
- * 次に kenpou/N-M-C（存在すれば）、なければ kenpou/N-230。218問目は 184 へエイリアス。
+ * 問題を解く・憲法: クイズの問題番号・総問題数・肢番号が一致する画像だけを返す。
+ *
+ * `kenpou/N-230` は「見て聞いて覚える」側のカード番号であり、クイズの
+ * N問目とは論点が一致しない。同じ番号というだけで流用すると無関係な画像が
+ * 表示されるため、ここではフォールバックに使用しない。
  */
 export function resolveKenpouQuizChoiceImageKey(
   questionNum1Based: number,
@@ -991,25 +994,15 @@ export function resolveKenpouQuizChoiceImageKey(
 ): string | undefined {
   if (questionNum1Based < 1 || choiceNum1Based < 1) return undefined;
 
-  const tokuExact = `kennpou-toku/kenpou${questionNum1Based}`;
-  if (DEEPDIVE_IMAGES[tokuExact]) return tokuExact;
-
   const tryWithN = (n: number) => {
     const exact = `kenpou/${n}-${totalQuestions}-${choiceNum1Based}`;
     if (DEEPDIVE_IMAGES[exact]) return exact;
-    const re = new RegExp(`^kenpou/${n}-\\d+-${choiceNum1Based}$`);
-    return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
+    return undefined;
   };
 
   let key = tryWithN(questionNum1Based);
   if (!key && questionNum1Based === 218) key = tryWithN(184);
-  if (key) return key;
-
-  if (questionNum1Based === 218) {
-    const alias184 = resolveKenpouProblemImageKey(184);
-    if (alias184) return alias184;
-  }
-  return resolveKenpouProblemImageKey(questionNum1Based);
+  return key;
 }
 
 /**

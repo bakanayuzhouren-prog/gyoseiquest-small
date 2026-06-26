@@ -36,6 +36,10 @@ import { mergeKijyutuGyouseihouQuizCaseImages } from '@/src/kijyutuGyouseihouQui
 import * as LearnData from '@/src/learnExports';
 import { PIN_CASES } from '@/src/pinData';
 import { extractQuestionCast } from '@/src/castRegistry';
+import { normalizeFinalConstitutionDeepDivePresentation } from '@/utils/constitution-deepdive-presentation-final';
+import { buildCompleteConstitutionDeepDive } from '@/utils/constitution-quiz-deepdive-complete';
+import { appendConstitutionProcedureConfusionChunk } from '@/utils/constitution-procedure-confusion-chunk';
+import { appendConstitutionProcedureRelatedQuestions } from '@/utils/constitution-procedure-related-questions';
 import { isMinpoPersonFlowField, resolvePersonFlowDiagram } from '@/src/personFlowDiagram';
 import {
   pickCompareTable,
@@ -137,7 +141,9 @@ function isSelectLegallyIncorrectStem(stem: string): boolean {
     /妥当でないもの/.test(t) ||
     /正しくないもの/.test(t) ||
     /不適当なもの/.test(t) ||
-    /適当でないもの/.test(t)
+    /適当でないもの/.test(t) ||
+    /適合しないもの/.test(t) ||
+    /含まれていないもの/.test(t)
   );
 }
 
@@ -1826,15 +1832,31 @@ export default function ResultScreen() {
             })()
           : null}
 
-        {/* 行政法・民法・多肢選択・商法・会社法・記述: 解説・根拠条文（I列）・もっと深掘る（M列のみ） */}
-        {(subject === '行政法' || subject === '民法' || subject === '多肢選択' || subject === '商法・会社法' || subject === '記述') &&
-          (statuteItemsRaw.length > 0 || hasImportedQuizDeepDive || showTeitoukenTextbookEntry) &&
+        {/* 憲法・行政法・民法・多肢選択・商法・会社法・記述: 解説・根拠条文・もっと深掘る */}
+        {(subject === '憲法' || subject === '行政法' || subject === '民法' || subject === '多肢選択' || subject === '商法・会社法' || subject === '記述') &&
+          (statuteItemsRaw.length > 0 || hasImportedQuizDeepDive || showTeitoukenTextbookEntry || subject === '憲法') &&
           choices.length > 0 &&
           (() => {
           // 穴埋め問題: 同じ条文が繰り返すので1つだけ表示
           if (isSlotStyle) {
             const slotStatuteRef = getFirstChoiceStatuteRef(choiceStatuteRefs);
-            const slotDeepBody = firstChoiceDeepDiveMColumn(choiceDeepDive);
+            const slotDeepBodyRaw = firstChoiceDeepDiveMColumn(choiceDeepDive);
+            const slotContext = `${text}\n${choices.join(' / ')}`;
+            const slotFallbackDeepDive =
+              subject === '憲法' && !slotDeepBodyRaw
+                ? buildCompleteConstitutionDeepDive({
+                    stem: text,
+                    choice: choices.join(' / '),
+                    legallyCorrect: null,
+                  })
+                : '';
+            const slotDeepBodyWithChunks = appendConstitutionProcedureRelatedQuestions(
+              appendConstitutionProcedureConfusionChunk(slotDeepBodyRaw || slotFallbackDeepDive, slotContext),
+              slotContext,
+            );
+            const slotDeepBody = subject === '憲法'
+              ? normalizeFinalConstitutionDeepDivePresentation(slotDeepBodyWithChunks)
+              : slotDeepBodyWithChunks;
             return (
               <ThemedView style={[styles.choiceStatuteBlock, styles.choiceStatuteCard]}>
                 <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 10 }]}>解説</ThemedText>
@@ -1959,9 +1981,33 @@ export default function ResultScreen() {
               const statutes = choiceStatutes[choiceIdx] || [];
               const statuteRefBody = getChoiceStatuteRefBodyForPage(choiceStatuteRefs, choiceIdx);
               const deepMColumnRaw = (choiceDeepDive?.[choiceIdx] ?? '').trim();
-              const deepContent = mergeKijyutuGyouseihouMemoOrDeepFromQuiz(
-                mergeAutoChoiceDeepDiveImage(deepMColumnRaw, choiceIdx).trim(),
+              const constitutionFallbackDeepDive =
+                subject === '憲法' && !deepMColumnRaw
+                  ? buildCompleteConstitutionDeepDive({
+                      stem: text,
+                      choice: choiceText,
+                      legallyCorrect: deepdiveChoiceLegallyCorrect(
+                        text,
+                        choiceIdx,
+                        effectiveCorrectIndices,
+                        answerPending,
+                        !!isReorder,
+                      ),
+                    })
+                  : '';
+              const procedureContext = `${text}\n${choiceText}`;
+              const deepContentWithChunks = appendConstitutionProcedureRelatedQuestions(
+                appendConstitutionProcedureConfusionChunk(
+                  mergeKijyutuGyouseihouMemoOrDeepFromQuiz(
+                    mergeAutoChoiceDeepDiveImage(deepMColumnRaw || constitutionFallbackDeepDive, choiceIdx).trim(),
+                  ),
+                  procedureContext,
+                ),
+                procedureContext,
               );
+              const deepContent = subject === '憲法'
+                ? normalizeFinalConstitutionDeepDivePresentation(deepContentWithChunks)
+                : deepContentWithChunks;
               const deepBeginner = choiceDeepDiveBeginner?.[choiceIdx]?.trim();
               const deepPeripheral = choiceDeepDivePeripheral?.[choiceIdx]?.trim();
               const relatedJBody = (choiceRelatedStatutes?.[choiceIdx] ?? '').trim();

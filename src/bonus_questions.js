@@ -1,4 +1,5 @@
 import { TAC_BONUS_QUESTIONS } from './tac_bonus_questions';
+import { FUNDAMENTAL_LAW_BONUS_QUESTIONS } from './fundamental_law_bonus_questions';
 
 /** @param {Record<string, Record<string, unknown[]>>} base @param {Record<string, Record<string, unknown[]>>} extra */
 function mergeBonusQuestions(base, extra) {
@@ -165,4 +166,7 @@ const LEGACY_BONUS_QUESTIONS = {
   '情報・通信': {},
 };
 
-export const BONUS_QUESTIONS = mergeBonusQuestions(LEGACY_BONUS_QUESTIONS, TAC_BONUS_QUESTIONS);
+export const BONUS_QUESTIONS = mergeBonusQuestions(
+  mergeBonusQuestions(LEGACY_BONUS_QUESTIONS, TAC_BONUS_QUESTIONS),
+  FUNDAMENTAL_LAW_BONUS_QUESTIONS,
+);

@@ -48,3 +48,7 @@ Ensure all Japanese text is large, horizontally readable, and not overlapping.
 - Use source material only to extract short, original learning points.
 - Keep generated images lightweight enough for the app; prefer compressed PNG/WebP after visual verification.
 - If replacing an existing image, preserve all active references or update the image map in the same change.
+- Do not ship a legal diagram that is only a title, paragraphs, and a table. Apply the `Exciting Learning Diagram System` in `references/visual-guidelines.md`.
+- Choose one visual metaphor that expresses the doctrine, and include a deciding axis, an exam trap, and a memory phrase.
+- Reuse the green owl guide, warm off-white background, and semantic colors to make separate subjects feel like one product.
+- For restyling, keep the original asset key and legal structure while removing source filenames and production notes.
