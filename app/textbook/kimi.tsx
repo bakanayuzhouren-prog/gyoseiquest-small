@@ -109,6 +109,117 @@ const TAC_NEW_KNOWLEDGE = [
   },
 ];
 
+const TAC3_MARKSHEET_READING = {
+  examId: 'TAC第3回',
+  sourceImages: [
+    'app/textbook/俺の解答用紙/TAC3/PXL_20260629_064838258.jpg',
+    'app/textbook/俺の解答用紙/TAC3/PXL_20260629_064842972.jpg',
+  ],
+  gradingSummary: {
+    status: '暫定採点',
+    confirmedQuestions: 8,
+    confirmedCorrect: 4,
+    confirmedScore: 16,
+    scoreNote: '択一4点換算。記述式は答案本文の読取が不安定なため、今回は点数を置かず要目視。',
+  },
+  confirmedGrading: [
+    '問2 基礎法学: あなた2 / 正解2 ○',
+    '問9 行政法: あなた2 / 正解3 ×',
+    '問13 行政法: あなた4 / 正解4 ○',
+    '問17 行政法: あなた3 / 正解1 ×',
+    '問19 行政法: あなた2 / 正解2 ○',
+    '問27 民法: あなた5 / 正解3 ×',
+    '問31 民法: あなた2 / 正解2 ○',
+    '問32 民法: あなた5 / 正解2 ×',
+  ],
+  subjectGrading: [
+    '基礎法学: 1/1',
+    '行政法: 2/4',
+    '民法: 1/3',
+  ],
+  highConfidenceAnswers: [
+    '問4: 5',
+    '問6: 5',
+    '問11: 2',
+    '問12: 3',
+    '問13: 4',
+    '問15: 2',
+    '問17: 3',
+    '問18: 2',
+    '問19: 2',
+    '問23: 4',
+    '問26: 4',
+    '問27: 5',
+    '問28: 4',
+    '問31: 2',
+    '問32: 5',
+    '問34: 4',
+    '問38: 1',
+    '問39: 1',
+  ],
+  lowConfidenceAnswers: [
+    '問1: 2',
+    '問2: 2',
+    '問3: 2',
+    '問5: 2',
+    '問7: 2',
+    '問8: 2',
+    '問9: 2',
+    '問14: 2',
+    '問16: 5',
+    '問21: 2',
+    '問22: 2',
+    '問24: 2',
+    '問25: 2',
+    '問33: 2',
+    '問36: 1',
+    '問37: 1',
+  ],
+  needsManualCheck: [
+    '問10・20・29・30・35・40はマーク差が小さく、写真読取では断定しない。',
+    '問41〜43の多肢、問47〜60の本人解答は、解答用紙写真の下部歪みが強いため目視確認が必要。',
+    '問44〜46の記述はOCRが断片的で採点不能。本文を目視で読める画像が必要。',
+    '正解番号は解答解説OCRだけでは全問の自動抽出に失敗。確実に突合できた問だけ採点し、残りは要確認として残す。',
+  ],
+};
+
+const TAC3_WEAKNESS_CHAPTERS = [
+  {
+    title: '基礎法学は「時代」と「訴訟原則」を分けて覚える',
+    subject: '基礎法学',
+    badge: 'TAC3',
+    body: '法制史は、明治の西欧法継受、ボアソナード、法典論争、戦後のアメリカ法影響を時系列で固定する。訴訟原則は、民事訴訟の処分権主義・弁論主義・自由心証主義、刑事訴訟の違法収集証拠排除と疑わしきは被告人の利益を分ける。',
+    memory: '次は「明治は西欧・民法はボアソナード・訴訟は民事3原則/刑事2原則」と唱えてから肢を見る。',
+  },
+  {
+    title: '憲法人権は判例名より判断軸を先に置く',
+    subject: '憲法',
+    badge: 'TAC3',
+    body: '政教分離は目的効果基準、選挙権は外国人地方参政権・在外国民選挙権・投票価値格差、公務員労働基本権は地位の特殊性・職務の公共性・代替措置で整理する。',
+    memory: '次は「政教分離=目的と効果」「選挙=保障される主体と制限理由」「公務員労働=特殊性と代替措置」を先にメモする。',
+  },
+  {
+    title: '行政法は条文手続の「主体・タイミング・例外」を固定する',
+    subject: '行政法総合',
+    badge: 'TAC3',
+    body: '行政手続法、不服審査法、事件訴訟法は、似た語句で落としやすい。通知・理由提示・参加・執行停止・事情判決は、誰が、いつ、どの効果を出すかで読む。',
+    memory: '次は条文名を見たら、主体、時期、できる/できない、事後救済の4マスに分ける。',
+  },
+  {
+    title: '民法は物権・時効・不法行為を「要件表」で読む',
+    subject: '民法',
+    badge: 'TAC3',
+    body: '解答用紙読取では問27・28付近のマークが比較的明瞭。心裡留保・時効・相隣・法定地上権・不法行為は、結論だけでなく第三者、完成後の承認、土地建物の時点、損害の分担を分ける。',
+    memory: '次は「誰に対抗するか」「いつ完成したか」「土地と建物が同一所有だったか」「損害を誰に割るか」を先に確認する。',
+  },
+  {
+    title: '基礎知識は新法・個情法・文章理解を別腹で取る',
+    subject: '基礎知識',
+    badge: 'TAC3',
+    body: '一般知識は、個人情報保護法の開示・訂正・利用停止、AI推進法、文章理解の接続語・並べ替えが点差になる。読取未確定のため、まず論点カードで取りこぼしを防ぐ。',
+    memory: '次は「個情法=本人請求と行政機関の義務」「文章理解=接続語と指示語」を見てから選択肢へ入る。',
+  },
+];
 function compactText(value: string, limit = 150): string {
   const text = String(value || '').replace(/\s+/g, ' ').trim();
   return text.length > limit ? `${text.slice(0, limit)}...` : text;
@@ -684,6 +795,73 @@ export default function KimiTextbookScreen() {
               </View>
             ) : null}
 
+
+            {selectedSubject === 'すべて' ? (
+              <View style={[styles.knowledgeCard, styles.priorityCard]}>
+                <View style={styles.chapterTop}>
+                  <View style={[styles.badge, styles.badgeWarn]}>
+                    <Text style={styles.badgeTextWarn}>{TAC3_MARKSHEET_READING.examId}</Text>
+                  </View>
+                  <Text style={styles.chapterSubject}>解答用紙読取 / 苦手分析</Text>
+                </View>
+                <Text style={styles.chapterTitle}>TAC3 解答用紙から作る復習メモ</Text>
+                <Text style={styles.chapterBody}>
+                  追加画像2枚からマーク濃度を読取り。正解表の自動抽出は不完全なため、ここでは読取できた選択と、解説OCRから確実に学習化できる論点を分けて保存します。
+                </Text>
+                <View style={styles.sourceBox}>
+                  <Text style={styles.sourceTitle}>読取元</Text>
+                  {TAC3_MARKSHEET_READING.sourceImages.map((line) => (
+                    <Text key={line} style={styles.sourceLine}>・{line}</Text>
+                  ))}
+                </View>
+                <View style={styles.studyBox}>
+                  <Text style={styles.studyTitle}>採点結果（確定突合できた範囲）</Text>
+                  <Text style={styles.studyLine}>
+                    {TAC3_MARKSHEET_READING.gradingSummary.status}: {TAC3_MARKSHEET_READING.gradingSummary.confirmedQuestions}問中{TAC3_MARKSHEET_READING.gradingSummary.confirmedCorrect}問正解 / {TAC3_MARKSHEET_READING.gradingSummary.confirmedScore}点分確定
+                  </Text>
+                  <Text style={styles.studyLine}>{TAC3_MARKSHEET_READING.gradingSummary.scoreNote}</Text>
+                  <Text style={styles.studyTitle}>科目別（確定分）</Text>
+                  <Text style={styles.studyLine}>{TAC3_MARKSHEET_READING.subjectGrading.join(' / ')}</Text>
+                  <Text style={styles.studyTitle}>突合済み</Text>
+                  {TAC3_MARKSHEET_READING.confirmedGrading.map((line) => (
+                    <Text key={line} style={styles.studyLine}>・{line}</Text>
+                  ))}
+                  <Text style={styles.studyTitle}>高信頼で読めた選択</Text>
+                  <Text style={styles.studyLine}>{TAC3_MARKSHEET_READING.highConfidenceAnswers.join(' / ')}</Text>
+                  <Text style={styles.studyTitle}>低信頼の読取候補</Text>
+                  <Text style={styles.studyLine}>{TAC3_MARKSHEET_READING.lowConfidenceAnswers.join(' / ')}</Text>
+                  <Text style={styles.studyTitle}>要目視確認</Text>
+                  {TAC3_MARKSHEET_READING.needsManualCheck.map((line) => (
+                    <Text key={line} style={styles.studyLine}>・{line}</Text>
+                  ))}
+                </View>
+              </View>
+            ) : null}
+
+            {TAC3_WEAKNESS_CHAPTERS.filter((chapter) => selectedSubject === 'すべて' || selectedSubject === chapter.subject).length > 0 ? (
+              <>
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>TAC3 苦手分析から作る章</Text>
+                  <Text style={styles.sectionCount}>{TAC3_WEAKNESS_CHAPTERS.filter((chapter) => selectedSubject === 'すべて' || selectedSubject === chapter.subject).length}章</Text>
+                </View>
+                {TAC3_WEAKNESS_CHAPTERS.filter((chapter) => selectedSubject === 'すべて' || selectedSubject === chapter.subject).map((chapter) => (
+                  <View key={chapter.title} style={styles.knowledgeCard}>
+                    <View style={styles.chapterTop}>
+                      <View style={[styles.badge, styles.badgeWarn]}>
+                        <Text style={styles.badgeTextWarn}>{chapter.badge}</Text>
+                      </View>
+                      <Text style={styles.chapterSubject}>{chapter.subject}</Text>
+                    </View>
+                    <Text style={styles.chapterTitle}>{chapter.title}</Text>
+                    <Text style={styles.chapterBody}>{chapter.body}</Text>
+                    <View style={styles.studyBox}>
+                      <Text style={styles.studyTitle}>何を覚えれば、次は間違えないか</Text>
+                      <Text style={styles.studyLine}>{chapter.memory}</Text>
+                    </View>
+                  </View>
+                ))}
+              </>
+            ) : null}
             <View style={styles.sectionHeader}>
               <Text style={styles.sectionTitle}>苦手分野から作る章</Text>
               <Pressable style={styles.smallLink} onPress={() => router.push('/wrong-answers')}>
@@ -1636,3 +1814,5 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
 });
+
+
