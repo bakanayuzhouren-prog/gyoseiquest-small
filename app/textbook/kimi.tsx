@@ -116,14 +116,17 @@ const TAC3_MARKSHEET_READING = {
     'app/textbook/俺の解答用紙/TAC3/PXL_20260629_064842972.jpg',
   ],
   gradingSummary: {
-    status: '暫定採点',
-    confirmedQuestions: 8,
-    confirmedCorrect: 4,
-    confirmedScore: 16,
-    scoreNote: '択一4点換算。記述式は答案本文の読取が不安定なため、今回は点数を置かず要目視。',
+    status: '暫定採点（赤文字除外・本人マーク再読取）',
+    confirmedQuestions: 15,
+    confirmedCorrect: 9,
+    confirmedScore: 36,
+    scoreNote: '択一4点換算。本人マークは問1〜40・47〜60まで再読取済み。正解番号が確実に突合できた15問だけ点数化し、記述式は答案本文の目視確認待ち。',
   },
   confirmedGrading: [
     '問2 基礎法学: あなた2 / 正解2 ○',
+    '問4 憲法: あなた5 / 正解5 ○',
+    '問5 憲法: あなた2 / 正解1 ×',
+    '問8 行政法: あなた2 / 正解1 ×',
     '問9 行政法: あなた2 / 正解3 ×',
     '問13 行政法: あなた4 / 正解4 ○',
     '問17 行政法: あなた3 / 正解1 ×',
@@ -131,15 +134,39 @@ const TAC3_MARKSHEET_READING = {
     '問27 民法: あなた5 / 正解3 ×',
     '問31 民法: あなた2 / 正解2 ○',
     '問32 民法: あなた5 / 正解2 ×',
+    '問57 基礎知識: あなた5 / 正解5 ○',
+    '問58 基礎知識: あなた1 / 正解1 ○',
+    '問59 基礎知識: あなた2 / 正解2 ○',
+    '問60 基礎知識: あなた5 / 正解5 ○',
   ],
   subjectGrading: [
     '基礎法学: 1/1',
-    '行政法: 2/4',
+    '憲法: 1/2',
+    '行政法: 2/5',
     '民法: 1/3',
+    '基礎知識: 4/4',
+  ],
+  markAnswersLaw: [
+    '問1〜10: 2 / 2 / 2 / 5 / 2 / 5 / 2 / 2 / 2 / 5',
+    '問11〜20: 2 / 3 / 4 / 2 / 2 / 3 / 3 / 2 / 2 / 5',
+    '問21〜30: 2 / 2 / 4 / 2 / 2 / 4 / 5 / 4 / 2 / 5',
+    '問31〜40: 2 / 5 / 2 / 4 / 2 / 1 / 1 / 1 / 1 / 5',
+  ],
+  markAnswersKnowledge: [
+    '問47〜51: 3 / 3 / 5 / 2 / 5',
+    '問52〜56: 5 / 5 / 2 / 4 / 1',
+    '問57〜60: 5 / 1 / 2 / 5',
   ],
   highConfidenceAnswers: [
+    '問1: 2',
+    '問2: 2',
+    '問3: 2',
     '問4: 5',
+    '問5: 2',
     '問6: 5',
+    '問7: 2',
+    '問8: 2',
+    '問9: 2',
     '問11: 2',
     '問12: 3',
     '問13: 4',
@@ -147,37 +174,38 @@ const TAC3_MARKSHEET_READING = {
     '問17: 3',
     '問18: 2',
     '問19: 2',
+    '問21: 2',
+    '問22: 2',
     '問23: 4',
+    '問24: 2',
+    '問25: 2',
     '問26: 4',
     '問27: 5',
     '問28: 4',
     '問31: 2',
     '問32: 5',
+    '問33: 2',
     '問34: 4',
     '問38: 1',
     '問39: 1',
+    '問47〜60: 3 / 3 / 5 / 2 / 5 / 5 / 5 / 2 / 4 / 1 / 5 / 1 / 2 / 5',
   ],
   lowConfidenceAnswers: [
-    '問1: 2',
-    '問2: 2',
-    '問3: 2',
-    '問5: 2',
-    '問7: 2',
-    '問8: 2',
-    '問9: 2',
+    '問10: 5',
     '問14: 2',
-    '問16: 5',
-    '問21: 2',
-    '問22: 2',
-    '問24: 2',
-    '問25: 2',
-    '問33: 2',
+    '問16: 3',
+    '問20: 5',
+    '問29: 2',
+    '問30: 5',
+    '問35: 2',
     '問36: 1',
     '問37: 1',
+    '問40: 5',
   ],
   needsManualCheck: [
-    '問10・20・29・30・35・40はマーク差が小さく、写真読取では断定しない。',
-    '問41〜43の多肢、問47〜60の本人解答は、解答用紙写真の下部歪みが強いため目視確認が必要。',
+    '赤文字・赤ペン由来の画素は本人解答として扱わず、黒い塗りマークだけで再読取。',
+    '問10・14・16・20・29・30・35〜37・40は薄い/周辺ノイズがあり、本人マークとしては読めるが目視確認推奨。',
+    '問41〜43の多肢選択は、20択グリッドの列歪みが大きく、今回の点数には入れない。',
     '問44〜46の記述はOCRが断片的で採点不能。本文を目視で読める画像が必要。',
     '正解番号は解答解説OCRだけでは全問の自動抽出に失敗。確実に突合できた問だけ採点し、残りは要確認として残す。',
   ],
@@ -806,7 +834,7 @@ export default function KimiTextbookScreen() {
                 </View>
                 <Text style={styles.chapterTitle}>TAC3 解答用紙から作る復習メモ</Text>
                 <Text style={styles.chapterBody}>
-                  追加画像2枚からマーク濃度を読取り。正解表の自動抽出は不完全なため、ここでは読取できた選択と、解説OCRから確実に学習化できる論点を分けて保存します。
+                  追加画像2枚から赤文字を除外し、黒い塗りマークだけを再読取。正解表OCRで確実に突合できた問だけ採点し、未確定部分は要目視として残します。
                 </Text>
                 <View style={styles.sourceBox}>
                   <Text style={styles.sourceTitle}>読取元</Text>
@@ -824,6 +852,14 @@ export default function KimiTextbookScreen() {
                   <Text style={styles.studyLine}>{TAC3_MARKSHEET_READING.subjectGrading.join(' / ')}</Text>
                   <Text style={styles.studyTitle}>突合済み</Text>
                   {TAC3_MARKSHEET_READING.confirmedGrading.map((line) => (
+                    <Text key={line} style={styles.studyLine}>・{line}</Text>
+                  ))}
+                  <Text style={styles.studyTitle}>本人マーク読取（問1〜40）</Text>
+                  {TAC3_MARKSHEET_READING.markAnswersLaw.map((line) => (
+                    <Text key={line} style={styles.studyLine}>・{line}</Text>
+                  ))}
+                  <Text style={styles.studyTitle}>本人マーク読取（問47〜60）</Text>
+                  {TAC3_MARKSHEET_READING.markAnswersKnowledge.map((line) => (
                     <Text key={line} style={styles.studyLine}>・{line}</Text>
                   ))}
                   <Text style={styles.studyTitle}>高信頼で読めた選択</Text>
