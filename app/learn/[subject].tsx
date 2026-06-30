@@ -93,16 +93,22 @@ function pickByIndices<T>(arr: T[], indices: number[] | null): T[] {
   return indices.map((i) => arr[i]).filter((v) => v !== undefined);
 }
 
+function stripTacLearnLeadLabel(text: string): string {
+  return String(text || '')
+    .replace(/^【TAC[^】]*】\s*/, '')
+    .trim();
+}
+
 function parseLearnCardDisplayText(raw: string): { mainText: string; basisText: string } {
   const contentToProcess = stripLearnLinkTag(raw)
     .replace(/\[\[LINK:.+?\]\]/g, '')
     .replace(/\[\[image:.+?\]\]/g, '');
   if (!contentToProcess.includes('※')) {
-    return { mainText: contentToProcess.trim(), basisText: '' };
+    return { mainText: stripTacLearnLeadLabel(contentToProcess), basisText: '' };
   }
   const [head, ...rest] = contentToProcess.split('※');
   return {
-    mainText: (head || '').trim(),
+    mainText: stripTacLearnLeadLabel(head || ''),
     basisText: rest.length > 0 ? `※${rest.join('※')}` : '',
   };
 }
@@ -121,7 +127,7 @@ function buildTacLearnFallbackDeepdive(text: string, subjectLabel: string): stri
     .trim();
   const sourceLabel = tacLearnSourceLabel(clean);
   if (!sourceLabel || !clean) return '';
-  const title = clean.replace(/^【TAC(?:2|3)?】\s*/, '').trim();
+  const title = stripTacLearnLeadLabel(clean);
   return [
     `# ${sourceLabel} ${subjectLabel || '論点'}のもっと深掘る`,
     '## 見て聞いて覚えるカード',
