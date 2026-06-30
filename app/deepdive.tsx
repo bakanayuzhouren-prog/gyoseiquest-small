@@ -1201,6 +1201,7 @@ export default function DeepdiveScreen() {
             uniformWeight={markdownUniformWeight}
             lineGap={markdownLineGap}
             bulletList={markdownBulletList}
+            autoGlossaryTerms
           />
         </Wrapper>
       );
@@ -1249,6 +1250,7 @@ export default function DeepdiveScreen() {
             uniformWeight={markdownUniformWeight}
             lineGap={markdownLineGap}
             bulletList={markdownBulletList}
+            autoGlossaryTerms
           />
         ) : null}
       </Wrapper>
@@ -1634,6 +1636,7 @@ export default function DeepdiveScreen() {
                         onHighlightPress={handleHighlightPress}
                         applyNames={applyCharacterNames}
                         uniformWeight={false}
+                        autoGlossaryTerms
                       />
                     </ThemedView>
                   ))}
@@ -1659,6 +1662,7 @@ export default function DeepdiveScreen() {
                         onHighlightPress={handleHighlightPress}
                         applyNames={applyCharacterNames}
                         uniformWeight={false}
+                        autoGlossaryTerms
                       />
                     </ThemedView>
                   ) : (
