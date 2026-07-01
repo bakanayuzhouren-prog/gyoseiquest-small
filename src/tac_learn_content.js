@@ -1164,6 +1164,9 @@ function buildTacResearchedDeepdive(subject, card) {
   const text = String(card.text || '');
   if (/愛媛玉串料|空知太神社|孔子廟/.test(text)) {
     return [
+      '[[image:kenpou/tsu-jichinsai-4koma]]',
+      '[[image:kenpou/ehime-tamagushi-4koma]]',
+      '[[image:kenpou/sorachibuto-jinja-4koma]]',
       '[[image:kenpou/koushibyo-soshou-4koma]]',
       '政教分離は、判例名ごとに見るポイントが変わります。ここを一枚で覚えると、目的効果基準だけに飛びつかなくなります。',
       '愛媛玉串料は目的効果基準。県が玉串料などを公金で支出した場面で、目的の宗教的意義と、特定宗教への援助・促進・圧迫になるかが問題になります。',
