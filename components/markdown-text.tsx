@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from 'react';
-import { Platform, Pressable, StyleProp, TextStyle, View } from 'react-native';
+import { Platform, Pressable, StyleProp, Text, TextStyle, View } from 'react-native';
 import { segmentDeepdiveTextForRender } from '@/utils/deepdive-tab-table';
 import { normalizeMarkupForRender } from '@/utils/markup-tags';
 import { ThemedText } from './themed-text';
@@ -207,33 +207,31 @@ function renderLineParts(
     return parsed.map((p, partIndex) => {
         const key = `${keyPrefix}-${partIndex}`;
         const redOnly = uniformWeight ? { color: RED_HIGHLIGHT.color } : RED_HIGHLIGHT;
-        const redType = uniformWeight ? 'default' : 'defaultSemiBold';
         if (p.type === 'red') {
             return (
-                <ThemedText key={key} type={redType} style={[lineStyle, redOnly]}>
+                <Text key={key} style={redOnly}>
                     {p.text}
-                </ThemedText>
+                </Text>
             );
         }
         if (p.type === 'bold') {
             return (
-                <ThemedText key={key} type="default" style={uniformWeight ? lineStyle : [lineStyle, BOLD_STYLE]}>
+                <Text key={key} style={uniformWeight ? undefined : BOLD_STYLE}>
                     {p.text}
-                </ThemedText>
+                </Text>
             );
         }
         if (p.type === 'glossary') {
             return (
-                <ThemedText
+                <Text
                     key={key}
-                    type={redType}
                     onPress={() => onGlossaryPress?.(p.text, p.tooltip)}
                     accessibilityRole="button"
                     accessibilityLabel={`${p.text}の意味を表示`}
-                    style={[lineStyle, redOnly, { textDecorationLine: 'underline', textDecorationStyle: 'dotted' }]}
+                    style={[redOnly, { textDecorationLine: 'underline', textDecorationStyle: 'dotted' }]}
                 >
                     {p.text}
-                </ThemedText>
+                </Text>
             );
         }
         if (p.type === 'tooltip' && p.tooltip && onHighlightPress) {
@@ -243,31 +241,31 @@ function renderLineParts(
                     onPress={() => onHighlightPress(p.text, p.tooltip!)}
                     style={({ pressed }) => ({ opacity: pressed ? 0.7 : 1, alignSelf: 'baseline' })}
                 >
-                    <ThemedText type={redType} style={[lineStyle, redOnly]}>
+                    <Text style={redOnly}>
                         {p.text}
-                    </ThemedText>
+                    </Text>
                 </Pressable>
             );
         }
         if (p.type === 'tooltip') {
             return (
-                <ThemedText key={key} type={redType} style={[lineStyle, redOnly]}>
+                <Text key={key} style={redOnly}>
                     {p.text}
-                </ThemedText>
+                </Text>
             );
         }
         if (p.type === 'color') {
-            const colorStyle: StyleProp<TextStyle> = [lineStyle, { color: p.color }, p.bold && !uniformWeight ? BOLD_STYLE : null];
+            const colorStyle: StyleProp<TextStyle> = [{ color: p.color }, p.bold && !uniformWeight ? BOLD_STYLE : null];
             return (
-                <ThemedText key={key} type="default" style={colorStyle}>
+                <Text key={key} style={colorStyle}>
                     {renderLineParts(p.children, lineStyle, onHighlightPress, `${key}-c`, uniformWeight, onGlossaryPress)}
-                </ThemedText>
+                </Text>
             );
         }
         return (
-            <ThemedText key={key} style={lineStyle}>
+            <Text key={key}>
                 {p.text}
-            </ThemedText>
+            </Text>
         );
     });
 }
