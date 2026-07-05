@@ -1,0 +1,1711 @@
+{
+  "examId": "合格１",
+  "source": "Windows.Media.Ocr answer explanation OCR with header/topic heuristics",
+  "createdAt": "2026-07-05T15:57:02.281Z",
+  "inputDir": "tmp\\moshi-winocr\\合格１-answers-best",
+  "status": "answer_key_candidates_needs_review",
+  "notes": [
+    "5肢択一の採点候補だけを answerMap に入れる。多肢選択・記述式ページは nonSimple として除外する。",
+    "low confidence はOCR崩れや論点照合による候補であり、採点確定前に人間確認が必要。"
+  ],
+  "counts": {
+    "pages": 59,
+    "nonSimplePages": 7,
+    "selectedAnswers": 31,
+    "highConfidence": 2,
+    "mediumConfidence": 15,
+    "lowConfidence": 14,
+    "conflicts": 0,
+    "missingSimpleQuestions": 23
+  },
+  "answerMap": {
+    "1": {
+      "answer": "3",
+      "confidence": "low",
+      "sourceFile": "045-PXL_20260705_041347984.txt",
+      "reason": "ocr-choice-3-error-marker-needs-review"
+    },
+    "2": {
+      "answer": "1",
+      "confidence": "medium",
+      "sourceFile": "051-PXL_20260705_041408186.txt",
+      "reason": "header-answer-after-topic"
+    },
+    "3": {
+      "answer": "5",
+      "confidence": "medium",
+      "sourceFile": "011-PXL_20260705_041148193.txt",
+      "reason": "topic-and-explicit-answer"
+    },
+    "4": {
+      "answer": "1",
+      "confidence": "low",
+      "sourceFile": "056-PXL_20260705_041425163.txt",
+      "reason": "topic-leading-digits"
+    },
+    "5": {
+      "answer": "2",
+      "confidence": "low",
+      "sourceFile": "012-PXL_20260705_041153220.MP.txt",
+      "reason": "topic-match-and-choice-logic-needs-review"
+    },
+    "7": {
+      "answer": "3",
+      "confidence": "medium",
+      "sourceFile": "006-PXL_20260705_041132651.MP.txt",
+      "reason": "topic-and-explicit-answer"
+    },
+    "8": {
+      "answer": "5",
+      "confidence": "low",
+      "sourceFile": "039-PXL_20260705_041331570.txt",
+      "reason": "topic-match-answer-digit-needs-review"
+    },
+    "10": {
+      "answer": "4",
+      "confidence": "low",
+      "sourceFile": "037-PXL_20260705_041322212.MP.txt",
+      "reason": "ocr-tail-after-choice-5-needs-review"
+    },
+    "13": {
+      "answer": "5",
+      "confidence": "medium",
+      "sourceFile": "016-PXL_20260705_041205262.MP.txt",
+      "reason": "topic-and-explicit-answer"
+    },
+    "15": {
+      "answer": "5",
+      "confidence": "medium",
+      "sourceFile": "033-PXL_20260705_041308319.txt",
+      "reason": "header-answer-after-topic"
+    },
+    "21": {
+      "answer": "4",
+      "confidence": "medium",
+      "sourceFile": "035-PXL_20260705_041315539.txt",
+      "reason": "topic-and-explicit-answer"
+    },
+    "22": {
+      "answer": "5",
+      "confidence": "medium",
+      "sourceFile": "002-PXL_20260705_040849533.txt",
+      "reason": "header-answer-after-topic"
+    },
+    "23": {
+      "answer": "5",
+      "confidence": "medium",
+      "sourceFile": "018-PXL_20260705_041211641.MP.txt",
+      "reason": "header-answer-after-topic"
+    },
+    "24": {
+      "answer": "3",
+      "confidence": "low",
+      "sourceFile": "021-PXL_20260705_041223072.txt",
+      "reason": "ocr-tail-answer-digit-needs-review"
+    },
+    "25": {
+      "answer": "2",
+      "confidence": "high",
+      "sourceFile": "008-PXL_20260705_041138366.txt",
+      "reason": "question-and-explicit-answer"
+    },
+    "26": {
+      "answer": "1",
+      "confidence": "low",
+      "sourceFile": "020-PXL_20260705_041220529.MP.txt",
+      "reason": "topic-leading-digits"
+    },
+    "28": {
+      "answer": "3",
+      "confidence": "low",
+      "sourceFile": "005-PXL_20260705_041126690.txt",
+      "reason": "topic-leading-digits"
+    },
+    "32": {
+      "answer": "4",
+      "confidence": "low",
+      "sourceFile": "023-PXL_20260705_041230203.txt",
+      "reason": "topic-leading-digits"
+    },
+    "33": {
+      "answer": "2",
+      "confidence": "medium",
+      "sourceFile": "038-PXL_20260705_041327731.txt",
+      "reason": "topic-and-explicit-answer"
+    },
+    "34": {
+      "answer": "4",
+      "confidence": "low",
+      "sourceFile": "014-PXL_20260705_041159407.txt",
+      "reason": "topic-leading-digits"
+    },
+    "36": {
+      "answer": "3",
+      "confidence": "low",
+      "sourceFile": "017-PXL_20260705_041207531.txt",
+      "reason": "topic-leading-digits"
+    },
+    "37": {
+      "answer": "1",
+      "confidence": "medium",
+      "sourceFile": "030-PXL_20260705_041257525.txt",
+      "reason": "topic-and-explicit-answer"
+    },
+    "47": {
+      "answer": "2",
+      "confidence": "high",
+      "sourceFile": "029-PXL_20260705_041252459.txt",
+      "reason": "question-and-explicit-answer"
+    },
+    "49": {
+      "answer": "4",
+      "confidence": "low",
+      "sourceFile": "007-PXL_20260705_041134988.txt",
+      "reason": "ocr-says-i-o-combination-and-choice-table-needs-review"
+    },
+    "51": {
+      "answer": "5",
+      "confidence": "medium",
+      "sourceFile": "001-PXL_20260705_040843239.txt",
+      "reason": "header-answer-after-topic"
+    },
+    "52": {
+      "answer": "4",
+      "confidence": "medium",
+      "sourceFile": "042-PXL_20260705_041339532.txt",
+      "reason": "topic-and-explicit-answer"
+    },
+    "53": {
+      "answer": "1",
+      "confidence": "low",
+      "sourceFile": "040-PXL_20260705_041333725.txt",
+      "reason": "topic-leading-digits"
+    },
+    "54": {
+      "answer": "3",
+      "confidence": "medium",
+      "sourceFile": "022-PXL_20260705_041228060.txt",
+      "reason": "header-answer-after-topic"
+    },
+    "56": {
+      "answer": "1",
+      "confidence": "low",
+      "sourceFile": "046-PXL_20260705_041349862.MP.txt",
+      "reason": "topic-match-first-wrong-choice-needs-review"
+    },
+    "57": {
+      "answer": "3",
+      "confidence": "medium",
+      "sourceFile": "049-PXL_20260705_041359676.MP.txt",
+      "reason": "header-answer-after-topic"
+    },
+    "59": {
+      "answer": "3",
+      "confidence": "medium",
+      "sourceFile": "048-PXL_20260705_041355938.txt",
+      "reason": "topic-and-explicit-answer"
+    }
+  },
+  "conflicts": [],
+  "missingSimpleQuestionIds": [
+    6,
+    9,
+    11,
+    12,
+    14,
+    16,
+    17,
+    18,
+    19,
+    20,
+    27,
+    29,
+    30,
+    31,
+    35,
+    38,
+    39,
+    40,
+    48,
+    50,
+    55,
+    58,
+    60
+  ],
+  "pages": [
+    {
+      "pageIndex": 1,
+      "file": "001-PXL_20260705_040843239.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 51,
+        "answer": "5",
+        "confidence": "medium",
+        "reason": "header-answer-after-topic"
+      },
+      "questionCandidates": [
+        {
+          "id": 51,
+          "reason": "header-number-before-topic",
+          "matchIndex": 8
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [
+        {
+          "answer": "5",
+          "questionHint": 51,
+          "reason": "header-answer-after-topic",
+          "matchIndex": 8
+        }
+      ],
+      "snippet": "基礎知識:一般知識51(社会一地球環境についての条約)5ラムサール条約とは、1971年にイラ0ラ、サー0行われた会議探択さ・,生意地として国際的に重要な湿地0保全や利用を定0たも00す。本肢0記巡=、ロンドン条約についてのものでラ。テキストp.761、7622妥当てないロンドン条約とは、1972年にイギリスのロンドンで行われたムー、(洋気れ、陸上て発生した廃棄物の海洋投棄や洋上での焼却処分について規制したものです。本の記は、ラムサール条約についてのものです。テキストp.761、762ワシントン条約とは、1973年に"
+    },
+    {
+      "pageIndex": 2,
+      "file": "002-PXL_20260705_040849533.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 22,
+        "answer": "5",
+        "confidence": "medium",
+        "reason": "header-answer-after-topic"
+      },
+      "questionCandidates": [
+        {
+          "id": 22,
+          "reason": "header-number-before-topic",
+          "matchIndex": 18
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [
+        {
+          "answer": "5",
+          "questionHint": 22,
+          "reason": "header-answer-after-topic",
+          "matchIndex": 18
+        }
+      ],
+      "snippet": "重要度難易度解正。。行政法=地方自治法22(普通地方公共団体0議会)5、00、、0000000、00000委員0、0000000=000000、、一…0、00ー000、項)。=0う0=、委員会0設置0=任=、0、ます。テキストP303議会は、予算に00、て、増額してこれを議決することを妨げないとされて0、ます(97条2項本文)。なお、この場合でも、普通地方公共団体の長の予算の提出の権限を侵すことはできないとされています(97条2項但書)。テキストp.302普通地方公共団体の議会は、当該普通地方公共団体の事務に関する"
+    },
+    {
+      "pageIndex": 3,
+      "file": "003-PXL_20260705_040851853.MP.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "」第ー回解答・」解説管はて相意料れ続割る己しの保とし分C>,トリの謝1さ相分自も求慰てこ管続しる保て註明てて分じとめを定死を一テって、応有のまな囃対ス産求円法っこんし慰にキ財を万て明て<テ続い8し現すよ一てつ士相払認対、つあルさを渡合注を対忠すを支現昜の一産と0ナ-ナま銭のるO財引な綣金銭あす意びるをしに9、、びのかよす産存をと然よ求おカしる産前当訂お主月6」少ス存す財る一三ロ午)に当売すんとる産当産のけ時オ立せ時4条。回決」テ財て財瞞おの9め撤生がです始に、、成ま同大然しト兀1、」続しのホ9ネ/を開分Oか」がたム"
+    },
+    {
+      "pageIndex": 4,
+      "file": "004-PXL_20260705_040856609.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": ".始・れたもにを技通断の理のどしや法始れ始れるす予な開さきる般性、会判当管理か理準償日易開さすと常、開さ当条が定てり一全管る管水賠か定ご2が定止る通て理予れ足、安政びしがれが的家凾要度難易度平理予オ法管がさてはる理予防あがっ財及と用てと行ってすら体般国管か始償管がにが川る準準費てとし賠しこ施もし応てと然疵河にし水基のをの認共のは2正とくにをと対しこ未瑕るるしこ理家お的をめす模と公理きのゆ般性性にとくをにいえす,般かた約で規るは管との管もて一全全階理のゆ害理て備ま一、つる制。同いたのるもてリしもて水管しをりるめ、安安"
+    },
+    {
+      "pageIndex": 5,
+      "file": "005-PXL_20260705_041126690.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 28,
+        "answer": "3",
+        "confidence": "low",
+        "reason": "topic-leading-digits"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 28,
+          "reason": "topic-match",
+          "pattern": "意思表示",
+          "matchIndex": 14,
+          "matchEnd": 18
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "3",
+          "questionHint": 28,
+          "reason": "topic-leading-digits",
+          "matchIndex": 18
+        }
+      ],
+      "snippet": "重要度難易度解正民法=総則(意思表示)3ん物んし善のまか地そ忘吉パ、りがとが第しは人りな土規るの↓はせ代せと方こ渉てと7効受たらものすそとまのまた手す干いたて保をが効無譲当知忠きこりつ相消のつつっ留姻者との装にを人0でにたカ。明あ裡婚意は、りへにかスそ仮」実渡済4で心に表示が由当なすは取成示なキ、の者事譲日と理にらまてを形表らテル物三ののい示思思知とし者て思0的第示地3ィ一」昭る欺者くでつ表意意く)たか事つ意目「表土す詐三なが、思もるな釈しし当か4、の偽ム抗、第失とら合意りす夫解あ最て項虚忠スャで対後「過こ場のよ対"
+    },
+    {
+      "pageIndex": 6,
+      "file": "006-PXL_20260705_041132651.MP.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 7,
+        "answer": "3",
+        "confidence": "medium",
+        "reason": "topic-and-explicit-answer"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 7,
+          "reason": "topic-match",
+          "pattern": "明文規",
+          "matchIndex": 8,
+          "matchEnd": 11
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 338
+        },
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 338
+        },
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 304
+        }
+      ],
+      "snippet": "憲法:総合問。(明文規寔の有7規定されているィ規定されていない前段す。なお、閣議に関する憲法上0規定0=存在しま0旄ゥ規定されていない「会期中0=議決0=至らな・、。案件0=、後会0=継続00、。」00、000、国会法68条本文です。=れを会期不継続0原則と0、0、、=0原則0=関す憲法、00定は存在しません。テキストp.86ェ規定されている憲法25条2項は、「国は、すべての生活部面について、社会福祉、社会保障及び公衆衛生の向上及び増進に努めなければならない。」と規定しています。憲法98条2項は、「日本国が締結した"
+    },
+    {
+      "pageIndex": 7,
+      "file": "007-PXL_20260705_041134988.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 49,
+        "answer": "4",
+        "confidence": "low",
+        "reason": "ocr-says-i-o-combination-and-choice-table-needs-review"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 49,
+          "reason": "topic-match",
+          "pattern": "日本銀行",
+          "matchIndex": 13,
+          "matchEnd": 17
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "基礎知識=一般知識(経済一日本銀行)=000=妥当。.、0、00=、0000=0=0=000日本銀行法は、通貨および金融0調節に関する意思決定0内容および過程に関し、日本銀行にアカウンタビリティ(説明責任)を課してし、ます。工妥当である日本銀行が市中銀行に貸し出しをする際の利子率を基準割引率及び基準貸付利率といい、好況時にはこれを引き上けることで通貨供給量を抑制する政策が、不況時にはこれを引き下けることで通貨供給量を増大させる政策がとられます。テキストp.749市中銀行が日本銀行に預けることを義務付けられている預金"
+    },
+    {
+      "pageIndex": 8,
+      "file": "008-PXL_20260705_041138366.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 25,
+        "answer": "2",
+        "confidence": "high",
+        "reason": "question-and-explicit-answer"
+      },
+      "questionCandidates": [
+        {
+          "id": 25,
+          "reason": "explicit-question-label",
+          "matchIndex": 7
+        },
+        {
+          "id": 25,
+          "reason": "header-number-before-topic",
+          "matchIndex": 8
+        }
+      ],
+      "topicCandidates": [
+        {
+          "id": 17,
+          "reason": "topic-match",
+          "pattern": "抗告訴訟.*対象",
+          "matchIndex": 341,
+          "matchEnd": 505
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 564
+        },
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 564
+        },
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 546
+        }
+      ],
+      "snippet": "問題行政法総合問題25(都市計画に関する判例)=し判断0過程0=0、考慮=事情0.000、=00==0.00000通念0=照らし著しく妥当性を欠くも0認00場合0=0り、00権00000しまたは濫用したも0とし違法となるとし0、ます(小田急高架訴訟本案判決。最判平18.11.2)。テキストp.162、163ウ妥当でない最高裁判所の判例は、「都市計画区域内において工業地域を指定する決定は、当該地域内の土地所有者等に建築基準法上新たな制約を課し、その限度で一定の法状態の変動を生ぜしめるものであることは否定できないが、こ"
+    },
+    {
+      "pageIndex": 9,
+      "file": "009-PXL_20260705_041141602.txt",
+      "nonSimple": true,
+      "selected": null,
+      "questionCandidates": [
+        {
+          "id": 11,
+          "reason": "header-number-before-topic",
+          "matchIndex": 6
+        },
+        {
+          "id": 20,
+          "reason": "header-number-before-topic",
+          "matchIndex": 18
+        },
+        {
+          "id": 4,
+          "reason": "header-number-before-topic",
+          "matchIndex": 121
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "43ほ解】ァー11(執行不停止)ィェー20(内閣総理大臣)完成全文行政事件訴訟法(以下「法」と0、、処分0効力、処分の原則を採用して一の途中で処分'0権利救済・,実現き0=0=、裁00=0000、=,、00行政法.第す回解答・解説重要度難易度ー4(重大な)0こと0てきな0、)の取消しの丁えはしている。な用のきト大4効採急でスのに鬆示がキ分却めとテ処原閣の内条のるるすでん噌を訴研害停圦こえ第一つみ5執0具一丁、刀場条イとのな執て、分条と山ら工カ処にす生をしるてすれいま6きスさつい2厩でキす,カ一丁ノイり・止かテ」続よ"
+    },
+    {
+      "pageIndex": 10,
+      "file": "010-PXL_20260705_041146180.txt",
+      "nonSimple": true,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "解説答例】保存行為と範囲内におい夂えなてその利用改良を目的とす0行為または0採点基準①保存行為・.②甲0性質を変えな0、範囲内におい、..③そ0利用または改良を目的とす行為..民法・総則(代理)<普重要度第易度物第(41字)~+8点~+6点\"・+6点、「甲」0、う。)0管す=う指0000=、0、,本人、Bが代理人であることがわかります。次に、問題文2~4行目に「そ0代理権0範囲に。0一定めがなか。た。=0場合0=Bは、甲に00、て、どのような行為をする権限を有するか」とある=とから、権限0定めのない代理人の権限につ"
+    },
+    {
+      "pageIndex": 11,
+      "file": "011-PXL_20260705_041148193.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 3,
+        "answer": "5",
+        "confidence": "medium",
+        "reason": "topic-and-explicit-answer"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 3,
+          "reason": "topic-match",
+          "pattern": "外国人の人権",
+          "matchIndex": 6,
+          "matchEnd": 12
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 529
+        }
+      ],
+      "snippet": "憲法=人権(外国人の人権)3でもな0、とし0、ます(00ー事件=最大判昭0000)。、,ト0、0誤り最高裁判所判決は、外国人に対する憲法の基本的人権の保障は、外国人在留制度0枠内で与えられているにすぎないとして0、ます(æクリー事件=最大判昭53、0.0)。テキストp.173皿最高裁判所判決は、上陸拒否事由または退去強制事由に準する事由に該当しない限り、外国人の在留期間の更新申請を不許可にすることは許されないと解すべきものではないとしています(マクリーン事件:最大判昭53.10.4)。テキストpユ7最高裁判所判決は"
+    },
+    {
+      "pageIndex": 12,
+      "file": "012-PXL_20260705_041153220.MP.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 5,
+        "answer": "2",
+        "confidence": "low",
+        "reason": "topic-match-and-choice-logic-needs-review"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 5,
+          "reason": "topic-match",
+          "pattern": "議席喪失",
+          "matchIndex": 16,
+          "matchEnd": 20
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "憲法:統治(国会)試席保行説と②議席喪失説が対立して0、ます。重要度難易度正る政う①のに出を党党繞席お党す政政か議て政失な:任、反まのの員②しとるれ肢-変としてこ、んさ本選例規員席す個選出る考くの比よ1」そわとなてるそ変」儀っはと代しでる例て方なをた脚人え比っ」長、んる齧、んはとし議考す有表仞と立個考、か員とらたのきるす席説議」かしの、カ人べすま政こると=日保個す更えはな士す一上あ川①属るめこ①員過変る全更席人にりま以でる議看をと挙となりを会を籍とを①選ことなて国と党なる牛に員菜は11はい-こがで一し一堺占す要とて"
+    },
+    {
+      "pageIndex": 13,
+      "file": "013-PXL_20260705_041155597.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "4・良一一一一口ら、つル尢工せとめ、んAJイ、<易さ、不すそ夕、なでつ誉考のかこみこるです重要度難易度欄工にりとメのどあんまで、文あう、すすもにのののといがま解るので読きとうれしれ以、5て中みてで正目ら今はしすすす直すかまらとそま述て途のげ定す5な確ま欄法なめ考言用と記べるすかとに然う述オはっとがのA」だ目も空がく高とあまわ自いを注る強をるとれがのと由後すオ5とれしカ値あるとらとと」理最た一はル験でる満イでえことらる一るすの解こいすもタ経切点考るすでとエを一正解ンて適時とある用カイとらこまをるのでし,するメって初条"
+    },
+    {
+      "pageIndex": 14,
+      "file": "014-PXL_20260705_041159407.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 34,
+        "answer": "4",
+        "confidence": "low",
+        "reason": "topic-leading-digits"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 34,
+          "reason": "topic-match",
+          "pattern": "不法行為",
+          "matchIndex": 13,
+          "matchEnd": 17
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "4",
+          "questionHint": 34,
+          "reason": "topic-leading-digits",
+          "matchIndex": 17
+        }
+      ],
+      "snippet": "重要度難易度解正民法債権(不法行為)4効思カスま費ま1」)↓にと0-目への意効キれき原を)一項そるのテあと行をすにが立思1律選ゝ監てす除の引求はじの注条法のおのオ①し除免すそ取請合生、つな1る者対免ので、でを場過を負要合務功スす用にも務対つい償害を必すふ場義な平関被な者を債反かな賠な損任にた督か判為務もがらのかし監失飜櫨広重行債て論く知害し人るるてス責者攻生の過法のし結他すすれキなを損失発者なすの用し五不者対て償止さテでれの過が年大は火使っ同為に肢のそそ軽っ賠防と。災成重共行者本よををいすもり火未ての法為れ行に害生"
+    },
+    {
+      "pageIndex": 15,
+      "file": "015-PXL_20260705_041201286.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 17,
+          "reason": "topic-match",
+          "pattern": "処分性",
+          "matchIndex": 12,
+          "matchEnd": 15
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "行政法=行政事件訴訟法(処分性)第えfräJ最高裁判所0判例0=、住民票0=特定0住民00、000~0=00=0か0=、そ0者が選挙人名簿0=登録さ、否=0=何00影響も00=0。、=,明らかであり、住民票に続柄を記載す行為が何らか0法的効果を有す解すき根拠はな0、から、住民票に世帯主と0続柄を記載する行為は、抗告訴訟の対象となる行政処分には当たらないとして0、ます(最判平11.1.21)。テキストp.243最高裁判所の判例は、特定行政庁による2項道路の指定は、それが一括指定の方法でされた場合であっても、個別の土地"
+    },
+    {
+      "pageIndex": 16,
+      "file": "016-PXL_20260705_041205262.MP.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 13,
+        "answer": "5",
+        "confidence": "medium",
+        "reason": "topic-and-explicit-answer"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 13,
+          "reason": "topic-match",
+          "pattern": "行政指導",
+          "matchIndex": 10,
+          "matchEnd": 14
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 17
+        }
+      ],
+      "snippet": "行政法:行政手続法(行政指導)<易重要度難易度正500000特定0者0=ー=0作為=な=、0000000、00、0.0他0行為あ。、処分に該当しな0、も0を0、0、ますから朝条0号)、求める指導等も行政指導に含まれます。テキストp.205一定の不作為を地方公共団体0機関がする行政指導は、一律に行政手続法0行政指導0=関す規定が適用されません(3条3項)。テキストpユ89ロ′、国の機関または地方公共団体もしくはその機関に対する行政指導は、一律に行政手続法の行政指導に関する規定が適用されません(4条1項)。テキストpユ"
+    },
+    {
+      "pageIndex": 17,
+      "file": "017-PXL_20260705_041207531.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 36,
+        "answer": "3",
+        "confidence": "low",
+        "reason": "topic-leading-digits"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 36,
+          "reason": "topic-match",
+          "pattern": "商業使用人",
+          "matchIndex": 16,
+          "matchEnd": 21
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "3",
+          "questionHint": 36,
+          "reason": "topic-leading-digits",
+          "matchIndex": 21
+        }
+      ],
+      "snippet": "<易重要度難易度解正商法=商法(商業使用人)336、権限をイルます0、条、項)。テキト0.604支配人0、商人0許可を受けなければ、自己または第三者のためにその商人の営業0部類に属する取引をすることができません(競業避止義務=23条1項2号)。テキトp創5商人の営業所の主任者であることを示す名称を付した使用人は、当該営業所の営業に関し、一切の裁判外の行為をする権限を有するものとみなされますが、相手方が悪意であったときは、この限りではありません(表見支配人:24条)。このように、表見支配人として権限を有するものとみな"
+    },
+    {
+      "pageIndex": 18,
+      "file": "018-PXL_20260705_041211641.MP.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 23,
+        "answer": "5",
+        "confidence": "medium",
+        "reason": "header-answer-after-topic"
+      },
+      "questionCandidates": [
+        {
+          "id": 23,
+          "reason": "header-number-before-topic",
+          "matchIndex": 8
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [
+        {
+          "answer": "5",
+          "questionHint": 23,
+          "reason": "header-answer-after-topic",
+          "matchIndex": 8
+        }
+      ],
+      "snippet": "行政法:地方自治法23(普通地方公共団体の財務)51正しい金銭0給付0目的す普通地方公共団体0権利0時効0==消00=。0ー0、律0=特別0定0があ場合を除く0か、時効0援用を必要としま0ん朝00条前段)。テキスト.3182正しい各会計年度における歳出は、その年度の歳入をも。て、これに充てなければならな0、とされています(208条2項)。これを会計年度独立の原則と0、0、ます。テキストp.3153ー会計管理者は、普通地方公共団体の長の政令で定めるところによる命令がなければ:支出をすることができないとされています(2"
+    },
+    {
+      "pageIndex": 19,
+      "file": "019-PXL_20260705_041213778.txt",
+      "nonSimple": true,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "解説【正解】完成全文、制限にすぎな0、も0とし0そ0適否専0議会0自主そうすると、出席停止の懲罰は=,、ロ我の0議会0=一定0裁0,00=000、00=、…0=.000断することができるというべきである。憲法=統治(司去権0限<普重要度難易度し員相本問で引用されているのは、地方議会議員の出席停止処分が司法審査の対象となるかが争われた最高裁判所判決の一節です(最大判令2.11.25)。テキストp.100、101冒頭に「議員は、憲法上のの原則を具現化するため、議会が行う上記の各事項等について、議事に参与し、議決に加わる"
+    },
+    {
+      "pageIndex": 20,
+      "file": "020-PXL_20260705_041220529.MP.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 26,
+        "answer": "1",
+        "confidence": "low",
+        "reason": "topic-leading-digits"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 26,
+          "reason": "topic-match",
+          "pattern": "国の行政組織",
+          "matchIndex": 21,
+          "matchEnd": 27
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "1",
+          "questionHint": 26,
+          "reason": "topic-leading-digits",
+          "matchIndex": 27
+        }
+      ],
+      "snippet": "正解重。。行政行政法0一般的な法理=。難(国の行政組織)易261正しいできます(内閣府設置法64条)。テキストp.141:142内閣官房0=係0事項00。。ー0主任0大臣は、内閣総理大臣とされて0、ます(内閣法23条)。4皿内閣総理大臣は、内閣の重要政策に関して行政各部の施策の統一を図るために特に必要がある場合においては、内閣府に特命担当大臣(内閣総理大臣を助け、命を受けて一定の事務を掌理する職)を置くことができます(内閣府設置法9条1項)。なお、大臣政務官は、その省の長である大臣を助け、特定の政策および企画に参画"
+    },
+    {
+      "pageIndex": 21,
+      "file": "021-PXL_20260705_041223072.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 24,
+        "answer": "3",
+        "confidence": "low",
+        "reason": "ocr-tail-answer-digit-needs-review"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 24,
+          "reason": "topic-match",
+          "pattern": "住民監査請求",
+          "matchIndex": 22,
+          "matchEnd": 28
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "<易重要度難易度解正。。行政法=地方自治法(住民監査請求)24できます(242条1項)。住00請求0す0=ーき00=、当該普通地方公共団体の住民0=限られ0条、項)、住民0=、当該普通地方公共団体の区域内に住所を有する者を0、0、ます(、0条、項)。したが。0住民監査請求をすることができるのは、当該普通地方公共団体の区域内に住所を有する者に限られ、区域外に住所を有する者は住民監査請求をすることができません。住民監査請求をすることができるのは、違法または不当な財務会計上の行為または怠る事実に限られ(242条1項)、そ"
+    },
+    {
+      "pageIndex": 22,
+      "file": "022-PXL_20260705_041228060.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 54,
+        "answer": "3",
+        "confidence": "medium",
+        "reason": "header-answer-after-topic"
+      },
+      "questionCandidates": [
+        {
+          "id": 54,
+          "reason": "header-number-before-topic",
+          "matchIndex": 19
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [
+        {
+          "answer": "3",
+          "questionHint": 54,
+          "reason": "header-answer-after-topic",
+          "matchIndex": 19
+        }
+      ],
+      "snippet": "重要度難易度解正基礎知識=業務関連諸法令54(住民基本台帳法一戸籍の附票)31当である,0長0、、.0市0村0区域内0=本籍を有す者0=0き、その戸籍を単位として戸籍0附票を作成しなけれはなりません(16条)。テキ=ト0.7982妥当である戸籍0附票には、氏名(17条2号)のみならず、氏名の振り仮名(17条2号の2)を記載しなければなりません。2025年の住民基本台帳法の改正により、戸籍の附票の記載事項として、氏名の振り仮名が追加されました。テキストp.798戸籍の附票の記載、消除または記載の修正は、職権で行うもの"
+    },
+    {
+      "pageIndex": 23,
+      "file": "023-PXL_20260705_041230203.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 32,
+        "answer": "4",
+        "confidence": "low",
+        "reason": "topic-leading-digits"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 32,
+          "reason": "topic-match",
+          "pattern": "弁済",
+          "matchIndex": 13,
+          "matchEnd": 15
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "4",
+          "questionHint": 32,
+          "reason": "topic-leading-digits",
+          "matchIndex": 15
+        }
+      ],
+      "snippet": "重要度難易度正民法,債権(弁済)4き1レ明)なの挫雨の金を亠つでとを任を行貸行をか肢で転も了が田で観な本付履て履る思責と意がき移スを完交時し時外カるhJるAJれ意行と権渡がるすこの失あの同対同ら3い履た有譲記す済るて過が書はにのめ昭な不し所心の登済弁す証付と認判し務備の(地転4弁を済とっ過取交、付と大領債具へす土移を務飛者か軽受の後交を者まる権代債を権て書たの明をも件権じす有ス地料務下しし証け書か要債生有所キ受あ対取付証抗るて所のテもの料てでてなに受し取対よっの地て地し亠思っいのし者と貸受に己土すら「がる済をとす済"
+    },
+    {
+      "pageIndex": 24,
+      "file": "024-PXL_20260705_041235162.txt",
+      "nonSimple": true,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 34,
+          "reason": "topic-match",
+          "pattern": "不法行為",
+          "matchIndex": 212,
+          "matchEnd": 216
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "(行完成全文=、0=、低額所得者、被災者・0他住宅0確保0=特0=配慮0要す者0居住0安、0000…、、000=0旨住00給・0他0住0活0安定0確保及0向、00、0=00ー0施策0策定実施すも00あ。(住生活基本法、条、0条、条、心、0条)、地方公共団体が住宅を供給する場合にお0、て、当該住宅に入居させ又は入居を継続させる者をど0ようなも0とする0かに00、ては、その性質上、地方公共団体に一・集団的に又は常習的に暴力的不法行為等を行うことを助長そして、暴力団員は、するおそれがある団体の構成員と定義されているところ"
+    },
+    {
+      "pageIndex": 25,
+      "file": "025-PXL_20260705_041237493.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [
+        {
+          "id": 55,
+          "reason": "header-number-before-topic",
+          "matchIndex": 7
+        }
+      ],
+      "topicCandidates": [
+        {
+          "id": 55,
+          "reason": "topic-match",
+          "pattern": "マイナンバー",
+          "matchIndex": 11,
+          "matchEnd": 17
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "基礎知識情報通作55(マイナンバー)。法人番号とは、バーとは異なり、誰でも自由に使用することができます。3皿マイナンバーカードには有効期限があり、発行時0年齢が18歳以上0場合、発行から10回目の誕生日、18歳未満の場合、発行から5回目の誕生日が有効期限となります。マイナンバー法(行政手続における特定の個人を識別するための番号の利用等に関する法律)の目的は、①行政運営の効率化、②行政分野におけるより公正な給付と負担の確保、③国民の利便性の向上です(マイナンバー法1条)。なお、行政運営における公正の確保と透明性の向上"
+    },
+    {
+      "pageIndex": 26,
+      "file": "026-PXL_20260705_041241904.MP.txt",
+      "nonSimple": true,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 27,
+          "reason": "topic-match",
+          "pattern": "行為能力",
+          "matchIndex": 227,
+          "matchEnd": 231
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "解説重要度難易度民法ヨ責権(保証債務)は答例】の目的をの値務を負担しと推定される0採点基準①cが本件貸金債務と同一0目的を有する\"②独立の債務を負担したものと\"③推定される\"この貸金債務(以下本問は、問題文1~2行目に「Aは、Bから金銭を借り入れ、Cが「本件貸金債務」と0、う。)を保証した」とある=とから、保証債務0問題であり、Aが主たる債務者、Bが債権者、cが保証人であることがわかります。次に、問題文1行目に「未成年者であるA」とあることから、cは行為能力の制限によって取り消すことができる債務を保証していることが"
+    },
+    {
+      "pageIndex": 27,
+      "file": "027-PXL_20260705_041244229.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 18,
+          "reason": "topic-match",
+          "pattern": "差止め訴訟",
+          "matchIndex": 13,
+          "matchEnd": 18
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "行政,去=行政事件訴訟法(差止め訴訟)差止め訴訟は、行政庁が一~0差止め訴訟は、・0裁量権0範囲00==0=.00.00000.=0=、00=、庁がそ0処分ま0=裁決0、・=0000、旨0命、0~00=,=0条の4第5項)。テキストp.265、2664差止め訴訟の提起があ。た場合において、その差止め訴訟に係る処分・裁決がされることにより生ずる償うことのできない損害を避けるため緊急の必要があり、かっ、本案について理由があるとみえるときは、裁判所は、申立てにより、決定をも。て、仮の差止め(仮に行政庁がその処分・裁決をし"
+    },
+    {
+      "pageIndex": 28,
+      "file": "028-PXL_20260705_041249891.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 31,
+          "reason": "topic-match",
+          "pattern": "債権者代位権",
+          "matchIndex": 16,
+          "matchEnd": 22
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "第1回解答・解説31民法=債権(債権者代位権)<易重要度難易度し料す債な項者になと当て対だ謝まのきでな為来事のし臻債項のな、ががで行到、占のそ額とはとり存がて条金象でこ{、りるこ限保期し引だ特て幻な対肢るま対るの、済位たあ的の本すすこは弁須れかて体権る求で使、新のにト1、り~ーレ具位あ青一三ロに権行は更権<ス条めし位代でをとてるな啝債、てび債、キが者中権の4す下いよるめテす権渉掫る位権つおすた。象る<属で債交支す代専位に予対のす代為猶に一弁ま叫属スはめ斗知<る被行成<更専っキ身がき求顰通人存完、びてすこのとの渡か属"
+    },
+    {
+      "pageIndex": 29,
+      "file": "029-PXL_20260705_041252459.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 47,
+        "answer": "2",
+        "confidence": "high",
+        "reason": "question-and-explicit-answer"
+      },
+      "questionCandidates": [
+        {
+          "id": 47,
+          "reason": "header-number-before-topic",
+          "matchIndex": 10
+        }
+      ],
+      "topicCandidates": [
+        {
+          "id": 47,
+          "reason": "topic-match",
+          "pattern": "各国の政治体制",
+          "matchIndex": 17,
+          "matchEnd": 24
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 27
+        }
+      ],
+      "snippet": "。。基礎知識=一般知識47(政治一各国の政治体制)<易重要度難易度解正21妥当でない憲法典といったものは存在しません。ドイでは大統領制と議院内閣制0混合形態がとられ、おり、実質的な政治権力0=首相が握。て0、ると0、えます。しかし、首相0選出は、国民0直接選挙はなく、大統領の提案に基づいて、下院の指名により決せられますので、この点が妥当ではありません。テキストp.733中国の政治体制は権力集中制であり、全国人民代表大会(全人代)が司法、行政、立法の全てにおいて最高権力を有していますが、他の機関も全人代から権限を委任"
+    },
+    {
+      "pageIndex": 30,
+      "file": "030-PXL_20260705_041257525.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 37,
+        "answer": "1",
+        "confidence": "medium",
+        "reason": "topic-and-explicit-answer"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 37,
+          "reason": "topic-match",
+          "pattern": "創立総会",
+          "matchIndex": 15,
+          "matchEnd": 19
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "1",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 22
+        }
+      ],
+      "snippet": "第1回解答・解説商法:会社法(創立総会)<普重要度難易度解正1ー''総会0=、募集0=設立0節0=規定す事項00、0株式会社0設立0廃0、00総会0終結そ0他株式会社0設立に関す事項に限り、決議をす=とがき=す(66条)。創立総会の決議は、当該創立総会において議決権を行使することができる設立時株たる多数をもって行われます(73条1項)。設立時発行株式を引き受ける者の募集をする場合には、設立時取締役、設立時会計参与、設立時監査役または設立時会計監査人の選任は、創立総会の決議によって行わなけれはなりません(88条1項)"
+    },
+    {
+      "pageIndex": 31,
+      "file": "031-PXL_20260705_041300450.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "。。行0法=行政、去0、般的0法00、、,。(行政行為の瑕疵)言認まをのの処もる理が物るてれ4に川)も6建認な許」しょる的取医なトるかスお具す認なれこ、つ定キのま全がさる、夫「フ,安障消分分処処0を文か上取正該し悦慮る絶明い長全が更当と中接ふ区安定り認る長いな娠直踟で区よ署おは妊て判ウ税の然務にでエい最特兄法課者当税決の人っ、裁も、念違はの場かはのるは回ま例例囲る定例る処いもト例求れ例撤判周い認ス判請さ判のてキの査癒のそし所上と正所よれ安テ所審治判る判令る判おき裁すよ裁法き気在く3し裁地がてし高対にり高、でよ「な新"
+    },
+    {
+      "pageIndex": 32,
+      "file": "032-PXL_20260705_041305668.txt",
+      "nonSimple": true,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "解説<易重要度難易度訟間訴期件訴事出行格法告政被行(44【解答例】処分があ件本6か月以らゕ日たをつとつき起すを提言斥に取消ロム内た0(43字)0採点基準①Y県を被告として\"②本件処分があ。たことを知。た日から・・③6か月以内・・・・,+8点・・・+6点・・6占本問は、問題文3~4行目に「xは、本件処分は事実誤認に基づく違法なものであり、本件処分の取消訴訟を提起したいと考えている」とあることから、処分取消訴訟の問題であることがわかります。次に、本問は、問題文4~5行目に「xは、誰を被告として、いつまでに取消訴訟を提起"
+    },
+    {
+      "pageIndex": 33,
+      "file": "033-PXL_20260705_041308319.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 15,
+        "answer": "5",
+        "confidence": "medium",
+        "reason": "header-answer-after-topic"
+      },
+      "questionCandidates": [
+        {
+          "id": 15,
+          "reason": "header-number-before-topic",
+          "matchIndex": 12
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [
+        {
+          "answer": "5",
+          "questionHint": 15,
+          "reason": "header-answer-after-topic",
+          "matchIndex": 12
+        }
+      ],
+      "snippet": "問題行政法=行政不服審査法15(審査請求の審理手続)5・0000庁等0=、付0000、00=0…、000、…、00000=は、こ0限りではありません(29条1項)。テキト0.222、223口頭意見陳述にお0、、申立人は、審理員の許可を得て、補佐人とともに出頭することができます(31条3項)。テキストp.223審理員は、審査請求人または参加人の申立てによりまたは職権で、適当と認める者に、参考人としてその知。ている事実の陳述を求め、または鑑定を求めることができます(34条)。テキストp.223審理員は、申立人が正当な理"
+    },
+    {
+      "pageIndex": 34,
+      "file": "034-PXL_20260705_041312623.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [
+        {
+          "id": 14,
+          "reason": "explicit-question-label",
+          "matchIndex": 577
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "重要度難易度解正違判庁い一か作なら亠のての確~工すな期た不の下政しめをそし訟法〔テ.為却行合定正消のす対を。ち作適に補に令て取為まれ準ん直2不し中主月一三ロ作きこ標せ、減属件法め法申す不でるま合トら消係要が定らの請を者ずめり場スかがの手おてと上申間づら定なたキす訟してつこ基わのはしテで利訴す式。期一丁をか条に過れがる形すの'時の認は主月結、症才令か6と経んのま当かたす法こ法こかせ終訴わ申置し起請き相あ、る続た間ま論、・一申ではの弁とのあ手し期めんもてたかに務あ頭る為定せでロす作れと庁義するき行処っの球っらこ政るでき"
+    },
+    {
+      "pageIndex": 35,
+      "file": "035-PXL_20260705_041315539.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 21,
+        "answer": "4",
+        "confidence": "medium",
+        "reason": "topic-and-explicit-answer"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 21,
+          "reason": "topic-match",
+          "pattern": "国家賠償法",
+          "matchIndex": 18,
+          "matchEnd": 23
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "4",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 455
+        },
+        {
+          "answer": "4",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 455
+        },
+        {
+          "answer": "4",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 437
+        }
+      ],
+      "snippet": "21ー第髷。第1回解答・解説行政法=国家賠償法づく損害賠償責任を負いません(最判平19.1.25)。公0営造物0設置また0=管理0=瑕疵があ。たた00=他人0=損害0生0き0、他に損害0原因に00、て責任を負う者があとき0=、国また0=公共団体0=、=れ0=対して求償権を有するとされて0、ますが(2条2項)、損害賠償責任を負わな0、わけではありません。テキストp.282工妥当でない法律の規定上営造物の設置をなしうることが認められている国が、自らこれを設置するのに代えて、特定の地方公共団体に対しその設置を認めた上、当"
+    },
+    {
+      "pageIndex": 36,
+      "file": "036-PXL_20260705_041320014.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [
+        {
+          "id": 5,
+          "reason": "header-number-before-topic",
+          "matchIndex": 11
+        }
+      ],
+      "topicCandidates": [
+        {
+          "id": 58,
+          "reason": "topic-match",
+          "pattern": "立体的な考え",
+          "matchIndex": 52,
+          "matchEnd": 58
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 343
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 406
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 463
+        },
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 141
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 343
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 406
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 463
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 421
+        }
+      ],
+      "snippet": "正解を基礎知識=文章理解5(空欄補充問題)難=、・、〔新・、0検討=す。回0含0段落0次0次0段落0=「立体的な考え」=、0=注目します。「考える」ということは頭を使0てするものなので、その頭の中もまた立体的であると考えられますから、には「立体的」が入ると判断できます。こ。0時点で正解は3か5に絞られますので、次に①を検討してみます。ここで、3の「なぜなら」は、直前で述べられている事柄の理由・原因を挙げる際に用いられる接続語ですが、試しに工に入れて読んでみると、「整理したり、文章にまとめたりすることを敬遠するように"
+    },
+    {
+      "pageIndex": 37,
+      "file": "037-PXL_20260705_041322212.MP.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 10,
+        "answer": "4",
+        "confidence": "low",
+        "reason": "ocr-tail-after-choice-5-needs-review"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 10,
+          "reason": "topic-match",
+          "pattern": "代執行",
+          "matchIndex": 20,
+          "matchEnd": 23
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "1",
+          "questionHint": 10,
+          "reason": "topic-leading-digits",
+          "matchIndex": 23
+        }
+      ],
+      "snippet": "正解重。。行政法政法0一般的な法理=。(代執行)易並度自1妥当でないができません。テキストp.176規則および条例を含む)2妥当でない代執行0対象な000、法律(法律の委任に基づく命令、0=、り直接0=命0ら0、または法律0=基き行政庁により命じられた行為す(行政代執行法2条)。したが。て、条例により直接命じられた行為も、代執行の対象とされています。テキストP.176代執行をなすには、相当の履行期限を定め、その期限までに履行がなされないときは、代執行をなすべき旨を、あらかじめ文書で戒告しなければなりません(行政代執"
+    },
+    {
+      "pageIndex": 38,
+      "file": "038-PXL_20260705_041327731.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 33,
+        "answer": "2",
+        "confidence": "medium",
+        "reason": "topic-and-explicit-answer"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 33,
+          "reason": "topic-match",
+          "pattern": "賃貸借",
+          "matchIndex": 6,
+          "matchEnd": 9
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 591
+        }
+      ],
+      "snippet": "民法=債権(賃貸借)妥当である柱の修繕を拒むことはできません。建物賃借人0内縁0妻0=、賃借人あ内縁0夫・,00場合、内縁0夫000人の賃借権を援用して、賃貸人に対し同建物に居住する権利を主張する=とができます(最判昭42.221)。したが。て、相談者は、内縁の夫の相続人である両親0賃借権を援用して、建物に住み続けることができます。当事者の一方がその解除権を行使したときは、各当事者は、その相手方を原状に復させる義務を負います(545条1項本文)。もっとも、賃貸借は継続的契約であり、解除による遡及効を認めると法律関係"
+    },
+    {
+      "pageIndex": 39,
+      "file": "039-PXL_20260705_041331570.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 8,
+        "answer": "5",
+        "confidence": "low",
+        "reason": "topic-match-answer-digit-needs-review"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 8,
+          "reason": "topic-match",
+          "pattern": "行機関畍限",
+          "matchIndex": 23,
+          "matchEnd": 28
+        },
+        {
+          "id": 10,
+          "reason": "topic-match",
+          "pattern": "代執行",
+          "matchIndex": 424,
+          "matchEnd": 427
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "<易重要度難易度解正論的関機の、冫一何行政85行機関畍限0委任を行う場合0=は、法律0根拠が必要す。他方、権限0代理0うち、授権代理を行う場合には、法律0根拠は不要ですが、法定代理の場合には~139法律の根拠が必要です。テキストp.137専決も代決も、ともに本来の行政機関の名で表示され、本来の行政機関が責任を負こととなる以上、法律の根拠は不要です。テキストpユ39法定代理には、行政庁があらかじめ指定する機関が代理権を有することとなる指定代理と、法律の定める機関が当然に代理権を有することとなる狭義の法定代理の2種類が"
+    },
+    {
+      "pageIndex": 40,
+      "file": "040-PXL_20260705_041333725.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 53,
+        "answer": "1",
+        "confidence": "low",
+        "reason": "topic-leading-digits"
+      },
+      "questionCandidates": [
+        {
+          "id": 53,
+          "reason": "header-number-before-topic",
+          "matchIndex": 15
+        }
+      ],
+      "topicCandidates": [
+        {
+          "id": 53,
+          "reason": "topic-match",
+          "pattern": "行政書士法",
+          "matchIndex": 19,
+          "matchEnd": 24
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "1",
+          "questionHint": 53,
+          "reason": "topic-leading-digits",
+          "matchIndex": 24
+        }
+      ],
+      "snippet": "。。基礎知識:業務関連諸法令\"当53(行政書士法ー総則)度度1妥当である信技術0活用・0他0取組0通国民0利便0向、0当=000000図るよう努めなければなりません(、条0第項)。=0行政書~00責0=関す0定は、2025年の行政書士法の改正によ。て新設されました。テキト0.776行政書士は、他人の依頼を受け報酬を得て、官公署に提出する書類を作成することを業とします(1条の3第1項)。しかし、行政書士は、官公署に提出する書類の作成であっても、その業務を行うことが他の法律において制限されているものについては、業務を行"
+    },
+    {
+      "pageIndex": 41,
+      "file": "041-PXL_20260705_041337509.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 11,
+          "reason": "topic-match",
+          "pattern": "審査請求の対象",
+          "matchIndex": 23,
+          "matchEnd": 30
+        },
+        {
+          "id": 14,
+          "reason": "topic-match",
+          "pattern": "適用除外",
+          "matchIndex": 189,
+          "matchEnd": 193
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "<易重要度難易度解正\"行政法=行政不服審査法(審査請求の対象)行0、不服審査法0、行政庁0違法または不当な処分そ0他公権力0行使0=当行為を対象、0、ます(、条、項)。したが。0行政庁0違法な処分0みならず不当な処分も、審査請求の対象となります。テキストP215外国人の出入国または帰化に関する処分およびその不作為については、審査請求の対象となりません(7条1項柱書・10号)。適用除外規定は、処分のみならずその不作為も含まれています。テキスト217当事者間の法律関係を確定し、または形成する処分で、法令の規定により当該"
+    },
+    {
+      "pageIndex": 42,
+      "file": "042-PXL_20260705_041339532.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 52,
+        "answer": "4",
+        "confidence": "medium",
+        "reason": "topic-and-explicit-answer"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 52,
+          "reason": "topic-match",
+          "pattern": "日本の産業",
+          "matchIndex": 18,
+          "matchEnd": 23
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "4",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 383
+        },
+        {
+          "answer": "4",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 383
+        },
+        {
+          "answer": "4",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 365
+        }
+      ],
+      "snippet": "重要度難易度解正基礎知識=一般知識一日本の産業)(社圷52ァ当でないィ妥当である外0=移動す産業0空洞化が問題となりました。、0水物輸出0、福島第一原子力発電所0事故0==各国0輸入規制等0影響ウ妥当でないー0、、年0=0、。~落ち込ましたが、そ0後はおおむね増加傾向で推移して0、まェ妥当である2023年の自動車製造業の製造品出荷額は約71兆円であり、これは全製造業の製造品出荷額の19.2%と約2割を占めています。卸売業者や小売業者など商品の製造を行わない事業者独自のプランドをプライベートプランドといいますから、前"
+    },
+    {
+      "pageIndex": 43,
+      "file": "043-PXL_20260705_041342764.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 40,
+          "reason": "topic-match",
+          "pattern": "持分会社",
+          "matchIndex": 18,
+          "matchEnd": 22
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "C>難重要度難易度解正商法=会社法(持分会社)400000000、、00000=0000=限0、0、=す・、無責0社員0魵ァ正しい、00銭0以外0000出資0目的とする=とができます(00条、項0号)。テキストp.678持分会社0社員は、定款に別段の定めがある場合を除き、持分会社の業務を執行します(590条1項)。そして、業務を執行する社員は、他に持分会社を代表する社員その他持分会社を代表する者を定めた場合を除き、持分会社を代表します(599条1項)。したがって、有限責任社員であっても、持分会社の業務を執行すること"
+    },
+    {
+      "pageIndex": 44,
+      "file": "044-PXL_20260705_041344530.MP.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [
+        {
+          "id": 27,
+          "reason": "explicit-question-label",
+          "matchIndex": 0
+        }
+      ],
+      "topicCandidates": [
+        {
+          "id": 27,
+          "reason": "topic-match",
+          "pattern": "行為能力",
+          "matchIndex": 10,
+          "matchEnd": 14
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "問題27民法,総則(行為能力)<普重要度第易度0年後見人0=、成年被後見人0場合0,日0保佐、0同00得0.ー…0000、000=。。ー、00、000、0、0000そ'な0、0=も、、0ず同意00=.=、=00、000=、被0、00=0=より、保佐人0同意に代わる許可を与え=とがきます(0条項)。本人以外の者の請求によ。て後見開始の審判または保佐開始0審判をする場合には、本人の同意を得る必要はありません。なお、本人以外の者の請求によ。て補助開始の審判をするには、本人の同意を得なければなりません(15条2項)。えキス"
+    },
+    {
+      "pageIndex": 45,
+      "file": "045-PXL_20260705_041347984.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 1,
+        "answer": "3",
+        "confidence": "low",
+        "reason": "ocr-choice-3-error-marker-needs-review"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 1,
+          "reason": "topic-match",
+          "pattern": "法の効力",
+          "matchIndex": 11,
+          "matchEnd": 15
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "論学去、基正解重要A(法の効力)難度1正しい施行とは、法令の効力を現実に発生させることであり、法令が公布の日から施行され適用されることもあります。テキストp.7002正しい国会が制定した法を法律、行政機関が制定した法を命令といいます。そして、法律は、命令の上位法ですから、命令に優先して適用されます。テキストp.69ラ3誤り外国人が日本に属する船舶および航空機内で犯罪を行った場合、日本の刑法が適用;されます(旗国主義:刑法1項)。また、外国人が日本国外において内乱罪や通貨偽造罪などの日本の国益を害る犯罪を行った場合、"
+    },
+    {
+      "pageIndex": 46,
+      "file": "046-PXL_20260705_041349862.MP.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 56,
+        "answer": "1",
+        "confidence": "low",
+        "reason": "topic-match-first-wrong-choice-needs-review"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 56,
+          "reason": "topic-match",
+          "pattern": "情報通信用語",
+          "matchIndex": 20,
+          "matchEnd": 26
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "1ノえ重要度難易度正基礎知識=情報通信(情報通信用語)560、、0。、、00000000''ー~0接続す、,←0ー0001妥当でない、0、第000、呼00000、、0~す。0、~0、同い、内、敷0内0極0限0れ範囲内0ー同士を接続すネ,ト0ー00=とであり、「構内情報通信網」とも呼ばれて0、ます。生成Aには、テキスト、画像、音声などを自律的に生成することができる人工知能のことです。テザリングとは、スマートフォン等の携帯端末をアクセスポイントとして、ゲーム機やパソコン等をインターネットに接続する機能のことです。デジタ"
+    },
+    {
+      "pageIndex": 47,
+      "file": "047-PXL_20260705_041353815.txt",
+      "nonSimple": true,
+      "selected": null,
+      "questionCandidates": [
+        {
+          "id": 26,
+          "reason": "explicit-question-label",
+          "matchIndex": 387
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 368
+        },
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 368
+        }
+      ],
+      "snippet": "正解重本問0文章は、憲法条(秕税法律主義)に関する最高裁判所判決0一節です(最判平憲法S4条(租税法律主義)は、課税要件および租税の賦課徴収の手続が法律で明確に定められるべきことを規定するものですから、には「手続」が入ります。ィー「事後の法律により変更されることによってに影響が及び得る」とあるところ、事後の変更により害されるのは法的安定ですから、困には「法的安定」が入ります。本問の文章は租税法律主義に関する文章であり、これにより影響を受ける国民の権利は、生存権ではなく財産権ですから、団には「財産権」が入ります。工「"
+    },
+    {
+      "pageIndex": 48,
+      "file": "048-PXL_20260705_041355938.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 59,
+        "answer": "3",
+        "confidence": "medium",
+        "reason": "topic-and-explicit-answer"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 59,
+          "reason": "topic-match",
+          "pattern": "自立",
+          "matchIndex": 62,
+          "matchEnd": 64
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 255
+        },
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 369
+        },
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 255
+        },
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 369
+        }
+      ],
+      "snippet": "基礎知識-文章理解(空欄補充問題)正解重=、ロコ\"000、、00。0。0…0,、00,,00000=0欄0前0段落0母親00自立=00う0、000、.0次に、アに「これが、日本の場合であれば、う。かり親と話をすると~」とあることに注目します。「日本の場合」ということは、アが入るべき空欄の前の部分では、海外の話がされているだろうという予測がたてられます。そこで、そのような部分を本文から探してみると、の直前の段落で、ヨーロッパ(スイス)についての話題が展開されていますので、アはに入ることがわかりますこの時点で正解は3で"
+    },
+    {
+      "pageIndex": 49,
+      "file": "049-PXL_20260705_041359676.MP.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 57,
+        "answer": "3",
+        "confidence": "medium",
+        "reason": "header-answer-after-topic"
+      },
+      "questionCandidates": [
+        {
+          "id": 57,
+          "reason": "header-number-before-topic",
+          "matchIndex": 15
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [
+        {
+          "answer": "3",
+          "questionHint": 57,
+          "reason": "header-answer-after-topic",
+          "matchIndex": 15
+        }
+      ],
+      "snippet": "。。基礎知識・個人情報保,。,当57(個人情報保護法一個人長)3:故人に関する情報であ。ても、その情報が故人の遺族など、生存する個人を特定できるような情報でもあるとい。た場合には、個人情報保護法が定める「個人情報」に該当することがあります。外国人に関する情報であっても、特定の個人を識別できる情報であれば、個人情報保護法が定める「個人情報」に該当します。テキスト0.820法人それ自体に関する情報は、生存する個人に関する情報ではありませんので、個人情報保護法が定める「個人情報」に該当することはありません。テキ,ト法人0"
+    },
+    {
+      "pageIndex": 50,
+      "file": "050-PXL_20260705_041402701.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 14,
+          "reason": "topic-match",
+          "pattern": "適用除外",
+          "matchIndex": 18,
+          "matchEnd": 22
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "第1回解答、解説行政法=行政手続法(適用除外)・<易重要度跡易度、はツまる'テ当れ処テ条せ担まがまのれ定れそさ格定べテ~規さ、用る用は適のの有法資せと力し戸た固続見んのま拠定っ規の手有れ根規にのそ政固さのの導法が行の用そ法孑い粐拠さ適艮用機す広手行政のら関定て政る一丁ロカそわ固れ機規い行す定ののつ、力もそ法気のか適指わのあっ否届続機定政かイでかの見行行か団の導のす政そ6指もしし対行政る分限が否方処に関か地て一丁なス出手機限るの機る、れとキ届政すもす人テる行対て対る体の9団もれ力」」にあ項かり関名共る関限い公置法い公"
+    },
+    {
+      "pageIndex": 51,
+      "file": "051-PXL_20260705_041408186.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 2,
+        "answer": "1",
+        "confidence": "medium",
+        "reason": "header-answer-after-topic"
+      },
+      "questionCandidates": [
+        {
+          "id": 2,
+          "reason": "header-number-before-topic",
+          "matchIndex": 18
+        }
+      ],
+      "topicCandidates": [
+        {
+          "id": 2,
+          "reason": "topic-match",
+          "pattern": "裁判外紛争解決",
+          "matchIndex": 21,
+          "matchEnd": 28
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "1",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 531
+        },
+        {
+          "answer": "1",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 531
+        },
+        {
+          "answer": "1",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 493
+        },
+        {
+          "answer": "1",
+          "questionHint": 2,
+          "reason": "header-answer-after-topic",
+          "matchIndex": 18
+        },
+        {
+          "answer": "1",
+          "questionHint": 2,
+          "reason": "topic-leading-digits",
+          "matchIndex": 28
+        }
+      ],
+      "snippet": "重要度難易度解正基礎法学:紛争解決制度2(裁判外紛争解決手続)1問題ァ仲裁紛争当事者が争0、0解決0ために第三者を選び、そ0判断によ。て紛争を解決することを、仲裁と0、0、ます。なお、紛争当事者は、第三者の仲裁判断に拘東されることになります。テキストp、720ィー民間人(あ。せん員)が紛争当事者間をイ中介し、双方の主張の要点を確かめ、事件が解決されるように努めることを、あっせんといいます。なお、労働争議や公害紛争処理においては、あ。せんによる紛争の解決が認められています。テキストp.719ゥ亘紛争当事者相互の譲歩に"
+    },
+    {
+      "pageIndex": 52,
+      "file": "052-PXL_20260705_041410815.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "第1回解答,解説総締らすを3決しを会新いせお、フてじ他ッま社きし「士な負っッ取株し項の3」ーロ2を台」会のが臼条)て条役30項存をとケそなかう,イ資締こす取務めよ2たは壥るは最任て取す作一買の引幻者月し帯て会気者取臼三せ臨特れリすすこ取関まののこ厦さめ締っま既益に文Lし相れ会生いきき総た広れた、つ引責いので颪刃へバ本取のよ己,ま、さ、、まよ接殳オ己と定己の該推殳し株テすとなし・ツーイ自た推国こる当とち取ゞずー社責対こか対ー.,7-っ朝、つ該カナきょにる失し号式しムの取引を額引は臼た会ま会の、社す過と8株そもた取の取"
+    },
+    {
+      "pageIndex": 53,
+      "file": "053-PXL_20260705_041414693.MP.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "重要度難易度解正る抵判てす<抵最gx-Ä押づ使りて<です権差イ1るこ増、ユ宿合ま債をと当すなすを地定売をⅡ有場き料権にかも上設競権平所たで賃債とたて求判るれがる料一なすは当物一三ロらとす賃る。と者抵建えこ対のすんた一よ権備るにこ等権保ま当しそ、雀氏、がすQ害ん有当け日一孑丿抵件使、はす一当諾抵なをる要行し<、あ者4承根得とのかをし対ス抗を貸要こキき)と限当権者権硲対権賃合と一は本よ一をしテ制スと地る位を昜ス5当す抵のよす代地キ分な立キ一法、ま者こがすた土有の対上土し」テ年う測一民しえれ1甲有るま2よ0父。抵を<占さ"
+    },
+    {
+      "pageIndex": 54,
+      "file": "054-PXL_20260705_041417856.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "にと効な地すれ対なら正んすけを)1し6し上除わ真せと場るてな日ザ)4を、解か、ま因経取一記記はをかしれ原当をの登トも対さをの継を登権はキ転て借た者は位阜一日ザのの0テ移っ貸し有との有取も旨己のが賃転所こ義の自てん権た移のる銘そ三一口っせ有し由次元すしがま有な所。理順が求登る所し4広対たきと者主月なて引をまよるを人にしで者有正ョしト続者。カ有所続真っ条払と所の手ん滅が取効産料カ寺年一アュ′ス.日動(賃まてこ産日寸し〃ロ賍現れせす抗不んの車表ご乂日寸きもるせ合ま多しでさすて対あまを取最者場不<済求ル権が0くっで利を、雀"
+    },
+    {
+      "pageIndex": 55,
+      "file": "055-PXL_20260705_041422572.MP.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "日並日重要度難易度解正取条監書す歩め得る項式6号ま定取よ1株類・款、つキ主を条で種定よ~テ8よて0ナ上はこん会きオ1、朱と以ではせっ下でまっ付容まト主よ二の法りに権内ス力のるきする法社あ決式求のな会三一8株請式るテ種るせ亥得株異旧、て多ごと、るすま測定の、か必取のでこし(部号す行会きっト容てたるカること発用でるて旨一5内ししめしるる項員をがとす厠キてめ制たそま定成式とし定渡ときす式し構株よことを譲る発の容で行条をるおる内が発主す社すのとの一打株すきの制しをの式こそす容置1、当ので式渡と株る、ま種内設を株容権類会もな"
+    },
+    {
+      "pageIndex": 56,
+      "file": "056-PXL_20260705_041425163.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 4,
+        "answer": "1",
+        "confidence": "low",
+        "reason": "topic-leading-digits"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 4,
+          "reason": "topic-match",
+          "pattern": "表現の自由",
+          "matchIndex": 16,
+          "matchEnd": 21
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "1",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 621
+        },
+        {
+          "answer": "1",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 621
+        },
+        {
+          "answer": "1",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 603
+        },
+        {
+          "answer": "1",
+          "questionHint": 4,
+          "reason": "topic-leading-digits",
+          "matchIndex": 21
+        }
+      ],
+      "snippet": "<普重要度難易度解正憲法=人権(表現の自由)14ァ正しい.、0、、=す(博多0、事件=最大決昭0、00)。ー~ト0.00最高裁判例は、報道0た00取材0自由は、憲法21条の精神に照らし、十分尊重に値するとし0、ます(博多駅事件=最大決昭44.11.26)。テキスト0.46最高裁判例は、傍聴人が法廷においてメモを取ることは、その見聞する裁判を認識、記憶するためになされるものである限り、尊重に値し、故なく妨けられてはならないとしているにとどまり(レベタ事件:最大判平1.3.8)、憲法21条により保障されるとしているわけ"
+    },
+    {
+      "pageIndex": 57,
+      "file": "057-PXL_20260705_041428685.MP.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "<易重要度難易度解正一般知識基礎知識挙制度)(政治一1第当てない:、、い1・いん2妥当でないいといえます。,0、、、-00=、死票が多くな0、う短所・,あ反面、=大政党制をもたらしやす3妥当でないく局が安定す0、う長所あ、0、ます。なお、本肢0記述は比例代表制についてのものです。テキストp.735比例代表制は、小党分立をもたらしやすく政局が不安定になりやすいという短所がある反面、死票は少なくなるという長所があるとされています。なお、本肢の記述は小選挙区制についてのものです。テキストp.735ゲリマンダーとは、多数党"
+    },
+    {
+      "pageIndex": 58,
+      "file": "058-PXL_20260705_041431023.MP.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "粤物日易重要度難易度解正。。行政法-行政不服審査法合問題)ァーー第調査の請求」が入る行0、不服審査法0条、項は、「行政庁0処分に0き処分庁以外0行政庁に対し、審査請求をす=とがきる場合にお0、て、法律に再調査の請求をすることができる旨0定めがあるときは、当該処分に不服がある者は、処分庁に対して再調査の請求をすることができる。」と規定しています。テキストp.231イ「計画的」が入る行政不服審査法28条は、「審査請求人、参加人及び処分庁等・・・並びに審理員は、簡易迅速かっ公正な審理の実現のため、審理において、相互に協力"
+    },
+    {
+      "pageIndex": 59,
+      "file": "059-PXL_20260705_041435674.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 50,
+          "reason": "topic-match",
+          "pattern": "国債",
+          "matchIndex": 48,
+          "matchEnd": 50
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "<易重要度難易度解正般債一国哉斉ロ文矢糸2501当そない第=。て行われています。2妥当である建設国債は、国が公共事業費、出資金および貸付金0財源にするため発行するであり(財政法4条)、1966年に戦後初めて発行されて以来、毎年発行され続けています。借換債とは、満期を迎えた国債の償還財源として新たに発行される国債のことであり、わが国では国債整理基金特別会計法に基づいて発行することが認められています。戦前の国債乱発の反省に基づき、わが国では第二次世界大戦後しばらく赤字国債は発行されていませんでしたが、東京オリンピック後"
+    }
+  ]
+}

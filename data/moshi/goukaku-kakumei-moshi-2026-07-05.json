@@ -18,7 +18,12 @@
     "highResolutionAnswerImages": 59,
     "folderOcrCandidatePages": 51,
     "questionTranscriptPages": 52,
-    "questionTranscriptPagesWithQuestionIds": 24
+    "questionTranscriptPagesWithQuestionIds": 24,
+    "answerKeyCandidateQuestions": 31,
+    "answerKeyHighConfidence": 2,
+    "answerKeyMediumConfidence": 15,
+    "answerKeyLowConfidence": 14,
+    "answerKeyMissingSimpleQuestions": 23
   },
   "parsedQuestions": [
     {
@@ -906,5 +911,50 @@
         "reason": "Windows OCR and high-resolution OCR produced almost no readable body text."
       }
     ]
+  },
+  "answerKeyCandidates": {
+    "status": "answer_key_candidates_needs_review",
+    "json": "data/moshi/goukaku-kakumei-moshi-2026-07-05-answer-key-candidates.json",
+    "markdown": "data/moshi/goukaku-kakumei-moshi-2026-07-05-answer-key-candidates.md",
+    "counts": {
+      "pages": 59,
+      "nonSimplePages": 7,
+      "selectedAnswers": 31,
+      "highConfidence": 2,
+      "mediumConfidence": 15,
+      "lowConfidence": 14,
+      "conflicts": 0,
+      "missingSimpleQuestions": 23
+    },
+    "missingSimpleQuestionIds": [
+      6,
+      9,
+      11,
+      12,
+      14,
+      16,
+      17,
+      18,
+      19,
+      20,
+      27,
+      29,
+      30,
+      31,
+      35,
+      38,
+      39,
+      40,
+      48,
+      50,
+      55,
+      58,
+      60
+    ]
+  },
+  "markSheet": {
+    "userAnswerSheetDir": "app/textbook/俺の解答用紙/合格１",
+    "status": "missing_user_answer_sheet",
+    "note": "TAC2/TAC3と異なり、合格1の本人解答用紙フォルダは未配置のため、本人採点は未実施。"
   }
 }
