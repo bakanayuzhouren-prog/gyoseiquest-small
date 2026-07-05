@@ -208,7 +208,7 @@ function sliceDescriptiveMainByCaseSlices(text: string): { introSlices: string[]
 const CARD_NUM_ONLY_TITLE = /^(?:[1-9][0-9]?|[１-９][０-９]?)[\\.．:：\uFF1A]\s*$/;
 const DEEPDIVE_SECTION_MARK = '(?:■|💡|🏠|👉|🔍|📚|📝)';
 const DEEPDIVE_SECTION_KEYWORDS =
-  '(?:解説|結論|具体的な事例でイメージしよう！|具体的な事例|ここが試験の勝負どころ[！!]?|関連知識|受験生へのアドバイス[！!]?|過去問の急所(?:（[^）]+）)?|試験対策のアドバイス|根拠条文(?:（[^）]+）)?|根拠判例|法理のポイント)';
+  '(?:解説|結論|本肢の正誤|直す場所|つまり|暗記|要点|具体的な事例でイメージしよう！|具体的な事例|ここが試験の勝負どころ[！!]?|関連知識|受験生へのアドバイス[！!]?|過去問の急所(?:（[^）]+）)?|試験対策のアドバイス|根拠条文(?:（[^）]+）)?|根拠判例|法理のポイント)';
 const DEEPDIVE_NAMED_SECTION_HEAD =
   `${DEEPDIVE_SECTION_MARK}?\\s*${DEEPDIVE_SECTION_KEYWORDS}`;
 const DEEPDIVE_NAMED_SECTION_HEAD_RE = new RegExp(
@@ -636,6 +636,12 @@ export default function DeepdiveScreen() {
     return splitEmbeddedDeepdiveCaseChunks(sections.length >= 2 ? sections : [prepared.trim() || trimmed]);
   };
 
+  const splitInlineNumberedTitleBody = (line: string): { title: string; body: string } | null => {
+    const m = /^(?<head>(?:[1-9][0-9]?|[１-９][０-９]?)[\.．:：\uFF1A]\s*[^。！？!?\n]{6,70}?)(?<body>(?:行政|民法|商法|会社法|地方自治法|憲法|刑法|この|なぜ|簡単に|条文|原則|理由|対象|時期|内容|つまり|不服|審査|処分|法律|判例)[\s\S]+)$/u.exec(line.trim());
+    if (!m?.groups?.head || !m.groups.body) return null;
+    return { title: m.groups.head.trim(), body: m.groups.body.trim() };
+  };
+
   /** カードの1行目をタイトル、残りを本文に分離（「2.」のみの行は本文にまとめて変な改行を防ぐ） */
   const splitCardTitle = (cardText: string): { title: string; body: string } => {
     const trimmed = cardText.trim();
@@ -644,6 +650,10 @@ export default function DeepdiveScreen() {
       const inline = DEEPDIVE_INLINE_TITLE_RE.exec(trimmed);
       if (inline) {
         return { title: inline[1].trim(), body: normalizeDeepdiveFlowText(inline[2].trim()) };
+      }
+      const numberedInline = splitInlineNumberedTitleBody(trimmed);
+      if (numberedInline) {
+        return { title: numberedInline.title, body: normalizeDeepdiveFlowText(numberedInline.body) };
       }
       return { title: trimmed, body: '' };
     }
@@ -1232,10 +1242,24 @@ export default function DeepdiveScreen() {
           accessibilityRole="text"
           accessibilityLabel={titleDisplay}
         >
-          <ThemedText style={[titleTextStyle, { marginBottom: 0 }]}>{titleDisplay.trim()}</ThemedText>
+          <MarkdownText
+            text={titleDisplay.trim()}
+            style={[titleTextStyle, { marginBottom: 0 }]}
+            onHighlightPress={handleHighlightPress}
+            uniformWeight={false}
+            lineGap={0}
+          />
         </View>
       ) : (
-        <ThemedText style={[titleTextStyle, { marginBottom: body ? 12 : 0 }]}>{titleDisplay.trim()}</ThemedText>
+        <View style={{ marginBottom: body ? 12 : 0 }}>
+          <MarkdownText
+            text={titleDisplay.trim()}
+            style={titleTextStyle}
+            onHighlightPress={handleHighlightPress}
+            uniformWeight={false}
+            lineGap={0}
+          />
+        </View>
       ));
 
     return (
@@ -1295,7 +1319,7 @@ export default function DeepdiveScreen() {
           ) : (
             (() => {
               const imageKey = resolveDeepdiveImageTagInner(p.value) || p.value.trim();
-              const src = resolveImageAsset(p.value);
+              const src = resolveImageAsset(imageKey);
               const imgStyle = [
                 { width: '100%' as const, maxHeight: 500, borderRadius: 12 },
                 isDescriptiveQuizDeepdive && {

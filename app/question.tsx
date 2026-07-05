@@ -1183,24 +1183,7 @@ export default function QuestionScreen() {
           >
             <ThemedText style={[styles.questionMarkText, questionMark === 'x' && { color: '#fff' }]}>×</ThemedText>
           </Pressable>
-          {showCompareTable ? (
-            <Pressable
-              accessibilityLabel={compareDef?.title ?? '比較表'}
-              onPress={() => setSaikokuCompareModalVisible(true)}
-              style={[styles.mondaibunnGazoOpenButton, { borderColor: '#EF6C00', backgroundColor: '#FFF3E0' }]}
-            >
-              <ThemedText style={[styles.mondaibunnGazoOpenButtonText, { color: '#E65100' }]}>比較表</ThemedText>
-            </Pressable>
-          ) : null}
-          {showPersonFlowButton ? (
-            <Pressable
-              accessibilityLabel="登場人物関係図"
-              onPress={() => setPersonFlowModalVisible(true)}
-              style={[styles.mondaibunnGazoOpenButton, { borderColor: '#5C6BC0', backgroundColor: '#E8EAF6' }]}
-            >
-              <ThemedText style={[styles.mondaibunnGazoOpenButtonText, { color: '#3949AB' }]}>登場人物</ThemedText>
-            </Pressable>
-          ) : null}
+
           {mondaibunnGazoItems.length > 0 ? (
             <Pressable
               accessibilityLabel="問題文の模範図"
@@ -2514,6 +2497,24 @@ export default function QuestionScreen() {
               <View style={styles.choicesMarkRow}>
                 {showDescriptiveMark ? (
                   <ThemedText style={[styles.choicesMark, { color: colors.text }]}>（記）</ThemedText>
+                ) : null}
+                {showCompareTable ? (
+                  <Pressable
+                    accessibilityLabel={compareDef?.title ?? '比較表'}
+                    onPress={() => setSaikokuCompareModalVisible(true)}
+                    style={[styles.scopeChip, { borderColor: '#EF6C00', backgroundColor: colors.choiceBg }]}
+                  >
+                    <ThemedText style={[styles.scopeChipText, { color: '#E65100' }]}>比較表</ThemedText>
+                  </Pressable>
+                ) : null}
+                {showPersonFlowButton ? (
+                  <Pressable
+                    accessibilityLabel="登場人物関係図"
+                    onPress={() => setPersonFlowModalVisible(true)}
+                    style={[styles.scopeChip, { borderColor: '#5C6BC0', backgroundColor: colors.choiceBg }]}
+                  >
+                    <ThemedText style={[styles.scopeChipText, { color: '#3949AB' }]}>登場人物</ThemedText>
+                  </Pressable>
                 ) : null}
                 <Pressable
                   style={[

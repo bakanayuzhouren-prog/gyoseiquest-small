@@ -20,6 +20,7 @@ export const applyTTSRules = (text: string): string => {
         // 指定都市・政令指定都市（地方自治法。「してぃとし」等と誤読されがち。長い語を先に）
         .replace(/政令指定都市/g, 'せいれいしていとし')
         .replace(/指定都市/g, 'していとし')
+        .replace(/境界争論/g, 'きょうかいそうろん')
         // New rules added
         .replace(/法体系/g, 'ほうたいけい')
         .replace(/事理/g, 'じり')
@@ -165,6 +166,11 @@ export const applyTTSRules = (text: string): string => {
         .replace(/私人/g, 'しじん')
         .replace(/既発生/g, 'きはつせい')
         .replace(/私法上/g, 'しほうじょう')
+        .replace(/付議/g, 'ふぎ')
+        .replace(/議員数/g, 'ぎいんすう')
+        .replace(/分任/g, 'ぶんにん')
+        .replace(/却下/g, 'きゃっか')
+        .replace(/指定都市/g, 'していとし')
         // 国家賠償法「適用上」等（「じょう」と平板で読ませる）
         .replace(/適用上/g, 'てきようじょう')
         .replace(/私法的/g, 'しほうてき')
@@ -346,6 +352,8 @@ export const applyTTSRules = (text: string): string => {
         .replace(/明渡し/g, 'あけわたし')
         .replace(/明渡/g, 'あけわたし')
         .replace(/寄託物/g, 'きたくぶつ')
+        .replace(/被担保物件/g, 'ふたんぽぶっけん')
+        .replace(/被担保物権/g, 'ふたんぽぶっけん')
         .replace(/被担保債権/g, 'ひたんぽさいけん')
         .replace(/外ならず/g, 'ほかならず')
         .replace(/表裏/g, 'ひょうり')
@@ -358,5 +366,10 @@ export const applyTTSRules = (text: string): string => {
         .replace(/児童買春/g, 'じどうばいしゅん')
         .replace(/売春/g, 'ばいしゅん')
         .replace(/スイッチ２/g, 'すいっちつー')
-        .replace(/スイッチ2/g, 'すいっちつー');
+        .replace(/スイッチ2/g, 'すいっちつー')
+        .replace(/平穏（へいおん）/g, 'へいおん')
+        .replace(/[3３][DＤ]プリンター/g, 'スリーディーぷりんたー')
+        .replace(/[3３][DＤ]プリンタ/g, 'スリーディーぷりんたー')
+        .replace(/集合物/g, 'しゅうごうぶつ')
+        .replace(/供した/g, 'きょうした');
 };

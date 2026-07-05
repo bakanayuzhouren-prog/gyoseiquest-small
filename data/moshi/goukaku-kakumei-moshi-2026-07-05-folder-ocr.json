@@ -1,0 +1,1214 @@
+{
+  "examId": "合格１",
+  "ocrId": "合格１-folder",
+  "createdAt": "2026-07-05T10:03:56.683Z",
+  "source": {
+    "importJson": "tmp\\moshi-ocr\\合格１-folder\\moshi-import.json",
+    "ocrDir": "tmp\\moshi-ocr\\合格１-folder"
+  },
+  "counts": {
+    "questionImages": 52,
+    "answerImages": 59,
+    "parsedQuestions": 9,
+    "parsedAnswers": 2
+  },
+  "confirmedAnswersByParser": {
+    "5": "4",
+    "28": "4"
+  },
+  "parsedQuestionIds": [
+    3,
+    4,
+    12,
+    13,
+    19,
+    23,
+    28,
+    38,
+    40
+  ],
+  "answerPagesWithCandidates": [
+    {
+      "file": "answers-002.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 25,
+          "type": "status-line",
+          "value": null,
+          "text": "4 | 誤り | |"
+        }
+      ],
+      "preview": "放 し に ーー 一 一 上 國 1 ーー 一 ロ 較正 大 方 具 法衣 上 且 _ 上関 _ 敏 海 疾 因 導 誠 問 肖 き | の 5 | (導通 地方 公共 団体 の ま 。 | 関 二 導 間 5 (22 | ( 必 地方 公共 計 | 湯 作 委員 会 、 談 会 館 党 安 貞 人 お おび 条 史 誠 | mt 陸 会 は 、 和 示例 で 、 悪人 還 症 置 は 任意 と g れ て 。 | 通 地方 公共 団体 の 議会 は 、 上 。 こ の よう"
+    },
+    {
+      "file": "answers-003.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 4,
+          "type": "status-line",
+          "value": null,
+          "text": "記 し 中 由 合 問題 ) 正解 |"
+        },
+        {
+          "line": 6,
+          "type": "status-line",
+          "value": null,
+          "text": "目 。 | 妥当 て ぴい ーー ジー ・ 議"
+        },
+        {
+          "line": 17,
+          "type": "status-line",
+          "value": null,
+          "text": ", [妥当 で ある 徒"
+        },
+        {
+          "line": 31,
+          "type": "status-line",
+          "value": null,
+          "text": "ノッ | 妥当 で な い |"
+        },
+        {
+          "line": 36,
+          "type": "status-line",
+          "value": null,
+          "text": "[ エ | 妥当 で な い | 「 |"
+        },
+        {
+          "line": 49,
+          "type": "status-line",
+          "value": null,
+          "text": "| 7 | 妥当 で ある 5 時 に 当然 に 相続 分 に 応 0 1"
+        },
+        {
+          "line": 61,
+          "type": "status-line",
+          "value": null,
+          "text": "] 以 ト 上 ト FU _ 琶 オ で あり ・、 正解 |"
+        }
+      ],
+      "preview": "| [ 昌 | 識 | 民法 : 内 45 ら ッ ツァ < 相続 (総合 、 記 し 中 由 合 問題 ) 正解 | 詳 gg ーー 4 拉 A | 目 。 | 妥当 て ぴい ーー ジー ・ 議 | 7 光子 3 F 7 ド 稚 企 ) † 、 ーーJ 話 細 | ] 上 帳 衝 の 別 相続 ーー | 内 で も 、 撤 回 する こと が で - 信 続 の 開始 ょ | 問 。 が で きま 選 ル の 科 生 | | * ) 疲 も 拉 の | ナ >・ . 信 "
+    },
+    {
+      "file": "answers-005.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 46,
+          "type": "status-line",
+          "value": null,
+          "text": "ウ | 妥当 で ある | こと を 前 捉 と し で でき の 判明 し た 場合 、"
+        },
+        {
+          "line": 55,
+          "type": "status-line",
+          "value": null,
+          "text": "妥当 で な い | ン ー 抗 す る ui が で き ま せん |"
+        },
+        {
+          "line": 62,
+          "type": "status-line",
+          "value": null,
+          "text": "オ 妥当 で な い |"
+        }
+      ],
+      "preview": "昌 症 区 。 遇 。 ーー 度 ] トー 医 / 」 ーー ーー 一 ) ら 難 | ) 攻 に 薄 』 了 し 時 / コロ に ド 易 。 普 | ン 1 者 里 表 カ 園 介 | リ 4 ( 3 ッッ 市 公 旧 | ロジ ンー し て 』 ) ム 日 則 . 。 科 4 光明 間 時 t . 央 症 叫 上 レー ウ ダ / | md ] の 氏 ) っ らし た と き で あう - 較 99 リリ な が ちら ビ 誠 導 | ZO と を 知り 汗 導 放 "
+    },
+    {
+      "file": "answers-006.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 28,
+          "type": "explicit-answer",
+          "value": "3",
+          "text": ". の 三 つ で あり 、 正解 は 3 1"
+        }
+      ],
+      "preview": "] 0 | 間 ーー | < 」 天 誠 語 語 |] | | 。 いい | mm | 問 ョ ・ : | 7 | (明文 規定 の 有無 放電 に 無 ) | | 半 虹 ーー 旧 | [EE を れ て ち 」 ーー ーーー 量 “ 1 27 条 3 項 は 、「 児 童 は 、 こ れ を 前 合 し て は > 1 感 ] か な から か い 。」 リ | 下 され て いな い | 0 「。 直 | -。 半 は 、 内 閣 絵 理大 臣 が 本 計 抹 呈 の "
+    },
+    {
+      "file": "answers-007.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 23,
+          "type": "status-line",
+          "value": null,
+          "text": "還 。 ェ | 妥当 で ある 1"
+        },
+        {
+          "line": 30,
+          "type": "status-line",
+          "value": null,
+          "text": "ォ | 妥当 で な い . の プシ . 1"
+        }
+      ],
+      "preview": "| Te | 基礎 知識 : 一般 知 島 - 識 : 一 般 知 ーー 49 ( 経 ^ ヌ 妖 識 モモ 和解 疾 | | 49」 済 一 日 本 銀行 上 | 上 用 識 ロニ ーー 5 4 本 咽 | _ わが国 の 銀行 苦 の 発生 | | 因 ウ 球 行基 の 発行 を 独占 する | | 1 る 昌 クー みこ つこ で て ヽ テ 導 た 発 H ィ 7 [ と ム メ 背 | 銀行 の 銀行 」、 税 金 な どの 国庫 公 の 物 券 銀 行 」、 市 "
+    },
+    {
+      "file": "answers-008.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 14,
+          "type": "status-line",
+          "value": null,
+          "text": "開 | イ [妥当 で な い | 解放"
+        },
+        {
+          "line": 22,
+          "type": "status-line",
+          "value": null,
+          "text": "還 。 ii 念 に 取ら し 著しく 妥当 幅 を 多き ウッ ガン 人 生 !"
+        }
+      ],
+      "preview": "_ 科 | 功 し 2 が 王 ・ 1 詳 行政 法 : 総合 間 ョ M | | 25| (都市 計画 に 関す る | 間 回 還 ミー る 判例 ) | 2 | う 昌 | 到 当 で ある | 商 記 | ビ 。 秋 判 所 の 判例 は 、 都 市 計画 事業 の 茎 | | こさ 多 る ご 洛 導 語 \" リ 迷 の 事業 地 の 周 辺 に 選任 す 人民 の | 放 ) 騒音 、 振動 健 に 5 よる 人 内 天 は 放 本 に ーー 上 。。 に 受け "
+    },
+    {
+      "file": "answers-011.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 21,
+          "type": "status-line",
+          "value": null,
+          "text": "還 4 | 誤り |"
+        },
+        {
+          "line": 26,
+          "type": "status-line",
+          "value": null,
+          "text": "目 5 | 正しい |]"
+        }
+      ],
+      "preview": "人 | _ 箇 財 * 去 ・ 人 権 中 半 | 憲法 人権 ( mc 日 寺 人 0 生 oA | 目 5 っ | 目 . 」 衣 り | ーー ] 半 。 。 。 必 判 所 判決 は 、 外 国人 は 、 わ が 国 に | | 取 ! こ 入 園 す | 店 ム え の 権利 な いし 引き 続き 在留 する こと を 玉 と ーー これ て いる も の で は な 第 詳 人 WWSEEC 1 | で も な * ハー ン 事 件 ・ 最 大 判 昭 53104"
+    },
+    {
+      "file": "answers-012.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 2,
+          "type": "status-line",
+          "value": null,
+          "text": "、 回 | ME 記 = と = に 弧 へ - 正解 障 山 |"
+        }
+      ],
+      "preview": "癌 人 A 還 < ーー 則 、 回 | ME 記 = と = に 弧 へ - 正解 障 山 | 剛昌 吉 が mm | 下 | | | _z 、 NN ム か ん っ この - 鹿 | 日 | 。 表 選出 議員 が 党 籍 を ーー 合 に 料 計 る 則 衝 議員 の 二 時 ルム ビ りり 保険 | 、 韻 6 。 / の 5 必 . W 央 説 が ゾ に て し ま す 。 明記 ナナ 央 に 7 弓 。 1) : を | 遍 保 弟 | | 1 凍 ま 還 。 "
+    },
+    {
+      "file": "answers-013.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 43,
+          "type": "explicit-answer",
+          "value": "5",
+          "text": "うり ませ ん の で 、 正 解 は 5 だ と 化 滞 半 語 議 。 話"
+        },
+        {
+          "line": 47,
+          "type": "status-line",
+          "value": null,
+          "text": "となり 、 正解 は ら 5 と な り ま す 。 上 有 |"
+        }
+      ],
+      "preview": "』 ニー 較 1 』 ーッ 疹 理解 上 癌 語 間 | | 識 * 文章 | .』 | 7 林 和 な 昌 語 % \" 昌 胃 |] | | 考 作 が え 問 題 ) | 畔 一 馴 し | 問 丁 | / へ ーー 一 一 一 > し 」 | ( 虹 パ ーー ン | .』 | AU | ーー 一 で 」 と ある こと か が 占 楽 古 問 ! 還 | 60 用 [ て いる 貯 品 で J ご あ 記 と 民 最後 | | ュー ンー 放 堂 レ 。 シー | !"
+    },
+    {
+      "file": "answers-014.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 23,
+          "type": "status-line",
+          "value": null,
+          "text": "3 | 妥当 で な い | 司 不法 行為 者 に 対し て その 効 時"
+        },
+        {
+          "line": 31,
+          "type": "status-line",
+          "value": null,
+          "text": "4 | 妥当 で ある | |"
+        }
+      ],
+      "preview": "ーー 且 誠 問 較 こ | 革 。 / リン (不法 行為 ー 半 & | mm | し よ ょ 。 債権 胃 き | | 』 攻 間 誠 | 民法 5 見 の ] 。 し 』 44 | ーー 一 | 』 | 各自 る こと に よっ て 他人 に 振 害 を 生 衣 時 | 』 隊 央 て で なり) 、。 」 條 レー の 需 才 を 賠償 する 責任 を 負う の が 顧 フラ ヘ + 間 の て 作物 の 設置 まな 由 の 夫 人 - 必 要 な か 油 | の "
+    },
+    {
+      "file": "answers-015.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 8,
+          "type": "status-line",
+          "value": null,
+          "text": "咽 | | 妥当 で ある"
+        },
+        {
+          "line": 26,
+          "type": "status-line",
+          "value": null,
+          "text": "』 3 | 妥当 で ある | 前 1"
+        }
+      ],
+      "preview": "』 還 | た Li ーー I 華 | | 行政 法 : と ー | 本 行政 法 ・ 行政 事件 訴 綴 よ | sa 軸 一 四 訟 法 | *w 剛 ム 詳 | 1 ル 分 性 ) A | り \"JJ 旨 | om ぼぼ 0 4 ビ | ル | 咽 | | 妥当 で ある 。 て 相 才 ーー : 。 だ j 2 | プロ 『 よ 、 ガ 皮 基準 目 上 用 長 7 シー | す び ) 』 アン た は | レ 。 の (次 も も 上 テ 』 * 旬 7 ガ 火 "
+    },
+    {
+      "file": "answers-016.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 23,
+          "type": "status-line",
+          "value": null,
+          "text": "親 。 4 | 誤り | |"
+        },
+        {
+          "line": 30,
+          "type": "status-line",
+          "value": null,
+          "text": "_ー 議 匠 [正しい | の 誠 正 の た め に きれ る な で"
+        }
+      ],
+      "preview": "癌 | 両 行政 法 : 行 癌 | | / w は | 去 ・ 行政 手続 法 5 | 間 13 (行政 指導 ) パリ 較 旧道 ) 才 。 」 部 レジ デジ テー 一 ーー _ 枝 昌 間 0 ーー 一 一 一 思 ? | 較 | : 較 / | 1 = 必 指 導 と は 、 行 政 機関 が その 任務 また は 所 堂 ミ | 1 ,。 計 現す る た め 特 定 の 者 ーー だ は 所 染 東 務 の 箇 団 内 に お に て 党 の 和 | ーー き "
+    },
+    {
+      "file": "answers-017.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 1,
+          "type": "status-line",
+          "value": null,
+          "text": "』 ニー ン , 正解 日 すす"
+        },
+        {
+          "line": 20,
+          "type": "status-line",
+          "value": null,
+          "text": "4 | 正しい |"
+        }
+      ],
+      "preview": "』 ニー ン , 正解 日 すす 』 ンー 誠 A 。 mm | 高き : 商法 (商業 使用 人 ) 目 計 里 四 udi- 』 且 リ | 。 1 上 し い リリ 。 て その 営 用 に 関す る 切 の 裁判 上 また は 裁判 外 の 年 誠 ぁゃ 知人 は 、 問 人 に 1v\" 剖 5 。 を し ます (21 条 1 項 )。 議 間 詳 遇 昌 ビ 2 | 能 も い ee ンー | s 品 人 は 、 商 人 の 許可 を 受け な けれ は 、 自己"
+    },
+    {
+      "file": "answers-018.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 15,
+          "type": "status-line",
+          "value": null,
+          "text": "還 2 [正しい | と"
+        },
+        {
+          "line": 19,
+          "type": "status-line",
+          "value": null,
+          "text": "韻 3 [正しい |"
+        },
+        {
+          "line": 22,
+          "type": "status-line",
+          "value": null,
+          "text": "回 | 4 [正しい |"
+        }
+      ],
+      "preview": "関本 し 2 ニ エ が 主 ・ ーー 一 詳 行政 法 : 地方 自治 法 重 . | |22 | (普通 地方 公共 団体 の 財務 ) | 5 革 一 ビ ) | 5 症 品 回 | 間 1 [ 正 し い | | へ 品 の 給付 を 目的 と する 普通 地方 公共 し 臣 。 。- 特 別 の 定め が ある 場合 を 除く ほう ee 。。 語 | 間 に 特別 の 定め が ある 皮 合 を 除 、 ン 旧い 効 の 援用 を 必要 と し ませ ん (236"
+    },
+    {
+      "file": "answers-020.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 23,
+          "type": "status-line",
+          "value": null,
+          "text": "2 [正しい | 委員 会 お よび 麻宮 層 人 器 中 くに"
+        },
+        {
+          "line": 35,
+          "type": "status-line",
+          "value": null,
+          "text": "3 [正しい | 、 内 閣 総 理大 臣 と きれ て い 時 |"
+        },
+        {
+          "line": 41,
+          "type": "status-line",
+          "value": null,
+          "text": "4 | 誤り | の の 0 た め に 旬 に 。 革"
+        },
+        {
+          "line": 51,
+          "type": "status-line",
+          "value": null,
+          "text": "5 | 正しい] 朋 |"
+        }
+      ],
+      "preview": "ao | gs 関 | 由 ーー ア ム :- 簡 BR | 前 ーー 一 の 一 般 的 な 法理 放 4 誠 | 所 震 . 導 各 旧 mm | 牙 法 ' 行政 法 の 一 般 [ 「 和 を 証 | | 問題 ビ 行政 法 個 の 行政 組織 ) 。 識 N 」] [ ビー ・ ょ りき 主任 の 大 民有 識 條 事務 を 紀 | リー な 信 の 導 る あ 遇 行政 事務 を 分 垢 管理 し な い 大 臣 四 無 在 丘 大 臣 は 、 別 に か 所 )"
+    },
+    {
+      "file": "answers-021.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 1,
+          "type": "status-line",
+          "value": null,
+          "text": "| ーー く ゝ ム く 正解 上 詳"
+        },
+        {
+          "line": 27,
+          "type": "status-line",
+          "value": null,
+          "text": "ツ | 正しい ゆめ | |"
+        },
+        {
+          "line": 37,
+          "type": "status-line",
+          "value": null,
+          "text": "エ | 誤り |"
+        },
+        {
+          "line": 47,
+          "type": "status-line",
+          "value": null,
+          "text": "へ り 、 正しい も の ロン ・ ウ で あぁ ! mm 攻"
+        },
+        {
+          "line": 49,
+          "type": "explicit-answer",
+          "value": "3",
+          "text": "ハ 正解 は 3 と > 1"
+        }
+      ],
+      "preview": "| ーー く ゝ ム く 正解 上 詳 ーー た: 地方 自治 法 南 人 A | ま 問題 | 行政 折 と 請求 ) 3 瞳 -] 24 (住民 監査 請 3 | | | | ーー 。 』 。 」 | | ァ | 議 り ーー 誠 導 : 上 電 紅林 計 求 は 人 通 地方 公共 団体 の 住民 で 人 国人 で あつ で 人 を 還 導 半 _ .』 氏 鶴 后 明 ゆ ポ や \"ご し で きま す (242 条 1 項 ) 。 四 ィ ほ し い | 民 粘 請"
+    },
+    {
+      "file": "answers-022.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 9,
+          "type": "status-line",
+          "value": null,
+          "text": "妥当 で ある の 区 城内 に 本 籍 を 有 う タラ 3 pp |"
+        },
+        {
+          "line": 14,
+          "type": "status-line",
+          "value": null,
+          "text": "2 | 妥当 で ある | 氏名 (17 条 2 号 ) の 次 多久 潜 生 戸籍 の 附 本 な"
+        },
+        {
+          "line": 20,
+          "type": "status-line",
+          "value": null,
+          "text": "| 3 | 妥当 で な い | ンー 時 拉"
+        },
+        {
+          "line": 30,
+          "type": "status-line",
+          "value": null,
+          "text": "っ | 妥当 で ある | |"
+        }
+      ],
+      "preview": "』 ーー 一 天 放 注 含 園 AI 』 ーー 一 = 者 ^ 玄 ロ 器 | ーー 連 論 ) 貞 | | 明生 2 詳 放 』 「 画 旧 | 基 飲 公 上 帳 法 一 戸 日 1 関 旨 | | 。 | 回 由 術 症 守 演 第 』 』 還 | 「 す る 者 に つき 、 ぞ の 戸籍 を 単位 中 妥当 で ある の 区 城内 に 本 籍 を 有 う タラ 3 pp | ピー 、 と の 市 町 料 の 区 電 を ) 。 較 琴 較 間 村長 は 。 (16"
+    },
+    {
+      "file": "answers-023.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 10,
+          "type": "status-line",
+          "value": null,
+          "text": "1 | 妥当 で な ・\" 竹 供 人 は 、 位 3 が A に 旬 じ ス て セ 責務 を 弁済 す 乃 こさ と が で > ぇ"
+        },
+        {
+          "line": 35,
+          "type": "status-line",
+          "value": null,
+          "text": "4 [妥当 で ある ーー 認め られ る と き"
+        },
+        {
+          "line": 42,
+          "type": "status-line",
+          "value": null,
+          "text": "” [妥当 で な い |"
+        }
+      ],
+      "preview": "ーー . 沿 問 較 1 |」 且 __ 因 上 二 - [ 負 和 「 ピ ーー 一 (人 弁済 ) 4 関 。] 【 | 融 : 人 人 作 省 目 上 | 由 ” 画 5 二 | 』 | 問題 | 氏 ) ー ニ ーー 一 一 | [2 ーー 一 一 の て を 草 済 更 人 る 誠 敵 | 反し で 内 者 弁済 する 音 品 。 ンー 地 人 の 意思 に 反し て F 地 の 賃料 債務 を 人 済 まるき 計 1 | 妥当 で な ・\" 竹 供 人 は 、 位"
+    },
+    {
+      "file": "answers-025.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 26,
+          "type": "status-line",
+          "value": null,
+          "text": "| 4 | 誤り 1"
+        },
+        {
+          "line": 37,
+          "type": "status-line",
+          "value": null,
+          "text": "| 誤り 、 ぃ ーー ド の 交 人 を 1"
+        }
+      ],
+      "preview": "| ( 間 頭 | ネ 知 こ ーー | | 喧 識 と 情 | gp | (マイ ナン 人 議 計 [| | | was。 上 下 角 國 一 一 | | ウン 」 ン パ 入 絡 | 0 計 寺 ーー _ 失 加 1 5 記 り mm 人 和 普 1 | ピー ーー 。 mm 枯 二 問 | ビ イナ ン バ ー と は 、 浮 暴 対 炎 謀 央 e 誠 詳 衣 時 . し か し て 付 番 きれ る 19 1 | : bk ゝ て 9 し レ カ が し 、 有 目"
+    },
+    {
+      "file": "answers-027.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 31,
+          "type": "status-line",
+          "value": null,
+          "text": "間 間 3 [正しい 1 ["
+        },
+        {
+          "line": 36,
+          "type": "status-line",
+          "value": null,
+          "text": "1 4 | 誤り こはる 抽 分 ・ 裁 決 が さ 】 |"
+        },
+        {
+          "line": 37,
+          "type": "status-line",
+          "value": null,
+          "text": "| 誤り | 凍 培 ンー 。 の 乱 止め 駅 除 に 係る 処分 ・ 坊 汐 が で で"
+        },
+        {
+          "line": 50,
+          "type": "status-line",
+          "value": null,
+          "text": "賠 | =s [正しい の 條 年 レル の ビ イーm れ 体 上 の 光 を 際 り 凌 と が"
+        }
+      ],
+      "preview": "ーー 3 商 本 吉 | き | | 閲 超 | クー $ ョ みこ 1 護 | 行政 法 : ーー 凍 Lo | 行政 事件 訴訟 法 | sw 』 | (差止め 訴訟 ) | 4 世 和 | 上 4 四 ^ ーー の 名 ビ | 間 | 正 科 ーー 度 | 日 と 止め 訴訟 は 、 行 政庁 が 一 定 の 処 2 1 の 処分 また は 裁決 を し て 【 | 。 フロ テン ラッ る 拓 2 ヽ C (人 は が がら か めい 。 | | 水 め る に つき"
+    },
+    {
+      "file": "answers-028.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 11,
+          "type": "status-line",
+          "value": null,
+          "text": "| 1 | 妥当 て |"
+        },
+        {
+          "line": 20,
+          "type": "status-line",
+          "value": null,
+          "text": "還 。 2 | 妥当 で な い |1 ョ 間"
+        },
+        {
+          "line": 28,
+          "type": "status-line",
+          "value": null,
+          "text": "| 3 | 妥当 で な い | ン レオ で きま せん (大 判 昭 | 章"
+        }
+      ],
+      "preview": "』 リン 隊 『 本 詳 基 剖 朋 回 間 で 還 昌 | 則 還 計上 邊 キキ ・ 4 圭 科 | 圭 1 | 民法 : 債権 (債権 者 代 e | 31 き 権 ) p | ニー 較 放 0 | 難 す # 一 ーー 易 詞 症 。。 一 な 0 革 き | | 1 | 妥当 て | 1 シテ の ーー 身 に 専属 すろ み 導 * 。。 1 | 慎 務 者 の 一 共に 号 必 する 権利 は 選 條 権 者 代 全 品詞 潤 「。 凍 | 。」 書 )、 消滅"
+    },
+    {
+      "file": "answers-029.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 20,
+          "type": "status-line",
+          "value": null,
+          "text": "| 妥当 で な い ンー ヘス 人 0 が 回 技 間 人 敵 ビ"
+        }
+      ],
+      "preview": "し g 日 識 ・ WW | | | 基礎 知識 * 下 上 本 誠 語 訓 記 古語 症 語 間 (政治 一 各国 の 政治 軒 ^ | | 47 | ( 政 治 体制 ) | 2 ほ ー 一 ・ 論 | | | 半 大 統領 制 が と られ て お り 、 大 統領 に は 下 店 「。 大 統領 に は 下院 の 解散 権 が 与え られ て い ぁ 還 ます 9 um 。U レン 記 開 「 旧 2 ニー 一 、 ジジ 邊 導 導 導 前 角 語 憲法 は 、 判 "
+    },
+    {
+      "file": "answers-030.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 1,
+          "type": "explicit-answer",
+          "value": "1",
+          "text": "| 央 上 エム 会 社 法 人 ム 正解 1"
+        },
+        {
+          "line": 23,
+          "type": "status-line",
+          "value": null,
+          "text": "| + ェ 。 1 正しい 。。 ーー。 込 知 可能 株 式 総 数 を 定 |"
+        },
+        {
+          "line": 40,
+          "type": "explicit-answer",
+          "value": "1",
+          "text": "| リ 、 正 解 は 1 と な り ま ず"
+        }
+      ],
+      "preview": "| 央 上 エム 会 社 法 人 ム 正解 1 | と 敵 out 要 | 1 07 | 商法 : 会社 法 (創立 総会 ) | 目 邊 上 / | | 1 簡 一 | | au 見 | 日 : ー 一 一 一 一 一 | 間 | 所 | | | 集 に よる 設立 の 節 に 規定 する 事項 お よび 。 員 | | の 介 \"する 事項 お よび 株 式 会 社 の 設立 の 廃止 刈 。。 衣 主 | | 人 印 株 式 会 社 の 設立 に 関す えみ 事 頂 」"
+    },
+    {
+      "file": "answers-031.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 35,
+          "type": "status-line",
+          "value": null,
+          "text": "| + ェ | 誤り am の 指定 権限 を 付与 き"
+        },
+        {
+          "line": 44,
+          "type": "explicit-answer",
+          "value": "3",
+          "text": "| 正解 は 3 と ふ |"
+        }
+      ],
+      "preview": "[上 量 | 2 ニ 和 か 去 ・ 侍 訳 u < | | - | 【 ば い 了 、 | 1J 凡 計 ・1 改 法 の 、 人 m | \" 重 ア ーー ] キ か | ja ( | (行政 行 放 の な 法 生 mm | ノ 人 較 の 坦 拍 5 用 | | | 弄 | | 』 以 此 ) | 【 話 。 胡 | 1 ーー | S 直 こ | | リル 0 衝 課 税 吉 . 3 生 二 品 と 考慮 + S 必 旧 が ヵ 。 ^ 馬 3 。 [| | な く "
+    },
+    {
+      "file": "answers-033.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 16,
+          "type": "status-line",
+          "value": null,
+          "text": "関 症 。 3 [正しい | 。"
+        }
+      ],
+      "preview": "_ 放 人 本 導き ペ ペー 七 5 半 江 行政 不服 審査 法 | 剛 Al 馬 請 > 中 請求 の 審理 手続 ) | 5 上 | 間 ロロ -- 較 見 攻 へ ーー | 葵 関 語 1 エモ レー 業 ※ 理 員 は 、 審 査 庁 か ら 指 名 され た し mu ビ _ 科 間 ーー 導 導 導 導 だ た と き は 、 直 ち に 、 審 査 請求 書 また は 審査 語 求 鍵 取 。。 葬 虹 | 回 語 の マレ る 4 るー 作 前 し な け"
+    },
+    {
+      "file": "answers-034.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 17,
+          "type": "status-line",
+          "value": null,
+          "text": "』 > | 正しい 説 訴 訟 に つい て て いま せん 。 し だ でき まま _ 凍"
+        },
+        {
+          "line": 25,
+          "type": "status-line",
+          "value": null,
+          "text": "| 3 [正しい] 裁決 に つい て の 申請 が 法令 に こと と が で きま す 対 過 詩 計上"
+        },
+        {
+          "line": 43,
+          "type": "status-line",
+          "value": null,
+          "text": "5 | 正しい ぃ |"
+        }
+      ],
+      "preview": "導 | ーー ルル 放 肝 回 計 / 」 ーー 事件 訴訟 4 へ | 胡 法 行事 件 所 で [ 葉 訓 | \"| 行 牙 法 ・ 1 て sg 3 | 画 馬 位 旋 の 己 / ビ | 18 | (不作 為 の 違 肖 計 。 | 19 | ーー 一 請 を し た 者 に 限り 、 提 品 | | レー 一 に つい て の 申請 ロー 一 裁決 に と また は 裁 しい 5 放 誰 は 、 処 ダ 260 1 いい 、 寺 注 胡 訟 Ma) 店 科 ※ 6 "
+    },
+    {
+      "file": "answers-035.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 4,
+          "type": "status-line",
+          "value": null,
+          "text": "| | つつ 誠 8 且 上 衣 ^ ロ 堀 法 正解 較"
+        },
+        {
+          "line": 18,
+          "type": "status-line",
+          "value": null,
+          "text": "1 ィ | 妥当 で ある 解 簡"
+        },
+        {
+          "line": 27,
+          "type": "status-line",
+          "value": null,
+          "text": "菩 。 ノ | 妥当 で な い | |"
+        },
+        {
+          "line": 32,
+          "type": "status-line",
+          "value": null,
+          "text": "還 。 エ | 妥当 で な い ] 5 |"
+        },
+        {
+          "line": 42,
+          "type": "status-line",
+          "value": null,
+          "text": "親 。 オォ | 妥当 で ある | の を の 82 億 0 を て |"
+        },
+        {
+          "line": 50,
+          "type": "explicit-answer",
+          "value": "4",
+          "text": "ま の は イ ・ オ で あ 正解 4 を |"
+        }
+      ],
+      "preview": "< | ノー エル と | 関 路 1 い し 。 章 行政 法 : 国家 貼 償 、 ーー | | つつ 誠 8 且 上 衣 ^ ロ 堀 法 正解 較 | 維人 合 問題 一 上 野 傘 画 A | (総合 問題 一 賠償 責任 考 ) | 4 | ま 』 隊 呈 ペー デリ _ 議 呈 す _ 叫 所 g 名 菩 | ま ーー 一 . 護 。 帳 | | ま 導い ーー 、 | | 』 ァ | 区 補 と | | 、 衝 務 行為 を 理由 と する 国法 忠 点 へ |"
+    },
+    {
+      "file": "answers-036.txt",
+      "detectedQuestionIds": [
+        5
+      ],
+      "candidates": [
+        {
+          "line": 24,
+          "type": "explicit-answer",
+          "value": "5",
+          "text": "そし て 」 が 入る こと が わか り 、 正解 は 5 で ある と 判断 で きま"
+        },
+        {
+          "line": 28,
+          "type": "explicit-answer",
+          "value": "5",
+          "text": "通ら な い 点 は あり ませ ん の で 、 正 解 は 5 で ある と 確定 で き まま |"
+        },
+        {
+          "line": 34,
+          "type": "explicit-answer",
+          "value": "5",
+          "text": "「 また] が 入り 、 正解 は 5 と な り ま す 。 ーー 本 本 |"
+        }
+      ],
+      "preview": "ーー モ 角 瞳 、| ・ 同 5 ビー っ [と 一 礁 知識 : 文章 理解 も | | 革 机 補充 問題 5 由 コ | 58 (空欄 補充 由 生 』 \"っ ,, 「T] を 含む 段落 の 次 の 次 の 段落 に 立 体 的 が 寺 導 誠 | トロ ピア イー 。。。 」 と いう こと は 頭 を 使 で 本 る の の 人 知 語 生 語 語 凍 5 さき ーー 、 ーー コイ に 折 さき 半 ] - ] ・、、 で ぁ る と きえ られ まう が 2"
+    },
+    {
+      "file": "answers-037.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 1,
+          "type": "status-line",
+          "value": null,
+          "text": "且 ーー 一 一 = ん | 正解 詳 回 叶 き"
+        },
+        {
+          "line": 8,
+          "type": "status-line",
+          "value": null,
+          "text": "| 1 | 妥当 で な い 」 県 に 関し て は 、 別に 法律 で 定め る や 際 。 |"
+        },
+        {
+          "line": 21,
+          "type": "status-line",
+          "value": null,
+          "text": "3 | 妥当 で な い | 較"
+        },
+        {
+          "line": 29,
+          "type": "status-line",
+          "value": null,
+          "text": "4 | 妥当 で ある"
+        },
+        {
+          "line": 35,
+          "type": "status-line",
+          "value": null,
+          "text": "” | 妥当 で な い ]"
+        }
+      ],
+      "preview": "且 ーー 一 一 = ん | 正解 詳 回 叶 き 日 ーー 一 一 土 了 田 5 今 関 4 | ザ ーー 一 政法 の 一 般 的 な 法 才 語 4 間 。 正 | ーー デル ーー 人 苑 | | に | m 提 | を 注 ' 条 由 流 7 関 & | 園 学 山 ( 代 執 行 ) 信 普 | り し 症 0 リー の を 除い て は 、 行 数 人 上 | 1 | 妥当 で な い 」 県 に 関し て は 、 別に 法律 で 定め る や 際 。 | |"
+    },
+    {
+      "file": "answers-038.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 6,
+          "type": "status-line",
+          "value": null,
+          "text": "凍 | 貞 貸 代 正解 | 細"
+        },
+        {
+          "line": 27,
+          "type": "status-line",
+          "value": null,
+          "text": "還 Y 妥当 で な い | 。"
+        },
+        {
+          "line": 49,
+          "type": "status-line",
+          "value": null,
+          "text": "| 以上 より 、 妥当 な も の は アパ ェ で あり ・、 正解 は"
+        }
+      ],
+      "preview": "二 デ ーー _ ニー 生生 放 昌 [gg 昌 | 9 | l J』 | | | . 民法. 調 計 | 人 民 計 : 慎 析 ( 全 革 衝 凍 | 貞 貸 代 正解 | 細 _。 時 癌 人 白 要 間 | レー ーー 央 2 度 1 っ 当 で ある ーー _ 説 間 | っ | 棄 C の や る ーー 拓 電 電 見 間 | 1 ぐさ 4 拉 1 すす mg ii 二 鹿 に : | ー さ 人 が 賃貸 物 の 保存 に 必要 な 符 \"0 | 目 。。 ぶ "
+    },
+    {
+      "file": "answers-039.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 19,
+          "type": "status-line",
+          "value": null,
+          "text": "誤り 代 有する こと と な る 指 」"
+        }
+      ],
+      "preview": "生 政 法 の 一 般 的 な 法理 論 | ~* | も ーー 生ま: 生計 員 同上 8 5 」 に は 、 ま 健 の 概 拘 が み 要 で す 。 他 拓 呈 織 リ 時 の 2 せ を 2 交 科 癌 時 * す が 、 法 定 代理 の 場合 間 。 た 志 関 が 権 限 の 委任 を 妥 人 発問 場合 は 昌和 模 失語 合 に は 、 法 律 の 根拠 は 不要 関 1| いさ も も 、 接 欄 代 理 を 行う 場合 に 」 od 半 ーー | 計 "
+    },
+    {
+      "file": "answers-040.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 7,
+          "type": "status-line",
+          "value": null,
+          "text": "【 | 妥当 て ある 器 |"
+        },
+        {
+          "line": 14,
+          "type": "status-line",
+          "value": null,
+          "text": "ゥ | 妥当 で ある 前"
+        },
+        {
+          "line": 19,
+          "type": "status-line",
+          "value": null,
+          "text": "ビ 妥当 で ある | 、 2 四"
+        },
+        {
+          "line": 36,
+          "type": "status-line",
+          "value": null,
+          "text": "5 | 妥当 で ある | た は 答 政 書 宅 へ"
+        }
+      ],
+      "preview": "ンー | 林間 = 名 ・ 導 誠 ーー 。 | r\" | 基礎 知識 ・ 業 務 関 連 諾 法令 | 5 店 | em 53 7 政 書 士 法 - 総 則 ) | 4 間 半 人 ー 導 中 | ニン ンー ン ン ご 1 間 寺本 | 度 | 【 | 妥当 て ある 器 | その 業務 を 行う に 当たっ て は 、 デジ タル 社会 の 准 民 を 隊 aa の 他 の 取組 を 通 人 せ 会 の 進 恨 を 階 ま え 、 情 報 通 。。 | その 他 の "
+    },
+    {
+      "file": "answers-041.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 18,
+          "type": "status-line",
+          "value": null,
+          "text": "3 [正しい | *、 法 令 の 規定 に より 当該 処 な 上"
+        },
+        {
+          "line": 22,
+          "type": "status-line",
+          "value": null,
+          "text": "4 | 誤り | |"
+        },
+        {
+          "line": 26,
+          "type": "status-line",
+          "value": null,
+          "text": "5 [誤り | |"
+        }
+      ],
+      "preview": "| | | 各 。 融和 牙 法 : 行政 不服 審査 法 | 。 目 駐 誠 | | ・ 行政 法 ・ 詩 求 の 対象 日 久 | 草 ミ 寺 く 剛 ク | (審査 請 3 3 旧 | 1 1 14 1 ー 一 | 導 。 005 | 1 蘭 り 間 法 また は 不当 な 処分 その 他 公権力 の 行人 に 箇 拓 用 【 本 牙 不 服 者 奏法 は 、 行 政庁 L し た が っ て 、 行 政庁 の 倍 法 な 処分 の み 光 寺 計 き 、 を 対象 と"
+    },
+    {
+      "file": "answers-042.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 17,
+          "type": "status-line",
+          "value": null,
+          "text": "mg | 妥当 で な い 二 半 導"
+        },
+        {
+          "line": 22,
+          "type": "status-line",
+          "value": null,
+          "text": "エ | 妥当 で ある |"
+        },
+        {
+          "line": 25,
+          "type": "status-line",
+          "value": null,
+          "text": "オォ [妥当 で な い"
+        },
+        {
+          "line": 30,
+          "type": "status-line",
+          "value": null,
+          "text": "記 eu 、 半 提 後半 は 妥当 で な いと"
+        }
+      ],
+      "preview": "| 過 ーー 一 5 gm 蘭 』 ニン ーー 一 = 要 』 ンー ンー 一 っ DP 一 般 知 識 席 し | リピ 7 な 知識 ・ | 4 選 』 「 箇 硬 | 基 砕 誠 8 本 の 産業 ) | | 貞昌 全日 本 許 区 町 上 52| (社会 ~ ロ 人 々 て 合作 語 語 』 | 9 ーー ヘ へ xro5 い . 向 に あり 、 カ ロリ ー ベ ー ス で みる と 1965 年 還 旨 双 当 。 E 下 傾向 に あり 、 自給 率 は 低下"
+    },
+    {
+      "file": "answers-043.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 22,
+          "type": "status-line",
+          "value": null,
+          "text": "ロワ | 誤り | 5 1 ア ェ ーー 昌 い"
+        },
+        {
+          "line": 30,
+          "type": "status-line",
+          "value": null,
+          "text": "エ | 誤り | |"
+        },
+        {
+          "line": 42,
+          "type": "status-line",
+          "value": null,
+          "text": "以上 より 、 正しい 【"
+        },
+        {
+          "line": 44,
+          "type": "explicit-answer",
+          "value": "2",
+          "text": "す で あ り 、 正解 は 2 ろ と な りり ます |"
+        }
+      ],
+      "preview": "- 会 社 ) | 2 甘 。。 導 放 者 衣 1 記 | 会 社 計 | | | 由 Lo 』 較 語 商 ーー よ す 140 1 ンー | し 邊 し ー 一 。 。 ーー 放 に 限ら れ て いま す が 、 無 限 吹 作 六 還 放 和 』 は 則 次 の 目的 は 金 名 日 的 と する こと が で きま す (570 条 生 凍 半 s 上 目 は 、 出 上 握 5 6 | 限 責 任 社員 は 、『 の を 出資 の | や 労務 な どの 人 金"
+    },
+    {
+      "file": "answers-044.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 11,
+          "type": "status-line",
+          "value": null,
+          "text": "因 2 | 正しい の 本 本 解 訓"
+        },
+        {
+          "line": 25,
+          "type": "status-line",
+          "value": null,
+          "text": "回 還 語 |。 4 | 誤り | に 』"
+        },
+        {
+          "line": 31,
+          "type": "status-line",
+          "value": null,
+          "text": "ま 誤り 」 。 、。 部 力 が 不 計 分 で ut& あ 0 』"
+        }
+      ],
+      "preview": "| 問 | 1 エエ 6 | 民法 : 総則 ( 征 uu 、 | im 必 | 1 Z 7 行為 能力 ) 責 日 ーー | 詳 8 | 日 選 年 後見 人 また は 成年 後見 人 が 四 生 人 oi | ig の る と き は 、 利 害 関係 人 等 の 請求 に まり また は 昌 ュー サ と 導 間 。 年 後見 人 を 選任 する こと が で きま す (840 条 こ は 職 権 で 、& ら に 未成 年 後見 また 語 識 | 1 ーー 0 条 "
+    },
+    {
+      "file": "answers-045.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 12,
+          "type": "status-line",
+          "value": null,
+          "text": "| きき 上 。 正しい | [5"
+        }
+      ],
+      "preview": "Nd 骨 。 | p は * ゝ mu [| 癌 語 |\" | 基礎 法学 : 法学 根 論 。 | 較 A| 上 | | N 間 |」 | 南 _ 内 ( 法 の 効力 ) 3 医 | 2 則 衣 | | ま 論 NE ーー | し で て 」 一 | 回 癌 回 語 間 。。 / ー し は 、 法 令 の 効力 を 現実 に 発生 。 。 回 語 | トト 交 に 発生 SS て る で 才 が 人 な 衝 の 日 の 着用 第 き | | ja 用 され る こと も"
+    },
+    {
+      "file": "answers-046.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 16,
+          "type": "status-line",
+          "value": null,
+          "text": "2 | 妥当 で ある | ここ ム ど を 自律 的 に 生成 する こと どか きき の 欠 昌 弱 ま"
+        },
+        {
+          "line": 23,
+          "type": "status-line",
+          "value": null,
+          "text": "4 | 妥当 で ある 】"
+        },
+        {
+          "line": 26,
+          "type": "status-line",
+          "value": null,
+          "text": "5 | 妥当 で ある | |"
+        }
+      ],
+      "preview": "省 革 ーー 一 区 7 詞 園 AT 』 ーー 紅 。 逢 報 通信 1 園 ^ | | 『 ag 記 : 攻 衝 騰 ー 用 語 所 。 開 居 ヒー 導き | 』 。 中 5 上 。 詳 』 56 (情報 過 」 0 N | 』 | 。 疾 導 5 | | リリ 5 ds リリ 。 。 』 罰 当 で な い | コン ピュ ー タ 同士 を 接続 上 る 光 補 人 識 二 剖 ーー 。 利 用 ! て 但 隔 江 z の は 、WAN で す 。 な お ね お: "
+    },
+    {
+      "file": "answers-047.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 1,
+          "type": "status-line",
+          "value": null,
+          "text": "正解 上 [ 才 |"
+        },
+        {
+          "line": 20,
+          "type": "explicit-answer",
+          "value": "2",
+          "text": "「 合 理 的 ] が 入り 、 正 解 は 2 と な り ま す . レク | に は 「 財 産 権 ]、[ 王 ] |"
+        }
+      ],
+      "preview": "正解 上 [ 才 | 〒 こよ : 統治 (財政 ) 店 | | 需 : 電 | 2 過 || 。 、 、。、 に 関す る 最高 芳 判 所 章 扶 の 半 二 二 還 | 。 、、、 ここ od 介 ( 租 税 沙 健 ド 義 ) に 関す る 了 季 ! し 枯 | 人 軸 ] の いひ みい いつ k 。 に | 。 由記 。、 こい は 、 課 税 要件 お よび 租税 の 農 課 徴収 の 手続 が 法律 で 角 計 恵 法 S4 条 (租税 法律 主義 ) は "
+    },
+    {
+      "file": "answers-048.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 19,
+          "type": "status-line",
+          "value": null,
+          "text": "の 時 点 で 正解 は 誕 敵 し で は な く ッ 4 どい う 部 分 は > まる に ウ の 1"
+        }
+      ],
+      "preview": "目 導 導 5 | | の | 基 物 知識 : 文 褒 ml 659 | (空欄 補充 隔 に | 因 題 ) 3 目 一 上 間 目 上 問 后 ビー 一 ーー 関 ピ じ 前 | [TL] か ら 検 討 し ます 。 空欄 の 前 の 彼 聞 に 活 目 が 導 衝 放 放 | 四 。。 と する エビ ソー ド が 語ら 林 因 褒章 抽 閣 0 ou 1 させ よ フ こぐ こ M コ 、 は し aw 問い の 「 そ の 子 」 どい う の は 、 まる 旬"
+    },
+    {
+      "file": "answers-049.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 31,
+          "type": "status-line",
+          "value": null,
+          "text": "に 誤り | 、 _。 ル 導 者 還 人 情報 」 に 該当 し ます 。 1"
+        }
+      ],
+      "preview": "1 明 較 科 ど 円 Ta ロ 剛 ニー る あか = が | |57 | (個人 情報 保護 法 一 個人 情報 | 3 ぼく 導 ジ デ ーー 一 一 剖 0 ー 欧 | | し マデ ド は 。 上 ます | いい 尼 境 保護 法 が 定め る 「 個 人 情報 | と は 生 大 する 信 放 較 す 誠 目 。 まれ る 氏名 、 生 年 月 則 そ の 他 の 衣 誠 圭 靖 剖 症 癌 二 導 語 間 間 誠 生生 証 | 。 特定 の 個人 を 識別 する"
+    },
+    {
+      "file": "answers-050.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 36,
+          "type": "status-line",
+          "value": null,
+          "text": "還 。 3 | 正しい | 1"
+        },
+        {
+          "line": 46,
+          "type": "status-line",
+          "value": null,
+          "text": "5 正しい 。 、、、m や す 公 き を さち どど ざ |"
+        }
+      ],
+      "preview": "上 ーー 一 一 半 拉 | 「 旧 | 行政 法 : 行 | 詳 11 (適用 政 手 続 Em 敵 一 - | 目 | し 除外 ) A 1 目 | 四 ロビ ーー 一 ーー 一 主語 語 詳 4 上 衣 党 ーー 思 着 間 方 公共 団体 の 機関 が する 行政 料 導 に っ 、 了 押 p。 | 1 。 所 か い ・ yr ププ 、・ へ ー 人 織 5 は も | 1 に 置か れ て いる か 否 か に か か わら ず 、 た この 根 拉 な る 電"
+    },
+    {
+      "file": "answers-051.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 21,
+          "type": "status-line",
+          "value": null,
+          "text": "上 より 、 ア は 本 介 粗 計 は 「 あ 記 は 上 」、 は 「 調 停 」 で あり 、 正 解 。 |"
+        }
+      ],
+      "preview": "画 _ 央 市 較 B| | \"* | 基礎 法学 ・ 紛 争 解決 提 度 蜂 必 因 半 半生 2 | (裁判 外 紛争 解決 手続 ア [仲裁 # 決 の た め に 第 三 者 を 選び 、 そ の 判断 に よっ て 紛争 を 解決 3 | 共和 争 当事者 が 争い の 解決 の た 吉 第 三 者 の 仲裁 判断 に 拘束 きれ ぇ こ | - と を 、 仲 裁 と いい ます 。 な お 、 紛 争 当事者 は 、 第 三 。。 且 に な り ます 。 還"
+    },
+    {
+      "file": "answers-052.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 7,
+          "type": "status-line",
+          "value": null,
+          "text": "還っ | 誤り 見 苑 |"
+        },
+        {
+          "line": 19,
+          "type": "status-line",
+          "value": null,
+          "text": "還 。 イィ 正しい 条 2 項 8 号 ) 。 関 間 較 間 可 較 免除 する 記 語 |"
+        },
+        {
+          "line": 31,
+          "type": "status-line",
+          "value": null,
+          "text": "| ウ | 誤り | 1"
+        },
+        {
+          "line": 49,
+          "type": "status-line",
+          "value": null,
+          "text": "思 。 間 誤り 部 し と 和合 に 関し 上層 代 こ の な を し た と き"
+        },
+        {
+          "line": 64,
+          "type": "status-line",
+          "value": null,
+          "text": "ま エレ いる の は イ . エ で あり ・ 正解 |"
+        }
+      ],
+      "preview": "軒 ーー 計 リ | | 貞 6 | 電 法 : 会 社 還 | 309 | 篤 法 ビ | 39 | (取締役 の 責 ] 時 半 責任 ) し 攻 還っ | 誤り 見 苑 | 還 加 語 。 7 ーー が 任務 を * - | 和 w 縮 役 が 任務 を 怠っ た こと に ー 一 ] で 。 2 1 トペ 『 役 が 任務 を 詠っ 寄主 仁和 誠 導 導 人 人 明 時 上 財 。 キ の 同意 が な けれ は 、 そ の 全部 を 会 社 に 対す る 損害 賠"
+    },
+    {
+      "file": "answers-053.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 9,
+          "type": "status-line",
+          "value": null,
+          "text": "| 妥当 て を ンー に 抵当 地 ! に ※* 欠 . 1 項 本 又 7o 建物 を 競売 すこ し,。"
+        },
+        {
+          "line": 15,
+          "type": "status-line",
+          "value": null,
+          "text": "妥当 で な い | の 所 大 考 の 不法 占有 考 に ※ 最大 判 平 1111205 し"
+        },
+        {
+          "line": 31,
+          "type": "status-line",
+          "value": null,
+          "text": "エ | 妥当 で な い | - > に 財 二 問"
+        },
+        {
+          "line": 36,
+          "type": "status-line",
+          "value": null,
+          "text": "オ | 妥当 で ある |"
+        }
+      ],
+      "preview": "。 「 ず ーー ンー ン ン ンー 旧 A | 拉 4 _ 当 権 ) 5 | | | uu 較 剖 多 並 | 昔 | 表 。 。。 届 権 測 昌 ーー 凍 生 | | 問題 | 民法 2 - .。 誠 “ ji 抵当 権 者 は 、 土 地 と と も に > た と ぎ は 、 2 中 デ ェ ミ シ 区 ーー 上 に 建物 が 築造 され 文 )。 し か し 、 抵 当 権 設定 導 打 丘 記 | 妥当 て を ンー に 抵当 地 ! に ※* 欠 . 1 項"
+    },
+    {
+      "file": "answers-054.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 53,
+          "type": "status-line",
+          "value": null,
+          "text": "四 。 エ | 妥当 で な い | ビ mm 邊"
+        }
+      ],
+      "preview": "旧 | |」 民法 : ーー | 29 民法: 物権 (不動 産 と 登記 ーー 四半 人 記 )|。 四 ^ | レン 。 目 。 | 広 当 で ある 上 W | 還 。 一 者 の 登記 後に 占有 者 が な お 引き な お 引き 続き 時 効 取 4 | | 一 才 に 対し 、 登 き 中 き 続 き 時 効 取 得 に よる 期間 議 。。 者 に 対し 、 登 記 を し な く て も よる 期間 占有 を 線 続 し た 場 | 詳 | < ます ( 最"
+    },
+    {
+      "file": "answers-055.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 1,
+          "type": "status-line",
+          "value": null,
+          "text": "』 角 で ーー ンー 正解 |"
+        },
+        {
+          "line": 23,
+          "type": "status-line",
+          "value": null,
+          "text": "3 誤り | ニー 福 に つい ゆい |"
+        },
+        {
+          "line": 28,
+          "type": "status-line",
+          "value": null,
+          "text": "4 | 誤り | |"
+        },
+        {
+          "line": 33,
+          "type": "status-line",
+          "value": null,
+          "text": "正しい | |"
+        }
+      ],
+      "preview": "』 角 で ーー ンー 正解 | | ー | > は 法 ( 衝 類 株 式 ) 5 衣 | uu 間 iL 『 会 社 法 度 意 | 【 ビ | 中 | よ 。 会 旧 問 ) ーー 一 一 | 【 ー 衣 導 導 還 / eg . 内 容 の 異な る ニ っ 以 』 て 異な る 定め を し 郊 内 半 全 本 の 秋 』 し Aa の 半 に つの て 思 | 項 1 号 )。 そ し て 、 旧 商法 の 下 で ! 環 友 式 0 。 と が で き ギザ ("
+    },
+    {
+      "file": "answers-056.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 16,
+          "type": "status-line",
+          "value": null,
+          "text": "ェ | 誤り |"
+        },
+        {
+          "line": 28,
+          "type": "explicit-answer",
+          "value": "1",
+          "text": "へ より 、 正しい も の は ア ・ イ で あり 、 正 解 は 1 となり ます"
+        }
+      ],
+      "preview": ", ーー 一 一 拉 詳 上 、 mw _. 権 (表現 の 自由 ) 当 民 儲 馬 証 間 | ドド * 法 : 人 権 較 き | | 放 ッ 」 貞 ンー 上 エ 日 だ テ 二 放 ーー 2 リー EL | . 幸 ア 間 j』 炎 の 報道 の 自由 は 、 表 現 の 自 用 を 規定 た 憲法 21 条 に まり 全店 | 着 l ”、, し い ょ す (博多 駅 事件 : 最大 決 昭 44 剛 220) 記名 還 誠 間 間 間 | 。 れれ る ぐ と"
+    },
+    {
+      "file": "answers-057.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 11,
+          "type": "status-line",
+          "value": null,
+          "text": "3 | 妥当 で な い |"
+        },
+        {
+          "line": 15,
+          "type": "status-line",
+          "value": null,
+          "text": "4 | 妥当 で な い | ]"
+        },
+        {
+          "line": 21,
+          "type": "status-line",
+          "value": null,
+          "text": "5 [妥当 で ある |"
+        }
+      ],
+      "preview": "ーー = ェ 和解 較 | | ーー 一 一 っ 知識! ご 般 天 組 まい | | 。 騙 ルル vv。 。 吉 尼 挙 制 度 ) 日 ヽ | 』 「48 | ( 政 泊 ニー ニー バァ ィ の 生 遍 | 。 刀 は ( な 【 リリ 0 小 選挙 区 選挙 で 289 評 席 、 拘 東名 答 式 の 比例 代表 生 ぁ . 人 品 議院 議員 送 学 ここ リー 8 デ を “時 2 を ヽ の され まう 加登 全 中 選挙 区 選挙 と する 本 肘 は 胸"
+    },
+    {
+      "file": "answers-058.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 4,
+          "type": "status-line",
+          "value": null,
+          "text": "ーー N 正解 上庄 一"
+        },
+        {
+          "line": 27,
+          "type": "explicit-answer",
+          "value": "4",
+          "text": "正解 は 4 と な り ま す 。 に は 「 計 画 的 」、[]」 に は 「 志 下 」 が |"
+        }
+      ],
+      "preview": "堆 , 導 詳 / 3 。 得 1 ーー で ーー N 正解 上庄 一 mi 0 導 政 不 服 審 人 次 法 間 日 | mgg | 知 路 法 : 行 関 、、 | | 中 | 行 攻 法 四 | 116 | (総合 過 記 ご 科 主 癌 症 1 し 。 本 再 調査 の 請求 」 が 入る 、 上 ル 條 内 以 列 の 第 謙 開 凍 | に 注 5 条 1 項 は 、 「 行 政庁 の 処分 に つき 多々 ゲン 邊 導 語 語 癌 | | 拉 才 。 し oo"
+    },
+    {
+      "file": "answers-059.txt",
+      "detectedQuestionIds": [],
+      "candidates": [
+        {
+          "line": 11,
+          "type": "status-line",
+          "value": null,
+          "text": "3 | 妥当 で な い | 。 」 喘"
+        },
+        {
+          "line": 14,
+          "type": "status-line",
+          "value": null,
+          "text": "4 [妥当 で な い |"
+        }
+      ],
+      "preview": ", ーー , 一 般 知識 較 識 』 に g 旧 | 基礎 衝 き 国債 ) 全 Lan (経済 で 思 呈 ーー 馬 』 回 遇 「 一 導 ーー た い シン ジ ケ ー ド 上 に よる 引受 方 式 で の 国 信 庄 、 』 宮 1 同 全 此 仙 | 同 (ツン ツン アン ソ ーー 。 。 次 ド ・、。 本 在 で は 、 原 則 と し て ほぼ すべ て で の 回 位 爺 生計 谷間 寺本 識 症 006 年 に 選 ドド 8 れ 、 セー ビー 上 "
+    }
+  ],
+  "note": "フォルダ内画像をローカルOCRした結果。explicit-answerは比較的強い候補、status-lineは肢別の正誤行を含むため正解番号としては未確定。"
+}

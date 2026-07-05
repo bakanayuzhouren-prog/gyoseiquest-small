@@ -52,6 +52,9 @@ tmp/
 # local-only imported exam materials
 app/textbook/模試元画像/
 app/textbook/模試解答/
+app/textbook/模試元画像_高解像度OCR用/
+app/textbook/模試解答_高解像度OCR用/
 
 # Google Sheets sync
 src/questions-from-sheets.json
+

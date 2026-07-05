@@ -164,7 +164,7 @@ export const BY_QUESTION_TEXT_HASH: Record<string, PersonFlowDiagramItem | Perso
   'x1i8fe': { source: require('@/assets/images/person-flow/minnpou/bukken/x1i8fe.png'), caption: "元本確定後、元本の額が極度額に満たない場合、根抵当権設定者は、根抵当権者に対して極度額を法定額の範囲で減額を請求すること" },
   'x3szau': { source: require('@/assets/images/person-flow/minnpou/bukken/x3szau.png'), caption: "元本確定後、根抵当権者は、極度額の減額請求ができ、その範囲は現存債務の額と以後２年間に生ずべき利息、その他の定期金および" },
   'x40l2n': { source: require('@/assets/images/person-flow/minnpou/bukken/x40l2n.png'), caption: "Aが賃借している建物をベイベー銀行の抵当権の実行を妨害する目的が認められ、Aの占有により建物の交換価値の実現が妨げられ、" },
-  'y5db3a': { source: require('@/assets/images/person-flow/minnpou/bukken/y5db3a.png'), caption: "即時取得において、占有開始におけるT穏、公然、善意は推定され、無過失は推定されないが外観を有していればよい" },
+  'y5db3a': { source: require('@/assets/images/person-flow/minnpou/bukken/y5db3a.png'), caption: "即時取得において、占有開始における平穏（へいおん）、公然、善意は推定され、無過失は推定されないが外観を有していればよい" },
   'yay2kg': { source: require('@/assets/images/person-flow/minnpou/sousoku/yay2kg.png'), caption: "土地の仮装譲受人と当該土地に建てられた建物の善意の賃借人は第三者の関係にあたらないため、仮装譲受人は土地の明け渡しを求め" },
   'yrfihu': { source: require('@/assets/images/person-flow/minnpou/bukken/yrfihu.png'), caption: "第三者が賃貸不動産を不法占有している場合、賃借人は対抗要件を具備している場合に返還請求ができる" },
   'yz2oez': { source: require('@/assets/images/person-flow/minnpou/sousoku/yz2oez.png'), caption: "AとBは通謀し、Aの土地をBに仮装譲渡したところ、Bの債権者であるFがAの土地を差し押さえたところ、AはFに対し虚偽表示" }
@@ -243,7 +243,7 @@ export const BY_LEARN_KEY: Record<string, PersonFlowDiagramItem | PersonFlowDiag
   'learn|民法物権|32': { source: require('@/assets/images/person-flow/minnpou/bukken/ujsstm.png'), caption: "留置権の引渡しに代理占有は含まれない" },
   'learn|民法物権|33': { source: require('@/assets/images/person-flow/minnpou/bukken/3fjxzb.png'), caption: "先取特権の引渡しに占有改定は含まれる" },
   'learn|民法物権|34': { source: require('@/assets/images/person-flow/minnpou/bukken/15aesj.png'), caption: "質権の引渡しに占有改定は含まれない" },
-  'learn|民法物権|36': { source: require('@/assets/images/person-flow/minnpou/bukken/y5db3a.png'), caption: "即時取得において、占有開始におけるT穏、公然、善意は推定され、無過失は推定されないが外観を有していればよい" },
+  'learn|民法物権|36': { source: require('@/assets/images/person-flow/minnpou/bukken/y5db3a.png'), caption: "即時取得において、占有開始における平穏（へいおん）、公然、善意は推定され、無過失は推定されないが外観を有していればよい" },
   'learn|民法物権|37': { source: require('@/assets/images/person-flow/minnpou/bukken/4im2gi.png'), caption: "他人の土地を２０年以上占有した者が当該土地を時効取得する場合、他主占有事情が証明されたとき、時効取得の事情を排斥される" },
   'learn|民法物権|38': { source: require('@/assets/images/person-flow/minnpou/bukken/vyvbpn.png'), caption: "本来はAの土地である甲土地を無権利者のBから買ったCが、自分の土地であることを信じて、トウガラシを育てた場合、Aから本権" },
   'learn|民法物権|39': { source: require('@/assets/images/person-flow/minnpou/bukken/robiwr.png'), caption: "Bのゲーム機をCが保管していたところ、デトウに盗まれた。Cはデトウに対しゲーム機の返還請求及び損害賠償請求をすることがで" },
