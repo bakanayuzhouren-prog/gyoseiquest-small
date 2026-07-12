@@ -1,12 +1,21 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { StyleProp, TextStyle, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { BEGINNER_GLOSSARY_SORTED } from '@/utils/beginner-glossary';
+import { splitPlainByStatuteRefs, type LearnStatuteLinkSeg } from '@/utils/learnStatuteInline';
 
 export type LexiconSegment =
   | { kind: 'plain'; text: string }
-  | { kind: 'dict'; word: string; def: string };
+  | { kind: 'dict'; word: string; def: string }
+  | {
+      kind: 'statute';
+      label: string;
+      lawName: string;
+      articleNum: number;
+      articleOf?: number;
+      paragraphNum?: number;
+    };
 
 /** @deprecated BEGINNER_GLOSSARY を使う。互換のため残す */
 export const LEARN_AUTO_GLOSSARY = BEGINNER_GLOSSARY_SORTED;
@@ -54,6 +63,24 @@ function splitPlainByAutoGlossary(text: string): LexiconSegment[] {
   return out;
 }
 
+function applyStatuteLinks(segments: LexiconSegment[], enabled?: boolean): LexiconSegment[] {
+  if (!enabled) return segments;
+  return segments.flatMap((seg) => {
+    if (seg.kind !== 'plain') return [seg];
+    return splitPlainByStatuteRefs(seg.text).map((s: LearnStatuteLinkSeg): LexiconSegment => {
+      if (s.kind === 'plain') return { kind: 'plain', text: s.text };
+      return {
+        kind: 'statute',
+        label: s.label,
+        lawName: s.lawName,
+        articleNum: s.articleNum,
+        articleOf: s.articleOf,
+        paragraphNum: s.paragraphNum,
+      };
+    });
+  });
+}
+
 function applyAutoGlossary(segments: LexiconSegment[], enabled?: boolean): LexiconSegment[] {
   if (!enabled) return segments;
   return segments.flatMap((seg) => (seg.kind === 'plain' ? splitPlainByAutoGlossary(seg.text) : [seg]));
@@ -64,6 +91,148 @@ export function stripLexiconMarkupForPlain(source: string): string {
   return source.replace(/\[\[dict:(.+?)::[\s\S]*?\]\]/g, '$1');
 }
 
+function nowMs(): number {
+  return typeof performance !== 'undefined' ? performance.now() : Date.now();
+}
+
+/**
+ * TTS の onBoundary は飛び飛びなので、推定速度で補間してカラオケを滑らかにする。
+ * LexiconText 内のローカル状態のみ更新し、Context 全体の再描画は増やさない。
+ */
+function useSmoothSpokenIndex(targetIndex: number, textLength: number, playbackRate = 1) {
+  const [displayIndex, setDisplayIndex] = useState(targetIndex);
+  const displayRef = useRef(targetIndex);
+  const targetRef = useRef(targetIndex);
+  const textLengthRef = useRef(textLength);
+  const lastBoundaryTimeRef = useRef(nowMs());
+  const lastBoundaryIndexRef = useRef(targetIndex);
+  const velocityRef = useRef(Math.max(8, 12 * playbackRate));
+  const playbackRateRef = useRef(playbackRate);
+  const rafRunningRef = useRef(false);
+  const ensureRafRef = useRef<() => void>(() => {});
+
+  useEffect(() => {
+    playbackRateRef.current = playbackRate;
+    velocityRef.current = Math.max(8, Math.min(56, velocityRef.current * 0.7 + 12 * playbackRate * 0.3));
+  }, [playbackRate]);
+
+  useEffect(() => {
+    textLengthRef.current = textLength;
+  }, [textLength]);
+
+  useEffect(() => {
+    let alive = true;
+    let lastFrame = nowMs();
+    let rafId = 0;
+
+    const tick = (now: number) => {
+      if (!alive) return;
+      const dt = Math.min(0.048, Math.max(0, (now - lastFrame) / 1000));
+      lastFrame = now;
+
+      const target = targetRef.current;
+      const len = textLengthRef.current;
+      const elapsed = (now - lastBoundaryTimeRef.current) / 1000;
+      const coast = lastBoundaryIndexRef.current + velocityRef.current * elapsed;
+      const goal =
+        len > 0 && target >= len
+          ? len
+          : Math.min(len, Math.max(target, coast));
+
+      let cur = displayRef.current;
+      const follow = 1 - Math.exp(-dt * 16);
+      cur += (goal - cur) * follow;
+      if (cur < target - 0.75) cur = target - 0.2;
+      cur = Math.max(0, Math.min(len, cur));
+
+      const nextInt = Math.floor(cur + 1e-6);
+      const prevInt = Math.floor(displayRef.current + 1e-6);
+      displayRef.current = cur;
+      if (nextInt !== prevInt) {
+        setDisplayIndex(nextInt);
+      }
+
+      const animating =
+        len > 0 &&
+        (target > 0 || displayRef.current > 0) &&
+        (target < len || Math.abs(goal - cur) > 0.4);
+
+      if (animating) {
+        rafRunningRef.current = true;
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafRunningRef.current = false;
+        rafId = 0;
+      }
+    };
+
+    ensureRafRef.current = () => {
+      if (!alive || rafRunningRef.current) return;
+      lastFrame = nowMs();
+      rafRunningRef.current = true;
+      rafId = requestAnimationFrame(tick);
+    };
+
+    ensureRafRef.current();
+
+    return () => {
+      alive = false;
+      rafRunningRef.current = false;
+      ensureRafRef.current = () => {};
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [textLength]);
+
+  useEffect(() => {
+    const now = nowMs();
+    const prevTarget = targetRef.current;
+    targetRef.current = targetIndex;
+
+    // 新しい読み上げ・巻き戻しは即スナップ
+    if (targetIndex === 0 || targetIndex < displayRef.current - 3) {
+      displayRef.current = targetIndex;
+      lastBoundaryIndexRef.current = targetIndex;
+      lastBoundaryTimeRef.current = now;
+      setDisplayIndex(targetIndex);
+      velocityRef.current = Math.max(8, 12 * playbackRateRef.current);
+      ensureRafRef.current();
+      return;
+    }
+
+    if (targetIndex > lastBoundaryIndexRef.current) {
+      const dt = Math.max(0.05, (now - lastBoundaryTimeRef.current) / 1000);
+      const jumped = targetIndex - lastBoundaryIndexRef.current;
+      const instant = jumped / dt;
+      velocityRef.current = Math.max(
+        6,
+        Math.min(56, velocityRef.current * 0.5 + instant * 0.5),
+      );
+      lastBoundaryIndexRef.current = targetIndex;
+      lastBoundaryTimeRef.current = now;
+    } else if (targetIndex !== prevTarget) {
+      lastBoundaryIndexRef.current = targetIndex;
+      lastBoundaryTimeRef.current = now;
+    }
+
+    if (textLength > 0 && targetIndex >= textLength) {
+      displayRef.current = textLength;
+      setDisplayIndex(textLength);
+    }
+
+    ensureRafRef.current();
+  }, [targetIndex, textLength]);
+
+  return displayIndex;
+}
+
+export type LexiconStatutePressInfo = {
+  label: string;
+  lawName: string;
+  articleNum: number;
+  articleOf?: number;
+  paragraphNum?: number;
+};
+
 type Props = {
   text: string;
   lineStyle: StyleProp<TextStyle>;
@@ -73,11 +242,16 @@ type Props = {
   spokenIndex: number;
   applyNames: (s: string) => string;
   onDictionaryPress?: (word: string, definition: string) => void;
+  /** true のとき「憲法19条・21条」などをクリック可能にする */
+  linkStatutes?: boolean;
+  onStatutePress?: (info: LexiconStatutePressInfo) => void;
   /** true のとき既知用語を自動でクリック化し、下に短い定義を出す */
   autoGlossaryTerms?: boolean;
   /** true のときモーダルではなく本文下にポツンと出す（既定 true） */
   inlineGlossaryBubble?: boolean;
   linkColor?: string;
+  /** TTS 速度。カラオケ補間の初期速度に使う */
+  playbackRate?: number;
 };
 
 /**
@@ -92,91 +266,169 @@ export function LexiconText({
   spokenIndex,
   applyNames,
   onDictionaryPress,
+  linkStatutes = false,
+  onStatutePress,
   autoGlossaryTerms = true,
   inlineGlossaryBubble = true,
   linkColor = '#007BFF',
+  playbackRate = 1,
 }: Props) {
   const segments = useMemo(
-    () => applyAutoGlossary(parseLexiconMarkup(text), autoGlossaryTerms),
-    [text, autoGlossaryTerms],
+    () =>
+      applyAutoGlossary(
+        applyStatuteLinks(parseLexiconMarkup(text), linkStatutes),
+        autoGlossaryTerms,
+      ),
+    [text, autoGlossaryTerms, linkStatutes],
   );
+  const plainLength = useMemo(
+    () =>
+      segments.reduce((n, seg) => {
+        if (seg.kind === 'plain') return n + seg.text.length;
+        if (seg.kind === 'statute') return n + seg.label.length;
+        return n + seg.word.length;
+      }, 0),
+    [segments],
+  );
+  const displaySpokenIndex = useSmoothSpokenIndex(spokenIndex, plainLength, playbackRate);
   const [activeGlossary, setActiveGlossary] = useState<{ word: string; def: string } | null>(null);
 
   useEffect(() => {
     setActiveGlossary(null);
   }, [text]);
 
-  if (!text) return null;
+  const handleDictPress = useCallback(
+    (word: string, def: string) => {
+      if (inlineGlossaryBubble) {
+        setActiveGlossary((prev) => (prev && prev.word === word ? null : { word, def }));
+        return;
+      }
+      onDictionaryPress?.(word, def);
+    },
+    [inlineGlossaryBubble, onDictionaryPress],
+  );
 
-  const handleDictPress = (word: string, def: string) => {
-    if (inlineGlossaryBubble) {
-      setActiveGlossary((prev) => (prev && prev.word === word ? null : { word, def }));
-      return;
-    }
-    onDictionaryPress?.(word, def);
-  };
+  const children = useMemo(() => {
+    if (!text) return null;
 
-  const hasDict = segments.some((s) => s.kind === 'dict');
-  if (!hasDict) {
-    return (
-      <ThemedText style={[lineStyle, { width: '100%' }]}>
-        {applyNames(text)}
-      </ThemedText>
-    );
-  }
+    const nodes: ReactNode[] = [];
+    let plainCursor = 0;
+    const dictBase = {
+      textDecorationLine: 'underline' as const,
+      textDecorationStyle: 'dotted' as const,
+      fontWeight: '600' as const,
+    };
 
-  const children: ReactNode[] = [];
-  let plainCursor = 0;
-  let k = 0;
+    segments.forEach((seg, segIndex) => {
+      if (seg.kind === 'plain') {
+        const s = seg.text;
+        const start = plainCursor;
+        plainCursor += s.length;
+        const relReadEnd = Math.max(0, Math.min(displaySpokenIndex - start, s.length));
+        if (relReadEnd > 0) {
+          nodes.push(
+            <ThemedText key={`p${segIndex}r`} style={[lineStyle, readStyle]}>
+              {applyNames(s.slice(0, relReadEnd))}
+            </ThemedText>,
+          );
+        }
+        if (relReadEnd < s.length) {
+          nodes.push(
+            <ThemedText key={`p${segIndex}u`} style={[lineStyle, unreadStyle]}>
+              {applyNames(s.slice(relReadEnd))}
+            </ThemedText>,
+          );
+        }
+        return;
+      }
 
-  for (const seg of segments) {
-    if (seg.kind === 'plain') {
-      const s = seg.text;
-      const start = plainCursor;
-      plainCursor += s.length;
-      const relReadEnd = Math.max(0, Math.min(spokenIndex - start, s.length));
-      if (relReadEnd > 0) {
-        children.push(
-          <ThemedText key={k++} style={[lineStyle, readStyle]}>
-            {applyNames(s.slice(0, relReadEnd))}
+      if (seg.kind === 'statute') {
+        const w = seg.label;
+        const start = plainCursor;
+        plainCursor += w.length;
+        const isRead = displaySpokenIndex > start;
+        nodes.push(
+          <ThemedText
+            key={`s${segIndex}`}
+            onPress={() =>
+              onStatutePress?.({
+                label: seg.label,
+                lawName: seg.lawName,
+                articleNum: seg.articleNum,
+                articleOf: seg.articleOf,
+                paragraphNum: seg.paragraphNum,
+              })
+            }
+            accessibilityRole="button"
+            accessibilityLabel={`${seg.lawName}${seg.articleNum}条の条文を表示`}
+            style={[
+              lineStyle,
+              isRead ? readStyle : unreadStyle,
+              {
+                textDecorationLine: 'underline',
+                fontWeight: '700',
+                color: isRead ? undefined : linkColor,
+              },
+            ]}
+          >
+            {applyNames(w)}
           </ThemedText>,
         );
+        return;
       }
-      if (relReadEnd < s.length) {
-        children.push(
-          <ThemedText key={k++} style={[lineStyle, unreadStyle]}>
-            {applyNames(s.slice(relReadEnd))}
-          </ThemedText>,
-        );
-      }
-    } else {
+
+      // 辞書語は文字分割せず一語単位で色を切り替え（ノード増によるカクつきを抑える）
       const w = seg.word;
+      const start = plainCursor;
       plainCursor += w.length;
-      children.push(
+      const isRead = displaySpokenIndex > start;
+      nodes.push(
         <ThemedText
-          key={k++}
+          key={`d${segIndex}`}
           onPress={() => handleDictPress(seg.word, seg.def)}
           accessibilityRole="button"
           accessibilityLabel={`${seg.word}の意味を表示`}
           style={[
             lineStyle,
-            {
-              color: linkColor,
-              textDecorationLine: 'underline',
-              textDecorationStyle: 'dotted',
-              fontWeight: '600',
-            },
+            isRead ? readStyle : unreadStyle,
+            dictBase,
+            isRead ? null : { color: linkColor },
           ]}
         >
           {applyNames(w)}
         </ThemedText>,
       );
-    }
+    });
+
+    return nodes;
+  }, [
+    text,
+    segments,
+    displaySpokenIndex,
+    lineStyle,
+    readStyle,
+    unreadStyle,
+    applyNames,
+    linkColor,
+    handleDictPress,
+    onStatutePress,
+  ]);
+
+  if (!text) return null;
+
+  const hasDict = segments.some((s) => s.kind === 'dict');
+  const hasStatute = segments.some((s) => s.kind === 'statute');
+  const textBlock = (
+    <ThemedText style={[lineStyle, { width: '100%' }]}>{children}</ThemedText>
+  );
+
+  if (!hasDict && !hasStatute) {
+    return textBlock;
   }
 
   return (
     <View style={{ width: '100%', gap: 8 }}>
-      <ThemedText style={[lineStyle, { width: '100%' }]}>{children}</ThemedText>
+      {textBlock}
       {inlineGlossaryBubble && activeGlossary ? (
         <View
           style={{

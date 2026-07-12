@@ -4,7 +4,7 @@ import * as Speech from 'expo-speech';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Alert, Modal, PanResponder, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
-import { LexiconText, stripLexiconMarkupForPlain } from '@/components/lexicon-text';
+import { LexiconText, stripLexiconMarkupForPlain, type LexiconStatutePressInfo } from '@/components/lexicon-text';
 import { MarkdownText } from '@/components/markdown-text';
 import { PersonFlowDiagramModal } from '@/components/person-flow-diagram-modal';
 import { SaikokuCompareModal } from '@/components/saikoku-compare-modal';
@@ -35,7 +35,7 @@ import {
 } from '@/src/personFlowDiagram';
 import { extractQuestionCast } from '@/src/castRegistry';
 import { PIN_CASES } from '@/src/pinData';
-import { SUBJECTS } from '@/src/questions';
+import { STATUTES, SUBJECTS } from '@/src/questions';
 import { clearQuizLearnReturnParams, getQuizLearnReturnHref, stripLearnLinkTag } from '@/src/quizLearnBridge';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
 import {
@@ -43,6 +43,11 @@ import {
   resolveCompareTableImage,
 } from '@/src/compareTables';
 import { getLearnNotes, LearnNote, saveLearnNotes } from '@/utils/learn-notes';
+import {
+  formatResolvedStatutesForModal,
+  lawNameToStatuteBucket,
+  resolveStatuteArticlesFromBucket,
+} from '@/utils/learnStatuteInline';
 import { addPoints } from '@/utils/points';
 import { getStickyNotes, toggleStickyNote } from '@/utils/sticky-notes';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -429,6 +434,7 @@ export default function LearnSubjectScreen() {
   const [personFlowModalVisible, setPersonFlowModalVisible] = useState(false);
   const [saikokuCompareModalVisible, setSaikokuCompareModalVisible] = useState(false);
   const [dictionaryEntry, setDictionaryEntry] = useState<{ word: string; def: string } | null>(null);
+  const [statuteEntry, setStatuteEntry] = useState<{ title: string; body: string } | null>(null);
 
   const { characterMap, updateCharacterName, applyCharacterNames } = useCharacter();
 
@@ -897,6 +903,52 @@ export default function LearnSubjectScreen() {
 
   const { mainText, basisText } = parseLearnCardDisplayText(currentDisplayContent);
 
+  const karaokeReadStyle = useMemo(
+    () => ({ color: colors.primary, fontWeight: 'bold' as const }),
+    [colors.primary],
+  );
+
+  const handleDictionaryPress = useCallback((word: string, def: string) => {
+    setDictionaryEntry({ word, def });
+  }, []);
+
+  const handleStatutePress = useCallback((info: LexiconStatutePressInfo) => {
+    const bucket = lawNameToStatuteBucket(info.lawName, info.articleNum);
+    const statutes = bucket ? ((STATUTES as Record<string, Array<{ title: string; content: string }>>)[bucket] || []) : [];
+    const found = resolveStatuteArticlesFromBucket(statutes, info.articleNum, {
+      articleOf: info.articleOf,
+      paragraphNum: info.paragraphNum,
+    });
+    if (found.length > 0) {
+      setStatuteEntry({
+        title: `${info.lawName}${info.articleNum}条`,
+        body: formatResolvedStatutesForModal(found),
+      });
+      return;
+    }
+
+    // 解決できないときは既存の条文ビューアへ
+    let path = LAW_MAP[info.lawName];
+    if (!path && (info.lawName === '民法' || info.lawName.includes('民法'))) {
+      path = getCivilPath(info.articleNum);
+    }
+    if (path) {
+      router.push({
+        pathname: path as any,
+        params: {
+          q: `${info.articleNum}条`,
+          returnPath: tashiField
+            ? `/learn/${subject}?field=${encodeURIComponent(tashiField)}`
+            : `/learn/${subject}`,
+          returnSubject: subject,
+          returnIndex: currentIndex.toString(),
+        },
+      });
+      return;
+    }
+    Alert.alert('条文', `${info.lawName}${info.articleNum}条の本文を見つけられませんでした。`);
+  }, [currentIndex, subject, tashiField]);
+
   const tacLearnFallbackDeepdive = useMemo(
     () => buildTacLearnFallbackDeepdive(currentDisplayContent, learnSubjectForDeepdive || subject || ''),
     [currentDisplayContent, learnSubjectForDeepdive, subject]
@@ -1214,6 +1266,8 @@ export default function LearnSubjectScreen() {
         let pollInterval: ReturnType<typeof setInterval> | null = null;
         let safetyTimer: ReturnType<typeof setTimeout> | null = null;
         let sawSpeaking = false;
+        let lastPostedSpokenIndex = 0;
+        let lastPostedSpokenAt = 0;
 
         const clearWebGuards = () => {
           if (pollInterval != null) {
@@ -1281,7 +1335,17 @@ export default function LearnSubjectScreen() {
             } else {
               idx = Math.min(plainLen, event.charIndex);
             }
-            setSpokenIndex(idx);
+            // Context 再描画を間引き。表示の滑らかさは LexiconText 側の補間に任せる
+            const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
+            if (
+              idx - lastPostedSpokenIndex >= 2 ||
+              now - lastPostedSpokenAt >= 50 ||
+              idx >= plainLen
+            ) {
+              lastPostedSpokenIndex = idx;
+              lastPostedSpokenAt = now;
+              setSpokenIndex(idx);
+            }
           },
           // Web: SpeechSynthesis が速度次第で onend → onDone が来ない事例があるため、話し終わりも監視する
           onStart: () => {
@@ -1540,12 +1604,15 @@ export default function LearnSubjectScreen() {
             <LexiconText
               text={mainText}
               lineStyle={styles.content}
-              readStyle={{ color: colors.primary, fontWeight: 'bold' }}
+              readStyle={karaokeReadStyle}
               spokenIndex={spokenIndex}
               applyNames={applyCharacterNames}
               autoGlossaryTerms
               inlineGlossaryBubble
-              onDictionaryPress={(word, def) => setDictionaryEntry({ word, def })}
+              linkStatutes
+              playbackRate={playbackRate}
+              onDictionaryPress={handleDictionaryPress}
+              onStatutePress={handleStatutePress}
             />
             {basisText ? (
               <Pressable onPress={handleBasisPress}>
@@ -1762,6 +1829,52 @@ export default function LearnSubjectScreen() {
               <Pressable
                 style={{ marginTop: 16, backgroundColor: colors.primary, padding: 12, borderRadius: 8, alignItems: 'center' }}
                 onPress={() => setDictionaryEntry(null)}
+              >
+                <ThemedText style={{ color: '#fff', fontWeight: 'bold' }}>閉じる</ThemedText>
+              </Pressable>
+            </ThemedView>
+          </View>
+        </Modal>
+
+        <Modal
+          visible={statuteEntry !== null}
+          transparent
+          animationType="fade"
+          onRequestClose={() => setStatuteEntry(null)}
+        >
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'rgba(0,0,0,0.45)',
+              padding: 24,
+            }}
+          >
+            <ThemedView
+              style={{
+                maxWidth: 420,
+                width: '100%',
+                maxHeight: '75%',
+                padding: 20,
+                borderRadius: 14,
+                backgroundColor: colors.card,
+              }}
+            >
+              <ThemedText type="subtitle" style={{ marginBottom: 10, color: '#007BFF' }}>
+                {statuteEntry?.title}
+              </ThemedText>
+              <ScrollView style={{ maxHeight: 360 }} showsVerticalScrollIndicator>
+                {statuteEntry?.body ? (
+                  <MarkdownText
+                    text={statuteEntry.body}
+                    style={{ fontSize: 16, lineHeight: 26, color: colors.text }}
+                  />
+                ) : null}
+              </ScrollView>
+              <Pressable
+                style={{ marginTop: 16, backgroundColor: colors.primary, padding: 12, borderRadius: 8, alignItems: 'center' }}
+                onPress={() => setStatuteEntry(null)}
               >
                 <ThemedText style={{ color: '#fff', fontWeight: 'bold' }}>閉じる</ThemedText>
               </Pressable>

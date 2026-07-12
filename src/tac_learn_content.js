@@ -11,7 +11,9 @@ export const TAC_LEARN_BY_SUBJECT = {
   憲法: [
     {
       text: '【TAC復習】三菱樹脂事件では、企業は採否判断で学生時代の政治活動を考慮し得るが、私人間関係を国と同じ人権制約の物差しで直ちに裁くわけではない。',
-      deepdive: `■ 結論
+      deepdive: `[[image:kenpou/mitsubishi-resin-4koma]]
+
+■ 結論
 
 企業の採否判断で学生時代の政治活動を考慮し得るが、私人間を国と同じ人権制約の物差しで直ちに裁くわけではない。
 
@@ -49,7 +51,9 @@ export const TAC_LEARN_BY_SUBJECT = {
     },
     {
       text: '【TAC復習】昭和女子大事件では、私立大学と学生との関係に憲法19条・21条・23条が直接適用されるわけでも、当然に類推適用されるわけでもない。',
-      deepdive: `■ 結論
+      deepdive: `[[image:kenpou/showa-womens-univ-4koma]]
+
+■ 結論
 
 私立大学と学生は私人間。憲法19条・21条・23条を直接当てたり、当然に類推したりはしない。在学契約・学則・民法90条などで処理する。
 

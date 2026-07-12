@@ -239,6 +239,8 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kennpou-toku/kenpou36': require('@/assets/images/deepdive/kennpou-toku/kenpou36.png'),
   'kenpou/1-230': require('@/assets/images/deepdive/kenpou/1-230.png'),
   'kenpou/tsu-jichinsai-4koma': require('@/assets/images/deepdive/kenpou/tsu-jichinsai-4koma.png'),
+  'kenpou/mitsubishi-resin-4koma': require('@/assets/images/deepdive/kenpou/mitsubishi-resin-4koma.png'),
+  'kenpou/showa-womens-univ-4koma': require('@/assets/images/deepdive/kenpou/showa-womens-univ-4koma.png'),
   'kenpou/ehime-tamagushi-4koma': require('@/assets/images/deepdive/kenpou/ehime-tamagushi-4koma.png'),
   'kenpou/sorachibuto-jinja-4koma': require('@/assets/images/deepdive/kenpou/sorachibuto-jinja-4koma.png'),
   'kenpou/koushibyo-soshou-4koma': require('@/assets/images/deepdive/kenpou/koushibyo-soshou-4koma.png'),
