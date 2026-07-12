@@ -11,6 +11,11 @@ import { GYOSEI_TETSUZUKI_CHAT_BRIEFS } from '../utils/chatTopicBriefsGyoseiTets
 import { GYOSEI_FUFUKU_CHAT_BRIEFS } from '../utils/chatTopicBriefsGyoseiFufuku.ts';
 import { GYOSEI_PROC_COMPARISON_BRIEFS } from '../utils/chatTopicBriefsGyoseiComparisons.ts';
 import { GYOSEI_GYOSHO_CHAT_BRIEFS } from '../utils/chatTopicBriefsGyoseiGyosho.ts';
+import { KENPOU_CHAT_BRIEFS } from '../utils/chatTopicBriefsKenpou.ts';
+import { KENPOU_HANREI_CHAT_BRIEFS } from '../utils/chatTopicBriefsKenpouHanrei.ts';
+import { KENPOU_HANREI2_CHAT_BRIEFS } from '../utils/chatTopicBriefsKenpouHanrei2.ts';
+import { KENPOU_DEEP_CHAT_BRIEFS } from '../utils/chatTopicBriefsKenpouDeep.ts';
+import { KOKUBAI_CHAT_BRIEFS } from '../utils/chatTopicBriefsKokubai.ts';
 
 function norm(s) {
   return (s || '').normalize('NFKC').toLowerCase().replace(/\s+/g, ' ').trim();
@@ -137,6 +142,86 @@ const cases = [
   { q: '行服法と行訴法の違いをまとめて', expectTitle: /行政不服審査法と行政事件訴訟法/ },
   { q: '訴えの利益が消滅', expectTitle: /訴えの利益/ },
   { q: '仮の差止め', expectTitle: /差止め/ },
+  // 憲法
+  { q: '二重の基準ってなに', expectTitle: /二重の基準/ },
+  { q: '私人間効力ってなに', expectTitle: /私人間効力/ },
+  { q: '政教分離の判断枠組み', expectTitle: /政教分離/ },
+  { q: '検閲とは', expectTitle: /検閲/ },
+  { q: 'マクリーン判決', expectTitle: /マクリーン|外国人/ },
+  { q: 'GPS捜査は令状', expectTitle: /GPS/ },
+  { q: '職業選択の自由と薬局距離', expectTitle: /職業選択|薬局/ },
+  { q: '朝日訴訟と堀木訴訟', expectTitle: /生存権|朝日|堀木/ },
+  { q: '司法権の限界', expectTitle: /司法権の限界/ },
+  // 憲法・薄い判例パック
+  { q: '昭和女子大事件', expectTitle: /昭和女子大/ },
+  { q: '日産自動車事件', expectTitle: /日産自動車/ },
+  { q: '泉佐野市民会館', expectTitle: /泉佐野/ },
+  { q: '自衛官合祀', expectTitle: /合祀/ },
+  { q: '全農林警職法', expectTitle: /全農林/ },
+  { q: '都教組と二重のしぼり', expectTitle: /都教組|二重のしぼり/ },
+  { q: '東京中郵と名古屋中郵', expectTitle: /名古屋中郵|東京中郵|争議権判例の流れ/ },
+  { q: '一票の較差と事情判決', expectTitle: /投票価値|定数不均衡/ },
+  { q: '酒類販売免許制', expectTitle: /酒類販売/ },
+  { q: '早稲田大学名簿', expectTitle: /早稲田/ },
+  { q: '在外邦人選挙権', expectTitle: /在外邦人選挙/ },
+  // 憲法・判例第2波
+  { q: '北方ジャーナル事件', expectTitle: /北方ジャーナル/ },
+  { q: 'よど号記事抹消', expectTitle: /よど号/ },
+  { q: '税関検査は検閲', expectTitle: /税関検査|検閲/ },
+  { q: '博多駅事件', expectTitle: /博多駅/ },
+  { q: 'レペタ事件', expectTitle: /レペタ/ },
+  { q: '尊属殺重罰規定', expectTitle: /尊属殺/ },
+  { q: '京都府学連', expectTitle: /京都府学連|肖像/ },
+  { q: '前科照会事件', expectTitle: /前科照会/ },
+  { q: '謝罪広告は憲法違反', expectTitle: /謝罪広告/ },
+  { q: '津地鎮祭と愛媛玉串料', expectTitle: /津地鎮祭|愛媛/ },
+  { q: '森林法共有林', expectTitle: /森林法/ },
+  { q: '旭川学テ事件', expectTitle: /旭川学テ/ },
+  { q: '苫米地事件', expectTitle: /苫米地/ },
+  { q: '警察予備隊訴訟', expectTitle: /警察予備隊/ },
+  { q: '百里基地訴訟', expectTitle: /百里/ },
+  { q: '東大ポポロ', expectTitle: /ポポロ/ },
+  { q: '川崎民商事件', expectTitle: /川崎民商/ },
+  { q: '八幡製鉄の政治献金', expectTitle: /八幡/ },
+  { q: '南九州税理士会', expectTitle: /南九州|税理士/ },
+  { q: '検閲と事前抑制の違い', expectTitle: /検閲.*事前|北方と税関/ },
+  // 憲法・深い枠組み
+  { q: '目的効果基準ってなに', expectTitle: /目的効果基準/ },
+  { q: '総合考慮基準', expectTitle: /総合考慮|総合衡量/ },
+  { q: '目的効果と総合考慮の違い', expectTitle: /目的効果.*総合考慮|総合考慮基準/ },
+  { q: '津と愛媛と空知太', expectTitle: /政教分離判例|津・愛媛/ },
+  { q: '政教分離の判断枠組み', expectTitle: /政教分離の答案型|判断枠組み|目的効果/ },
+  { q: '規制目的二分論', expectTitle: /規制目的二分/ },
+  { q: '明白性の原則ってなに', expectTitle: /明白性の原則/ },
+  { q: 'LRAの基準', expectTitle: /LRA|厳格な合理性/ },
+  { q: '薬局と小売市場の審査基準', expectTitle: /職業の自由・似た判例|規制目的|薬局/ },
+  { q: '事前抑制の例外要件', expectTitle: /事前抑制/ },
+  { q: '泉佐野の危険の基準', expectTitle: /泉佐野|差し迫った危険/ },
+  { q: '平等の違憲判決を並べて', expectTitle: /平等・家族判例/ },
+  { q: '司法権の限界をまとめて', expectTitle: /司法権の限界/ },
+  // 国家賠償法
+  { q: '国賠1条と2条の違い', expectTitle: /国賠.*1条と2条|全体像/ },
+  { q: '職務行為基準説ってなに', expectTitle: /職務行為基準/ },
+  { q: '公務員個人を訴えられる？', expectTitle: /公務員個人責任/ },
+  { q: 'パトカー追跡事件', expectTitle: /パトカー追跡/ },
+  { q: '規制権限不行使ってなに', expectTitle: /規制権限不行使/ },
+  { q: '筑豊じん肺', expectTitle: /筑豊じん肺/ },
+  { q: 'クロロキン訴訟', expectTitle: /クロロキン/ },
+  { q: '建築確認と国賠', expectTitle: /建築確認と国賠/ },
+  { q: '高知落石事件', expectTitle: /高知落石/ },
+  { q: '大東水害訴訟', expectTitle: /大東水害/ },
+  { q: '多摩川水害', expectTitle: /多摩川水害/ },
+  { q: '赤色灯事件', expectTitle: /赤色灯/ },
+  { q: '大阪国際空港の騒音', expectTitle: /大阪国際空港/ },
+  { q: '道路と河川の瑕疵の違い', expectTitle: /道路・河川の瑕疵/ },
+  { q: '国賠の前に取消が必要？', expectTitle: /国賠と取消/ },
+  { q: '立法不作為で国賠', expectTitle: /立法・立法不作為/ },
+  { q: 'テニス審判台', expectTitle: /審判台/ },
+  { q: '故障車放置', expectTitle: /故障車/ },
+  { q: '赤色灯と故障車の違い', expectTitle: /赤色灯と故障車/ },
+  { q: '改修後の河川管理', expectTitle: /河川管理の瑕疵|多摩川/ },
+  { q: '国賠のひっかけ', expectTitle: /混同防止|道路・河川/ },
+  { q: '異常な用法で瑕疵', expectTitle: /審判台|防護柵|異常/ },
 ];
 
 const all = [
@@ -149,11 +234,16 @@ const all = [
   ...GYOSEI_FUFUKU_CHAT_BRIEFS,
   ...GYOSEI_PROC_COMPARISON_BRIEFS,
   ...GYOSEI_GYOSHO_CHAT_BRIEFS,
+  ...KENPOU_CHAT_BRIEFS,
+  ...KENPOU_HANREI_CHAT_BRIEFS,
+  ...KENPOU_HANREI2_CHAT_BRIEFS,
+  ...KENPOU_DEEP_CHAT_BRIEFS,
+  ...KOKUBAI_CHAT_BRIEFS,
 ];
 let fail = 0;
 
 console.log(
-  `briefs: base=${KISO_HOUGAKU_CHAT_TOPIC_BRIEFS.length} comparison=${KISO_HOUGAKU_COMPARISON_BRIEFS.length} moshi=${KISO_HOUGAKU_MOSHI_BRIEFS.length} gyosei=${GYOSEI_SORON_CHAT_BRIEFS.length} gyoseiNet=${GYOSEI_SORON_NET_CHAT_BRIEFS.length} tetsuzuki=${GYOSEI_TETSUZUKI_CHAT_BRIEFS.length} fufuku=${GYOSEI_FUFUKU_CHAT_BRIEFS.length} procCompare=${GYOSEI_PROC_COMPARISON_BRIEFS.length} gyosho=${GYOSEI_GYOSHO_CHAT_BRIEFS.length} total=${all.length}`
+  `briefs: base=${KISO_HOUGAKU_CHAT_TOPIC_BRIEFS.length} comparison=${KISO_HOUGAKU_COMPARISON_BRIEFS.length} moshi=${KISO_HOUGAKU_MOSHI_BRIEFS.length} gyosei=${GYOSEI_SORON_CHAT_BRIEFS.length} gyoseiNet=${GYOSEI_SORON_NET_CHAT_BRIEFS.length} tetsuzuki=${GYOSEI_TETSUZUKI_CHAT_BRIEFS.length} fufuku=${GYOSEI_FUFUKU_CHAT_BRIEFS.length} procCompare=${GYOSEI_PROC_COMPARISON_BRIEFS.length} gyosho=${GYOSEI_GYOSHO_CHAT_BRIEFS.length} kenpou=${KENPOU_CHAT_BRIEFS.length} kenpouHanrei=${KENPOU_HANREI_CHAT_BRIEFS.length} kenpouHanrei2=${KENPOU_HANREI2_CHAT_BRIEFS.length} kenpouDeep=${KENPOU_DEEP_CHAT_BRIEFS.length} kokubai=${KOKUBAI_CHAT_BRIEFS.length} total=${all.length}`
 );
 
 for (const c of cases) {

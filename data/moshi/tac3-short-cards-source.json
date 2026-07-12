@@ -1,0 +1,422 @@
+[
+  {
+    "questionNumber": 1,
+    "learnSubject": "基礎法学",
+    "memoryRaw": "明治初期はオランダ法学から入り、その後フランス法からドイツ法へ重心が移る。ボアソナード、法典論争、戦後の米法影響を時系列で覚える。",
+    "statuteRef": "",
+    "source": "TAC第3回・問1"
+  },
+  {
+    "questionNumber": 2,
+    "learnSubject": "基礎法学",
+    "memoryRaw": "民訴は処分権主義と弁論主義。刑訴は無罪推定と違法収集証拠排除。民訴と刑訴を混ぜない。",
+    "statuteRef": "",
+    "source": "TAC第3回・問2"
+  },
+  {
+    "questionNumber": 3,
+    "learnSubject": "憲法",
+    "memoryRaw": "愛媛玉串料は目的効果基準。空知太神社・孔子廟は経緯や利用状況を総合考慮。",
+    "statuteRef": "憲法20条 89条",
+    "source": "TAC第3回・問3"
+  },
+  {
+    "questionNumber": 4,
+    "learnSubject": "憲法",
+    "memoryRaw": "選挙権は主体と制限理由で覚える。外国人地方参政権、在外選挙、投票価値格差、重複立候補を分ける。",
+    "statuteRef": "憲法15条 43条 44条",
+    "source": "TAC第3回・問4"
+  },
+  {
+    "questionNumber": 5,
+    "learnSubject": "憲法",
+    "memoryRaw": "公務員の労働基本権は、地位の特殊性・職務の公共性・市場抑制力の欠如・代替措置で制約を説明する。",
+    "statuteRef": "憲法28条",
+    "source": "TAC第3回・問5"
+  },
+  {
+    "questionNumber": 6,
+    "learnSubject": "憲法",
+    "memoryRaw": "内閣総理大臣は国務大臣を任命・罷免できる。国務大臣の過半数は国会議員、全員が文民であることを固定する。",
+    "statuteRef": "憲法66条 68条",
+    "source": "TAC第3回・問6"
+  },
+  {
+    "questionNumber": 7,
+    "learnSubject": "憲法",
+    "memoryRaw": "最高裁の規則制定権は、訴訟手続・弁護士・裁判所内部規律・司法事務処理に及ぶ。裁判官の身分保障と混ぜない。",
+    "statuteRef": "憲法77条 78条",
+    "source": "TAC第3回・問7"
+  },
+  {
+    "questionNumber": 8,
+    "learnSubject": "行政法総論",
+    "memoryRaw": "取消しは初めからの瑕疵。撤回は後から出た事情。無効は重大明白な瑕疵。",
+    "statuteRef": "",
+    "source": "TAC第3回・問8"
+  },
+  {
+    "questionNumber": 9,
+    "learnSubject": "行政法総論",
+    "memoryRaw": "裁量逸脱濫用は、考慮すべき事項の落とし、考慮すべきでない事項の重視、社会通念上著しい不合理で覚える。",
+    "statuteRef": "",
+    "source": "TAC第3回・問9"
+  },
+  {
+    "questionNumber": 10,
+    "learnSubject": "行政法総論",
+    "memoryRaw": "代執行は代替的作為義務だけ。不作為義務や非代替的義務には使えない。",
+    "statuteRef": "行政代執行法2条 3条 5条",
+    "source": "TAC第3回・問10"
+  },
+  {
+    "questionNumber": 11,
+    "learnSubject": "行政手続法",
+    "memoryRaw": "行政手続法の適用除外は、個別手続で保障済みか、性質上なじまないかで覚える。行政分野名だけで即断しない。",
+    "statuteRef": "行政手続法3条",
+    "source": "TAC第3回・問11"
+  },
+  {
+    "questionNumber": 12,
+    "learnSubject": "行政手続法",
+    "memoryRaw": "申請処分は審査基準、標準処理期間、進行状況・見通しの情報提供。標準処理期間は定めたら公にする。",
+    "statuteRef": "行政手続法5条 6条 9条",
+    "source": "TAC第3回・問12"
+  },
+  {
+    "questionNumber": 13,
+    "learnSubject": "行政手続法",
+    "memoryRaw": "聴聞は陳述書提出、証拠書類提出、文書閲覧が出る。主宰者、参加人、当事者の動きを分けて切る。",
+    "statuteRef": "行政手続法18条 20条 21条",
+    "source": "TAC第3回・問13"
+  },
+  {
+    "questionNumber": 14,
+    "learnSubject": "行政不服審査法",
+    "memoryRaw": "審査請求先は処分庁と上級行政庁で決まる。最初に「誰が処分したか」を見て、提出先のひっかけを外す。",
+    "statuteRef": "行政不服審査法4条",
+    "source": "TAC第3回・問14"
+  },
+  {
+    "questionNumber": 15,
+    "learnSubject": "行政不服審査法",
+    "memoryRaw": "審査請求人の地位は相続人などへ承継され得る。承継、代理人、総代は別制度として切る。",
+    "statuteRef": "行政不服審査法15条 16条",
+    "source": "TAC第3回・問15"
+  },
+  {
+    "questionNumber": 16,
+    "learnSubject": "行政不服審査法",
+    "memoryRaw": "審理手続は口頭意見陳述、証拠提出、審理員の質問・提出要求。誰が誰にできるかで覚える。",
+    "statuteRef": "行政不服審査法31条 32条",
+    "source": "TAC第3回・問16"
+  },
+  {
+    "questionNumber": 17,
+    "learnSubject": "行政事件訴訟法",
+    "memoryRaw": "行政事件訴訟は、抗告訴訟・当事者訴訟・民衆訴訟・機関訴訟。処分を争うならまず抗告訴訟を疑う。",
+    "statuteRef": "行政事件訴訟法2条 3条",
+    "source": "TAC第3回・問17"
+  },
+  {
+    "questionNumber": 18,
+    "learnSubject": "行政事件訴訟法",
+    "memoryRaw": "処分性は法的地位を直接変えるか。訴えの利益は判決で回復できる利益が残るか。後続処分待ちの肢に注意。",
+    "statuteRef": "",
+    "source": "TAC第3回・問18"
+  },
+  {
+    "questionNumber": 19,
+    "learnSubject": "行政事件訴訟法",
+    "memoryRaw": "当事者訴訟は公法上の法律関係を当事者間で争う訴訟。国・公共団体の機関相互なら機関訴訟を疑う。",
+    "statuteRef": "行政事件訴訟法4条 5条 6条",
+    "source": "TAC第3回・問19"
+  },
+  {
+    "questionNumber": 20,
+    "learnSubject": "国家賠償法",
+    "memoryRaw": "河川など営造物の瑕疵は、通常有すべき安全性を欠くかで見る。改修途上の河川は過渡的安全性も問題になる。",
+    "statuteRef": "国家賠償法2条",
+    "source": "TAC第3回・問20"
+  },
+  {
+    "questionNumber": 21,
+    "learnSubject": "国家賠償法",
+    "memoryRaw": "損失補償は、規制前提の土地価格か、収用事業による制限を除いた価格かを見分ける。補償は公平負担の調整。",
+    "statuteRef": "憲法29条",
+    "source": "TAC第3回・問21"
+  },
+  {
+    "questionNumber": 22,
+    "learnSubject": "地方自治法",
+    "memoryRaw": "指定都市・中核市・一部事務組合・特別区は、権限移譲、許可主体、法人格を表で分ける。",
+    "statuteRef": "地方自治法252条の19 252条の22 284条",
+    "source": "TAC第3回・問22"
+  },
+  {
+    "questionNumber": 23,
+    "learnSubject": "地方自治法",
+    "memoryRaw": "地方自治は主語で覚える。議会、長、委員会、住民のどれが動くかを先に読む。主体を確認する。",
+    "statuteRef": "",
+    "source": "TAC第3回・問23"
+  },
+  {
+    "questionNumber": 24,
+    "learnSubject": "地方自治法",
+    "memoryRaw": "国の関与は必要最小限。是正要求、是正指示、代執行、係争処理委員会のルートを混ぜない。",
+    "statuteRef": "",
+    "source": "TAC第3回・問24"
+  },
+  {
+    "questionNumber": 25,
+    "learnSubject": "地方自治法",
+    "memoryRaw": "公の施設は正当な理由なく利用拒否できない。集会施設では明白で差し迫った危険が具体的に予見されるかを見る。",
+    "statuteRef": "",
+    "source": "TAC第3回・問25"
+  },
+  {
+    "questionNumber": 26,
+    "learnSubject": "地方自治法",
+    "memoryRaw": "住民監査請求・住民訴訟は、監査請求前置、期間制限、請求類型、誰に何を求めるかを固定する。",
+    "statuteRef": "地方自治法242条 242条の2",
+    "source": "TAC第3回・問26"
+  },
+  {
+    "questionNumber": 27,
+    "learnSubject": "民法総則",
+    "memoryRaw": "心裡留保は原則有効。相手が悪意または有過失なら無効になり得る。",
+    "statuteRef": "民法93条 94条",
+    "source": "TAC第3回・問27"
+  },
+  {
+    "questionNumber": 28,
+    "learnSubject": "民法総則",
+    "memoryRaw": "時効は、完成猶予・更新・援用・完成後承認を分ける。誰が時効を主張できるかまで確認する。",
+    "statuteRef": "民法145条 147条 152条",
+    "source": "TAC第3回・問28"
+  },
+  {
+    "questionNumber": 29,
+    "learnSubject": "民法物権",
+    "memoryRaw": "相隣関係は必要性と償金。囲繞地通行、境界、竹木、ライフラインを、所有権絶対ではなく調整で覚える。",
+    "statuteRef": "",
+    "source": "TAC第3回・問29"
+  },
+  {
+    "questionNumber": 30,
+    "learnSubject": "民法物権",
+    "memoryRaw": "法定地上権は、抵当権設定時に土地建物が同一所有か、競売で別所有になったかを最初に確認する。",
+    "statuteRef": "民法388条",
+    "source": "TAC第3回・問30"
+  },
+  {
+    "questionNumber": 31,
+    "learnSubject": "債権総論",
+    "memoryRaw": "詐害行為取消は、被保全債権、詐害性、受益者・転得者の主観、取消しの範囲を順番で見る。",
+    "statuteRef": "民法424条以下",
+    "source": "TAC第3回・問31"
+  },
+  {
+    "questionNumber": 32,
+    "learnSubject": "債権総論",
+    "memoryRaw": "相殺は、自働債権・受働債権、相殺適状、禁止事由、差押え前後の取得時期で覚える。",
+    "statuteRef": "民法505条 509条 511条",
+    "source": "TAC第3回・問32"
+  },
+  {
+    "questionNumber": 33,
+    "learnSubject": "債権総論",
+    "memoryRaw": "解除は、催告解除と無催告解除、危険負担、原状回復、損害賠償が併存し得るかを整理する。",
+    "statuteRef": "民法541条 542条 545条",
+    "source": "TAC第3回・問33"
+  },
+  {
+    "questionNumber": 34,
+    "learnSubject": "債権各論",
+    "memoryRaw": "不法行為は、故意過失、権利侵害、損害、因果関係に加え、使用者責任・共同不法行為との違いを見る。",
+    "statuteRef": "民法709条 715条 719条",
+    "source": "TAC第3回・問34"
+  },
+  {
+    "questionNumber": 35,
+    "learnSubject": "家族法",
+    "memoryRaw": "家族法改正は新旧比較で覚える。離婚後親権、財産分与期間、夫婦間契約取消し廃止を「今の制度」で覚える。",
+    "statuteRef": "",
+    "source": "TAC第3回・問35"
+  },
+  {
+    "questionNumber": 36,
+    "learnSubject": "商法・会社法",
+    "memoryRaw": "商行為・運送は、送状、危険品告知、運送賃の同時支払、留置権、過失推定を条文順で固定する。",
+    "statuteRef": "商法571条以下",
+    "source": "TAC第3回・問36"
+  },
+  {
+    "questionNumber": 37,
+    "learnSubject": "商法・会社法",
+    "memoryRaw": "会社設立は、発起設立と募集設立で、設立時取締役等の選任、調査義務、創立総会を分ける。",
+    "statuteRef": "会社法88条 93条",
+    "source": "TAC第3回・問37"
+  },
+  {
+    "questionNumber": 38,
+    "learnSubject": "商法・会社法",
+    "memoryRaw": "株式は、譲渡制限、売渡請求、議決権制限株式、種類株式を「定款で何を定めるか」で整理する。",
+    "statuteRef": "会社法107条 115条 174条",
+    "source": "TAC第3回・問38"
+  },
+  {
+    "questionNumber": 39,
+    "learnSubject": "商法・会社法",
+    "memoryRaw": "株主総会は、議案提案、電磁的方法、議決権不統一行使、取締役会への委任不可事項をセットで見る。",
+    "statuteRef": "会社法295条 303条 312条 313条",
+    "source": "TAC第3回・問39"
+  },
+  {
+    "questionNumber": 40,
+    "learnSubject": "商法・会社法",
+    "memoryRaw": "会社の計算は、計算書類の監査、剰余金配当、中間配当、配当費用を機関設計と条文番号で覚える。",
+    "statuteRef": "会社法436条 454条",
+    "source": "TAC第3回・問40"
+  },
+  {
+    "questionNumber": 41,
+    "learnSubject": "多肢選択:憲法",
+    "memoryRaw": "多肢選択は空欄の前後を読む。目的や効果、必要性を先に拾う。",
+    "statuteRef": "",
+    "source": "TAC第3回・問41"
+  },
+  {
+    "questionNumber": 42,
+    "learnSubject": "多肢選択:行政法",
+    "memoryRaw": "行政罰の刑罰と、秩序罰の過料を混ぜない。手続の主体も分ける。",
+    "statuteRef": "",
+    "source": "TAC第3回・問42"
+  },
+  {
+    "questionNumber": 43,
+    "learnSubject": "多肢選択:行政法",
+    "memoryRaw": "国の関与は是正の指示など手段を取り違えない。地方自治の本旨と必要最小限度を外さない。",
+    "statuteRef": "地方自治法245条以下",
+    "source": "TAC第3回・問43"
+  },
+  {
+    "questionNumber": 44,
+    "learnSubject": "行政法記述",
+    "memoryRaw": "住民監査の記述は前置・請求先・請求の型・期間を骨組みにする。",
+    "statuteRef": "地方自治法242条 242条の2",
+    "source": "TAC第3回・問44"
+  },
+  {
+    "questionNumber": 45,
+    "learnSubject": "民法記述",
+    "memoryRaw": "抵当権妨害排除は交換価値侵害が入口。明渡しは追加事情が要ることが多い。",
+    "statuteRef": "",
+    "source": "TAC第3回・問45"
+  },
+  {
+    "questionNumber": 46,
+    "learnSubject": "民法記述",
+    "memoryRaw": "必要費はすぐに請求できる。有益費は終了時に値上がりが残るときだけ。",
+    "statuteRef": "民法608条",
+    "source": "TAC第3回・問46"
+  },
+  {
+    "questionNumber": 47,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "時事統計は順位暗記だけで突っ込まない。制度名、主体、目的を先に押さえ、数字は最後に確認する。",
+    "statuteRef": "",
+    "source": "TAC第3回・問47"
+  },
+  {
+    "questionNumber": 48,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "政治資金・政党助成・財政指標は、誰が、どの財源で、どこへ報告かで覚える。名称だけで選ばない。",
+    "statuteRef": "",
+    "source": "TAC第3回・問48"
+  },
+  {
+    "questionNumber": 49,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "社会保障・医療・消費者は、制度目的、担当機関、届出・許可・給付の違いで覚える。似た窓口を混ぜない。",
+    "statuteRef": "",
+    "source": "TAC第3回・問49"
+  },
+  {
+    "questionNumber": 50,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "語句問題は雰囲気で選ばない。対義語、接続語、文脈上の役割で覚える。知らない語は前後文で決める。",
+    "statuteRef": "",
+    "source": "TAC第3回・問50"
+  },
+  {
+    "questionNumber": 51,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "社会時事は国際ルールか国内手続かを先に分ける。条約、国際機関、国内制度を同じ箱に入れない。",
+    "statuteRef": "",
+    "source": "TAC第3回・問51"
+  },
+  {
+    "questionNumber": 52,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "情報公開は開示請求と非開示情報。個人情報保護は訂正・利用停止。主体と期限で覚える。",
+    "statuteRef": "",
+    "source": "TAC第3回・問52"
+  },
+  {
+    "questionNumber": 53,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "行政書士法は登録、欠格、業務範囲、報酬掲示、帳簿、研修を「できる」と「しなければならない」で覚える。",
+    "statuteRef": "",
+    "source": "TAC第3回・問53"
+  },
+  {
+    "questionNumber": 54,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "住民票・戸籍附票は本人等請求、第三者請求、広域交付で覚える。不当目的が明らかな請求は拒否方向。",
+    "statuteRef": "",
+    "source": "TAC第3回・問54"
+  },
+  {
+    "questionNumber": 55,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "サイバー用語は短語で固定。標的型攻撃は特定組織狙い、ランサムは身代金、ゼロデイは修正前の脆弱性。",
+    "statuteRef": "",
+    "source": "TAC第3回・問55"
+  },
+  {
+    "questionNumber": 56,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "偽情報は人を誤らせる情報。デジタルタトゥーはネット上に長く残る情報。混同させる肢を外す。",
+    "statuteRef": "",
+    "source": "TAC第3回・問56"
+  },
+  {
+    "questionNumber": 57,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "個人情報保護法は生存個人、目的外利用禁止、漏えい報告、開示請求主体で覚える。死者情報は原則入口で分ける。",
+    "statuteRef": "個人情報保護法2条 61条 63条",
+    "source": "TAC第3回・問57"
+  },
+  {
+    "questionNumber": 58,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "文章空欄は直前直後の逆接・順接・言い換えで覚える。感情語より論理語、筆者の主張に合う語を選ぶ。",
+    "statuteRef": "",
+    "source": "TAC第3回・問58"
+  },
+  {
+    "questionNumber": 59,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "文章整序は指示語、接続語、同語反復、総論から各論で覚える。いきなり具体例から始まる肢に注意。",
+    "statuteRef": "",
+    "source": "TAC第3回・問59"
+  },
+  {
+    "questionNumber": 60,
+    "learnSubject": "基礎知識",
+    "memoryRaw": "文章理解は主張と例示を分ける。主張文を一言で要約してから選択肢を見る。例だけ一致しても選ばない。",
+    "statuteRef": "",
+    "source": "TAC第3回・問60"
+  }
+]

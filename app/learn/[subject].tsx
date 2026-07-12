@@ -1093,6 +1093,15 @@ export default function LearnSubjectScreen() {
   };
 
   const quizLearnReturnHref = isQuizLearnReview ? getQuizLearnReturnHref() : null;
+  const isQuizLearnReviewRef = useRef(isQuizLearnReview);
+  const quizLearnReturnHrefRef = useRef(quizLearnReturnHref);
+  useEffect(() => {
+    isQuizLearnReviewRef.current = isQuizLearnReview;
+  }, [isQuizLearnReview]);
+  useEffect(() => {
+    quizLearnReturnHrefRef.current = quizLearnReturnHref;
+  }, [quizLearnReturnHref]);
+
   const handleReturnToQuizResult = () => {
     killLearnTtsPlayback();
     setIsPlaying(false);
@@ -1238,6 +1247,14 @@ export default function LearnSubjectScreen() {
             }
 
             setReadCount((prev) => prev + 1);
+            // 問題復習モード: 3回聞き終わったら元の問題（または結果）へ戻る
+            if (isQuizLearnReviewRef.current && quizLearnReturnHrefRef.current) {
+              setIsPlaying(false);
+              const href = quizLearnReturnHrefRef.current;
+              clearQuizLearnReturnParams();
+              router.replace(href as any);
+              return;
+            }
             const idx = currentIndexRef.current;
             const len = displayListLenRef.current;
             const last = len > 0 && idx >= len - 1;
@@ -1501,15 +1518,22 @@ export default function LearnSubjectScreen() {
           </ThemedView>
 
           {isQuizLearnReview ? (
-            <Pressable
-              style={[styles.returnToQuizButton, { backgroundColor: colors.primary, borderColor: colors.primary }]}
-              onPress={handleReturnToQuizResult}
-            >
-              <MaterialIcons name="keyboard-return" size={18} color="#fff" />
-              <ThemedText type="defaultSemiBold" style={styles.returnToQuizButtonText}>
-                問題の解説ページに戻る
-              </ThemedText>
-            </Pressable>
+            <View style={styles.returnToQuizRow}>
+              <Pressable
+                style={[styles.returnToQuizButton, { backgroundColor: colors.primary, borderColor: colors.primary }]}
+                onPress={handleReturnToQuizResult}
+              >
+                <MaterialIcons name="keyboard-return" size={14} color="#fff" />
+                <ThemedText style={styles.returnToQuizButtonText}>
+                  {quizLearnReturnHref?.pathname === '/question' ? '問題に戻る' : '解説に戻る'}
+                </ThemedText>
+              </Pressable>
+              {quizLearnReturnHref?.pathname === '/question' ? (
+                <ThemedText style={[styles.returnToQuizHint, { color: colors.subText }]}>
+                  3回聞くと自動で戻ります
+                </ThemedText>
+              ) : null}
+            </View>
           ) : null}
 
           <ThemedView style={styles.contentContainer}>
@@ -1519,6 +1543,8 @@ export default function LearnSubjectScreen() {
               readStyle={{ color: colors.primary, fontWeight: 'bold' }}
               spokenIndex={spokenIndex}
               applyNames={applyCharacterNames}
+              autoGlossaryTerms
+              inlineGlossaryBubble
               onDictionaryPress={(word, def) => setDictionaryEntry({ word, def })}
             />
             {basisText ? (
@@ -2027,21 +2053,32 @@ const styles = StyleSheet.create({
     borderColor: '#FFD700',
     backgroundColor: '#FFFBE6',
   },
+  returnToQuizRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 6,
+    alignSelf: 'flex-start',
+  },
   returnToQuizButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 8,
+    gap: 4,
     borderWidth: 1,
-    borderRadius: 12,
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    marginBottom: 8,
+    borderRadius: 8,
+    paddingVertical: 4,
+    paddingHorizontal: 10,
   },
   returnToQuizButtonText: {
     color: '#fff',
-    fontSize: 15,
+    fontSize: 12,
+    fontWeight: '600',
     textAlign: 'center',
+  },
+  returnToQuizHint: {
+    fontSize: 11,
+    lineHeight: 14,
   },
   floatingNote: {
     position: 'absolute',

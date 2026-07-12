@@ -9,6 +9,7 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { CharacterProvider } from '@/src/context/CharacterContext';
 import { DescriptiveScopeProvider } from '@/src/context/DescriptiveScopeContext';
 import { LearnPlaybackProvider } from '@/src/context/LearnPlaybackContext';
+import { StudyLevelProvider } from '@/src/context/StudyLevelContext';
 import { ThemeProvider as CustomThemeProvider } from '@/src/context/ThemeContext';
 import { UserProvider } from '@/src/context/UserContext';
 
@@ -40,6 +41,7 @@ export default function RootLayout() {
   return (
     <CustomThemeProvider>
       <UserProvider>
+        <StudyLevelProvider>
         <DescriptiveScopeProvider>
         <CharacterProvider>
           <LearnPlaybackProvider>
@@ -59,6 +61,7 @@ export default function RootLayout() {
           </LearnPlaybackProvider>
         </CharacterProvider>
         </DescriptiveScopeProvider>
+        </StudyLevelProvider>
       </UserProvider>
     </CustomThemeProvider>
   );

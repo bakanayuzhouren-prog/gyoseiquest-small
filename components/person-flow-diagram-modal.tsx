@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Image, type ImageLoadEvent, ScrollView, StyleSheet, View } from 'react-native';
 
 import { DraggableFloatingModal } from '@/components/draggable-floating-modal';
+import { PersonFlowStructuralDiagram } from '@/components/person-flow-structural-diagram';
 import { ThemedText } from '@/components/themed-text';
 import type { CastMember } from '@/src/castRegistry';
 import type { PersonFlowDiagramItem } from '@/src/personFlowImages';
@@ -73,6 +74,8 @@ export function PersonFlowDiagramModal({
   emptyLabel?: string;
 }) {
   const [contentAspectRatio, setContentAspectRatio] = useState(PERSON_FLOW_DEFAULT_ASPECT);
+  const hasStructural = !!item?.structural;
+  const hasImage = !!item?.source;
 
   useEffect(() => {
     if (!item?.source) return;
@@ -101,8 +104,8 @@ export function PersonFlowDiagramModal({
   };
 
   const hasCast = castMembers.length > 0;
-  const hasDiagram = !!item?.source;
-  /** 関係図があれば図だけ表示（一覧は重複するため非表示） */
+  const hasDiagram = hasImage || hasStructural;
+  /** 構造図は自分で登場人物を描く。画像図があるときも一覧は重複なので非表示 */
   const showCastLegend = hasCast && !hasDiagram;
 
   return (
@@ -110,15 +113,17 @@ export function PersonFlowDiagramModal({
       visible={visible}
       onClose={onClose}
       title={title}
-      fillContent={hasDiagram}
-      scrollable={showCastLegend}
-      contentAspectRatio={hasDiagram ? contentAspectRatio : undefined}
+      fillContent={hasImage}
+      scrollable={!hasImage}
+      contentAspectRatio={hasImage ? contentAspectRatio : undefined}
     >
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         {showCastLegend ? <CastLegend members={castMembers} /> : null}
-        {hasDiagram ? (
+        {hasStructural && item?.structural ? (
+          <PersonFlowStructuralDiagram diagram={item.structural} />
+        ) : hasImage ? (
           <Image
-            source={item!.source}
+            source={item!.source!}
             style={styles.image}
             resizeMode="contain"
             accessibilityLabel="登場人物関係図"

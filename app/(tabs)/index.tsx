@@ -7,7 +7,8 @@ import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
 
 export default function HomeScreen() {
-  const { colors } = useTheme();
+  const { theme, colors } = useTheme();
+  const isRouhou = theme === 'rouhou';
 
   const buttonStyle = StyleSheet.flatten([
     styles.menuButton,
@@ -25,8 +26,15 @@ export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.contentContainer}>
-        <ThemedText type="title">メインメニュー</ThemedText>
-        <ThemedText style={styles.subtitle}>機能を選択してください。</ThemedText>
+        <ThemedText
+          type="title"
+          style={isRouhou ? { color: colors.primary, letterSpacing: 1.4 } : undefined}
+        >
+          メインメニュー
+        </ThemedText>
+        <ThemedText style={[styles.subtitle, isRouhou && { color: colors.subText, letterSpacing: 0.6 }]}>
+          機能を選択してください。
+        </ThemedText>
         <Link href="/learn" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>

@@ -49,11 +49,23 @@ debug_*.txt
 logs/
 tmp/
 
-# local-only imported exam materials
-app/textbook/模試元画像/
-app/textbook/模試解答/
-app/textbook/模試元画像_高解像度OCR用/
-app/textbook/模試解答_高解像度OCR用/
+# local-only imported exam materials (keep empty folder placeholders tracked)
+app/textbook/模試元画像/**
+!app/textbook/模試元画像/
+!app/textbook/模試元画像/*/
+!app/textbook/模試元画像/*/.gitkeep
+app/textbook/模試解答/**
+!app/textbook/模試解答/
+!app/textbook/模試解答/*/
+!app/textbook/模試解答/*/.gitkeep
+app/textbook/模試元画像_高解像度OCR用/**
+!app/textbook/模試元画像_高解像度OCR用/
+!app/textbook/模試元画像_高解像度OCR用/*/
+!app/textbook/模試元画像_高解像度OCR用/*/.gitkeep
+app/textbook/模試解答_高解像度OCR用/**
+!app/textbook/模試解答_高解像度OCR用/
+!app/textbook/模試解答_高解像度OCR用/*/
+!app/textbook/模試解答_高解像度OCR用/*/.gitkeep
 
 # Google Sheets sync
 src/questions-from-sheets.json

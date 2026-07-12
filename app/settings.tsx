@@ -4,11 +4,19 @@ import { Pressable, Switch, StyleSheet, View } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useDescriptiveScope } from '@/src/context/DescriptiveScopeContext';
+import {
+    STUDY_LEVEL_HINT,
+    STUDY_LEVEL_LABEL,
+    STUDY_LEVELS,
+    useStudyLevel,
+    type StudyLevel,
+} from '@/src/context/StudyLevelContext';
 import { Themes, ThemeType, useTheme } from '@/src/context/ThemeContext';
 
 export default function SettingsScreen() {
     const { theme, setTheme } = useTheme();
     const { descriptiveScopeEnabled, setDescriptiveScopeEnabled } = useDescriptiveScope();
+    const { studyLevel, setStudyLevel } = useStudyLevel();
 
     const handleSelect = (t: ThemeType) => {
         setTheme(t);
@@ -18,12 +26,34 @@ export default function SettingsScreen() {
         <ThemedView style={styles.container}>
             <ThemedText type="title" style={styles.header}>設定</ThemedText>
 
-            <ThemedText type="subtitle" style={styles.sectionTitle}>記述スコープ（院機能）</ThemedText>
+            <ThemedText type="subtitle" style={styles.sectionTitle}>質問モードのレベル</ThemedText>
+            <View style={styles.list}>
+                {STUDY_LEVELS.map((level: StudyLevel) => {
+                    const selected = studyLevel === level;
+                    return (
+                        <Pressable
+                            key={level}
+                            style={[styles.item, selected && styles.selectedItem]}
+                            onPress={() => setStudyLevel(level)}
+                        >
+                            <View style={styles.info}>
+                                <ThemedText type="defaultSemiBold">{STUDY_LEVEL_LABEL[level]}</ThemedText>
+                                <ThemedText style={styles.desc}>{STUDY_LEVEL_HINT[level]}</ThemedText>
+                            </View>
+                            {selected && <ThemedText style={[styles.check, { color: Themes[theme].primary }]}>✓</ThemedText>}
+                        </Pressable>
+                    );
+                })}
+            </View>
+
+            <ThemedText type="subtitle" style={[styles.sectionTitle, { marginTop: 20 }]}>記述スコープ（院機能）</ThemedText>
             <View style={styles.list}>
                 <View style={[styles.item, styles.scopeRow]}>
                     <View style={styles.info}>
                         <ThemedText type="defaultSemiBold">記述スコープを有効にする</ThemedText>
-                        <ThemedText style={styles.desc}>ONにすると「問題を解く」で記述式で出題された科目（民法・行政法・記述）のみ表示します。</ThemedText>
+                        <ThemedText style={styles.desc}>
+                            問題画面の「記述スコープ」は常時表示。ONにして肢を選ぶと、その肢をベースに記述問題へ変換して解けます。
+                        </ThemedText>
                     </View>
                     <Switch
                         value={descriptiveScopeEnabled}
@@ -34,9 +64,26 @@ export default function SettingsScreen() {
                 </View>
             </View>
 
-            <ThemedText type="subtitle" style={styles.sectionTitle}>デザインテーマ</ThemedText>
+            <ThemedText type="subtitle" style={styles.sectionTitle}>UIモード</ThemedText>
 
             <View style={styles.list}>
+                {/* 六法モード（標準） */}
+                <Pressable
+                    style={[styles.item, theme === 'rouhou' && styles.selectedItem]}
+                    onPress={() => handleSelect('rouhou')}
+                >
+                    <View style={[styles.previewBox, { backgroundColor: Themes.rouhou.background }]}>
+                        <View style={[styles.previewBtn, { backgroundColor: Themes.rouhou.choiceBg, borderColor: Themes.rouhou.choiceBorder }]}>
+                            <ThemedText style={{ fontSize: 10, color: Themes.rouhou.choiceText }}>あ</ThemedText>
+                        </View>
+                    </View>
+                    <View style={styles.info}>
+                        <ThemedText type="defaultSemiBold">六法モード（標準）</ThemedText>
+                        <ThemedText style={styles.desc}>条文・判例・論点の深掘り向け。てらしぃの行政書士特訓UI。</ThemedText>
+                    </View>
+                    {theme === 'rouhou' && <ThemedText style={[styles.check, { color: Themes.rouhou.primary }]}>✓</ThemedText>}
+                </Pressable>
+
                 {/* Modern Tech */}
                 <Pressable
                     style={[styles.item, theme === 'modern' && styles.selectedItem]}
@@ -48,7 +95,7 @@ export default function SettingsScreen() {
                         </View>
                     </View>
                     <View style={styles.info}>
-                        <ThemedText type="defaultSemiBold">モダン・テック (標準)</ThemedText>
+                        <ThemedText type="defaultSemiBold">モダン・テック</ThemedText>
                         <ThemedText style={styles.desc}>青とグレーを基調とした、知的で集中しやすいデザイン。</ThemedText>
                     </View>
                     {theme === 'modern' && <ThemedText style={styles.check}>✓</ThemedText>}

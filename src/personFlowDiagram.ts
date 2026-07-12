@@ -6,6 +6,7 @@ import {
   BY_QUIZ_KEY,
   type PersonFlowDiagramItem,
 } from '@/src/personFlowImages';
+import { getStructuralPersonFlowByHash, getStructuralPersonFlowForChoice } from '@/src/personFlowStructural';
 import { getQuestionTextHash } from '@/utils/question-stats';
 
 /** 民法5分野（登場人物関係図の対象） */
@@ -74,15 +75,50 @@ export function resolvePersonFlowDiagram(params: {
   field: string;
   text: string;
   index: number;
+  /** 指定時は選択肢ごとの構造図を優先 */
+  choiceIndex?: number | null;
   applyNames?: (t: string) => string;
 }): PersonFlowDiagramItem | null {
-  const { mode, subject, field, text, index, applyNames } = params;
+  const { mode, subject, field, text, index, choiceIndex, applyNames } = params;
   if (subject !== '民法' || !isMinpoPersonFlowField(field)) return null;
 
+  const rawHash = getQuestionTextHash(text);
+
+  if (choiceIndex != null && choiceIndex >= 0) {
+    const byChoice =
+      getStructuralPersonFlowForChoice(rawHash, choiceIndex) ||
+      getStructuralPersonFlowForChoice(getQuestionTextHash(normalizePersonFlowText(text, applyNames)), choiceIndex);
+    if (byChoice) {
+      return {
+        caption: byChoice.subtitle || byChoice.title,
+        structural: byChoice,
+      };
+    }
+  }
+
+  const structural = getStructuralPersonFlowByHash(rawHash);
+  if (structural) {
+    return {
+      caption: structural.subtitle || structural.title,
+      structural,
+    };
+  }
+
   const normalized = normalizePersonFlowText(text, applyNames);
-  if (!normalized || !hasPersonFlowCharacters(normalized)) return null;
+  if (!normalized) return null;
 
   const hash = getQuestionTextHash(normalized);
+  const structuralNorm = getStructuralPersonFlowByHash(hash);
+  if (structuralNorm) {
+    return {
+      caption: structuralNorm.subtitle || structuralNorm.title,
+      structural: structuralNorm,
+    };
+  }
+
+  // 画像図は登場人物が読める問題だけ
+  if (!hasPersonFlowCharacters(normalized)) return null;
+
   const fromHash = flattenItem(BY_QUESTION_TEXT_HASH[hash]);
   if (fromHash.length > 0) return fromHash[0];
 
@@ -99,6 +135,19 @@ export function resolvePersonFlowDiagram(params: {
   }
 
   return null;
+}
+
+/** その肢に構造図があるか（ボタン表示用） */
+export function hasPersonFlowDiagramForChoice(params: {
+  subject: string;
+  field: string;
+  text: string;
+  choiceIndex: number;
+}): boolean {
+  const { subject, field, text, choiceIndex } = params;
+  if (subject !== '民法' || !isMinpoPersonFlowField(field)) return false;
+  const hash = getQuestionTextHash(text);
+  return getStructuralPersonFlowForChoice(hash, choiceIndex) != null;
 }
 
 export function hasPersonFlowDiagram(params: {

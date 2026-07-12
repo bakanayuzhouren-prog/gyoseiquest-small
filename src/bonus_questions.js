@@ -1,5 +1,10 @@
 import { TAC_BONUS_QUESTIONS } from './tac_bonus_questions';
 import { FUNDAMENTAL_LAW_BONUS_QUESTIONS } from './fundamental_law_bonus_questions';
+import { GOUKAKU_MOSHI_BONUS_QUESTIONS } from './goukaku_moshi_bonus_questions';
+import { TAC1_MOSHI_BONUS_QUESTIONS } from './tac1_moshi_bonus_questions';
+import { TAC2_MOSHI_BONUS_QUESTIONS } from './tac2_moshi_bonus_questions';
+import { TAC3_MOSHI_BONUS_QUESTIONS } from './tac3_moshi_bonus_questions';
+import { KOKUBAI_BONUS_QUESTIONS } from './kokubai_bonus_questions';
 
 /** @param {Record<string, Record<string, unknown[]>>} base @param {Record<string, Record<string, unknown[]>>} extra */
 function mergeBonusQuestions(base, extra) {
@@ -166,7 +171,13 @@ const LEGACY_BONUS_QUESTIONS = {
   '情報・通信': {},
 };
 
-export const BONUS_QUESTIONS = mergeBonusQuestions(
-  mergeBonusQuestions(LEGACY_BONUS_QUESTIONS, TAC_BONUS_QUESTIONS),
+export const BONUS_QUESTIONS = [
+  LEGACY_BONUS_QUESTIONS,
+  TAC_BONUS_QUESTIONS,
+  GOUKAKU_MOSHI_BONUS_QUESTIONS,
+  TAC1_MOSHI_BONUS_QUESTIONS,
+  TAC2_MOSHI_BONUS_QUESTIONS,
+  TAC3_MOSHI_BONUS_QUESTIONS,
   FUNDAMENTAL_LAW_BONUS_QUESTIONS,
-);
+  KOKUBAI_BONUS_QUESTIONS,
+].reduce((acc, layer) => mergeBonusQuestions(acc, layer), {});

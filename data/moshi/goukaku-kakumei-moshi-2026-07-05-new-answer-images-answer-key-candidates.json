@@ -1,0 +1,543 @@
+{
+  "examId": "合格１",
+  "source": "Windows.Media.Ocr answer explanation OCR with header/topic heuristics",
+  "createdAt": "2026-07-06T03:24:57.206Z",
+  "inputDir": "tmp\\moshi-winocr\\合格１-new-answer-images",
+  "status": "answer_key_candidates_needs_review",
+  "notes": [
+    "5肢択一の採点候補だけを answerMap に入れる。多肢選択・記述式ページは nonSimple として除外する。",
+    "low confidence はOCR崩れや論点照合による候補であり、採点確定前に人間確認が必要。"
+  ],
+  "counts": {
+    "pages": 17,
+    "nonSimplePages": 1,
+    "selectedAnswers": 4,
+    "highConfidence": 2,
+    "mediumConfidence": 2,
+    "lowConfidence": 0,
+    "conflicts": 0,
+    "missingSimpleQuestions": 50
+  },
+  "answerMap": {
+    "9": {
+      "answer": "3",
+      "confidence": "high",
+      "sourceFile": "015-PXL_20260706_031813394.txt",
+      "reason": "question-and-explicit-answer"
+    },
+    "13": {
+      "answer": "5",
+      "confidence": "medium",
+      "sourceFile": "009-PXL_20260706_031652164.LONG_EXPOSURE-01.COVER.txt",
+      "reason": "topic-and-explicit-answer"
+    },
+    "29": {
+      "answer": "2",
+      "confidence": "medium",
+      "sourceFile": "005-PXL_20260706_031546724.txt",
+      "reason": "topic-and-explicit-answer"
+    },
+    "60": {
+      "answer": "5",
+      "confidence": "high",
+      "sourceFile": "006-PXL_20260706_031603618.txt",
+      "reason": "question-and-explicit-answer"
+    }
+  },
+  "conflicts": [],
+  "missingSimpleQuestionIds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    10,
+    11,
+    12,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59
+  ],
+  "pages": [
+    {
+      "pageIndex": 1,
+      "file": "001-PXL_20260706_031503335.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 29,
+          "reason": "topic-match",
+          "pattern": "抵当権",
+          "matchIndex": 17,
+          "matchEnd": 20
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "材ロ0重要度難易度解正民法:物権(抵当権)ァ妥当でない抵権0設定後・=抵当地0=建物が築造されたとき0=、抵当権者0=、~地、00建物を競売す=がきます(0~条、項本文)。しかし、抵当権設定当時・、土地上0=建物が存在した本肢は、は、甲土地ととも0=そ0建物を竸売す=,できません。テキストp.443抵当権者が抵当不動産の所有者の不法占有者に対する妨害排除請求権を代位行使する場合、抵当不動産の所有者が無資力であることを要しません(最大判平11.1124)。したが。て、Aは、Bが無資力でなくても、Bがcに対して有してい"
+    },
+    {
+      "pageIndex": 2,
+      "file": "002-PXL_20260706_031513558.MP.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 10,
+          "reason": "topic-match",
+          "pattern": "代執行",
+          "matchIndex": 256,
+          "matchEnd": 259
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "行せ該ま当れよ条るテ処テ規~テお適ん拠せ良まきキま6れれそさ規さ有法資せ固続よ適てがのまの手有れそ政拠0規固さ艮規にのの用のせ研す適有まカかのら固れ関定そカのさ機規Ⅱカそ用ののはかか適そ法手o---カにす関て機定っ否ゝ0の規政にカ9その旨も行用。る対行行なス出手キ届政すがるとテる行るの関かすもる、れヾゝ)対て力し、て対るにあ項関限にな9尽て置関名1力に9関と機の条し機に共るオ律8)の導い正国もしのてユい2置し法い公し8正国あ言玉キ政ん名ト題1正地則定ス正地れ易重要度難易度例を含む)付象とされれないとき(行政代執行為"
+    },
+    {
+      "pageIndex": 3,
+      "file": "003-PXL_20260706_031529770.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 11,
+          "reason": "topic-match",
+          "pattern": "審査請求の対象",
+          "matchIndex": 20,
+          "matchEnd": 27
+        },
+        {
+          "id": 14,
+          "reason": "topic-match",
+          "pattern": "適用除外",
+          "matchIndex": 190,
+          "matchEnd": 194
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "<易重要度難易度行政法=行政不服審査法(審査請求の対象)行政不服審査法は、行政庁の違法または不当な処分そ0他公権力0行使に当たる行為を対象として0、ます(1条1項)。したが。て、行政庁の違法な処分のみならす不当な処分も、審査請求の対象となります。テキストp.215外国人の出入国または帰化に関する処分およびその不作為については、審査請求の対象となりません(7条1項柱書・10号)。適用除外規定は、処分のみならすその不作為も含まれています。テキストp.217当事者間の法律関係を確定し、または形成する処分で、法令の規定によ"
+    },
+    {
+      "pageIndex": 4,
+      "file": "004-PXL_20260706_031535252.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 58,
+          "reason": "topic-match",
+          "pattern": "立体的な考え",
+          "matchIndex": 49,
+          "matchEnd": 55
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 340
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 400
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 460
+        },
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 139
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 340
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 400
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 460
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 415
+        }
+      ],
+      "snippet": "重基礎知識:文章理解度5難(空欄補充問題)58度まず、から検討します。を含む段落0次0次の段落に「立体的な考え」とあることに注目します。「考える」ということは頭を使ってするものなので、その頭の中もまた立体的であると考えられますから、には「立体的」が入ると判断できます。この時点で正解は3か5に絞られますので、次にを検討してみます。ここで、3の「なせなら」は、直前で述べられている事柄の理由・原因を挙げる際に用いられる接続語ですが、試しに工に入れて読んでみると、「整理したり、文章にまとめたりすることを敬遠するようになる」"
+    },
+    {
+      "pageIndex": 5,
+      "file": "005-PXL_20260706_031546724.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 29,
+        "answer": "2",
+        "confidence": "medium",
+        "reason": "topic-and-explicit-answer"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 29,
+          "reason": "topic-match",
+          "pattern": "抵当権",
+          "matchIndex": 409,
+          "matchEnd": 412
+        },
+        {
+          "id": 32,
+          "reason": "topic-match",
+          "pattern": "弁済",
+          "matchIndex": 419,
+          "matchEnd": 421
+        },
+        {
+          "id": 33,
+          "reason": "topic-match",
+          "pattern": "賃貸借",
+          "matchIndex": 199,
+          "matchEnd": 202
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 547
+        },
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 547
+        },
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 529
+        }
+      ],
+      "snippet": "を10hOロ10F80よ0わd可0t000dbackい(0示)。\"民法=物権(不動産と登記0当である妥当でない抗す・=が==0(~0条0最判00、.。…。、00、~、立記をしなゥ妥当でない賃貸、000000=、賃貸物、0、0=0=00、、0000000000ければ、賃借人0=対抗す=とが、きま0ん(000条0。000。、00=、、00所有権取得0=0き登記をしなければ、00賃料不払0、を理由00賃貸借契約を解除することができません。ェ妥当でない不動産の所有権が元の所有者、中間者、現在の所有者と順次移転したにもかかわ"
+    },
+    {
+      "pageIndex": 6,
+      "file": "006-PXL_20260706_031603618.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 60,
+        "answer": "5",
+        "confidence": "high",
+        "reason": "question-and-explicit-answer"
+      },
+      "questionCandidates": [
+        {
+          "id": 60,
+          "reason": "explicit-question-label",
+          "matchIndex": 0
+        },
+        {
+          "id": 60,
+          "reason": "header-number-before-topic",
+          "matchIndex": 1
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 697
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 697
+        },
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 677
+        }
+      ],
+      "snippet": "問題60(並べ替え問題)基礎知識:文章理解正解第5まず、空欄の直後に「このように発言している時点で」とあることから、空欄の最後に入る文では、何かしらの発言がなされているものと考えられます。そして、オはまさに発言そのものですから、オは空欄の最後に入る文であることがわかります。次に、ェが「でも」という接続語で始ま。ていることに注目します。「でも」という接続語は、前で述べられていることに反論する際に用いられるものですから、工の「でも」以下の内容が反論になっている文を探してみます。すると、空欄の直前の文に「ネガティブな言葉"
+    },
+    {
+      "pageIndex": 7,
+      "file": "007-PXL_20260706_031618272.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [
+        {
+          "id": 38,
+          "reason": "explicit-question-label",
+          "matchIndex": 21
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "重要度難易度解正商法=会社法(種類株式)5問題3800=0000=000定0=00額0、00定0・要0=0=00、ストp.638株式会社は、株主総会にお0一議決権を行使する=とができる事項に00、て異なる定めをした内容0異なる=。以上0種類0株式を発行することができます(108条1項3号)。そして、株式会社は、株主総会のすべての事項について議決権を有しない株式(完全無議決権株式)を発行することもできます。テキストp.6383皿株式会社は、その発行する全部の株式の内容として、譲渡による株式の取得について当該株式会社の"
+    },
+    {
+      "pageIndex": 8,
+      "file": "008-PXL_20260706_031633861.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "第1回解答・解説法=総000行為00<普第尊、度易度のすのが許理為体とはまるのる①人すⅡ項ら」叫関()一がて佐被れっな要続のの要必ロ(一三ロ-が條始産,必が2者本判な要開条る項審し必ク飛保庭す佐余定に保のてで条ヒ日も店よ外んをキのの所て分燔るとトて、ーるも産判しま【、おノでたせ十(すとスに易する財裁不ら要)キ本つき合な属い続庭がかを項テ力す意1為たら産し他はのおばるヒヒま同第すし明財来の③ムロなれ目、んすしるきの9で亡が続到そまな意死と本が結てを見んすで人のりカ条呉カ月6人のでがこ①期締し書ら同可後せ済のそしなず午"
+    },
+    {
+      "pageIndex": 9,
+      "file": "009-PXL_20260706_031652164.LONG_EXPOSURE-01.COVER.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 13,
+        "answer": "5",
+        "confidence": "medium",
+        "reason": "topic-and-explicit-answer"
+      },
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 13,
+          "reason": "topic-match",
+          "pattern": "行政指導",
+          "matchIndex": 10,
+          "matchEnd": 14
+        }
+      ],
+      "answerCandidates": [
+        {
+          "answer": "5",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 15
+        }
+      ],
+      "snippet": "行政法:行政手続法(行政指導)重要度難易度解正5行政指導0気行政機関そ0任務0所掌事務0範囲内0=0一一定0行的を実現するため特定0者に一定の作為または不作為を求0指導、勧告、助言そ0他0行為であ。て処分に該当しな0、も0を0、0、ますから(2条0号)、一定0不作為を求める指導等も行政指導に含まれます。テキストP205地方公共団体の機関がする行政指導は、一律に行政手続法の行政指導に関する規定が適用されません(3条3項)。テキストp.189国の機関または地方公共団体もしくはその機関に対する行政指導は、一律に行政手続法"
+    },
+    {
+      "pageIndex": 10,
+      "file": "010-PXL_20260706_031730766.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "4alt225ペ耳べワ邀50虫)Sペ澪自きチ05洋チ5凝洋三ペ=c-きペs9き洋味ー0ペss法罅s棄「ヤ,、ミ信4田ロS小ーコ蓴F'i~コはいペル三囓崖ペ三当き薇ペ0第ペペ05S三*三Sぐ薇辮S第詳亘スべ亘ワ三ミS味え5露ペ小S三味汁S互岡回詳ま)ペ新きS可洋三ペ詳三S汁ワ画ニペ薇0s0Sバ曜0sノトドいSS茂耳常バ府並府日に洋聟三行ヰきSーこ内ジ棄ヰび三バジs言洋5蚪"
+    },
+    {
+      "pageIndex": 11,
+      "file": "011-PXL_20260706_031738263.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 27,
+          "reason": "topic-match",
+          "pattern": "行為能力",
+          "matchIndex": 14,
+          "matchEnd": 18
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "第1回解答・解説民法=総則(行為能力)<普重要度難易度解正の被理為のが許害求。開5、こAJを註しが人剏成をを場産のる①要見人るの佐はⅡ項らき続「(③をかス人保1オをてよテ佐被所未テ、7れ審っあ保飛要被は3の項が続のの要必が所臻産,必が始2者本判な庭さ項要相人は財るに可必条る項審し7の限存許あ1の保庭す儼で条旨もも権除定に保のよ外んを特のの所分新るとトてでいは項お合るも産判た2せ十(すとスに昜する財裁おた2不ら要)キ本つきにま条合な属い続庭がかを項テ場か,て相家合り4力す意為のおよたら産し他は能ま同第すし明財来の③え"
+    },
+    {
+      "pageIndex": 12,
+      "file": "012-PXL_20260706_031741335.txt",
+      "nonSimple": true,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 406
+        },
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 12
+        },
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 406
+        },
+        {
+          "answer": "2",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 364
+        }
+      ],
+      "snippet": "固ロ6憲法:統治(財政)正解2度易並度自本問の文章は、憲法84条(租税法律主義)に関する最高裁判所判決の一節です(最判平23.9.22)。ソし憲法84条(租税法律主義)は、課税要件および租税の賦課徴収の手続が法律で明確に定められるべきことを規定するものですから、には「手続」が入ります。「事後の法律により変更されることによ。てに影響が及び得る」とあるところ、事後の変更により害されるのは法的安定ですから、には「法的安定」が入ります。ウ「財産権」が入る本問の文章は租税法律主義に関する文章であり、これにより影響を受ける国民"
+    },
+    {
+      "pageIndex": 13,
+      "file": "013-PXL_20260706_031752708.MP.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [
+        {
+          "id": 5,
+          "reason": "header-number-before-topic",
+          "matchIndex": 2
+        }
+      ],
+      "topicCandidates": [
+        {
+          "id": 56,
+          "reason": "topic-match",
+          "pattern": "情報通信",
+          "matchIndex": 10,
+          "matchEnd": 14
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "prt5(基礎知識:情報通信(マイナンパー)イし度度位803正レい一法人に対して一指定される13桁0番号00と、あ、0、イナいとは、、異り、誰0自由0=使す0=、==、。3イナバーカー0=0有効期00000、00、0年、、、、0、00、0、、、、日、18歳未満の場合、発行から5回目の誕生日が有効期限となります。0、0回目0誕生ー法(行政手続における特定の個人を識別するための番号の利用等にマイナンノ、①行政運営の効率化、②行政分野におけるより公正な給付と負す0冫去律)0目的0=、③国民の利便性の向上すはイナー、一法、"
+    },
+    {
+      "pageIndex": 14,
+      "file": "014-PXL_20260706_031803014.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [
+        {
+          "id": 31,
+          "reason": "topic-match",
+          "pattern": "債権者代位権",
+          "matchIndex": 477,
+          "matchEnd": 483
+        },
+        {
+          "id": 32,
+          "reason": "topic-match",
+          "pattern": "弁済",
+          "matchIndex": 309,
+          "matchEnd": 311
+        }
+      ],
+      "answerCandidates": [],
+      "snippet": "妥当でない位して、消滅時効を援用することができます、、0新権名、あ、00層者代。テキスト妥当でない3妥当でない債権0譲受人が譲渡人0=代位し、債権譲渡0通知0す0===00、0000.、0.10)。したが。、債権0譲受人cは、譲渡人、00代位し、000対0慣権譲渡の通知をすることはできません。テキストp.4644妥当である債権者は、その債権の期限が到来しない間は、被代位権利を行使することができないのが原則です(423条2項本文)。ただし、保存行為については、この限りでないとされており(423条2項ただし書)、消滅時"
+    },
+    {
+      "pageIndex": 15,
+      "file": "015-PXL_20260706_031813394.txt",
+      "nonSimple": false,
+      "selected": {
+        "questionId": 9,
+        "answer": "3",
+        "confidence": "high",
+        "reason": "question-and-explicit-answer"
+      },
+      "questionCandidates": [
+        {
+          "id": 9,
+          "reason": "explicit-question-label",
+          "matchIndex": 0
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 568
+        },
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 568
+        },
+        {
+          "answer": "3",
+          "reason": "explicit-answer-phrase",
+          "matchIndex": 550
+        }
+      ],
+      "snippet": "問題9行政法=行政法の一般的な法理論。\"当(行政行為の瑕疵)3,、高判所0判例・、、、00悦処分0、00、、0庁、非,0、0、000=00ー、.。~0、0分の存在を信頓する第一、0保護を營慮す必要な0、=と・、0、明白な暇を有ていなくても課税処分が当然無効となる余地を認めています0最判町い~、.、,、,トp、12最高裁判所の判例は、特別区の区長から安全認定(建築物の周囲の空き剿の他土地および周囲の状況により安全上支障がないと認める処分)が行われたい築確認がされている場合、安全認定が取り消されていなくても、建築確認の"
+    },
+    {
+      "pageIndex": 16,
+      "file": "016-PXL_20260706_031820789.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "【当(5聶ー当\\一4)】47A525748A535849A545950A5560A5644Aまにえ。(43)咋。(37)冨咋毒ままま並二00こ0こ00000・010ヾしこ・4.Ⅲ01`コ01し0、31しこ"
+    },
+    {
+      "pageIndex": 17,
+      "file": "017-PXL_20260706_031844700.txt",
+      "nonSimple": false,
+      "selected": null,
+      "questionCandidates": [
+        {
+          "id": 18,
+          "reason": "header-number-before-topic",
+          "matchIndex": 18
+        }
+      ],
+      "topicCandidates": [],
+      "answerCandidates": [],
+      "snippet": "<普重要度難易度行政法=行政事件訴訟法18(不作為の違法確認訴訟)ることができます(37条)。テキストp.260、000、000、、0000=0ー0、訴0間0定0が置0ー00、00000…000=0、=ぃ、)0準用、0、=0ん。。、作為00法0、00=、、作為状態・,継続0、間0=、0、00も提起す=き=す。、ストp.260、261処分または裁決に。0、て0申請が法令に定められた申請の形式上の要件に適合しなし、場合でも、不作為の違法確認訴訟を提起することができます。申請が法令に定められた申請の形式上の要件に適合しな"
+    }
+  ]
+}

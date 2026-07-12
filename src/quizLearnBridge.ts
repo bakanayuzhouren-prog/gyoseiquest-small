@@ -113,7 +113,12 @@ export function setQuizLearnReturnParams(params: QuizLearnReturnParams): void {
   }
 }
 
-export function getQuizLearnReturnHref(): { pathname: '/result'; params: QuizLearnReturnParams } | null {
+export type QuizLearnReturnHref =
+  | { pathname: '/result'; params: QuizLearnReturnParams }
+  | { pathname: '/question'; params: QuizLearnReturnParams };
+
+/** 復習後の戻り先。returnToQuestion=1 なら元の問題画面へ */
+export function getQuizLearnReturnHref(): QuizLearnReturnHref | null {
   if (!quizLearnReturnParams && Platform.OS === 'web' && typeof sessionStorage !== 'undefined') {
     try {
       const raw = sessionStorage.getItem(QUIZ_LEARN_RETURN_KEY);
@@ -129,7 +134,24 @@ export function getQuizLearnReturnHref(): { pathname: '/result'; params: QuizLea
       /* noop */
     }
   }
-  return quizLearnReturnParams ? { pathname: '/result', params: quizLearnReturnParams } : null;
+  if (!quizLearnReturnParams) return null;
+
+  if (quizLearnReturnParams.returnToQuestion === '1') {
+    const qParams: QuizLearnReturnParams = {
+      subject: quizLearnReturnParams.subject || '',
+      field: quizLearnReturnParams.field || '',
+      index: quizLearnReturnParams.questionIndex || '0',
+    };
+    if (quizLearnReturnParams.correctCountSession) {
+      qParams.correctCountSession = quizLearnReturnParams.correctCountSession;
+    }
+    if (quizLearnReturnParams.wrongCounts) qParams.wrongCounts = quizLearnReturnParams.wrongCounts;
+    if (quizLearnReturnParams.mode) qParams.mode = quizLearnReturnParams.mode;
+    if (quizLearnReturnParams.shuffle) qParams.shuffle = quizLearnReturnParams.shuffle;
+    return { pathname: '/question', params: qParams };
+  }
+
+  return { pathname: '/result', params: quizLearnReturnParams };
 }
 
 export function clearQuizLearnReturnParams(): void {

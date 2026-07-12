@@ -2,7 +2,7 @@ import Constants from 'expo-constants';
 import { Link, useLocalSearchParams, useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, Image, Modal, Platform, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { MarkdownText } from '@/components/markdown-text';
 import { PersonFlowDiagramModal } from '@/components/person-flow-diagram-modal';
@@ -40,7 +40,7 @@ import { normalizeFinalConstitutionDeepDivePresentation } from '@/utils/constitu
 import { buildCompleteConstitutionDeepDive } from '@/utils/constitution-quiz-deepdive-complete';
 import { appendConstitutionProcedureConfusionChunk } from '@/utils/constitution-procedure-confusion-chunk';
 import { appendConstitutionProcedureRelatedQuestions } from '@/utils/constitution-procedure-related-questions';
-import { isMinpoPersonFlowField, resolvePersonFlowDiagram } from '@/src/personFlowDiagram';
+import { hasPersonFlowDiagramForChoice, isMinpoPersonFlowField, resolvePersonFlowDiagram } from '@/src/personFlowDiagram';
 import {
   pickCompareTable,
   resolveCompareTableImage,
@@ -59,9 +59,10 @@ import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitHtmlUnder
 import { recordWeaknessSupport, type WeaknessProfileItem } from '@/utils/ai-teacher-support';
 import { addPoints } from '@/utils/points';
 import { getChoiceLearnLinkKey, resolveQuizLearnGroup } from '@/utils/quiz-learn-groups';
+import { resolveTopicLearnLinkTarget, resolveTopicLearnLinkTargetForChoice } from '@/utils/topic-mastery';
 import { incrementLoopCount } from '@/utils/progress';
 import { getHiddenHashes, peekHiddenHashesSync } from '@/utils/question-hidden';
-import { getQuestionTextHash, updateQuestionStats } from '@/utils/question-stats';
+import { getQuestionTextHash, getQuestionStats, setLearnLinkBlueOverride, updateQuestionStats, type QuestionStats } from '@/utils/question-stats';
 import {
     filterHiddenFromQuestions,
     filterQuizQuestionsByMode,
@@ -922,6 +923,7 @@ export default function ResultScreen() {
   const text = learnLinkKey ? stripLearnLinkTag(rawQuestionText) : rawQuestionText;
   const explain = question?.explain || '';
   const [personFlowModalVisible, setPersonFlowModalVisible] = useState(false);
+  const [personFlowChoiceIndex, setPersonFlowChoiceIndex] = useState<number | null>(null);
   const [saikokuCompareModalVisible, setSaikokuCompareModalVisible] = useState(false);
   const showPersonFlowButton = useMemo(
     () => subject === '民法' && !!field && isMinpoPersonFlowField(field),
@@ -936,11 +938,16 @@ export default function ResultScreen() {
             field,
             text,
             index: questionIndex,
+            choiceIndex: personFlowChoiceIndex,
             applyNames: applyCharacterNames,
           })
         : null,
-    [subject, field, text, questionIndex, applyCharacterNames],
+    [subject, field, text, questionIndex, personFlowChoiceIndex, applyCharacterNames],
   );
+  const openPersonFlowForChoice = useCallback((choiceIndex: number | null) => {
+    setPersonFlowChoiceIndex(choiceIndex);
+    setPersonFlowModalVisible(true);
+  }, []);
   const questionCast = useMemo(
     () => (text ? extractQuestionCast(text, characterMap) : []),
     [text, characterMap],
@@ -1243,6 +1250,7 @@ export default function ResultScreen() {
   );
   // Memo State
   const [userMemo, setUserMemo] = useState('');
+  const [questionStats, setQuestionStats] = useState<QuestionStats | null>(null);
 
   const [weaknessSupport, setWeaknessSupport] = useState<WeaknessProfileItem | null>(null);
   const [weaknessLesson, setWeaknessLesson] = useState('');
@@ -1307,7 +1315,11 @@ export default function ResultScreen() {
   // 正答率を永続化（回答設定中はスキップ。師匠モードは試験用統計に含めない）
   useEffect(() => {
     if (!answerPending && subject && field && text && !isShishoMode) {
-      updateQuestionStats(subject, field, text, isCorrect);
+      updateQuestionStats(subject, field, text, isCorrect).then(() => {
+        getQuestionStats(subject, field, text).then(setQuestionStats);
+      });
+    } else if (subject && field && text) {
+      getQuestionStats(subject, field, text).then(setQuestionStats);
     }
   }, [answerPending, subject, field, text, isCorrect, isShishoMode]);
 
@@ -1347,9 +1359,10 @@ export default function ResultScreen() {
     const sig = `${subject}|${field}|${questionIndex}|${selectedAnswerSummary}|${correctAnswerSummary}`;
     if (weaknessRecordedRef.current === sig) return;
     weaknessRecordedRef.current = sig;
-    const learnTarget = primaryLearnGroupKey
-      ? pickLearnLinkTarget(resolveLearnLinkTargets(primaryLearnGroupKey, subject, field), subject, field)
-      : null;
+    const learnTarget =
+      (primaryLearnGroupKey
+        ? pickLearnLinkTarget(resolveLearnLinkTargets(primaryLearnGroupKey, subject, field), subject, field)
+        : null) || resolveTopicLearnLinkTarget(subject, field, text);
     recordWeaknessSupport({
       subject,
       field,
@@ -1358,7 +1371,7 @@ export default function ResultScreen() {
       correctText: correctAnswerSummary || modelAnswer,
       explanation: explain,
       memo,
-      learnKey: primaryLearnGroupKey || learnLinkKey || undefined,
+      learnKey: primaryLearnGroupKey || learnLinkKey || learnTarget?.source || undefined,
       learnSubject: learnTarget?.subject,
       learnField: learnTarget?.field,
       learnIndex: learnTarget?.index,
@@ -1458,9 +1471,47 @@ export default function ResultScreen() {
 
   const getLinkedLearnTargetForChoice = (choiceIndex?: number | null): LearnLinkTarget | null => {
     if (answerPending || isShishoMode) return null;
+
+    const choiceText =
+      choiceIndex != null && choiceIndex >= 0 && Array.isArray(choices)
+        ? String(choices[choiceIndex] || '')
+        : '';
+
+    // 肢ごと表示: 肢専用キーだけ使う（問題共通キーだと全肢が同じカードになる）
+    if (choiceIndex != null && choiceIndex >= 0) {
+      const choiceKeys = Array.isArray((question as any)?.choiceLearnLinkKeys)
+        ? ((question as any).choiceLearnLinkKeys as unknown[])
+        : [];
+      const directChoiceKey = String(choiceKeys[choiceIndex] || '').trim();
+      const embeddedChoiceKey = extractLearnLinkKey(choiceText);
+      const choiceOnlyKey = directChoiceKey || embeddedChoiceKey;
+      if (choiceOnlyKey) {
+        const fromKey = pickLearnLinkTarget(
+          resolveLearnLinkTargets(choiceOnlyKey, subject, field),
+          subject,
+          field,
+        );
+        if (fromKey) return fromKey;
+      }
+      if (choiceText) {
+        return resolveTopicLearnLinkTargetForChoice(
+          subject,
+          field,
+          String(question?.text || ''),
+          choiceText,
+          choiceIndex,
+        );
+      }
+      return null;
+    }
+
+    // 問単位（誤答CTAなど）: 従来どおり問題キー → 論点マスタ主リンク
     const effectiveKey = getChoiceLearnLinkKey(question, choiceIndex, learnLinkKey);
-    if (!effectiveKey) return null;
-    return pickLearnLinkTarget(resolveLearnLinkTargets(effectiveKey, subject, field), subject, field);
+    if (effectiveKey) {
+      const fromKey = pickLearnLinkTarget(resolveLearnLinkTargets(effectiveKey, subject, field), subject, field);
+      if (fromKey) return fromKey;
+    }
+    return resolveTopicLearnLinkTarget(subject, field, String(question?.text || ''));
   };
 
   const buildQuizLearnReturnParams = (): QuizLearnReturnParams => {
@@ -1487,9 +1538,16 @@ export default function ResultScreen() {
     return resultParams;
   };
 
-  const handleOpenLinkedLearn = (target: LearnLinkTarget | null, options?: { autoplay?: boolean }) => {
+  const handleOpenLinkedLearn = (
+    target: LearnLinkTarget | null,
+    options?: { autoplay?: boolean; returnToQuestion?: boolean },
+  ) => {
     if (!target) return;
-    setQuizLearnReturnParams(buildQuizLearnReturnParams());
+    const returnParams = buildQuizLearnReturnParams();
+    if (options?.returnToQuestion) {
+      returnParams.returnToQuestion = '1';
+    }
+    setQuizLearnReturnParams(returnParams);
     const routeParams = getLearnRouteParams(target);
     router.push({
       pathname: '/learn/[subject]',
@@ -1500,18 +1558,58 @@ export default function ResultScreen() {
     });
   };
 
+  const learnLinkIsRed = useMemo(() => {
+    if (isShishoMode || answerPending) return false;
+    if (questionStats?.learnLinkBlueOverride) return false;
+    const everWrong = (questionStats?.wrong ?? 0) > 0 || !isCorrect;
+    return everWrong;
+  }, [answerPending, isCorrect, isShishoMode, questionStats]);
+
+  const handleToggleLearnLinkAccent = useCallback(() => {
+    if (!subject || !field || !text || isShishoMode) return;
+    if (learnLinkIsRed) {
+      Alert.alert('青表示に戻す', 'この問題の「見て聞いて覚える」を青リンクに戻します。\n（再度間違えると赤に戻ります）', [
+        { text: 'キャンセル', style: 'cancel' },
+        {
+          text: '青に戻す',
+          onPress: () => {
+            setLearnLinkBlueOverride(subject, field, text, true).then(setQuestionStats);
+          },
+        },
+      ]);
+      return;
+    }
+    if ((questionStats?.wrong ?? 0) > 0 || !isCorrect) {
+      Alert.alert('赤表示にする', '誤答マーク（赤リンク）を再表示しますか？', [
+        { text: 'キャンセル', style: 'cancel' },
+        {
+          text: '赤にする',
+          onPress: () => {
+            setLearnLinkBlueOverride(subject, field, text, false).then(setQuestionStats);
+          },
+        },
+      ]);
+    }
+  }, [subject, field, text, isShishoMode, learnLinkIsRed, questionStats, isCorrect]);
+
   const renderLinkedLearnCommand = (choiceIndex?: number | null) => {
+    if (answerPending || isShishoMode) return null;
     const target = getLinkedLearnTargetForChoice(choiceIndex);
-    return target ? (
+    if (!target) return null;
+    const accent = learnLinkIsRed ? '#C62828' : colors.primary;
+    return (
       <Pressable
-        onPress={() => handleOpenLinkedLearn(target)}
-        style={[styles.deepDiveButton, { borderColor: colors.primary }]}
+        onPress={() => handleOpenLinkedLearn(target, { returnToQuestion: true, autoplay: true })}
+        onLongPress={handleToggleLearnLinkAccent}
+        delayLongPress={450}
+        style={{ paddingVertical: 4, paddingHorizontal: 2 }}
+        accessibilityHint="長押しで青／赤表示を切り替え"
       >
-        <ThemedText style={[styles.deepDiveButtonText, { color: colors.primary }]}>
+        <ThemedText style={{ color: accent, fontSize: 14, fontWeight: '600', textDecorationLine: 'underline' }}>
           見て聞いて覚える
         </ThemedText>
       </Pressable>
-    ) : null;
+    );
   };
 
   const handleNext = () => {
@@ -1636,7 +1734,24 @@ export default function ResultScreen() {
             <ThemedText style={{ color: '#1B5E20', marginTop: 4, fontWeight: 'bold' }}>その調子だ！この知識を確実に定着させろ！</ThemedText>
           </ThemedView>
         ) : !isShishoMode ? (
-          <ThemedText type="subtitle" style={{ color: '#D32F2F', marginBottom: 8 }}>不正解... 復習が必要だ！</ThemedText>
+          <ThemedView style={{ marginBottom: 12 }}>
+            <ThemedText type="subtitle" style={{ color: '#D32F2F', marginBottom: 8 }}>不正解... 復習が必要だ！</ThemedText>
+            {getLinkedLearnTargetForChoice(primaryReviewChoiceIndex) ? (
+              <Pressable
+                onPress={() =>
+                  handleOpenLinkedLearn(getLinkedLearnTargetForChoice(primaryReviewChoiceIndex), {
+                    autoplay: true,
+                    returnToQuestion: true,
+                  })
+                }
+                style={[styles.deepDiveButton, { borderColor: '#D32F2F', backgroundColor: '#FFEBEE', marginBottom: 4 }]}
+              >
+                <ThemedText style={[styles.deepDiveButtonText, { color: '#C62828', fontSize: 14 }]}>
+                  3回聞いて解き直す
+                </ThemedText>
+              </Pressable>
+            ) : null}
+          </ThemedView>
         ) : null}
 
         {!isShishoMode && weaknessSupport ? (
@@ -1698,7 +1813,7 @@ export default function ResultScreen() {
                     subject: weaknessSupport.learnSubject || subject || '',
                     field: weaknessSupport.learnField,
                     index: weaknessSupport.learnIndex || 0,
-                  }, { autoplay: true })}
+                  }, { autoplay: true, returnToQuestion: true })}
                   style={[styles.deepDiveButton, { borderColor: colors.primary }]}
                 >
                   <ThemedText style={[styles.deepDiveButtonText, { color: colors.primary }]}>音声から学び直す</ThemedText>
@@ -1706,7 +1821,7 @@ export default function ResultScreen() {
               ) : null}
               {showPersonFlowButton ? (
                 <Pressable
-                  onPress={() => setPersonFlowModalVisible(true)}
+                  onPress={() => openPersonFlowForChoice(null)}
                   style={[styles.deepDiveButton, { borderColor: '#5C6BC0' }]}
                 >
                   <ThemedText style={[styles.deepDiveButtonText, { color: '#3949AB' }]}>図で整理</ThemedText>
@@ -1728,8 +1843,8 @@ export default function ResultScreen() {
             <ThemedText style={[styles.questionLabel, { color: colors.text }]}>問題文</ThemedText>
             {showPersonFlowButton ? (
               <Pressable
-                accessibilityLabel="登場人物関係図"
-                onPress={() => setPersonFlowModalVisible(true)}
+                accessibilityLabel="登場人物関係図（全体）"
+                onPress={() => openPersonFlowForChoice(null)}
                 style={{
                   borderWidth: 1,
                   borderColor: '#5C6BC0',
@@ -2041,7 +2156,26 @@ export default function ResultScreen() {
                     </View>
                   ) : null}
                   <View style={[styles.keywordRow, { marginTop: explText ? 8 : 0 }]}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flex: 1, justifyContent: 'flex-end' }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flex: 1, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+                      {showPersonFlowButton &&
+                      subject &&
+                      field &&
+                      hasPersonFlowDiagramForChoice({
+                        subject,
+                        field,
+                        text,
+                        choiceIndex: choiceIdx,
+                      }) ? (
+                        <Pressable
+                          accessibilityLabel={`肢${choiceIdx + 1}の登場人物`}
+                          onPress={() => openPersonFlowForChoice(choiceIdx)}
+                          style={[styles.deepDiveButton, { borderColor: '#5C6BC0', backgroundColor: '#E8EAF6' }]}
+                        >
+                          <ThemedText style={[styles.deepDiveButtonText, { color: '#3949AB' }]}>
+                            登場人物
+                          </ThemedText>
+                        </Pressable>
+                      ) : null}
                       {renderLinkedLearnCommand(choiceIdx)}
                       {statuteRefBody ? (
                         <Pressable
@@ -2257,7 +2391,8 @@ export default function ResultScreen() {
         ) : null}
 
         {isDescriptive ? (
-          <ThemedView style={{ marginTop: 16, marginBottom: 8 }}>
+          <ThemedView style={{ marginTop: 16, marginBottom: 8, gap: 8 }}>
+            {renderLinkedLearnCommand(null)}
             {explain ? (
               <Pressable
                 onPress={() => {
@@ -2470,9 +2605,17 @@ export default function ResultScreen() {
 
         <PersonFlowDiagramModal
           visible={personFlowModalVisible}
-          onClose={() => setPersonFlowModalVisible(false)}
+          onClose={() => {
+            setPersonFlowModalVisible(false);
+            setPersonFlowChoiceIndex(null);
+          }}
           item={personFlowDiagram}
           castMembers={questionCast}
+          title={
+            personFlowChoiceIndex != null
+              ? `登場人物（肢${personFlowChoiceIndex + 1}）`
+              : '登場人物'
+          }
         />
       </ScrollView>
     </ThemedView>

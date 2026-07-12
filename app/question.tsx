@@ -11,6 +11,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
+import { getDescriptiveScopeForChoice } from '@/src/descriptiveScopeBank';
 import { setDeepdiveParams } from '@/src/deepdiveState';
 import { RESOURCES } from '@/src/questions';
 import { mergeQuizResourcePages, parseQuizRefIds } from '@/utils/quizResources';
@@ -36,6 +37,12 @@ import {
 } from '@/utils/quiz-question-pipeline';
 import { parseComboChoiceParts, splitSlotOptionParts } from '@/utils/slotNormalize';
 import { getQuestionStats, getQuestionTextHash, reconcileAllAttemptsAsCorrect, type QuestionStats } from '@/utils/question-stats';
+import {
+  buildSousokuMasteryInsight,
+  sousokuLearnRoute,
+  type TopicMasteryInsight,
+} from '@/utils/topic-mastery';
+import { canResolveFieldTopics } from '@/utils/topic-resolver';
 import { CIVIL_PRECEDENT_IMAGES } from '@/src/civilPrecedentImages';
 import { resolveMondaibunnGazoItems } from '@/src/mondaibunn-gazou';
 import { extractQuestionCast } from '@/src/castRegistry';
@@ -407,6 +414,7 @@ export default function QuestionScreen() {
   const { applyCharacterNames, characterMap } = useCharacter();
 
   const [questionStats, setQuestionStats] = useState<QuestionStats | null>(null);
+  const [topicMastery, setTopicMastery] = useState<TopicMasteryInsight | null>(null);
   const [questionMark, setQuestionMarkState] = useState<QuestionMark>(null);
   const [highlightedSegments, setHighlightedSegments] = useState<Set<number>>(new Set());
   const [highlightRanges, setHighlightRanges] = useState<HighlightRange[]>([]);
@@ -415,6 +423,7 @@ export default function QuestionScreen() {
   useEffect(() => {
     if (!subject || !field || !question?.text) {
       setQuestionStats(null);
+      setTopicMastery(null);
       setHighlightRanges([]);
       return;
     }
@@ -424,6 +433,20 @@ export default function QuestionScreen() {
     getQuestionHighlights(subject, field, qt).then(setHighlightedSegments);
     getQuestionHighlightRanges(subject, field, qt).then(setHighlightRanges);
   }, [subject, field, question?.text, stripQuestionText]);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!subject || !field || !question?.text || !canResolveFieldTopics(subject, field)) {
+      setTopicMastery(null);
+      return;
+    }
+    buildSousokuMasteryInsight(question.text, questionStats).then((insight) => {
+      if (!cancelled) setTopicMastery(insight);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [subject, field, question?.text, questionStats]);
 
   /** 記述スコープ・教えて先生・蛍光ペン（同時に ON にできない） */
   type ActionMode = 'descriptiveScope' | 'teachMe' | 'highlighterPen' | null;
@@ -606,14 +629,14 @@ export default function QuestionScreen() {
 
   // State for 記述式（文章入力）
   const [descriptiveAnswer, setDescriptiveAnswer] = useState('');
-  // 記述スコープ: 択一問題を記述で答えるモード
-  const [descriptiveScopeOn, setDescriptiveScopeOn] = useState(false);
+  // 記述スコープ: 肢を選んで記述問題を生成（常時チップ表示）
   const [scopeDescriptiveAnswer, setScopeDescriptiveAnswer] = useState('');
-
   const [scopeGeneratedQuestion, setScopeGeneratedQuestion] = useState('');
   const [scopeGeneratedModelAnswer, setScopeGeneratedModelAnswer] = useState('');
   const [scopeGenerateLoading, setScopeGenerateLoading] = useState(false);
   const [scopeGenerateError, setScopeGenerateError] = useState<string | null>(null);
+  /** 記述科目以外では常に表示 */
+  const showDescriptiveScopeChip = subject !== '記述';
   const [teachMeModalVisible, setTeachMeModalVisible] = useState(false);
   const [teachMeContent, setTeachMeContent] = useState('');
   const [teachMeLoading, setTeachMeLoading] = useState(false);
@@ -645,32 +668,60 @@ export default function QuestionScreen() {
     }
   }, [question?.text, question?.explain]);
 
-  const requestDescriptiveScope = useCallback(async (choiceText: string) => {
-    setScopeGenerateError(null);
-    setScopeGeneratedQuestion('');
-    setScopeGeneratedModelAnswer('');
-    setScopeGenerateLoading(true);
-    if (!GEMINI_API_KEY) {
-      setScopeGenerateError('APIキー未設定。.env に EXPO_PUBLIC_GEMINI_API_KEY を設定してください。');
-      setScopeGenerateLoading(false);
-      return;
-    }
-    try {
+  const buildLocalDescriptiveScope = useCallback((choiceText: string) => {
+    const cleaned = (choiceText || '').replace(/（ｒ）|\(ｒ\)/g, '').replace(/※/g, '').trim();
+    return {
+      question: `次の内容について、正しい趣旨を40字程度で記述せよ。\n\n（素材）\n${cleaned}`,
+      modelAnswer: cleaned.slice(0, 80),
+    };
+  }, []);
+
+  const requestDescriptiveScope = useCallback(
+    async (choiceText: string, choiceIndex?: number) => {
+      setScopeGenerateError(null);
+      setScopeGeneratedQuestion('');
+      setScopeGeneratedModelAnswer('');
+      setScopeGenerateLoading(true);
+
       const text = question?.text || '';
-      const choices = ((question as any)?.choices || []).map((c: string) => (c || '').replace(/※/g, ''));
-      const result = await generateDescriptiveQuestion(GEMINI_API_KEY, {
-        problemText: text,
-        choices,
-        selectedChoiceText: choiceText,
-      });
-      setScopeGeneratedQuestion(result.question);
-      setScopeGeneratedModelAnswer(result.modelAnswer);
-    } catch (e: any) {
-      setScopeGenerateError(e?.message || '記述問題の生成に失敗しました。');
-    } finally {
-      setScopeGenerateLoading(false);
-    }
-  }, [question?.text, question?.choices]);
+      const hash = text ? getQuestionTextHash(text) : '';
+      if (hash && choiceIndex != null && choiceIndex >= 0) {
+        const fromBank = getDescriptiveScopeForChoice(hash, choiceIndex);
+        if (fromBank) {
+          setScopeGeneratedQuestion(fromBank.question);
+          setScopeGeneratedModelAnswer(fromBank.modelAnswer);
+          setScopeGenerateLoading(false);
+          return;
+        }
+      }
+
+      if (!GEMINI_API_KEY) {
+        const local = buildLocalDescriptiveScope(choiceText);
+        setScopeGeneratedQuestion(local.question);
+        setScopeGeneratedModelAnswer(local.modelAnswer);
+        setScopeGenerateLoading(false);
+        return;
+      }
+      try {
+        const choices = ((question as any)?.choices || []).map((c: string) => (c || '').replace(/※/g, ''));
+        const result = await generateDescriptiveQuestion(GEMINI_API_KEY, {
+          problemText: text,
+          choices,
+          selectedChoiceText: choiceText,
+        });
+        setScopeGeneratedQuestion(result.question);
+        setScopeGeneratedModelAnswer(result.modelAnswer);
+      } catch (_e: any) {
+        const local = buildLocalDescriptiveScope(choiceText);
+        setScopeGeneratedQuestion(local.question);
+        setScopeGeneratedModelAnswer(local.modelAnswer);
+        setScopeGenerateError(null);
+      } finally {
+        setScopeGenerateLoading(false);
+      }
+    },
+    [question?.text, question?.choices, buildLocalDescriptiveScope],
+  );
 
   // Reset dimmed choices and selections when question changes
   useEffect(() => {
@@ -679,7 +730,6 @@ export default function QuestionScreen() {
     setSelectedIndices([]);
     setStemComboLetters([]);
     setDescriptiveAnswer('');
-    setDescriptiveScopeOn(false);
     setScopeDescriptiveAnswer('');
     setScopeGeneratedQuestion('');
     setScopeGeneratedModelAnswer('');
@@ -1807,10 +1857,73 @@ export default function QuestionScreen() {
               <ThemedText style={[styles.currentInsightMessage, { color: colors.text }]}>
                 {currentInsight.message}
               </ThemedText>
+              {topicMastery ? (
+                <View style={[styles.currentInsightNext, { borderColor: colors.choiceBorder, backgroundColor: colors.background, marginBottom: 8 }]}>
+                  <ThemedText style={[styles.currentInsightNextTitle, { color: currentInsight.accent }]}>
+                    論点 {topicMastery.resolved.unit.label}
+                    {topicMastery.resolved.topic.id !== topicMastery.resolved.unit.id
+                      ? ` › ${topicMastery.resolved.topic.label}`
+                      : ''}
+                    {topicMastery.needsReviewTag ? '（推定）' : ''}
+                  </ThemedText>
+                  <ThemedText style={[styles.currentInsightNextText, { color: colors.text, marginBottom: 6 }]}>
+                    単元Lv.{topicMastery.unitLevel} {topicMastery.unitLabel}
+                  </ThemedText>
+                  <ThemedText style={[styles.currentInsightNextText, { color: colors.subText, marginBottom: 8 }]}>
+                    {topicMastery.gapMessage}
+                  </ThemedText>
+                  {topicMastery.siblings.length > 1 ? (
+                    <View style={{ gap: 4, marginBottom: 8 }}>
+                      {topicMastery.siblings.map((sib) => (
+                        <View key={sib.hash} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                          <ThemedText
+                            style={{
+                              flex: 1,
+                              fontSize: 12,
+                              color: sib.isCurrent ? currentInsight.accent : colors.subText,
+                              fontWeight: sib.isCurrent ? '700' : '400',
+                            }}
+                            numberOfLines={1}
+                          >
+                            {sib.isCurrent ? '▶ ' : ''}
+                            {sib.label}
+                          </ThemedText>
+                          <ThemedText style={{ fontSize: 12, color: colors.text, minWidth: 44, textAlign: 'right' }}>
+                            {sib.rate == null ? '—' : `${sib.rate}%`}
+                          </ThemedText>
+                        </View>
+                      ))}
+                    </View>
+                  ) : null}
+                  {topicMastery.nextStep.step1LearnIndex != null ? (
+                    <View style={{ gap: 6 }}>
+                      <Pressable
+                        onPress={() => {
+                          const route = sousokuLearnRoute(topicMastery.nextStep.step1LearnIndex!);
+                          router.push(route as any);
+                        }}
+                        style={{ paddingVertical: 6 }}
+                      >
+                        <ThemedText style={{ color: currentInsight.accent, fontSize: 13, fontWeight: '600' }}>
+                          {topicMastery.nextStep.step1Label}
+                        </ThemedText>
+                      </Pressable>
+                      {(questionStats?.wrong ?? 0) >= 2 ? (
+                        <ThemedText style={{ color: colors.subText, fontSize: 12 }}>
+                          {topicMastery.nextStep.step2Label}
+                          {topicMastery.nextStep.step2ComicKey
+                            ? `（${topicMastery.nextStep.step2ComicKey}）`
+                            : ''}
+                        </ThemedText>
+                      ) : null}
+                    </View>
+                  ) : null}
+                </View>
+              ) : null}
               <View style={[styles.currentInsightNext, { borderColor: colors.choiceBorder, backgroundColor: colors.background }]}>
                 <ThemedText style={[styles.currentInsightNextTitle, { color: currentInsight.accent }]}>次に入れる知識</ThemedText>
                 <ThemedText style={[styles.currentInsightNextText, { color: colors.subText }]}>
-                  {currentInsight.nextInput}
+                  {topicMastery?.resolved.topic.insightHint || currentInsight.nextInput}
                 </ThemedText>
               </View>
             </>
@@ -2071,7 +2184,7 @@ export default function QuestionScreen() {
                     onPress={() => {
                       if (activeActionMode === 'descriptiveScope') {
                         setActiveActionMode(null);
-                        requestDescriptiveScope(`${item.partA} ${item.partB}`);
+                        requestDescriptiveScope(`${item.partA} ${item.partB}`, item.originalIndex);
                         return;
                       }
                       if (activeActionMode === 'teachMe') {
@@ -2154,14 +2267,14 @@ export default function QuestionScreen() {
                 </View>
               ) : (
                 <>
-                  <ThemedText style={[styles.descriptiveLabel, { color: colors.subText }]}>記述スコープ（AIが生成した問題）</ThemedText>
+                  <ThemedText style={[styles.descriptiveLabel, { color: colors.subText }]}>記述スコープ（生成した記述問題）</ThemedText>
                   <ThemedText style={[styles.questionText, { color: colors.text, marginBottom: 12, marginTop: 4 }]}>{scopeGeneratedQuestion}</ThemedText>
                   <TextInput
                     style={[
                       styles.descriptiveInput,
                       { borderColor: colors.choiceBorder, backgroundColor: colors.card, color: colors.text }
                     ]}
-                    placeholder="40字程度で記述"
+                    placeholder="論点を漏れなく記述"
                     placeholderTextColor={colors.subText || '#999'}
                     multiline
                     numberOfLines={4}
@@ -2169,6 +2282,9 @@ export default function QuestionScreen() {
                     onChangeText={setScopeDescriptiveAnswer}
                     textAlignVertical="top"
                   />
+                  <ThemedText style={{ fontSize: 12, color: colors.subText, marginTop: 4, marginBottom: 8, alignSelf: 'flex-end' }}>
+                    {scopeDescriptiveAnswer.trim().length} 文字
+                  </ThemedText>
                   <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
                     <Pressable style={[styles.cancelSlotButton, { borderColor: colors.choiceBorder }]} onPress={cancelScopeDescriptive}>
                       <ThemedText style={{ color: colors.subText, fontSize: 12 }}>キャンセル</ThemedText>
@@ -2239,7 +2355,7 @@ export default function QuestionScreen() {
                     onPress={() => {
                       if (activeActionMode === 'descriptiveScope') {
                         setActiveActionMode(null);
-                        requestDescriptiveScope(displayText);
+                        requestDescriptiveScope(displayText, origIdx);
                         return;
                       }
                       if (activeActionMode === 'teachMe') {
@@ -2311,7 +2427,7 @@ export default function QuestionScreen() {
                     onPress={() => {
                       if (activeActionMode === 'descriptiveScope') {
                         setActiveActionMode(null);
-                        requestDescriptiveScope(`${item.partA} ${item.partB}`);
+                        requestDescriptiveScope(`${item.partA} ${item.partB}`, item.originalIndex);
                         return;
                       }
                       if (activeActionMode === 'teachMe') {
@@ -2448,7 +2564,7 @@ export default function QuestionScreen() {
                 onPress={() => {
                   if (activeActionMode === 'descriptiveScope') {
                     setActiveActionMode(null);
-                    requestDescriptiveScope(displayText);
+                    requestDescriptiveScope(displayText, choiceObj.originalIndex);
                     return;
                   }
                   if (activeActionMode === 'teachMe') {
@@ -2516,17 +2632,19 @@ export default function QuestionScreen() {
                     <ThemedText style={[styles.scopeChipText, { color: '#3949AB' }]}>登場人物</ThemedText>
                   </Pressable>
                 ) : null}
-                <Pressable
-                  style={[
-                    styles.scopeChip,
-                    { borderColor: colors.primary, backgroundColor: activeActionMode === 'descriptiveScope' ? colors.primary : colors.choiceBg }
-                  ]}
-                  onPress={() => setActiveActionMode((prev) => (prev === 'descriptiveScope' ? null : 'descriptiveScope'))}
-                >
-                  <ThemedText style={[styles.scopeChipText, { color: activeActionMode === 'descriptiveScope' ? '#fff' : colors.primary }]}>
-                    {activeActionMode === 'descriptiveScope' ? '記述スコープ ON' : '記述スコープ'}
-                  </ThemedText>
-                </Pressable>
+                {showDescriptiveScopeChip ? (
+                  <Pressable
+                    style={[
+                      styles.scopeChip,
+                      { borderColor: colors.primary, backgroundColor: activeActionMode === 'descriptiveScope' ? colors.primary : colors.choiceBg }
+                    ]}
+                    onPress={() => setActiveActionMode((prev) => (prev === 'descriptiveScope' ? null : 'descriptiveScope'))}
+                  >
+                    <ThemedText style={[styles.scopeChipText, { color: activeActionMode === 'descriptiveScope' ? '#fff' : colors.primary }]}>
+                      {activeActionMode === 'descriptiveScope' ? '記述スコープ ON' : '記述スコープ'}
+                    </ThemedText>
+                  </Pressable>
+                ) : null}
                 <Pressable
                   style={[
                     styles.scopeChip,

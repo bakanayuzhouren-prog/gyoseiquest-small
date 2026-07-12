@@ -43,6 +43,31 @@ import {
   GYOSEI_GYOSHO_KEY_PHRASES,
   GYOSEI_GYOSHO_PHRASE_ALIASES,
 } from '@/utils/chatTopicBriefsGyoseiGyosho';
+import {
+  KENPOU_CHAT_BRIEFS,
+  KENPOU_KEY_PHRASES,
+  KENPOU_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsKenpou';
+import {
+  KENPOU_HANREI_CHAT_BRIEFS,
+  KENPOU_HANREI_KEY_PHRASES,
+  KENPOU_HANREI_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsKenpouHanrei';
+import {
+  KENPOU_HANREI2_CHAT_BRIEFS,
+  KENPOU_HANREI2_KEY_PHRASES,
+  KENPOU_HANREI2_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsKenpouHanrei2';
+import {
+  KENPOU_DEEP_CHAT_BRIEFS,
+  KENPOU_DEEP_KEY_PHRASES,
+  KENPOU_DEEP_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsKenpouDeep';
+import {
+  KOKUBAI_CHAT_BRIEFS,
+  KOKUBAI_KEY_PHRASES,
+  KOKUBAI_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsKokubai';
 // @ts-ignore
 import { LINE_HISTORY } from '@/src/data/lineHistory';
 
@@ -120,6 +145,11 @@ const PHRASE_ALIASES: [string, string[]][] = [
   ...GYOSEI_FUFUKU_PHRASE_ALIASES,
   ...GYOSEI_PROC_COMPARISON_PHRASE_ALIASES,
   ...GYOSEI_GYOSHO_PHRASE_ALIASES,
+  ...KENPOU_PHRASE_ALIASES,
+  ...KENPOU_HANREI_PHRASE_ALIASES,
+  ...KENPOU_HANREI2_PHRASE_ALIASES,
+  ...KENPOU_DEEP_PHRASE_ALIASES,
+  ...KOKUBAI_PHRASE_ALIASES,
 ];
 
 /** 質問語に一致したとき必ずコンテキスト先頭に載せる短い論点ガイド（判例タグだけでは足りない論点用） */
@@ -195,6 +225,11 @@ const CHAT_TOPIC_BRIEFS: { triggers: string[]; title: string; text: string }[] =
   ...GYOSEI_FUFUKU_CHAT_BRIEFS,
   ...GYOSEI_PROC_COMPARISON_BRIEFS,
   ...GYOSEI_GYOSHO_CHAT_BRIEFS,
+  ...KENPOU_CHAT_BRIEFS,
+  ...KENPOU_HANREI_CHAT_BRIEFS,
+  ...KENPOU_HANREI2_CHAT_BRIEFS,
+  ...KENPOU_DEEP_CHAT_BRIEFS,
+  ...KOKUBAI_CHAT_BRIEFS,
 ];
 
 /** 口語ノイズを除いた検索核（「〜ってなん？」「とは」等） */
@@ -248,6 +283,11 @@ const KEY_LEGAL_PHRASES = [
   ...GYOSEI_FUFUKU_KEY_PHRASES,
   ...GYOSEI_PROC_COMPARISON_KEY_PHRASES,
   ...GYOSEI_GYOSHO_KEY_PHRASES,
+  ...KENPOU_KEY_PHRASES,
+  ...KENPOU_HANREI_KEY_PHRASES,
+  ...KENPOU_HANREI2_KEY_PHRASES,
+  ...KENPOU_DEEP_KEY_PHRASES,
+  ...KOKUBAI_KEY_PHRASES,
 ];
 
 function normalizeQueryForMatch(s: string): string {
@@ -385,6 +425,16 @@ function expandSearchTokens(trimmed: string): { fullNormalized: string; rawNorma
     rawNormalized.includes('無効確認')
   ) {
     ['行政事件訴訟法', '原告適格', '処分性', '訴えの利益'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (
+    rawNormalized.includes('二重の基準') ||
+    rawNormalized.includes('私人間効力') ||
+    rawNormalized.includes('政教分離') ||
+    rawNormalized.includes('検閲') ||
+    rawNormalized.includes('マクリーン') ||
+    (rawNormalized.includes('憲法') && (rawNormalized.includes('人権') || rawNormalized.includes('違憲')))
+  ) {
+    ['公共の福祉', '表現の自由', '職業選択の自由', '違憲審査'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
   }
   // 基礎法学まとめを拾いやすくする
   if (

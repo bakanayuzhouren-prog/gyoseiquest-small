@@ -1,7 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, View, type ViewProps } from 'react-native';
 
-import { useThemeColor } from '@/hooks/use-theme-color';
 import { useTheme } from '@/src/context/ThemeContext';
 
 export type ThemedViewProps = ViewProps & {
@@ -10,8 +9,9 @@ export type ThemedViewProps = ViewProps & {
 };
 
 export function ThemedView({ style, lightColor, darkColor, ...otherProps }: ThemedViewProps) {
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
-  const { theme } = useTheme();
+  const { theme, colors } = useTheme();
+  // 設定のUIモード（六法など）を背景にも反映。明示propsがあればそちら優先。
+  const backgroundColor = lightColor ?? darkColor ?? colors.background;
 
   if (theme === 'premium') {
     return (

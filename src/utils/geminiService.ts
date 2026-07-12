@@ -357,6 +357,36 @@ function buildChatTopicStructure(userQuery: string): string {
   return blocks.length ? `\n${blocks.join('\n')}\n` : '';
 }
 
+export type ChatStudyLevel = 'beginner' | 'intermediate' | 'advanced';
+
+function buildStudyLevelInstruction(level: ChatStudyLevel = 'beginner'): string {
+  if (level === 'beginner') {
+    return `【学習レベル：初級（初学者）】
+想定：勉強を始めて間もなく、過去問を1〜2周程度。用語にまだ慣れていない。
+- 専門用語は必ず直後にかみ砕く（例: 目的効果基準＝「何のためにやったか」と「結果として宗教を助けていないか」）
+- 結論は短く。理由は1論点まで。似た判例の並列は最大2つ
+- 審査基準の名前（LRA・明白性など）は出してもよいが、使い方は例え話優先
+- 「今はこれだけ覚えればOK」の暗記を必ず1行
+- 深い総合考慮の細部や学説対立は書かない（聞かれたら「中級以上で扱う」と一言）`;
+  }
+  if (level === 'intermediate') {
+    return `【学習レベル：中級（およそ150点帯）】
+想定：一通り触れているが伸び悩んでいる。枠組みとひっかけで点を取りたい。
+- 結論→判断枠組みの名前→あてはめ→ひっかけ、の順
+- 似た判例は対比表で聞き分ける（例: 津○／愛媛×、薬局×／小売○）
+- 目的効果と総合考慮、消極／積極、検閲と事前抑制など「取り違えポイント」を必ず1つ
+- 条文番号・事件名は正確に。学説の細かい対立は最小限
+- 暗記は本番で切れる合言葉にする`;
+  }
+  return `【学習レベル：上級（合格点〜170点以上を確実化）】
+想定：模試で合格点前後〜170点以上。取りこぼしと深い択一・多肢を潰したい。
+- 判断枠組みを答案型で明示（二段階審査、要素列挙、例外要件）
+- 類似判例・近時判例との聞き分け、ひっかけ肢の作り方まで書く
+- 目的効果↔総合考慮の実質関係、規制目的二分の限界、立法裁量の言い回しなど深い芯も省略しない
+- 参考テキストにある限り、判旨キーワードを正確に使う
+- それでも結論先出し。冗長な前置きは禁止`;
+}
+
 async function callGeminiGenerate(
   apiKey: string,
   model: string,
@@ -390,9 +420,10 @@ export const answerChatFromContext = async (
     userQuery: string;
     contextChunks: ChatContextChunk[];
     history?: ChatHistoryTurn[];
+    studyLevel?: ChatStudyLevel;
   }
 ): Promise<string> => {
-  const { userQuery, contextChunks, history = [] } = params;
+  const { userQuery, contextChunks, history = [], studyLevel = 'beginner' } = params;
 
   const ctx =
     contextChunks.length === 0
@@ -413,9 +444,12 @@ export const answerChatFromContext = async (
           .join('\n')}\n`;
 
   const topicStructure = buildChatTopicStructure(userQuery);
+  const levelBlock = buildStudyLevelInstruction(studyLevel);
 
   const prompt = `【役割】
 あなたは行政書士試験の**鬼教官級**の学習アシスタントです。受験生が本番で得点できるように、結論から短く、根拠つきで教える。
+
+${levelBlock}
 
 【根拠ルール（厳守）】
 - 「参考テキスト」に書いてあることだけを根拠にする。一般知識・推測・条文創作は禁止。
@@ -425,12 +459,22 @@ export const answerChatFromContext = async (
 - 関連度スコアが高いチャンクを優先して読む（低いものだけで断定しない）。
 ${topicStructure}
 【回答フォーマット（毎回この順）】
-1. **結論**（1〜3文。先に答え）
-2. **理由・根拠**（条文・判例・制度の仕組み。必要なら番号付き）
-3. **試験のひっかけ**（よくある誤肢・取り違えを1つ）
-4. **暗記**（合言葉を1行）
+### 結論
+（1〜3文。先に答え）
+### 理由・根拠
+（条文・判例・制度の仕組み。必要なら番号付き）
+### 試験のひっかけ
+（よくある誤肢・取り違えを1つ）
+### 暗記
+（合言葉を1行）
 比較・例外の質問では上の専用構成を優先しつつ、最後にひっかけと暗記を残す。
-余計な前置き・「承知しました」は不要。Markdown（**太字**・箇条書き・短い表）で読みやすく。
+余計な前置き・「承知しました」は不要。
+構造は Markdown でよいが、アプリが表示用に整形する前提で次を守る:
+- 見出しは ### 見出し名（# だけの行は不可）
+- 箇条書きは行頭を「- 」（ハイフン＋スペース）。「* 」は使わない
+- 太字は **このように**
+- 短い表は | 列 | 形式で可
+- 学習レベル指示と矛盾する場合は**学習レベルを優先**（深さ・語彙・並列数）
 
 ${historyBlock}
 【ユーザーの質問】

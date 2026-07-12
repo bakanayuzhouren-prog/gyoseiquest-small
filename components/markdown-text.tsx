@@ -1,5 +1,9 @@
 import { useState, type ReactNode } from 'react';
 import { Platform, Pressable, StyleProp, Text, TextStyle, View } from 'react-native';
+import {
+    BEGINNER_GLOSSARY_SORTED,
+    type BeginnerGlossaryEntry,
+} from '@/utils/beginner-glossary';
 import { segmentDeepdiveTextForRender } from '@/utils/deepdive-tab-table';
 import { normalizeMarkupForRender } from '@/utils/markup-tags';
 import { ThemedText } from './themed-text';
@@ -17,73 +21,19 @@ type Props = {
     lineGap?: number;
     /** `- 項目` 行を箇条書きとして字下げ・中黒表示 */
     bulletList?: boolean;
-    /** 重要語を自動で赤字クリック化し、付近にミニ辞典を出す */
+    /**
+     * 重要語を自動でクリック化し、付近にミニ辞典を出す。
+     * 未指定時は true（問題・解説・深掘り・チャンクなど全モード既定ON）。
+     */
     autoGlossaryTerms?: boolean;
 };
 
 const defaultTextStyle = { lineHeight: 28, fontSize: 16 };
 const BOLD_STYLE = { fontWeight: 'bold' as const };
 const RED_HIGHLIGHT = { fontWeight: 'bold' as const, color: '#D32F2F' };
-const GLOSSARY_TERMS = [
-    ['目的効果基準', '政教分離の違憲審査で使われる判断枠組み。行為の目的に宗教的意義があるか、効果として特定宗教への援助・促進・圧迫になるかを見る。'],
-    ['総合考慮', '一つの基準だけで機械的に決めず、施設の性格、経緯、利用状況、一般人の受け止め方など複数事情を合わせて判断すること。'],
-    ['政教分離', '国や自治体が特定の宗教と過度に結びつかないようにする憲法上の原則。判例ごとに判断枠組みが変わる点が重要。'],
-    ['公金支出', '国や自治体のお金を支出すること。宗教関係では、何のための支出か、特定宗教を援助する効果があるかが問われる。'],
-    ['公有地の無償提供', '自治体などの土地を無償で使わせること。宗教施設に使われる場合、使用経緯や実態を総合して政教分離違反が問題になる。'],
-    ['GPS捜査', 'GPS端末などで対象者の所在を継続的に把握する捜査。最高裁は強制処分に当たり得るとして、令状なしではできないとした。'],
-    ['電話傍受', '通話内容を捜査機関が聴取・記録する捜査。令状は必要だが、通話一本ごとの個別令状までは不要と整理する。'],
-    ['通信の秘密', '誰とどんな通信をしたか、通信内容が何かをみだりに知られない利益。電話傍受などで強く問題になる。'],
-    ['強制処分', '相手の意思に反して重要な権利・利益を制約する捜査。原則として法律上の根拠と令状が必要になる。'],
-    ['令状', '裁判官が捜査機関に対し、捜索・差押え・検証などを許可する書面。強制捜査の入口で問われる。'],
-    ['裁判員制度', '重大刑事事件の第一審で、市民である裁判員と職業裁判官が一緒に審理・評議する制度。'],
-    ['評決', '裁判員裁判で有罪・無罪や量刑を決める判断。単なる多数決ではなく、裁判官と裁判員の双方の意見を含む必要がある。'],
-    ['特別会', '衆議院解散総選挙後に召集される国会。任期満了総選挙後は臨時会である点がひっかけ。'],
-    ['臨時会', '必要がある場合に召集される国会。任期満了による衆議院総選挙後にも召集される。'],
-    ['緊急集会', '衆議院解散中に国会の議決が必要な緊急事態で、参議院だけで開く制度。次の国会で衆議院の同意が必要。'],
-    ['処分性', '行政庁の行為が、国民の権利義務や法的地位を直接具体的に変えるかという抗告訴訟の入口要件。'],
-    ['訴えの利益', '裁判で取消しなどを求める実益が残っていること。後の事情で利益が消えると訴えは維持しにくい。'],
-    ['抗告訴訟', '行政庁の処分や裁決などを争う行政事件訴訟。取消訴訟・無効等確認訴訟などがここに入る。'],
-    ['事情判決', '処分は違法だが、取り消すと公の利益に著しい障害がある場合、違法を宣言しつつ請求を棄却する判決。'],
-    ['執行停止', '取消訴訟などの係属中に、処分の効力や執行を一時的に止める制度。重大な損害を避ける必要性などを見る。'],
-    ['審査請求', '行政庁の処分や不作為に対し、行政庁の内部ルートで不服を申し立てる手続。'],
-    ['審理員', '審査請求で審理を担当する者。処分に関与していない者が手続を進めるのが原則。'],
-    ['裁決', '審査請求に対する最終判断。却下、棄却、認容のどれかを場面に応じて区別する。'],
-    ['聴聞', '重い不利益処分の前に、当事者へ意見陳述や証拠提出の機会を与える手続。'],
-    ['弁明', '聴聞より簡易な不利益処分前の意見提出手続。原則として書面で行う。'],
-    ['審査基準', '申請に対する処分で、許認可等をするかどうかを判断する基準。行政庁は原則として定めて公にする。'],
-    ['標準処理期間', '申請が到達してから処分までに通常要する標準的な期間。定めた場合は公にする必要がある。'],
-    ['行政指導', '行政機関が相手方の任意の協力を求める行為。許認可権限をちらつかせた事実上の強制がひっかけ。'],
-    ['行政手続法', '処分前の手続、行政指導、届出、命令等制定手続などを定める法律。'],
-    ['行政不服審査法', '行政庁の処分・不作為について、行政庁側に不服申立てをするルールを定める法律。'],
-    ['行政事件訴訟法', '行政処分などを裁判所で争う訴訟のルールを定める法律。'],
-    ['国家賠償', '公務員の違法行為や公の営造物の瑕疵によって損害が生じた場合に、国や公共団体が賠償する制度。'],
-    ['損失補償', '適法な公権力行使で特別の犠牲を受けた人に、公平のため補償する制度。国家賠償との違いが重要。'],
-    ['営造物', '道路、河川、公園など公の目的に使われる物的施設。設置管理の瑕疵が国賠2条で問題になる。'],
-    ['瑕疵', '通常備えるべき安全性を欠くこと。営造物責任では、過失よりも安全性欠如が中心。'],
-    ['住民監査請求', '住民が地方公共団体の財務会計行為について監査委員に監査を求める手続。住民訴訟の前置になる。'],
-    ['住民訴訟', '住民監査請求を経た住民が、違法な財務会計行為について裁判所で争う訴訟。'],
-    ['時効', '一定期間の経過により権利取得や権利消滅の効果が生じる制度。完成猶予・更新・援用を分ける。'],
-    ['相殺', '互いに同種の債権を持つ者が、対当額で債権を消滅させる意思表示。自働債権・受働債権を見る。'],
-    ['解除', '契約関係を解消する意思表示。催告解除、無催告解除、原状回復、損害賠償の関係が問われる。'],
-    ['詐害行為取消', '債務者が責任財産を減らす行為をした場合、債権者が一定範囲で取り消せる制度。'],
-    ['債権者代位', '債権者が自己の債権を保全するため、債務者の権利を代わりに行使する制度。'],
-    ['保証', '主たる債務者が履行しない場合に、保証人が代わりに責任を負う制度。'],
-    ['抵当権', '債務者などの不動産を担保に取り、占有を移さず、弁済がないとき優先弁済を受ける担保物権。'],
-    ['法定地上権', '土地と建物が同一所有など一定要件を満たす場合、競売後に建物存続のため法律上当然に成立する地上権。'],
-    ['地役権', '要役地の便益のために、他人の土地である承役地を一定範囲で利用できる物権。'],
-    ['妨害排除請求', '物権などへの現在の妨害を取り除くよう求める請求。明渡しまで求められるかは別に検討する。'],
-    ['明渡し', '占有している物を相手に引き渡すこと。妨害排除と混同しやすい。'],
-    ['定款', '会社の基本ルール。会社法では、何を定款で定める必要があるかが頻出。'],
-    ['株主総会', '株主で構成される会社の意思決定機関。取締役会設置会社かどうかで権限が変わる。'],
-    ['取締役会', '取締役で構成される会社の業務執行決定機関。設置会社では株主総会との役割分担が重要。'],
-    ['譲渡制限株式', '譲渡に会社の承認が必要な株式。非公開会社や相続人への売渡請求などと絡めて問われる。'],
-    ['種類株式', '剰余金配当、議決権、取得請求など内容の異なる株式。定款で何を定めるかがポイント。'],
-    ['個人情報保護法', '生存する個人に関する情報の取扱い、開示・訂正・利用停止などを定める法律。'],
-    ['情報公開', '行政機関などが保有する文書について、開示請求と非開示情報のルールを定める制度。'],
-] as const;
 
-type GlossaryTerm = (typeof GLOSSARY_TERMS)[number];
-const GLOSSARY_TERMS_SORTED: readonly GlossaryTerm[] = [...GLOSSARY_TERMS].sort((a, b) => b[0].length - a[0].length);
+type GlossaryTerm = BeginnerGlossaryEntry;
+const GLOSSARY_TERMS_SORTED = BEGINNER_GLOSSARY_SORTED;
 
 type LinePart =
     | { type: 'plain'; text: string }
@@ -297,7 +247,59 @@ function minWidthForColumn(colCount: number, colIndex: number): number | undefin
     return m[colIndex];
 }
 
-const BULLET_LINE_RE = /^-\s+(.*)$/;
+/** `- item` / `* item` / `• item`（`**太字` 行頭は除外） */
+const BULLET_LINE_RE = /^[-*•]\s+(.*)$/;
+const HEADING_LINE_RE = /^(#{1,6})\s+(.*)$/;
+const HR_LINE_RE = /^(-{3,}|\*{3,}|_{3,})$/;
+
+type ClassifiedLine =
+    | { kind: 'empty' }
+    | { kind: 'hr' }
+    | { kind: 'heading'; level: number; body: string }
+    | { kind: 'bullet'; body: string }
+    | { kind: 'plain'; body: string };
+
+function classifyMarkdownLine(line: string, forceBulletList?: boolean): ClassifiedLine {
+    const trimmed = line.trimEnd();
+    if (!trimmed.trim()) return { kind: 'empty' };
+    if (HR_LINE_RE.test(trimmed.trim())) return { kind: 'hr' };
+    const heading = HEADING_LINE_RE.exec(trimmed);
+    if (heading) return { kind: 'heading', level: heading[1].length, body: heading[2] };
+    // `**太字**` で始まる行は箇条書きにしない
+    if (!trimmed.startsWith('**')) {
+        const bullet = BULLET_LINE_RE.exec(trimmed);
+        if (bullet) return { kind: 'bullet', body: bullet[1] };
+        if (forceBulletList) {
+            const dashOnly = /^-\s+(.*)$/.exec(trimmed);
+            if (dashOnly) return { kind: 'bullet', body: dashOnly[1] };
+        }
+    }
+    return { kind: 'plain', body: trimmed };
+}
+
+function resolveFontSize(style: StyleProp<TextStyle>, fallback = 15): number {
+    if (!style) return fallback;
+    const list = (Array.isArray(style) ? style.flat(4) : [style]) as (TextStyle | null | undefined | false)[];
+    for (let i = list.length - 1; i >= 0; i--) {
+        const s = list[i];
+        if (s && typeof s === 'object' && typeof s.fontSize === 'number') return s.fontSize;
+    }
+    return fallback;
+}
+
+function headingTextStyle(level: number, lineStyle: StyleProp<TextStyle>, uniformWeight?: boolean): StyleProp<TextStyle> {
+    const baseSize = resolveFontSize(lineStyle, 15);
+    const sizeBoost = level <= 2 ? 3 : level === 3 ? 2 : 1;
+    return [
+        lineStyle,
+        {
+            fontSize: baseSize + sizeBoost,
+            lineHeight: (baseSize + sizeBoost) * 1.45,
+            marginTop: level <= 3 ? 6 : 2,
+            ...(uniformWeight ? null : { fontWeight: '700' as const }),
+        },
+    ];
+}
 
 function MarkdownPlainBlock({
     text,
@@ -332,22 +334,37 @@ function MarkdownPlainBlock({
                 <ThemedText style={{ color: '#3F1F1F', fontSize: 14, lineHeight: 21 }}>{activeGlossary.body}</ThemedText>
             </View>
         ) : null;
+    const webBlock =
+        Platform.OS === 'web' ? ({ display: 'block' } as unknown as TextStyle) : null;
     return (
         <View style={{ gap: lineGap, width: '100%', alignSelf: 'stretch' }}>
             {lines.map((line, lineIndex) => {
-                const bulletMatch = bulletList ? BULLET_LINE_RE.exec(line) : null;
-                const displayLine = bulletMatch ? bulletMatch[1] : line;
+                const classified = classifyMarkdownLine(line, bulletList);
+                if (classified.kind === 'empty') return null;
+                if (classified.kind === 'hr') {
+                    return (
+                        <View
+                            key={`${keyPrefix}-${lineIndex}`}
+                            style={{ height: 1, backgroundColor: '#E2E8F0', marginVertical: 6, alignSelf: 'stretch' }}
+                        />
+                    );
+                }
+                const displayLine = classified.body;
                 if (!displayLine.trim()) return null;
                 const parsed = applyGlossaryTerms(parseLine(displayLine), autoGlossaryTerms);
+                const appliedLineStyle =
+                    classified.kind === 'heading'
+                        ? headingTextStyle(classified.level, lineStyle, uniformWeight)
+                        : lineStyle;
                 const parts = renderLineParts(
                     parsed,
-                    lineStyle,
+                    appliedLineStyle,
                     onHighlightPress,
                     `L${keyPrefix}-${lineIndex}`,
                     uniformWeight,
                     autoGlossaryTerms ? (title, body) => toggleGlossary(lineIndex, title, body) : undefined
                 );
-                if (bulletMatch) {
+                if (classified.kind === 'bullet') {
                     return (
                         <View key={`${keyPrefix}-${lineIndex}`} style={{ width: '100%', alignSelf: 'stretch', gap: 6 }}>
                             <ThemedText
@@ -356,9 +373,8 @@ function MarkdownPlainBlock({
                                     {
                                         width: '100%',
                                         alignSelf: 'stretch',
-                                        ...(Platform.OS === 'web'
-                                            ? ({ display: 'block' } as unknown as TextStyle)
-                                            : null),
+                                        paddingLeft: 2,
+                                        ...webBlock,
                                     },
                                 ]}
                             >
@@ -373,13 +389,11 @@ function MarkdownPlainBlock({
                     <View key={`${keyPrefix}-${lineIndex}`} style={{ width: '100%', alignSelf: 'stretch', gap: 6 }}>
                         <ThemedText
                             style={[
-                                lineStyle,
+                                appliedLineStyle,
                                 {
                                     width: '100%',
                                     alignSelf: 'stretch',
-                                    ...(Platform.OS === 'web'
-                                        ? ({ display: 'block' } as unknown as TextStyle)
-                                        : null),
+                                    ...webBlock,
                                 },
                             ]}
                         >
@@ -443,6 +457,7 @@ function DeepdiveRichSegments({
                         onHighlightPress={onHighlightPress}
                         uniformWeight={uniformWeight}
                         keyPrefix={`${keyPrefix}-t-${si}`}
+                        autoGlossaryTerms={autoGlossaryTerms}
                     />
                 );
             })}
@@ -541,7 +556,16 @@ function MarkdownTabTable({
     );
 }
 
-export function MarkdownText({ text, style, applyNames, onHighlightPress, uniformWeight, lineGap: lineGapProp, bulletList, autoGlossaryTerms }: Props) {
+export function MarkdownText({
+    text,
+    style,
+    applyNames,
+    onHighlightPress,
+    uniformWeight,
+    lineGap: lineGapProp,
+    bulletList,
+    autoGlossaryTerms = true,
+}: Props) {
     if (!text) return null;
 
     const displayText = applyNames ? applyNames(text) : text;

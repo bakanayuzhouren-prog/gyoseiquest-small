@@ -1,12 +1,19 @@
 import { MarkdownText } from '@/components/markdown-text';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import {
+  STUDY_LEVEL_HINT,
+  STUDY_LEVEL_LABEL,
+  STUDY_LEVELS,
+  useStudyLevel,
+  type StudyLevel,
+} from '@/src/context/StudyLevelContext';
 import { Themes, useTheme } from '@/src/context/ThemeContext';
 import { answerChatFromContext } from '@/src/utils/geminiService';
 import { searchKnowledgeFull } from '@/utils/chatSearch';
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 const GEMINI_API_KEY =
@@ -23,32 +30,84 @@ type Message = {
   sources?: string[];
 };
 
-const SUGGESTIONS = [
-  '執行停止の違いをまとめて',
-  '取消訴訟何から考える',
-  '義務付けと差止めの違い',
-  '出訴期間はいつまで',
-  '行服法と行訴法の違いをまとめて',
-];
+const SUGGESTIONS_BY_LEVEL: Record<StudyLevel, string[]> = {
+  beginner: ['二重の基準ってなに', '私人間効力ってなに', '生存権ってなに', '処分性ってなに', '申請と届出の違い'],
+  intermediate: [
+    '政教分離の判断枠組み',
+    '目的効果と総合考慮の違い',
+    '薬局と小売市場の審査基準',
+    '猿払と堀越の違い',
+    '行服法と行訴法の違いをまとめて',
+  ],
+  advanced: [
+    '津と愛媛と空知太',
+    '事前抑制の例外要件',
+    '規制目的二分論',
+    '投票価値と事情判決',
+    '公務員の争議権判例の流れ',
+  ],
+};
+
+function welcomeText(level: StudyLevel): string {
+  const label = STUDY_LEVEL_LABEL[level];
+  const hint = STUDY_LEVEL_HINT[level];
+  const base =
+    'こんにちは！このアプリに入っている**学習データ・条文・過去問・MD**から検索して答えます。\n' +
+    `いまのレベルは **${label}**（${hint}）。ヘッダーで切り替えできます。\n`;
+  return (
+    base +
+    (GEMINI_API_KEY
+      ? '（Gemini **Pro優先**で、レベルに合わせて結論→根拠→ひっかけ→暗記の深さを変えます。根拠はアプリ内テキストのみ。）'
+      : '（**APIキー未設定**：検索結果の抜粋を表示します。.env に EXPO_PUBLIC_GEMINI_API_KEY を設定すると要約できます。）')
+  );
+}
+
+function formatSearchFallback(
+  chunks: { source: string; title: string; text: string }[],
+  level: StudyLevel
+): string {
+  const limit = level === 'beginner' ? 2 : level === 'intermediate' ? 3 : 5;
+  const sliceLen = level === 'beginner' ? 450 : level === 'intermediate' ? 700 : 900;
+  const intro =
+    level === 'beginner'
+      ? '### まずはここだけ\n見つかった解説の要点です。用語がむずかしければ、ヘッダーを「初級」のまま聞き直してください。\n\n'
+      : level === 'intermediate'
+        ? '### アプリ内検索ヒット（中級向け抜粋）\n枠組みとひっかけの材料です。\n\n'
+        : '### アプリ内検索ヒット（上級向け）\n深い判旨・比較の材料です。\n\n';
+  return (
+    intro +
+    chunks
+      .slice(0, limit)
+      .map((c, i) => `**${i + 1}. ${c.source} / ${c.title}**\n${c.text.slice(0, sliceLen)}${c.text.length > sliceLen ? '…' : ''}`)
+      .join('\n\n---\n\n')
+  );
+}
 
 export default function ChatScreen() {
   const { theme } = useTheme();
   const colors = Themes[theme];
+  const { studyLevel, setStudyLevel } = useStudyLevel();
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '0',
-      text:
-        'こんにちは！このアプリに入っている**学習データ・条文・過去問・MD**から検索して答えます。\n' +
-        (GEMINI_API_KEY
-          ? '（Gemini **Pro優先**で結論→根拠→ひっかけ→暗記の順に整理します。根拠はアプリ内テキストのみ。）'
-          : '（**APIキー未設定**：検索結果の抜粋をそのまま表示します。.env に EXPO_PUBLIC_GEMINI_API_KEY を設定すると要約できます。）'),
+      text: welcomeText('beginner'),
       sender: 'bot',
       useMarkdown: true,
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const flatListRef = useRef<FlatList>(null);
+  const suggestions = useMemo(() => SUGGESTIONS_BY_LEVEL[studyLevel], [studyLevel]);
+
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.length === 1 && prev[0].id === '0') {
+        return [{ ...prev[0], text: welcomeText(studyLevel) }];
+      }
+      return prev;
+    });
+  }, [studyLevel]);
 
   const handleSend = async (text: string = input) => {
     const trimmed = text.trim();
@@ -64,7 +123,6 @@ export default function ChatScreen() {
       const sourceLabels = [...new Set(chunks.map((c) => `${c.source}: ${c.title}`))].slice(0, 8);
 
       let botText: string;
-      let useMarkdown = false;
 
       if (GEMINI_API_KEY) {
         const history = messages
@@ -78,15 +136,10 @@ export default function ChatScreen() {
           userQuery: trimmed,
           contextChunks: chunks,
           history,
+          studyLevel,
         });
-        useMarkdown = true;
       } else if (chunks.length > 0) {
-        botText =
-          '【アプリ内検索の上位ヒット】\n\n' +
-          chunks
-            .slice(0, 5)
-            .map((c, i) => `■ ${i + 1}. ${c.source} / ${c.title}\n${c.text.slice(0, 900)}${c.text.length > 900 ? '…' : ''}`)
-            .join('\n\n---\n\n');
+        botText = formatSearchFallback(chunks, studyLevel);
       } else {
         botText =
           '該当するキーワードをアプリ内データで見つけられませんでした。\n別の言い回しや、条文番号・判例名・科目名で試してください。';
@@ -96,7 +149,7 @@ export default function ChatScreen() {
         id: (Date.now() + 1).toString(),
         text: botText,
         sender: 'bot',
-        useMarkdown,
+        useMarkdown: true,
         sources: sourceLabels.length > 0 ? sourceLabels : undefined,
       };
       setMessages((prev) => [...prev, botMsg]);
@@ -131,7 +184,13 @@ export default function ChatScreen() {
           isUser ? styles.userBubble : styles.botBubble,
         ]}>
         {item.useMarkdown ? (
-          <MarkdownText text={item.text} style={{ color: isUser ? '#fff' : colors.text, lineHeight: 22, fontSize: 15 }} uniformWeight />
+          <MarkdownText
+            text={item.text}
+            style={{ color: isUser ? '#fff' : colors.text, lineHeight: 22, fontSize: 15 }}
+            uniformWeight
+            bulletList
+            autoGlossaryTerms={!isUser}
+          />
         ) : (
           <ThemedText style={{ color: isUser ? '#fff' : colors.text }}>{item.text}</ThemedText>
         )}
@@ -158,6 +217,40 @@ export default function ChatScreen() {
     <ThemedView style={styles.container}>
       <View style={[styles.header, { borderBottomColor: colors.choiceBorder }]}>
         <ThemedText type="subtitle">AI学習アシスタント</ThemedText>
+        <View style={styles.levelRow}>
+          {STUDY_LEVELS.map((level) => {
+            const selected = studyLevel === level;
+            return (
+              <Pressable
+                key={level}
+                accessibilityRole="button"
+                accessibilityState={{ selected }}
+                accessibilityLabel={`学習レベル${STUDY_LEVEL_LABEL[level]}`}
+                onPress={() => setStudyLevel(level)}
+                style={[
+                  styles.levelChip,
+                  {
+                    borderColor: selected ? colors.primary : colors.choiceBorder,
+                    backgroundColor: selected ? colors.primary : colors.choiceBg,
+                  },
+                ]}
+              >
+                <ThemedText
+                  style={{
+                    color: selected ? '#fff' : colors.choiceText,
+                    fontSize: 12,
+                    fontWeight: selected ? '700' : '500',
+                  }}
+                >
+                  {STUDY_LEVEL_LABEL[level]}
+                </ThemedText>
+              </Pressable>
+            );
+          })}
+        </View>
+        <ThemedText style={{ color: colors.subText, fontSize: 11, marginTop: 6, textAlign: 'center' }}>
+          {STUDY_LEVEL_HINT[studyLevel]}
+        </ThemedText>
       </View>
 
       <FlatList
@@ -185,7 +278,7 @@ export default function ChatScreen() {
       <View style={styles.suggestionsContainer}>
         <FlatList
           horizontal
-          data={SUGGESTIONS}
+          data={suggestions}
           keyExtractor={(item) => item}
           renderItem={({ item }) => (
             <Pressable
@@ -227,9 +320,24 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingTop: 14,
+    paddingBottom: 12,
     borderBottomWidth: 1,
     alignItems: 'center',
+  },
+  levelRow: {
+    flexDirection: 'row',
+    gap: 8,
+    marginTop: 10,
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  levelChip: {
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    borderRadius: 999,
+    borderWidth: 1,
   },
   listContent: {
     padding: 16,

@@ -15,8 +15,9 @@ export function ThemedText({
   type = 'default',
   ...rest
 }: ThemedTextProps) {
-  const { colors } = useTheme();
-  const color = lightColor ?? darkColor ?? colors.text;
+  const { theme, colors } = useTheme();
+  const isRouhouHeading = theme === 'rouhou' && (type === 'title' || type === 'subtitle');
+  const color = lightColor ?? darkColor ?? (isRouhouHeading ? colors.primary : colors.text);
 
   return (
     <Text
@@ -27,6 +28,7 @@ export function ThemedText({
         type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
         type === 'subtitle' ? styles.subtitle : undefined,
         type === 'link' ? styles.link : undefined,
+        isRouhouHeading ? styles.rouhouHeading : undefined,
         style,
       ])}
       {...rest}
@@ -57,5 +59,8 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     fontSize: 16,
     color: '#0a7ea4',
+  },
+  rouhouHeading: {
+    letterSpacing: 1.2,
   },
 });

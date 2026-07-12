@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
 // --- Theme Definitions ---
-export type ThemeType = 'modern' | 'paper' | 'contrast' | 'premium' | 'cyberpunk';
+export type ThemeType = 'rouhou' | 'modern' | 'paper' | 'contrast' | 'premium' | 'cyberpunk';
 
 export interface ThemeColors {
     background: string;
@@ -20,8 +20,21 @@ export interface ThemeColors {
 }
 
 export const Themes: Record<ThemeType, ThemeColors> = {
+    rouhou: {
+        // 六法モード（標準）— 和紙寄りオフホワイト × 紺 × ティール
+        background: '#F7F4EC',
+        text: '#111111',
+        card: '#FBFAF6',
+        primary: '#1B3A5F',
+        choiceBg: '#E8EEF5',
+        choiceBorder: '#2C5282',
+        choiceText: '#111111',
+        accent: '#0D9488',
+        border: '#D4CFC3',
+        subText: '#3F3F46',
+    },
     modern: {
-        // Modern Tech (Default) - 薄いグレーで全画面統一
+        // Modern Tech - 薄いグレーで全画面統一
         background: '#f5f7fa',
         text: '#000000',
         card: '#f5f7fa',
@@ -94,15 +107,15 @@ type ContextType = {
 };
 
 const ThemeContext = createContext<ContextType>({
-    theme: 'modern',
-    colors: Themes.modern,
+    theme: 'rouhou',
+    colors: Themes.rouhou,
     setTheme: () => { },
 });
 
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [theme, setThemeState] = useState<ThemeType>('modern');
+    const [theme, setThemeState] = useState<ThemeType>('rouhou');
 
     // Load saved theme on mount
     useEffect(() => {
@@ -122,7 +135,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     };
 
     return (
-        <ThemeContext.Provider value={{ theme, colors: Themes[theme], setTheme }}>
+        <ThemeContext.Provider value={{ theme, colors: Themes[theme] ?? Themes.rouhou, setTheme }}>
             {children}
         </ThemeContext.Provider>
     );

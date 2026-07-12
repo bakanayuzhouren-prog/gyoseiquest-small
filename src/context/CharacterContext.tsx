@@ -4,6 +4,7 @@ import {
   applyCharacterMapReplacements,
   applyDisplayNames,
   defaultCharacterMap,
+  sanitizeCharacterMap,
   type CharacterMap,
 } from '@/src/displayNameReplacements';
 import { applyRolePhrases } from '@/src/rolePhraseReplacements';
@@ -45,11 +46,10 @@ export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     try {
       const savedMap = await AsyncStorage.getItem('characterMap');
       if (savedMap) {
-        const parsed = JSON.parse(savedMap) as CharacterMap;
-        if (parsed['兄弟姉妹'] === 'M') {
-          parsed['兄弟姉妹'] = '兄弟姉妹';
-        }
+        const parsed = sanitizeCharacterMap(JSON.parse(savedMap) as CharacterMap);
         setCharacterMap(parsed);
+        // 旧デフォルト（父→J 等）を捨てた結果を永続化
+        await AsyncStorage.setItem('characterMap', JSON.stringify(parsed));
       }
     } catch (error) {
       console.error('Failed to load character map', error);
@@ -65,7 +65,7 @@ export const CharacterProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   };
 
   const updateCharacterName = (original: string, newName: string) => {
-    const newMap = { ...characterMap, [original]: newName };
+    const newMap = sanitizeCharacterMap({ ...characterMap, [original]: newName });
     setCharacterMap(newMap);
     saveSettings(newMap);
   };

@@ -2,9 +2,14 @@
  * 民法・登場人物関係図（自動生成）
  * node scripts/generatePersonFlowImages.js で再生成
  */
+import type { StructuralPersonFlowDiagram } from '@/src/personFlowStructural';
+
 export type PersonFlowDiagramItem = {
-  source: number;
+  /** PNG 関係図（従来） */
+  source?: number;
   caption?: string;
+  /** 画像ではなくノード＋矢印の構造図（新制度） */
+  structural?: StructuralPersonFlowDiagram;
 };
 
 export const BY_QUESTION_TEXT_HASH: Record<string, PersonFlowDiagramItem | PersonFlowDiagramItem[]> = {

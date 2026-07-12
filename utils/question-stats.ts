@@ -39,6 +39,11 @@ export interface QuestionStats {
   consecutiveCorrect: number;
   /** 誤答リスト表示用（最新の問題文プレビュー） */
   previewText?: string;
+  /**
+   * true のとき「見て聞いて覚える」を青表示に固定（手動解除）。
+   * 再度誤答すると false に戻る。
+   */
+  learnLinkBlueOverride?: boolean;
 }
 
 /** AsyncStorage キー qstats_{subject}|{field}|{hash} を分解 */
@@ -115,6 +120,7 @@ export async function getQuestionStats(
       wrong: Math.max(0, parseInt(parsed.wrong, 10) || 0),
       consecutiveCorrect: Math.max(0, parseInt(parsed.consecutiveCorrect, 10) || 0),
       previewText: typeof parsed.previewText === 'string' ? parsed.previewText : undefined,
+      learnLinkBlueOverride: parsed.learnLinkBlueOverride === true,
     };
   } catch {
     return { correct: 0, wrong: 0, consecutiveCorrect: 0 };
@@ -143,6 +149,7 @@ export async function reconcileAllAttemptsAsCorrect(
     wrong: 0,
     consecutiveCorrect: Math.max(current.consecutiveCorrect ?? 0, total),
     previewText: current.previewText,
+    learnLinkBlueOverride: true,
   };
   const key = buildKey(subject, field, questionText);
   await AsyncStorage.setItem(key, JSON.stringify(next));
@@ -172,6 +179,8 @@ export async function updateQuestionStats(
     } else {
       current.wrong += 1;
       current.consecutiveCorrect = 0;
+      // 再誤答したら赤表示に戻す
+      current.learnLinkBlueOverride = false;
     }
     const qt = (questionText || '').trim();
     if (qt) {
@@ -181,6 +190,23 @@ export async function updateQuestionStats(
   } catch (e) {
     console.error('Failed to update question stats', e);
   }
+}
+
+/** 「見て聞いて覚える」を青表示に固定／解除（長押し用） */
+export async function setLearnLinkBlueOverride(
+  subject: string,
+  field: string,
+  questionText: string,
+  enabled: boolean,
+): Promise<QuestionStats> {
+  const current = await getQuestionStats(subject, field, questionText);
+  const next: QuestionStats = {
+    ...current,
+    learnLinkBlueOverride: enabled,
+  };
+  const key = buildKey(subject, field, questionText);
+  await AsyncStorage.setItem(key, JSON.stringify(next));
+  return next;
 }
 
 export async function getCorrectRate(
