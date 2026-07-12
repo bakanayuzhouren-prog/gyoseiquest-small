@@ -25,10 +25,10 @@ export default function ShishoModeScreen() {
           </ThemedText>
           <Link href="/subjects" asChild>
             <Pressable
-              style={[
+              style={StyleSheet.flatten([
                 styles.cta,
                 { backgroundColor: colors.primary, borderColor: colors.primary },
-              ]}
+              ])}
             >
               <ThemedText type="defaultSemiBold" style={styles.ctaText}>
                 科目を選んで始める

@@ -18,14 +18,6 @@ function getLearnDeepdiveTables(): {
   return { dd: LEARN_DEEPDIVE, lc: LEARN_CONTENT };
 }
 
-function firstLine(s: string): string {
-  const t = s.trimStart();
-  if (!t) return '';
-  const nl = /\r\n|\r|\n/.exec(t);
-  const line = nl ? t.slice(0, nl.index) : t;
-  return line.trimEnd();
-}
-
 /** B列先頭の [[…]]（画像タグ等）を除いたうえで1行目を取る。同一深掘り本文で [[image:]] あり／なしが混在しても兄弟判定できるようにする */
 function stripLeadingDeepdiveTags(s: string): string {
   let t = s.trimStart();
@@ -40,10 +32,35 @@ function stripLeadingDeepdiveTags(s: string): string {
 /** 兄弟行の件数が多く、かつ1行が極端に長いB列で文字列比較とメモリが爆発しないよう上限 */
 const SIBLING_TITLE_KEY_MAX = 640;
 
+/**
+ * 汎用見出しだけだと別論点カードが同一兄弟扱いになる（例: TACカード多数が「■ 結論」始まり →
+ * 愛媛玉串料の津地鎮祭4コマが三菱樹脂などへ誤差し込み）。
+ * 判例4コマ見出しがあればそれを優先し、汎用見出しだけのときは次行まで含めて一意化する。
+ */
+const GENERIC_DEEPDIVE_HEADING_RE =
+  /^■\s*(結論|なぜそうなる|ひっかけ|暗記|試験で切るポイント|本肢の正誤|直す場所|つまり)\s*$/;
+
 function siblingTitleForDeepdive(body: string): string {
-  const line = firstLine(stripLeadingDeepdiveTags(body));
-  if (line.length <= SIBLING_TITLE_KEY_MAX) return line;
-  return line.slice(0, SIBLING_TITLE_KEY_MAX);
+  const stripped = stripLeadingDeepdiveTags(body);
+  const comicHeading = stripped.match(/^■\s*判例4コマ[^\n]*/m);
+  if (comicHeading?.[0]) {
+    const key = comicHeading[0].trim();
+    return key.length <= SIBLING_TITLE_KEY_MAX ? key : key.slice(0, SIBLING_TITLE_KEY_MAX);
+  }
+
+  const lines = stripped
+    .split(/\r\n|\r|\n/)
+    .map((l) => l.trim())
+    .filter(Boolean);
+  if (lines.length === 0) return '';
+
+  const first = lines[0];
+  let key = first;
+  if (GENERIC_DEEPDIVE_HEADING_RE.test(first) && lines.length >= 2) {
+    key = `${first}\n${lines[1]}`;
+  }
+  if (key.length <= SIBLING_TITLE_KEY_MAX) return key;
+  return key.slice(0, SIBLING_TITLE_KEY_MAX);
 }
 
 /** B列各行の「兄弟判定用タイトル」。deepdiveColumn が変わらない間は useMemo して再利用し、民法など長文B列の科目でカード切替が軽くなる */
