@@ -18,6 +18,7 @@
     "sync:knowledge": "npm run export:knowledge-md && npm run build:chat-md-index",
     "sync:all": "npm run sync:questions && npm run sync:learn && npm run sync:knowledge",
     "build:chat-md-index": "node scripts/buildChatMarkdownChunks.js",
+    "check:chat-briefs": "node --experimental-strip-types scripts/checkChatTopicBriefs.mjs",
     "bundle:teitouken-textbook": "node scripts/bundleTeitoukenTextbook.js",
     "bundle:shouhou-textbook": "node scripts/bundleShouhouTextbook.mjs",
     "bundle:kenpou-textbook": "node scripts/bundleKenpouTextbook.mjs",

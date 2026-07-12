@@ -1,8 +1,48 @@
 import { KISO_HOUGAKU_SUMMARY_MARKDOWN } from '@/src/content/kisoHougakuSummary';
 import { TEITOUKEN_TEXTBOOK_MARKDOWN } from '@/src/content/teitoukenTextbookMarkdown';
 import { CHAT_MARKDOWN_CHUNKS } from '@/src/generated/chatMarkdownChunks';
-import { PIN_CASES } from '@/src/pinData';
 import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/learnExports';
+import { PIN_CASES } from '@/src/pinData';
+import {
+  KISO_HOUGAKU_CHAT_TOPIC_BRIEFS,
+  KISO_HOUGAKU_KEY_PHRASES,
+  KISO_HOUGAKU_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsKisoHougaku';
+import { KISO_HOUGAKU_COMPARISON_BRIEFS } from '@/utils/chatTopicBriefsKisoComparisons';
+import {
+  KISO_HOUGAKU_MOSHI_BRIEFS,
+  KISO_HOUGAKU_MOSHI_KEY_PHRASES,
+} from '@/utils/chatTopicBriefsKisoMoshi';
+import {
+  GYOSEI_SORON_CHAT_BRIEFS,
+  GYOSEI_SORON_KEY_PHRASES,
+  GYOSEI_SORON_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsGyoseiSoron';
+import {
+  GYOSEI_SORON_NET_CHAT_BRIEFS,
+  GYOSEI_SORON_NET_KEY_PHRASES,
+  GYOSEI_SORON_NET_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsGyoseiSoronNet';
+import {
+  GYOSEI_TETSUZUKI_CHAT_BRIEFS,
+  GYOSEI_TETSUZUKI_KEY_PHRASES,
+  GYOSEI_TETSUZUKI_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsGyoseiTetsuzuki';
+import {
+  GYOSEI_FUFUKU_CHAT_BRIEFS,
+  GYOSEI_FUFUKU_KEY_PHRASES,
+  GYOSEI_FUFUKU_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsGyoseiFufuku';
+import {
+  GYOSEI_PROC_COMPARISON_BRIEFS,
+  GYOSEI_PROC_COMPARISON_KEY_PHRASES,
+  GYOSEI_PROC_COMPARISON_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsGyoseiComparisons';
+import {
+  GYOSEI_GYOSHO_CHAT_BRIEFS,
+  GYOSEI_GYOSHO_KEY_PHRASES,
+  GYOSEI_GYOSHO_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsGyoseiGyosho';
 // @ts-ignore
 import { LINE_HISTORY } from '@/src/data/lineHistory';
 
@@ -47,12 +87,20 @@ const PHRASE_ALIASES: [string, string[]][] = [
   ['国賠', ['国家賠償']],
   ['自治法', ['地方自治法']],
   ['手続法', ['行政手続法']],
-  ['取消訴訟', ['行政事件訴訟法']],
+  ['会社法', ['商法・会社法', '会社']],
+  ['取消訴訟', ['行政事件訴訟法', '処分性', '原告適格']],
   ['抗告訴訟', ['行政事件訴訟法']],
   ['当事者訴訟', ['行政事件訴訟法']],
   ['民衆訴訟', ['行政事件訴訟法']],
   ['審査請求', ['行政不服審査法']],
   ['執行停止', ['行政不服審査法', '行政事件訴訟法']],
+  ['処分性', ['行政処分', '取消訴訟', '行政事件訴訟法']],
+  ['原告適格', ['法律上の利益', '取消訴訟']],
+  ['聴聞', ['行政手続法', '弁明の機会']],
+  ['弁明', ['行政手続法', '聴聞']],
+  ['即時取得', ['192条', '占有改定']],
+  ['譲渡担保', ['占有改定', '178条']],
+  ['時効', ['消滅時効', '取得時効']],
   ['信義則', ['信義則', '信義']],
   ['公序良俗', ['公序良俗']],
   ['悪意の受益', ['悪意の受益者']],
@@ -61,6 +109,17 @@ const PHRASE_ALIASES: [string, string[]][] = [
   ['朝日', ['朝日訴訟', '生活保護']],
   ['堀木', ['堀木訴訟']],
   ['米軍基地', ['日米地位協定', '基地']],
+  ['私人間効力', ['間接適用', '憲法']],
+  ['統治行為', ['憲法', '司法審査']],
+  ['期限の許与', ['有益費', '608条', '196条', '留置権', '償還']],
+  ['有益費', ['期限の許与', '608条', '196条', '必要費']],
+  ...KISO_HOUGAKU_PHRASE_ALIASES,
+  ...GYOSEI_SORON_PHRASE_ALIASES,
+  ...GYOSEI_SORON_NET_PHRASE_ALIASES,
+  ...GYOSEI_TETSUZUKI_PHRASE_ALIASES,
+  ...GYOSEI_FUFUKU_PHRASE_ALIASES,
+  ...GYOSEI_PROC_COMPARISON_PHRASE_ALIASES,
+  ...GYOSEI_GYOSHO_PHRASE_ALIASES,
 ];
 
 /** 質問語に一致したとき必ずコンテキスト先頭に載せる短い論点ガイド（判例タグだけでは足りない論点用） */
@@ -105,6 +164,90 @@ const CHAT_TOPIC_BRIEFS: { triggers: string[]; title: string; text: string }[] =
       '- 192条（即時取得）・345条（質権）：占有改定は**含まない／不可**',
     ].join('\n'),
   },
+  {
+    triggers: ['期限の許与', '相当の期限を許与', '期限を許与'],
+    title: '論点ガイド：期限の許与（有益費償還）',
+    text: [
+      '## 期限の許与とは',
+      '',
+      '裁判所が、**有益費などの償還債務**について、支払う側（回復者・賃貸人・所有者など）の請求により、**相当の履行猶予（弁済期の先延ばし）**を与えること。',
+      '',
+      '### 試験で出る典型（民法）',
+      '1. **占有・有益費（196条2項ただし書）**：悪意の占有者に対し、回復者の請求で有益費償還に期限の許与可',
+      '2. **留置権（299条2項ただし書）**：所有者の請求で有益費償還に期限の許与可',
+      '3. **賃貸借の有益費（608条2項ただし書）**：賃貸人の請求で有益費償還に期限の許与可（必要費にはない）',
+      '4. **買戻しの有益費（583条2項ただし書）**：売主の請求で有益費に期限の許与可',
+      '5. **遺留分侵害額（1047条5項）**：受遺者・受贈者の請求で支払に期限の許与可',
+      '',
+      '### なぜあるか（ひっかけの芯）',
+      '有益費債権があると占有者側が**留置権**を主張しうる。期限の許与で**弁済期が先に延びる**と、留置権の「弁済期到来」要件を欠き、**留置できなくなる**（居座り封じ）。',
+      '',
+      '### 暗記',
+      '**有益費は待ってもらえる／必要費は待ったなし。期限の許与＝大家・所有者側の救済＋留置封じ。**',
+    ].join('\n'),
+  },
+  ...KISO_HOUGAKU_CHAT_TOPIC_BRIEFS,
+  ...KISO_HOUGAKU_COMPARISON_BRIEFS,
+  ...KISO_HOUGAKU_MOSHI_BRIEFS,
+  ...GYOSEI_SORON_CHAT_BRIEFS,
+  ...GYOSEI_SORON_NET_CHAT_BRIEFS,
+  ...GYOSEI_TETSUZUKI_CHAT_BRIEFS,
+  ...GYOSEI_FUFUKU_CHAT_BRIEFS,
+  ...GYOSEI_PROC_COMPARISON_BRIEFS,
+  ...GYOSEI_GYOSHO_CHAT_BRIEFS,
+];
+
+/** 口語ノイズを除いた検索核（「〜ってなん？」「とは」等） */
+function stripChatQuestionNoise(s: string): string {
+  let t = (s || '')
+    .normalize('NFKC')
+    .toLowerCase()
+    .replace(/[?？!！。．、,，･・…]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  // 末尾から口語質問の接尾辞を繰り返し剥がす
+  const tail =
+    /(ってなに|って何|ってなん|って誰|ってだれ|とは何|とはなに|とはなん|ってどういう意味|どういう意味|について教えて|を教えて|を説明して|について|とは|って|教えてくれ|教えて|説明して)$/;
+  for (let i = 0; i < 4; i++) {
+    const next = t.replace(tail, '').trim();
+    if (next === t) break;
+    t = next;
+  }
+  // 単独の「何／なん」だけ残ったら落とす（核語の一部は触らない）
+  t = t.replace(/(?:^|\s)(なに|何|なん|誰|だれ)$/u, '').trim();
+  return t;
+}
+
+/** クエリに含まれる定番論点フレーズをトークンとして拾う */
+const KEY_LEGAL_PHRASES = [
+  '期限の許与',
+  '相当の期限を許与',
+  '占有改定',
+  '理由の提示',
+  '処分性',
+  '原告適格',
+  '即時取得',
+  '期限の利益',
+  '信義則',
+  '公序良俗',
+  '執行停止',
+  '審査請求',
+  '取消訴訟',
+  '必要費',
+  '有益費',
+  '留置権',
+  '譲渡担保',
+  '私人間効力',
+  '統治行為',
+  ...KISO_HOUGAKU_KEY_PHRASES,
+  ...KISO_HOUGAKU_MOSHI_KEY_PHRASES,
+  ...GYOSEI_SORON_KEY_PHRASES,
+  ...GYOSEI_SORON_NET_KEY_PHRASES,
+  ...GYOSEI_TETSUZUKI_KEY_PHRASES,
+  ...GYOSEI_FUFUKU_KEY_PHRASES,
+  ...GYOSEI_PROC_COMPARISON_KEY_PHRASES,
+  ...GYOSEI_GYOSHO_KEY_PHRASES,
 ];
 
 function normalizeQueryForMatch(s: string): string {
@@ -115,54 +258,160 @@ function normalizeQueryForMatch(s: string): string {
     .trim();
 }
 
-function topicBriefsForQuery(fullNormalized: string): { title: string; text: string }[] {
-  const matched: { title: string; text: string }[] = [];
+function topicBriefsForQuery(...haystacks: string[]): { title: string; text: string }[] {
+  const blob = haystacks.map((h) => normalizeQueryForMatch(h)).join('\n');
+  const wantsCompare =
+    blob.includes('違いをまとめて') ||
+    blob.includes('比較して') ||
+    blob.includes('並べて') ||
+    blob.includes('比較表');
+  const matched: { title: string; text: string; priority: number }[] = [];
   for (const b of CHAT_TOPIC_BRIEFS) {
-    if (b.triggers.some((t) => fullNormalized.includes(normalizeQueryForMatch(t)))) {
-      matched.push({ title: b.title, text: b.text });
+    if (b.triggers.some((t) => blob.includes(normalizeQueryForMatch(t)))) {
+      const isCompareTitle = b.title.startsWith('比較：') || b.title.includes('並列');
+      matched.push({
+        title: b.title,
+        text: b.text,
+        priority: wantsCompare && isCompareTitle ? 0 : isCompareTitle ? 1 : 2,
+      });
     }
   }
-  return matched;
+  matched.sort((a, b) => a.priority - b.priority);
+  return matched.map(({ title, text }) => ({ title, text }));
 }
 
 /** 略称展開・条番号バリアント・分割トークン */
-function expandSearchTokens(trimmed: string): { fullNormalized: string; tokens: string[] } {
-  const fullNormalized = normalizeQueryForMatch(trimmed);
+function expandSearchTokens(trimmed: string): { fullNormalized: string; rawNormalized: string; tokens: string[] } {
+  const rawNormalized = normalizeQueryForMatch(trimmed);
+  const core = stripChatQuestionNoise(trimmed);
+  const fullNormalized = core || rawNormalized;
   const bag = new Set<string>();
+
+  if (fullNormalized.length >= 2) bag.add(fullNormalized);
+  if (rawNormalized.length >= 2 && rawNormalized !== fullNormalized) bag.add(rawNormalized);
 
   for (const part of fullNormalized.split(/[\s　、,.]+/).filter(Boolean)) {
     if (part.length >= 2) bag.add(part);
     if (/条|項|号|章|節/.test(part) && part.length >= 2) bag.add(part);
   }
-  if (bag.size === 0 && fullNormalized.length >= 2) bag.add(fullNormalized);
+
+  // 「期限の許与」のように「の」を挟む複合語も核として残す
+  for (const m of fullNormalized.matchAll(/[\u3040-\u30ff\u4e00-\u9fff\u3400-\u4dbf]{2,}(?:の[\u3040-\u30ff\u4e00-\u9fff\u3400-\u4dbf]{2,})+/g)) {
+    if (m[0].length >= 4) bag.add(m[0]);
+  }
+
+  for (const phrase of KEY_LEGAL_PHRASES) {
+    const p = normalizeQueryForMatch(phrase);
+    if (rawNormalized.includes(p) || fullNormalized.includes(p)) bag.add(p);
+  }
 
   for (const [needle, adds] of PHRASE_ALIASES) {
-    if (fullNormalized.includes(needle)) {
+    if (rawNormalized.includes(needle) || fullNormalized.includes(needle)) {
       for (const a of adds) bag.add(normalizeQueryForMatch(a));
     }
   }
-  if (fullNormalized.includes('理由の提示') || fullNormalized.includes('理由提示')) {
+  if (fullNormalized.includes('理由の提示') || fullNormalized.includes('理由提示') || rawNormalized.includes('理由の提示')) {
     ['行政手続法', '不利益処分', '申請', '拒否', '第8条', '却下', '不許可'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
   }
-  if (fullNormalized.includes('占有改定')) {
+  if (fullNormalized.includes('占有改定') || rawNormalized.includes('占有改定')) {
     ['183条', '第183条', '意思を表示', '占有権', '178条'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (fullNormalized.includes('処分性') || rawNormalized.includes('処分性')) {
+    ['行政処分', '公権力の行使', '取消訴訟', '直接強制'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (fullNormalized.includes('原告適格') || rawNormalized.includes('原告適格')) {
+    ['法律上の利益', '取消訴訟', '個別的利益'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (fullNormalized.includes('即時取得') || fullNormalized.includes('192') || rawNormalized.includes('即時取得')) {
+    ['192条', '占有改定', '善意無過失'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (fullNormalized.includes('期限の許与') || rawNormalized.includes('期限の許与') || rawNormalized.includes('期限を許与')) {
+    ['有益費', '必要費', '608条', '196条', '留置権', '賃貸借', '償還'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (
+    rawNormalized.includes('くじ') ||
+    fullNormalized.includes('くじ') ||
+    rawNormalized.includes('抽選') ||
+    rawNormalized.includes('無作為')
+  ) {
+    ['検察審査員', '検察審査会', '裁判員', '11人', '有権者', '一般市民'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (
+    rawNormalized.includes('薬局') ||
+    rawNormalized.includes('距離制限') ||
+    rawNormalized.includes('距離規制') ||
+    rawNormalized.includes('適正配置')
+  ) {
+    ['薬事法', '小売市場', '公衆浴場', '職業選択の自由', '原告適格'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (rawNormalized.includes('病院') && (rawNormalized.includes('勧告') || rawNormalized.includes('距離') || rawNormalized.includes('開設'))) {
+    ['中止勧告', '処分性', '保険医療機関', '行政指導'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (
+    rawNormalized.includes('処分性') ||
+    rawNormalized.includes('原告適格') ||
+    rawNormalized.includes('法律の留保') ||
+    rawNormalized.includes('侵害留保')
+  ) {
+    ['取消訴訟', '法律上の利益', '公定力', '行政指導'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (
+    rawNormalized.includes('聴聞') ||
+    rawNormalized.includes('弁明') ||
+    rawNormalized.includes('審査基準') ||
+    rawNormalized.includes('意見公募') ||
+    rawNormalized.includes('行手法') ||
+    rawNormalized.includes('行政手続')
+  ) {
+    ['行政手続法', '不利益処分', '申請', '届出'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (
+    rawNormalized.includes('審査請求') ||
+    rawNormalized.includes('再調査') ||
+    rawNormalized.includes('審理員') ||
+    rawNormalized.includes('執行停止') ||
+    rawNormalized.includes('行服') ||
+    rawNormalized.includes('不服審査')
+  ) {
+    ['行政不服審査法', '裁決', '教示', '不作為'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  if (
+    rawNormalized.includes('取消訴訟') ||
+    rawNormalized.includes('義務付け') ||
+    rawNormalized.includes('差止め') ||
+    rawNormalized.includes('行訴') ||
+    rawNormalized.includes('出訴期間') ||
+    rawNormalized.includes('事情判決') ||
+    rawNormalized.includes('無効確認')
+  ) {
+    ['行政事件訴訟法', '原告適格', '処分性', '訴えの利益'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+  }
+  // 基礎法学まとめを拾いやすくする
+  if (
+    KISO_HOUGAKU_KEY_PHRASES.some((p) => rawNormalized.includes(normalizeQueryForMatch(p)) || fullNormalized.includes(normalizeQueryForMatch(p)))
+  ) {
+    ['基礎法学', '法源', '法系'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
   }
 
   let m: RegExpExecArray | null;
   const reArt = /(\d{1,4})条/g;
-  while ((m = reArt.exec(fullNormalized)) !== null) {
+  while ((m = reArt.exec(rawNormalized)) !== null) {
     const n = m[1];
     bag.add(`${n}条`);
     bag.add(`第${n}条`);
   }
   const reKo = /(\d{1,3})項/g;
-  while ((m = reKo.exec(fullNormalized)) !== null) {
+  while ((m = reKo.exec(rawNormalized)) !== null) {
     bag.add(`第${m[1]}項`);
     bag.add(`${m[1]}項`);
   }
 
-  const tokens = [...bag].filter((t) => t.length >= 2 || /^\d+条/.test(t));
-  return { fullNormalized, tokens: tokens.slice(0, 42) };
+  // 口語ノイズだけの長トークンは落とす（核語を優先）
+  const tokens = [...bag]
+    .filter((t) => t.length >= 2 || /^\d+条/.test(t))
+    .filter((t) => !/(ってなん|ってなに|教えて|どういう意味)$/.test(t))
+    .sort((a, b) => b.length - a.length);
+  return { fullNormalized, rawNormalized, tokens: tokens.slice(0, 48) };
 }
 
 function statuteChunkBonus(lawLabel: string, tokens: string[]): number {
@@ -243,15 +492,27 @@ function pushCandidate(
   list.push({ source, title, text: slice, score: sc });
 }
 
+function dedupeChunks(chunks: ScoredKnowledgeChunk[]): ScoredKnowledgeChunk[] {
+  const best = new Map<string, ScoredKnowledgeChunk>();
+  for (const c of chunks) {
+    const key = `${c.source}||${c.title}`.slice(0, 240);
+    const prev = best.get(key);
+    if (!prev || c.score > prev.score || (c.score === prev.score && c.text.length > prev.text.length)) {
+      best.set(key, c);
+    }
+  }
+  return [...best.values()];
+}
+
 function mergeChunksForModel(chunks: ScoredKnowledgeChunk[], maxChunks: number, maxTotalChars: number): ScoredKnowledgeChunk[] {
-  const sorted = [...chunks].sort((a, b) => b.score - a.score);
+  const sorted = dedupeChunks(chunks).sort((a, b) => b.score - a.score);
   const out: ScoredKnowledgeChunk[] = [];
   let total = 0;
   for (const c of sorted) {
     if (out.length >= maxChunks) break;
     if (total + c.text.length > maxTotalChars) {
       const room = maxTotalChars - total;
-      if (room < 200) break;
+      if (room < 280) break;
       out.push({ ...c, text: c.text.slice(0, room) + '…' });
       break;
     }
@@ -267,7 +528,7 @@ export function searchKnowledge(query: string): SearchResult[] {
   if (!trimmed) return [];
 
   const results: SearchResult[] = [];
-  const { fullNormalized, tokens } = expandSearchTokens(trimmed);
+  const { fullNormalized, rawNormalized, tokens } = expandSearchTokens(trimmed);
 
   const textMatches = (raw: string) => {
     const h = normalizeQueryForMatch(stripHtml(raw));
@@ -328,7 +589,7 @@ export function searchKnowledge(query: string): SearchResult[] {
     }
   });
 
-  const briefList = topicBriefsForQuery(fullNormalized);
+  const briefList = topicBriefsForQuery(fullNormalized, rawNormalized);
   for (let i = briefList.length - 1; i >= 0; i--) {
     const b = briefList[i];
     results.unshift({
@@ -351,10 +612,10 @@ export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledg
   const trimmed = query.trim();
   if (!trimmed) return [];
 
-  const { fullNormalized, tokens } = expandSearchTokens(trimmed);
+  const { fullNormalized, rawNormalized, tokens } = expandSearchTokens(trimmed);
   const candidates: ScoredKnowledgeChunk[] = [];
 
-  for (const brief of topicBriefsForQuery(fullNormalized)) {
+  for (const brief of topicBriefsForQuery(fullNormalized, rawNormalized)) {
     candidates.push({
       source: '質問モード・論点ガイド',
       title: brief.title,
@@ -373,7 +634,17 @@ export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledg
       if (isLearnSlotId(text)) return;
       const dd = (LEARN_DEEPDIVE as Record<string, string[]>)[category]?.[i];
       const blob = dd && dd.length > 30 ? `${text}\n\n${dd}` : text;
-      pushCandidate(candidates, `見て聞いて覚える · ${category}`, `${category} #${i + 1}`, blob, tokens, fullNormalized, 4500);
+      const deepBoost = dd && dd.length > 80 ? 2 : 0;
+      pushCandidate(
+        candidates,
+        `見て聞いて覚える · ${category}`,
+        `${category} #${i + 1}`,
+        blob,
+        tokens,
+        fullNormalized,
+        4500,
+        deepBoost
+      );
     });
   });
 
@@ -382,6 +653,9 @@ export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledg
     pushCandidate(candidates, '過去の会話メモリ', 'LINEメモ', blob, tokens, fullNormalized, 2000);
   }
 
+  const kisoHit = KISO_HOUGAKU_KEY_PHRASES.some(
+    (p) => fullNormalized.includes(normalizeQueryForMatch(p)) || rawNormalized.includes(normalizeQueryForMatch(p))
+  );
   pushCandidate(
     candidates,
     '基礎法学まとめ',
@@ -389,7 +663,8 @@ export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledg
     KISO_HOUGAKU_SUMMARY_MARKDOWN,
     tokens,
     fullNormalized,
-    12000
+    12000,
+    kisoHit ? 8 : 0
   );
 
   pushCandidate(
@@ -467,5 +742,5 @@ export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledg
     console.warn('chatKnowledgeSearch: questions import failed', e);
   }
 
-  return mergeChunksForModel(candidates, 16, 12500);
+  return mergeChunksForModel(candidates, 22, 18000);
 }

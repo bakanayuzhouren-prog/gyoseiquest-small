@@ -308,51 +308,69 @@ export interface GradeDescriptiveResult {
   analysis: string;
 }
 
-/** 質問するモード: アプリ内検索結果のみを根拠に回答 */
-export const answerChatFromContext = async (
-  apiKey: string,
-  params: { userQuery: string; contextChunks: { source: string; title: string; text: string }[] }
-): Promise<string> => {
-  const { userQuery, contextChunks } = params;
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+export type ChatContextChunk = {
+  source: string;
+  title: string;
+  text: string;
+  score?: number;
+};
 
-  const ctx =
-    contextChunks.length === 0
-      ? '（該当するアプリ内テキストは見つかりませんでした）'
-      : contextChunks
-          .map((c, i) => `---\n[${i + 1}] 出典: ${c.source} / ${c.title}\n${c.text}`)
-          .join('\n');
+export type ChatHistoryTurn = {
+  role: 'user' | 'bot';
+  text: string;
+};
 
+const CHAT_MODEL_PRIMARY = 'gemini-2.5-pro';
+const CHAT_MODEL_FALLBACK = 'gemini-2.5-flash';
+
+function extractGeminiText(data: any): { text: string; finishReason?: string } {
+  const candidate = data?.candidates?.[0];
+  const parts = candidate?.content?.parts;
+  const text = Array.isArray(parts)
+    ? parts.map((p: { text?: string }) => p?.text || '').join('')
+    : candidate?.content?.parts?.[0]?.text || '';
+  return { text: text || '回答を取得できませんでした。', finishReason: candidate?.finishReason };
+}
+
+function buildChatTopicStructure(userQuery: string): string {
   const qHints = userQuery.normalize('NFKC').toLowerCase();
-  let topicStructure = '';
+  const blocks: string[] = [];
+
   if (qHints.includes('理由の提示') || qHints.includes('理由提示')) {
-    topicStructure = `
-【この質問の回答構成（必須）】
+    blocks.push(`【この質問の回答構成（必須）】
 ユーザーが「理由の提示」を尋ねている場合は、行政手続法の論点として、次の**2つを必ず区別して**説明すること。
 1）**不利益処分**をするときの理由の提示（第8条第1項の系統）
 2）**申請に対する拒否・不許可・却下**等、申請拒否類型の理由の提示（第8条第2項第1号の系統）
-参考テキストや論点ガイドにない条文の但書・細部は創作しないこと。`;
+参考テキストや論点ガイドにない条文の但書・細部は創作しないこと。`);
   }
 
-  const prompt = `【指示】
-あなたは行政書士試験の学習アシスタントです。次の「参考テキスト」**のみ**を根拠に、ユーザーの質問に日本語で答えてください。
-${topicStructure}
-【厳守】
-- 参考テキストに根拠がない内容は「手元のデータには載っていません」と書き、推測や一般知識で補わない。
-- 参考テキストの趣旨を要約・整理して分かりやすく。必要なら出典番号 [1] などを括弧で示す。
-- 条文番号・判例名が参考にある場合はそのまま引用してよい。
+  if (/比較|違い|相違|対比|vs\.?|versus|と\s*の\s*違い|どちら/.test(qHints)) {
+    blocks.push(`【比較質問の構成（必須）】
+共通点→相違点（要件・主体・効果・時期）→試験での見分け方、の順で短く対比すること。表が分かりやすければ Markdown 表を使ってよい。`);
+  }
 
-【ユーザーの質問】
-${userQuery}
+  if (/例外|できない|不可|認められな|要件|成立要件/.test(qHints)) {
+    blocks.push(`【要件・例外質問の構成】
+原則→要件（番号付き）→例外／不可の場合→ひっかけ一言、の順で整理すること。`);
+  }
 
-【参考テキスト】
-${ctx}`;
+  return blocks.length ? `\n${blocks.join('\n')}\n` : '';
+}
 
+async function callGeminiGenerate(
+  apiKey: string,
+  model: string,
+  prompt: string
+): Promise<{ text: string; finishReason?: string }> {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
   const body = {
     contents: [{ parts: [{ text: prompt }] }],
-    generationConfig: { temperature: 0.25, maxOutputTokens: 8192 },
+    generationConfig: {
+      temperature: 0.15,
+      topP: 0.9,
+      maxOutputTokens: 8192,
+    },
   };
-
   const response = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -360,15 +378,86 @@ ${ctx}`;
   });
   if (!response.ok) {
     const errText = await response.text();
-    throw new Error(`Gemini API Error: ${response.status} ${response.statusText} - ${errText}`);
+    throw new Error(`Gemini API Error (${model}): ${response.status} ${response.statusText} - ${errText}`);
   }
-  const data = await response.json();
-  let raw = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '回答を取得できませんでした。';
-  const reason = data.candidates?.[0]?.finishReason;
-  if (reason === 'MAX_TOKENS' && !raw.endsWith('。') && !raw.endsWith('．')) {
-    raw += '\n\n…（出力上限に達しました。短い質問に分けると全文が得られやすいです。）';
+  return extractGeminiText(await response.json());
+}
+
+/** 質問するモード: アプリ内検索結果のみを根拠に回答（Pro優先・Flashフォールバック） */
+export const answerChatFromContext = async (
+  apiKey: string,
+  params: {
+    userQuery: string;
+    contextChunks: ChatContextChunk[];
+    history?: ChatHistoryTurn[];
   }
-  return raw;
+): Promise<string> => {
+  const { userQuery, contextChunks, history = [] } = params;
+
+  const ctx =
+    contextChunks.length === 0
+      ? '（該当するアプリ内テキストは見つかりませんでした）'
+      : contextChunks
+          .map((c, i) => {
+            const rank = typeof c.score === 'number' ? ` 関連度:${Math.round(c.score)}` : '';
+            return `---\n[${i + 1}] 出典: ${c.source} / ${c.title}${rank}\n${c.text}`;
+          })
+          .join('\n');
+
+  const historyBlock =
+    history.length === 0
+      ? ''
+      : `\n【直前の会話（フォローアップの文脈。根拠は参考テキストのみ）】\n${history
+          .slice(-6)
+          .map((h) => `${h.role === 'user' ? 'ユーザー' : '助手'}: ${h.text.slice(0, 800)}`)
+          .join('\n')}\n`;
+
+  const topicStructure = buildChatTopicStructure(userQuery);
+
+  const prompt = `【役割】
+あなたは行政書士試験の**鬼教官級**の学習アシスタントです。受験生が本番で得点できるように、結論から短く、根拠つきで教える。
+
+【根拠ルール（厳守）】
+- 「参考テキスト」に書いてあることだけを根拠にする。一般知識・推測・条文創作は禁止。
+- 根拠がない点は「手元のデータには載っていません」と明示する。
+- 参考テキスト同士が食い違うときは、より具体的な条文・判例・解説を優先し、食い違いも一言述べる。
+- 条文番号・判例名・要件は参考にある表記を優先して引用する。出典は [1] [2] のように示す。
+- 関連度スコアが高いチャンクを優先して読む（低いものだけで断定しない）。
+${topicStructure}
+【回答フォーマット（毎回この順）】
+1. **結論**（1〜3文。先に答え）
+2. **理由・根拠**（条文・判例・制度の仕組み。必要なら番号付き）
+3. **試験のひっかけ**（よくある誤肢・取り違えを1つ）
+4. **暗記**（合言葉を1行）
+比較・例外の質問では上の専用構成を優先しつつ、最後にひっかけと暗記を残す。
+余計な前置き・「承知しました」は不要。Markdown（**太字**・箇条書き・短い表）で読みやすく。
+
+${historyBlock}
+【ユーザーの質問】
+${userQuery}
+
+【参考テキスト】
+${ctx}`;
+
+  try {
+    const primary = await callGeminiGenerate(apiKey, CHAT_MODEL_PRIMARY, prompt);
+    let raw = primary.text;
+    if (primary.finishReason === 'MAX_TOKENS' && !raw.endsWith('。') && !raw.endsWith('．')) {
+      raw += '\n\n…（出力上限に達しました。短い質問に分けると全文が得られやすいです。）';
+    }
+    return raw;
+  } catch (primaryErr) {
+    try {
+      const fallback = await callGeminiGenerate(apiKey, CHAT_MODEL_FALLBACK, prompt);
+      let raw = fallback.text;
+      if (fallback.finishReason === 'MAX_TOKENS' && !raw.endsWith('。') && !raw.endsWith('．')) {
+        raw += '\n\n…（出力上限に達しました。短い質問に分けると全文が得られやすいです。）';
+      }
+      return raw;
+    } catch {
+      throw primaryErr instanceof Error ? primaryErr : new Error(String(primaryErr));
+    }
+  }
 };
 
 export const gradeDescriptiveAnswer = async (

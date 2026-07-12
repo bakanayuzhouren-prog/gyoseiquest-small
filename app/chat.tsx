@@ -23,7 +23,13 @@ type Message = {
   sources?: string[];
 };
 
-const SUGGESTIONS = ['行政手続法について', '朝日訴訟とは', '国家賠償法1条', '理由の提示', '信義則'];
+const SUGGESTIONS = [
+  '執行停止の違いをまとめて',
+  '取消訴訟何から考える',
+  '義務付けと差止めの違い',
+  '出訴期間はいつまで',
+  '行服法と行訴法の違いをまとめて',
+];
 
 export default function ChatScreen() {
   const { theme } = useTheme();
@@ -35,7 +41,7 @@ export default function ChatScreen() {
       text:
         'こんにちは！このアプリに入っている**学習データ・条文・過去問・MD**から検索して答えます。\n' +
         (GEMINI_API_KEY
-          ? '（Gemini で要約します。根拠はアプリ内テキストのみです。）'
+          ? '（Gemini **Pro優先**で結論→根拠→ひっかけ→暗記の順に整理します。根拠はアプリ内テキストのみ。）'
           : '（**APIキー未設定**：検索結果の抜粋をそのまま表示します。.env に EXPO_PUBLIC_GEMINI_API_KEY を設定すると要約できます。）'),
       sender: 'bot',
       useMarkdown: true,
@@ -61,9 +67,17 @@ export default function ChatScreen() {
       let useMarkdown = false;
 
       if (GEMINI_API_KEY) {
+        const history = messages
+          .filter((m) => m.id !== '0')
+          .slice(-6)
+          .map((m) => ({
+            role: (m.sender === 'user' ? 'user' : 'bot') as 'user' | 'bot',
+            text: m.text,
+          }));
         botText = await answerChatFromContext(GEMINI_API_KEY, {
           userQuery: trimmed,
           contextChunks: chunks,
+          history,
         });
         useMarkdown = true;
       } else if (chunks.length > 0) {
