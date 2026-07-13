@@ -9,6 +9,7 @@ import { findQuizQuestionIndexByTextHash } from '@/utils/quiz-resolve-index';
 import { getStickyNotes } from '@/utils/sticky-notes';
 import { setDeepdiveParams } from '@/src/deepdiveState';
 import { TAC_BONUS_QUESTIONS } from '@/src/tac_bonus_questions';
+import { GOUKAKU_MOSHI_ROUND3_BONUS_QUESTIONS } from '@/src/goukaku_moshi_round3_bonus_questions';
 import {
   MOSHI_COMPLETE_INPUT_STORAGE_KEY,
   buildMoshiThreePointSet,
@@ -248,6 +249,122 @@ const TAC3_WEAKNESS_CHAPTERS = [
     memory: '次は「個情法=本人請求と行政機関の義務」「文章理解=接続語と指示語」を見てから選択肢へ入る。',
   },
 ];
+
+/** 合格革命第3回（合格３）— 採点・弱点。原文転載なし。 */
+const GOUKAKU3_MARKSHEET_READING = {
+  examId: '合格革命第3回',
+  sourceImages: [
+    'app/textbook/俺の解答用紙/合格３/PXL_20260713_082415916.jpg',
+    'app/textbook/俺の解答用紙/合格３/PXL_20260713_082418530.jpg',
+    'app/textbook/俺の解答用紙/合格３/PXL_20260713_082425720.jpg',
+  ],
+  gradingSummary: {
+    status: '見直し後・暫定採点',
+    confirmedQuestions: 54,
+    confirmedCorrect: 29,
+    confirmedScore: 132,
+    scoreNote:
+      '択一96＋多肢16＋一般知識20＝記述除く132点。記述暫定52で総合184/300。法令はクリア、一般知識20は足切り目安24未満。',
+  },
+  subjectGrading: [
+    '基礎法学 1/2',
+    '憲法 4/5',
+    '行政法 13/19',
+    '民法 6/9',
+    '商法 0/5',
+    '一般知識 5/14',
+  ],
+  confirmedGrading: [
+    '法令択一: 24/40（96点）',
+    '多肢: 8/12スロット（16点）※問41ア・イは要目視',
+    '記述暫定: 44=20 / 45=18 / 46=14（52点）',
+    '一般知識: 5/14（20点）',
+  ],
+  markAnswersLaw: [
+    '問1〜10: 5 / 4 / 4 / 2 / 4 / 2 / 3 / 5 / 3 / 2',
+    '問11〜20: 2 / 1 / 2 / 1 / 5 / 4 / 3 / 4 / 4 / 3',
+    '問21〜30: 4 / 5 / 2 / 5 / 1 / 3 / 1 / 3 / 5 / 2',
+    '問31〜40: 1 / 3 / 2 / 1 / 1 / 5 / 2 / 4 / 3 / 2',
+  ],
+  markAnswersKnowledge: [
+    '問47〜53: 4 / 3 / 3 / 2 / 5 / 4 / 5',
+    '問54〜60: 1 / 3 / 2 / 1 / 3 / 5 / 4',
+  ],
+  wrongLaw: [
+    '問1 罪刑法定（あなた5 / 正解4）',
+    '問5 国会の最高機関（あなた4 / 正解2）',
+    '問12 聴聞の許可（あなた1 / 正解3）',
+    '問16 不服審査会（あなた4 / 正解3）',
+    '問19 申請型義務付け（あなた4 / 正解2）',
+    '問20 パトカー追跡（あなた3 / 正解4）',
+    '問21 国賠2条・異常用法（あなた4 / 正解1）',
+    '問26 情報公開・非相続（あなた3 / 正解1）',
+    '問28 代理・顕名（あなた3 / 正解1）',
+    '問32 相殺×時効（あなた3 / 正解5）',
+    '問33 請負・契約不適合（あなた2 / 正解5）',
+    '問36〜40 商法全滅（0/5）',
+  ],
+  wrongKnowledge: [
+    '問48〜51 時事系（行政改革・バブル・財投・脱炭素）',
+    '問53 日本行政書士会連合会',
+    '問54 住民基本台帳',
+    '問55 情報セキュリティ用語',
+    '問57 個人情報保護法',
+    '問60 文章理解',
+  ],
+  needsManualCheck: [
+    '問41ア・イは写真端で切れ気味。ウ・エ（17・6）は正解確定。',
+    '記述は採点者裁量あり。見直し後は44=20 / 45=18 / 46=14。',
+    '模試本文・肢の全文は転載せず、論点カードと自作ボーナスで復習する。',
+  ],
+};
+
+const GOUKAKU3_WEAKNESS_CHAPTERS = [
+  {
+    title: '商法は「5本柱」を暗唱してから肢を見る',
+    subject: '商法・会社法',
+    badge: '合格３・S',
+    body: '今回0/5。商業登記は登記後でも正当事由ある第三者には対抗不可。設立時の現物出資は発起人だけ。共有株式は権利行使者1人／自己株式に配当なし。監査役差止めは法令定款違反＋著しい損害のおそれ。金銭分配請求権なしの現物配当は特別決議。',
+    memory: '正当事由／発起人現物／共有・自己株／監査役差止／現物配当特別決議。これだけで＋20点級。',
+  },
+  {
+    title: '行訴・手続は「申請型」と「許可要否」で切る',
+    subject: '行政法総合',
+    badge: '合格３・S',
+    body: '申請型義務付けに「重大な損害」要件はない（非申請型・差止め側の話）。聴聞では代理人・閲覧・陳述書は主宰者許可不要、補佐人は許可を意識。不服審査会は資料提出要求・説明要求ができる。',
+    memory: '申請型≠重大損害。代理人・閲覧・陳述書＝許可不要。審査会＝見るだけではない。',
+  },
+  {
+    title: '国賠は枠で切る（追跡＝総合、2条＝通常利用）',
+    subject: '国家賠償法',
+    badge: '合格３・S',
+    body: 'パトカー追跡事故＝即違法ではない。必要性・態様・危険性の総合。営造物は通常の安全性が基準で、異常用法なら瑕疵否定があり得る。',
+    memory: '追跡は総合判断。2条は通常利用か異常用法か。',
+  },
+  {
+    title: '民法は顕名・時効相殺・請負不適合を型で固定',
+    subject: '民法',
+    badge: '合格３・S',
+    body: '顕名なしは原則として代理人自身の行為。時効完成前から相殺適状なら救済、時効後に取得した自働債権は不可。請負も契約不適合が重大なら報酬全額拒絶があり得る。',
+    memory: '顕名必須。508条は完成前適状。請負不適合＝報酬拒絶があり得る。',
+  },
+  {
+    title: '憲法・基礎法学は美称と罪刑法定を落とさない',
+    subject: '憲法',
+    badge: '合格３・A',
+    body: '国会の最高機関性は政治的美称で、内閣・裁判所を法的に支配する意味ではない。刑事は法律なければ罰しない。民事の条理を刑事に持ち込まない。',
+    memory: '最高機関＝美称。刑事＝罪刑法定。',
+  },
+  {
+    title: '一般知識は制度系を先に固めて足切りを安定させる',
+    subject: '基礎知識',
+    badge: '合格３・B',
+    body: '時事ブレより、住基台帳の整備・適正管理、個情法の仮名加工と匿名加工の入れ替え、日本行政書士会連合会の監督・登録、情報セキュリティ用語の入れ替えを先に取る。',
+    memory: '住基・個情法・行書会・用語。時事は後回しでよい。',
+  },
+];
+
+const GOUKAKU3_PRIORITY_QUESTION_IDS = [36, 37, 38, 39, 40, 19, 12, 28, 21, 1, 5, 16, 20, 26, 32, 33, 54, 57, 53, 55];
 function compactText(value: string, limit = 150): string {
   const text = String(value || '').replace(/\s+/g, ' ').trim();
   return text.length > limit ? `${text.slice(0, limit)}...` : text;
@@ -386,6 +503,7 @@ type TacBonusTextbookChapter = {
 
 function tacSourceOfQuestion(question: any): string {
   const sourceText = `${question?.memo || ''} ${question?.text || ''}`;
+  if (sourceText.includes('合格革命第3回') || sourceText.includes('合格革命第３回')) return '合格革命第3回';
   if (sourceText.includes('TAC第3回') || sourceText.includes('TAC3')) return 'TAC第3回';
   if (sourceText.includes('TAC第2回') || sourceText.includes('TAC2')) return 'TAC第2回';
   return 'TAC第1回';
@@ -407,47 +525,53 @@ function tacSourceQuestionId(question: any): number | undefined {
 
 function buildTacBonusTextbookChapters(): TacBonusTextbookChapter[] {
   const chapters: TacBonusTextbookChapter[] = [];
-  Object.entries(TAC_BONUS_QUESTIONS as Record<string, Record<string, any[]>>).forEach(([subject, fields]) => {
-    Object.entries(fields).forEach(([field, questions]) => {
-      questions.forEach((question, index) => {
-        const source = tacSourceOfQuestion(question);
-        const sourceQuestionId = tacSourceQuestionId(question);
-        const answerLabels = Array.isArray(question.answer)
-          ? question.answer.map((answerIndex: number) => `${answerIndex + 1}`).join('・')
-          : '未設定';
-        const firstDeepdive = Array.isArray(question.choiceDeepDive)
-          ? String(question.choiceDeepDive.find((body: string) => body && body.trim()) || '')
-          : '';
-        chapters.push({
-          id: `${source}-${subject}-${field}-${sourceQuestionId ? `q${sourceQuestionId}` : index}-${index}`,
-          source,
-          sourceQuestionId,
-          subject,
-          field,
-          title: sourceQuestionId ? `${source} 問${sourceQuestionId} ${field} ボーナス問題` : `${source} ${field} ボーナス問題`,
-          questionText: String(question.text || ''),
-          choices: Array.isArray(question.choices) ? question.choices.map((choice: unknown) => String(choice)) : [],
-          answerLabels,
-          explain: String(question.explain || ''),
-          deepdive: firstDeepdive || buildTacBonusTextbookDeepdive({
-            id: '',
+  const sources: Array<Record<string, Record<string, any[]>>> = [
+    TAC_BONUS_QUESTIONS as Record<string, Record<string, any[]>>,
+    GOUKAKU_MOSHI_ROUND3_BONUS_QUESTIONS as Record<string, Record<string, any[]>>,
+  ];
+  sources.forEach((bank) => {
+    Object.entries(bank).forEach(([subject, fields]) => {
+      Object.entries(fields).forEach(([field, questions]) => {
+        questions.forEach((question, index) => {
+          const source = tacSourceOfQuestion(question);
+          const sourceQuestionId = tacSourceQuestionId(question);
+          const answerLabels = Array.isArray(question.answer)
+            ? question.answer.map((answerIndex: number) => `${answerIndex + 1}`).join('・')
+            : '未設定';
+          const firstDeepdive = Array.isArray(question.choiceDeepDive)
+            ? String(question.choiceDeepDive.find((body: string) => body && body.trim()) || '')
+            : '';
+          chapters.push({
+            id: `${source}-${subject}-${field}-${sourceQuestionId ? `q${sourceQuestionId}` : index}-${index}`,
             source,
             sourceQuestionId,
             subject,
             field,
-            title: '',
+            title: sourceQuestionId ? `${source} 問${sourceQuestionId} ${field} ボーナス問題` : `${source} ${field} ボーナス問題`,
             questionText: String(question.text || ''),
             choices: Array.isArray(question.choices) ? question.choices.map((choice: unknown) => String(choice)) : [],
             answerLabels,
             explain: String(question.explain || ''),
-            deepdive: '',
-          }),
+            deepdive: firstDeepdive || buildTacBonusTextbookDeepdive({
+              id: '',
+              source,
+              sourceQuestionId,
+              subject,
+              field,
+              title: '',
+              questionText: String(question.text || ''),
+              choices: Array.isArray(question.choices) ? question.choices.map((choice: unknown) => String(choice)) : [],
+              answerLabels,
+              explain: String(question.explain || ''),
+              deepdive: '',
+            }),
+          });
         });
       });
     });
   });
 
-  const rank: Record<string, number> = { TAC第3回: 0, TAC第2回: 1, TAC第1回: 2 };
+  const rank: Record<string, number> = { 合格革命第3回: 0, TAC第3回: 1, TAC第2回: 2, TAC第1回: 3 };
   return chapters.sort(
     (a, b) =>
       (rank[a.source] ?? 9) - (rank[b.source] ?? 9) ||
@@ -572,6 +696,7 @@ export default function KimiTextbookScreen() {
     tacBonusChapters.forEach((chapter) => subjects.add(chapter.subject));
     stickyScopes.forEach((item) => subjects.add(item.scope.replace('多肢選択:', '多肢選択 ')));
     TAC_NEW_KNOWLEDGE.forEach((item) => subjects.add(item.subject));
+    GOUKAKU3_WEAKNESS_CHAPTERS.forEach((item) => subjects.add(item.subject));
     return ['すべて', ...Array.from(subjects).sort()];
   }, [moshiBonusDrafts, moshiChapters, moshiPlusCards, tacBonusChapters, wrongEntries, stickyScopes]);
 
@@ -621,6 +746,31 @@ export default function KimiTextbookScreen() {
     () => buildMoshiImportLines(moshiSavedInput, 35),
     [moshiSavedInput]
   );
+  const goukaku3PriorityChapters = useMemo(
+    () =>
+      tacBonusChapters.filter(
+        (chapter) =>
+          chapter.source === '合格革命第3回' &&
+          typeof chapter.sourceQuestionId === 'number' &&
+          GOUKAKU3_PRIORITY_QUESTION_IDS.includes(chapter.sourceQuestionId)
+      ),
+    [tacBonusChapters]
+  );
+  const goukaku3AllChapters = useMemo(
+    () => tacBonusChapters.filter((chapter) => chapter.source === '合格革命第3回'),
+    [tacBonusChapters]
+  );
+  const filteredGoukaku3Weakness = useMemo(
+    () =>
+      GOUKAKU3_WEAKNESS_CHAPTERS.filter(
+        (chapter) => selectedSubject === 'すべて' || selectedSubject === chapter.subject
+      ),
+    [selectedSubject]
+  );
+  const filteredGoukaku3Priority = useMemo(() => {
+    if (selectedSubject === 'すべて') return goukaku3PriorityChapters;
+    return goukaku3PriorityChapters.filter((chapter) => chapter.subject === selectedSubject);
+  }, [goukaku3PriorityChapters, selectedSubject]);
 
   const topWrong = filteredWrongEntries.slice(0, 8);
   const heavyWrongCount = wrongEntries.filter((entry) => entry.wrong >= 2).length;
@@ -706,9 +856,16 @@ export default function KimiTextbookScreen() {
       quizSubject: chapter.subject,
       quizField: chapter.field,
       quizMode: 'bonus',
-      screenTitle: 'TACボーナス問題のもっと深掘る',
+      screenTitle:
+        chapter.source === '合格革命第3回'
+          ? '合格革命第3回ボーナスのもっと深掘る'
+          : 'TACボーナス問題のもっと深掘る',
     });
     router.push('/deepdive');
+  };
+
+  const openGoukaku3Learn = (subject: string) => {
+    router.push({ pathname: '/learn/[subject]', params: { subject, plus: '1' } });
   };
 
   return (
@@ -730,7 +887,7 @@ export default function KimiTextbookScreen() {
             <Text style={styles.kicker}>Personal Textbook</Text>
             <Text style={styles.title}>君の教科書！</Text>
             <Text style={styles.lead}>
-              誤答、付箋、TAC模試の新知識から、いま読むべき章だけを束ねます。
+              誤答、付箋、合格革命・TAC模試の新知識から、いま読むべき章だけを束ねます。
             </Text>
           </View>
         </View>
@@ -757,7 +914,11 @@ export default function KimiTextbookScreen() {
               </View>
               <View style={styles.statCard}>
                 <Text style={styles.statValue}>{tacBonusChapters.length}</Text>
-                <Text style={styles.statLabel}>TACボーナス</Text>
+                <Text style={styles.statLabel}>ボーナス章</Text>
+              </View>
+              <View style={styles.statCard}>
+                <Text style={styles.statValue}>{goukaku3AllChapters.length}</Text>
+                <Text style={styles.statLabel}>合格３</Text>
               </View>
             </View>
 
@@ -823,6 +984,156 @@ export default function KimiTextbookScreen() {
               </View>
             ) : null}
 
+
+            {selectedSubject === 'すべて' ? (
+              <View style={[styles.knowledgeCard, styles.priorityCard]}>
+                <View style={styles.chapterTop}>
+                  <View style={[styles.badge, styles.badgeWarn]}>
+                    <Text style={styles.badgeTextWarn}>{GOUKAKU3_MARKSHEET_READING.examId}</Text>
+                  </View>
+                  <Text style={styles.chapterSubject}>解答用紙読取 / 伸びしろ分析</Text>
+                </View>
+                <Text style={styles.chapterTitle}>合格革命第3回から作る復習メモ</Text>
+                <Text style={styles.chapterBody}>
+                  記述込み暫定184点。商法全滅と行政法・民法の定番取りこぼしが次の伸びしろ。模試本文は転載せず、見て聞いて覚えるカードと自作ボーナスで反復する。
+                </Text>
+                <View style={styles.sourceBox}>
+                  <Text style={styles.sourceTitle}>読取元</Text>
+                  {GOUKAKU3_MARKSHEET_READING.sourceImages.map((line) => (
+                    <Text key={line} style={styles.sourceLine}>・{line}</Text>
+                  ))}
+                </View>
+                <View style={styles.studyBox}>
+                  <Text style={styles.studyTitle}>採点結果</Text>
+                  <Text style={styles.studyLine}>
+                    {GOUKAKU3_MARKSHEET_READING.gradingSummary.status}: 記述除く{GOUKAKU3_MARKSHEET_READING.gradingSummary.confirmedScore}点 / 記述込み184点
+                  </Text>
+                  <Text style={styles.studyLine}>{GOUKAKU3_MARKSHEET_READING.gradingSummary.scoreNote}</Text>
+                  <Text style={styles.studyTitle}>科目別（法令択一＋一般知識）</Text>
+                  <Text style={styles.studyLine}>{GOUKAKU3_MARKSHEET_READING.subjectGrading.join(' / ')}</Text>
+                  <Text style={styles.studyTitle}>区分別</Text>
+                  {GOUKAKU3_MARKSHEET_READING.confirmedGrading.map((line) => (
+                    <Text key={line} style={styles.studyLine}>・{line}</Text>
+                  ))}
+                  <Text style={styles.studyTitle}>本人マーク読取（問1〜40）</Text>
+                  {GOUKAKU3_MARKSHEET_READING.markAnswersLaw.map((line) => (
+                    <Text key={line} style={styles.studyLine}>・{line}</Text>
+                  ))}
+                  <Text style={styles.studyTitle}>本人マーク読取（問47〜60）</Text>
+                  {GOUKAKU3_MARKSHEET_READING.markAnswersKnowledge.map((line) => (
+                    <Text key={line} style={styles.studyLine}>・{line}</Text>
+                  ))}
+                  <Text style={styles.studyTitle}>法令誤答</Text>
+                  {GOUKAKU3_MARKSHEET_READING.wrongLaw.map((line) => (
+                    <Text key={line} style={styles.studyLine}>・{line}</Text>
+                  ))}
+                  <Text style={styles.studyTitle}>一般知識誤答</Text>
+                  {GOUKAKU3_MARKSHEET_READING.wrongKnowledge.map((line) => (
+                    <Text key={line} style={styles.studyLine}>・{line}</Text>
+                  ))}
+                  <Text style={styles.studyTitle}>要目視確認</Text>
+                  {GOUKAKU3_MARKSHEET_READING.needsManualCheck.map((line) => (
+                    <Text key={line} style={styles.studyLine}>・{line}</Text>
+                  ))}
+                </View>
+                <View style={styles.actionRow}>
+                  <Pressable style={styles.primaryButton} onPress={() => openGoukaku3Learn('商法・会社法')}>
+                    <MaterialIcons name="headphones" size={18} color="#fff" />
+                    <Text style={styles.primaryButtonText}>商法カードへ（見て聞くぷらす）</Text>
+                  </Pressable>
+                </View>
+              </View>
+            ) : null}
+
+            {filteredGoukaku3Weakness.length > 0 ? (
+              <>
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>合格革命第3回 苦手分析から作る章</Text>
+                  <Text style={styles.sectionCount}>{filteredGoukaku3Weakness.length}章</Text>
+                </View>
+                {filteredGoukaku3Weakness.map((chapter) => (
+                  <View key={chapter.title} style={styles.knowledgeCard}>
+                    <View style={styles.chapterTop}>
+                      <View style={[styles.badge, styles.badgeWarn]}>
+                        <Text style={styles.badgeTextWarn}>{chapter.badge}</Text>
+                      </View>
+                      <Text style={styles.chapterSubject}>{chapter.subject}</Text>
+                    </View>
+                    <Text style={styles.chapterTitle}>{chapter.title}</Text>
+                    <Text style={styles.chapterBody}>{chapter.body}</Text>
+                    <View style={styles.studyBox}>
+                      <Text style={styles.studyTitle}>何を覚えれば、次は間違えないか</Text>
+                      <Text style={styles.studyLine}>{chapter.memory}</Text>
+                    </View>
+                    <View style={styles.actionRow}>
+                      <Pressable
+                        style={styles.primaryButton}
+                        onPress={() =>
+                          openGoukaku3Learn(
+                            chapter.subject === '行政法総合'
+                              ? '行政事件訴訟法'
+                              : chapter.subject === '民法'
+                                ? '民法総則'
+                                : chapter.subject
+                          )
+                        }
+                      >
+                        <MaterialIcons name="headphones" size={18} color="#fff" />
+                        <Text style={styles.primaryButtonText}>見て聞いて覚えるへ</Text>
+                      </Pressable>
+                    </View>
+                  </View>
+                ))}
+              </>
+            ) : null}
+
+            {filteredGoukaku3Priority.length > 0 ? (
+              <>
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>合格３ 優先ボーナス再演習</Text>
+                  <Text style={styles.sectionCount}>{filteredGoukaku3Priority.length}問</Text>
+                </View>
+                {filteredGoukaku3Priority.map((chapter) => (
+                  <View key={chapter.id} style={styles.knowledgeCard}>
+                    <View style={styles.chapterTop}>
+                      <View style={[styles.badge, styles.badgeWarn]}>
+                        <Text style={styles.badgeTextWarn}>
+                          {chapter.sourceQuestionId ? `問${chapter.sourceQuestionId}系` : '合格３'}
+                        </Text>
+                      </View>
+                      <Text style={styles.chapterSubject}>
+                        {chapter.subject} / {chapter.field}
+                      </Text>
+                    </View>
+                    <Text style={styles.chapterTitle}>{chapter.title}</Text>
+                    <Text style={styles.chapterBody}>{compactText(chapter.questionText, 180)}</Text>
+                    <View style={styles.studyBox}>
+                      <Text style={styles.studyTitle}>復習の進め方</Text>
+                      <Text style={styles.studyLine}>1. 見て聞いて覚えるぷらすで同論点カードを読む。</Text>
+                      <Text style={styles.studyLine}>2. 誤答肢の崩れる語を探す。</Text>
+                      <Text style={styles.studyLine}>3. ボーナスステージで自作問題を解き直す（原文転載なし）。</Text>
+                    </View>
+                    <MissedQuestionPanel
+                      label="ボーナスステージ"
+                      title={`${chapter.field || chapter.subject}の再演習`}
+                      meta={`正解 ${chapter.answerLabels} / 模試本文の転載ではなく論点再構成`}
+                      questionText={chapter.questionText}
+                      detailHeading="自作ボーナスを振り返る"
+                      reviewLines={[
+                        `正解: ${chapter.answerLabels}`,
+                        chapter.explain,
+                        '問題文・肢は模試本文の転載ではなく、論点抽出で再構成。',
+                      ]}
+                      opened={openMistakeKey === chapter.id}
+                      openingQuestion={openingTacBonusKey === chapter.id}
+                      onToggle={() => setOpenMistakeKey(openMistakeKey === chapter.id ? null : chapter.id)}
+                      onOpenQuestion={() => openTacBonusQuestion(chapter)}
+                      onOpenDeepdive={() => openTacBonusDeepdive(chapter)}
+                    />
+                  </View>
+                ))}
+              </>
+            ) : null}
 
             {selectedSubject === 'すべて' ? (
               <View style={[styles.knowledgeCard, styles.priorityCard]}>

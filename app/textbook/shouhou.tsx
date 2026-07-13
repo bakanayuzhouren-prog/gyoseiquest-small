@@ -10,6 +10,7 @@ export default function ShouhouTextbookScreen() {
       title={SHOUHOU_TEXTBOOK_META.title}
       subtitle={SHOUHOU_TEXTBOOK_META.subtitle}
       chapters={SHOUHOU_TEXTBOOK_CHAPTERS}
+      footerNote={SHOUHOU_TEXTBOOK_META.footerNote}
     />
   );
 }

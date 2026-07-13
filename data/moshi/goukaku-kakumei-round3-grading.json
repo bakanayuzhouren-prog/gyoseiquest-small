@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "examId": "goukaku-kakumei-2026-round3",
+  "folderId": "合格３",
+  "title": "2026年度版 合格革命 行政書士 法改正と直前予想模試 第3回",
+  "status": "provisional-revised",
+  "gradedAt": "2026-07-13",
+  "revisedAt": "2026-07-13",
+  "sourceImages": [
+    "app/textbook/俺の解答用紙/合格３/PXL_20260713_082415916.jpg",
+    "app/textbook/俺の解答用紙/合格３/PXL_20260713_082418530.jpg",
+    "app/textbook/俺の解答用紙/合格３/PXL_20260713_082425720.jpg"
+  ],
+  "answerKey": "data/moshi/goukaku-kakumei-round3-answer-key.json",
+  "userAnswers": {
+    "law1to40": [5, 4, 4, 2, 4, 2, 3, 5, 3, 2, 2, 1, 2, 1, 5, 4, 3, 4, 4, 3, 4, 5, 2, 5, 1, 3, 1, 3, 5, 2, 1, 3, 2, 1, 1, 5, 2, 4, 3, 2],
+    "multi": {
+      "41": { "あ": 10, "い": 4, "う": 17, "え": 6 },
+      "42": { "あ": 14, "い": 19, "う": 18, "え": 1 },
+      "43": { "あ": 9, "い": 2, "う": 7, "え": 15 }
+    },
+    "knowledge47to60": [4, 3, 3, 2, 5, 4, 5, 1, 3, 2, 1, 3, 5, 4]
+  },
+  "scores": {
+    "lawChoice": { "correct": 24, "total": 40, "points": 96, "max": 160 },
+    "multi": { "correctSlots": 8, "totalSlots": 12, "points": 16, "max": 24 },
+    "descriptive": { "q44": 20, "q45": 18, "q46": 14, "points": 52, "max": 60, "note": "見直し後の暫定点（採点者裁量あり）" },
+    "knowledge": { "correct": 5, "total": 14, "points": 20, "max": 56 },
+    "totalExcludingDescriptive": 132,
+    "totalIncludingDescriptive": 184,
+    "max": 300
+  },
+  "subjectBreakdownLaw": {
+    "基礎法学": { "correct": 1, "total": 2, "points": 4 },
+    "憲法": { "correct": 4, "total": 5, "points": 16 },
+    "行政法": { "correct": 13, "total": 19, "points": 52 },
+    "民法": { "correct": 6, "total": 9, "points": 24 },
+    "商法・会社法": { "correct": 0, "total": 5, "points": 0 }
+  },
+  "wrongLaw": [1, 5, 12, 16, 19, 20, 21, 26, 28, 32, 33, 36, 37, 38, 39, 40],
+  "wrongKnowledge": [48, 49, 50, 51, 53, 54, 55, 57, 60],
+  "priorityKnowledge": [
+    { "rank": "S", "questions": [36, 37, 38, 39, 40], "topic": "商法5本柱", "memory": "正当事由／発起人現物／共有・自己株／監査役差止／現物配当特別決議" },
+    { "rank": "S", "questions": [19], "topic": "申請型義務付け", "memory": "申請型に重大な損害要件なし" },
+    { "rank": "S", "questions": [12], "topic": "聴聞の許可", "memory": "代理人・閲覧・陳述書は許可不要" },
+    { "rank": "S", "questions": [28], "topic": "代理・顕名", "memory": "顕名なしは代理人自身の行為" },
+    { "rank": "S", "questions": [21], "topic": "国賠2条", "memory": "通常の安全性。異常用法なら瑕疵否定があり得る" },
+    { "rank": "S", "questions": [1], "topic": "罪刑法定", "memory": "刑事は法律なければ罰しない" },
+    { "rank": "A", "questions": [5, 16, 20, 26, 32, 33], "topic": "定番取りこぼし", "memory": "最高機関美称／審査会権限／追跡総合／開示非相続／時効×相殺／請負不適合" },
+    { "rank": "B", "questions": [53, 54, 55, 57], "topic": "一般知識・制度系", "memory": "行書会／住基／セキュリティ用語／個情法" }
+  ],
+  "notes": [
+    "マークシート2枚は同一答案の別撮影。Q1-40は列切り出しで両枚一致。",
+    "問41ア・イは一部フレーム切れのため10・4と判定（要目視再確認推奨）。ウ・エは17・6で正解確定。",
+    "記述は見直し後の暫定点（44=20 / 45=18 / 46=14）。",
+    "一般知識20は本試験目安の足切り24未満。法令は記述込みでクリア。"
+  ]
+}

@@ -1,6 +1,7 @@
 import { TAC_BONUS_QUESTIONS } from './tac_bonus_questions';
 import { FUNDAMENTAL_LAW_BONUS_QUESTIONS } from './fundamental_law_bonus_questions';
 import { GOUKAKU_MOSHI_BONUS_QUESTIONS } from './goukaku_moshi_bonus_questions';
+import { GOUKAKU_MOSHI_ROUND3_BONUS_QUESTIONS } from './goukaku_moshi_round3_bonus_questions';
 import { TAC1_MOSHI_BONUS_QUESTIONS } from './tac1_moshi_bonus_questions';
 import { TAC2_MOSHI_BONUS_QUESTIONS } from './tac2_moshi_bonus_questions';
 import { TAC3_MOSHI_BONUS_QUESTIONS } from './tac3_moshi_bonus_questions';
@@ -175,6 +176,7 @@ export const BONUS_QUESTIONS = [
   LEGACY_BONUS_QUESTIONS,
   TAC_BONUS_QUESTIONS,
   GOUKAKU_MOSHI_BONUS_QUESTIONS,
+  GOUKAKU_MOSHI_ROUND3_BONUS_QUESTIONS,
   TAC1_MOSHI_BONUS_QUESTIONS,
   TAC2_MOSHI_BONUS_QUESTIONS,
   TAC3_MOSHI_BONUS_QUESTIONS,

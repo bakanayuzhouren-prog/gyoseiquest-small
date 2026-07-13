@@ -68,6 +68,26 @@ import {
   KOKUBAI_KEY_PHRASES,
   KOKUBAI_PHRASE_ALIASES,
 } from '@/utils/chatTopicBriefsKokubai';
+import {
+  GOUKAKU_ROUND3_CHAT_BRIEFS,
+  GOUKAKU_ROUND3_KEY_PHRASES,
+  GOUKAKU_ROUND3_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsGoukakuRound3';
+import {
+  JICHI_CHAT_BRIEFS,
+  JICHI_KEY_PHRASES,
+  JICHI_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsJichi';
+import {
+  MOSHI_BEYOND_PAST_CHAT_BRIEFS,
+  MOSHI_BEYOND_PAST_KEY_PHRASES,
+  MOSHI_BEYOND_PAST_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsMoshiBeyondPast';
+import {
+  SHOHO_KIMEUCHI_CHAT_BRIEFS,
+  SHOHO_KIMEUCHI_KEY_PHRASES,
+  SHOHO_KIMEUCHI_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsShohoKimeuchi';
 // @ts-ignore
 import { LINE_HISTORY } from '@/src/data/lineHistory';
 
@@ -150,6 +170,10 @@ const PHRASE_ALIASES: [string, string[]][] = [
   ...KENPOU_HANREI2_PHRASE_ALIASES,
   ...KENPOU_DEEP_PHRASE_ALIASES,
   ...KOKUBAI_PHRASE_ALIASES,
+  ...GOUKAKU_ROUND3_PHRASE_ALIASES,
+  ...JICHI_PHRASE_ALIASES,
+  ...MOSHI_BEYOND_PAST_PHRASE_ALIASES,
+  ...SHOHO_KIMEUCHI_PHRASE_ALIASES,
 ];
 
 /** 質問語に一致したとき必ずコンテキスト先頭に載せる短い論点ガイド（判例タグだけでは足りない論点用） */
@@ -230,6 +254,10 @@ const CHAT_TOPIC_BRIEFS: { triggers: string[]; title: string; text: string }[] =
   ...KENPOU_HANREI2_CHAT_BRIEFS,
   ...KENPOU_DEEP_CHAT_BRIEFS,
   ...KOKUBAI_CHAT_BRIEFS,
+  ...GOUKAKU_ROUND3_CHAT_BRIEFS,
+  ...JICHI_CHAT_BRIEFS,
+  ...MOSHI_BEYOND_PAST_CHAT_BRIEFS,
+  ...SHOHO_KIMEUCHI_CHAT_BRIEFS,
 ];
 
 /** 口語ノイズを除いた検索核（「〜ってなん？」「とは」等） */
@@ -288,6 +316,10 @@ const KEY_LEGAL_PHRASES = [
   ...KENPOU_HANREI2_KEY_PHRASES,
   ...KENPOU_DEEP_KEY_PHRASES,
   ...KOKUBAI_KEY_PHRASES,
+  ...GOUKAKU_ROUND3_KEY_PHRASES,
+  ...JICHI_KEY_PHRASES,
+  ...MOSHI_BEYOND_PAST_KEY_PHRASES,
+  ...SHOHO_KIMEUCHI_KEY_PHRASES,
 ];
 
 function normalizeQueryForMatch(s: string): string {
@@ -305,14 +337,43 @@ function topicBriefsForQuery(...haystacks: string[]): { title: string; text: str
     blob.includes('比較して') ||
     blob.includes('並べて') ||
     blob.includes('比較表');
+  const wantsBeyondPast =
+    blob.includes('過去10年') ||
+    blob.includes('過去問以外') ||
+    blob.includes('過去問を回した') ||
+    blob.includes('過去問は回した') ||
+    blob.includes('それ以外') ||
+    blob.includes('他に何か知識') ||
+    blob.includes('知識って得られない') ||
+    blob.includes('プラスアルファ') ||
+    blob.includes('プラスα') ||
+    blob.includes('模試由来') ||
+    blob.includes('取りこぼし') ||
+    blob.includes('過去問だけでは');
+  const wantsKimeuchi =
+    blob.includes('決め打ち') ||
+    blob.includes('全部2') ||
+    blob.includes('全部4') ||
+    blob.includes('全部に振る') ||
+    blob.includes('どれに振る') ||
+    ((blob.includes('商法') || blob.includes('会社法')) &&
+      (blob.includes('捨て') || blob.includes('時間ない') || blob.includes('勉強してない') || blob.includes('当て勘') || blob.includes('勘で')));
   const matched: { title: string; text: string; priority: number }[] = [];
   for (const b of CHAT_TOPIC_BRIEFS) {
     if (b.triggers.some((t) => blob.includes(normalizeQueryForMatch(t)))) {
       const isCompareTitle = b.title.startsWith('比較：') || b.title.includes('並列');
+      const isBeyondPastMenu = b.title.includes('過去問の外側') || b.title.includes('模試由来・本試験');
+      const isKimeuchiMenu = b.title.includes('決め打ちしたい人への三段案内');
+      let priority = 2;
+      if (wantsKimeuchi && isKimeuchiMenu) priority = 0;
+      else if (wantsBeyondPast && isBeyondPastMenu) priority = 0;
+      else if (wantsCompare && isCompareTitle) priority = 0;
+      else if (isCompareTitle) priority = 1;
+      else if (isBeyondPastMenu || isKimeuchiMenu) priority = 1;
       matched.push({
         title: b.title,
         text: b.text,
-        priority: wantsCompare && isCompareTitle ? 0 : isCompareTitle ? 1 : 2,
+        priority,
       });
     }
   }
@@ -666,11 +727,13 @@ export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledg
   const candidates: ScoredKnowledgeChunk[] = [];
 
   for (const brief of topicBriefsForQuery(fullNormalized, rawNormalized)) {
+    const beyondPastBoost = brief.title.includes('過去問の外側') ? 500 : 0;
+    const kimeuchiBoost = brief.title.includes('決め打ちしたい人への三段案内') ? 600 : 0;
     candidates.push({
       source: '質問モード・論点ガイド',
       title: brief.title,
       text: brief.text,
-      score: 1000,
+      score: 1000 + beyondPastBoost + kimeuchiBoost,
     });
   }
 

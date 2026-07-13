@@ -9,6 +9,7 @@ import {
 import { mergeTacLearn } from './mergeTacLearn.js';
 import { TAC_LEARN_BY_SUBJECT } from './tac_learn_content.js';
 import { GOUKAKU_MOSHI_LEARN_BY_SUBJECT } from './goukaku_moshi_learn_content.js';
+import { GOUKAKU_MOSHI_ROUND3_LEARN_BY_SUBJECT } from './goukaku_moshi_round3_learn_content.js';
 import { TAC1_MOSHI_LEARN_BY_SUBJECT } from './tac1_moshi_learn_content.js';
 import { TAC2_MOSHI_LEARN_BY_SUBJECT } from './tac2_moshi_learn_content.js';
 import { TAC3_MOSHI_LEARN_BY_SUBJECT } from './tac3_moshi_learn_content.js';
@@ -41,6 +42,7 @@ const merged = mergeLearnLayers(
   },
   TAC_LEARN_BY_SUBJECT,
   GOUKAKU_MOSHI_LEARN_BY_SUBJECT,
+  GOUKAKU_MOSHI_ROUND3_LEARN_BY_SUBJECT,
   TAC1_MOSHI_LEARN_BY_SUBJECT,
   TAC2_MOSHI_LEARN_BY_SUBJECT,
   TAC3_MOSHI_LEARN_BY_SUBJECT,

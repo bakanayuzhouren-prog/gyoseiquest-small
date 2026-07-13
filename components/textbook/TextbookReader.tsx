@@ -126,6 +126,7 @@ type Props = {
   title: string;
   subtitle?: string;
   chapters: TextbookChapter[];
+  footerNote?: string;
   backHref?: string;
 };
 
@@ -217,6 +218,19 @@ function BlockRenderer({ block }: { block: TextbookBlock }) {
           <MarkdownText text={block.text} style={styles.tipText} uniformWeight lineGap={4} />
         </View>
       );
+    case 'figureSlot':
+      return (
+        <View style={styles.figureSlot} accessibilityLabel={`図解空き枠 ${block.title}`}>
+          <View style={styles.figureSlotBadge}>
+            <MaterialIcons name="image" size={16} color={C.accent} />
+            <Text style={styles.figureSlotBadgeText}>図解空き枠（Codex待ち）</Text>
+          </View>
+          <Text style={styles.figureSlotTitle}>{block.title}</Text>
+          <Text style={styles.figureSlotCaption}>{block.caption}</Text>
+          <Text style={styles.figureSlotWhy}>ねらい: {block.why}</Text>
+          <Text style={styles.figureSlotId}>slot: {block.id}</Text>
+        </View>
+      );
     default:
       return null;
   }
@@ -271,7 +285,13 @@ function QuizCard({ quiz }: { quiz: TextbookQuiz }) {
   );
 }
 
-export function TextbookReader({ title, subtitle, chapters, backHref = '/textbook' }: Props) {
+export function TextbookReader({
+  title,
+  subtitle,
+  chapters,
+  footerNote = '学習用の自作整理。条文は六法で確認。',
+  backHref = '/textbook',
+}: Props) {
   const { width } = useWindowDimensions();
   const isWide = width >= 768;
   const { setIsPlaying: setLearnPlaying, voiceSpeechOptions } = useLearnPlayback();
@@ -688,9 +708,7 @@ export function TextbookReader({ title, subtitle, chapters, backHref = '/textboo
           ))}
 
           <View style={styles.footer}>
-            <Text style={styles.footerText}>
-              出典：伊藤塾「4時間で商法8点」テキスト・CHECK集（要約）
-            </Text>
+            <Text style={styles.footerText}>{footerNote}</Text>
           </View>
         </View>
       </ScrollView>
@@ -1106,6 +1124,48 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: C.text,
     lineHeight: 24,
+  },
+  figureSlot: {
+    marginTop: 8,
+    marginBottom: 4,
+    padding: 14,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    borderColor: '#93C5FD',
+    backgroundColor: '#F8FBFF',
+    gap: 6,
+  },
+  figureSlotBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  figureSlotBadgeText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: C.accent,
+  },
+  figureSlotTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: C.text,
+  },
+  figureSlotCaption: {
+    fontSize: 13,
+    color: C.textMuted,
+    lineHeight: 20,
+  },
+  figureSlotWhy: {
+    fontSize: 13,
+    color: C.text,
+    lineHeight: 20,
+  },
+  figureSlotId: {
+    marginTop: 4,
+    fontSize: 11,
+    color: '#9CA3AF',
+    fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
   },
   tableScroll: {
     marginHorizontal: -4,

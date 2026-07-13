@@ -29,7 +29,7 @@ const SUBJECTS = [
   {
     href: '/textbook/shouhou' as Href,
     title: '商法・会社法',
-    description: '設立＋商行為で8点。比較表・CHECK・過去問型を途中に配置。',
+    description: '初学者向け12点教科書。考え方→必殺5本柱→過去問型。',
     icon: 'business-center' as const,
   },
 ];
