@@ -1,5 +1,9 @@
 /**
- * DB/<科目>/*.md を結合し、教科書モード用バンドルを生成する。
+ * 教科書モード用バンドル生成。
+ *
+ * - DB/ … 佐藤先生NOTE等の原典置き場（参考用。アプリへ全文転載しない）
+ * - content/textbook/app/<科目>/ … 著作権配慮の再構成稿（出題形式・条文順）← アプリが読む
+ *
  * 実行: npm run bundle:db-textbooks
  */
 import fs from 'fs';
@@ -9,6 +13,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 const DB_ROOT = path.join(ROOT, 'DB');
+const APP_ROOT = path.join(ROOT, 'content', 'textbook', 'app');
 const MANIFEST_PATH = path.join(DB_ROOT, 'manifest.json');
 const OUT_PATH = path.join(ROOT, 'src', 'content', 'dbTextbookBundles.ts');
 
@@ -17,33 +22,34 @@ function stripFrontmatter(raw) {
   if (!text.startsWith('---')) return text.trim();
   const end = text.indexOf('\n---', 3);
   if (end === -1) return text.trim();
-  const after = text.slice(end + 4).replace(/^\r?\n/, '');
-  return after.trim();
+  return text.slice(end + 4).replace(/^\r?\n/, '').trim();
 }
 
 function readManifest() {
-  const raw = fs.readFileSync(MANIFEST_PATH, 'utf8');
-  return JSON.parse(raw);
+  return JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
 }
 
 function loadSubjectMarkdown(dirName) {
-  const dir = path.join(DB_ROOT, dirName);
-  if (!fs.existsSync(dir)) {
-    throw new Error(`DB subject folder missing: ${dir}`);
+  const appDir = path.join(APP_ROOT, dirName);
+  if (!fs.existsSync(appDir)) {
+    throw new Error(
+      `アプリ用稿がありません: content/textbook/app/${dirName}\n` +
+        'DBは原典置き場です。再構成した .md を app 側に置いてから再実行してください。',
+    );
   }
   const files = fs
-    .readdirSync(dir)
+    .readdirSync(appDir)
     .filter((name) => name.toLowerCase().endsWith('.md'))
     .sort((a, b) => a.localeCompare(b, 'ja'));
   if (files.length === 0) {
-    throw new Error(`No .md files in ${dir}`);
+    throw new Error(`No .md files in ${appDir}`);
   }
   const parts = files.map((name) => {
-    const body = stripFrontmatter(fs.readFileSync(path.join(dir, name), 'utf8'));
-    return `<!-- source: DB/${dirName}/${name} -->\n\n${body}`;
+    const body = stripFrontmatter(fs.readFileSync(path.join(appDir, name), 'utf8'));
+    return body;
   });
   return {
-    files,
+    files: files.map((name) => `content/textbook/app/${dirName}/${name}`),
     markdown: parts.join('\n\n---\n\n'),
   };
 }
@@ -51,9 +57,7 @@ function loadSubjectMarkdown(dirName) {
 function main() {
   const manifest = readManifest();
   const subjects = Array.isArray(manifest.subjects) ? manifest.subjects : [];
-  if (subjects.length === 0) {
-    throw new Error('DB/manifest.json has no subjects');
-  }
+  if (subjects.length === 0) throw new Error('DB/manifest.json has no subjects');
 
   /** @type {Record<string, any>} */
   const bundles = {};
@@ -64,13 +68,13 @@ function main() {
       title: subject.title,
       subtitle: subject.subtitle || '',
       description: subject.description || '',
-      sourceFiles: files.map((name) => `DB/${subject.dir}/${name}`),
+      sourceFiles: files,
       markdown,
     };
   }
 
   const header =
-    '// Auto-generated from DB/*/ *.md via scripts/bundleDbTextbooks.mjs\n' +
+    '// Auto-generated from content/textbook/app via scripts/bundleDbTextbooks.mjs\n' +
     '// Regenerate: npm run bundle:db-textbooks\n' +
     '// Do not edit by hand.\n\n';
 

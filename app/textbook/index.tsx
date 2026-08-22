@@ -35,19 +35,19 @@ const SUBJECTS = [
   {
     href: '/textbook/minpou-kijutsu' as Href,
     title: '民法記述',
-    description: 'DBノート（独学応援NOTE要約）から取込。記述の骨子・要件を整理。',
+    description: '出題形式・条文順。聞かれる型→答案の芯。原典は言い換え済み。',
     icon: 'description' as const,
   },
   {
     href: '/textbook/gyosei-kijutsu' as Href,
     title: '行政法記述',
-    description: 'DBノートから取込。執行停止・訴訟類型など記述の言い回し。',
+    description: '出題形式。手続→不服→行訴→国賠→自治の条文クラスタ順。',
     icon: 'rule' as const,
   },
   {
     href: '/textbook/kisochi' as Href,
     title: '基礎知識',
-    description: 'DBノートから取込。個情法など一般知識の足切り対策。',
+    description: '個情法を○×出題形式・条文順で。足切り向け。',
     icon: 'school' as const,
   },
 ];

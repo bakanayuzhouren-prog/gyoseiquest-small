@@ -1,27 +1,29 @@
 {
-  "description": "教科書モード用ノート記事DB。各科目フォルダ内の .md を辞書順で結合してアプリに取り込む。",
+  "description": "DBは佐藤先生NOTE等の原典置き場。アプリ表示は content/textbook/app の再構成稿のみを bundle する。",
   "bundleCommand": "npm run bundle:db-textbooks",
+  "appContentRoot": "content/textbook/app",
+  "dbRawRoot": "DB",
   "subjects": [
     {
       "slug": "minpou-kijutsu",
       "title": "民法記述",
       "dir": "民法記述",
-      "subtitle": "記述予想論点（独学応援NOTE要約）",
-      "description": "弁済・担保・親族相続など、記述の骨子を条文・要件中心で整理。"
+      "subtitle": "出題形式・条文番号順（再構成）",
+      "description": "記述の「聞かれる型→答案の芯」を条文順で並べた。原典NOTEの言い回しは言い換え済み。"
     },
     {
       "slug": "gyosei-kijutsu",
       "title": "行政法記述",
       "dir": "行政法記述",
-      "subtitle": "記述予想論点総まとめ（独学応援NOTE要約）",
-      "description": "執行停止・取消撤回・訴訟類型など、記述の言い回しを整理。"
+      "subtitle": "出題形式・主要法令の条文順（再構成）",
+      "description": "手続法→不服審査→行訴→国賠→自治の順。記述で聞かれやすい問い方に組み替え。"
     },
     {
       "slug": "kisochi",
       "title": "基礎知識",
       "dir": "基礎知識",
-      "subtitle": "一般知識・個人情報保護法（独学応援NOTE要約）",
-      "description": "足切り対策の個情法を肢別ポイントで整理。追記ノートは同フォルダへ .md を追加。"
+      "subtitle": "出題形式・個情法条文順（再構成）",
+      "description": "○×で切る型に再構成。原典肢の全文は載せない。"
     }
   ]
 }

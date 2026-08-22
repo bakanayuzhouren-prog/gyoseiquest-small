@@ -16,6 +16,7 @@ Use this skill whenever image generation or visual design consistency matters in
 3. Preserve legal accuracy before decoration. If a concept is uncertain, mark it for confirmation instead of inventing.
 4. Generate GPT Image prompts that specify layout, typography, style, colors, whitespace, and prohibited elements.
 5. After generating an image, decide its app placement: `もっと深掘る`, `君の教科書`, `見て聞いて覚える`, bonus question explanation, or cross-topic reference.
+   - For DB textbook / 記述カード: place the figure **under the question（問の下）**, not inside the 解答例 toggle. Follow `skills/gyosei-kijutsu-textbook/SKILL.md`（記述は40字程度・論点およそ3つ）。
 6. Verify the finished image visually before calling the work complete.
 
 ## Required Output For Image Tasks
