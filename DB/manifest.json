@@ -1,0 +1,27 @@
+{
+  "description": "教科書モード用ノート記事DB。各科目フォルダ内の .md を辞書順で結合してアプリに取り込む。",
+  "bundleCommand": "npm run bundle:db-textbooks",
+  "subjects": [
+    {
+      "slug": "minpou-kijutsu",
+      "title": "民法記述",
+      "dir": "民法記述",
+      "subtitle": "記述予想論点（独学応援NOTE要約）",
+      "description": "弁済・担保・親族相続など、記述の骨子を条文・要件中心で整理。"
+    },
+    {
+      "slug": "gyosei-kijutsu",
+      "title": "行政法記述",
+      "dir": "行政法記述",
+      "subtitle": "記述予想論点総まとめ（独学応援NOTE要約）",
+      "description": "執行停止・取消撤回・訴訟類型など、記述の言い回しを整理。"
+    },
+    {
+      "slug": "kisochi",
+      "title": "基礎知識",
+      "dir": "基礎知識",
+      "subtitle": "一般知識・個人情報保護法（独学応援NOTE要約）",
+      "description": "足切り対策の個情法を肢別ポイントで整理。追記ノートは同フォルダへ .md を追加。"
+    }
+  ]
+}

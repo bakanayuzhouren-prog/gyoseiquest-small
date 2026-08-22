@@ -32,6 +32,24 @@ const SUBJECTS = [
     description: '初学者向け12点教科書。考え方→必殺5本柱→過去問型。',
     icon: 'business-center' as const,
   },
+  {
+    href: '/textbook/minpou-kijutsu' as Href,
+    title: '民法記述',
+    description: 'DBノート（独学応援NOTE要約）から取込。記述の骨子・要件を整理。',
+    icon: 'description' as const,
+  },
+  {
+    href: '/textbook/gyosei-kijutsu' as Href,
+    title: '行政法記述',
+    description: 'DBノートから取込。執行停止・訴訟類型など記述の言い回し。',
+    icon: 'rule' as const,
+  },
+  {
+    href: '/textbook/kisochi' as Href,
+    title: '基礎知識',
+    description: 'DBノートから取込。個情法など一般知識の足切り対策。',
+    icon: 'school' as const,
+  },
 ];
 
 export default function TextbookHubScreen() {
