@@ -38,9 +38,6 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'gyouseihou/chihou/33-21-4-1': require('@/assets/images/deepdive/gyouseihou/chihou/33-21-4-1.png'),
   'gyouseihou/chihou/33-21-4-2': require('@/assets/images/deepdive/gyouseihou/chihou/33-21-4-2.png'),
   'gyouseihou/chihou/33-21-4-3': require('@/assets/images/deepdive/gyouseihou/chihou/33-21-4-3.png'),
-  'gyouseihou/jichi/33-21-4-1': require('@/assets/images/deepdive/gyouseihou/chihou/33-21-4-1.png'),
-  'gyouseihou/jichi/33-21-4-2': require('@/assets/images/deepdive/gyouseihou/chihou/33-21-4-2.png'),
-  'gyouseihou/jichi/33-21-4-3': require('@/assets/images/deepdive/gyouseihou/chihou/33-21-4-3.png'),
   'gyouseihou/chihou/33-24-4-1': require('@/assets/images/deepdive/gyouseihou/chihou/33-24-4-1.png'),
   'gyouseihou/chihou/33-31-4-1': require('@/assets/images/deepdive/gyouseihou/chihou/33-31-4-1.png'),
   'gyouseihou/chihou/jichi-rinji-shoukai-101-blindspot': require('@/assets/images/deepdive/gyouseihou/chihou/jichi-rinji-shoukai-101-blindspot.png'),
@@ -238,12 +235,6 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kakuronn/tinntai-siyoutai': require('@/assets/images/deepdive/kakuronn/tinntai-siyoutai.png'),
   'kennpou-toku/kenpou36': require('@/assets/images/deepdive/kennpou-toku/kenpou36.png'),
   'kenpou/1-230': require('@/assets/images/deepdive/kenpou/1-230.png'),
-  'kenpou/tsu-jichinsai-4koma': require('@/assets/images/deepdive/kenpou/tsu-jichinsai-4koma.png'),
-  'kenpou/mitsubishi-resin-4koma': require('@/assets/images/deepdive/kenpou/mitsubishi-resin-4koma.png'),
-  'kenpou/showa-womens-univ-4koma': require('@/assets/images/deepdive/kenpou/showa-womens-univ-4koma.png'),
-  'kenpou/ehime-tamagushi-4koma': require('@/assets/images/deepdive/kenpou/ehime-tamagushi-4koma.png'),
-  'kenpou/sorachibuto-jinja-4koma': require('@/assets/images/deepdive/kenpou/sorachibuto-jinja-4koma.png'),
-  'kenpou/koushibyo-soshou-4koma': require('@/assets/images/deepdive/kenpou/koushibyo-soshou-4koma.png'),
   'kenpou/10-230': require('@/assets/images/deepdive/kenpou/10-230.png'),
   'kenpou/100-230': require('@/assets/images/deepdive/kenpou/100-230.png'),
   'kenpou/101-230': require('@/assets/images/deepdive/kenpou/101-230.png'),
@@ -482,6 +473,12 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'kenpou/97-230': require('@/assets/images/deepdive/kenpou/97-230.png'),
   'kenpou/98-230': require('@/assets/images/deepdive/kenpou/98-230.png'),
   'kenpou/99-230': require('@/assets/images/deepdive/kenpou/99-230.png'),
+  'kenpou/ehime-tamagushi-4koma': require('@/assets/images/deepdive/kenpou/ehime-tamagushi-4koma.png'),
+  'kenpou/koushibyo-soshou-4koma': require('@/assets/images/deepdive/kenpou/koushibyo-soshou-4koma.png'),
+  'kenpou/mitsubishi-resin-4koma': require('@/assets/images/deepdive/kenpou/mitsubishi-resin-4koma.png'),
+  'kenpou/showa-womens-univ-4koma': require('@/assets/images/deepdive/kenpou/showa-womens-univ-4koma.png'),
+  'kenpou/sorachibuto-jinja-4koma': require('@/assets/images/deepdive/kenpou/sorachibuto-jinja-4koma.png'),
+  'kenpou/tsu-jichinsai-4koma': require('@/assets/images/deepdive/kenpou/tsu-jichinsai-4koma.png'),
   'kijyutu/gyouseihou/kijyutu-gyouseihou-3-A': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-A.png'),
   'kijyutu/gyouseihou/kijyutu-gyouseihou-3-B': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-B.png'),
   'kijyutu/gyouseihou/kijyutu-gyouseihou-3-C': require('@/assets/images/deepdive/kijyutu/gyouseihou/kijyutu-gyouseihou-3-C.png'),
@@ -620,7 +617,40 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'sousoku/ito-sosoku-05-shoumetsu-jikou-kikan': require('@/assets/images/deepdive/sousoku/ito-sosoku-05-shoumetsu-jikou-kikan.png'),
   'sousoku/ito-sosoku-06-kisanten-rikouchitai': require('@/assets/images/deepdive/sousoku/ito-sosoku-06-kisanten-rikouchitai.png'),
   'sousoku/ito-sosoku-07-dairiken-shoumetsu': require('@/assets/images/deepdive/sousoku/ito-sosoku-07-dairiken-shoumetsu.png'),
-  'sousoku/ito-sosoku-08-mukendairi-souzoku': require('@/assets/images/deepdive/sousoku/ito-sosoku-08-mukendairi-souzoku.png')
+  'sousoku/ito-sosoku-08-mukendairi-souzoku': require('@/assets/images/deepdive/sousoku/ito-sosoku-08-mukendairi-souzoku.png'),
+  'textbook/minpou-kijutsu/q1': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q1.png'),
+  'textbook/minpou-kijutsu/q1-1': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q1-1.png'),
+  'textbook/minpou-kijutsu/q10': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q10.png'),
+  'textbook/minpou-kijutsu/q11': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q11.png'),
+  'textbook/minpou-kijutsu/q11-2': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q11-2.png'),
+  'textbook/minpou-kijutsu/q12': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q12.png'),
+  'textbook/minpou-kijutsu/q13': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q13.png'),
+  'textbook/minpou-kijutsu/q14': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q14.png'),
+  'textbook/minpou-kijutsu/q15': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q15.png'),
+  'textbook/minpou-kijutsu/q16': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q16.png'),
+  'textbook/minpou-kijutsu/q17': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q17.png'),
+  'textbook/minpou-kijutsu/q18': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q18.png'),
+  'textbook/minpou-kijutsu/q19': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q19.png'),
+  'textbook/minpou-kijutsu/q2': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q2.png'),
+  'textbook/minpou-kijutsu/q20': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q20.png'),
+  'textbook/minpou-kijutsu/q21': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q21.png'),
+  'textbook/minpou-kijutsu/q22': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q22.png'),
+  'textbook/minpou-kijutsu/q23': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q23.png'),
+  'textbook/minpou-kijutsu/q24': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q24.png'),
+  'textbook/minpou-kijutsu/q25': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q25.png'),
+  'textbook/minpou-kijutsu/q26': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q26.png'),
+  'textbook/minpou-kijutsu/q27': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q27.png'),
+  'textbook/minpou-kijutsu/q28': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q28.png'),
+  'textbook/minpou-kijutsu/q29': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q29.png'),
+  'textbook/minpou-kijutsu/q3': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q3.png'),
+  'textbook/minpou-kijutsu/q30': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q30.png'),
+  'textbook/minpou-kijutsu/q31': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q31.png'),
+  'textbook/minpou-kijutsu/q4': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q4.png'),
+  'textbook/minpou-kijutsu/q5': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q5.png'),
+  'textbook/minpou-kijutsu/q6': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q6.png'),
+  'textbook/minpou-kijutsu/q7': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q7.png'),
+  'textbook/minpou-kijutsu/q8': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q8.png'),
+  'textbook/minpou-kijutsu/q9': require('@/assets/images/deepdive/textbook/minpou-kijutsu/q9.png')
 };
 
 export function getDeepdiveImageSource(filename: string): number | undefined {
@@ -991,11 +1021,8 @@ export function resolveMinpoSousokuSupplementChunkImageKey(
 }
 
 /**
- * 問題を解く・憲法: クイズの問題番号・総問題数・肢番号が一致する画像だけを返す。
- *
- * `kenpou/N-230` は「見て聞いて覚える」側のカード番号であり、クイズの
- * N問目とは論点が一致しない。同じ番号というだけで流用すると無関係な画像が
- * 表示されるため、ここではフォールバックに使用しない。
+ * 問題を解く・憲法: kennpou-toku/kenpouN があれば全肢共通で最優先。
+ * 次に kenpou/N-M-C（存在すれば）、なければ kenpou/N-230。218問目は 184 へエイリアス。
  */
 export function resolveKenpouQuizChoiceImageKey(
   questionNum1Based: number,
@@ -1004,15 +1031,25 @@ export function resolveKenpouQuizChoiceImageKey(
 ): string | undefined {
   if (questionNum1Based < 1 || choiceNum1Based < 1) return undefined;
 
+  const tokuExact = `kennpou-toku/kenpou${questionNum1Based}`;
+  if (DEEPDIVE_IMAGES[tokuExact]) return tokuExact;
+
   const tryWithN = (n: number) => {
     const exact = `kenpou/${n}-${totalQuestions}-${choiceNum1Based}`;
     if (DEEPDIVE_IMAGES[exact]) return exact;
-    return undefined;
+    const re = new RegExp(`^kenpou/${n}-\\d+-${choiceNum1Based}$`);
+    return Object.keys(DEEPDIVE_IMAGES).find((k) => re.test(k));
   };
 
   let key = tryWithN(questionNum1Based);
   if (!key && questionNum1Based === 218) key = tryWithN(184);
-  return key;
+  if (key) return key;
+
+  if (questionNum1Based === 218) {
+    const alias184 = resolveKenpouProblemImageKey(184);
+    if (alias184) return alias184;
+  }
+  return resolveKenpouProblemImageKey(questionNum1Based);
 }
 
 /**

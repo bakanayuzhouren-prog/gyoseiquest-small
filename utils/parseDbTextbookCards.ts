@@ -14,8 +14,10 @@ import {
 
 export type DbTextbookCard = {
   id: string;
-  /** 1始まりの問番号（画像キー textbook/<slug>/q{N} 用） */
+  /** 見出しの本体番号（Q1-2 なら 1） */
   questionNumber: number;
+  /** 画像キー textbook/<slug>/q{slot} 用（Q1-2 なら `1-2`） */
+  imageSlot: string;
   title: string;
   /** 出題の型 → UI「問」（[[image:]] タグ除去後） */
   question: string;
@@ -98,7 +100,7 @@ export function buildStatuteSearchText(title: string, question: string, contextL
   return text;
 }
 
-export function resolveStatutesMarkdown(searchText: string): string {
+export function resolveStatuteItems(searchText: string): Array<{ title: string; content: string }> {
   const segs = splitPlainByStatuteRefs(searchText);
   const seen = new Set<string>();
   const collected: { title: string; content: string }[] = [];
@@ -122,7 +124,108 @@ export function resolveStatutesMarkdown(searchText: string): string {
     }
   }
 
-  return formatResolvedStatutesForModal(collected).trim();
+  return collected;
+}
+
+export function resolveStatutesMarkdown(searchText: string): string {
+  return formatResolvedStatutesForModal(resolveStatuteItems(searchText)).trim();
+}
+
+/** 答案と突き合わせるための正規化（表記ゆれを畳む） */
+export function normalizeStatuteAnswerMatchText(raw: string): string {
+  return String(raw || '')
+    .replace(/（\d+字）/g, '')
+    .replace(/[\[\]【】]/g, '')
+    .replace(/重大な過失/g, '重過失')
+    .replace(/若しくは/g, '又は')
+    .replace(/表意者に錯誤があることを/g, '錯誤を')
+    .replace(/表意者と同一の錯誤に陥っていた/g, '双方同一の錯誤')
+    .replace(/同一の錯誤に陥っていた/g, '同一の錯誤')
+    .replace(/双方が同一の錯誤/g, '双方同一の錯誤')
+    .replace(/によって/g, 'で')
+    .replace(/[。、．，,\s　・]/g, '');
+}
+
+function statuteOverlapScore(bodyNorm: string, answerNorm: string): number {
+  if (!bodyNorm || !answerNorm) return 0;
+  if (answerNorm.includes(bodyNorm) || bodyNorm.includes(answerNorm)) return 1;
+  const short = bodyNorm.length <= answerNorm.length ? bodyNorm : answerNorm;
+  const long = bodyNorm.length <= answerNorm.length ? answerNorm : bodyNorm;
+  if (short.length < 5) return long.includes(short) ? 1 : 0;
+  const win = Math.min(6, short.length);
+  let hits = 0;
+  let total = 0;
+  for (let i = 0; i <= short.length - win; i += 2) {
+    total += 1;
+    if (long.includes(short.slice(i, i + win))) hits += 1;
+  }
+  return total ? hits / total : 0;
+}
+
+export function statuteBodyMatchesAnswer(body: string, answerExample: string): boolean {
+  const answerNorm = normalizeStatuteAnswerMatchText(answerExample);
+  const bodyNorm = normalizeStatuteAnswerMatchText(body);
+  if (answerNorm.length < 10 || bodyNorm.length < 8) return false;
+  if (statuteOverlapScore(bodyNorm, answerNorm) >= 0.3) return true;
+  // 答案を「又は」で割った断片とも照合（95条3項一・二等の併記答案向け）
+  const parts = answerNorm.split(/又は/).filter((p) => p.length >= 6);
+  if (parts.some((p) => statuteOverlapScore(bodyNorm, p) >= 0.35)) return true;
+  // 短い号文向けの核フレーズ共有（同一の錯誤／重過失で知らなかった 等）
+  const cores = ['双方同一の錯誤', '同一の錯誤', '重過失で知らなかった', '錯誤を知り'];
+  return cores.some((c) => c.length >= 6 && bodyNorm.includes(c) && answerNorm.includes(c));
+}
+
+/**
+ * 解答例に効く条文箇所を先頭へ寄せ、本文を [[red:...]] で強調する。
+ * 記述教科書で「答案の芯」に対応する号が条文トグルの下に埋もれるのを防ぐ。
+ */
+export function formatStatutesWithAnswerEmphasis(
+  items: Array<{ title: string; content: string }>,
+  answerExample: string,
+): string {
+  if (!items.length) return '';
+  const matched = items.filter((it) => statuteBodyMatchesAnswer(it.content || '', answerExample));
+  if (!matched.length) {
+    return formatResolvedStatutesForModal(items).trim();
+  }
+
+  const matchedKeys = new Set(matched.map((it) => `${it.title}\n${it.content}`));
+  const fullHighlighted = formatResolvedStatutesForModal(
+    items.map((it) => {
+      const key = `${it.title}\n${it.content}`;
+      if (!matchedKeys.has(key) || !(it.content || '').trim()) return it;
+      return { ...it, content: `[[red:${(it.content || '').trim()}]]` };
+    }),
+  ).trim();
+
+  const focus = matched
+    .map((it) => {
+      const title = (it.title || '').trim();
+      const body = (it.content || '').trim();
+      if (!body) return title ? `**${title}**` : '';
+      const redBody = `[[red:${body}]]`;
+      return title ? `**${title}**\n\n${redBody}` : redBody;
+    })
+    .filter(Boolean)
+    .join('\n\n');
+
+  return `**答案対応（赤字）**\n\n${focus}\n\n---\n\n${fullHighlighted}`;
+}
+
+/** 手書きの **条文** ブロック内でも、答案と重なる文を赤字化する（簡易） */
+export function emphasizeMarkdownStatutesForAnswer(markdown: string, answerExample: string): string {
+  const answerNorm = normalizeStatuteAnswerMatchText(answerExample);
+  if (!markdown.trim() || answerNorm.length < 10) return markdown;
+
+  return markdown.replace(
+    /(^|\n)((?:\*\*[^*\n]+\*\*\s*\n+)?)([^\n【\*\[-][^\n]{7,})/g,
+    (full, lead: string, titleBlock: string, line: string) => {
+      if (/答案対応|赤字|---/.test(line)) return full;
+      if (line.includes('[[red:')) return full;
+      if (!statuteBodyMatchesAnswer(line, answerExample)) return full;
+      return `${lead}${titleBlock}[[red:${line.trim()}]]`;
+    },
+  );
 }
 
 /** 条文トグルを出すか（MD本文 or 解決可能な条参照） */
@@ -137,14 +240,28 @@ export function cardHasStatuteContent(card: DbTextbookCard): boolean {
 
 export function resolveCardStatuteText(card: DbTextbookCard): string {
   const fromMd = card.statuteFromMarkdown.trim();
-  if (fromMd) return fromMd;
-  return resolveStatutesMarkdown(card.statuteSearchText);
+  if (fromMd) return emphasizeMarkdownStatutesForAnswer(fromMd, card.answerExample);
+  const items = resolveStatuteItems(card.statuteSearchText);
+  return formatStatutesWithAnswerEmphasis(items, card.answerExample);
 }
 
 const IMAGE_TAG_RE = /\[\[image:([^\]]+)\]\]/gi;
 
+/** `Q1` / `Q1-2` / `問3` から本体番号と画像スロットを取る */
+export function parseTextbookQuestionHeading(title: string): {
+  questionNumber: number;
+  imageSlot: string;
+} | null {
+  const m = title.match(/^Q(\d+)(?:-(\d+))?/i) || title.match(/^問(\d+)/);
+  if (!m) return null;
+  const n = Number(m[1]);
+  if (!Number.isFinite(n) || n < 1) return null;
+  const imageSlot = m[2] ? `${n}-${m[2]}` : String(n);
+  return { questionNumber: n, imageSlot };
+}
+
 /** 問本文から [[image:key]] を抜き、本文とキー配列に分ける */
-export function extractQuestionImages(questionRaw: string, slug: string, questionNumber: number): {
+export function extractQuestionImages(questionRaw: string, slug: string, imageSlot: string): {
   question: string;
   imageKeys: string[];
 } {
@@ -163,8 +280,10 @@ export function extractQuestionImages(questionRaw: string, slug: string, questio
     push(m[1]);
   }
 
-  // 規約キー（アセット登録済みならUI側で表示）
-  push(`textbook/${slug}/q${questionNumber}`);
+  // 規約キー（アセット登録済みならUI側で表示）。枝番は q1-2
+  if (imageSlot) {
+    push(`textbook/${slug}/q${imageSlot}`);
+  }
 
   const question = questionRaw.replace(IMAGE_TAG_RE, '').replace(/\n{3,}/g, '\n\n').trim();
   return { question, imageKeys: keys };
@@ -174,6 +293,7 @@ function flushCard(
   draft: {
     id: string;
     questionNumber: number;
+    imageSlot: string;
     title: string;
     question: string;
     answer: string;
@@ -185,12 +305,13 @@ function flushCard(
   out: DbTextbookBlock[],
 ): void {
   if (!draft) return;
-  const { question, imageKeys } = extractQuestionImages(draft.question, slug, draft.questionNumber);
+  const { question, imageKeys } = extractQuestionImages(draft.question, slug, draft.imageSlot);
   out.push({
     kind: 'card',
     card: {
       id: draft.id,
       questionNumber: draft.questionNumber,
+      imageSlot: draft.imageSlot,
       title: draft.title,
       question,
       questionImageKeys: imageKeys,
@@ -216,6 +337,7 @@ export function parseDbTextbookBlocks(markdown: string, slug: string): DbTextboo
   let draft: {
     id: string;
     questionNumber: number;
+    imageSlot: string;
     title: string;
     question: string;
     answer: string;
@@ -259,9 +381,13 @@ export function parseDbTextbookBlocks(markdown: string, slug: string): DbTextboo
         cardIndex += 1;
         const fromTitle = detectLawFromHeading(title);
         if (fromTitle) contextLaw = fromTitle;
+        const parsed = parseTextbookQuestionHeading(title);
+        const imageSlot = parsed?.imageSlot || String(cardIndex);
+        const questionNumber = parsed?.questionNumber || cardIndex;
         draft = {
-          id: `q-${cardIndex}`,
-          questionNumber: cardIndex,
+          id: `q-${imageSlot}`,
+          questionNumber,
+          imageSlot,
           title,
           question: '',
           answer: '',
