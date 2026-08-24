@@ -47,6 +47,10 @@ const SECTION_ALIASES: Record<string, 'question' | 'answer' | 'tip' | 'statute'>
 };
 
 const LAW_FROM_HEADING: { test: RegExp; law: string }[] = [
+  { test: /行政書士法/, law: '行政書士法' },
+  { test: /戸籍法/, law: '戸籍法' },
+  { test: /住民基本台帳法|住基法/, law: '住民基本台帳法' },
+  { test: /個人情報保護法|個情法/, law: '個人情報保護法' },
   { test: /行政手続法|行手法/, law: '行政手続法' },
   { test: /行政不服審査法|行審法/, law: '行政不服審査法' },
   { test: /行政事件訴訟法|行訴法/, law: '行政事件訴訟法' },
@@ -81,6 +85,7 @@ export function buildStatuteSearchText(title: string, question: string, contextL
   const fromBracket = bracket?.[1]?.trim() || '';
   const normalized = fromBracket
     .replace(/個情法/g, '個人情報保護法')
+    .replace(/住基法/g, '住民基本台帳法')
     .replace(/行手法/g, '行政手続法')
     .replace(/行審法/g, '行政不服審査法')
     .replace(/行訴法/g, '行政事件訴訟法')
@@ -91,7 +96,7 @@ export function buildStatuteSearchText(title: string, question: string, contextL
   let text = parts.join(' ');
   if (
     contextLaw &&
-    !/(憲法|民法|商法|会社法|行政手続法|行政不服審査法|行政事件訴訟法|国家賠償法|地方自治法|個人情報保護法)/.test(
+    !/(憲法|民法|商法|会社法|行政手続法|行政不服審査法|行政事件訴訟法|国家賠償法|地方自治法|個人情報保護法|行政書士法|戸籍法|住民基本台帳法)/.test(
       text,
     )
   ) {

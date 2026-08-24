@@ -47,7 +47,7 @@ const SUBJECTS = [
   {
     href: '/textbook/kisochi' as Href,
     title: '基礎知識',
-    description: '個情法を○×出題形式・条文順で。足切り向け。',
+    description: '個情法・行政書士法・戸籍法・住基法を○×出題形式で。足切り向け。',
     icon: 'school' as const,
   },
 ];

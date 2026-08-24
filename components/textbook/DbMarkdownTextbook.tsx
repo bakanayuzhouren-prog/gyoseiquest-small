@@ -1,8 +1,8 @@
 import { MarkdownText } from '@/components/markdown-text';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Stack, router } from 'expo-router';
-import { useMemo, useRef, useState } from 'react';
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useMemo, useRef, useState, createElement } from 'react';
+import { Image, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import type { DbTextbookBundle } from '@/src/content/dbTextbookBundles';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
@@ -27,6 +27,49 @@ type Props = {
   bundle: DbTextbookBundle;
 };
 
+function intrinsicAspectRatio(source: number): number {
+  const resolved = typeof Image.resolveAssetSource === 'function' ? Image.resolveAssetSource(source) : undefined;
+  const w = resolved?.width;
+  const h = resolved?.height;
+  if (w && h && w > 0 && h > 0) {
+    return w / h;
+  }
+  return 16 / 9;
+}
+
+function QuestionImage({ imageKey, source }: { imageKey: string; source: number }) {
+  const ratio = useMemo(() => intrinsicAspectRatio(source), [source]);
+  const uri = useMemo(() => Image.resolveAssetSource(source)?.uri, [source]);
+  return (
+    <View style={styles.questionImageFrame}>
+      <View style={styles.questionImageClip}>
+        {Platform.OS === 'web' && uri ? (
+          createElement('img', {
+            src: uri,
+            alt: `解説図 ${imageKey}`,
+            style: {
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              verticalAlign: 'top',
+            },
+          })
+        ) : (
+          <Image
+            source={source}
+            style={[styles.questionImage, { aspectRatio: ratio }]}
+            resizeMode="contain"
+            accessibilityLabel={`解説図 ${imageKey}`}
+          />
+        )}
+        <View style={styles.chachalotBadge} pointerEvents="none">
+          <Text style={styles.chachalotCaption}>ちゃちゃロット</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
 function QuestionImages({ keys }: { keys: string[] }) {
   const resolved = useMemo(() => {
     const out: { key: string; source: number }[] = [];
@@ -45,13 +88,7 @@ function QuestionImages({ keys }: { keys: string[] }) {
   return (
     <View style={styles.questionImages}>
       {resolved.map(({ key, source }) => (
-        <Image
-          key={key}
-          source={source}
-          style={styles.questionImage}
-          resizeMode="contain"
-          accessibilityLabel={`解説図 ${key}`}
-        />
+        <QuestionImage key={key} imageKey={key} source={source} />
       ))}
     </View>
   );
@@ -72,13 +109,11 @@ function QuestionCard({ card }: { card: DbTextbookCard }) {
       <Text style={styles.cardTitle}>{card.title}</Text>
 
       {card.question.trim() ? (
-        <View style={styles.block}>
+        <View style={styles.questionBlock}>
           <Text style={styles.blockLabel}>問</Text>
           <MarkdownText text={card.question} />
         </View>
       ) : null}
-
-      <QuestionImages keys={card.questionImageKeys} />
 
       {card.answerExample.trim() ? (
         <View style={styles.disclosure}>
@@ -129,11 +164,13 @@ function QuestionCard({ card }: { card: DbTextbookCard }) {
       ) : null}
 
       {card.tip.trim() ? (
-        <View style={styles.block}>
+        <View style={styles.tipBlock}>
           <Text style={styles.blockLabel}>切るポイント</Text>
           <MarkdownText text={card.tip} />
         </View>
       ) : null}
+
+      <QuestionImages keys={card.questionImageKeys} />
     </View>
   );
 }
@@ -343,7 +380,7 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     marginBottom: 12,
   },
-  block: {
+  questionBlock: {
     marginBottom: 10,
   },
   blockLabel: {
@@ -352,17 +389,41 @@ const styles = StyleSheet.create({
     color: C.accent,
     marginBottom: 6,
   },
+  tipBlock: {
+    marginBottom: 0,
+  },
   questionImages: {
-    marginBottom: 12,
-    gap: 10,
+    marginHorizontal: -16,
+    marginTop: 8,
+    marginBottom: 0,
+  },
+  questionImageFrame: {
+    width: '100%',
+  },
+  questionImageClip: {
+    width: '100%',
+    position: 'relative',
   },
   questionImage: {
     width: '100%',
-    aspectRatio: 16 / 9,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: C.border,
-    backgroundColor: '#FFF',
+  },
+  chachalotBadge: {
+    position: 'absolute',
+    right: 4,
+    bottom: 4,
+    width: 96,
+    alignItems: 'center',
+  },
+  chachalotCaption: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#1E3A5F',
+    backgroundColor: 'rgba(255,252,245,0.94)',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 4,
+    overflow: 'hidden',
+    letterSpacing: 0.3,
   },
   disclosure: {
     marginBottom: 8,
