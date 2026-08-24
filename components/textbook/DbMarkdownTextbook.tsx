@@ -1,7 +1,7 @@
 import { MarkdownText } from '@/components/markdown-text';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Stack, router } from 'expo-router';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import type { DbTextbookBundle } from '@/src/content/dbTextbookBundles';
@@ -143,6 +143,18 @@ export function DbMarkdownTextbook({ bundle }: Props) {
     () => parseDbTextbookBlocks(bundle.markdown, bundle.slug),
     [bundle.markdown, bundle.slug],
   );
+  const cards = useMemo(
+    () => blocks.filter((b): b is { kind: 'card'; card: DbTextbookCard } => b.kind === 'card').map((b) => b.card),
+    [blocks],
+  );
+  const scrollRef = useRef<ScrollView>(null);
+  const cardY = useRef<Record<string, number>>({});
+
+  const jumpTo = (id: string) => {
+    const y = cardY.current[id];
+    if (y == null) return;
+    scrollRef.current?.scrollTo({ y: Math.max(0, y - 6), animated: true });
+  };
 
   return (
     <View style={styles.screen}>
@@ -160,6 +172,7 @@ export function DbMarkdownTextbook({ bundle }: Props) {
         }}
       />
       <ScrollView
+        ref={scrollRef}
         style={styles.scroll}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator
@@ -174,6 +187,22 @@ export function DbMarkdownTextbook({ bundle }: Props) {
             </Text>
           ))}
         </View>
+
+        {cards.length > 1 ? (
+          <View style={styles.jumpWrap}>
+            {cards.map((card) => (
+              <Pressable
+                key={card.id}
+                onPress={() => jumpTo(card.id)}
+                accessibilityRole="button"
+                accessibilityLabel={`Q${card.imageSlot}へ`}
+                style={({ pressed }) => [styles.jumpChip, pressed && styles.jumpChipPressed]}
+              >
+                <Text style={styles.jumpChipText}>Q{card.imageSlot}</Text>
+              </Pressable>
+            ))}
+          </View>
+        ) : null}
 
         {blocks.map((block, index) => {
           if (block.kind === 'preamble') {
@@ -190,7 +219,16 @@ export function DbMarkdownTextbook({ bundle }: Props) {
               </Text>
             );
           }
-          return <QuestionCard key={block.card.id} card={block.card} />;
+          return (
+            <View
+              key={block.card.id}
+              onLayout={(e) => {
+                cardY.current[block.card.id] = e.nativeEvent.layout.y;
+              }}
+            >
+              <QuestionCard card={block.card} />
+            </View>
+          );
         })}
 
         <Text style={styles.footer}>
@@ -252,6 +290,28 @@ const styles = StyleSheet.create({
     color: C.textMuted,
     lineHeight: 18,
   },
+  jumpWrap: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+    marginBottom: 16,
+  },
+  jumpChip: {
+    paddingHorizontal: 8,
+    paddingVertical: 5,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: C.border,
+    backgroundColor: C.panel,
+  },
+  jumpChipPressed: {
+    opacity: 0.7,
+  },
+  jumpChipText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: C.accent,
+  },
   preamble: {
     backgroundColor: C.cardBg,
     borderRadius: 12,
@@ -298,7 +358,7 @@ const styles = StyleSheet.create({
   },
   questionImage: {
     width: '100%',
-    aspectRatio: 4 / 3,
+    aspectRatio: 16 / 9,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: C.border,

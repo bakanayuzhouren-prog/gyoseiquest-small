@@ -102,6 +102,9 @@ description: >-
 - 量産2（Q11-2〜Q20）: `skills/gyosei-kijutsu-textbook/prompts/codex-batch-minpou-zenhan-q11-2-q20.md`。案内役は **ちゃちゃロット**（フクロウ枠・指し棒）。
 - 量産3（Q22〜Q31）: `skills/gyosei-kijutsu-textbook/prompts/codex-batch-minpou-kouhan-q22-q31.md`。
 - 量産4（Q32〜Q41）: `skills/gyosei-kijutsu-textbook/prompts/codex-batch-minpou-kouhan-q32-q41.md`。案内役は **ちゃちゃロット**（フクロウ枠・指し棒）。**q1〜q21を上書きしない**。
+- 量産5（次の20問）: 索引 `prompts/codex-batch-next-20.md`。民法残り `codex-batch-minpou-kouhan-q42-q53.md`（Q42〜Q53）＋行政法先頭 `codex-batch-gyosei-kijutsu-q1-q8.md`（Q1〜Q6・枝番込み）。**民法 q1〜q41 を上書きしない**。
+- 量産6（行政法 Q7〜Q16）: `skills/gyosei-kijutsu-textbook/prompts/codex-batch-gyosei-kijutsu-q7-q16.md`。**民法 q1〜q41・行政法 q1〜q6 を上書きしない**。
+- 量産7（行政法 Q17〜Q35・19問）: `skills/gyosei-kijutsu-textbook/prompts/codex-batch-gyosei-kijutsu-q17-q35.md`。正本が Q35 で終わるため20問には足りない。**民法 q1〜q53・行政法 q1〜q16 を上書きしない**。
 - 見出し・論点の見本: `skills/gyosei-kijutsu-textbook/prompts/codex-q1-126-ronten.md`（126条）／`codex-q1-1-13-hosanin.md`（13条）。
 - 旧10問バッチ（`codex-batch-q2-q11.md` / `codex-batch-q12-q21.md`）は見出しが古いので使わない。
 - 画像プロンプト・画風は `skills/gyosei-image-style/SKILL.md` に従う。見本: `skills/gyosei-image-style/assets/approved-shusaisha-kyoka.png`。案内役: **ちゃちゃロット**（`assets/images/characters/chachalot.png` ＋ `approved-smiling-hat-mascot.png`）。X: @appshi113。

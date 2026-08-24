@@ -80,7 +80,7 @@ For character-only or character-heavy jobs, also use the **ちゃちゃロット
 - If replacing an existing image, preserve all active references or update the image map in the same change.
 - Do not ship a legal diagram that is only a title, paragraphs, and a table. Apply the Exciting Learning Diagram System + **あぷし承認レイアウト**.
 - Choose one visual metaphor, and always include 判断軸・ひっかけ・暗記.
-- Descriptive textbook figures: left **論点** (Q&A; YES/NO or short answer only; never mix GO+YES; never「問が聞くこと」), right **ひっかけ** (never「（聞かない）」), character labels `役割（何をしたいか）` (never「だれが」), statutes as（〇条）in body rows. Gold: 民法記述Q1. 民法記述量産4: `../gyosei-kijutsu-textbook/prompts/codex-batch-minpou-kouhan-q32-q41.md`（Q32〜Q41。q1〜q21上書き禁止）。
+- Descriptive textbook figures: left **論点** (Q&A; YES/NO or short answer only; never mix GO+YES; never「問が聞くこと」), right **ひっかけ** (never「（聞かない）」), character labels `役割（何をしたいか）` (never「だれが」), statutes as（〇条）in body rows. Gold: 民法記述Q1. 次の20問: `../gyosei-kijutsu-textbook/prompts/codex-batch-next-20.md`（民法Q42〜Q53＋行政法Q1〜Q8。民法q1〜q41上書き禁止）。
 - For **new** diagrams, use the approved smiling-hat guide (not the owl), warm off-white background, and semantic colors (green GO / orange need-permit / red stamp).
 - Do **not** bulk-replace owls in existing learning images unless てらしぃ explicitly requests a migration pass.
 - For restyling, keep the original asset key and legal structure while removing source filenames and production notes.
