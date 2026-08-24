@@ -715,10 +715,15 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
 export function getDeepdiveImageSource(filename: string): number | undefined {
   if (!filename) return undefined;
   const normalized = filename.replace(/\.(png|jpg|jpeg|gif|webp)$/i, '');
-  const base = normalized.includes('/') ? normalized.split('/').pop()! : normalized;
   const exact = DEEPDIVE_IMAGES[normalized];
   if (exact) return exact as number;
-  const byBase = Object.keys(DEEPDIVE_IMAGES).find((k) => k === base || k.endsWith('/' + base));
+  // パス付きは exact（またはフルパスの末尾一致）のみ。
+  // textbook/kisochi/q1 が textbook/minpou-kijutsu/q1 を盗まない。
+  if (normalized.includes('/')) {
+    const byPath = Object.keys(DEEPDIVE_IMAGES).find((k) => k.endsWith('/' + normalized));
+    return byPath ? (DEEPDIVE_IMAGES[byPath] as number) : undefined;
+  }
+  const byBase = Object.keys(DEEPDIVE_IMAGES).find((k) => k === normalized || k.endsWith('/' + normalized));
   return byBase ? (DEEPDIVE_IMAGES[byBase] as number) : undefined;
 }
 

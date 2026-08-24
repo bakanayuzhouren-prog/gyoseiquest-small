@@ -1,8 +1,8 @@
 import { MarkdownText } from '@/components/markdown-text';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Stack, router } from 'expo-router';
-import { useMemo, useRef, useState, createElement } from 'react';
-import { Image, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useMemo, useRef, useState } from 'react';
+import { Image, Platform, Pressable, ScrollView, StyleSheet, Text, View, type ImageLoadEvent } from 'react-native';
 
 import type { DbTextbookBundle } from '@/src/content/dbTextbookBundles';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
@@ -25,43 +25,50 @@ const C = {
 
 type Props = {
   bundle: DbTextbookBundle;
+  screenTitle?: string;
+  subtitle?: string;
+  description?: string;
+  cardFilter?: (card: DbTextbookCard) => boolean;
+  hideSources?: boolean;
+  statuteLabel?: string;
 };
 
-function intrinsicAspectRatio(source: number): number {
-  const resolved = typeof Image.resolveAssetSource === 'function' ? Image.resolveAssetSource(source) : undefined;
-  const w = resolved?.width;
-  const h = resolved?.height;
-  if (w && h && w > 0 && h > 0) {
-    return w / h;
+function readLoadedImageSize(event: ImageLoadEvent): { width?: number; height?: number } {
+  const nativeEvent = event.nativeEvent as ImageLoadEvent['nativeEvent'] & {
+    target?: { naturalWidth?: number; naturalHeight?: number };
+  };
+  const fromSource = nativeEvent.source;
+  if (fromSource?.width && fromSource?.height) {
+    return { width: fromSource.width, height: fromSource.height };
   }
-  return 16 / 9;
+  const target = nativeEvent.target;
+  if (target?.naturalWidth && target?.naturalHeight) {
+    return { width: target.naturalWidth, height: target.naturalHeight };
+  }
+  return {};
 }
 
 function QuestionImage({ imageKey, source }: { imageKey: string; source: number }) {
-  const ratio = useMemo(() => intrinsicAspectRatio(source), [source]);
-  const uri = useMemo(() => Image.resolveAssetSource(source)?.uri, [source]);
+  const [ratio, setRatio] = useState(16 / 9);
   return (
     <View style={styles.questionImageFrame}>
       <View style={styles.questionImageClip}>
-        {Platform.OS === 'web' && uri ? (
-          createElement('img', {
-            src: uri,
-            alt: `解説図 ${imageKey}`,
-            style: {
-              width: '100%',
-              height: 'auto',
-              display: 'block',
-              verticalAlign: 'top',
-            },
-          })
-        ) : (
-          <Image
-            source={source}
-            style={[styles.questionImage, { aspectRatio: ratio }]}
-            resizeMode="contain"
-            accessibilityLabel={`解説図 ${imageKey}`}
-          />
-        )}
+        <Image
+          source={source}
+          style={[
+            styles.questionImage,
+            { aspectRatio: ratio },
+            Platform.OS === 'web' ? { height: 'auto' as unknown as number } : null,
+          ]}
+          resizeMode="contain"
+          accessibilityLabel={`解説図 ${imageKey}`}
+          onLoad={(event) => {
+            const { width, height } = readLoadedImageSize(event);
+            if (width && height && width > 0 && height > 0) {
+              setRatio(width / height);
+            }
+          }}
+        />
         <View style={styles.chachalotBadge} pointerEvents="none">
           <Text style={styles.chachalotCaption}>ちゃちゃロット</Text>
         </View>
@@ -94,7 +101,13 @@ function QuestionImages({ keys }: { keys: string[] }) {
   );
 }
 
-function QuestionCard({ card }: { card: DbTextbookCard }) {
+function QuestionCard({
+  card,
+  statuteLabel = '条文',
+}: {
+  card: DbTextbookCard;
+  statuteLabel?: string;
+}) {
   const [answerOpen, setAnswerOpen] = useState(false);
   const [statuteOpen, setStatuteOpen] = useState(false);
   const showStatute = cardHasStatuteContent(card);
@@ -145,7 +158,7 @@ function QuestionCard({ card }: { card: DbTextbookCard }) {
             onPress={() => setStatuteOpen((v) => !v)}
             accessibilityRole="button"
             accessibilityState={{ expanded: statuteOpen }}
-            accessibilityLabel={`条文を${statuteOpen ? '閉じる' : '開く'}`}
+            accessibilityLabel={`${statuteLabel}を${statuteOpen ? '閉じる' : '開く'}`}
             style={({ pressed }) => [styles.disclosureHit, pressed && styles.disclosurePressed]}
           >
             <MaterialIcons
@@ -153,7 +166,7 @@ function QuestionCard({ card }: { card: DbTextbookCard }) {
               size={26}
               color={C.accent}
             />
-            <Text style={styles.disclosureLabel}>条文</Text>
+            <Text style={styles.disclosureLabel}>{statuteLabel}</Text>
           </Pressable>
           {statuteOpen ? (
             <View style={styles.disclosureBody}>
@@ -175,11 +188,24 @@ function QuestionCard({ card }: { card: DbTextbookCard }) {
   );
 }
 
-export function DbMarkdownTextbook({ bundle }: Props) {
-  const blocks = useMemo(
-    () => parseDbTextbookBlocks(bundle.markdown, bundle.slug),
-    [bundle.markdown, bundle.slug],
-  );
+export function DbMarkdownTextbook({
+  bundle,
+  screenTitle,
+  subtitle,
+  description,
+  cardFilter,
+  hideSources,
+  statuteLabel,
+}: Props) {
+  const blocks = useMemo(() => {
+    const parsed = parseDbTextbookBlocks(bundle.markdown, bundle.slug);
+    if (!cardFilter) return parsed;
+    return parsed.filter((block) => {
+      if (block.kind === 'card') return cardFilter(block.card);
+      if (block.kind === 'section') return cardFilter({ title: block.title } as DbTextbookCard);
+      return false;
+    });
+  }, [bundle.markdown, bundle.slug, cardFilter]);
   const cards = useMemo(
     () => blocks.filter((b): b is { kind: 'card'; card: DbTextbookCard } => b.kind === 'card').map((b) => b.card),
     [blocks],
@@ -197,7 +223,7 @@ export function DbMarkdownTextbook({ bundle }: Props) {
     <View style={styles.screen}>
       <Stack.Screen
         options={{
-          title: bundle.title,
+          title: screenTitle || bundle.title,
           headerStyle: { backgroundColor: C.bg },
           headerTintColor: C.text,
           headerShadowVisible: false,
@@ -214,16 +240,22 @@ export function DbMarkdownTextbook({ bundle }: Props) {
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator
       >
-        {bundle.subtitle ? <Text style={styles.subtitle}>{bundle.subtitle}</Text> : null}
-        {bundle.description ? <Text style={styles.description}>{bundle.description}</Text> : null}
-        <View style={styles.sourceBox}>
-          <Text style={styles.sourceTitle}>表示稿（再構成）</Text>
-          {bundle.sourceFiles.map((file) => (
-            <Text key={file} style={styles.sourceLine}>
-              ・{file}
-            </Text>
-          ))}
-        </View>
+        {(subtitle ?? bundle.subtitle) ? (
+          <Text style={styles.subtitle}>{subtitle ?? bundle.subtitle}</Text>
+        ) : null}
+        {(description ?? bundle.description) ? (
+          <Text style={styles.description}>{description ?? bundle.description}</Text>
+        ) : null}
+        {hideSources ? null : (
+          <View style={styles.sourceBox}>
+            <Text style={styles.sourceTitle}>表示稿（再構成）</Text>
+            {bundle.sourceFiles.map((file) => (
+              <Text key={file} style={styles.sourceLine}>
+                ・{file}
+              </Text>
+            ))}
+          </View>
+        )}
 
         {cards.length > 1 ? (
           <View style={styles.jumpWrap}>
@@ -263,7 +295,7 @@ export function DbMarkdownTextbook({ bundle }: Props) {
                 cardY.current[block.card.id] = e.nativeEvent.layout.y;
               }}
             >
-              <QuestionCard card={block.card} />
+              <QuestionCard card={block.card} statuteLabel={statuteLabel} />
             </View>
           );
         })}

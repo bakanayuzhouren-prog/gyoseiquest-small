@@ -4,6 +4,7 @@
  */
 
 import { STATUTES } from '@/src/questions';
+import { statuteMarkdownForKisochiCard } from '@/utils/kisochiStatuteSnippets';
 import {
   formatResolvedStatutesForModal,
   lawNameToStatuteBucket,
@@ -285,7 +286,7 @@ export function extractQuestionImages(questionRaw: string, slug: string, imageSl
     push(m[1]);
   }
 
-  // 規約キー（アセット登録済みならUI側で表示）。枝番は q1-2
+  // 規約キー（そのスラッグのアセットがあるときだけUI側で表示）。枝番は q1-2
   if (imageSlot) {
     push(`textbook/${slug}/q${imageSlot}`);
   }
@@ -311,6 +312,9 @@ function flushCard(
 ): void {
   if (!draft) return;
   const { question, imageKeys } = extractQuestionImages(draft.question, slug, draft.imageSlot);
+  const fromMd = draft.statute.trim();
+  const statuteFromMarkdown =
+    fromMd || (slug === 'kisochi' ? statuteMarkdownForKisochiCard(draft.imageSlot, draft.title) : '');
   out.push({
     kind: 'card',
     card: {
@@ -322,7 +326,7 @@ function flushCard(
       questionImageKeys: imageKeys,
       answerExample: draft.answer.trim(),
       tip: draft.tip.trim(),
-      statuteFromMarkdown: draft.statute.trim(),
+      statuteFromMarkdown,
       statuteSearchText: buildStatuteSearchText(draft.title, question, contextLaw),
     },
   });
