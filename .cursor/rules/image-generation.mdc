@@ -1,0 +1,14 @@
+---
+description: 教材画像は Cursor の GenerateImage で作る（てらしぃ確定）
+alwaysApply: true
+---
+
+# 教材画像の生成経路
+
+てらしぃ確定。図解・解説図・アバター入り教材画像は、**Cursor Agent が `GenerateImage` で直に作る**。
+
+- 先に `skills/gyosei-image-style/SKILL.md` と見本PNG（主宰者許可図・ちゃちゃロット）を読む。
+- プロンプトはあぷし型（論点／ひっかけ／判断軸・ひっかけ・暗記）。参照画像を渡す。
+- 保存先は案件どおり `assets/images/...`。アプリ載せ（`imageKey`・マップ再生成・埋め込み）まで Cursor がやる。
+- **既定では Codex CLI の GPT Image に回さない。** 「コーデックスで」「GPT Image で Codex に」と明示されたときだけ Codex へプロンプトを渡す。
+- 手描き・プレースホルダ図で代用しない。

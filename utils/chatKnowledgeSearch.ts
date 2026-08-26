@@ -88,6 +88,26 @@ import {
   SHOHO_KIMEUCHI_KEY_PHRASES,
   SHOHO_KIMEUCHI_PHRASE_ALIASES,
 } from '@/utils/chatTopicBriefsShohoKimeuchi';
+import {
+  MINPOU_CHAT_BRIEFS,
+  MINPOU_KEY_PHRASES,
+  MINPOU_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsMinpou';
+import {
+  NAKA_GYOSEI_YAMA_CHAT_BRIEFS,
+  NAKA_GYOSEI_YAMA_KEY_PHRASES,
+  NAKA_GYOSEI_YAMA_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsNakaGyoseiYama';
+import {
+  NAKA_MINPOU_YAMA_CHAT_BRIEFS,
+  NAKA_MINPOU_YAMA_KEY_PHRASES,
+  NAKA_MINPOU_YAMA_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsNakaMinpouYama';
+import {
+  KENPOU_YAMA_CHAT_BRIEFS,
+  KENPOU_YAMA_KEY_PHRASES,
+  KENPOU_YAMA_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsKenpouYama';
 // @ts-ignore
 import { LINE_HISTORY } from '@/src/data/lineHistory';
 
@@ -174,6 +194,10 @@ const PHRASE_ALIASES: [string, string[]][] = [
   ...JICHI_PHRASE_ALIASES,
   ...MOSHI_BEYOND_PAST_PHRASE_ALIASES,
   ...SHOHO_KIMEUCHI_PHRASE_ALIASES,
+  ...MINPOU_PHRASE_ALIASES,
+  ...NAKA_GYOSEI_YAMA_PHRASE_ALIASES,
+  ...NAKA_MINPOU_YAMA_PHRASE_ALIASES,
+  ...KENPOU_YAMA_PHRASE_ALIASES,
 ];
 
 /** 質問語に一致したとき必ずコンテキスト先頭に載せる短い論点ガイド（判例タグだけでは足りない論点用） */
@@ -258,6 +282,10 @@ const CHAT_TOPIC_BRIEFS: { triggers: string[]; title: string; text: string }[] =
   ...JICHI_CHAT_BRIEFS,
   ...MOSHI_BEYOND_PAST_CHAT_BRIEFS,
   ...SHOHO_KIMEUCHI_CHAT_BRIEFS,
+  ...MINPOU_CHAT_BRIEFS,
+  ...NAKA_GYOSEI_YAMA_CHAT_BRIEFS,
+  ...NAKA_MINPOU_YAMA_CHAT_BRIEFS,
+  ...KENPOU_YAMA_CHAT_BRIEFS,
 ];
 
 /** 口語ノイズを除いた検索核（「〜ってなん？」「とは」等） */
@@ -320,6 +348,10 @@ const KEY_LEGAL_PHRASES = [
   ...JICHI_KEY_PHRASES,
   ...MOSHI_BEYOND_PAST_KEY_PHRASES,
   ...SHOHO_KIMEUCHI_KEY_PHRASES,
+  ...MINPOU_KEY_PHRASES,
+  ...NAKA_GYOSEI_YAMA_KEY_PHRASES,
+  ...NAKA_MINPOU_YAMA_KEY_PHRASES,
+  ...KENPOU_YAMA_KEY_PHRASES,
 ];
 
 function normalizeQueryForMatch(s: string): string {
@@ -374,6 +406,26 @@ function topicBriefsForQuery(...haystacks: string[]): { title: string; text: str
         title: b.title,
         text: b.text,
         priority,
+      });
+    }
+  }
+  const doryokuTitle = '比較：努力義務の並列（行政手続法｜行政不服審査法）';
+  const doryokuRe = /努力義務|努めなければならない|努めるものとする/;
+  const otherSubjectDoryoku = /憲法|個人情報|住民基本|予防接種|社会福祉|公衆衛生/;
+  const alreadyDoryoku = matched.some((m) => m.title === doryokuTitle);
+  const queryWantsDoryoku = doryokuRe.test(blob) && !otherSubjectDoryoku.test(blob);
+  const contentWantsDoryoku = matched.some(
+    (m) =>
+      (m.title.startsWith('行手法：') || m.title.includes('行政不服') || m.title.includes('努力義務')) &&
+      doryokuRe.test(`${m.title}\n${m.text}`)
+  );
+  if (!alreadyDoryoku && (queryWantsDoryoku || contentWantsDoryoku)) {
+    const src = CHAT_TOPIC_BRIEFS.find((b) => b.title === doryokuTitle);
+    if (src) {
+      matched.push({
+        title: src.title,
+        text: src.text,
+        priority: queryWantsDoryoku ? 0 : 3,
       });
     }
   }

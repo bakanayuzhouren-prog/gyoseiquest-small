@@ -14,6 +14,8 @@ import { TAC1_MOSHI_LEARN_BY_SUBJECT } from './tac1_moshi_learn_content.js';
 import { TAC2_MOSHI_LEARN_BY_SUBJECT } from './tac2_moshi_learn_content.js';
 import { TAC3_MOSHI_LEARN_BY_SUBJECT } from './tac3_moshi_learn_content.js';
 import { KOKUBAI_LEARN_BY_SUBJECT } from './kokubai_learn_content.js';
+import { MINPOU_JOSHIKI_LEARN_BY_SUBJECT } from './minpou_joshiki_learn_content.js';
+import { GYOSEIHOU_JOSHIKI_LEARN_BY_SUBJECT } from './gyoseihou_joshiki_learn_content.js';
 
 function mergeLearnLayers(base, ...layers) {
   return layers.reduce(
@@ -47,6 +49,8 @@ const merged = mergeLearnLayers(
   TAC2_MOSHI_LEARN_BY_SUBJECT,
   TAC3_MOSHI_LEARN_BY_SUBJECT,
   KOKUBAI_LEARN_BY_SUBJECT,
+  MINPOU_JOSHIKI_LEARN_BY_SUBJECT,
+  GYOSEIHOU_JOSHIKI_LEARN_BY_SUBJECT,
 );
 
 export const LEARN_CONTENT = merged.LEARN_CONTENT;

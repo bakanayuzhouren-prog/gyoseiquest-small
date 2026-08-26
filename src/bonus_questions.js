@@ -6,6 +6,8 @@ import { TAC1_MOSHI_BONUS_QUESTIONS } from './tac1_moshi_bonus_questions';
 import { TAC2_MOSHI_BONUS_QUESTIONS } from './tac2_moshi_bonus_questions';
 import { TAC3_MOSHI_BONUS_QUESTIONS } from './tac3_moshi_bonus_questions';
 import { KOKUBAI_BONUS_QUESTIONS } from './kokubai_bonus_questions';
+import { MINPOU_JOSHIKI_BONUS_QUESTIONS } from './minpou_joshiki_bonus_questions';
+import { GYOSEIHOU_JOSHIKI_BONUS_QUESTIONS } from './gyoseihou_joshiki_bonus_questions';
 
 /** @param {Record<string, Record<string, unknown[]>>} base @param {Record<string, Record<string, unknown[]>>} extra */
 function mergeBonusQuestions(base, extra) {
@@ -182,4 +184,6 @@ export const BONUS_QUESTIONS = [
   TAC3_MOSHI_BONUS_QUESTIONS,
   FUNDAMENTAL_LAW_BONUS_QUESTIONS,
   KOKUBAI_BONUS_QUESTIONS,
+  MINPOU_JOSHIKI_BONUS_QUESTIONS,
+  GYOSEIHOU_JOSHIKI_BONUS_QUESTIONS,
 ].reduce((acc, layer) => mergeBonusQuestions(acc, layer), {});

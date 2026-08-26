@@ -172,8 +172,8 @@ Asked point: sue the State for confirmation of civil-servant status OR salary pa
 NO GO/STOP. Never「だれが」. Copy Japanese exactly.
 CHACHALOT: owl slot only. SMALL bottom-right, 指し棒 to 暗記. Match chachalot.png. Not a scene character. No nameplate. Not a bear.
 
-Title:「実質的当事者訴訟 — 地位確認又は給料」
-Chip:「無効確認に逃げるな」
+Title:「実質的当事者訴訟 — 確認と給付」
+Chip:「無効確認に逃げるな／同時提起可」
 
 Left 論点:
 1. 出訴期間徒過→無効確認か？ → NO。現在の法律関係で足りる

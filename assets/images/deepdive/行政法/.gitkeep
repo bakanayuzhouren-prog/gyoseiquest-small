@@ -1,0 +1,4 @@
+# deepdive images — 行政法（常識で切る）
+
+生成PNGをここに置く。キー例: `行政法/<slug>`  
+`node scripts/generateDeepdiveImages.js` でマップ登録。

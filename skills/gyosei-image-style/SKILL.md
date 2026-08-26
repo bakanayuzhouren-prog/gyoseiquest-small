@@ -44,6 +44,24 @@ Use this skill whenever image generation or visual design consistency matters in
    - For DB textbook / 記述カード: place the figure **under the question（問の下）**. Follow `skills/gyosei-kijutsu-textbook/SKILL.md`.
 7. Verify the finished image visually against the layout sample and, if the guide is present, against the ちゃちゃロット identity checklist before calling the work complete.
 
+## コマ分割（てらしぃ確定・科目共通）
+
+民法・行政法を問わず、解説画像は**なるべく1枚をシンプルに**仕上げる。
+
+次のときは1枚に詰め込まず、**2コマ・3コマ・4コマ（上限は原則4）**に分割する:
+
+- 説明が長くなり、1枚だと読み切れない
+- 論点が複数で、1枚にすると資料としてごちゃごちゃする
+- 手続の段階（例: 係争委→機関訴訟）や比較軸が並びすぎる
+
+ルール:
+
+1. **各コマ＝一つの仕事**（例: 「参加の理由」と「準用表」を別コマ）。
+2. **コマごとに別PNG・別Codexプロンプト**を書く。プロンプト漏れ禁止。
+3. ファイル名は `<slug>.png` / `<slug>-2.png` または意味のある別名（`sanka-kaihatsu` / `shokken-junyo`）。
+4. 判例ストーリーの文章4コマ（`AGENTS.md` の「判例4コマ」）とは別物。こちらは**情報量のための分割**。
+5. deepdive ではコマ順に `[[image:...]]` を並べる。
+
 ## Required Output For Image Tasks
 
 When creating or planning an image, include:

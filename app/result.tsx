@@ -33,6 +33,8 @@ import { setDeepdiveParams } from '@/src/deepdiveState';
 import { getDescriptiveImageSource } from '@/src/descriptiveImages';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { mergeKijyutuGyouseihouQuizCaseImages } from '@/src/kijyutuGyouseihouQuizDeepdiveMerge';
+import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
+import { resolveImageAsset } from '@/src/resolveImageAsset';
 import * as LearnData from '@/src/learnExports';
 import { PIN_CASES } from '@/src/pinData';
 import { extractQuestionCast } from '@/src/castRegistry';
@@ -1052,16 +1054,18 @@ export default function ResultScreen() {
   const mergeAutoChoiceDeepDiveImage = (body: string | undefined, choiceIndex0: number): string => {
     const trimmed = (body || '').trim();
     const imageKeys = resolveAutoChoiceDeepDiveImageKeys(choiceIndex0);
-    if (imageKeys.length === 0) return trimmed;
+    if (imageKeys.length === 0) {
+      return prependJoshikiDeepdiveImages(trimmed, (key) => !!resolveImageAsset(key));
+    }
     const tags = imageKeys
       .filter((imageKey) => {
         const tag = `[[image:${imageKey}]]`;
         return !(trimmed.includes(tag) || trimmed.includes(`[[image:${imageKey.split('/').pop()}]]`));
       })
       .map((imageKey) => `[[image:${imageKey}]]`);
-    if (tags.length === 0) return trimmed;
-    if (!trimmed) return tags.join('\n\n');
-    return `${tags.join('\n\n')}\n\n${trimmed}`;
+    const withAuto =
+      tags.length === 0 ? trimmed : !trimmed ? tags.join('\n\n') : `${tags.join('\n\n')}\n\n${trimmed}`;
+    return prependJoshikiDeepdiveImages(withAuto, (key) => !!resolveImageAsset(key));
   };
   /** 記述・行政法: 【ケースA】直下に kijyutu-gyouseihouN-A 対応 [[image:…]] を補う */
   const mergeKijyutuGyouseihouMemoOrDeepFromQuiz = (body: string): string =>

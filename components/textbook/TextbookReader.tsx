@@ -1,6 +1,7 @@
 import { ChachalotAvatar } from '@/components/chachalot-avatar';
 import { MarkdownText } from '@/components/markdown-text';
 import { MaterialIcons } from '@expo/vector-icons';
+import { Image } from 'expo-image';
 import { Link, Stack } from 'expo-router';
 import type { Href } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
@@ -23,6 +24,7 @@ import type {
   TextbookChapter,
   TextbookQuiz,
 } from '@/src/content/shouhouTextbookContent';
+import { getDeepdiveImageSource } from '@/src/deepdiveImages';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
 import {
@@ -236,6 +238,19 @@ function BlockRenderer({ block }: { block: TextbookBlock }) {
   }
 }
 
+function QuizExplainImage({ imageKey }: { imageKey: string }) {
+  const source = getDeepdiveImageSource(imageKey);
+  if (!source) return null;
+  return (
+    <Image
+      source={source}
+      style={styles.quizExplainImage}
+      contentFit="contain"
+      accessibilityLabel="解説図"
+    />
+  );
+}
+
 function QuizCard({ quiz }: { quiz: TextbookQuiz }) {
   const [revealed, setRevealed] = useState(false);
   const [picked, setPicked] = useState<boolean | null>(null);
@@ -279,6 +294,7 @@ function QuizCard({ quiz }: { quiz: TextbookQuiz }) {
             答えは {quiz.correct ? '○' : '×'}
           </Text>
           <MarkdownText text={quiz.explain} style={styles.quizExplain} uniformWeight lineGap={4} />
+          {quiz.imageKey ? <QuizExplainImage imageKey={quiz.imageKey} /> : null}
         </View>
       ) : null}
     </View>
@@ -1280,6 +1296,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: C.text,
     lineHeight: 22,
+  },
+  quizExplainImage: {
+    width: '100%',
+    aspectRatio: 16 / 9,
+    marginTop: 12,
+    borderRadius: 8,
+    backgroundColor: '#FFFFFF',
   },
   footer: {
     paddingVertical: 24,

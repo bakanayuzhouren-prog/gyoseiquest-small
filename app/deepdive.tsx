@@ -16,6 +16,7 @@ import {
   pickLearnDeepdiveSharedImageKey,
   resolveLearnDeepdiveAutoImageByCardIndex,
 } from '@/src/deepdiveLearnAutoImage';
+import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
 import {
     applyLearnIndexToLearnReturnPath,
     clearDeepdiveSessionWeb,
@@ -433,18 +434,23 @@ export default function DeepdiveScreen() {
 
         const prependAutoImageIfNeeded = (text: string): string => {
           let t = text;
-          if (!t.trim() || mergedDeepdiveHasResolvableImage(t)) return t;
+          if (!t.trim()) return t;
+          if (mergedDeepdiveHasResolvableImage(t)) {
+            return prependJoshikiDeepdiveImages(t, (key) => !!resolveImageAsset(key));
+          }
           if (stored.fromLearn && t.length > 80_000) return t;
           if (stored.fromLearn && learnIdx != null && learnSubj) {
             const byIdx = resolveLearnDeepdiveAutoImageByCardIndex(learnSubj, learnIdx);
-            if (byIdx) return `[[image:${byIdx}]]\n\n${t}`;
+            if (byIdx) t = `[[image:${byIdx}]]\n\n${t}`;
           }
-          if (stored.fromLearn) return t;
-          const shared = pickLearnDeepdiveSharedImageKey(t, learnSubj, {
-            fromLearn: false,
-            allowGlobalSubjectScan: true,
-          });
-          if (shared) t = `[[image:${shared}]]\n\n${t}`;
+          if (!stored.fromLearn) {
+            const shared = pickLearnDeepdiveSharedImageKey(t, learnSubj, {
+              fromLearn: false,
+              allowGlobalSubjectScan: true,
+            });
+            if (shared) t = `[[image:${shared}]]\n\n${t}`;
+          }
+          t = prependJoshikiDeepdiveImages(t, (key) => !!resolveImageAsset(key));
           return t;
         };
 
@@ -463,7 +469,7 @@ export default function DeepdiveScreen() {
           }
           /** 見て聞いて覚える: 学習画面で本文確定済み。LEARN_DEEPDIVE 再走査・画像推定はしない */
           if (stored.fromLearn) {
-            setContent(raw);
+            setContent(prependJoshikiDeepdiveImages(raw, (key) => !!resolveImageAsset(key)));
             setBeginnerContent(beg);
             setPeripheralContent(periph.trim());
             setLearnRelatedStatutesContent((stored.learnRelatedStatutesContent || '').trim());

@@ -60,5 +60,6 @@ validationStatus: ok
 
 ## 関連
 
+- 常識で切る・担保比較（留置・集合物の豚／カップ麺含む）: `canonical/minpou-joshiki/07-tanpo-bukken.md`
 - TAC模試横断比較（催告・代執行・国賠等）: `canonical/tac-moshi-compare-tables.md`
 - TAC第1回論点一覧: `creator/prep-school/tac-moshi-2026-06.md`
