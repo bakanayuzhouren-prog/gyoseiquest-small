@@ -17,6 +17,7 @@ import { KISO_HOUGAKU_COMPARISON_BRIEFS } from '../utils/chatTopicBriefsKisoComp
 import { KISO_HOUGAKU_CHAT_TOPIC_BRIEFS } from '../utils/chatTopicBriefsKisoHougaku.ts';
 import { KISO_HOUGAKU_MOSHI_BRIEFS } from '../utils/chatTopicBriefsKisoMoshi.ts';
 import { KOKUBAI_CHAT_BRIEFS } from '../utils/chatTopicBriefsKokubai.ts';
+import { JICHI_CHAT_BRIEFS } from '../utils/chatTopicBriefsJichi.ts';
 import { MINPOU_CHAT_BRIEFS } from '../utils/chatTopicBriefsMinpou.ts';
 import { NAKA_GYOSEI_YAMA_CHAT_BRIEFS } from '../utils/chatTopicBriefsNakaGyoseiYama.ts';
 import { NAKA_MINPOU_YAMA_CHAT_BRIEFS } from '../utils/chatTopicBriefsNakaMinpouYama.ts';
@@ -645,6 +646,15 @@ const cases = [
   { q: '怠る事実', expectTitle: /怠る事実|住民訴訟/ },
   { q: '住民訴訟 4号', expectTitle: /住民訴訟/ },
   { q: '住民監査請求', expectTitle: /住民監査|住民訴訟/ },
+  { q: '一部事務組合 許可', expectTitle: /一部事務組合/ },
+  { q: '一部事務組合 総務大臣', expectTitle: /一部事務組合/ },
+  { q: '長 議会 出席', expectTitle: /出席|121|63条/ },
+  { q: '会計管理者 親族', expectTitle: /会計管理者/ },
+  { q: '議決 法令違反 再議', expectTitle: /再議|取消停止|176/ },
+  { q: '支庁 地方事務所', expectTitle: /支庁|地方事務所|出先/ },
+  { q: '監査委員 議員 条例', expectTitle: /監査委員|外部監査/ },
+  { q: '外部監査 廃止', expectTitle: /監査委員|外部監査/ },
+  { q: '地方自治 定番', expectTitle: /地方自治|クラスタ|模試定番/ },
   { q: '在外邦人選挙訴訟', expectTitle: /在外邦人選挙/ },
   { q: '在外邦人国民審査', expectTitle: /在外邦人国民審査/ },
 ];
@@ -664,6 +674,7 @@ const all = [
   ...KENPOU_HANREI2_CHAT_BRIEFS,
   ...KENPOU_DEEP_CHAT_BRIEFS,
   ...KOKUBAI_CHAT_BRIEFS,
+  ...JICHI_CHAT_BRIEFS,
   ...MINPOU_CHAT_BRIEFS,
   ...NAKA_GYOSEI_YAMA_CHAT_BRIEFS,
   ...NAKA_MINPOU_YAMA_CHAT_BRIEFS,
@@ -672,7 +683,7 @@ const all = [
 let fail = 0;
 
 console.log(
-  `briefs: base=${KISO_HOUGAKU_CHAT_TOPIC_BRIEFS.length} comparison=${KISO_HOUGAKU_COMPARISON_BRIEFS.length} moshi=${KISO_HOUGAKU_MOSHI_BRIEFS.length} gyosei=${GYOSEI_SORON_CHAT_BRIEFS.length} gyoseiNet=${GYOSEI_SORON_NET_CHAT_BRIEFS.length} tetsuzuki=${GYOSEI_TETSUZUKI_CHAT_BRIEFS.length} fufuku=${GYOSEI_FUFUKU_CHAT_BRIEFS.length} procCompare=${GYOSEI_PROC_COMPARISON_BRIEFS.length} gyosho=${GYOSEI_GYOSHO_CHAT_BRIEFS.length} kenpou=${KENPOU_CHAT_BRIEFS.length} kenpouHanrei=${KENPOU_HANREI_CHAT_BRIEFS.length} kenpouHanrei2=${KENPOU_HANREI2_CHAT_BRIEFS.length} kenpouDeep=${KENPOU_DEEP_CHAT_BRIEFS.length} kokubai=${KOKUBAI_CHAT_BRIEFS.length} minpou=${MINPOU_CHAT_BRIEFS.length} nakaGyoseiYama=${NAKA_GYOSEI_YAMA_CHAT_BRIEFS.length} nakaMinpouYama=${NAKA_MINPOU_YAMA_CHAT_BRIEFS.length} kenpouYama=${KENPOU_YAMA_CHAT_BRIEFS.length} total=${all.length}`
+  `briefs: base=${KISO_HOUGAKU_CHAT_TOPIC_BRIEFS.length} comparison=${KISO_HOUGAKU_COMPARISON_BRIEFS.length} moshi=${KISO_HOUGAKU_MOSHI_BRIEFS.length} gyosei=${GYOSEI_SORON_CHAT_BRIEFS.length} gyoseiNet=${GYOSEI_SORON_NET_CHAT_BRIEFS.length} tetsuzuki=${GYOSEI_TETSUZUKI_CHAT_BRIEFS.length} fufuku=${GYOSEI_FUFUKU_CHAT_BRIEFS.length} procCompare=${GYOSEI_PROC_COMPARISON_BRIEFS.length} gyosho=${GYOSEI_GYOSHO_CHAT_BRIEFS.length} kenpou=${KENPOU_CHAT_BRIEFS.length} kenpouHanrei=${KENPOU_HANREI_CHAT_BRIEFS.length} kenpouHanrei2=${KENPOU_HANREI2_CHAT_BRIEFS.length} kenpouDeep=${KENPOU_DEEP_CHAT_BRIEFS.length} kokubai=${KOKUBAI_CHAT_BRIEFS.length} jichi=${JICHI_CHAT_BRIEFS.length} minpou=${MINPOU_CHAT_BRIEFS.length} nakaGyoseiYama=${NAKA_GYOSEI_YAMA_CHAT_BRIEFS.length} nakaMinpouYama=${NAKA_MINPOU_YAMA_CHAT_BRIEFS.length} kenpouYama=${KENPOU_YAMA_CHAT_BRIEFS.length} total=${all.length}`
 );
 
 for (const c of cases) {
