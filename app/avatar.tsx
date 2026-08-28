@@ -5,7 +5,7 @@ import { Image, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Themes, useTheme } from '@/src/context/ThemeContext';
-import { AVATARS, AvatarType, useUser } from '@/src/context/UserContext';
+import { AVATAR_LABELS, AVATARS, AvatarType, getAvatarSource, useUser } from '@/src/context/UserContext';
 import { getPoints } from '@/utils/points';
 
 export default function AvatarScreen() {
@@ -35,7 +35,7 @@ export default function AvatarScreen() {
                 {/* Current Profile Card */}
                 <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
                     <View style={styles.avatarContainer}>
-                        <Image source={AVATARS[avatarId]} style={styles.currentAvatar} />
+                        <Image source={getAvatarSource(avatarId)} style={styles.currentAvatar} />
                     </View>
 
                     {/* Name Edit */}
@@ -62,13 +62,20 @@ export default function AvatarScreen() {
                     {(Object.keys(AVATARS) as AvatarType[]).map((key) => (
                         <Pressable
                             key={key}
+                            accessibilityRole="button"
+                            accessibilityLabel={`アバター${AVATAR_LABELS[key]}`}
                             style={[
                                 styles.avatarOption,
                                 avatarId === key && { borderColor: colors.accent, borderWidth: 3, backgroundColor: colors.choiceBg }
                             ]}
                             onPress={() => setAvatarId(key)}
                         >
-                            <Image source={AVATARS[key]} style={styles.optionImage} />
+                            <View style={styles.optionImageWrap}>
+                                <Image source={AVATARS[key]} style={styles.optionImage} />
+                            </View>
+                            <ThemedText style={[styles.optionLabel, { color: colors.text }]}>
+                                {AVATAR_LABELS[key]}
+                            </ThemedText>
                             {avatarId === key && (
                                 <View style={[styles.checkBadge, { backgroundColor: colors.accent }]}>
                                     <ThemedText style={{ color: '#fff', fontSize: 10 }}>✓</ThemedText>
@@ -157,25 +164,36 @@ const styles = StyleSheet.create({
         marginBottom: 30,
     },
     avatarOption: {
-        width: 80,
-        height: 80,
-        borderRadius: 40,
-        overflow: 'hidden',
+        width: 100,
+        paddingTop: 10,
+        paddingBottom: 8,
+        borderRadius: 16,
         borderWidth: 1,
         borderColor: 'transparent',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         backgroundColor: '#f0f0f0',
+    },
+    optionImageWrap: {
+        width: 70,
+        height: 70,
+        borderRadius: 35,
+        overflow: 'hidden',
+        backgroundColor: '#fff',
     },
     optionImage: {
         width: 70,
         height: 70,
-        borderRadius: 35,
+    },
+    optionLabel: {
+        marginTop: 6,
+        fontSize: 12,
+        fontWeight: '600',
     },
     checkBadge: {
         position: 'absolute',
-        bottom: 0,
-        right: 0,
+        top: 6,
+        right: 10,
         width: 20,
         height: 20,
         borderRadius: 10,

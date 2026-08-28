@@ -1,6 +1,6 @@
 import { ThemedText } from '@/components/themed-text';
 import { Themes, useTheme } from '@/src/context/ThemeContext';
-import { AVATARS, useUser } from '@/src/context/UserContext';
+import { getAvatarSource, useUser } from '@/src/context/UserContext';
 import React, { useEffect, useRef, useState } from 'react';
 import { Alert, Animated, Easing, Image, Modal, PanResponder, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
@@ -256,7 +256,7 @@ const BattingGame = ({ onExit }: { onExit: () => void }) => {
                             { translateY: -40 }
                         ]
                     }} />
-                    <Image source={AVATARS[avatarId] || AVATARS.default} style={{ width: 80, height: 80, resizeMode: 'contain' }} />
+                    <Image source={getAvatarSource(avatarId)} style={{ width: 80, height: 80, resizeMode: 'contain' }} />
                 </Animated.View>
 
                 {/* Message Overlay */}

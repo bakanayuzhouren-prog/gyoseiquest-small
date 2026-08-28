@@ -45,6 +45,16 @@ Codex（`codex` / OpenAI Codex CLI）でこのリポジトリを開いている�
 
 Codex が GPT Image で画像を出してよいのは、てらしぃが **「コーデックスで」「GPT Image で Codex に」** と明示したときだけ。その場合もアプリ埋め込みは Cursor。プロンプト作成だけの依頼なら、生成はせずプロンプトを返す。
 
+**未生成プロンプトの一括探索（てらしぃ確定）**
+
+てらしぃが **「画像生成していないコーデックス用プロンプトを探して、画像生成して」**（同趣旨）と言ったとき、Codex は次を実行する。
+
+1. `npm run list:codex-images-pending`（または `node scripts/listPendingCodexImages.mjs`）で **pending 一覧**を取得
+2. 手順正本 `skills/gyosei-image-style/prompts/CODEX-IMAGE-BATCH.md` に従い、各 `codex-*.md` の GPT Image プロンプトで **1枚ずつ**生成
+3. 保存先は各ファイルの `保存先:` 行通り。アプリ埋め込み・`generateDeepdiveImages.js` は **Cursor へ引き継ぎ**
+
+新規 codex プロンプトは必ず `保存先: assets/images/deepdive/...png` を書く（スクリプトが未生成を自動検出）。
+
 例外に当たらない依頼（バグ修正、文言、画面、同期、質問モード強化など）は、**プロンプトだけ返して終了**する。
 
 ### Cursor 側

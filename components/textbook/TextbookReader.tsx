@@ -1,8 +1,9 @@
 import { ChachalotAvatar } from '@/components/chachalot-avatar';
+import { ConfusingTopicChips, type ConfusingTopicChipItem } from '@/components/confusing-topic-chips';
 import { MarkdownText } from '@/components/markdown-text';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import { Link, Stack } from 'expo-router';
+import { Link, Stack, router, useLocalSearchParams } from 'expo-router';
 import type { Href } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
@@ -24,6 +25,7 @@ import type {
   TextbookChapter,
   TextbookQuiz,
 } from '@/src/content/shouhouTextbookContent';
+import { LEARN_CONTENT } from '@/src/learnExports';
 import { getDeepdiveImageSource } from '@/src/deepdiveImages';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
@@ -34,6 +36,11 @@ import {
   type ChainedSpeechHandle,
 } from '@/utils/chained-chachalot-speech';
 import { buildTextbookTtsSegments, findFirstSegmentIndexForChapter } from '@/utils/textbook-tts';
+import {
+  findRelatedGyoseiLearnCards,
+  findRelatedGyoseiTextbookChapters,
+  gyoseiLearnCardsBySubject,
+} from '@/utils/gyoseiConfusingTopicLinks';
 
 /** 背景・大ブロック＝グレー、内ブロックのみ水色、e-Gov風ペインは白 */
 const C = {
@@ -130,7 +137,24 @@ type Props = {
   chapters: TextbookChapter[];
   footerNote?: string;
   backHref?: string;
+  /** 行政法：章同士と見て聞いて覚えるへのタップリンク */
+  confusingTopicMode?: 'gyosei';
 };
+
+const GYOSEI_SKIP_LEARN_CHAPTERS = new Set(['map', 'tsuishi', 'next']);
+
+function textbookChapterHaystack(chapter: TextbookChapter): string {
+  const parts: string[] = [chapter.id, chapter.title, chapter.subtitle || '', chapter.intro || ''];
+  for (const block of chapter.blocks) {
+    if (block.type === 'p' || block.type === 'tip') parts.push(block.text, 'title' in block ? block.title || '' : '');
+    if (block.type === 'bullets') parts.push(...block.items);
+    if (block.type === 'table') parts.push(...block.headers, ...block.rows.flat());
+  }
+  for (const quiz of chapter.quizzes || []) {
+    parts.push(quiz.statement, quiz.explain);
+  }
+  return parts.join('\n');
+}
 
 function CharacterBubble({
   character,
@@ -307,7 +331,10 @@ export function TextbookReader({
   chapters,
   footerNote = '学習用の自作整理。条文は六法で確認。',
   backHref = '/textbook',
+  confusingTopicMode,
 }: Props) {
+  const params = useLocalSearchParams<{ chapter?: string }>();
+  const initialChapter = Array.isArray(params.chapter) ? params.chapter[0] : params.chapter;
   const { width } = useWindowDimensions();
   const isWide = width >= 768;
   const { setIsPlaying: setLearnPlaying, voiceSpeechOptions } = useLearnPlayback();
@@ -412,6 +439,64 @@ export function TextbookReader({
       scrollToChapterVisual(id);
     },
     [setPlaybackAnchorChapter, scrollToChapterVisual],
+  );
+
+  const gyoseiCardsBySubject = useMemo(
+    () =>
+      confusingTopicMode === 'gyosei'
+        ? gyoseiLearnCardsBySubject(LEARN_CONTENT as Record<string, string[] | undefined>)
+        : {},
+    [confusingTopicMode],
+  );
+
+  const openLearnCard = useCallback((subject: string, index: number) => {
+    router.push({
+      pathname: '/learn/[subject]',
+      params: { subject, index: String(index) },
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!initialChapter) return;
+    if (!chapters.some((ch) => ch.id === initialChapter)) return;
+    const timer = setTimeout(() => scrollToChapter(initialChapter), 350);
+    return () => clearTimeout(timer);
+  }, [initialChapter, chapters, scrollToChapter]);
+
+  const chipsForChapter = useCallback(
+    (chapter: TextbookChapter): ConfusingTopicChipItem[] => {
+      if (confusingTopicMode !== 'gyosei') return [];
+      const haystack = textbookChapterHaystack(chapter);
+      const items: ConfusingTopicChipItem[] = [];
+      for (const peer of findRelatedGyoseiTextbookChapters(haystack, chapter.id)) {
+        items.push({
+          key: `tb-${chapter.id}-${peer.chapterId}`,
+          label: peer.label,
+          axis: peer.axis,
+          onPress: () => {
+            if (ttsBusy) stopTts();
+            scrollToChapter(peer.chapterId);
+          },
+        });
+      }
+      if (!GYOSEI_SKIP_LEARN_CHAPTERS.has(chapter.id)) {
+        const learnCards = findRelatedGyoseiLearnCards({
+          haystack,
+          cardsBySubject: gyoseiCardsBySubject,
+          currentIndex: -1,
+        }).slice(0, 8);
+        for (const card of learnCards) {
+          items.push({
+            key: `learn-${chapter.id}-${card.subject}-${card.index}`,
+            label: `覚える：${card.label}`,
+            axis: card.axis,
+            onPress: () => openLearnCard(card.subject, card.index),
+          });
+        }
+      }
+      return items;
+    },
+    [confusingTopicMode, gyoseiCardsBySubject, openLearnCard, scrollToChapter, stopTts, ttsBusy],
   );
 
   const resolveTtsStartIndex = useCallback((): number => {
@@ -720,6 +805,8 @@ export function TextbookReader({
               {chapter.quizzes?.map((quiz) => (
                 <QuizCard key={quiz.id} quiz={quiz} />
               ))}
+
+              <ConfusingTopicChips items={chipsForChapter(chapter)} accent={C.link} />
             </View>
           ))}
 

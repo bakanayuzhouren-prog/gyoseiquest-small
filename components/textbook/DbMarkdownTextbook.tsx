@@ -1,4 +1,5 @@
 import { MarkdownText } from '@/components/markdown-text';
+import { ConfusingTopicChips, type ConfusingTopicChipItem } from '@/components/confusing-topic-chips';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Stack, router } from 'expo-router';
 import { useMemo, useRef, useState } from 'react';

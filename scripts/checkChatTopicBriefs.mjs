@@ -13,12 +13,16 @@ import { KENPOU_DEEP_CHAT_BRIEFS } from '../utils/chatTopicBriefsKenpouDeep.ts';
 import { KENPOU_HANREI_CHAT_BRIEFS } from '../utils/chatTopicBriefsKenpouHanrei.ts';
 import { KENPOU_HANREI2_CHAT_BRIEFS } from '../utils/chatTopicBriefsKenpouHanrei2.ts';
 import { KENPOU_YAMA_CHAT_BRIEFS } from '../utils/chatTopicBriefsKenpouYama.ts';
+import { LEC_BONUS_KENPOU_CHAT_BRIEFS } from '../utils/chatTopicBriefsLecBonusKenpou.ts';
+import { KENPOU_COMPARISON_BRIEFS } from '../utils/chatTopicBriefsKenpouComparisons.ts';
 import { KISO_HOUGAKU_COMPARISON_BRIEFS } from '../utils/chatTopicBriefsKisoComparisons.ts';
 import { KISO_HOUGAKU_CHAT_TOPIC_BRIEFS } from '../utils/chatTopicBriefsKisoHougaku.ts';
 import { KISO_HOUGAKU_MOSHI_BRIEFS } from '../utils/chatTopicBriefsKisoMoshi.ts';
 import { KOKUBAI_CHAT_BRIEFS } from '../utils/chatTopicBriefsKokubai.ts';
 import { JICHI_CHAT_BRIEFS } from '../utils/chatTopicBriefsJichi.ts';
 import { MINPOU_CHAT_BRIEFS } from '../utils/chatTopicBriefsMinpou.ts';
+import { GOUKAKU_ROUND3_CHAT_BRIEFS } from '../utils/chatTopicBriefsGoukakuRound3.ts';
+import { GOUKAKU_ROUND2_CHAT_BRIEFS } from '../utils/chatTopicBriefsGoukakuRound2.ts';
 import { NAKA_GYOSEI_YAMA_CHAT_BRIEFS } from '../utils/chatTopicBriefsNakaGyoseiYama.ts';
 import { NAKA_MINPOU_YAMA_CHAT_BRIEFS } from '../utils/chatTopicBriefsNakaMinpouYama.ts';
 
@@ -241,6 +245,10 @@ const cases = [
   { q: '一方を被告', expectTitle: /7条適用除外|当事者訴訟/ },
   // 比較学習（違いをまとめて）
   { q: '審理員と主宰者の違いをまとめて', expectTitle: /審理員.*主宰者|主宰者.*審理員/ },
+  { q: '主宰者ってなに', expectTitle: /審理員.*主宰者|主宰者/ },
+  { q: '事情判決ってなに', expectTitle: /事情裁決|事情判決/ },
+  { q: '出訴期間と審査請求期間', expectTitle: /行政不服審査法と行政事件訴訟法|出訴期間/ },
+  { q: '行手と行審', expectTitle: /行政手続法と行政不服審査法/ },
   { q: '努力義務を行手法と行服法で並べて', expectTitle: /努力義務の並列/ },
   { q: '努めるものとする', expectTitle: /努力義務の並列/ },
   { q: '標準処理期間ってなに', expectTitle: /標準処理期間|努力義務の並列/ },
@@ -650,6 +658,9 @@ const cases = [
   { q: '一部事務組合 総務大臣', expectTitle: /一部事務組合/ },
   { q: '長 議会 出席', expectTitle: /出席|121|63条/ },
   { q: '会計管理者 親族', expectTitle: /会計管理者/ },
+  { q: '出納員 町村', expectTitle: /会計管理者|出納員/ },
+  { q: '出納員 補助', expectTitle: /会計管理者|出納員/ },
+  { q: '171条', expectTitle: /会計管理者|出納員/ },
   { q: '議決 法令違反 再議', expectTitle: /再議|取消停止|176/ },
   { q: '支庁 地方事務所', expectTitle: /支庁|地方事務所|出先/ },
   { q: '監査委員 議員 条例', expectTitle: /監査委員|外部監査/ },
@@ -676,8 +687,62 @@ const cases = [
   { q: '中核市 区', expectTitle: /中核市|指定都市/ },
   { q: '252条の20の2', expectTitle: /総合区|指定都市/ },
   { q: '252条の22', expectTitle: /中核市|指定都市/ },
+  { q: '指定管理者 条例', expectTitle: /指定管理者/ },
+  { q: '指定管理者 議決', expectTitle: /指定管理者/ },
+  { q: '244条の2 指定管理者', expectTitle: /指定管理者|公の施設/ },
+  { q: '常任委員会 条例', expectTitle: /委員会|通年|調査/ },
+  { q: '通年会期 開始', expectTitle: /通年|委員会|102/ },
+  { q: '学識経験 調査', expectTitle: /調査|委員会|100/ },
+  { q: '102条の2', expectTitle: /通年|委員会/ },
+  { q: '歳出 歳入 充て', expectTitle: /会計年度|支出命令|金融機関/ },
+  { q: '会計管理者 支出命令', expectTitle: /支出命令|会計年度|金融機関/ },
+  { q: '指定金融機関 都道府県', expectTitle: /指定金融機関|会計年度|支出/ },
+  { q: '235条', expectTitle: /指定金融機関|会計年度|支出/ },
+  { q: '住民監査請求 対象', expectTitle: /住民監査/ },
+  { q: '監査専門委員 仕事', expectTitle: /監査専門委員|外部監査/ },
+  { q: '議会 解散請求', expectTitle: /解散|解職|請求先/ },
+  { q: '副市長 解職', expectTitle: /解職|解散|請求先/ },
+  { q: '住民訴訟 被告', expectTitle: /住民訴訟|被告/ },
+  { q: '執行機関 地方自治', expectTitle: /執行機関/ },
+  { q: '執行機関 総論 違い', expectTitle: /執行機関/ },
+  { q: '特別地方公共団体', expectTitle: /特別地方公共団体|組合|大都市/ },
+  { q: '広域連合 例', expectTitle: /特別地方公共団体|広域連合|組合/ },
+  { q: '一部事務組合 例', expectTitle: /特別地方公共団体|組合|一部事務/ },
+  { q: '関西広域連合', expectTitle: /特別地方公共団体|広域連合|組合/ },
+  { q: '法定受託 各大臣', expectTitle: /法定受託|自治事務|255|代執行/ },
+  { q: '自治事務 審査請求', expectTitle: /法定受託|自治事務|255|代執行/ },
+  { q: '代執行 自治事務', expectTitle: /代執行|法定受託|自治事務/ },
+  { q: '255条の2', expectTitle: /255|法定受託|自治事務/ },
+  { q: '予算 増額 議決', expectTitle: /増額|除名|再当選/ },
+  { q: '除名 再当選', expectTitle: /増額|除名|再当選/ },
+  { q: '136条', expectTitle: /増額|除名|再当選|136/ },
+  { q: '時効 援用 不要', expectTitle: /時効|地方債|236|援用/ },
+  { q: '236条', expectTitle: /時効|地方債|236|援用/ },
+  { q: '地方債 条例', expectTitle: /時効|地方債|230/ },
+  { q: '230条 地方債', expectTitle: /時効|地方債|230/ },
+  { q: '給料請求権 相続', expectTitle: /給料|相続|公務員/ },
+  { q: '免職 死亡 給料', expectTitle: /給料|相続|公務員/ },
+  { q: '開示請求権 相続', expectTitle: /情報公開|開示|不開示/ },
+  { q: '不開示理由 追加', expectTitle: /情報公開|開示|不開示/ },
+  { q: '平16.2.24', expectTitle: /情報公開|開示|不開示/ },
+  { q: '独立行政法人', expectTitle: /独立行政法人|第2回・問25/ },
+  { q: '行政執行法人 国家公務員', expectTitle: /独立行政法人|第2回・問25/ },
+  { q: '評価制度委員会', expectTitle: /独立行政法人|第2回・問25/ },
+  { q: '情報公開審査会', expectTitle: /情報公開.*審査会|第2回・問26/ },
+  { q: 'インカメラ', expectTitle: /情報公開.*審査会|第2回・問26|インカメラ/ },
+  { q: '答申に拘束される', expectTitle: /情報公開.*審査会|第2回・問26|答申/ },
   { q: '在外邦人選挙訴訟', expectTitle: /在外邦人選挙/ },
   { q: '在外邦人国民審査', expectTitle: /在外邦人国民審査/ },
+  { q: 'LECおまけの憲法を復習したい', expectTitle: /LEC憲法おまけ/ },
+  { q: '今日もらった憲法資料の判例', expectTitle: /LEC憲法おまけ|旧優生|宮本/ },
+  { q: '憲法13条の判例を比較して', expectTitle: /条文別の判例|LEC憲法おまけ/ },
+  { q: '宮本から君へ 判断枠組み', expectTitle: /宮本から君へ/ },
+  { q: 'この判例は法令違憲と適用違憲のどちら', expectTitle: /LEC憲法おまけ|法令違憲/ },
+  { q: '旧優生保護法', expectTitle: /旧優生保護法/ },
+  { q: 'GIDと旧優生', expectTitle: /GID特例法と旧優生/ },
+  { q: 'GoogleとTwitter', expectTitle: /Google削除とTwitter/ },
+  { q: '違いをまとめて 宮本', expectTitle: /宮本から君へと検閲/ },
+  { q: '薬局と警備', expectTitle: /職業選択/ },
 ];
 
 const all = [
@@ -697,15 +762,19 @@ const all = [
   ...KOKUBAI_CHAT_BRIEFS,
   ...JICHI_CHAT_BRIEFS,
   ...MINPOU_CHAT_BRIEFS,
+  ...GOUKAKU_ROUND3_CHAT_BRIEFS,
+  ...GOUKAKU_ROUND2_CHAT_BRIEFS,
   ...NAKA_GYOSEI_YAMA_CHAT_BRIEFS,
   ...NAKA_MINPOU_YAMA_CHAT_BRIEFS,
   ...KENPOU_YAMA_CHAT_BRIEFS,
+  ...LEC_BONUS_KENPOU_CHAT_BRIEFS,
+  ...KENPOU_COMPARISON_BRIEFS,
 ];
 let fail = 0;
 
-console.log(
-  `briefs: base=${KISO_HOUGAKU_CHAT_TOPIC_BRIEFS.length} comparison=${KISO_HOUGAKU_COMPARISON_BRIEFS.length} moshi=${KISO_HOUGAKU_MOSHI_BRIEFS.length} gyosei=${GYOSEI_SORON_CHAT_BRIEFS.length} gyoseiNet=${GYOSEI_SORON_NET_CHAT_BRIEFS.length} tetsuzuki=${GYOSEI_TETSUZUKI_CHAT_BRIEFS.length} fufuku=${GYOSEI_FUFUKU_CHAT_BRIEFS.length} procCompare=${GYOSEI_PROC_COMPARISON_BRIEFS.length} gyosho=${GYOSEI_GYOSHO_CHAT_BRIEFS.length} kenpou=${KENPOU_CHAT_BRIEFS.length} kenpouHanrei=${KENPOU_HANREI_CHAT_BRIEFS.length} kenpouHanrei2=${KENPOU_HANREI2_CHAT_BRIEFS.length} kenpouDeep=${KENPOU_DEEP_CHAT_BRIEFS.length} kokubai=${KOKUBAI_CHAT_BRIEFS.length} jichi=${JICHI_CHAT_BRIEFS.length} minpou=${MINPOU_CHAT_BRIEFS.length} nakaGyoseiYama=${NAKA_GYOSEI_YAMA_CHAT_BRIEFS.length} nakaMinpouYama=${NAKA_MINPOU_YAMA_CHAT_BRIEFS.length} kenpouYama=${KENPOU_YAMA_CHAT_BRIEFS.length} total=${all.length}`
-);
+  console.log(
+    `briefs: base=${KISO_HOUGAKU_CHAT_TOPIC_BRIEFS.length} comparison=${KISO_HOUGAKU_COMPARISON_BRIEFS.length} moshi=${KISO_HOUGAKU_MOSHI_BRIEFS.length} gyosei=${GYOSEI_SORON_CHAT_BRIEFS.length} gyoseiNet=${GYOSEI_SORON_NET_CHAT_BRIEFS.length} tetsuzuki=${GYOSEI_TETSUZUKI_CHAT_BRIEFS.length} fufuku=${GYOSEI_FUFUKU_CHAT_BRIEFS.length} procCompare=${GYOSEI_PROC_COMPARISON_BRIEFS.length} gyosho=${GYOSEI_GYOSHO_CHAT_BRIEFS.length} kenpou=${KENPOU_CHAT_BRIEFS.length} kenpouHanrei=${KENPOU_HANREI_CHAT_BRIEFS.length} kenpouHanrei2=${KENPOU_HANREI2_CHAT_BRIEFS.length} kenpouDeep=${KENPOU_DEEP_CHAT_BRIEFS.length} kokubai=${KOKUBAI_CHAT_BRIEFS.length} jichi=${JICHI_CHAT_BRIEFS.length} minpou=${MINPOU_CHAT_BRIEFS.length} goukakuR2=${GOUKAKU_ROUND2_CHAT_BRIEFS.length} goukakuR3=${GOUKAKU_ROUND3_CHAT_BRIEFS.length} nakaGyoseiYama=${NAKA_GYOSEI_YAMA_CHAT_BRIEFS.length} nakaMinpouYama=${NAKA_MINPOU_YAMA_CHAT_BRIEFS.length} kenpouYama=${KENPOU_YAMA_CHAT_BRIEFS.length} lecBonusKenpou=${LEC_BONUS_KENPOU_CHAT_BRIEFS.length} total=${all.length}`
+  );
 
 for (const c of cases) {
   const hits = matchBriefs(c.q, all);
@@ -728,6 +797,9 @@ const pairCases = [
   { q: '公聴会 努力義務', expectAlso: /努力義務の並列/ },
   { q: '意見公募 周知', expectAlso: /努力義務の並列/ },
   { q: '努めるものとする', expectAlso: /努力義務の並列/ },
+  { q: '旧優生保護法', expectAlso: /GID特例法と旧優生/ },
+  { q: 'Google事件', expectAlso: /Google削除とTwitter/ },
+  { q: '宮本から君へ 判断枠組み', expectAlso: /宮本から君へと検閲|法令違憲・適用違憲/ },
 ];
 for (const c of pairCases) {
   const hits = matchBriefs(c.q, all);
@@ -736,7 +808,8 @@ for (const c of pairCases) {
     fail += 1;
     console.log('FAIL pair', c.q, '→', hits.map((h) => h.title));
   } else {
-    console.log('OK  pair', c.q, '→ 努力義務の並列も出る');
+    const shown = hits.find((h) => c.expectAlso.test(h.title))?.title;
+    console.log('OK  pair', c.q, '→', shown);
   }
 }
 

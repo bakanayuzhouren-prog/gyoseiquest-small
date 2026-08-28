@@ -28,6 +28,13 @@ import {
     unfreezeLearnDeepdiveReturnCursor,
 } from '@/src/deepdiveState';
 import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_LINKS, LEARN_SOURCE, LEARN_STATUTE_REFS } from '@/src/learnExports';
+import {
+    appendGyoseiConfusingTopicChunks,
+    findRelatedGyoseiLearnCards,
+    gyoseiLearnCardsBySubject,
+    isGyoseiLinkSubject,
+} from '@/utils/gyoseiConfusingTopicLinks';
+import { appendKenpouConfusingTopicChunks, findRelatedKenpouLearnCards } from '@/utils/kenpouConfusingTopicLinks';
 import { LEARN_VOICE_PRESETS } from '@/src/learnVoices';
 import {
   isMinpoPersonFlowField,
@@ -743,6 +750,25 @@ export default function LearnSubjectScreen() {
       ? deepdiveTashiSlice[originalContentIndex] || ''
       : (LEARN_DEEPDIVE as any)?.[subject as string]?.[learnAlignedIndex] || '';
 
+  const confusingRelatedLearnCards = useMemo(() => {
+    const haystack = `${currentDisplayContent}\n${deepdiveContent}`;
+    if (subject === '憲法') {
+      return findRelatedKenpouLearnCards({
+        haystack,
+        cards: Array.isArray(contentList) ? (contentList as string[]) : [],
+        currentIndex: learnAlignedIndex,
+        subject: '憲法',
+      });
+    }
+    if (!isGyoseiLinkSubject(subject)) return [];
+    return findRelatedGyoseiLearnCards({
+      haystack,
+      cardsBySubject: gyoseiLearnCardsBySubject(LEARN_CONTENT as Record<string, string[] | undefined>),
+      currentSubject: subject,
+      currentIndex: learnAlignedIndex,
+    });
+  }, [subject, currentDisplayContent, deepdiveContent, contentList, learnAlignedIndex]);
+
   const deepdiveColumnArr: string[] = useMemo(() => {
     if (subject === '多肢選択' && deepdiveTashiSlice) return deepdiveTashiSlice;
     const raw = subject ? (LEARN_DEEPDIVE as any)[subject] : [];
@@ -1052,6 +1078,16 @@ export default function LearnSubjectScreen() {
           merged = merged.trim() ? `${tag}\n\n${merged}` : tag;
         }
       }
+      merged = appendKenpouConfusingTopicChunks(
+        merged,
+        `${currentDisplayContent}\n${fromB}`,
+      );
+    }
+    if (isGyoseiLinkSubject(learnSubjectForDeepdive) || isGyoseiLinkSubject(subject)) {
+      merged = appendGyoseiConfusingTopicChunks(
+        merged,
+        `${currentDisplayContent}\n${fromB}`,
+      );
     }
     return merged;
   };
@@ -1164,6 +1200,25 @@ export default function LearnSubjectScreen() {
     }
     router.back();
   };
+
+  const handleOpenRelatedConfusingCard = useCallback(
+    (card: { subject: string; index: number }) => {
+      killLearnTtsPlayback();
+      setIsPlaying(false);
+      if (card.subject === subject) {
+        const displayIdx = displayIndexList.indexOf(card.index);
+        if (displayIdx >= 0) {
+          syncLearnCardIndex(displayIdx);
+          return;
+        }
+      }
+      router.push({
+        pathname: '/learn/[subject]',
+        params: { subject: card.subject, index: String(card.index) },
+      });
+    },
+    [displayIndexList, killLearnTtsPlayback, setIsPlaying, subject, syncLearnCardIndex],
+  );
 
   const handleManualNext = useCallback(() => {
     killLearnTtsPlayback();
@@ -1646,6 +1701,30 @@ export default function LearnSubjectScreen() {
               </Pressable>
             ) : null}
           </ThemedView>
+
+          {confusingRelatedLearnCards.length > 0 ? (
+            <ThemedView style={styles.confusingTopicBox}>
+              <ThemedText style={[styles.confusingTopicTitle, { color: colors.subText }]}>
+                紛らわしい論点
+              </ThemedText>
+              <View style={styles.confusingTopicRow}>
+                {confusingRelatedLearnCards.map((card) => (
+                  <Pressable
+                    key={`${card.subject}-${card.index}`}
+                    onPress={() => handleOpenRelatedConfusingCard(card)}
+                    style={[styles.confusingTopicChip, { borderColor: colors.primary, backgroundColor: colors.card }]}
+                  >
+                    <ThemedText style={[styles.confusingTopicChipText, { color: colors.primary }]}>
+                      {card.label}
+                    </ThemedText>
+                    <ThemedText style={[styles.confusingTopicAxis, { color: colors.subText }]}>
+                      {card.axis}
+                    </ThemedText>
+                  </Pressable>
+                ))}
+              </View>
+            </ThemedView>
+          ) : null}
 
           {/* Control Buttons (前へ、再生、次へ) */}
           <ThemedView style={styles.controlsRow}>
@@ -2134,6 +2213,34 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     fontWeight: '600',
+  },
+  confusingTopicBox: {
+    gap: 8,
+    marginTop: 4,
+  },
+  confusingTopicTitle: {
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  confusingTopicRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  confusingTopicChip: {
+    maxWidth: '100%',
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    gap: 2,
+  },
+  confusingTopicChipText: {
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  confusingTopicAxis: {
+    fontSize: 11,
   },
   headerRow: {
     flexDirection: 'row',

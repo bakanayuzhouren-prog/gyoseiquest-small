@@ -69,6 +69,8 @@ export const KENPOU_HANREI2_CHAT_BRIEFS: ChatTopicBrief[] = [
       '',
       '**Twitter事件と違う** Twitterは「明らかに」不要。検索と投稿は別棚。',
       '**暗記** Google＝明らかに優越しないと消えない。13条根拠と書かない。',
+      '',
+      '**関連** Twitterは優越で足りる。質問は「GoogleとTwitter」。',
     ].join('\n'),
   },
   {
@@ -92,6 +94,8 @@ export const KENPOU_HANREI2_CHAT_BRIEFS: ChatTopicBrief[] = [
       '**本件** 削除**認めた**。原審がGoogle基準を持ち出したのを最高裁が否定。',
       '',
       '**暗記** Twitter＝優越で足りる。Googleの明らか要件を持ち込むな。',
+      '',
+      '**関連** Googleは明らかに優越。質問は「TwitterとGoogle」。',
     ].join('\n'),
   },
   {

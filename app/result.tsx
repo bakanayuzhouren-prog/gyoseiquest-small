@@ -42,6 +42,8 @@ import { normalizeFinalConstitutionDeepDivePresentation } from '@/utils/constitu
 import { buildCompleteConstitutionDeepDive } from '@/utils/constitution-quiz-deepdive-complete';
 import { appendConstitutionProcedureConfusionChunk } from '@/utils/constitution-procedure-confusion-chunk';
 import { appendConstitutionProcedureRelatedQuestions } from '@/utils/constitution-procedure-related-questions';
+import { appendGyoseiConfusingTopicChunks, findRelatedGyoseiLearnCards, gyoseiLearnCardsBySubject, isGyoseiLinkSubject } from '@/utils/gyoseiConfusingTopicLinks';
+import { appendKenpouConfusingTopicChunks, findRelatedKenpouLearnCards } from '@/utils/kenpouConfusingTopicLinks';
 import { hasPersonFlowDiagramForChoice, isMinpoPersonFlowField, resolvePersonFlowDiagram } from '@/src/personFlowDiagram';
 import {
   pickCompareTable,
@@ -960,6 +962,24 @@ export default function ResultScreen() {
     () => [text, explain, memo, ...choices].filter(Boolean).join('\n'),
     [text, explain, memo, choices],
   );
+  const confusingRelatedLearnCards = useMemo(() => {
+    const learnContent = (LearnData as { LEARN_CONTENT?: Record<string, string[]> }).LEARN_CONTENT || {};
+    if (subject === '憲法') {
+      return findRelatedKenpouLearnCards({
+        haystack: compareSearchText,
+        cards: learnContent['憲法'] || [],
+        currentIndex: -1,
+        subject: '憲法',
+      });
+    }
+    if (subject !== '行政法' && !isGyoseiLinkSubject(subject)) return [];
+    return findRelatedGyoseiLearnCards({
+      haystack: compareSearchText,
+      cardsBySubject: gyoseiLearnCardsBySubject(learnContent),
+      currentSubject: isGyoseiLinkSubject(field) ? field : undefined,
+      currentIndex: -1,
+    });
+  }, [subject, field, compareSearchText]);
   const compareDef = useMemo(
     () => (compareSearchText ? pickCompareTable(compareSearchText, { subject, field }) : undefined),
     [compareSearchText, subject, field],
@@ -1616,6 +1636,39 @@ export default function ResultScreen() {
     );
   };
 
+  const renderConfusingRelatedLearnLinks = () => {
+    if (confusingRelatedLearnCards.length === 0) return null;
+    return (
+      <View style={{ marginTop: 8, gap: 6 }}>
+        <ThemedText style={{ color: colors.subText, fontSize: 12, fontWeight: '700' }}>紛らわしい論点</ThemedText>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+          {confusingRelatedLearnCards.map((card) => (
+            <Pressable
+              key={`${card.subject}-${card.index}`}
+              onPress={() =>
+                handleOpenLinkedLearn(
+                  { subject: card.subject, index: card.index },
+                  { returnToQuestion: true, autoplay: false },
+                )
+              }
+              style={{
+                borderWidth: 1,
+                borderColor: colors.primary,
+                borderRadius: 10,
+                paddingHorizontal: 10,
+                paddingVertical: 8,
+                maxWidth: '100%',
+              }}
+            >
+              <ThemedText style={{ color: colors.primary, fontSize: 13, fontWeight: '700' }}>{card.label}</ThemedText>
+              <ThemedText style={{ color: colors.subText, fontSize: 11 }}>{card.axis}</ThemedText>
+            </Pressable>
+          ))}
+        </View>
+      </View>
+    );
+  };
+
   const handleNext = () => {
     // Check if we are looping (Index + 1 >= Total)
     if (totalQuestions > 0 && nextIndex >= totalQuestions) {
@@ -1969,8 +2022,14 @@ export default function ResultScreen() {
                     legallyCorrect: null,
                   })
                 : '';
-            const slotDeepBodyWithChunks = appendConstitutionProcedureRelatedQuestions(
-              appendConstitutionProcedureConfusionChunk(slotDeepBodyRaw || slotFallbackDeepDive, slotContext),
+            const slotDeepBodyWithChunks = appendGyoseiConfusingTopicChunks(
+              appendKenpouConfusingTopicChunks(
+                appendConstitutionProcedureRelatedQuestions(
+                  appendConstitutionProcedureConfusionChunk(slotDeepBodyRaw || slotFallbackDeepDive, slotContext),
+                  slotContext,
+                ),
+                slotContext,
+              ),
               slotContext,
             );
             const slotDeepBody = subject === '憲法'
@@ -2115,10 +2174,16 @@ export default function ResultScreen() {
                     })
                   : '';
               const procedureContext = `${text}\n${choiceText}`;
-              const deepContentWithChunks = appendConstitutionProcedureRelatedQuestions(
-                appendConstitutionProcedureConfusionChunk(
-                  mergeKijyutuGyouseihouMemoOrDeepFromQuiz(
-                    mergeAutoChoiceDeepDiveImage(deepMColumnRaw || constitutionFallbackDeepDive, choiceIdx).trim(),
+              const deepContentWithChunks = appendGyoseiConfusingTopicChunks(
+                appendKenpouConfusingTopicChunks(
+                  appendConstitutionProcedureRelatedQuestions(
+                    appendConstitutionProcedureConfusionChunk(
+                      mergeKijyutuGyouseihouMemoOrDeepFromQuiz(
+                        mergeAutoChoiceDeepDiveImage(deepMColumnRaw || constitutionFallbackDeepDive, choiceIdx).trim(),
+                      ),
+                      procedureContext,
+                    ),
+                    procedureContext,
                   ),
                   procedureContext,
                 ),
@@ -2342,6 +2407,7 @@ export default function ResultScreen() {
                 </View>
               );
             })}
+            {renderConfusingRelatedLearnLinks()}
           </ThemedView>
             {footerImages.length > 0 ? (
               <View style={{ marginTop: 16, marginBottom: 16, paddingVertical: 12 }}>
@@ -2397,6 +2463,7 @@ export default function ResultScreen() {
         {isDescriptive ? (
           <ThemedView style={{ marginTop: 16, marginBottom: 8, gap: 8 }}>
             {renderLinkedLearnCommand(null)}
+            {renderConfusingRelatedLearnLinks()}
             {explain ? (
               <Pressable
                 onPress={() => {

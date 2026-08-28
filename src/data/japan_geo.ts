@@ -70,6 +70,97 @@ export const MUNICIPALITIES: Record<Prefecture, string[]> = {
     '沖縄県': ['那覇市', '宜野湾市', '石垣市', '浦添市', '名護市', '糸満市', '沖縄市', '豊見城市', 'うるま市', '宮古島市', '南城市', '国頭村', '大宜味村', '東村', '今帰仁村', '本部町', '恩納村', '宜野座村', '金武町', '伊江村', '読谷村', '嘉手納町', '北谷町', '北中城町', '中城村', '西原町', '与那原町', '南風原町', '渡嘉敷村', '座間味村', '粟国村', '渡名喜村', '南大東村', '北大東村', '伊平屋村', '伊ぜな村', '久米島町', '八重瀬町', '多良間村', '竹富町', '与那国町']
 };
 
+/** 県庁所在地（メタ空間の「役所」ワンタップ移動先。MUNICIPALITIES のキーと一致） */
+export const PREFECTURE_CAPITALS: Record<Prefecture, string> = {
+    '北海道': '札幌市',
+    '青森県': '青森市',
+    '岩手県': '盛岡市',
+    '宮城県': '仙台市',
+    '秋田県': '秋田市',
+    '山形県': '山形市',
+    '福島県': '福島市',
+    '茨城県': '水戸市',
+    '栃木県': '宇都宮市',
+    '群馬県': '前橋市',
+    '埼玉県': 'さいたま市浦和区',
+    '千葉県': '千葉市中央区',
+    '東京都': '新宿区',
+    '神奈川県': '横浜市中区',
+    '新潟県': '新潟市中央区',
+    '富山県': '富山市',
+    '石川県': '金沢市',
+    '福井県': '福井市',
+    '山梨県': '甲府市',
+    '長野県': '長野市',
+    '岐阜県': '岐阜市',
+    '静岡県': '静岡市葵区',
+    '愛知県': '名古屋市中区',
+    '三重県': '津市',
+    '滋賀県': '大津市',
+    '京都府': '京都市上京区',
+    '大阪府': '大阪市中央区',
+    '兵庫県': '神戸市中央区',
+    '奈良県': '奈良市',
+    '和歌山県': '和歌山市',
+    '鳥取県': '鳥取市',
+    '島根県': '松江市',
+    '岡山県': '岡山市北区',
+    '広島県': '広島市中区',
+    '山口県': '山口市',
+    '徳島県': '徳島市',
+    '香川県': '高松市',
+    '愛媛県': '松山市',
+    '高知県': '高知市',
+    '福岡県': '福岡市博多区',
+    '佐賀県': '佐賀市',
+    '長崎県': '長崎市',
+    '熊本県': '熊本市中央区',
+    '大分県': '大分市',
+    '宮崎県': '宮崎市',
+    '鹿児島県': '鹿児島市',
+    '沖縄県': '那覇市',
+};
+
+export type JapanRegion =
+    | '北海道'
+    | '東北'
+    | '関東'
+    | '中部'
+    | '近畿'
+    | '中国'
+    | '四国'
+    | '九州・沖縄';
+
+export const JAPAN_REGIONS: { id: JapanRegion; label: string; prefs: Prefecture[] }[] = [
+    { id: '北海道', label: '北海道', prefs: ['北海道'] },
+    { id: '東北', label: '東北', prefs: ['青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県'] },
+    { id: '関東', label: '関東', prefs: ['茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県'] },
+    { id: '中部', label: '中部', prefs: ['新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県', '静岡県', '愛知県'] },
+    { id: '近畿', label: '近畿', prefs: ['三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県'] },
+    { id: '中国', label: '中国', prefs: ['鳥取県', '島根県', '岡山県', '広島県', '山口県'] },
+    { id: '四国', label: '四国', prefs: ['徳島県', '香川県', '愛媛県', '高知県'] },
+    { id: '九州・沖縄', label: '九州・沖縄', prefs: ['福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県'] },
+];
+
+/** 保存ロケーション（例: 東京都新宿区）から都道府県を取る */
+export function getPrefectureFromLocation(location: string | null | undefined): Prefecture {
+    if (!location) return '東京都';
+    return PREFECTURES.find((p) => location.startsWith(p)) || '東京都';
+}
+
+/** 県庁所在地の役所ロケーション文字列 */
+export function getPrefectureOfficeLocation(pref: Prefecture): string {
+    return `${pref}${PREFECTURE_CAPITALS[pref]}`;
+}
+
+/** HUD表示用: 「東京都 新宿区役所」 */
+export function formatOfficeLabel(location: string | null | undefined): string {
+    const loc = location || getPrefectureOfficeLocation('東京都');
+    const pref = getPrefectureFromLocation(loc);
+    const muni = loc.startsWith(pref) ? loc.slice(pref.length) : loc;
+    return muni ? `${pref} ${muni}役所` : `${pref}役所`;
+}
+
 export type RegionTheme = 'snow' | 'tropical' | 'urban' | 'rural' | 'historic';
 
 export const REGION_MODIFIERS: Record<RegionTheme, { color: string; message: string }> = {

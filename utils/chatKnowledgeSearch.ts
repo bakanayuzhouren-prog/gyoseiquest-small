@@ -34,6 +34,7 @@ import {
   GYOSEI_FUFUKU_PHRASE_ALIASES,
 } from '@/utils/chatTopicBriefsGyoseiFufuku';
 import {
+  GYOSEI_COMPARISON_ATTACH_RULES,
   GYOSEI_PROC_COMPARISON_BRIEFS,
   GYOSEI_PROC_COMPARISON_KEY_PHRASES,
   GYOSEI_PROC_COMPARISON_PHRASE_ALIASES,
@@ -73,6 +74,25 @@ import {
   GOUKAKU_ROUND3_KEY_PHRASES,
   GOUKAKU_ROUND3_PHRASE_ALIASES,
 } from '@/utils/chatTopicBriefsGoukakuRound3';
+import {
+  GOUKAKU_ROUND2_CHAT_BRIEFS,
+  GOUKAKU_ROUND2_KEY_PHRASES,
+} from '@/utils/chatTopicBriefsGoukakuRound2';
+import {
+  LEC_KOUKAI_CHAT_BRIEFS,
+  LEC_KOUKAI_KEY_PHRASES,
+} from '@/utils/chatTopicBriefsLecKoukai';
+import {
+  LEC_BONUS_KENPOU_CHAT_BRIEFS,
+  LEC_BONUS_KENPOU_KEY_PHRASES,
+  LEC_BONUS_KENPOU_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsLecBonusKenpou';
+import {
+  KENPOU_COMPARISON_ATTACH_RULES,
+  KENPOU_COMPARISON_BRIEFS,
+  KENPOU_COMPARISON_KEY_PHRASES,
+  KENPOU_COMPARISON_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsKenpouComparisons';
 import {
   JICHI_CHAT_BRIEFS,
   JICHI_KEY_PHRASES,
@@ -198,6 +218,8 @@ const PHRASE_ALIASES: [string, string[]][] = [
   ...NAKA_GYOSEI_YAMA_PHRASE_ALIASES,
   ...NAKA_MINPOU_YAMA_PHRASE_ALIASES,
   ...KENPOU_YAMA_PHRASE_ALIASES,
+  ...LEC_BONUS_KENPOU_PHRASE_ALIASES,
+  ...KENPOU_COMPARISON_PHRASE_ALIASES,
 ];
 
 /** 質問語に一致したとき必ずコンテキスト先頭に載せる短い論点ガイド（判例タグだけでは足りない論点用） */
@@ -279,6 +301,8 @@ const CHAT_TOPIC_BRIEFS: { triggers: string[]; title: string; text: string }[] =
   ...KENPOU_DEEP_CHAT_BRIEFS,
   ...KOKUBAI_CHAT_BRIEFS,
   ...GOUKAKU_ROUND3_CHAT_BRIEFS,
+  ...GOUKAKU_ROUND2_CHAT_BRIEFS,
+  ...LEC_KOUKAI_CHAT_BRIEFS,
   ...JICHI_CHAT_BRIEFS,
   ...MOSHI_BEYOND_PAST_CHAT_BRIEFS,
   ...SHOHO_KIMEUCHI_CHAT_BRIEFS,
@@ -286,6 +310,8 @@ const CHAT_TOPIC_BRIEFS: { triggers: string[]; title: string; text: string }[] =
   ...NAKA_GYOSEI_YAMA_CHAT_BRIEFS,
   ...NAKA_MINPOU_YAMA_CHAT_BRIEFS,
   ...KENPOU_YAMA_CHAT_BRIEFS,
+  ...LEC_BONUS_KENPOU_CHAT_BRIEFS,
+  ...KENPOU_COMPARISON_BRIEFS,
 ];
 
 /** 口語ノイズを除いた検索核（「〜ってなん？」「とは」等） */
@@ -345,6 +371,8 @@ const KEY_LEGAL_PHRASES = [
   ...KENPOU_DEEP_KEY_PHRASES,
   ...KOKUBAI_KEY_PHRASES,
   ...GOUKAKU_ROUND3_KEY_PHRASES,
+  ...GOUKAKU_ROUND2_KEY_PHRASES,
+  ...LEC_KOUKAI_KEY_PHRASES,
   ...JICHI_KEY_PHRASES,
   ...MOSHI_BEYOND_PAST_KEY_PHRASES,
   ...SHOHO_KIMEUCHI_KEY_PHRASES,
@@ -352,6 +380,8 @@ const KEY_LEGAL_PHRASES = [
   ...NAKA_GYOSEI_YAMA_KEY_PHRASES,
   ...NAKA_MINPOU_YAMA_KEY_PHRASES,
   ...KENPOU_YAMA_KEY_PHRASES,
+  ...LEC_BONUS_KENPOU_KEY_PHRASES,
+  ...KENPOU_COMPARISON_KEY_PHRASES,
 ];
 
 function normalizeQueryForMatch(s: string): string {
@@ -428,6 +458,15 @@ function topicBriefsForQuery(...haystacks: string[]): { title: string; text: str
         priority: queryWantsDoryoku ? 0 : 3,
       });
     }
+  }
+  for (const rule of [...KENPOU_COMPARISON_ATTACH_RULES, ...GYOSEI_COMPARISON_ATTACH_RULES]) {
+    const already = matched.some((m) => m.title === rule.title);
+    if (already) continue;
+    const shouldAttach = matched.some((m) => rule.match.test(`${m.title}\n${m.text}`));
+    if (!shouldAttach) continue;
+    const src = CHAT_TOPIC_BRIEFS.find((b) => b.title === rule.title);
+    if (!src) continue;
+    matched.push({ title: src.title, text: src.text, priority: wantsCompare ? 0 : 1 });
   }
   matched.sort((a, b) => a.priority - b.priority);
   return matched.map(({ title, text }) => ({ title, text }));

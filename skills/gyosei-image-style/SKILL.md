@@ -103,3 +103,13 @@ For character-only or character-heavy jobs, also use the **ちゃちゃロット
 - Do **not** bulk-replace owls in existing learning images unless てらしぃ explicitly requests a migration pass.
 - For restyling, keep the original asset key and legal structure while removing source filenames and production notes.
 - When improving prompt skill from てらしぃ's X posts, save new approved samples under `assets/` and describe the extracted pattern in visual-guidelines / avatar-guidelines.
+
+## Codex：未生成プロンプトの自動探索（てらしぃ確定）
+
+てらしぃが **「画像生成していないコーデックス用プロンプトを探して、画像生成して」** と Codex に言う運用。
+
+1. **探索**: `npm run list:codex-images-pending`（`scripts/listPendingCodexImages.mjs`）
+2. **手順正本**: `prompts/CODEX-IMAGE-BATCH.md`
+3. **新規 codex プロンプト**は必ず `- 保存先: assets/images/deepdive/...png` を書く → 未生成として自動検出
+
+Cursor が codex プロンプトを新規作成したら、上記 `保存先` 行を忘れないこと。

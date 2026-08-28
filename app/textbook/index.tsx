@@ -23,8 +23,20 @@ const SUBJECTS = [
   {
     href: '/textbook/kenpou' as Href,
     title: '憲法',
-    description: '条文・判例・比較表付き。概念章（硬性/軟性）から統治・司法まで。',
+    description: '条文・判例・比較表。末尾に追試・特典ベース（自作要約）。',
     icon: 'gavel' as const,
+  },
+  {
+    href: '/textbook/gyosei' as Href,
+    title: '行政法',
+    description: '択一の地図＋LEC公開追試の切る言葉。記述は別冊。',
+    icon: 'account-balance' as const,
+  },
+  {
+    href: '/textbook/minpou' as Href,
+    title: '民法',
+    description: '択一の地図＋LEC公開追試の切る言葉。記述・抵当は別冊。',
+    icon: 'menu-book' as const,
   },
   {
     href: '/textbook/shouhou' as Href,

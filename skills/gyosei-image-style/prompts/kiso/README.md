@@ -2,6 +2,9 @@
 
 てらしぃが **「コーデックスで」** と明示したときの GPT Image 用。Cursor はこのフォルダを渡すだけで、**画像は作らない**。
 
+**未生成の探索・一括生成**: `skills/gyosei-image-style/prompts/CODEX-IMAGE-BATCH.md`  
+`npm run list:codex-images-pending -- --folder kiso` でこのフォルダの pending を確認。
+
 正本: `data/knowledge/canonical/tac-moshi-compare-tables.md` §7〜§9  
 要約: `data/learn/kiso-hougaku-summary.md`  
 配置先（生成後・Cursor）: `assets/images/deepdive/learn/kiso/` → キー `learn/kiso/<slug>`  

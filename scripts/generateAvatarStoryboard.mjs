@@ -15,7 +15,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 const GEMINI_KEY = (process.env.GEMINI_API_KEY || process.env.EXPO_PUBLIC_GEMINI_API_KEY || '').trim();
 const STYLE_REFS = [
-  path.join(ROOT, 'assets', 'images', 'avatar_suit.png'),
+  path.join(ROOT, 'assets', 'images', 'characters', 'gyosei_student_male_sheet.png'),
+  path.join(ROOT, 'assets', 'images', 'avatar_student_male.png'),
   path.join(ROOT, 'temp_images', 'quiz', 'gyouseihou', 'kokubai', '20-1-2-comic4trial-gemini.png'),
 ].filter((p) => fs.existsSync(p));
 
@@ -26,9 +27,10 @@ const CHAR_BRIEF = {
   hero01: {
     name: 'クエスト生（主人公）',
     concept: `行政書士試験を目指す若い学習者。アプリ「行政書士クエスト」のプレイヤーアバター基準キャラ。
-性別: 男性（20代前半）。明るく真面目。既存アバター（添付参照）と同じフラットベクター調・丸顔アイコン向け。
-髪: 短髪ネイビー。肌: 薄ベージュ。目はシンプルな点目。
-世界観: 勉強×RPG。スーツ（試験本番）とカジュアル（自宅勉強）を将来量産予定。`,
+性別: 男性（20代後半）。明るく真面目。既存の男性受験生シート（添付参照）と同じフラットベクター調・丸顔アイコン向け。
+髪: 短髪の自然な黒髪。肌: 薄ベージュ。目はシンプルな点目。
+服装: ネイビークルーネックセーター＋白襟シャツ（スーツは標準にしない）。
+世界観: 勉強×RPG。私服の受験生として量産する。`,
   },
 };
 
@@ -93,8 +95,8 @@ async function buildStoryboardPrompt(char) {
 ② 斜め45度・上半身（表情：笑顔でやる気）
 ③ 斜め45度・上半身（表情：真剣・勉強中）
 ④ 持ち物アイテム（六法全書・蛍光ペン・タブレット）を並べた設定画
-⑤ コスチューム案A：スーツ（試験本番）
-⑥ コスチューム案B：カジュアル（パーカー＋ヘッドホン）
+⑤ コスチューム案A：ネイビークルーネックセーター＋白襟シャツ（標準の受験生私服）
+⑥ コスチューム案B：ティールアクセントのカーディガン＋ノート所持（自宅勉強）
 
 画像上部中央にタイトル「${char.name} 設定絵コンテ」を入れる指示も含める。`;
 

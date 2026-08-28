@@ -27,6 +27,9 @@ const learnExportName =
 const bonusExportName =
   argv.find((a) => a.startsWith('--bonus-export='))?.slice('--bonus-export='.length) ||
   (roundLabel === '第3回' ? 'GOUKAKU_MOSHI_ROUND3_BONUS_QUESTIONS' : 'GOUKAKU_MOSHI_BONUS_QUESTIONS');
+const sourcePrefix =
+  argv.find((a) => a.startsWith('--source-prefix='))?.slice('--source-prefix='.length) ||
+  '合格革命模試';
 
 /** field → 見て聞いて覚えるの LEARN_CONTENT キー */
 const LEARN_SUBJECT_BY_FIELD = {
@@ -178,16 +181,16 @@ for (const t of confirmed) {
   const quizField = resolveQuizField(t, learnSubject);
 
   (bySubject[learnSubject] ??= []).push({
-    text: `【合格革命${roundLabel}・問${t.questionNumber}】${t.memory}`,
+    text: `【${sourcePrefix}${roundLabel}・問${t.questionNumber}】${t.memory}`,
     deepdive: `■ 結論\n\n${t.rule}\n\n■ なぜそうなる\n\n${t.deepDive}\n\n■ ひっかけ\n\n[[red:${t.trap}]]\n\n■ 暗記\n\n${t.memory}`,
     fExplain: t.aim,
     statuteRef: (t.references || []).join('、'),
-    source: `合格革命模試 ${roundLabel} 問${t.questionNumber}`,
+    source: `${sourcePrefix} ${roundLabel} 問${t.questionNumber}`,
   });
 
   bonus[quizSubject] ??= {};
   (bonus[quizSubject][quizField] ??= []).push({
-    text: `【ボーナス合格革命${roundLabel}・問${t.questionNumber}系】${t.practiceQuestion.prompt}`,
+    text: `【ボーナス${sourcePrefix}${roundLabel}・問${t.questionNumber}系】${t.practiceQuestion.prompt}`,
     choices: t.practiceQuestion.choices,
     answer: [t.practiceQuestion.answer],
     explain: t.practiceQuestion.explanation,
@@ -198,7 +201,7 @@ for (const t of confirmed) {
     ),
     isBonus: true,
     wordBank: '',
-    memo: `合格革命${roundLabel}・${t.topic}`,
+    memo: `${sourcePrefix}${roundLabel}・${t.topic}`,
     slots: [],
   });
 }

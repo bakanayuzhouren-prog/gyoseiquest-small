@@ -22,11 +22,13 @@ Define or update recurring characters here before generating many images.
 
 ### Learner Avatar
 
-- Role: represents てらしぃ（あぷし）の受験生ペルソナ。
-- X: https://x.com/appshi113 （@appshi113）／表示名「あぷし / 行政書士受験生」
-- Visual cues: notebook, pen, focused expression; optional phone with study-app chat bubbles（プロフィール絵の方向性）。参考: `assets/x-profile-apushi.png`
+- Role: represents てらしぃ（あぷし）の受験生ペルソナ。アプリ選択は **male / female** の2種。
+- 正本シート: `assets/images/characters/gyosei_student_male_sheet.png` / `gyosei_student_female_sheet.png`
+- アプリアイコン: `assets/images/avatar_student_male.png` / `avatar_student_female.png`
+- Visual cues: flat editorial、濃紺線、私服（ネイビークルーネック＋白襟／ティールニット＋白襟）。短髪黒髪（男）・肩丈ダークヘア（女）。ノート・六法はシート小物のみ。
 - Mood range: thinking, noticing, correcting, confident.
-- Avoid: embarrassment-heavy expressions or failure jokes.
+- Avoid: スーツ標準化、行政書士バッジ、ちゃちゃロット混入、写実・3D・子どもっぽさ、性的強調。
+- X: https://x.com/appshi113 （@appshi113）／表示名「あぷし / 行政書士受験生」。参考: `assets/x-profile-apushi.png`（画風はフラット版を優先）
 
 ## ちゃちゃロット（にっこり帽子）
 
