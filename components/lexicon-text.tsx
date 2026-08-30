@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { StyleProp, TextStyle, View } from 'react-native';
+import { Platform, StyleProp, StyleSheet, TextStyle, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { BEGINNER_GLOSSARY_SORTED } from '@/utils/beginner-glossary';
@@ -99,15 +99,16 @@ function nowMs(): number {
  * TTS の onBoundary は飛び飛びなので、推定速度で補間してカラオケを滑らかにする。
  * LexiconText 内のローカル状態のみ更新し、Context 全体の再描画は増やさない。
  */
-function useSmoothSpokenIndex(targetIndex: number, textLength: number, playbackRate = 1) {
-  const [displayIndex, setDisplayIndex] = useState(targetIndex);
-  const displayRef = useRef(targetIndex);
+function useSmoothSpokenIndex(targetIndex: number, textLength: number, playbackRate = 1, enabled = true) {
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const displayRef = useRef(0);
   const targetRef = useRef(targetIndex);
   const textLengthRef = useRef(textLength);
   const lastBoundaryTimeRef = useRef(nowMs());
   const lastBoundaryIndexRef = useRef(targetIndex);
   const velocityRef = useRef(Math.max(8, 12 * playbackRate));
   const playbackRateRef = useRef(playbackRate);
+  const enabledRef = useRef(enabled);
   const rafRunningRef = useRef(false);
   const ensureRafRef = useRef<() => void>(() => {});
 
@@ -121,6 +122,16 @@ function useSmoothSpokenIndex(targetIndex: number, textLength: number, playbackR
   }, [textLength]);
 
   useEffect(() => {
+    enabledRef.current = enabled;
+    if (!enabled) {
+      displayRef.current = 0;
+      lastBoundaryIndexRef.current = 0;
+      targetRef.current = 0;
+      setDisplayIndex(0);
+    }
+  }, [enabled]);
+
+  useEffect(() => {
     let alive = true;
     let lastFrame = nowMs();
     let rafId = 0;
@@ -132,6 +143,19 @@ function useSmoothSpokenIndex(targetIndex: number, textLength: number, playbackR
 
       const target = targetRef.current;
       const len = textLengthRef.current;
+
+      if (!enabledRef.current || target <= 0) {
+        if (displayRef.current !== 0) {
+          displayRef.current = 0;
+          setDisplayIndex(0);
+        } else {
+          displayRef.current = 0;
+        }
+        rafRunningRef.current = false;
+        rafId = 0;
+        return;
+      }
+
       const elapsed = (now - lastBoundaryTimeRef.current) / 1000;
       const coast = lastBoundaryIndexRef.current + velocityRef.current * elapsed;
       const goal =
@@ -154,7 +178,7 @@ function useSmoothSpokenIndex(targetIndex: number, textLength: number, playbackR
 
       const animating =
         len > 0 &&
-        (target > 0 || displayRef.current > 0) &&
+        target > 0 &&
         (target < len || Math.abs(goal - cur) > 0.4);
 
       if (animating) {
@@ -168,6 +192,7 @@ function useSmoothSpokenIndex(targetIndex: number, textLength: number, playbackR
 
     ensureRafRef.current = () => {
       if (!alive || rafRunningRef.current) return;
+      if (!enabledRef.current || targetRef.current <= 0) return;
       lastFrame = nowMs();
       rafRunningRef.current = true;
       rafId = requestAnimationFrame(tick);
@@ -188,8 +213,15 @@ function useSmoothSpokenIndex(targetIndex: number, textLength: number, playbackR
     const prevTarget = targetRef.current;
     targetRef.current = targetIndex;
 
-    // 新しい読み上げ・巻き戻しは即スナップ
-    if (targetIndex === 0 || targetIndex < displayRef.current - 3) {
+    if (!enabledRef.current || targetIndex <= 0) {
+      displayRef.current = 0;
+      lastBoundaryIndexRef.current = 0;
+      setDisplayIndex(0);
+      return;
+    }
+
+    // 明確な巻き戻しだけスナップ。小さな後退は点滅の原因になる
+    if (targetIndex < displayRef.current - 24) {
       displayRef.current = targetIndex;
       lastBoundaryIndexRef.current = targetIndex;
       lastBoundaryTimeRef.current = now;
@@ -222,7 +254,7 @@ function useSmoothSpokenIndex(targetIndex: number, textLength: number, playbackR
     ensureRafRef.current();
   }, [targetIndex, textLength]);
 
-  return displayIndex;
+  return enabled ? displayIndex : 0;
 }
 
 export type LexiconStatutePressInfo = {
@@ -252,7 +284,22 @@ type Props = {
   linkColor?: string;
   /** TTS 速度。カラオケ補間の初期速度に使う */
   playbackRate?: number;
+  /** false のとき点灯しない（再生前の補間漏れ防止） */
+  karaokeActive?: boolean;
 };
+
+/** Web で親 Text が幅100%だと子が縦積みになる。子は必ずインラインにする。 */
+const webInlineChild: TextStyle | null =
+  Platform.OS === 'web' ? ({ display: 'inline' } as TextStyle) : null;
+
+/** 子に渡すと行が割れるレイアウトだけ落とす（中央寄せ・幅は親だけ）。 */
+function childLineStyle(lineStyle: StyleProp<TextStyle>): TextStyle {
+  const flat = { ...(StyleSheet.flatten(lineStyle) || {}) } as TextStyle;
+  delete flat.width;
+  delete flat.textAlign;
+  delete flat.alignSelf;
+  return flat;
+}
 
 /**
  * 1 つの Text 内に子 Text を並べ、段落の折り返し・textAlign（中央寄せ等）を自然に揃える。
@@ -272,6 +319,7 @@ export function LexiconText({
   inlineGlossaryBubble = true,
   linkColor = '#007BFF',
   playbackRate = 1,
+  karaokeActive = false,
 }: Props) {
   const segments = useMemo(
     () =>
@@ -290,7 +338,14 @@ export function LexiconText({
       }, 0),
     [segments],
   );
-  const displaySpokenIndex = useSmoothSpokenIndex(spokenIndex, plainLength, playbackRate);
+  const smoothedSpokenIndex = useSmoothSpokenIndex(
+    karaokeActive ? spokenIndex : 0,
+    plainLength,
+    playbackRate,
+    karaokeActive,
+  );
+  const displaySpokenIndex =
+    karaokeActive && spokenIndex > 0 ? smoothedSpokenIndex : 0;
   const [activeGlossary, setActiveGlossary] = useState<{ word: string; def: string } | null>(null);
 
   useEffect(() => {
@@ -313,6 +368,7 @@ export function LexiconText({
 
     const nodes: ReactNode[] = [];
     let plainCursor = 0;
+    const innerLine = childLineStyle(lineStyle);
     const dictBase = {
       textDecorationLine: 'underline' as const,
       textDecorationStyle: 'dotted' as const,
@@ -327,14 +383,14 @@ export function LexiconText({
         const relReadEnd = Math.max(0, Math.min(displaySpokenIndex - start, s.length));
         if (relReadEnd > 0) {
           nodes.push(
-            <ThemedText key={`p${segIndex}r`} style={[lineStyle, readStyle]}>
+            <ThemedText key={`p${segIndex}r`} style={[innerLine, webInlineChild, readStyle]}>
               {applyNames(s.slice(0, relReadEnd))}
             </ThemedText>,
           );
         }
         if (relReadEnd < s.length) {
           nodes.push(
-            <ThemedText key={`p${segIndex}u`} style={[lineStyle, unreadStyle]}>
+            <ThemedText key={`p${segIndex}u`} style={[innerLine, webInlineChild, unreadStyle]}>
               {applyNames(s.slice(relReadEnd))}
             </ThemedText>,
           );
@@ -344,9 +400,7 @@ export function LexiconText({
 
       if (seg.kind === 'statute') {
         const w = seg.label;
-        const start = plainCursor;
         plainCursor += w.length;
-        const isRead = displaySpokenIndex > start;
         nodes.push(
           <ThemedText
             key={`s${segIndex}`}
@@ -362,12 +416,12 @@ export function LexiconText({
             accessibilityRole="button"
             accessibilityLabel={`${seg.lawName}${seg.articleNum}条の条文を表示`}
             style={[
-              lineStyle,
-              isRead ? readStyle : unreadStyle,
+              innerLine,
+              webInlineChild,
               {
                 textDecorationLine: 'underline',
                 fontWeight: '700',
-                color: isRead ? undefined : linkColor,
+                color: linkColor,
               },
             ]}
           >
@@ -377,23 +431,15 @@ export function LexiconText({
         return;
       }
 
-      // 辞書語は文字分割せず一語単位で色を切り替え（ノード増によるカクつきを抑える）
       const w = seg.word;
-      const start = plainCursor;
       plainCursor += w.length;
-      const isRead = displaySpokenIndex > start;
       nodes.push(
         <ThemedText
           key={`d${segIndex}`}
           onPress={() => handleDictPress(seg.word, seg.def)}
           accessibilityRole="button"
           accessibilityLabel={`${seg.word}の意味を表示`}
-          style={[
-            lineStyle,
-            isRead ? readStyle : unreadStyle,
-            dictBase,
-            isRead ? null : { color: linkColor },
-          ]}
+          style={[innerLine, webInlineChild, dictBase, { color: linkColor }]}
         >
           {applyNames(w)}
         </ThemedText>,
@@ -419,7 +465,9 @@ export function LexiconText({
   const hasDict = segments.some((s) => s.kind === 'dict');
   const hasStatute = segments.some((s) => s.kind === 'statute');
   const textBlock = (
-    <ThemedText style={[lineStyle, { width: '100%' }]}>{children}</ThemedText>
+    <View style={{ width: '100%' }}>
+      <ThemedText style={lineStyle}>{children}</ThemedText>
+    </View>
   );
 
   if (!hasDict && !hasStatute) {

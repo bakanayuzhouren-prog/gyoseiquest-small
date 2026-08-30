@@ -518,7 +518,8 @@ export default function LearnSubjectScreen() {
 
   useEffect(() => {
     isPlayingRef.current = isPlaying;
-  }, [isPlaying]);
+    if (!isPlaying) setSpokenIndex(0);
+  }, [isPlaying, setSpokenIndex]);
   useEffect(() => {
     currentIndexRef.current = currentIndex;
   }, [currentIndex]);
@@ -945,9 +946,13 @@ export default function LearnSubjectScreen() {
 
   const { mainText, basisText } = parseLearnCardDisplayText(currentDisplayContent);
 
-  const karaokeReadStyle = useMemo(
-    () => ({ color: colors.primary, fontWeight: 'bold' as const }),
-    [colors.primary],
+  const karaokeReadStyle = useMemo(() => {
+    const dark = theme === 'premium' || theme === 'cyberpunk';
+    return { color: dark ? '#FF5252' : '#C62828' };
+  }, [theme]);
+  const karaokeUnreadStyle = useMemo(
+    () => ({ color: colors.text }),
+    [colors.text],
   );
 
   const handleDictionaryPress = useCallback((word: string, def: string) => {
@@ -1700,7 +1705,9 @@ export default function LearnSubjectScreen() {
               text={mainText}
               lineStyle={styles.content}
               readStyle={karaokeReadStyle}
+              unreadStyle={karaokeUnreadStyle}
               spokenIndex={spokenIndex}
+              karaokeActive={isPlaying}
               applyNames={applyCharacterNames}
               autoGlossaryTerms
               inlineGlossaryBubble
