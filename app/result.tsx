@@ -33,6 +33,9 @@ import { setDeepdiveParams } from '@/src/deepdiveState';
 import { getDescriptiveImageSource } from '@/src/descriptiveImages';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { mergeKijyutuGyouseihouQuizCaseImages } from '@/src/kijyutuGyouseihouQuizDeepdiveMerge';
+import { prependGyoshoHikokuDeepdiveImage } from '@/src/gyoshoHikokuDeepdiveImage';
+import { prependGyoshoJunyoDeepdiveImage } from '@/src/gyoshoJunyoDeepdiveImage';
+import { prependKokubaiJuminDeepdiveImage } from '@/src/kokubaiJuminDeepdiveImage';
 import { prependIshiHyojiDeepdiveImage } from '@/src/ishiHyojiDeepdiveImage';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
@@ -1077,14 +1080,29 @@ export default function ResultScreen() {
     const imageKeys = resolveAutoChoiceDeepDiveImageKeys(choiceIndex0);
     const finishQuizDeepdiveImages = (base: string) => {
       const afterJoshiki = prependJoshikiDeepdiveImages(base, (key) => !!resolveImageAsset(key));
-      if (subject !== '民法') return afterJoshiki;
       const matchText = [
         afterJoshiki,
         String((question as { text?: string })?.text || ''),
         String((question as { explain?: string })?.explain || ''),
         ...((question as { choices?: string[] })?.choices || []).map((c) => String(c || '')),
       ].join('\n');
-      return prependIshiHyojiDeepdiveImage(afterJoshiki, matchText, (key) => !!resolveImageAsset(key));
+      const afterHikoku = prependGyoshoHikokuDeepdiveImage(
+        afterJoshiki,
+        matchText,
+        (key) => !!resolveImageAsset(key),
+      );
+      const afterJunyo = prependGyoshoJunyoDeepdiveImage(
+        afterHikoku,
+        matchText,
+        (key) => !!resolveImageAsset(key),
+      );
+      const afterJumin = prependKokubaiJuminDeepdiveImage(
+        afterJunyo,
+        matchText,
+        (key) => !!resolveImageAsset(key),
+      );
+      if (subject !== '民法') return afterJumin;
+      return prependIshiHyojiDeepdiveImage(afterJumin, matchText, (key) => !!resolveImageAsset(key));
     };
     if (imageKeys.length === 0) {
       return finishQuizDeepdiveImages(trimmed);

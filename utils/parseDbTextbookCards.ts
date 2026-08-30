@@ -3,6 +3,9 @@
  * 正本の見出し「出題の型」「答案の芯」はそのまま読み、UI側で「問」「解答例」に対応づける。
  */
 
+import { pickGyoshoHikokuRelatedImageKeys } from '@/src/gyoshoHikokuDeepdiveImage';
+import { pickGyoshoJunyoRelatedImageKeys } from '@/src/gyoshoJunyoDeepdiveImage';
+import { pickKokubaiJuminRelatedImageKeys } from '@/src/kokubaiJuminDeepdiveImage';
 import { ISHI_HYOJI_TAIKO_IMAGE_KEY, pickIshiHyojiRelatedImageKeys } from '@/src/ishiHyojiDeepdiveImage';
 import { STATUTES } from '@/src/questions';
 import { statuteMarkdownForKisochiCard } from '@/utils/kisochiStatuteSnippets';
@@ -352,7 +355,13 @@ function flushCard(
   const autoRelated =
     slug === 'minpou-kijutsu'
       ? pickIshiHyojiRelatedImageKeys(`${draft.title}\n${question}\n${draft.answer}`)
-      : [];
+      : slug === 'gyosei-kijutsu'
+        ? [
+            ...pickGyoshoHikokuRelatedImageKeys(`${draft.title}\n${question}\n${draft.answer}`),
+            ...pickGyoshoJunyoRelatedImageKeys(`${draft.title}\n${question}\n${draft.answer}`),
+            ...pickKokubaiJuminRelatedImageKeys(`${draft.title}\n${question}\n${draft.answer}`),
+          ]
+        : [];
   const relatedSeen = new Set<string>();
   const relatedImageKeys: string[] = [];
   for (const key of [...relatedFromTags, ...autoRelated]) {

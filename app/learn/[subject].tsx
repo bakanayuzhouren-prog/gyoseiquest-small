@@ -46,6 +46,18 @@ import { STATUTES, SUBJECTS } from '@/src/questions';
 import { clearQuizLearnReturnParams, getQuizLearnReturnHref, stripLearnLinkTag } from '@/src/quizLearnBridge';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
 import {
+  prependGyoshoHikokuDeepdiveImage,
+  shouldAttachGyoshoHikokuDeepdiveImage,
+} from '@/src/gyoshoHikokuDeepdiveImage';
+import {
+  prependGyoshoJunyoDeepdiveImage,
+  shouldAttachGyoshoJunyoDeepdiveImage,
+} from '@/src/gyoshoJunyoDeepdiveImage';
+import {
+  prependKokubaiJuminDeepdiveImage,
+  shouldAttachKokubaiJuminDeepdiveImage,
+} from '@/src/kokubaiJuminDeepdiveImage';
+import {
   prependIshiHyojiDeepdiveImage,
   shouldAttachIshiHyojiDeepdiveImage,
 } from '@/src/ishiHyojiDeepdiveImage';
@@ -1029,6 +1041,15 @@ export default function LearnSubjectScreen() {
   const ishiHyojiDeepdiveEligible =
     (subject === '民法総則' || learnSubjectForDeepdive === '民法総則') &&
     shouldAttachIshiHyojiDeepdiveImage(`${currentDisplayContent}\n${deepdiveContent || ''}`);
+  const gyoshoHikokuDeepdiveEligible = shouldAttachGyoshoHikokuDeepdiveImage(
+    `${currentDisplayContent}\n${deepdiveContent || ''}`,
+  );
+  const gyoshoJunyoDeepdiveEligible = shouldAttachGyoshoJunyoDeepdiveImage(
+    `${currentDisplayContent}\n${deepdiveContent || ''}`,
+  );
+  const kokubaiJuminDeepdiveEligible = shouldAttachKokubaiJuminDeepdiveImage(
+    `${currentDisplayContent}\n${deepdiveContent || ''}`,
+  );
 
   const digDeeperButtonVisible =
     learnSubjectForDeepdive === '多肢選択憲法' || learnSubjectForDeepdive === '多肢選択行政法'
@@ -1042,7 +1063,10 @@ export default function LearnSubjectScreen() {
           hasValidImage ||
           learnAutoImageResolved ||
           hasImageTagInCard ||
-          ishiHyojiDeepdiveEligible
+          ishiHyojiDeepdiveEligible ||
+          gyoshoHikokuDeepdiveEligible ||
+          gyoshoJunyoDeepdiveEligible ||
+          kokubaiJuminDeepdiveEligible
         );
 
   /** A列の [[image:…]] を B列（LEARN_DEEPDIVE）と結合して渡す（従来は B のみで A の画像が落ちていた） */
@@ -1098,12 +1122,12 @@ export default function LearnSubjectScreen() {
         `${currentDisplayContent}\n${fromB}`,
       );
     }
+    const matchBlob = `${currentDisplayContent}\n${fromB}\n${merged}`;
+    merged = prependGyoshoHikokuDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
+    merged = prependGyoshoJunyoDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
+    merged = prependKokubaiJuminDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
     if (subject === '民法総則' || learnSubjectForDeepdive === '民法総則') {
-      return prependIshiHyojiDeepdiveImage(
-        merged,
-        `${currentDisplayContent}\n${fromB}\n${merged}`,
-        (key) => !!resolveImageAsset(key),
-      );
+      return prependIshiHyojiDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
     }
     return merged;
   };
