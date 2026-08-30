@@ -1,97 +1,111 @@
-# Codex 教材画像：未生成プロンプトの自動探索と一括生成
+# Codex 教材画像：「画像生成して」
 
-てらしぃが次のように言ったとき、**Codex（GPT Image）がこの手順どおり動く**。
+てらしぃが Codex に次の一言だけ言ったとき、**この手順だけ**動く。
 
-> 画像生成していないコーデックス用プロンプトを探して、画像生成して  
-> （言い換え: 未生成の codex プロンプトを探して画像を作って / pending の codex 画像を生成して）
+> 画像生成して
+
+同趣旨（「未生成を作って」「pending を生成して」）も同じ。
+
+## 役割分担（てらしぃ確定）
+
+| 役 | やること |
+|---|---|
+| **Cursor** | Codex 用 `codex-*.md` を作る。`保存先:` を書く。**画像は描かない。** アプリ載せは生成後 |
+| **Codex** | 未生成 PNG だけ、**古いプロンプトから順に** GPT Image で作る |
+
+Codex はプロンプトを新規作成しない。実装・sync・X予約もしない。
 
 ## Codex が最初にやること（必須）
 
-1. リポジトリで **未生成一覧** を出す:
+1. 未生成一覧（**古い順**）:
 
 ```bash
 node scripts/listPendingCodexImages.mjs
 ```
 
-JSON が欲しいとき:
+JSON:
 
 ```bash
 node scripts/listPendingCodexImages.mjs --json
 ```
 
-特定フォルダだけ（例: 行服法）:
+特定フォルダ:
 
 ```bash
 node scripts/listPendingCodexImages.mjs --folder fufuku
 ```
 
 2. **`pending` が 0 件**なら「未生成なし」と報告して終了。
-3. **`pending` がある**なら、一覧の **上から順に** 各 `promptFile` を開き、**1ファイル＝1枚（またはファイル内の各コマ1枚）** GPT Image で生成する。
+3. **`pending` がある**なら、一覧の **上から（mtime 古い順）** 1ファイルずつ開く。
+4. **生成する前に** `PRE-GENERATE-CHECK.md` を通す。おかしい点があれば **その枚は生成しない**（てらしぃへ報告。修正前ファイルは直さない。次の pending へ進んでよい）。
+5. チェック全OKのときだけ、そのファイルの GPT Image プロンプトで **1枚**生成する。型が崩れたら次に進まない。
 
-## 生成前に毎回開く（共通）
+## 絶対に触らない（修正前）
 
+スクリプトが除外済み。Codex も手で開かない。
+
+- ファイル名 `codex-fix-*`（局所Edit・修正前）
+- ファイル名 `codex-batch-*`（束ね指示）
+- 本文先頭が **廃止**、または `retired: true` / `doNotGenerate: true`
+
+`codex-gen-*` は新規1枚プロンプト。PNG が無いときだけ pending に載る。
+
+## 生成前に毎回開く
+
+- `skills/gyosei-image-style/prompts/PRE-GENERATE-CHECK.md`（**必須。通るまで描かない**）
 - `skills/gyosei-image-style/SKILL.md`
 - `skills/gyosei-image-style/references/visual-guidelines.md`
 - `skills/gyosei-image-style/assets/approved-shusaisha-kyoka.png`
 - `assets/images/characters/chachalot.png` ＋ `approved-smiling-hat-mascot.png`
 
-フォルダ README があれば優先（生成順・禁止事項）:
-
-- `prompts/kiso/README.md`
-- `prompts/fufuku/README.md`
-
 ## 生成ルール
 
 | やる | やらない |
 |---|---|
-| 各 codex ファイルの **GPT Image プロンプト** ブロックをそのまま使う | `codex-fix-*` / `codex-batch-*` / `codex-gen-*` を勝手に開く（スクリプトが除外済） |
-| **保存先**はファイル先頭の `保存先:` / `保存:` / `コマN:` のパス通り | アプリコード・learn・sync の編集 |
-| **1枚ずつ**生成。型が崩れたら次に進まない | 6枚同時一括（品質落ちる） |
-| 生成後 **目視チェック**（各 codex ファイル末尾のリスト） | X 予約投稿 |
-| 完了報告に **promptFile → outputRel** の対応表 | `generateDeepdiveImages.js`（Cursor へ） |
+| チェックOKの pending だけ生成する | おかしいプロンプトから描く／修正前ファイルを開く・直す |
+| **保存先**は `保存先:` / `保存:` / `コマN:` のパス通り | アプリコード・learn・sync の編集 |
+| **1枚ずつ**。古い順 | 6枚同時一括 |
+| 生成後 **目視**（ちゃちゃロット崩壊は不合格） | X 予約投稿 |
+| 完了報告に promptFile → outputRel | `generateDeepdiveImages.js`（Cursor へ） |
 
-## バッチフォルダ（生成順）
+## Cursor がプロンプトを書くとき
 
-| フォルダ | 内容 | 件数目安 |
-|---|---|---|
-| `prompts/kiso/` | 基礎法学 01→11 | README 参照 |
-| `prompts/fufuku/` | 行服法 01→06 | README 参照 |
-| `prompts/tetsuzuki/` | 行政手続法など | 各 README |
-| `skills/gyosei-kijutsu-textbook/prompts/` | 記述教科書 qN | 個別 codex |
-| `skills/gyosei-minpou-joshiki/prompts/` | 民法常識 | 個別 codex |
-| `skills/gyosei-gyoseihou-joshiki/prompts/` | 行政法常識 | 個別 codex |
+新規は必ず次を入れる（これがないと pending に載らない）:
 
-`listPendingCodexImages.mjs` が **全 skills 配下の codex-*.md** を走査し、PNG が無いものだけ列挙する。
+```markdown
+# （題名）
+
+- 保存先: assets/images/deepdive/{科目}/{slug}.png
+
+## GPT Image プロンプト
+
+```text
+Create a NEW ...
+```
+```
+
+- 名前は `codex-<slug>.md` または `codex-gen-<slug>.md`
+- **`codex-fix-*` に新規を書かない**（修正前扱い・検出されない）
+- 廃止にした旧ファイルは先頭を `# 廃止` にする。中身は触らない
 
 ## Codex 完了報告テンプレ
 
 ```
 ## 生成完了
-- pending 開始: N 件 → 生成: M 件 → 残: K 件
+- pending 開始: N 件 → チェック落ち（未生成）: S 件 → 生成: M 件 → 残: K 件
+- 順: 古いプロンプトから
 
-| output | prompt | 目視 |
-|--------|--------|------|
-| assets/images/deepdive/fufuku/shomon-flow.png | codex-fufuku-01-shomon-flow.md | OK |
+| output | prompt | チェック | 目視 |
+|--------|--------|----------|------|
+| assets/images/deepdive/...png | codex-....md | OK | OK |
+| （未生成） | codex-....md | NG：理由 | — |
 
 ## Cursor 引き継ぎ
 - PNG 配置済みパス一覧
+- チェック落ちプロンプト（Cursor が直す。codex-fix-* は使わない）
 - node scripts/generateDeepdiveImages.js
-- 該当 learn deepdive の [[image:...]] 未埋込があれば Cursor が追加
-- X予約はてらしぃ目視OK後
 ```
-
-## てらしぃ向け一言（Codex から）
-
-「`npm run list:codex-images-pending` で未生成を確認できます。今回 M 枚生成、残 K 枚。アプリ載せは Cursor に渡してください。」
-
-## Cursor 側（Codex 完了後）
-
-1. PNG が所定パスにあるか確認
-2. `npm run generate:deepdive-images`
-3. learn / deepdive の `[[image:...]]` 未埋込を追加
-4. 目視チェック（法律・文字切れ・ちゃちゃロット）
 
 ---
 
-**新規 codex プロンプトを Cursor が作ったとき**  
-必ず `- 保存先: assets/images/deepdive/.../*.png` を先頭付近に書く → 本スクリプトが自動で pending に載る。
+**てらしぃ向け:** Codex には「画像生成して」だけ。プロンプト作成は Cursor。

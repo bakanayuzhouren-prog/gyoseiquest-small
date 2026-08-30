@@ -1,5 +1,7 @@
 # 1から生成：民法記述Q4（94条・177条・通謀虚偽表示）
 
+- 保存先: assets/images/deepdive/textbook/minpou-kijutsu/q4.png
+
 **既存図は捨てる。** 買主Aが走っている誤表記があるため、局所修正せず新規作成。
 
 ## 誤表記（旧図）

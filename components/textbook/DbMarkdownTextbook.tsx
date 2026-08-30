@@ -111,6 +111,7 @@ function QuestionCard({
 }) {
   const [answerOpen, setAnswerOpen] = useState(false);
   const [statuteOpen, setStatuteOpen] = useState(false);
+  const [relatedOpen, setRelatedOpen] = useState(false);
   const showStatute = cardHasStatuteContent(card);
   const statuteBody = useMemo(() => {
     if (!showStatute || !statuteOpen) return '';
@@ -185,6 +186,30 @@ function QuestionCard({
       ) : null}
 
       <QuestionImages keys={card.questionImageKeys} />
+
+      {(card.relatedImageKeys || []).some((key) => resolveImageAsset(key) != null) ? (
+        <View style={styles.disclosure}>
+          <Pressable
+            onPress={() => setRelatedOpen((v) => !v)}
+            accessibilityRole="button"
+            accessibilityState={{ expanded: relatedOpen }}
+            accessibilityLabel={`関連画像を${relatedOpen ? '閉じる' : '開く'}`}
+            style={({ pressed }) => [styles.disclosureHit, pressed && styles.disclosurePressed]}
+          >
+            <MaterialIcons
+              name={relatedOpen ? 'expand-less' : 'expand-more'}
+              size={26}
+              color={C.accent}
+            />
+            <Text style={styles.disclosureLabel}>関連画像</Text>
+          </Pressable>
+          {relatedOpen ? (
+            <View style={styles.disclosureBody}>
+              <QuestionImages keys={card.relatedImageKeys} />
+            </View>
+          ) : null}
+        </View>
+      ) : null}
     </View>
   );
 }

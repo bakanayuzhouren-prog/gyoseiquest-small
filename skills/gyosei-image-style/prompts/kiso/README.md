@@ -1,9 +1,9 @@
 # Codex用プロンプト（基礎法学・見て聞いて覚える）
 
-てらしぃが **「コーデックスで」** と明示したときの GPT Image 用。Cursor はこのフォルダを渡すだけで、**画像は作らない**。
+Cursor がプロンプトを置く場所。Codex は **「画像生成して」** で未生成だけ古い順に作る。
 
-**未生成の探索・一括生成**: `skills/gyosei-image-style/prompts/CODEX-IMAGE-BATCH.md`  
-`npm run list:codex-images-pending -- --folder kiso` でこのフォルダの pending を確認。
+手順: `skills/gyosei-image-style/prompts/CODEX-IMAGE-BATCH.md`  
+`npm run list:codex-images-pending -- --folder kiso`
 
 正本: `data/knowledge/canonical/tac-moshi-compare-tables.md` §7〜§9  
 要約: `data/learn/kiso-hougaku-summary.md`  

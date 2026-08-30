@@ -21,6 +21,8 @@ import { KISO_HOUGAKU_MOSHI_BRIEFS } from '../utils/chatTopicBriefsKisoMoshi.ts'
 import { KOKUBAI_CHAT_BRIEFS } from '../utils/chatTopicBriefsKokubai.ts';
 import { JICHI_CHAT_BRIEFS } from '../utils/chatTopicBriefsJichi.ts';
 import { MINPOU_CHAT_BRIEFS } from '../utils/chatTopicBriefsMinpou.ts';
+import { MINPOU_COMPARISON_BRIEFS } from '../utils/chatTopicBriefsMinpouComparisons.ts';
+import { LEC_KOUKAI_CHAT_BRIEFS } from '../utils/chatTopicBriefsLecKoukai.ts';
 import { GOUKAKU_ROUND3_CHAT_BRIEFS } from '../utils/chatTopicBriefsGoukakuRound3.ts';
 import { GOUKAKU_ROUND2_CHAT_BRIEFS } from '../utils/chatTopicBriefsGoukakuRound2.ts';
 import { NAKA_GYOSEI_YAMA_CHAT_BRIEFS } from '../utils/chatTopicBriefsNakaGyoseiYama.ts';
@@ -609,6 +611,21 @@ const cases = [
   { q: '共通錯誤', expectTitle: /錯誤|共通/ },
   { q: 'フィギュア 錯誤', expectTitle: /錯誤/ },
   { q: 'リサイクルショップ 偽物', expectTitle: /錯誤/ },
+  { q: '94条と96条の違い', expectTitle: /94条/ },
+  { q: '94条の詐欺', expectTitle: /94条|問27/ },
+  { q: '取消し前と取消し後', expectTitle: /取消し前|96条3項/ },
+  { q: '催告の効果', expectTitle: /催告/ },
+  { q: '相手方と第三者', expectTitle: /相手方/ },
+  { q: '法定代理人 追認みなし', expectTitle: /20条|催告/ },
+  { q: 'あいまって 誤信', expectTitle: /詐術/ },
+  { q: '法定地上権って誰のため', expectTitle: /法定地上権は建物のため|契約不要/ },
+  { q: '法定地上権 居住権', expectTitle: /居住権|建物のため/ },
+  { q: '法定地上権 契約不要', expectTitle: /契約不要|建物のため/ },
+  { q: '土地共有 法定地上権', expectTitle: /土地共有|建物のため|法定地上権/ },
+  { q: '同等の 法定地上権', expectTitle: /同一の範囲|再築|共同抵当/ },
+  { q: '同一の範囲 法定地上権', expectTitle: /同一の範囲|再築|共同抵当/ },
+  { q: '同一価値 法定地上権', expectTitle: /同一の範囲|再築|共同抵当/ },
+  { q: '委任と事務管理', expectTitle: /委任と事務管理/ },
   { q: '負担付贈与 同時履行', expectTitle: /負担付贈与/ },
   { q: '連贈与契約', expectTitle: /負担付贈与/ },
   // 民法記述ヤマ（てらしぃ指定タイトル）
@@ -762,6 +779,8 @@ const all = [
   ...KOKUBAI_CHAT_BRIEFS,
   ...JICHI_CHAT_BRIEFS,
   ...MINPOU_CHAT_BRIEFS,
+  ...MINPOU_COMPARISON_BRIEFS,
+  ...LEC_KOUKAI_CHAT_BRIEFS,
   ...GOUKAKU_ROUND3_CHAT_BRIEFS,
   ...GOUKAKU_ROUND2_CHAT_BRIEFS,
   ...NAKA_GYOSEI_YAMA_CHAT_BRIEFS,

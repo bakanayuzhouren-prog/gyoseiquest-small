@@ -1,9 +1,9 @@
 # Codex用プロンプト（行政不服審査法・見て聞いて覚える）
 
-てらしぃが **「コーデックスで」** と明示したときの GPT Image 用。Cursor はこのフォルダを Codex に渡すだけで、**画像は作らない**（生成後の配置・マップ再生成は Cursor）。
+Cursor がプロンプトを置く場所。Codex は **「画像生成して」** で未生成だけ古い順に作る。配置・マップは Cursor。
 
-**未生成の探索・一括生成**: `../CODEX-IMAGE-BATCH.md`  
-`npm run list:codex-images-pending -- --folder fufuku` で pending を確認。
+手順: `../CODEX-IMAGE-BATCH.md`  
+`npm run list:codex-images-pending -- --folder fufuku`
 
 **由来**: 行服法固めチャット（合格革命模試復習）で Cursor が作成した草稿  
 `skills/gyosei-image-style/prompts/fufuku-*.md` を Codex 一括生成向けに正本化。

@@ -162,6 +162,12 @@ for (const t of data.topics) {
   void learnSubject;
 }
 
+function learnCardText(t) {
+  const rule = String(t.rule || '').trim();
+  const memory = String(t.memory || '').trim();
+  return (rule || memory).replace(/^【[^】]+】\s*/, '');
+}
+
 if (errors.length) {
   console.error(errors.join('\n'));
   process.exit(1);
@@ -181,7 +187,7 @@ for (const t of confirmed) {
   const quizField = resolveQuizField(t, learnSubject);
 
   (bySubject[learnSubject] ??= []).push({
-    text: `【${sourcePrefix}${roundLabel}・問${t.questionNumber}】${t.memory}`,
+    text: learnCardText(t),
     deepdive: `■ 結論\n\n${t.rule}\n\n■ なぜそうなる\n\n${t.deepDive}\n\n■ ひっかけ\n\n[[red:${t.trap}]]\n\n■ 暗記\n\n${t.memory}`,
     fExplain: t.aim,
     statuteRef: (t.references || []).join('、'),

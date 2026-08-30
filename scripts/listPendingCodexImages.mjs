@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Codex 用：未生成の教材画像プロンプトを列挙する。
+ * Codex 用：未生成の教材画像プロンプトを列挙する（古いプロンプトから順）。
  *
  * 用法:
  *   node scripts/listPendingCodexImages.mjs
@@ -8,8 +8,13 @@
  *   node scripts/listPendingCodexImages.mjs --folder fufuku
  *   node scripts/listPendingCodexImages.mjs --all   # 生成済みも表示
  *
- * てらしぃ → Codex:「画像生成していないコーデックス用プロンプトを探して、画像生成して」
- * → Codex は本スクリプト → pending 一覧 → 各 codex-*.md の GPT Image プロンプトで1枚ずつ生成
+ * てらしぃ → Codex:「画像生成して」
+ * → 本スクリプトの pending を上から（mtime 古い順）1枚ずつ生成。
+ *
+ * 触らない（修正前）:
+ *   - ファイル名が codex-fix-* / codex-batch-*
+ *   - 本文先頭が「廃止」
+ *   - frontmatter retired / doNotGenerate
  */
 
 import fs from 'fs';
@@ -20,13 +25,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const SKILLS = path.join(ROOT, 'skills');
 
-const EXCLUDE_BASENAMES = [
-  /^codex-fix-/i,
-  /^codex-batch-/i,
-  /^codex-gen-/i,
-];
+/** 修正前・束ね指示・手順書。codex-gen-* は新規1枚プロンプトなので含める */
+const EXCLUDE_BASENAMES = [/^codex-fix-/i, /^codex-batch-/i, /^codex-image-batch/i];
 
-/** バッチ用プレースホルダ（個別 codex ファイルを使う） */
 const PLACEHOLDER = /\{[^}]+\}/;
 
 const OUTPUT_PATTERNS = [
@@ -48,8 +49,18 @@ function walkMdFiles(dir, acc = []) {
   return acc;
 }
 
-function shouldSkipFile(basename) {
+function shouldSkipBasename(basename) {
   return EXCLUDE_BASENAMES.some((re) => re.test(basename));
+}
+
+function isRetiredPrompt(content) {
+  const head = content.slice(0, 1200);
+  return (
+    /^\s*#\s*廃止/m.test(head) ||
+    /^\s*\*\*廃止/m.test(head) ||
+    /^retired:\s*true\s*$/m.test(head) ||
+    /^doNotGenerate:\s*true\s*$/m.test(head)
+  );
 }
 
 function hasGptPrompt(content) {
@@ -85,15 +96,11 @@ function folderFilter(relPrompt, folderArg) {
   return relPrompt.toLowerCase().includes(norm);
 }
 
-function sortEntries(a, b) {
-  const numA = a.promptBasename.match(/(\d+)/);
-  const numB = b.promptBasename.match(/(\d+)/);
-  const dirA = a.promptFile.split('/')[0];
-  const dirB = b.promptFile.split('/')[0];
-  if (dirA === dirB) {
-    if (numA && numB) return Number(numA[1]) - Number(numB[1]);
-  }
-  return a.promptFile.localeCompare(b.promptFile, 'ja');
+function sortOldestFirst(a, b) {
+  if (a.mtimeMs !== b.mtimeMs) return a.mtimeMs - b.mtimeMs;
+  const byFile = a.promptFile.localeCompare(b.promptFile, 'ja');
+  if (byFile !== 0) return byFile;
+  return a.outputRel.localeCompare(b.outputRel, 'ja');
 }
 
 function main() {
@@ -103,14 +110,13 @@ function main() {
   const folderIdx = args.indexOf('--folder');
   const folderArg = folderIdx >= 0 ? args[folderIdx + 1] : null;
 
-  const files = walkMdFiles(SKILLS)
-    .filter((f) => !shouldSkipFile(path.basename(f)))
-    .sort();
+  const files = walkMdFiles(SKILLS).filter((f) => !shouldSkipBasename(path.basename(f)));
 
   const entries = [];
 
   for (const file of files) {
     const content = fs.readFileSync(file, 'utf8');
+    if (isRetiredPrompt(content)) continue;
     if (!hasGptPrompt(content)) continue;
 
     const outputs = extractOutputPaths(content);
@@ -118,6 +124,8 @@ function main() {
 
     const relPrompt = path.relative(ROOT, file).replace(/\\/g, '/');
     if (!folderFilter(relPrompt, folderArg)) continue;
+
+    const mtimeMs = fs.statSync(file).mtimeMs;
 
     for (const outRel of outputs) {
       const absOut = path.join(ROOT, outRel);
@@ -131,11 +139,13 @@ function main() {
         outputRel: outRel.replace(/\\/g, '/'),
         outputExists: exists,
         status: exists ? 'done' : 'pending',
+        mtimeMs,
+        promptMtime: new Date(mtimeMs).toISOString(),
       });
     }
   }
 
-  entries.sort(sortEntries);
+  entries.sort(sortOldestFirst);
 
   const pending = entries.filter((e) => e.status === 'pending');
   const done = entries.filter((e) => e.status === 'done');
@@ -145,6 +155,8 @@ function main() {
       JSON.stringify(
         {
           scannedAt: new Date().toISOString(),
+          sort: 'oldest-prompt-first',
+          skip: ['codex-fix-*', 'codex-batch-*', '廃止 / retired / doNotGenerate'],
           pendingCount: pending.length,
           doneCount: showAll ? done.length : undefined,
           pending,
@@ -158,9 +170,10 @@ function main() {
     return;
   }
 
-  console.log('=== Codex 教材画像：未生成プロンプト ===\n');
+  console.log('=== Codex 教材画像：未生成プロンプト（古い順） ===\n');
   console.log(`pending: ${pending.length} 件`);
   if (showAll) console.log(`done: ${done.length} 件`);
+  console.log('除外: codex-fix-* / codex-batch-* / 廃止');
   console.log(`手順: skills/gyosei-image-style/prompts/CODEX-IMAGE-BATCH.md\n`);
 
   if (pending.length === 0) {
@@ -168,18 +181,18 @@ function main() {
     return;
   }
 
-  for (const e of pending) {
-    console.log(`[PENDING] ${e.outputRel}`);
+  pending.forEach((e, i) => {
+    console.log(`[${i + 1}] [PENDING] ${e.outputRel}`);
     console.log(`  prompt: ${e.promptFile}`);
+    console.log(`  mtime: ${e.promptMtime}`);
     if (e.title) console.log(`  title: ${e.title}`);
     console.log('');
-  }
+  });
 
-  console.log('--- Codex への指示例 ---');
-  console.log(
-    '上記 pending を promptFile の順に開き、各ファイルの「GPT Image プロンプト」を1枚ずつ生成。',
-  );
-  console.log('保存先は outputRel 通り。アプリ埋め込みは Cursor へ。');
+  console.log('--- Codex ---');
+  console.log('各枚の前に PRE-GENERATE-CHECK.md。おかしい点があればその枚は生成しない。');
+  console.log('上から順（古いプロンプトから）チェックOKだけ1枚ずつ生成。');
+  console.log('codex-fix-* と「廃止」ファイルは触るな。アプリ埋め込みは Cursor へ。');
 }
 
 main();

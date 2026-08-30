@@ -3,6 +3,7 @@
  * 正本の見出し「出題の型」「答案の芯」はそのまま読み、UI側で「問」「解答例」に対応づける。
  */
 
+import { ISHI_HYOJI_TAIKO_IMAGE_KEY, pickIshiHyojiRelatedImageKeys } from '@/src/ishiHyojiDeepdiveImage';
 import { STATUTES } from '@/src/questions';
 import { statuteMarkdownForKisochiCard } from '@/utils/kisochiStatuteSnippets';
 import {
@@ -24,6 +25,8 @@ export type DbTextbookCard = {
   question: string;
   /** 問の下に出す画像キー（MDの [[image:]] ＋ 規約キー） */
   questionImageKeys: string[];
+  /** 「関連画像」トグルで出すキー（問の下には出さない） */
+  relatedImageKeys: string[];
   /** 答案の芯 → UI「解答例」 */
   answerExample: string;
   tip: string;
@@ -252,6 +255,7 @@ export function resolveCardStatuteText(card: DbTextbookCard): string {
 }
 
 const IMAGE_TAG_RE = /\[\[image:([^\]]+)\]\]/gi;
+const RELATED_TAG_RE = /\[\[related:([^\]]+)\]\]/gi;
 
 /** `Q1` / `Q1-2` / `問3` から本体番号と画像スロットを取る */
 export function parseTextbookQuestionHeading(title: string): {
@@ -266,16 +270,34 @@ export function parseTextbookQuestionHeading(title: string): {
   return { questionNumber: n, imageSlot };
 }
 
-/** 問本文から [[image:key]] を抜き、本文とキー配列に分ける */
+function normalizeImageKey(raw: string): string {
+  return raw.trim().replace(/\.(png|webp|jpg|jpeg)$/i, '');
+}
+
+function isIshiHyojiTaikoKey(key: string): boolean {
+  return key === ISHI_HYOJI_TAIKO_IMAGE_KEY || key.endsWith('ishi-hyoji-taiko');
+}
+
+/** 問本文から [[image:key]] / [[related:key]] を抜き、本文とキー配列に分ける */
 export function extractQuestionImages(questionRaw: string, slug: string, imageSlot: string): {
   question: string;
   imageKeys: string[];
+  relatedImageKeys: string[];
 } {
   const keys: string[] = [];
+  const relatedKeys: string[] = [];
   const seen = new Set<string>();
-  const push = (raw: string) => {
-    const k = raw.trim().replace(/\.(png|webp|jpg|jpeg)$/i, '');
-    if (!k || seen.has(k)) return;
+  const seenRelated = new Set<string>();
+  const push = (raw: string, intoRelated = false) => {
+    const k = normalizeImageKey(raw);
+    if (!k) return;
+    if (isIshiHyojiTaikoKey(k) || intoRelated) {
+      if (seenRelated.has(k)) return;
+      seenRelated.add(k);
+      relatedKeys.push(k);
+      return;
+    }
+    if (seen.has(k)) return;
     seen.add(k);
     keys.push(k);
   };
@@ -285,14 +307,22 @@ export function extractQuestionImages(questionRaw: string, slug: string, imageSl
   while ((m = IMAGE_TAG_RE.exec(questionRaw)) !== null) {
     push(m[1]);
   }
+  RELATED_TAG_RE.lastIndex = 0;
+  while ((m = RELATED_TAG_RE.exec(questionRaw)) !== null) {
+    push(m[1], true);
+  }
 
   // 規約キー（そのスラッグのアセットがあるときだけUI側で表示）。枝番は q1-2
   if (imageSlot) {
     push(`textbook/${slug}/q${imageSlot}`);
   }
 
-  const question = questionRaw.replace(IMAGE_TAG_RE, '').replace(/\n{3,}/g, '\n\n').trim();
-  return { question, imageKeys: keys };
+  const question = questionRaw
+    .replace(IMAGE_TAG_RE, '')
+    .replace(RELATED_TAG_RE, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+  return { question, imageKeys: keys, relatedImageKeys: relatedKeys };
 }
 
 function flushCard(
@@ -311,10 +341,25 @@ function flushCard(
   out: DbTextbookBlock[],
 ): void {
   if (!draft) return;
-  const { question, imageKeys } = extractQuestionImages(draft.question, slug, draft.imageSlot);
+  const { question, imageKeys, relatedImageKeys: relatedFromTags } = extractQuestionImages(
+    draft.question,
+    slug,
+    draft.imageSlot,
+  );
   const fromMd = draft.statute.trim();
   const statuteFromMarkdown =
     fromMd || (slug === 'kisochi' ? statuteMarkdownForKisochiCard(draft.imageSlot, draft.title) : '');
+  const autoRelated =
+    slug === 'minpou-kijutsu'
+      ? pickIshiHyojiRelatedImageKeys(`${draft.title}\n${question}\n${draft.answer}`)
+      : [];
+  const relatedSeen = new Set<string>();
+  const relatedImageKeys: string[] = [];
+  for (const key of [...relatedFromTags, ...autoRelated]) {
+    if (!key || relatedSeen.has(key) || imageKeys.includes(key)) continue;
+    relatedSeen.add(key);
+    relatedImageKeys.push(key);
+  }
   out.push({
     kind: 'card',
     card: {
@@ -324,6 +369,7 @@ function flushCard(
       title: draft.title,
       question,
       questionImageKeys: imageKeys,
+      relatedImageKeys,
       answerExample: draft.answer.trim(),
       tip: draft.tip.trim(),
       statuteFromMarkdown,

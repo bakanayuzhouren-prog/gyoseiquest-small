@@ -39,10 +39,28 @@ Use this skill whenever image generation or visual design consistency matters in
    - When generating a character or a diagram that includes the guide: **必ず** `references/avatar-guidelines.md` と `chachalot.png` ＋ `approved-smiling-hat-mascot.png` を開く（無名の熊化・猫・フクロウ防止）
 3. Fill the **Prompt Crafting Checklist** in visual-guidelines（タイトル対比・左右・行リスト・判断軸・ひっかけ・暗記）before writing English/Japanese GPT prompts.
 4. Preserve legal accuracy before decoration. If a concept is uncertain, mark it for confirmation instead of inventing.
+4b. **Write the prompt only after** checking statutes and case holdings. X minimum quality is `assets/images/deepdive/textbook/minpou-kijutsu/q26-2.png`. Do not wait for てらしぃ to supply stylish wording or the full legal test phrase.
 5. Generate GPT Image prompts that specify layout, typography, style, colors, whitespace, and prohibited elements — **match the approved sample density**. Pass **ちゃちゃロット** identity PNGs (`chachalot.png` ＋ `approved-smiling-hat-mascot.png`) whenever the guide appears. Name the character in the prompt.
 6. After generating an image, decide its app placement: `もっと深掘る`, `君の教科書`, `見て聞いて覚える`, bonus, textbook 問の下, or X投稿.
    - For DB textbook / 記述カード: place the figure **under the question（問の下）**. Follow `skills/gyosei-kijutsu-textbook/SKILL.md`.
 7. Verify the finished image visually against the layout sample and, if the guide is present, against the ちゃちゃロット identity checklist before calling the work complete.
+
+## 解説文が本命。ちゃちゃロットは二の次（てらしぃ確定）
+
+案内役を入れる新規図は、**解説文（答え帯・論点・ひっかけ・暗記）が読めない／法律が違うなら不合格**。ちゃちゃロットの帽子・耳・顔の細部だけで不合格にしない（てらしぃ確定・AGENTS.md）。本文を隠す／裸は直す。ブランド完全一致のために解説文を犠牲にして作り直すな。
+
+次のどれか1つでも当たれば不合格:
+
+- 熊・猫・フクロウ・犬・カエル・青い着ぐるみ・耳付きフード
+- 名札・吹き出しに「ちゃちゃロット」「チャチャロット」「シャカロット」「Chachalot」など（名札は書かない）
+- 帽子が耳・動物の頭として描かれている
+- 参照PNG（`chachalot.png` ＋ `approved-smiling-hat-mascot.png`）と別人
+- 中央の登場人物になっている／本文を隠している
+- **裸・肌色むき出しの胴体・スーツなし・パンツなし・下着だけ**（緑ブレザー＋白シャツ＋緑ズボン＋靴が必須）
+- 白抜き切り抜きの二重貼り、名札「ちゃちゃロット」
+- **文字かぶり**（タイトル・パネル・答え帯・指し棒が文字の上）
+
+解説文NG＝不合格。ちゃちゃロットの細部だけで不合格にしない。既存フクロウ図の移行作業は対象外。
 
 ## コマ分割（てらしぃ確定・科目共通）
 
@@ -104,12 +122,12 @@ For character-only or character-heavy jobs, also use the **ちゃちゃロット
 - For restyling, keep the original asset key and legal structure while removing source filenames and production notes.
 - When improving prompt skill from てらしぃ's X posts, save new approved samples under `assets/` and describe the extracted pattern in visual-guidelines / avatar-guidelines.
 
-## Codex：未生成プロンプトの自動探索（てらしぃ確定）
+## Codex：「画像生成して」（てらしぃ確定）
 
-てらしぃが **「画像生成していないコーデックス用プロンプトを探して、画像生成して」** と Codex に言う運用。
+プロンプト作成は **Cursor**。Codex は一言 **「画像生成して」** で未生成だけ、**古い順**に作る。
 
 1. **探索**: `npm run list:codex-images-pending`（`scripts/listPendingCodexImages.mjs`）
 2. **手順正本**: `prompts/CODEX-IMAGE-BATCH.md`
-3. **新規 codex プロンプト**は必ず `- 保存先: assets/images/deepdive/...png` を書く → 未生成として自動検出
-
-Cursor が codex プロンプトを新規作成したら、上記 `保存先` 行を忘れないこと。
+3. **生成前チェック（必須）**: `prompts/PRE-GENERATE-CHECK.md`。おかしい点があれば描かない
+4. **触るな**: `codex-fix-*` / `codex-batch-*` / 本文「廃止」
+5. Cursor が書く新規 `codex-*.md` は必ず `- 保存先: assets/images/deepdive/...png`。書く前にも同じチェック

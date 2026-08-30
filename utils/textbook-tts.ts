@@ -32,6 +32,8 @@ function blockToLines(block: TextbookBlock): string[] {
       const rows = block.rows.map((row) => row.join('、'));
       return [`表です。${header}。`, ...rows.map((r) => `。${r}`)];
     }
+    case 'figure':
+      return block.caption ? [`図です。${block.caption}`] : [];
     case 'figureSlot':
       return [`図解はこれから入ります。${block.title}。${block.caption}。`];
     default:

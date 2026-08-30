@@ -16,6 +16,7 @@ import {
   pickLearnDeepdiveSharedImageKey,
   resolveLearnDeepdiveAutoImageByCardIndex,
 } from '@/src/deepdiveLearnAutoImage';
+import { prependIshiHyojiDeepdiveImage } from '@/src/ishiHyojiDeepdiveImage';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
 import {
     applyLearnIndexToLearnReturnPath,
@@ -432,13 +433,25 @@ export default function DeepdiveScreen() {
               ? stored.learnReturnIndex
               : null;
 
+        const finishDeepdiveImages = (text: string, extraMatch = ''): string => {
+          const afterJoshiki = prependJoshikiDeepdiveImages(text, (key) => !!resolveImageAsset(key));
+          const quizMinpo = stored.quizSubject === '民法';
+          const learnMinpo = stored.fromLearn && (learnSubj === '民法総則' || stored.learnSubject === '民法総則');
+          if (!quizMinpo && !learnMinpo) return afterJoshiki;
+          return prependIshiHyojiDeepdiveImage(
+            afterJoshiki,
+            `${extraMatch}\n${text}\n${stored.screenTitle || ''}`,
+            (key) => !!resolveImageAsset(key),
+          );
+        };
+
         const prependAutoImageIfNeeded = (text: string): string => {
           let t = text;
-          if (!t.trim()) return t;
+          if (!t.trim()) return finishDeepdiveImages(t);
           if (mergedDeepdiveHasResolvableImage(t)) {
-            return prependJoshikiDeepdiveImages(t, (key) => !!resolveImageAsset(key));
+            return finishDeepdiveImages(t);
           }
-          if (stored.fromLearn && t.length > 80_000) return t;
+          if (stored.fromLearn && t.length > 80_000) return finishDeepdiveImages(t);
           if (stored.fromLearn && learnIdx != null && learnSubj) {
             const byIdx = resolveLearnDeepdiveAutoImageByCardIndex(learnSubj, learnIdx);
             if (byIdx) t = `[[image:${byIdx}]]\n\n${t}`;
@@ -450,8 +463,7 @@ export default function DeepdiveScreen() {
             });
             if (shared) t = `[[image:${shared}]]\n\n${t}`;
           }
-          t = prependJoshikiDeepdiveImages(t, (key) => !!resolveImageAsset(key));
-          return t;
+          return finishDeepdiveImages(t);
         };
 
         const augmentBeginner = (b: string) => prependAutoImageIfNeeded(b);
@@ -469,7 +481,7 @@ export default function DeepdiveScreen() {
           }
           /** 見て聞いて覚える: 学習画面で本文確定済み。LEARN_DEEPDIVE 再走査・画像推定はしない */
           if (stored.fromLearn) {
-            setContent(prependJoshikiDeepdiveImages(raw, (key) => !!resolveImageAsset(key)));
+            setContent(finishDeepdiveImages(raw));
             setBeginnerContent(beg);
             setPeripheralContent(periph.trim());
             setLearnRelatedStatutesContent((stored.learnRelatedStatutesContent || '').trim());

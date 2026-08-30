@@ -46,6 +46,10 @@ import { STATUTES, SUBJECTS } from '@/src/questions';
 import { clearQuizLearnReturnParams, getQuizLearnReturnHref, stripLearnLinkTag } from '@/src/quizLearnBridge';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
 import {
+  prependIshiHyojiDeepdiveImage,
+  shouldAttachIshiHyojiDeepdiveImage,
+} from '@/src/ishiHyojiDeepdiveImage';
+import {
   pickCompareTable,
   resolveCompareTableImage,
 } from '@/src/compareTables';
@@ -107,7 +111,7 @@ function pickByIndices<T>(arr: T[], indices: number[] | null): T[] {
 
 function stripTacLearnLeadLabel(text: string): string {
   return String(text || '')
-    .replace(/^【TAC[^】]*】\s*/, '')
+    .replace(/^(【[^】]+】\s*)+/, '')
     .trim();
 }
 
@@ -1022,6 +1026,10 @@ export default function LearnSubjectScreen() {
   const hasChunks = foundQuestion?.chunks && foundQuestion.chunks.length > 0;
 
   /** 多肢選択憲法／多肢選択行政法のみ: B列か [[LINK:]] があるときだけボタン表示（chunks・画像タグ・他科目混入で出ないようにする） */
+  const ishiHyojiDeepdiveEligible =
+    (subject === '民法総則' || learnSubjectForDeepdive === '民法総則') &&
+    shouldAttachIshiHyojiDeepdiveImage(`${currentDisplayContent}\n${deepdiveContent || ''}`);
+
   const digDeeperButtonVisible =
     learnSubjectForDeepdive === '多肢選択憲法' || learnSubjectForDeepdive === '多肢選択行政法'
       ? !!(deepdiveContent || '').trim() || !!digDeeperUrl
@@ -1033,7 +1041,8 @@ export default function LearnSubjectScreen() {
           hasChunks ||
           hasValidImage ||
           learnAutoImageResolved ||
-          hasImageTagInCard
+          hasImageTagInCard ||
+          ishiHyojiDeepdiveEligible
         );
 
   /** A列の [[image:…]] を B列（LEARN_DEEPDIVE）と結合して渡す（従来は B のみで A の画像が落ちていた） */
@@ -1087,6 +1096,13 @@ export default function LearnSubjectScreen() {
       merged = appendGyoseiConfusingTopicChunks(
         merged,
         `${currentDisplayContent}\n${fromB}`,
+      );
+    }
+    if (subject === '民法総則' || learnSubjectForDeepdive === '民法総則') {
+      return prependIshiHyojiDeepdiveImage(
+        merged,
+        `${currentDisplayContent}\n${fromB}\n${merged}`,
+        (key) => !!resolveImageAsset(key),
       );
     }
     return merged;

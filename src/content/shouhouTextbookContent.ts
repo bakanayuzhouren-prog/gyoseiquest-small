@@ -20,6 +20,11 @@ export type TextbookBlock =
   | { type: 'table'; headers: string[]; rows: string[][] }
   | { type: 'tip'; title?: string; text: string }
   | {
+      type: 'figure';
+      imageKey: string;
+      caption?: string;
+    }
+  | {
       type: 'figureSlot';
       id: string;
       title: string;

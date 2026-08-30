@@ -1,6 +1,6 @@
 # Codex用プロンプト（行政事件訴訟法・処分性／訴訟類型）
 
-てらしぃが **「コーデックスで」** と明示したときの GPT Image 用。Cursor は生成しない（配置・マップは Cursor）。
+Cursor がプロンプトを置く場所。Codex は **「画像生成して」** で未生成だけ古い順に作る。配置・マップは Cursor。
 
 **未生成確認**: `npm run list:codex-images-pending -- --folder gyosho`
 

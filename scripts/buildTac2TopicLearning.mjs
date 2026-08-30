@@ -599,6 +599,12 @@ function cardToTopic(card, index) {
   };
 }
 
+function learnCardText(t) {
+  const rule = String(t.rule || '').trim();
+  const memory = String(t.memory || '').trim();
+  return (rule || memory).replace(/^【[^】]+】\s*/, '');
+}
+
 function formatLearnDeepdive(t) {
   const d = String(t.deepDive || '');
   if (d.includes('■ 結論') || d.includes('■ 判例4コマ')) return d;
@@ -613,7 +619,7 @@ function emitBundle(topics, label) {
     const quizSubject = t.quizSubject || QUIZ_SUBJECT_BY_LEARN[learnSubject] || learnSubject;
     const quizField = t.quizField || QUIZ_FIELD_BY_LEARN[learnSubject] || learnSubject;
     (bySubject[learnSubject] ??= []).push({
-      text: `【${label}・問${t.questionNumber}】${t.memory}`,
+      text: learnCardText(t),
       deepdive: formatLearnDeepdive(t),
       fExplain: t.aim,
       statuteRef: (t.references || []).join('、'),
@@ -651,8 +657,9 @@ const bySubject = Function(`"use strict"; return (${objSrc});`)();
 const tac2Cards = [];
 for (const [learnSubject, cards] of Object.entries(bySubject)) {
   for (const c of cards) {
-    if (!String(c.text || '').includes('【TAC2')) continue;
-    if (String(c.text || '').includes('【TAC2問')) continue;
+    const blob = `${c.text || ''}\n${c.source || ''}`;
+    if (!/【TAC2】|TAC第2回/.test(blob)) continue;
+    if (/【TAC2問/.test(String(c.text || ''))) continue;
     tac2Cards.push({
       ...c,
       learnSubject,

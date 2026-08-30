@@ -33,6 +33,7 @@ import { setDeepdiveParams } from '@/src/deepdiveState';
 import { getDescriptiveImageSource } from '@/src/descriptiveImages';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { mergeKijyutuGyouseihouQuizCaseImages } from '@/src/kijyutuGyouseihouQuizDeepdiveMerge';
+import { prependIshiHyojiDeepdiveImage } from '@/src/ishiHyojiDeepdiveImage';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
 import * as LearnData from '@/src/learnExports';
@@ -1074,8 +1075,19 @@ export default function ResultScreen() {
   const mergeAutoChoiceDeepDiveImage = (body: string | undefined, choiceIndex0: number): string => {
     const trimmed = (body || '').trim();
     const imageKeys = resolveAutoChoiceDeepDiveImageKeys(choiceIndex0);
+    const finishQuizDeepdiveImages = (base: string) => {
+      const afterJoshiki = prependJoshikiDeepdiveImages(base, (key) => !!resolveImageAsset(key));
+      if (subject !== '民法') return afterJoshiki;
+      const matchText = [
+        afterJoshiki,
+        String((question as { text?: string })?.text || ''),
+        String((question as { explain?: string })?.explain || ''),
+        ...((question as { choices?: string[] })?.choices || []).map((c) => String(c || '')),
+      ].join('\n');
+      return prependIshiHyojiDeepdiveImage(afterJoshiki, matchText, (key) => !!resolveImageAsset(key));
+    };
     if (imageKeys.length === 0) {
-      return prependJoshikiDeepdiveImages(trimmed, (key) => !!resolveImageAsset(key));
+      return finishQuizDeepdiveImages(trimmed);
     }
     const tags = imageKeys
       .filter((imageKey) => {
@@ -1085,7 +1097,7 @@ export default function ResultScreen() {
       .map((imageKey) => `[[image:${imageKey}]]`);
     const withAuto =
       tags.length === 0 ? trimmed : !trimmed ? tags.join('\n\n') : `${tags.join('\n\n')}\n\n${trimmed}`;
-    return prependJoshikiDeepdiveImages(withAuto, (key) => !!resolveImageAsset(key));
+    return finishQuizDeepdiveImages(withAuto);
   };
   /** 記述・行政法: 【ケースA】直下に kijyutu-gyouseihouN-A 対応 [[image:…]] を補う */
   const mergeKijyutuGyouseihouMemoOrDeepFromQuiz = (body: string): string =>

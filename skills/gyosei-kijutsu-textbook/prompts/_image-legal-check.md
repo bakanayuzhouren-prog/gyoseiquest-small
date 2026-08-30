@@ -22,9 +22,13 @@
 
 -
 
-## Codexへ渡す修正プロンプト
+## Cursor が書く新規プロンプト（Codex は「画像生成して」だけ）
 
-`codex-fix-<slug>.md` に書く。法律の誤りだけ直す。全体再設計しない。**ちゃちゃロット** identity は `chachalot.png` ＋ `approved-smiling-hat-mascot.png`。
+`codex-<slug>.md` または `codex-gen-<slug>.md` に書く。必ず `保存先:` を入れる。
+
+**`codex-fix-*` には書かない**（修正前。Codex は触らない）。廃止にした旧ファイルの中身も触らない。
+
+ちゃちゃロット identity は `chachalot.png` ＋ `approved-smiling-hat-mascot.png`。
 
 ## X
 

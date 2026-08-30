@@ -1,9 +1,8 @@
 # Codex用 — 狸の森
 
-てらしぃが**このファイルだけ**を Codex に渡す。1論点・1枚。Cursor は画像を作らない。  
-既存 `q21.png`（どう主張するか）は上書きしない。この図は**なぜ承継が許されるか**（Q21-2）。
+1論点・1枚。既存 `q21.png`（どう主張するか）は上書きしない。この図は**なぜ承継が許されるか**（Q21-2）。
 
-- 保存: `assets/images/deepdive/textbook/gyosei-kijutsu/q21-2.png`
+- 保存先: assets/images/deepdive/textbook/gyosei-kijutsu/q21-2.png
 - キー: `textbook/gyosei-kijutsu/q21-2`
 - 配置: 行政法記述 Q21-2 の問の下
 
@@ -29,10 +28,11 @@
 ```text
 Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし. ONE TOPIC ONLY: 狸の森事件 — WHY 違法性の承継 is allowed. Do not retell パチンコ, 予防, or 代執行 as the main story.
 
-Match LAYOUT of「主宰者の許可」: navy title, left green「論点」, right orange「ひっかけ」, ONE center metaphor, bottom 判断軸 / ひっかけ / 暗記, navy answer bar. 16:9 warm off-white. Large Japanese. No overlap.
+Match LAYOUT of「主宰者の許可」: navy title, left green「論点」, right orange「ひっかけ」, ONE center metaphor, bottom 判断軸 / ひっかけ / 暗記, navy answer bar. 16:9 warm off-white.
 
-Guide: ちゃちゃロット SMALL bottom-right owl slot, 指し棒 pointing at 暗記. Match chachalot.png. Not a scene character. No nameplate. Not bear/owl/cat.
-(pale-sky-blue HAT not ears, cream face, equal circle eyes, four cheek marks, no glasses).
+TASTE: slightly POP — thicker outlines, brighter teal/coral accents, larger Japanese, generous padding between boxes. Visibility first. NEVER overlapping glyphs (especially title「狸の森」letters must not collide). NEVER text under a pointer or mascot.
+
+Guide: ONE ちゃちゃロット only, SMALL bottom-right, standing on empty cream margin ABOVE the answer bar (gap). Wooden 指し棒 points at 暗記 but does not cross any letter. Match approved-chachalot-pointer.png: FULLY CLOTHED dark-green blazer + white shirt + tie + green trousers + brown shoes. NEVER naked, never missing pants, never white-square sticker crop, never a second ghost body, never nameplate. Pale-sky-blue HAT (hat, not ears), cream face, equal circle eyes, four cheek marks, no glasses. Not bear/owl/tanuki.
 
 STRICT:
 - Left header「論点」. Never「問が聞くこと」.
@@ -70,3 +70,5 @@ Answer EXACT:
 - [ ] 理由2本（結合／手続保障）が読める
 - [ ] 戒告原則を緑の正解にしていない
 - [ ] q21.png を上書きしていない
+- [ ] ちゃちゃロットが裸・パンツなし・白抜き二重貼り・名札でない
+- [ ] タイトル「狸の森」を含め文字かぶりなし

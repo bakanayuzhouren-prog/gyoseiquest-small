@@ -20,6 +20,7 @@
   - **Red**: 禁止・誤り・「許可」スタンプ・×指摘のみ
   - **Teal accents**: アイコン・矢印の補助
 - Typography: 大見出しは太字ゴシック、行ラベルは大きく、条文番号は括弧で小さく添える。画像内に長い段落を置かない。
+- **見えやすさ優先のポップ寄り:** 輪郭はやや太く、色ははっきり、箱のあいだに余白。文字同士・文字と指し棒・文字とキャラが重なったら不合格。白抜きステッカー貼り禁止。ごちゃ詰めより字を大きく。
 
 ## Guide Character（新規 vs 既存）
 
@@ -169,10 +170,14 @@ Use the diagram type that fits the learning problem:
 - Article numbers appear where they aid memorization (括弧付き短記).
 - No copied mock-exam wording appears.
 - The image file is compressed after approval of the visual.
-- **Mascot identity (when guide is present):**
+- **Mascot identity (when guide is present):** 1つでも欠けたら**不合格**。法律が正しくても合格にしない。再生成する。
+  - 熊・猫・フクロウ・犬・着ぐるみ・耳付きフードになっていない
+  - 名札／吹き出しに「ちゃちゃロット」「シャカロット」等を書いていない
   - 帽子が耳や動物として解釈されていない
+  - `chachalot.png` ＋ `approved-smiling-hat-mascot.png` と同一キャラに見える
   - 黒い瞳が左右同径の真円
   - 白いハイライトも左右同径の真円
   - 帽子・顔・口の輪郭に不自然な歪みや継ぎ目がない
   - 頬マークが左右4本
   - 小サイズでも顔と表情を認識できる
+  - 下余白・指し棒のみ（中央の登場人物になっていない）

@@ -236,9 +236,9 @@ const TAC1_OVERRIDES = {
   1: {
     topic: '拘禁刑と応報刑論・目的刑論',
     aim: '拘禁刑・刑罰の種類・応報／目的を、旧法の名簿と取り違えずに言える。',
-    rule: '令和7年6月1日から、懲役と禁錮を廃止して拘禁刑に一本化した。拘禁刑は刑事施設に拘置し、改善更生のため必要な作業を行わせ、又は必要な指導を行うことができる（刑法12条）。応報刑論は犯した罪への報い（過去）、目的刑論は将来の犯罪防止（一般予防・特別予防／再犯防止）。現行の主刑は死刑・拘禁刑・罰金・拘留・科料で、没収は付加刑（刑法9条）。',
+    rule: '令和7年6月1日から、懲役と禁錮を廃止して拘禁刑に一本化した。',
     trap: '禁固と書く。拘禁刑＝収監刑。作業が常に義務。主刑を旧法の懲役・禁錮のまま覚える。応報と目的を入れ替える。拘留を拘禁刑と混ぜる。没収を忘れる。',
-    memory: '拘禁刑＝懲役と禁錮の一本化（R7.6.1〜）。作業は必ずではない。応報＝過去の報い、目的＝将来の防止。主刑は死刑・拘禁刑・罰金・拘留・科料。付加刑は没収。',
+    memory: '令和7年6月1日から、懲役と禁錮を廃止して拘禁刑に一本化した。',
     deepDive: `[[image:learn/kiso/kokin-ouhou-mokuteki]]
 
 ■ 結論
@@ -701,6 +701,12 @@ function buildTac3Topic(card) {
   };
 }
 
+function learnCardText(t) {
+  const rule = String(t.rule || '').trim();
+  const memory = String(t.memory || '').trim();
+  return (rule || memory).replace(/^【[^】]+】\s*/, '');
+}
+
 function formatLearnDeepdive(t) {
   const d = String(t.deepDive || '');
   if (d.includes('■ 結論') || d.includes('■ 判例4コマ')) return d;
@@ -718,7 +724,7 @@ function emitBundle(exam, topics, label) {
     const quizField = t.quizField;
 
     (bySubject[learnSubject] ??= []).push({
-      text: `【${label}・問${t.questionNumber}】${t.memory}`,
+      text: learnCardText(t),
       deepdive: formatLearnDeepdive(t),
       fExplain: t.aim,
       statuteRef: (t.references || []).join('、'),

@@ -244,6 +244,21 @@ function BlockRenderer({ block }: { block: TextbookBlock }) {
           <MarkdownText text={block.text} style={styles.tipText} uniformWeight lineGap={4} />
         </View>
       );
+    case 'figure': {
+      const source = getDeepdiveImageSource(block.imageKey);
+      if (!source) return null;
+      return (
+        <InnerBlock>
+          <Image
+            source={source}
+            style={styles.chapterFigure}
+            contentFit="contain"
+            accessibilityLabel={block.caption || '解説図'}
+          />
+          {block.caption ? <Text style={styles.chapterFigureCaption}>{block.caption}</Text> : null}
+        </InnerBlock>
+      );
+    }
     case 'figureSlot':
       return (
         <View style={styles.figureSlot} accessibilityLabel={`図解空き枠 ${block.title}`}>
@@ -1383,6 +1398,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: C.text,
     lineHeight: 22,
+  },
+  chapterFigure: {
+    width: '100%',
+    aspectRatio: 16 / 9,
+    borderRadius: 8,
+    backgroundColor: '#FFFFFF',
+  },
+  chapterFigureCaption: {
+    marginTop: 8,
+    fontSize: 13,
+    color: C.textMuted,
+    lineHeight: 20,
   },
   quizExplainImage: {
     width: '100%',
