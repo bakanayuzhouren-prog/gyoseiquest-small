@@ -1,8 +1,5 @@
-import { KISO_HOUGAKU_SUMMARY_MARKDOWN } from '@/src/content/kisoHougakuSummary';
-import { TEITOUKEN_TEXTBOOK_MARKDOWN } from '@/src/content/teitoukenTextbookMarkdown';
-import { CHAT_MARKDOWN_CHUNKS } from '@/src/generated/chatMarkdownChunks';
-import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/learnExports';
-import { PIN_CASES } from '@/src/pinData';
+import type { ChatMarkdownChunk } from '@/src/generated/chatMarkdownChunks';
+import type { ChatMarkdownIndexRow } from '@/src/generated/chatMarkdownIndex';
 import {
   KISO_HOUGAKU_CHAT_TOPIC_BRIEFS,
   KISO_HOUGAKU_KEY_PHRASES,
@@ -133,9 +130,6 @@ import {
   KENPOU_YAMA_KEY_PHRASES,
   KENPOU_YAMA_PHRASE_ALIASES,
 } from '@/utils/chatTopicBriefsKenpouYama';
-// @ts-ignore
-import { LINE_HISTORY } from '@/src/data/lineHistory';
-
 /** chatSearch.ts 互換 */
 export type SearchResult = {
   type: 'case' | 'knowledge' | 'memory';
@@ -152,6 +146,92 @@ export type ScoredKnowledgeChunk = {
   text: string;
   score: number;
 };
+
+type PinCase = { id: string; title: string; category: string; tags: string[]; content: string };
+type LearnTables = {
+  LEARN_CONTENT: Record<string, string[]>;
+  LEARN_DEEPDIVE: Record<string, string[]>;
+};
+
+let pinCasesCache: PinCase[] | null = null;
+let learnTablesCache: LearnTables | null = null;
+let lineHistoryCache: { id?: string; keywords: string[]; message: string }[] | null = null;
+let mdIndexCache: ChatMarkdownIndexRow[] | null = null;
+let kisoSummaryCache: string | null = null;
+let teitoukenCache: string | null = null;
+const mdShardCache = new Map<string, ChatMarkdownChunk[]>();
+
+async function loadPinCases(): Promise<PinCase[]> {
+  if (!pinCasesCache) {
+    const mod = await import('@/src/pinData');
+    pinCasesCache = mod.PIN_CASES as PinCase[];
+  }
+  return pinCasesCache;
+}
+
+async function loadLearnTables(): Promise<LearnTables> {
+  if (!learnTablesCache) {
+    const mod = await import('@/src/learnExports');
+    learnTablesCache = {
+      LEARN_CONTENT: mod.LEARN_CONTENT as Record<string, string[]>,
+      LEARN_DEEPDIVE: mod.LEARN_DEEPDIVE as Record<string, string[]>,
+    };
+  }
+  return learnTablesCache;
+}
+
+async function loadLineHistory(): Promise<{ id?: string; keywords: string[]; message: string }[]> {
+  if (!lineHistoryCache) {
+    const mod = await import('@/src/data/lineHistory');
+    lineHistoryCache = (mod.LINE_HISTORY || []) as { id?: string; keywords: string[]; message: string }[];
+  }
+  return lineHistoryCache;
+}
+
+async function loadMarkdownIndex(): Promise<ChatMarkdownIndexRow[]> {
+  if (!mdIndexCache) {
+    const mod = await import('@/src/generated/chatMarkdownIndex');
+    mdIndexCache = mod.CHAT_MARKDOWN_INDEX;
+  }
+  return mdIndexCache;
+}
+
+async function loadMarkdownShards(keys: string[]): Promise<ChatMarkdownChunk[]> {
+  const unique = [...new Set(keys)].filter(Boolean);
+  const { CHAT_MARKDOWN_SHARD_LOADERS } = await import('@/src/generated/chatMarkdownShardLoaders');
+  const rows: ChatMarkdownChunk[] = [];
+  await Promise.all(
+    unique.map(async (key) => {
+      const cached = mdShardCache.get(key);
+      if (cached) {
+        rows.push(...cached);
+        return;
+      }
+      const loader = CHAT_MARKDOWN_SHARD_LOADERS[key];
+      if (!loader) return;
+      const shard = await loader();
+      mdShardCache.set(key, shard);
+      rows.push(...shard);
+    }),
+  );
+  return rows;
+}
+
+async function loadKisoSummary(): Promise<string> {
+  if (kisoSummaryCache == null) {
+    const mod = await import('@/src/content/kisoHougakuSummary');
+    kisoSummaryCache = mod.KISO_HOUGAKU_SUMMARY_MARKDOWN;
+  }
+  return kisoSummaryCache;
+}
+
+async function loadTeitouken(): Promise<string> {
+  if (teitoukenCache == null) {
+    const mod = await import('@/src/content/teitoukenTextbookMarkdown');
+    teitoukenCache = mod.TEITOUKEN_TEXTBOOK_MARKDOWN;
+  }
+  return teitoukenCache;
+}
 
 const STATUTE_LAW_LABEL: Record<string, string> = {
   gyote: '行政手続法',
@@ -732,73 +812,13 @@ function mergeChunksForModel(chunks: ScoredKnowledgeChunk[], maxChunks: number, 
   return out;
 }
 
-/** 同期検索（従来 chat と同じ形状・上位5件） */
+/** 同期検索。重い learn／pin／MD は載せない（論点ガイドのみ）。本検索は searchKnowledgeFull。 */
 export function searchKnowledge(query: string): SearchResult[] {
   const trimmed = query.trim();
   if (!trimmed) return [];
 
+  const { fullNormalized, rawNormalized } = expandSearchTokens(trimmed);
   const results: SearchResult[] = [];
-  const { fullNormalized, rawNormalized, tokens } = expandSearchTokens(trimmed);
-
-  const textMatches = (raw: string) => {
-    const h = normalizeQueryForMatch(stripHtml(raw));
-    return h.includes(fullNormalized) || tokens.some((t) => h.includes(t));
-  };
-
-  PIN_CASES.forEach((item) => {
-    const titleMatch = textMatches(item.title);
-    const tagsMatch = item.tags.some((tag) => textMatches(tag));
-    const plain = stripHtml(item.content);
-    const contentMatch = textMatches(plain);
-    if (titleMatch || tagsMatch || contentMatch) {
-      results.push({
-        type: 'case',
-        title: item.title,
-        content: contentMatch
-          ? `【判例】${item.title} (${item.category})\n${stripHtml(item.content).slice(0, 1200)}`
-          : `【判例】${item.title} (${item.category})\nタグ: ${item.tags.join(', ')}`,
-        id: item.id,
-        matchType: titleMatch ? 'title' : tagsMatch ? 'tag' : 'content',
-      });
-    }
-  });
-
-  Object.entries(LEARN_CONTENT).forEach(([category, items]) => {
-    (items as string[]).forEach((text) => {
-      if (isLearnSlotId(text)) return;
-      if (textMatches(text)) {
-        results.push({
-          type: 'knowledge',
-          title: category,
-          content: text,
-          category,
-          matchType: 'content',
-        });
-      }
-    });
-  });
-
-  LINE_HISTORY.forEach((chat: { id: string; keywords: string[]; message: string }) => {
-    const keywordMatch =
-      chat.keywords.some((k: string) => textMatches(k)) || textMatches(chat.message);
-
-    if (keywordMatch) {
-      let cleanContent = chat.message;
-      const namesToRemove = ['てらしぃ', 'ちばまぞこ', 'ちばみほこ', '寺島さん', '寺島', 'まみさん', '相田理恵'];
-      namesToRemove.forEach((name) => {
-        cleanContent = cleanContent.split(name).join('***');
-      });
-
-      results.push({
-        type: 'memory',
-        title: '過去の会話メモリ',
-        content: `「${cleanContent}」`,
-        id: chat.id,
-        matchType: 'keyword',
-      });
-    }
-  });
-
   const briefList = topicBriefsForQuery(fullNormalized, rawNormalized);
   for (let i = briefList.length - 1; i >= 0; i--) {
     const b = briefList[i];
@@ -814,9 +834,27 @@ export function searchKnowledge(query: string): SearchResult[] {
   return results.slice(0, 5);
 }
 
+function scoreIndexRow(row: ChatMarkdownIndexRow, tokens: string[], fullNormalized: string): number {
+  const hay = normalizeQueryForMatch(`${row.path}\n${row.title}\n${row.excerpt}`);
+  return scoreHaystack(hay, tokens, fullNormalized) + queryCoherenceBonus(fullNormalized, hay);
+}
+
+function markdownSourceLabel(relRaw: string): { source: string; boost: number } {
+  const rel = relRaw.replace(/\\/g, '/');
+  const isKnowledge = rel.startsWith('data/knowledge/');
+  const isCreator = rel.includes('/creator/');
+  const subjectMatch = isKnowledge ? rel.match(/data\/knowledge\/(?:quiz|learn|creator)\/([^/]+)/) : null;
+  const source = isCreator
+    ? `知識MD · ${subjectMatch?.[1] || 'creator'}（要約）`
+    : isKnowledge
+      ? `知識MD · ${subjectMatch?.[1] || 'canonical'}`
+      : `MD:${rel}`;
+  return { source, boost: isKnowledge ? (isCreator ? 4 : 3) : 0 };
+}
+
 /**
  * アプリ内データ＋MDチャンクを横断検索し、スコア順のチャンクを返す。
- * questions（クイズ・条文）は動的 import により初回のみ読み込み。
+ * learn／pin／MD本文／questions は初回検索で動的 import。
  */
 export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledgeChunk[]> {
   const trimmed = query.trim();
@@ -836,15 +874,24 @@ export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledg
     });
   }
 
-  for (const item of PIN_CASES) {
+  const [pinCases, learnTables, lineHistory, mdIndex, kisoSummary, teitouken] = await Promise.all([
+    loadPinCases(),
+    loadLearnTables(),
+    loadLineHistory(),
+    loadMarkdownIndex(),
+    loadKisoSummary(),
+    loadTeitouken(),
+  ]);
+
+  for (const item of pinCases) {
     const blob = [item.title, ...item.tags, stripHtml(item.content)].join('\n');
     pushCandidate(candidates, 'ピンと図', item.title, blob, tokens, fullNormalized, 4000);
   }
 
-  Object.entries(LEARN_CONTENT).forEach(([category, items]) => {
+  Object.entries(learnTables.LEARN_CONTENT).forEach(([category, items]) => {
     (items as string[]).forEach((text, i) => {
       if (isLearnSlotId(text)) return;
-      const dd = (LEARN_DEEPDIVE as Record<string, string[]>)[category]?.[i];
+      const dd = learnTables.LEARN_DEEPDIVE[category]?.[i];
       const blob = dd && dd.length > 30 ? `${text}\n\n${dd}` : text;
       const deepBoost = dd && dd.length > 80 ? 2 : 0;
       pushCandidate(
@@ -860,8 +907,8 @@ export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledg
     });
   });
 
-  for (const chat of LINE_HISTORY as { keywords: string[]; message: string }[]) {
-    const blob = [...chat.keywords, chat.message].join('\n');
+  for (const chat of lineHistory) {
+    const blob = [...(chat.keywords || []), chat.message || ''].join('\n');
     pushCandidate(candidates, '過去の会話メモリ', 'LINEメモ', blob, tokens, fullNormalized, 2000);
   }
 
@@ -872,7 +919,7 @@ export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledg
     candidates,
     '基礎法学まとめ',
     '基礎法学まとめ（アプリ内）',
-    KISO_HOUGAKU_SUMMARY_MARKDOWN,
+    kisoSummary,
     tokens,
     fullNormalized,
     12000,
@@ -883,24 +930,24 @@ export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledg
     candidates,
     '抵当権教科書',
     '抵当権の教科書（アプリ内）',
-    TEITOUKEN_TEXTBOOK_MARKDOWN,
+    teitouken,
     tokens,
     fullNormalized,
     12000
   );
 
-  for (const row of CHAT_MARKDOWN_CHUNKS) {
-    const rel = row.path.replace(/\\/g, '/');
-    const isKnowledge = rel.startsWith('data/knowledge/');
-    const isCreator = rel.includes('/creator/');
-    const subjectMatch = isKnowledge ? rel.match(/data\/knowledge\/(?:quiz|learn|creator)\/([^/]+)/) : null;
-    const sourceLabel = isCreator
-      ? `知識MD · ${subjectMatch?.[1] || 'creator'}（要約）`
-      : isKnowledge
-        ? `知識MD · ${subjectMatch?.[1] || 'canonical'}`
-        : `MD:${rel}`;
-    const boost = isKnowledge ? (isCreator ? 4 : 3) : 0;
-    pushCandidate(candidates, sourceLabel, row.title || row.path, row.text, tokens, fullNormalized, 3500, boost);
+  const rankedIndex = mdIndex
+    .map((row) => ({ row, score: scoreIndexRow(row, tokens, fullNormalized) }))
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 40);
+  const hitPaths = new Set(rankedIndex.map((x) => x.row.path));
+  const shardKeys = rankedIndex.map((x) => x.row.shard);
+  const mdRows = await loadMarkdownShards(shardKeys);
+  for (const row of mdRows) {
+    if (hitPaths.size > 0 && !hitPaths.has(row.path)) continue;
+    const { source, boost } = markdownSourceLabel(row.path);
+    pushCandidate(candidates, source, row.title || row.path, row.text, tokens, fullNormalized, 3500, boost);
   }
 
   try {

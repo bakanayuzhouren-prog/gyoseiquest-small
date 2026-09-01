@@ -1,13 +1,14 @@
 ---
 id: road_defect_liability
-title: 道路の瑕疵
+title: 赤色灯標柱と時間的余裕
 tags: [行政法, 国家賠償法2条]
+images: [learn/kokubai/akairo-yoyu]
 ---
 <div class="case-diagram-container">
   <div class="header-box">
     <span class="badge green">行政法 重要判例</span>
-    <h3>道路の瑕疵 (最判昭45.8.20)</h3>
-    <p>道路の穴で事故→国賠？</p>
+    <h3>赤色灯標柱 (最判昭50.6.26)</h3>
+    <p>工事標識が倒れた直後の事故は、直ちに瑕疵か？</p>
   </div>
 
   <div class="ruling-box">
@@ -15,10 +16,12 @@ tags: [行政法, 国家賠償法2条]
       <span class="gavel">⚖️</span> 判断
     </div>
     <div class="ruling-content">
-      <p class="conclusion"><strong>営造物の瑕疵</strong></p>
+      <p class="conclusion"><strong>時間的余裕がなければ瑕疵なし</strong></p>
       <div class="logic-flow">
-        <p>道路に穴があり、通常有すべき安全性を欠いている場合、<span class="check">管理の瑕疵が認められる</span></p>
-        <p class="note">※国賠法2条は無過失責任（過失不要）<br>ただし予算上の制約は免責事由とならない</p>
+        <p>先行車が工事標識板・バリケード・赤色灯標柱を転倒させた直後に事故が起きた場合、<br>
+        道路管理者が遅滞なく原状に復して安全な状態を保つことが<b>時間的に不可能</b>であれば、<br>
+        <span class="check">管理の瑕疵があったとはいえない</span>（国賠法2条1項）</p>
+        <p class="note">※昭45.8.20は高知落石（瑕疵○・予算不足では免れない）。本件と日付を混ぜない。故障車の長時間放置（昭50.7.25）は瑕疵○。</p>
       </div>
     </div>
   </div>

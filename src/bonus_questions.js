@@ -11,6 +11,10 @@ import { MINPOU_JOSHIKI_BONUS_QUESTIONS } from './minpou_joshiki_bonus_questions
 import { GYOSEIHOU_JOSHIKI_BONUS_QUESTIONS } from './gyoseihou_joshiki_bonus_questions';
 import { LEC_KOUKAI_MOSHI_BONUS_QUESTIONS } from './lec_koukai_moshi_bonus_questions';
 import { LEC_BONUS_KENPOU_BONUS_QUESTIONS } from './lec_bonus_kenpou_bonus_questions';
+import { LEC_ATARU_ROUND1_BONUS_QUESTIONS } from './lec_ataru_round1_bonus_questions';
+import { LEC_ATARU_ROUND2_BONUS_QUESTIONS } from './lec_ataru_round2_bonus_questions';
+import { LEC_ATARU_ROUND3_BONUS_QUESTIONS } from './lec_ataru_round3_bonus_questions';
+import { GOKAKU_KAKUMEI_HOSEI_R2_BONUS_QUESTIONS } from './goukaku_kakumei_hosei_r2_bonus_questions';
 
 /** @param {Record<string, Record<string, unknown[]>>} base @param {Record<string, Record<string, unknown[]>>} extra */
 function mergeBonusQuestions(base, extra) {
@@ -192,4 +196,8 @@ export const BONUS_QUESTIONS = [
   GYOSEIHOU_JOSHIKI_BONUS_QUESTIONS,
   LEC_KOUKAI_MOSHI_BONUS_QUESTIONS,
   LEC_BONUS_KENPOU_BONUS_QUESTIONS,
+  LEC_ATARU_ROUND1_BONUS_QUESTIONS,
+  LEC_ATARU_ROUND2_BONUS_QUESTIONS,
+  LEC_ATARU_ROUND3_BONUS_QUESTIONS,
+  GOKAKU_KAKUMEI_HOSEI_R2_BONUS_QUESTIONS,
 ].reduce((acc, layer) => mergeBonusQuestions(acc, layer), {});

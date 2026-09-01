@@ -2,6 +2,7 @@
 id: ikata_nuke
 title: 伊方原発訴訟
 tags: [行政法, 行政裁量, 原発訴訟]
+images: [learn/pin/ikata-nuke]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

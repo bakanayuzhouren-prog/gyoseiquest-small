@@ -2,6 +2,7 @@
 id: shufuren_juice
 title: 主婦連ジュース事件
 tags: [行政法, 原告適格, 反射的利益]
+images: [learn/pin/shufuren-juice]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

@@ -35,6 +35,8 @@ import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { mergeKijyutuGyouseihouQuizCaseImages } from '@/src/kijyutuGyouseihouQuizDeepdiveMerge';
 import { prependGyoshoHikokuDeepdiveImage } from '@/src/gyoshoHikokuDeepdiveImage';
 import { prependGyoshoJunyoDeepdiveImage } from '@/src/gyoshoJunyoDeepdiveImage';
+import { prependGyoshoShobunseiGenkokuDeepdiveImage } from '@/src/gyoshoShobunseiGenkokuDeepdiveImage';
+import { prependKokubai1jo2joDeepdiveImage } from '@/src/kokubai1jo2joDeepdiveImage';
 import { prependKokubaiJuminDeepdiveImage } from '@/src/kokubaiJuminDeepdiveImage';
 import { prependIshiHyojiDeepdiveImage } from '@/src/ishiHyojiDeepdiveImage';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
@@ -1101,8 +1103,24 @@ export default function ResultScreen() {
         matchText,
         (key) => !!resolveImageAsset(key),
       );
-      if (subject !== '民法') return afterJumin;
-      return prependIshiHyojiDeepdiveImage(afterJumin, matchText, (key) => !!resolveImageAsset(key));
+      const thisChoice = String((question as { choices?: string[] })?.choices?.[choiceIndex0] || '');
+      const choiceMatch = [
+        afterJoshiki,
+        String((question as { text?: string })?.text || ''),
+        thisChoice,
+      ].join('\n');
+      const afterHyo = prependGyoshoShobunseiGenkokuDeepdiveImage(
+        afterJumin,
+        choiceMatch,
+        (key) => !!resolveImageAsset(key),
+      );
+      const afterKokubaiHyo = prependKokubai1jo2joDeepdiveImage(
+        afterHyo,
+        choiceMatch,
+        (key) => !!resolveImageAsset(key),
+      );
+      if (subject !== '民法') return afterKokubaiHyo;
+      return prependIshiHyojiDeepdiveImage(afterKokubaiHyo, matchText, (key) => !!resolveImageAsset(key));
     };
     if (imageKeys.length === 0) {
       return finishQuizDeepdiveImages(trimmed);

@@ -2,6 +2,7 @@
 id: state_redress_unidentified
 title: 加害公務員の特定
 tags: [行政法, 国家賠償法1条, 公務員の特定]
+images: [learn/kokubai/1jo-ari]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

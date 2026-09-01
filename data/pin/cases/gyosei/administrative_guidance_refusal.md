@@ -2,6 +2,7 @@
 id: administrative_guidance_refusal
 title: 行政指導拒否通知の処分性
 tags: [行政法, 処分性, 行政指導]
+images: [learn/pin/shido-kyohi-tsuchi]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

@@ -10,11 +10,24 @@ import {
 } from '@/src/context/StudyLevelContext';
 import { Themes, useTheme } from '@/src/context/ThemeContext';
 import { answerChatFromContext } from '@/src/utils/geminiService';
-import { searchKnowledgeFull } from '@/utils/chatSearch';
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
+
+type SearchKnowledgeFull = (query: string) => Promise<
+  { source: string; title: string; text: string; score: number }[]
+>;
+
+let searchKnowledgeFullFn: SearchKnowledgeFull | null = null;
+
+async function loadSearchKnowledgeFull(): Promise<SearchKnowledgeFull> {
+  if (!searchKnowledgeFullFn) {
+    const mod = await import('@/utils/chatSearch');
+    searchKnowledgeFullFn = mod.searchKnowledgeFull;
+  }
+  return searchKnowledgeFullFn;
+}
 
 const GEMINI_API_KEY =
   (typeof Constants?.expoConfig?.extra !== 'undefined' && (Constants.expoConfig.extra as { geminiApiKey?: string })?.geminiApiKey) ||
@@ -119,6 +132,7 @@ export default function ChatScreen() {
     setIsTyping(true);
 
     try {
+      const searchKnowledgeFull = await loadSearchKnowledgeFull();
       const chunks = await searchKnowledgeFull(trimmed);
       const sourceLabels = [...new Set(chunks.map((c) => `${c.source}: ${c.title}`))].slice(0, 8);
 

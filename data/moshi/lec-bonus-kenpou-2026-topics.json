@@ -3,7 +3,7 @@
   "examId": "lec-bonus-kenpou-2026",
   "title": "2026 LEC公開模試特典・憲法おまけ（論点要約・原文非転載）",
   "note": "市販教材本文は転載しない。条文・判例は e-Gov / 裁判所公式・既存正本と照合。OCR原文は tmp のみ。",
-  "imageFolder": "app/模試画像/LECおまけ/憲法/",
+  "imageFolder": "tmp/模試画像/LECおまけ/憲法/",
   "topics": [
     {
       "id": "lec-bonus-kenpou-2026-coverage",

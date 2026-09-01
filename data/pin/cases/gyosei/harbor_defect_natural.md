@@ -2,6 +2,7 @@
 id: harbor_defect_natural
 title: 港湾の自然的瑕疵
 tags: [行政法, 国家賠償法2条]
+images: [learn/kokubai/2jo-ari]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

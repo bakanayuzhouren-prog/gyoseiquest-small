@@ -2,6 +2,7 @@
 id: hospital_abolition
 title: 病院開設中止勧告事件
 tags: [行政法, 処分性, 行政指導]
+images: [learn/pin/hospital-abolition]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

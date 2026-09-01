@@ -2,6 +2,7 @@
 id: regulatory_inaction
 title: 規制権限不行使と国賠
 tags: [行政法, 国家賠償法1条]
+images: [learn/kokubai/1jo-ari]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

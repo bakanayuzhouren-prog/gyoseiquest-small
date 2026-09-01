@@ -1,13 +1,14 @@
 ---
 id: police_interrogation_illegal
-title: 警察の違法尋問と国賠
+title: 公訴提起と国賠
 tags: [行政法, 国家賠償法1条]
+images: [learn/kokubai/1jo-nashi]
 ---
 <div class="case-diagram-container">
   <div class="header-box">
     <span class="badge green">行政法 重要判例</span>
-    <h3>警察の違法尋問と国賠 (最判昭53.10.20)</h3>
-    <p>違法な取調べ→損害賠償？</p>
+    <h3>公訴提起と国賠 (最判昭53.10.20)</h3>
+    <p>無罪が確定したら、直ちに起訴は違法か？</p>
   </div>
 
   <div class="ruling-box">
@@ -15,13 +16,12 @@ tags: [行政法, 国家賠償法1条]
       <span class="gavel">⚖️</span> 判断
     </div>
     <div class="ruling-content">
-      <p class="conclusion"><strong>国賠法1条の要件</strong></p>
+      <p class="conclusion"><strong>無罪確定だけでは直ちに違法ではない</strong></p>
       <div class="logic-flow">
-        <p><span class="check">①</span> 公権力の行使にあたる公務員の行為であること</p>
-        <p><span class="check">②</span> 職務を行うについて（職務行為関連性）</p>
-        <p><span class="check">③</span> 故意または過失により違法に</p>
-        <p><span class="check">④</span> 他人に損害を加えたこと</p>
-        <p class="note">※警察の違法な取調べは国賠法1条の対象となる</p>
+        <p>公訴提起は国賠法1条の枠である。<br>
+        起訴時に犯罪の嫌疑について合理的な根拠があれば、<br>
+        <span class="check">後に無罪が確定しても直ちに違法とは評価されない</span></p>
+        <p class="note">※取調べの違法をこの日付に付けない。取消しだけで直ちに1条違法にもならない（更正は漫然と行ったときに限り違法）。</p>
       </div>
     </div>
   </div>

@@ -2,6 +2,7 @@
 id: tobacco_retailer
 title: たばこ小売人指定事件
 tags: [行政法, 原告適格, 営業の自由]
+images: [learn/pin/tobacco-retailer]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

@@ -38,8 +38,8 @@
         "explanation": "ア・エ型。国家公務員は行政執行法人だけ。交付金は全部又は一部。評価委は総務省。"
       },
       "sourceTrace": {
-        "questionImage": "app/模試画像/LEC2/問題/PXL_20260724_224543150.jpg",
-        "answerImage": "app/模試画像/LEC2/解答/PXL_20260725_020301128.jpg",
+        "questionImage": "tmp/模試画像/LEC2/問題/PXL_20260724_224543150.jpg",
+        "answerImage": "tmp/模試画像/LEC2/解答/PXL_20260725_020301128.jpg",
         "answerSource": "LEC第2回解答冊子・正解1（ア・エ）。confirmed-answersの4は訂正"
       },
       "status": "confirmed"
@@ -76,8 +76,8 @@
         "explanation": "イ・オ型。反対意見ありは省略不可。インカメラ開示不可。手続非公開。答申拘束なし。"
       },
       "sourceTrace": {
-        "questionImage": "app/模試画像/LEC2/問題/PXL_20260724_224359613.jpg",
-        "answerImage": "app/模試画像/LEC2/解答/PXL_20260725_020531221.jpg",
+        "questionImage": "tmp/模試画像/LEC2/問題/PXL_20260724_224359613.jpg",
+        "answerImage": "tmp/模試画像/LEC2/解答/PXL_20260725_020531221.jpg",
         "answerSource": "LEC第2回解答冊子・正解4（イ・オ）。confirmed-answersの2は訂正"
       },
       "status": "confirmed"

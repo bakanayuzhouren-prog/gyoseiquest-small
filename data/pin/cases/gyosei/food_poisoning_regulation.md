@@ -2,6 +2,7 @@
 id: food_poisoning_regulation
 title: 食中毒と規制権限
 tags: [行政法, 国家賠償法1条]
+images: [learn/kokubai/1jo-ari]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

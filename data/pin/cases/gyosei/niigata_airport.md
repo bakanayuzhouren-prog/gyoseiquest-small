@@ -2,6 +2,7 @@
 id: niigata_airport
 title: 新潟空港訴訟
 tags: [行政法, 取消訴訟, 原告適格]
+images: [learn/pin/niigata-airport]
 ---
 
 <div class="case-diagram-container">

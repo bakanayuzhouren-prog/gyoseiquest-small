@@ -2,6 +2,7 @@
 id: land_readjustment_plan
 title: 土地区画整理事業計画決定
 tags: [行政法, 処分性, 判例変更]
+images: [learn/pin/land-readjustment-plan]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

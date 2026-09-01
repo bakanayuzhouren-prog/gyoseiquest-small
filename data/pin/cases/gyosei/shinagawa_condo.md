@@ -2,6 +2,7 @@
 id: shinagawa_condo
 title: 品川マンション事件
 tags: [行政法, 建築確認, 行政指導]
+images: [learn/pin/shinagawa-condo]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

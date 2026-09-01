@@ -28,6 +28,7 @@ import {
     unfreezeLearnDeepdiveReturnCursor,
 } from '@/src/deepdiveState';
 import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_LINKS, LEARN_SOURCE, LEARN_STATUTE_REFS } from '@/src/learnExports';
+import { KISOCHI_LEARN_ROOM_KEYS } from '@/src/splitKisochiLearn';
 import {
     appendGyoseiConfusingTopicChunks,
     findRelatedGyoseiLearnCards,
@@ -53,6 +54,14 @@ import {
   prependGyoshoJunyoDeepdiveImage,
   shouldAttachGyoshoJunyoDeepdiveImage,
 } from '@/src/gyoshoJunyoDeepdiveImage';
+import {
+  prependGyoshoShobunseiGenkokuDeepdiveImage,
+  shouldAttachGyoshoShobunseiGenkokuDeepdiveImage,
+} from '@/src/gyoshoShobunseiGenkokuDeepdiveImage';
+import {
+  prependKokubai1jo2joDeepdiveImage,
+  shouldAttachKokubai1jo2joDeepdiveImage,
+} from '@/src/kokubai1jo2joDeepdiveImage';
 import {
   prependKokubaiJuminDeepdiveImage,
   shouldAttachKokubaiJuminDeepdiveImage,
@@ -119,6 +128,21 @@ function sliceTashiSyncedByField<T>(
 function pickByIndices<T>(arr: T[], indices: number[] | null): T[] {
   if (!indices) return arr;
   return indices.map((i) => arr[i]).filter((v) => v !== undefined);
+}
+
+/** 見て聞いて覚えるぷらす。TAC・LEC公開模試・合格革命模試など。 */
+const LEARN_PLUS_SOURCE_RE = /TAC|公開模試|模試|moshi|LEC|合格革命/i;
+
+function indicesWhereSourceIsExact(src: unknown[], sheetName: string): number[] {
+  return src
+    .map((label, idx) => (label === sheetName ? idx : -1))
+    .filter((idx) => idx >= 0);
+}
+
+function indicesWhereLearnPlus(src: unknown[]): number[] {
+  return src
+    .map((label, idx) => (LEARN_PLUS_SOURCE_RE.test(String(label || '')) ? idx : -1))
+    .filter((idx) => idx >= 0);
 }
 
 function stripTacLearnLeadLabel(text: string): string {
@@ -307,26 +331,34 @@ export default function LearnSubjectScreen() {
   const learnScopeKey =
     subject === '多肢選択' && tashiField ? `多肢選択:${tashiField}` : subject || '';
 
-  // 行政法総論: 「行政法総論」シート由来のみ（全配列へ混在する他シート行を除外）
-  // 国家賠償法: 「国家賠償法」シート由来のみ（「行政法総合」から A 列で科目が付いた行の混在を除外）
+  // 行政法総論: 通常は「行政法総論」シート由来のみ（他シート混入を除外）。
+  // ぷらすはシート名フィルタを外し、TAC／LEC公開模試／合格革命模試など別の聞き方・新しい判例の行を残す。
+  // 国家賠償法: 通常は「国家賠償法」シート由来のみ。ぷらすは同様に模試系を残す。
   const learnSheetFilterIndices = useMemo(() => {
     if (subject === '行政法総論') {
       const src = (LEARN_SOURCE as any)?.['行政法総論'];
       if (!Array.isArray(src)) return null;
-      const only = src
-        .map((sheetName: string, idx: number) => (sheetName === '行政法総論' ? idx : -1))
-        .filter((idx: number) => idx >= 0);
-      return only.slice(0, 133);
+      if (isPlusMode) return indicesWhereLearnPlus(src);
+      return indicesWhereSourceIsExact(src, '行政法総論').slice(0, 133);
     }
     if (subject === '国家賠償法') {
       const src = (LEARN_SOURCE as any)?.['国家賠償法'];
       if (!Array.isArray(src)) return null;
+      if (isPlusMode) return indicesWhereLearnPlus(src);
+      return indicesWhereSourceIsExact(src, '国家賠償法');
+    }
+    if (subject && (KISOCHI_LEARN_ROOM_KEYS as readonly string[]).includes(subject)) {
+      const src = (LEARN_SOURCE as any)?.[subject];
+      if (!Array.isArray(src)) return null;
+      if (isPlusMode) return indicesWhereLearnPlus(src);
       return src
-        .map((sheetName: string, idx: number) => (sheetName === '国家賠償法' ? idx : -1))
+        .map((label: unknown, idx: number) =>
+          label === '基礎知識' || label === subject ? idx : -1,
+        )
         .filter((idx: number) => idx >= 0);
     }
     return null;
-  }, [subject]);
+  }, [subject, isPlusMode]);
 
   const flattenedSubjectQuestions = useMemo(() => {
     if (!subject) return [];
@@ -428,7 +460,7 @@ export default function LearnSubjectScreen() {
       .map((label, index) => {
         const sourceLabel = String(label || '');
         const cardText = String(contentList[index] || '');
-        return /TAC|模試|moshi/i.test(`${sourceLabel} ${cardText}`) ? index : -1;
+        return LEARN_PLUS_SOURCE_RE.test(`${sourceLabel} ${cardText}`) ? index : -1;
       })
       .filter((index) => index >= 0);
     return new Set(indices);
@@ -1052,6 +1084,12 @@ export default function LearnSubjectScreen() {
   const gyoshoJunyoDeepdiveEligible = shouldAttachGyoshoJunyoDeepdiveImage(
     `${currentDisplayContent}\n${deepdiveContent || ''}`,
   );
+  const gyoshoHyoDeepdiveEligible = shouldAttachGyoshoShobunseiGenkokuDeepdiveImage(
+    `${currentDisplayContent}\n${deepdiveContent || ''}`,
+  );
+  const kokubaiHyoDeepdiveEligible = shouldAttachKokubai1jo2joDeepdiveImage(
+    `${currentDisplayContent}\n${deepdiveContent || ''}`,
+  );
   const kokubaiJuminDeepdiveEligible = shouldAttachKokubaiJuminDeepdiveImage(
     `${currentDisplayContent}\n${deepdiveContent || ''}`,
   );
@@ -1071,6 +1109,8 @@ export default function LearnSubjectScreen() {
           ishiHyojiDeepdiveEligible ||
           gyoshoHikokuDeepdiveEligible ||
           gyoshoJunyoDeepdiveEligible ||
+          gyoshoHyoDeepdiveEligible ||
+          kokubaiHyoDeepdiveEligible ||
           kokubaiJuminDeepdiveEligible
         );
 
@@ -1130,6 +1170,8 @@ export default function LearnSubjectScreen() {
     const matchBlob = `${currentDisplayContent}\n${fromB}\n${merged}`;
     merged = prependGyoshoHikokuDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
     merged = prependGyoshoJunyoDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
+    merged = prependGyoshoShobunseiGenkokuDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
+    merged = prependKokubai1jo2joDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
     merged = prependKokubaiJuminDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
     if (subject === '民法総則' || learnSubjectForDeepdive === '民法総則') {
       return prependIshiHyojiDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));

@@ -2,6 +2,7 @@
 id: graveyard_circular
 title: 墓地通達事件
 tags: [行政法, 処分性, 通達]
+images: [learn/pin/graveyard-circular]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

@@ -2,6 +2,7 @@
 id: public_bath_distance
 title: 公衆浴場距離制限事件
 tags: [行政法, 原告適格, 競業者]
+images: [learn/pin/public-bath-distance]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

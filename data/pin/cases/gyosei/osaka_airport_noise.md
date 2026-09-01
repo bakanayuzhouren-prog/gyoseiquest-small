@@ -2,6 +2,7 @@
 id: osaka_airport_noise
 title: 大阪国際空港騒音訴訟
 tags: [行政法, 国家賠償法2条, 営造物の瑕疵]
+images: [learn/kokubai/2jo-ari]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

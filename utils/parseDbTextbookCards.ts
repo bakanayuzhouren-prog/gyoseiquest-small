@@ -5,6 +5,7 @@
 
 import { pickGyoshoHikokuRelatedImageKeys } from '@/src/gyoshoHikokuDeepdiveImage';
 import { pickGyoshoJunyoRelatedImageKeys } from '@/src/gyoshoJunyoDeepdiveImage';
+import { pickKokubai1jo2joRelatedImageKeys } from '@/src/kokubai1jo2joDeepdiveImage';
 import { pickKokubaiJuminRelatedImageKeys } from '@/src/kokubaiJuminDeepdiveImage';
 import { ISHI_HYOJI_TAIKO_IMAGE_KEY, pickIshiHyojiRelatedImageKeys } from '@/src/ishiHyojiDeepdiveImage';
 import { STATUTES } from '@/src/questions';
@@ -360,6 +361,7 @@ function flushCard(
             ...pickGyoshoHikokuRelatedImageKeys(`${draft.title}\n${question}\n${draft.answer}`),
             ...pickGyoshoJunyoRelatedImageKeys(`${draft.title}\n${question}\n${draft.answer}`),
             ...pickKokubaiJuminRelatedImageKeys(`${draft.title}\n${question}\n${draft.answer}`),
+            ...pickKokubai1jo2joRelatedImageKeys(`${draft.title}\n${question}\n${draft.answer}`),
           ]
         : [];
   const relatedSeen = new Set<string>();

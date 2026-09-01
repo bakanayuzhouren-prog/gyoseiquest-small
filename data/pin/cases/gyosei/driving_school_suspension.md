@@ -2,6 +2,7 @@
 id: driving_school_suspension  
 title: 教習所処分通知の処分性
 tags: [行政法, 処分性, 通知]
+images: [learn/pin/driving-school-notice]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

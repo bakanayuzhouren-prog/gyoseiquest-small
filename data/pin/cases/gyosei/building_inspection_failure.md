@@ -2,6 +2,7 @@
 id: building_inspection_failure
 title: 建築確認と国賠
 tags: [行政法, 国家賠償法1条]
+images: [learn/kokubai/1jo-ari]
 ---
 <div class="case-diagram-container">
   <div class="header-box">
@@ -17,9 +18,9 @@ tags: [行政法, 国家賠償法1条]
     <div class="ruling-content">
       <p class="conclusion"><strong>建築確認の違法と国賠</strong></p>
       <div class="logic-flow">
-        <p>建築確認において看過し難い過誤があり、<br>
-        これにより確認を受けた者が建築基準関係規定に適合しない建築物を建築し、<br>
-        <span class="check">第三者に損害を生じさせた場合、国または地方公共団体は損害賠償責任を負う</span></p>
+        <p>指定確認検査機関の建築確認も公権力の行使に当たる公務員の職務である（1条）。<br>
+        看過し難い過誤により適合しない建築物が建てられ第三者に損害が生じたときは、<br>
+        <span class="check">確認権限のある地方公共団体が損害賠償責任を負う</span>（最判平17.6.24）</p>
       </div>
     </div>
   </div>

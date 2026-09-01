@@ -112,7 +112,7 @@ function parseAnswerPages(text, pages) {
       correctAnswer,
       validLines,
       refs,
-      answerImage: filePath || `app/模試画像/LEC公開問題/解答/${file || ''}`,
+      answerImage: filePath || `tmp/模試画像/LEC公開問題/解答/${file || ''}`,
       ocrPageIndex: index,
       rawSnippet: body.slice(0, 800),
     });

@@ -2,6 +2,7 @@
 id: musashino_condo
 title: 武蔵野市マンション事件
 tags: [行政法, 行政指導, 寄付金]
+images: [learn/pin/musashino-condo]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

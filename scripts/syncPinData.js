@@ -61,12 +61,27 @@ function sync() {
             const fileContent = fs.readFileSync(filePath, 'utf8');
             const { metadata, content } = parseMarkdown(fileContent);
 
+            const rawImages = metadata.images;
+            const images = Array.isArray(rawImages)
+                ? rawImages
+                : typeof rawImages === 'string' && rawImages
+                    ? rawImages.split(',').map((s) => s.trim()).filter(Boolean)
+                    : [];
+            const rawNote = metadata.imageNote;
+            const imageNote = Array.isArray(rawNote)
+                ? rawNote.map((s) => String(s).trim()).filter(Boolean)
+                : typeof rawNote === 'string' && rawNote
+                    ? rawNote.split('|').map((s) => s.trim()).filter(Boolean)
+                    : [];
+
             cases.push({
                 id: metadata.id || path.basename(file, '.md'),
                 category: category,
                 title: metadata.title || 'Untitled Case',
                 youtube: metadata.youtube || '',
                 tags: metadata.tags || [],
+                images,
+                imageNote,
                 content: content,
             });
         });
@@ -79,6 +94,8 @@ export type PinCase = {
   title: string;
   youtube: string;
   tags: string[];
+  images: string[];
+  imageNote: string[];
   content: string; // Markdown/HTML content
 };
 

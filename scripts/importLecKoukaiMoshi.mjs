@@ -1,5 +1,5 @@
 /**
- * LEC全日本行政書士公開模試（app/模試画像/LEC公開問題/）のOCR。
+ * LEC全日本行政書士公開模試（tmp/模試画像/LEC公開問題/）のOCR。
  * 問題文・解答を tmp/moshi-ocr/lec-koukai-2026-round1/ に出力。
  */
 import fs from 'node:fs/promises';
@@ -11,8 +11,8 @@ import Tesseract from 'tesseract.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const EXAM_ID = 'lec-koukai-2026-round1';
-const QUESTION_DIR = path.join(ROOT, 'app', '模試画像', 'LEC公開問題', '問題文');
-const ANSWER_DIR = path.join(ROOT, 'app', '模試画像', 'LEC公開問題', '解答');
+const QUESTION_DIR = path.join(ROOT, 'tmp', '模試画像', 'LEC公開問題', '問題文');
+const ANSWER_DIR = path.join(ROOT, 'tmp', '模試画像', 'LEC公開問題', '解答');
 const OUTPUT_DIR = path.join(ROOT, 'tmp', 'moshi-ocr', EXAM_ID);
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.mp.jpg']);
 

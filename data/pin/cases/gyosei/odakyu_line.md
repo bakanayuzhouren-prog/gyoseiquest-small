@@ -2,6 +2,7 @@
 id: odakyu_line
 title: 小田急線高架化事件
 tags: [行政法, 原告適格, 都市計画]
+images: [learn/pin/odakyu-line]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

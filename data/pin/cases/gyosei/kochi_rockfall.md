@@ -2,6 +2,7 @@
 id: kochi_rockfall
 title: 高知国道落石事件
 tags: [行政法, 国家賠償, 営造物責任]
+images: [learn/kokubai/2jo-ari]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

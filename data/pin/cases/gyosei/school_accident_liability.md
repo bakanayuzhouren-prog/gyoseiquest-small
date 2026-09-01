@@ -2,6 +2,7 @@
 id: school_accident_liability
 title: 学校事故と国賠
 tags: [行政法, 国家賠償法2条]
+images: [learn/kokubai/kikiwake]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

@@ -2,6 +2,7 @@
 id: public_official_liability
 title: 公務員個人の責任
 tags: [行政法, 国家賠償法1条, 公務員の責任]
+images: [learn/kokubai/1jo-nashi]
 ---
 <div class="case-diagram-container">
   <div class="header-box">

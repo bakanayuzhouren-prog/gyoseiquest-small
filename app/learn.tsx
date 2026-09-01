@@ -61,7 +61,16 @@ const CATEGORIES: Category[] = [
     ]
   },
   { id: 'commercial', label: '商法・会社法', key: '商法・会社法' },
-  { id: 'knowledge', label: '基礎知識', key: '基礎知識' },
+  {
+    id: 'knowledge',
+    label: '基礎知識',
+    subCategories: [
+      { label: '個人情報', key: '個人情報' },
+      { label: '行政書士法', key: '行政書士法' },
+      { label: '住民基本台帳法', key: '住民基本台帳法' },
+      { label: '戸籍法', key: '戸籍法' },
+    ],
+  },
   {
     id: 'learn_plus',
     label: '見て聞いて覚えるモードぷらす',
@@ -92,7 +101,16 @@ const CATEGORIES: Category[] = [
         ],
       },
       { label: '商法・会社法', key: '商法・会社法', plus: true },
-      { label: '基礎知識', key: '基礎知識', plus: true },
+      {
+        label: '基礎知識',
+        subCategories: [
+          { label: '個人情報', key: '個人情報', plus: true },
+          { label: '行政書士法', key: '行政書士法', plus: true },
+          { label: '住民基本台帳法', key: '住民基本台帳法', plus: true },
+          { label: '戸籍法', key: '戸籍法', plus: true },
+          { label: 'その他', key: '基礎知識', plus: true },
+        ],
+      },
       { label: '多肢選択・憲法', key: '多肢選択', field: '憲法', plus: true },
     ],
   },

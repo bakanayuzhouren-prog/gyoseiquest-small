@@ -2,12 +2,13 @@
 id: river_management_defect
 title: 河川管理の瑕疵
 tags: [行政法, 国家賠償法2条]
+images: [learn/kokubai/daito-vs-tamagawa]
 ---
 <div class="case-diagram-container">
   <div class="header-box">
     <span class="badge green">行政法 重要判例</span>
-    <h3>河川管理の瑕疵 (大東水害訴訟)</h3>
-    <p>河川が氾濫→国賠？</p>
+    <h3>河川管理の瑕疵 (大東水害訴訟・最判昭59.1.26)</h3>
+    <p>未改修の河川が氾濫したら、直ちに瑕疵か？</p>
   </div>
 
   <div class="ruling-box">
@@ -15,14 +16,11 @@ tags: [行政法, 国家賠償法2条]
       <span class="gavel">⚖️</span> 判断
     </div>
     <div class="ruling-content">
-      <p class="conclusion"><strong>国賠法2条の要件</strong></p>
+      <p class="conclusion"><strong>瑕疵なし（過渡的な安全性で足りる）</strong></p>
       <div class="logic-flow">
-        <p><span class="check">①</span> 公の営造物の設置または管理に瑕疵があったこと<br>
-        ※瑕疵＝通常有すべき安全性を欠いていること</p>
-        <p><span class="check">②</span> これにより他人に損害を生じたこと</p>
-        <p class="note">※河川については、過去の
-
-降雨実績や河川の状況等を総合考慮して瑕疵の有無を判断</p>
+        <p><span class="check">①</span> 瑕疵＝通常有すべき安全性を欠くこと（国賠法2条1項）</p>
+        <p><span class="check">②</span> 未改修・改修途上の河川は、過渡的な安全性で足りる。氾濫したことだけでは直ちに瑕疵ではない。</p>
+        <p class="note">※総合考慮（一般水準・社会通念）。改修済み河川の計画高水（多摩川・平2.12.13）と棚が違う。道路（高知）の基準を当てない。</p>
       </div>
     </div>
   </div>

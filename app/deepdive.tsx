@@ -18,6 +18,8 @@ import {
 } from '@/src/deepdiveLearnAutoImage';
 import { prependGyoshoHikokuDeepdiveImage } from '@/src/gyoshoHikokuDeepdiveImage';
 import { prependGyoshoJunyoDeepdiveImage } from '@/src/gyoshoJunyoDeepdiveImage';
+import { prependGyoshoShobunseiGenkokuDeepdiveImage } from '@/src/gyoshoShobunseiGenkokuDeepdiveImage';
+import { prependKokubai1jo2joDeepdiveImage } from '@/src/kokubai1jo2joDeepdiveImage';
 import { prependKokubaiJuminDeepdiveImage } from '@/src/kokubaiJuminDeepdiveImage';
 import { prependIshiHyojiDeepdiveImage } from '@/src/ishiHyojiDeepdiveImage';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
@@ -454,11 +456,21 @@ export default function DeepdiveScreen() {
             matchBlob,
             (key) => !!resolveImageAsset(key),
           );
+          const afterHyo = prependGyoshoShobunseiGenkokuDeepdiveImage(
+            afterJumin,
+            matchBlob,
+            (key) => !!resolveImageAsset(key),
+          );
+          const afterKokubaiHyo = prependKokubai1jo2joDeepdiveImage(
+            afterHyo,
+            matchBlob,
+            (key) => !!resolveImageAsset(key),
+          );
           const quizMinpo = stored.quizSubject === '民法';
           const learnMinpo = stored.fromLearn && (learnSubj === '民法総則' || stored.learnSubject === '民法総則');
-          if (!quizMinpo && !learnMinpo) return afterJumin;
+          if (!quizMinpo && !learnMinpo) return afterKokubaiHyo;
           return prependIshiHyojiDeepdiveImage(
-            afterJumin,
+            afterKokubaiHyo,
             matchBlob,
             (key) => !!resolveImageAsset(key),
           );

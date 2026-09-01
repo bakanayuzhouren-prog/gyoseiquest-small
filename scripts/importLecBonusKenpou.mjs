@@ -1,5 +1,5 @@
 /**
- * LEC公開模試特典・憲法おまけ（app/模試画像/LECおまけ/憲法/）のOCR。
+ * LEC公開模試特典・憲法おまけ（tmp/模試画像/LECおまけ/憲法/）のOCR。
  * 出力: tmp/lec-bonus-kenpou-2026/
  */
 import fs from 'node:fs/promises';
@@ -10,7 +10,7 @@ import Tesseract from 'tesseract.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
-const SOURCE_DIR = path.join(ROOT, 'app', '模試画像', 'LECおまけ', '憲法');
+const SOURCE_DIR = path.join(ROOT, 'tmp', '模試画像', 'LECおまけ', '憲法');
 const OUTPUT_DIR = path.join(ROOT, 'tmp', 'lec-bonus-kenpou-2026');
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 

@@ -2,6 +2,7 @@
 id: patrol_car_chase
 title: パトカー追跡事件
 tags: [行政法, 国家賠償, 公権力の行使]
+images: [learn/kokubai/patrol-kikyaku]
 ---
 <div class="case-diagram-container">
   <div class="header-box">
@@ -15,7 +16,22 @@ tags: [行政法, 国家賠償, 公権力の行使]
     <div class="context-title">📝 背景事情</div>
     <div class="context-content">
       <div style="text-align: center; width: 100%;">
-        <span class="kaomoji">🚓💨🚙💥</span>
+        <div class="chase-flow">
+          <div class="chase-step">
+            <span class="chase-icon chase-face-east">🚓</span>
+            <span class="chase-cap">パトカー</span>
+          </div>
+          <span class="chase-arrow">追跡▶</span>
+          <div class="chase-step">
+            <span class="chase-icon chase-face-east">🚙</span>
+            <span class="chase-cap">逃走車</span>
+          </div>
+          <span class="chase-arrow">衝突▶</span>
+          <div class="chase-step">
+            <span class="chase-icon">💥</span><span class="chase-icon chase-face-east">🚗</span>
+            <span class="chase-cap">第三者X</span>
+          </div>
+        </div>
         <p class="context-note">
             不審な車（無免許）をパトカーが追跡した。<br>
             逃走車は赤信号を無視して交差点に突入し、無関係の第三者（X）の車と衝突した。<br>
@@ -75,16 +91,12 @@ tags: [行政法, 国家賠償, 公権力の行使]
       <div class="logic-flow">
         <p>
           <span class="check">POINT 1</span> <strong>違法性の判断基準</strong><br>
-          警察官の追跡行為が違法となるのは、<br>
-          「追跡の必要性」と「追跡に伴う危険性」を比較衡（こう）量し、<br>
-          社会通念上、<strong>著しく相当性を欠く場合</strong>に限られる。
+          警察官の追跡行為が違法となるのは、「追跡の必要性」と「追跡の開始・継続・方法の相当性」を比較衡量し、職務の目的を遂げるうえで<strong>不必要</strong>であるとき、<strong>又は</strong>開始・継続・方法が社会通念上<strong>著しく相当性を欠く</strong>ときに限られる。
         </p>
         <p class="arrow-down">⬇️</p>
         <p>
           <span class="check">POINT 2</span> <strong>本件のあてはめ</strong><br>
-          本件では、不審車両を確認する必要性が高く、<br>
-          追跡方法も威嚇的でないなど一定の配慮がなされていたため、<br>
-          <strong>違法ではない</strong>と判断された。
+          本件では、不審車両を確認する必要性が高く、追跡方法も威嚇的でないなど一定の配慮がなされていたため、<strong>違法ではない</strong>と判断された。
         </p>
       </div>
     </div>
@@ -130,5 +142,11 @@ tags: [行政法, 国家賠償, 公権力の行使]
   .context-title { font-weight: bold; color: #d35400; margin-bottom: 5px; font-size: 0.9em; }
   .context-content { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; }
   .context-note { width: 100%; margin-top: 5px; font-size: 0.85em; color: #555; }
+  .chase-flow { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 8px 0 4px; }
+  .chase-step { display: flex; flex-direction: column; align-items: center; }
+  .chase-icon { font-size: 1.8em; line-height: 1.2; display: inline-block; }
+  .chase-face-east { transform: scaleX(-1); }
+  .chase-cap { font-size: 0.7em; font-weight: bold; color: #7f8c8d; margin-top: 2px; }
+  .chase-arrow { font-size: 0.85em; font-weight: bold; color: #d35400; }
   @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 </style>
