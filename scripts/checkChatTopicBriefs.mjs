@@ -15,6 +15,8 @@ import { KENPOU_HANREI2_CHAT_BRIEFS } from '../utils/chatTopicBriefsKenpouHanrei
 import { KENPOU_YAMA_CHAT_BRIEFS } from '../utils/chatTopicBriefsKenpouYama.ts';
 import { LEC_BONUS_KENPOU_CHAT_BRIEFS } from '../utils/chatTopicBriefsLecBonusKenpou.ts';
 import { KENPOU_COMPARISON_BRIEFS } from '../utils/chatTopicBriefsKenpouComparisons.ts';
+import { SHOHOU_CHAT_BRIEFS } from '../utils/chatTopicBriefsShouhou.ts';
+import { SHOHO_KIMEUCHI_CHAT_BRIEFS } from '../utils/chatTopicBriefsShohoKimeuchi.ts';
 import { KISO_HOUGAKU_COMPARISON_BRIEFS } from '../utils/chatTopicBriefsKisoComparisons.ts';
 import { KISO_HOUGAKU_CHAT_TOPIC_BRIEFS } from '../utils/chatTopicBriefsKisoHougaku.ts';
 import { KISO_HOUGAKU_MOSHI_BRIEFS } from '../utils/chatTopicBriefsKisoMoshi.ts';
@@ -763,6 +765,20 @@ const cases = [
   { q: 'GoogleとTwitter', expectTitle: /Google削除とTwitter/ },
   { q: '違いをまとめて 宮本', expectTitle: /宮本から君へと検閲/ },
   { q: '薬局と警備', expectTitle: /職業選択/ },
+  { q: '非顕名ってなに', expectTitle: /非顕名代理/ },
+  { q: '504条と100条の違い', expectTitle: /非顕名代理/ },
+  { q: '本人が死んだら代理権は消える', expectTitle: /506条/ },
+  { q: '商人は自己の計算', expectTitle: /自己の名/ },
+  { q: '現物出資は誰ができる', expectTitle: /現物出資は発起人/ },
+  { q: '創立総会 三分の二', expectTitle: /設立の過半数/ },
+  { q: '発行可能 四分の一', expectTitle: /設立の過半数|発行可能株式総数/ },
+  { q: '公開会社ってなに', expectTitle: /公開会社と譲渡制限/ },
+  { q: '自己株式に配当ある', expectTitle: /自己株式/ },
+  { q: '取得請求と取得条項の違い', expectTitle: /取得請求/ },
+  { q: '会計参与と会計監査人の違い', expectTitle: /会計参与と会計監査人/ },
+  { q: '登記すれば必ず対抗できる', expectTitle: /商業登記は無敵ではない/ },
+  { q: '仲立人と問屋の違い', expectTitle: /支配人・代理商・仲立・問屋/ },
+  { q: '商法むず', expectTitle: /本試験5問の切り方/ },
 ];
 
 const all = [
@@ -791,6 +807,8 @@ const all = [
   ...KENPOU_YAMA_CHAT_BRIEFS,
   ...LEC_BONUS_KENPOU_CHAT_BRIEFS,
   ...KENPOU_COMPARISON_BRIEFS,
+  ...SHOHOU_CHAT_BRIEFS,
+  ...SHOHO_KIMEUCHI_CHAT_BRIEFS,
 ];
 let fail = 0;
 

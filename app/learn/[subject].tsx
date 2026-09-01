@@ -36,6 +36,7 @@ import {
     isGyoseiLinkSubject,
 } from '@/utils/gyoseiConfusingTopicLinks';
 import { appendKenpouConfusingTopicChunks, findRelatedKenpouLearnCards } from '@/utils/kenpouConfusingTopicLinks';
+import { appendShouhouConfusingTopicChunks } from '@/utils/shouhouConfusingTopicLinks';
 import { LEARN_VOICE_PRESETS } from '@/src/learnVoices';
 import {
   isMinpoPersonFlowField,
@@ -70,6 +71,7 @@ import {
   prependIshiHyojiDeepdiveImage,
   shouldAttachIshiHyojiDeepdiveImage,
 } from '@/src/ishiHyojiDeepdiveImage';
+import { prependShouhouCastDeepdiveImage } from '@/src/shouhouCastDeepdiveImage';
 import {
   pickCompareTable,
   resolveCompareTableImage,
@@ -1173,6 +1175,17 @@ export default function LearnSubjectScreen() {
     merged = prependGyoshoShobunseiGenkokuDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
     merged = prependKokubai1jo2joDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
     merged = prependKokubaiJuminDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
+    merged = prependShouhouCastDeepdiveImage(
+      merged,
+      `${currentDisplayContent}\n${fromB}`,
+      (key) => !!resolveImageAsset(key),
+    );
+    if (subject === '商法・会社法' || learnSubjectForDeepdive === '商法・会社法') {
+      merged = appendShouhouConfusingTopicChunks(
+        merged,
+        `${currentDisplayContent}\n${fromB}`,
+      );
+    }
     if (subject === '民法総則' || learnSubjectForDeepdive === '民法総則') {
       return prependIshiHyojiDeepdiveImage(merged, matchBlob, (key) => !!resolveImageAsset(key));
     }

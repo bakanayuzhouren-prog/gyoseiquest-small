@@ -30,6 +30,7 @@ import { appendGyoshoHyoToLearnDeepdive } from './appendGyoshoHyoLearn.js';
 import { appendIninKitakuCompareToLearnDeepdive } from './appendIninKitakuCompareLearn.js';
 import { appendSeigenSaikokuCompareToLearnDeepdive } from './appendSeigenSaikokuLearn.js';
 import { appendMinpo177ThirdPartyToLearnDeepdive } from './appendMinpo177ThirdPartyLearn.js';
+import { appendShouhouCastToLearnDeepdive } from './appendShouhouCastLearn.js';
 
 function mergeLearnLayers(base, ...layers) {
   return layers.reduce(
@@ -86,11 +87,14 @@ const withKisochi = mergeTacLearn(
 );
 
 export const LEARN_CONTENT = withKisochi.LEARN_CONTENT;
-export const LEARN_DEEPDIVE = appendMinpo177ThirdPartyToLearnDeepdive(
-  appendSeigenSaikokuCompareToLearnDeepdive(
-    appendIninKitakuCompareToLearnDeepdive(
-      appendGyoshoHyoToLearnDeepdive(
-        appendStolenLostCompareToLearnDeepdive(withKisochi.LEARN_DEEPDIVE, withKisochi.LEARN_CONTENT),
+export const LEARN_DEEPDIVE = appendShouhouCastToLearnDeepdive(
+  appendMinpo177ThirdPartyToLearnDeepdive(
+    appendSeigenSaikokuCompareToLearnDeepdive(
+      appendIninKitakuCompareToLearnDeepdive(
+        appendGyoshoHyoToLearnDeepdive(
+          appendStolenLostCompareToLearnDeepdive(withKisochi.LEARN_DEEPDIVE, withKisochi.LEARN_CONTENT),
+          withKisochi.LEARN_CONTENT,
+        ),
         withKisochi.LEARN_CONTENT,
       ),
       withKisochi.LEARN_CONTENT,

@@ -23,6 +23,8 @@ import { prependKokubai1jo2joDeepdiveImage } from '@/src/kokubai1jo2joDeepdiveIm
 import { prependKokubaiJuminDeepdiveImage } from '@/src/kokubaiJuminDeepdiveImage';
 import { prependIshiHyojiDeepdiveImage } from '@/src/ishiHyojiDeepdiveImage';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
+import { prependShouhouCastDeepdiveImage } from '@/src/shouhouCastDeepdiveImage';
+import { appendShouhouConfusingTopicChunks } from '@/utils/shouhouConfusingTopicLinks';
 import {
     applyLearnIndexToLearnReturnPath,
     clearDeepdiveSessionWeb,
@@ -466,11 +468,26 @@ export default function DeepdiveScreen() {
             matchBlob,
             (key) => !!resolveImageAsset(key),
           );
+          const afterShouhouCast = prependShouhouCastDeepdiveImage(
+            afterKokubaiHyo,
+            `${stored.choiceLabel || ''}\n${stored.screenTitle || ''}\n${extraMatch}`,
+            (key) => !!resolveImageAsset(key),
+          );
+          const shouhouSubj =
+            stored.quizSubject === '商法・会社法' ||
+            learnSubj === '商法・会社法' ||
+            stored.learnSubject === '商法・会社法';
+          const afterShouhouChunks = shouhouSubj
+            ? appendShouhouConfusingTopicChunks(
+                afterShouhouCast,
+                `${stored.choiceLabel || ''}\n${stored.screenTitle || ''}\n${extraMatch}\n${afterShouhouCast}`,
+              )
+            : afterShouhouCast;
           const quizMinpo = stored.quizSubject === '民法';
           const learnMinpo = stored.fromLearn && (learnSubj === '民法総則' || stored.learnSubject === '民法総則');
-          if (!quizMinpo && !learnMinpo) return afterKokubaiHyo;
+          if (!quizMinpo && !learnMinpo) return afterShouhouChunks;
           return prependIshiHyojiDeepdiveImage(
-            afterKokubaiHyo,
+            afterShouhouChunks,
             matchBlob,
             (key) => !!resolveImageAsset(key),
           );

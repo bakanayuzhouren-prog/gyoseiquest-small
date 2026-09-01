@@ -32,13 +32,19 @@ export default function AvatarScreen() {
             </View>
 
             <ScrollView contentContainerStyle={styles.scrollContent}>
-                {/* Current Profile Card */}
                 <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
-                    <View style={styles.avatarContainer}>
+                    <Pressable
+                        accessibilityRole="button"
+                        accessibilityLabel="カスタマイズを開く"
+                        onPress={() => router.push('/avatar-customize')}
+                        style={styles.avatarContainer}
+                    >
                         <Image source={getAvatarSource(avatarId)} style={styles.currentAvatar} />
-                    </View>
+                    </Pressable>
+                    <ThemedText style={[styles.tapHint, { color: colors.subText }]}>
+                        アイコンをタップしてカスタマイズ
+                    </ThemedText>
 
-                    {/* Name Edit */}
                     <View style={styles.nameContainer}>
                         <TextInput
                             style={[styles.nameInput, { color: colors.text, borderColor: colors.subText }]}
@@ -118,7 +124,7 @@ const styles = StyleSheet.create({
         elevation: 3,
     },
     avatarContainer: {
-        marginBottom: 10,
+        marginBottom: 6,
     },
     currentAvatar: {
         width: 100,
@@ -126,6 +132,10 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         borderWidth: 2,
         borderColor: '#ddd',
+    },
+    tapHint: {
+        fontSize: 12,
+        marginBottom: 16,
     },
     nameContainer: {
         width: '100%',

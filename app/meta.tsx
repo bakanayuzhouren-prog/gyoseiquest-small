@@ -2,6 +2,7 @@ import { GameCenter } from '@/components/GameCenter';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Themes, useTheme } from '@/src/context/ThemeContext';
+import { AvatarWithHeldItem } from '@/components/AvatarWithHeldItem';
 import { getAvatarSource, useUser } from '@/src/context/UserContext';
 import {
     formatOfficeLabel,
@@ -47,7 +48,7 @@ type Position = { x: number; y: number };
 export default function MetaScreen() {
     const { theme } = useTheme();
     const colors = Themes[theme];
-    const { avatarId, username, currentLocation, setCurrentLocation } = useUser();
+    const { avatarId, username, currentLocation, setCurrentLocation, heldItemId } = useUser();
 
     // --- Local Atmosphere Logic ---
     const currentPref = getPrefectureFromLocation(currentLocation);
@@ -260,7 +261,12 @@ export default function MetaScreen() {
                     )}
 
                     <View style={[styles.playerAvatar, { borderColor: colors.primary, shadowColor: colors.primary }]}>
-                        <Image source={getAvatarSource(avatarId)} style={styles.playerImage} />
+                        <AvatarWithHeldItem
+                            avatarId={avatarId}
+                            heldItemId={heldItemId}
+                            size={46}
+                            avatarStyle={styles.playerImage}
+                        />
                     </View>
                     <ThemedText style={styles.playerName}>{username}</ThemedText>
                     {dragging && <ThemedText style={styles.dragHint}>Moving...</ThemedText>}

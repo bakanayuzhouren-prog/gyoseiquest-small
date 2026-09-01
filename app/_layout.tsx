@@ -55,6 +55,7 @@ export default function RootLayout() {
               <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
               <Stack.Screen name="settings" options={{ presentation: 'modal', title: '設定' }} />
               <Stack.Screen name="avatar" options={{ headerShown: false }} />
+              <Stack.Screen name="avatar-customize" options={{ headerShown: false }} />
             </Stack>
             <StatusBar style="auto" />
           </ThemeProvider>

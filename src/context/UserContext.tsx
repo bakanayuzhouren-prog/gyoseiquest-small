@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
+import { isAvatarBackgroundId, type AvatarBackgroundId } from '@/src/data/avatarBackgrounds';
+import { isAvatarItemId, type AvatarItemId } from '@/src/data/avatarItems';
+
 // --- Avatar Definitions ---
 export const AVATARS = {
     male: require('@/assets/images/avatar_student_male.png'),
@@ -36,6 +39,10 @@ type UserContextType = {
     setUsername: (name: string) => void;
     currentLocation: string;
     setCurrentLocation: (loc: string) => void;
+    heldItemId: AvatarItemId | null;
+    setHeldItemId: (id: AvatarItemId | null) => void;
+    avatarBackgroundId: AvatarBackgroundId;
+    setAvatarBackgroundId: (id: AvatarBackgroundId) => void;
 };
 
 const UserContext = createContext<UserContextType>({
@@ -45,6 +52,10 @@ const UserContext = createContext<UserContextType>({
     setUsername: () => { },
     currentLocation: '東京都新宿区',
     setCurrentLocation: () => { },
+    heldItemId: null,
+    setHeldItemId: () => { },
+    avatarBackgroundId: 'none',
+    setAvatarBackgroundId: () => { },
 });
 
 export const useUser = () => useContext(UserContext);
@@ -53,6 +64,8 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [avatarId, setAvatarIdState] = useState<AvatarType>(DEFAULT_AVATAR_ID);
     const [username, setUsernameState] = useState('Guest');
     const [currentLocation, setCurrentLocationState] = useState('東京都新宿区');
+    const [heldItemId, setHeldItemIdState] = useState<AvatarItemId | null>(null);
+    const [avatarBackgroundId, setAvatarBackgroundIdState] = useState<AvatarBackgroundId>('none');
 
     // Load saved data on mount
     useEffect(() => {
@@ -70,6 +83,14 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const savedLoc = localStorage.getItem('gq_location');
             if (savedLoc) {
                 setCurrentLocationState(savedLoc);
+            }
+            const savedHeld = localStorage.getItem('gq_held_item');
+            if (isAvatarItemId(savedHeld)) {
+                setHeldItemIdState(savedHeld);
+            }
+            const savedBg = localStorage.getItem('gq_avatar_bg');
+            if (isAvatarBackgroundId(savedBg)) {
+                setAvatarBackgroundIdState(savedBg);
             }
         }
     }, []);
@@ -96,8 +117,26 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     };
 
+    const setHeldItemId = (id: AvatarItemId | null) => {
+        setHeldItemIdState(id);
+        if (Platform.OS === 'web') {
+            if (id) {
+                localStorage.setItem('gq_held_item', id);
+            } else {
+                localStorage.removeItem('gq_held_item');
+            }
+        }
+    };
+
+    const setAvatarBackgroundId = (id: AvatarBackgroundId) => {
+        setAvatarBackgroundIdState(id);
+        if (Platform.OS === 'web') {
+            localStorage.setItem('gq_avatar_bg', id);
+        }
+    };
+
     return (
-        <UserContext.Provider value={{ avatarId, setAvatarId, username, setUsername, currentLocation, setCurrentLocation }}>
+        <UserContext.Provider value={{ avatarId, setAvatarId, username, setUsername, currentLocation, setCurrentLocation, heldItemId, setHeldItemId, avatarBackgroundId, setAvatarBackgroundId }}>
             {children}
         </UserContext.Provider>
     );

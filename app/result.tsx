@@ -10,7 +10,7 @@ import { SaikokuCompareModal } from '@/components/saikoku-compare-modal';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { getChunkImageSource } from '@/src/chunkImages';
-import { setChunkTextBodyForNavigation } from '@/src/chunkSessionState';
+import { setChunkNavigationPayload, setChunkTextBodyForNavigation } from '@/src/chunkSessionState';
 import { TEITOUKEN_TEXTBOOK_MARKDOWN } from '@/src/content/teitoukenTextbookMarkdown';
 import { useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
@@ -38,6 +38,7 @@ import { prependGyoshoJunyoDeepdiveImage } from '@/src/gyoshoJunyoDeepdiveImage'
 import { prependGyoshoShobunseiGenkokuDeepdiveImage } from '@/src/gyoshoShobunseiGenkokuDeepdiveImage';
 import { prependKokubai1jo2joDeepdiveImage } from '@/src/kokubai1jo2joDeepdiveImage';
 import { prependKokubaiJuminDeepdiveImage } from '@/src/kokubaiJuminDeepdiveImage';
+import { prependShouhouCastDeepdiveImage } from '@/src/shouhouCastDeepdiveImage';
 import { prependIshiHyojiDeepdiveImage } from '@/src/ishiHyojiDeepdiveImage';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
@@ -50,6 +51,7 @@ import { appendConstitutionProcedureConfusionChunk } from '@/utils/constitution-
 import { appendConstitutionProcedureRelatedQuestions } from '@/utils/constitution-procedure-related-questions';
 import { appendGyoseiConfusingTopicChunks, findRelatedGyoseiLearnCards, gyoseiLearnCardsBySubject, isGyoseiLinkSubject } from '@/utils/gyoseiConfusingTopicLinks';
 import { appendKenpouConfusingTopicChunks, findRelatedKenpouLearnCards } from '@/utils/kenpouConfusingTopicLinks';
+import { appendShouhouConfusingTopicChunks, buildShouhouChunkPayload, isShouhouQuizSubject } from '@/utils/shouhouConfusingTopicLinks';
 import { hasPersonFlowDiagramForChoice, isMinpoPersonFlowField, resolvePersonFlowDiagram } from '@/src/personFlowDiagram';
 import {
   pickCompareTable,
@@ -1119,8 +1121,17 @@ export default function ResultScreen() {
         choiceMatch,
         (key) => !!resolveImageAsset(key),
       );
-      if (subject !== '民法') return afterKokubaiHyo;
-      return prependIshiHyojiDeepdiveImage(afterKokubaiHyo, matchText, (key) => !!resolveImageAsset(key));
+      const stemAndChoice = [
+        String((question as { text?: string })?.text || ''),
+        thisChoice,
+      ].join('\n');
+      const afterShouhouCast = prependShouhouCastDeepdiveImage(
+        afterKokubaiHyo,
+        stemAndChoice,
+        (key) => !!resolveImageAsset(key),
+      );
+      if (subject !== '民法') return afterShouhouCast;
+      return prependIshiHyojiDeepdiveImage(afterShouhouCast, matchText, (key) => !!resolveImageAsset(key));
     };
     if (imageKeys.length === 0) {
       return finishQuizDeepdiveImages(trimmed);
@@ -2080,9 +2091,12 @@ export default function ResultScreen() {
               ),
               slotContext,
             );
-            const slotDeepBody = subject === '憲法'
-              ? normalizeFinalConstitutionDeepDivePresentation(slotDeepBodyWithChunks)
+            const slotDeepBodyWithShouhou = isShouhouQuizSubject(subject, field)
+              ? appendShouhouConfusingTopicChunks(slotDeepBodyWithChunks, slotContext)
               : slotDeepBodyWithChunks;
+            const slotDeepBody = subject === '憲法'
+              ? normalizeFinalConstitutionDeepDivePresentation(slotDeepBodyWithShouhou)
+              : slotDeepBodyWithShouhou;
             return (
               <ThemedView style={[styles.choiceStatuteBlock, styles.choiceStatuteCard]}>
                 <ThemedText style={[styles.choiceStatuteTitle, { color: colors.text, marginBottom: 10 }]}>解説</ThemedText>
@@ -2237,9 +2251,12 @@ export default function ResultScreen() {
                 ),
                 procedureContext,
               );
-              const deepContent = subject === '憲法'
-                ? normalizeFinalConstitutionDeepDivePresentation(deepContentWithChunks)
+              const deepContentWithShouhou = isShouhouQuizSubject(subject, field)
+                ? appendShouhouConfusingTopicChunks(deepContentWithChunks, procedureContext)
                 : deepContentWithChunks;
+              const deepContent = subject === '憲法'
+                ? normalizeFinalConstitutionDeepDivePresentation(deepContentWithShouhou)
+                : deepContentWithShouhou;
               const deepBeginner = choiceDeepDiveBeginner?.[choiceIdx]?.trim();
               const deepPeripheral = choiceDeepDivePeripheral?.[choiceIdx]?.trim();
               const relatedJBody = (choiceRelatedStatutes?.[choiceIdx] ?? '').trim();
@@ -2393,17 +2410,32 @@ export default function ResultScreen() {
                           chunkImg =
                             resolveSaikenkakuronSupplementChunkImageKey(sourceQuestionNum1BasedForAutoImages, choiceIdx + 1) || '';
                         }
-                        if (!shouldShowChoiceChunkButton(chunkImg)) return null;
+                        const shouhouHay = `${text}\n${choiceText}\n${choiceTxt}`;
+                        const shouhouPayload = isShouhouQuizSubject(subject, field)
+                          ? buildShouhouChunkPayload(shouhouHay)
+                          : null;
+                        if (!chunkImg && shouhouPayload?.imageKey) chunkImg = shouhouPayload.imageKey;
+                        const showShouhouChunk = !!(shouhouPayload && (shouhouPayload.body || shouhouPayload.imageKey));
+                        if (!shouldShowChoiceChunkButton(chunkImg) && !showShouhouChunk) return null;
                         const hasChunkImgAsset = !!(getChunkImageSource(chunkImg) || getDeepdiveImageSource(chunkImg));
                         return (
                           <Pressable
                             onPress={() => {
-                              if (hasChunkImgAsset) setChunkTextBodyForNavigation('');
-                              else setChunkTextBodyForNavigation(chunkImg.trim());
                               const p2 = getParagraph2ForChunk(statutes[0], statuteItemsRaw);
                               const statuteContent = p2
                                 ? `**${getStatuteDisplayTitle(p2, statuteItemsRaw)}**\n\n${p2.content || ''}`
                                 : '';
+                              if (showShouhouChunk) {
+                                setChunkNavigationPayload({
+                                  body: shouhouPayload?.body || '',
+                                  chunkImage: (hasChunkImgAsset ? chunkImg : '') || shouhouPayload?.imageKey || '',
+                                  statuteTitle: shouhouPayload?.title || '商法・会社法 関連知識',
+                                });
+                              } else if (hasChunkImgAsset) {
+                                setChunkTextBodyForNavigation('');
+                              } else {
+                                setChunkTextBodyForNavigation(chunkImg.trim());
+                              }
                               router.push({
                                 pathname: '/chunk',
                                 params: {
@@ -2415,9 +2447,13 @@ export default function ResultScreen() {
                                     ? getStatuteDisplayTitle(statutes[0], statuteItemsRaw)
                                     : /114条|催告/.test(choiceTxt)
                                       ? '無権代理（114条）・催告に対する沈黙の効果'
-                                      : '関連知識',
+                                      : showShouhouChunk
+                                        ? (shouhouPayload?.title || '商法・会社法 関連知識')
+                                        : '関連知識',
                                   statuteContent,
-                                  chunkImage: hasChunkImgAsset ? chunkImg : '',
+                                  chunkImage: hasChunkImgAsset || showShouhouChunk
+                                    ? (chunkImg || shouhouPayload?.imageKey || '')
+                                    : '',
                                   correctCountSession: String(correctCountSessionCurrent),
                                   wrongCounts: JSON.stringify(updatedWrongCounts),
                                   ...(mode ? { mode } : {}),
