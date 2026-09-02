@@ -40,8 +40,21 @@ Cursor がプロンプトを置く場所。Codex は **「画像生成して」*
 | 09 | `codex-kiso-09-adr.md` | ADR4（調停・和解・仲裁・あっせん） | `adr-4.png` |
 | 10 | `codex-kiso-10-hougen.md` | 制定法＞判例・条理・学説 | `hougen.png` |
 | 11 | `codex-kiso-11-saibansho.md` | 裁判所の第一審・控訴・大法廷 | `saibansho.png` |
+| 12 | `codex-kiso-12-kengen-ken-gen.md` | 権限 vs 権原（覚え方） | `kengen-ken-gen.png` |
+| 12-2 | `codex-kiso-12-kengen-ken-gen-2.md` | 権限 vs 権原（代表例の表） | `kengen-ken-gen-2.png` |
+| 02-2 | `codex-kiso-02-kaishaku-2.md` | 解釈の代表例表 | `kaishaku-4type-2.png` |
+| 13 | `codex-kiso-13-matawa-moshikuwa.md` | 又は vs 若しくは | `matawa-moshikuwa.png` |
+| 14 | `codex-kiso-14-kansuru-kakaru.md` | 関する vs 係る | `kansuru-kakaru.png` |
+| 15 | `codex-kiso-15-naranai-dekinai.md` | してはならない vs できない | `naranai-dekinai.png` |
+| 16 | `codex-kiso-16-shinakereba-monotosuru.md` | しなければならない vs ものとする | `shinakereba-monotosuru.png` |
+| 17 | `codex-kiso-17-horei-keishiki.md` | 法令の型（章節款・条項号） | `horei-keishiki.png` |
+| 18 | `codex-kiso-18-kanpo-kokuji.md` | 公布と官報 | `kanpo-kokuji.png` |
 
-次バッチ（この回では作らない）: 外国人の国外犯、裁判員（既存 `kenshin-vs-saibanin.png` あり）。
+既存を再利用: その他＝04、科する＝05、直ちに＝01、権限＝12、裁判員＝`kenshin-vs-saibanin.png`。
+
+対比2語（13〜16、12）は左右に語を分ける。ひっかけは底部。AGENTS.md「対比2語の左右分割」。
+
+次バッチ（この回では作らない）: 外国人の国外犯。
 
 ## 共通禁止
 
