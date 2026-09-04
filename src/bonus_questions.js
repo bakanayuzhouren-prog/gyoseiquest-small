@@ -15,6 +15,8 @@ import { LEC_ATARU_ROUND1_BONUS_QUESTIONS } from './lec_ataru_round1_bonus_quest
 import { LEC_ATARU_ROUND2_BONUS_QUESTIONS } from './lec_ataru_round2_bonus_questions';
 import { LEC_ATARU_ROUND3_BONUS_QUESTIONS } from './lec_ataru_round3_bonus_questions';
 import { GOKAKU_KAKUMEI_HOSEI_R2_BONUS_QUESTIONS } from './goukaku_kakumei_hosei_r2_bonus_questions';
+import { ITO_JUKU_KOUKAI1_BONUS_QUESTIONS } from './ito_juku_koukai1_bonus_questions';
+import { ITO_JUKU_FINALCHECK_BONUS_QUESTIONS } from './ito_juku_finalcheck_bonus_questions';
 
 /** @param {Record<string, Record<string, unknown[]>>} base @param {Record<string, Record<string, unknown[]>>} extra */
 function mergeBonusQuestions(base, extra) {
@@ -200,4 +202,6 @@ export const BONUS_QUESTIONS = [
   LEC_ATARU_ROUND2_BONUS_QUESTIONS,
   LEC_ATARU_ROUND3_BONUS_QUESTIONS,
   GOKAKU_KAKUMEI_HOSEI_R2_BONUS_QUESTIONS,
+  ITO_JUKU_KOUKAI1_BONUS_QUESTIONS,
+  ITO_JUKU_FINALCHECK_BONUS_QUESTIONS,
 ].reduce((acc, layer) => mergeBonusQuestions(acc, layer), {});

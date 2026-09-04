@@ -22,6 +22,10 @@ const RULES = [
     tag: '[[image:learn/gyosho/genkoku-nashi]]',
     test: (a) => /鉄道料金の改定に原告適格はない|消費者に当該商品表示/.test(a),
   },
+  {
+    tag: '[[image:learn/gyosho/genkoku-kikiwake]]',
+    test: (a) => /原告適格は法律上保護された利益で切る/.test(a),
+  },
 ];
 
 export function appendGyoshoHyoToLearnDeepdive(learnDeepdive, learnContent) {

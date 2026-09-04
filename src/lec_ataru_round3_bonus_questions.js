@@ -397,6 +397,12 @@ export const LEC_ATARU_ROUND3_BONUS_QUESTIONS = {
           "誤答肢。裁判上の行為はできない、他の支配人を選任できる、死亡で消滅。",
           "誤答肢。裁判上の行為はできない、他の支配人を選任できる、死亡で消滅。"
         ],
+        "choiceDeepDive": [
+          "[[image:learn/shouhou/shihainin-kengen]]\n\nこの肢が誤り。支配人は裁判上もできる（商法21条1項）。",
+          "[[image:learn/shouhou/shihainin-kengen]]\n\n支配人は他の使用人を選任・解任できる（商法21条2項）。",
+          "[[image:learn/shouhou/shihainin-kengen]]\n\n商人の死亡では代理権は消滅しない。",
+          "[[image:learn/shouhou/shihainin-kengen]]\n\n○。営業に関する一切の裁判上又は裁判外（商法21条1項）。"
+        ],
         "isBonus": true,
         "wordBank": "",
         "memo": "LEC市販模試第3回・支配人の代理権",

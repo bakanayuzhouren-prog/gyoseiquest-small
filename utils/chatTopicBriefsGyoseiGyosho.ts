@@ -92,6 +92,9 @@ export const GYOSEI_GYOSHO_CHAT_BRIEFS: ChatTopicBrief[] = [
   },
   {
     triggers: [
+      '原告適格',
+      '原告適格がある判例',
+      '原告適格が認められた',
       '原告適格 行訴',
       '法律上の利益 取消訴訟',
       '9条2項',

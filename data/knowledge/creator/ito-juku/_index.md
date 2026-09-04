@@ -20,6 +20,12 @@ disclaimer: 伊藤塾 creator MD の索引。
 | [shouhou-setsuritsu-check.md](./shouhou-setsuritsu-check.md) | 問題CHECK テーマ1 | **28肢** |
 | [shouhou-gyoushou-check.md](./shouhou-gyoushou-check.md) | 問題CHECK テーマ2 | **32肢** |
 
+## 公開模擬試験Ⅰ（2026・解説から論点化）
+
+| ファイル | 内容 |
+|----------|------|
+| [koukai-2026-round1-topics.md](./koukai-2026-round1-topics.md) | 法令・記述・多肢。一般知識は対象外。問題画像待ち。 |
+
 ④質問する例: 「伊藤塾 発起設立 失権」「商事留置 牽連関係」「価額てん補 無過失」
 
 ## 再生成

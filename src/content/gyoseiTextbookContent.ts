@@ -123,6 +123,30 @@ export const GYOSEI_TEXTBOOK_CHAPTERS: TextbookChapter[] = [
         title: '暗記',
         text: '前＝手続法。主宰者＝聴聞。補正は申請を**速やかに**直させるか拒否。',
       },
+      {
+        type: 'p',
+        text: '聴聞と弁明は、共通の保障（処分基準・理由提示・証拠提出・代理人）と、聴聞だけの保障（口頭原則・文書閲覧権・参加人・主宰者）を分ける。31条が弁明へ準用するのは15条3項・4項と16条のみ。',
+      },
+      {
+        type: 'table',
+        headers: ['保障', '聴聞', '弁明'],
+        rows: [
+          ['言い分', '口頭審理が原則', '弁明書提出が原則'],
+          ['文書閲覧権', 'あり（18条）', 'なし'],
+          ['参加人', 'あり（17条）', 'なし'],
+          ['主宰者', 'あり（19条）', 'なし'],
+        ],
+      },
+      {
+        type: 'figure',
+        imageKey: 'learn/tetsuzuki/chomon-benmei-hikaku',
+        caption: '言い分は口か紙か。文書閲覧権と参加人は聴聞のみ。',
+      },
+      {
+        type: 'tip',
+        title: '出典',
+        text: '伊藤塾ファイナルチェックカードから論点を抽出し、法令・判例・官公庁資料に基づき独自に再構成。原文・誌面は転載していない。',
+      },
     ],
     quizzes: [
       {
@@ -131,6 +155,14 @@ export const GYOSEI_TEXTBOOK_CHAPTERS: TextbookChapter[] = [
         statement: '不利益処分に直接関与した職員は、聴聞の主宰者になることができない。',
         correct: false,
         explain: '行手法の主宰者は関与してもなれる。なれないのは行服の審理員。',
+      },
+      {
+        id: 'g-te-2',
+        label: '閲覧',
+        statement: '弁明の機会の付与にも、行政手続法18条の文書閲覧権が準用される。',
+        correct: false,
+        explain: '31条が準用するのは15条3項・4項と16条。閲覧は聴聞のみ。',
+        imageKey: 'learn/tetsuzuki/chomon-benmei-hikaku',
       },
     ],
   },
@@ -158,6 +190,31 @@ export const GYOSEI_TEXTBOOK_CHAPTERS: TextbookChapter[] = [
         title: '暗記',
         text: '後＝不服審査。審理員＝関与NG。請求書の不備は**補正命令**。',
       },
+      {
+        type: 'p',
+        text: '認容裁決は、審査庁が処分庁か上級かどちらでもないかでできることが変わる。申立人の不利益に変更できない。',
+      },
+      {
+        type: 'table',
+        headers: ['対象', '処分庁が審査庁', '上級行政庁', 'どちらでもない'],
+        rows: [
+          ['処分', '取消し・変更', '取消し・変更', '取消し。変更不可'],
+          ['事実上の行為', '宣言し撤廃又は変更', '宣言し撤廃を命じ、変更も命じ得る', '宣言。命令なし'],
+          ['不作為', '宣言し自ら処分', '宣言し処分を命ずる', '宣言。命令なし'],
+        ],
+      },
+      {
+        type: 'figureSlot',
+        id: 'fufuku-ninyo-shobun',
+        title: '取り消すのか宣言するのか',
+        caption: 'learn/fufuku/ninyo-shobun-jijitsukoi.png（Codex待ち）',
+        why: '処分の取消しと事実上の行為の宣言を混ぜない',
+      },
+      {
+        type: 'figure',
+        imageKey: 'learn/fufuku/ninyo-shinsei-fusakui',
+        caption: '申請拒否は取消しと処分。不作為は宣言と処分。第三者審査庁は命令できない。',
+      },
     ],
     quizzes: [
       {
@@ -166,6 +223,14 @@ export const GYOSEI_TEXTBOOK_CHAPTERS: TextbookChapter[] = [
         statement: '処分手続に関与した職員でも、審理員に指名できる。',
         correct: false,
         explain: '審理員は関与したらなれない。関与OKなのは聴聞の主宰者。',
+      },
+      {
+        id: 'g-fu-2',
+        label: '認容',
+        statement: '処分庁でも上級行政庁でもない審査庁も、処分を変更できる。',
+        correct: false,
+        explain: '変更できるのは処分庁又は上級行政庁が審査庁のとき。不利益変更は禁止。',
+        imageKey: 'learn/fufuku/ninyo-shinsei-fusakui',
       },
     ],
   },
@@ -193,6 +258,30 @@ export const GYOSEI_TEXTBOOK_CHAPTERS: TextbookChapter[] = [
         title: '暗記',
         text: '裁判＝行訴。数字を入れ替えるな（3か月は行服、6か月は取消）。',
       },
+      {
+        type: 'p',
+        text: '原告適格は法律上保護された利益。場外車券は病院等の開設者あり・周辺住民なし。医師の競争はなし。',
+      },
+      {
+        type: 'figure',
+        imageKey: 'learn/gyosho/genkoku-ari',
+        caption: '原告適格があり側。生命身体の直接の危険など。',
+      },
+      {
+        type: 'figure',
+        imageKey: 'learn/gyosho/genkoku-nashi',
+        caption: '原告適格なし側。競争者・一般的公益に止まりやすいもの。',
+      },
+      {
+        type: 'figure',
+        imageKey: 'learn/gyosho/genkoku-kikiwake',
+        caption: 'あり／なしの聞き分け。',
+      },
+      {
+        type: 'tip',
+        title: '出典',
+        text: '伊藤塾ファイナルチェックカードから論点を抽出し、法令・判例・官公庁資料に基づき独自に再構成。原文・誌面は転載していない。',
+      },
     ],
     quizzes: [
       {
@@ -201,6 +290,54 @@ export const GYOSEI_TEXTBOOK_CHAPTERS: TextbookChapter[] = [
         statement: '取消訴訟の出訴期間は、処分を知った日から3か月である。',
         correct: false,
         explain: '取消は知って6か月。3か月は審査請求。',
+      },
+      {
+        id: 'g-gyo-2',
+        label: '適格',
+        statement: '場外車券発売施設の周辺住民は、病院等の開設者と同じく原告適格を有する。',
+        correct: false,
+        explain: '最判平21.10.15。病院等はあり、周辺住民はなし。',
+        imageKey: 'learn/gyosho/genkoku-kikiwake',
+      },
+    ],
+  },
+  {
+    id: 'jichi-kansa',
+    title: '地方自治法',
+    subtitle: '連署か一人か裁判所か',
+    character: 'chachalot',
+    intro: '事務監査請求・住民監査請求・住民訴訟は、誰が・誰に・対象・期間・次の手続で切る。',
+    blocks: [
+      {
+        type: 'table',
+        headers: ['判断軸', '事務監査', '住民監査', '住民訴訟'],
+        rows: [
+          ['誰が', '選挙権者の50分の1以上の連署', '住民1人（法人も可）', '監査をした住民'],
+          ['誰に', '監査委員', '監査委員', '裁判所'],
+          ['対象', '事務全般', '違法・不当な財務会計又は怠る事実', '違法な財務会計又は怠る事実'],
+          ['期間', '法定なし', '原則1年（正当な理由で例外）', '242条の2の30日'],
+        ],
+      },
+      {
+        type: 'figureSlot',
+        id: 'jichi-kansa-3shu',
+        title: '連署か一人か裁判所か',
+        caption: 'learn/jichi/kansa-3shu-hikaku.png（Codex待ち）',
+        why: '人数と対象と期間の入れ替えを止める',
+      },
+      {
+        type: 'tip',
+        title: '出典',
+        text: '伊藤塾ファイナルチェックカードから論点を抽出し、法令・判例・官公庁資料に基づき独自に再構成。原文・誌面は転載していない。',
+      },
+    ],
+    quizzes: [
+      {
+        id: 'g-ji-1',
+        label: '連署',
+        statement: '事務監査請求は、住民1人でも監査委員に請求できる。',
+        correct: false,
+        explain: '選挙権を有する者の総数の50分の1以上の連署が要る。1人で足りるのは住民監査請求。',
       },
     ],
   },

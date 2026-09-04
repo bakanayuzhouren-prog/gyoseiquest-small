@@ -23,6 +23,19 @@ export default function HomeScreen() {
     { color: colors.choiceText }
   ]);
 
+  const chokkiButtonStyle = StyleSheet.flatten([
+    buttonStyle,
+    {
+      backgroundColor: isRouhou ? '#F3E8D4' : colors.accent,
+      borderColor: colors.primary,
+      borderWidth: 2,
+    },
+  ]);
+  const chokkiTextStyle = StyleSheet.flatten([
+    styles.menuText,
+    { color: isRouhou ? colors.primary : '#FFFFFF' },
+  ]);
+
   return (
     <ThemedView style={styles.container}>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.contentContainer}>
@@ -35,6 +48,13 @@ export default function HomeScreen() {
         <ThemedText style={[styles.subtitle, isRouhou && { color: colors.subText, letterSpacing: 0.6 }]}>
           機能を選択してください。
         </ThemedText>
+        <Link href={'/chokki' as Href} asChild>
+          <Pressable style={chokkiButtonStyle}>
+            <ThemedText type="defaultSemiBold" style={chokkiTextStyle}>
+              直前期はこれ！
+            </ThemedText>
+          </Pressable>
+        </Link>
         <Link href="/learn" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>

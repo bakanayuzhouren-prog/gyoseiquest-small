@@ -330,6 +330,48 @@ export const MINPOU_TEXTBOOK_CHAPTERS: TextbookChapter[] = [
     ],
   },
   {
+    id: 'inin-junyo',
+    title: '委任規定の準用',
+    subtitle: '寄託は狭く、組合は広く、事務管理は702条',
+    character: 'chachalot',
+    intro: '644条から650条は、契約類型ごとに準用範囲が違う。既存図 inin-kitaku-gimu / kenri を使う。',
+    blocks: [
+      {
+        type: 'table',
+        headers: ['制度', '準用する', '準用しない／別条'],
+        rows: [
+          ['寄託', '646〜648、649、650条1・2項', '644、645、648条の2、650条3項'],
+          ['組合の業務執行組合員', '644〜650', '—'],
+          ['事務管理', '645〜647', '費用は702条。緊急は698条。注意は697条'],
+        ],
+      },
+      {
+        type: 'p',
+        text: '寄託の注意義務は、有償なら400条、無償なら659条。伊藤塾ファイナルチェックカードから論点を抽出し、法令・判例・官公庁資料に基づき独自に再構成。原文・誌面は転載していない。',
+      },
+      {
+        type: 'figure',
+        imageKey: 'learn/minnpou/inin-kitaku-gimu',
+        caption: '寄託に準用しない義務側（644条など）。',
+      },
+      {
+        type: 'figure',
+        imageKey: 'learn/minnpou/inin-kitaku-kenri',
+        caption: '準用する権利・費用側。',
+      },
+    ],
+    quizzes: [
+      {
+        id: 'm-inin-1',
+        label: '寄託',
+        statement: '寄託には民法644条の善管注意義務が準用される。',
+        correct: false,
+        explain: '665条は644条を準用しない。有償は400条、無償は659条。',
+        imageKey: 'learn/minnpou/inin-kitaku-gimu',
+      },
+    ],
+  },
+  {
     id: 'next',
     title: '本体の読み方',
     subtitle: 'この教科書の次',

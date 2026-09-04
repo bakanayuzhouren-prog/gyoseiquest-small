@@ -2092,7 +2092,7 @@ export const GOUKAKU_MOSHI_BONUS_QUESTIONS = {
           "■ 本肢の正誤\n\n×。昭57.4.22。一般的抽象的。\n\n■ 関連知識\n\n建築確認で争う。"
         ],
         "choiceDeepDive": [
-          "水道×。",
+          "[[image:learn/gyosei/kounen-bessou-ryokin]]\n\n水道×。一般改定の条例制定は処分ではない（最判平18.7.14）。",
           "保育○。",
           "同意×。",
           "用途×。"
@@ -3337,6 +3337,12 @@ export const GOUKAKU_MOSHI_BONUS_QUESTIONS = {
           "誤答肢。支配人の権限を狭くする、一部委任に裁判上の行為まで含める、と入れ替える。",
           "誤答肢。支配人の権限を狭くする、一部委任に裁判上の行為まで含める、と入れ替える。"
         ],
+        "choiceDeepDive": [
+          "[[image:learn/shouhou/shihainin-kengen]]\n\n×。支配人は裁判上も裁判外も一切できる（商法21条1項）。",
+          "[[image:learn/shouhou/shihainin-kengen]]\n\n○。支配人は営業に関する一切の裁判上又は裁判外の行為をする権限を有する。",
+          "[[image:learn/shouhou/shihainin-kengen]]\n\n×。店舗使用人は相手方が悪意のときはみなされない（商法26条ただし書）。",
+          "[[image:learn/shouhou/shihainin-kengen]]\n\n×。一部事項の委任は当該事項の裁判外が基本（商法25条1項）。"
+        ],
         "isBonus": true,
         "wordBank": "",
         "memo": "合格革命・商業使用人（支配人など）の権限",
@@ -3428,6 +3434,12 @@ export const GOUKAKU_MOSHI_BONUS_QUESTIONS = {
           "正解肢。業務執行社員は原則として代表権限も有する。",
           "誤答肢。有限責任社員は業務執行も代表もできない、と極端に切る。",
           "誤答肢。有限責任社員は業務執行も代表もできない、と極端に切る。"
+        ],
+        "choiceDeepDive": [
+          "[[image:learn/shouhou/mochibun-3sha]]\n\n×。有限責任社員の出資は金銭等に限る。信用・労務は無限責任社員。",
+          "[[image:learn/shouhou/mochibun-3sha]]\n\n○。業務を執行する社員は、他に代表者を定めた場合を除き持分会社を代表する。",
+          "[[image:learn/shouhou/mochibun-3sha]]\n\n×。加入の効力は登記が成立要件ではない。",
+          "[[image:learn/shouhou/mochibun-3sha]]\n\n×。有限責任社員が一切業務執行できない、とは言い切れない。"
         ],
         "isBonus": true,
         "wordBank": "",

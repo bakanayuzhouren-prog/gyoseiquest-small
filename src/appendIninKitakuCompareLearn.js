@@ -9,6 +9,7 @@ function shouldAttach(a, b) {
   const t = `${a}\n${b}`;
   if (/inin-kitaku-gimu|inin-kitaku-kenri/.test(t)) return true;
   if (t.includes('委任は費用前払') && t.includes('事務管理')) return true;
+  if (t.includes('寄託には民法644条')) return true;
   if (t.includes('委任契約は、各当事者がいつでも契約を解除')) return true;
   if (t.includes('受任者が事務処理に費用')) return true;
   if (t.includes('事務管理の管理者が本人すなわち')) return true;

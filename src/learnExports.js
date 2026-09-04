@@ -23,6 +23,8 @@ import { LEC_ATARU_ROUND1_LEARN_BY_SUBJECT } from './lec_ataru_round1_learn_cont
 import { LEC_ATARU_ROUND2_LEARN_BY_SUBJECT } from './lec_ataru_round2_learn_content.js';
 import { LEC_ATARU_ROUND3_LEARN_BY_SUBJECT } from './lec_ataru_round3_learn_content.js';
 import { GOKAKU_KAKUMEI_HOSEI_R2_LEARN_BY_SUBJECT } from './goukaku_kakumei_hosei_r2_learn_content.js';
+import { ITO_JUKU_KOUKAI1_LEARN_BY_SUBJECT } from './ito_juku_koukai1_learn_content.js';
+import { ITO_JUKU_FINALCHECK_LEARN_BY_SUBJECT } from './ito_juku_finalcheck_learn_content.js';
 import { KISOCHI_LEARN_BY_SUBJECT } from './kisochi_learn_content.js';
 import { splitKisochiDumpToRooms } from './splitKisochiLearn.js';
 import { appendStolenLostCompareToLearnDeepdive } from './appendStolenLostCompareLearn.js';
@@ -32,6 +34,11 @@ import { appendSeigenSaikokuCompareToLearnDeepdive } from './appendSeigenSaikoku
 import { appendMinpo177ThirdPartyToLearnDeepdive } from './appendMinpo177ThirdPartyLearn.js';
 import { appendShouhouCastToLearnDeepdive } from './appendShouhouCastLearn.js';
 import { appendKoubunToLearnDeepdive } from './appendKoubunLearn.js';
+import { appendChuiGimuToLearnDeepdive } from './appendChuiGimuLearn.js';
+import { appendSaikenHyoToLearnDeepdive } from './appendSaikenHyoLearn.js';
+import { appendKounenBessouToLearnDeepdive } from './appendKounenBessouLearn.js';
+import { appendShihaininKengenToLearnDeepdive } from './appendShihaininKengenLearn.js';
+import { appendMochibun3shaToLearnDeepdive } from './appendMochibun3shaLearn.js';
 
 function mergeLearnLayers(base, ...layers) {
   return layers.reduce(
@@ -74,6 +81,8 @@ const merged = mergeLearnLayers(
   LEC_ATARU_ROUND2_LEARN_BY_SUBJECT,
   LEC_ATARU_ROUND3_LEARN_BY_SUBJECT,
   GOKAKU_KAKUMEI_HOSEI_R2_LEARN_BY_SUBJECT,
+  ITO_JUKU_KOUKAI1_LEARN_BY_SUBJECT,
+  ITO_JUKU_FINALCHECK_LEARN_BY_SUBJECT,
 );
 
 const kisochiSplit = splitKisochiDumpToRooms(merged);
@@ -88,13 +97,22 @@ const withKisochi = mergeTacLearn(
 );
 
 export const LEARN_CONTENT = withKisochi.LEARN_CONTENT;
-export const LEARN_DEEPDIVE = appendKoubunToLearnDeepdive(
-  appendShouhouCastToLearnDeepdive(
-    appendMinpo177ThirdPartyToLearnDeepdive(
-      appendSeigenSaikokuCompareToLearnDeepdive(
-        appendIninKitakuCompareToLearnDeepdive(
-          appendGyoshoHyoToLearnDeepdive(
-            appendStolenLostCompareToLearnDeepdive(withKisochi.LEARN_DEEPDIVE, withKisochi.LEARN_CONTENT),
+export const LEARN_DEEPDIVE = appendMochibun3shaToLearnDeepdive(
+  appendShihaininKengenToLearnDeepdive(
+  appendKounenBessouToLearnDeepdive(
+  appendSaikenHyoToLearnDeepdive(
+  appendChuiGimuToLearnDeepdive(
+    appendKoubunToLearnDeepdive(
+      appendShouhouCastToLearnDeepdive(
+        appendMinpo177ThirdPartyToLearnDeepdive(
+          appendSeigenSaikokuCompareToLearnDeepdive(
+            appendIninKitakuCompareToLearnDeepdive(
+              appendGyoshoHyoToLearnDeepdive(
+                appendStolenLostCompareToLearnDeepdive(withKisochi.LEARN_DEEPDIVE, withKisochi.LEARN_CONTENT),
+                withKisochi.LEARN_CONTENT,
+              ),
+              withKisochi.LEARN_CONTENT,
+            ),
             withKisochi.LEARN_CONTENT,
           ),
           withKisochi.LEARN_CONTENT,
@@ -104,6 +122,12 @@ export const LEARN_DEEPDIVE = appendKoubunToLearnDeepdive(
       withKisochi.LEARN_CONTENT,
     ),
     withKisochi.LEARN_CONTENT,
+  ),
+    withKisochi.LEARN_CONTENT,
+  ),
+  withKisochi.LEARN_CONTENT,
+  ),
+  withKisochi.LEARN_CONTENT,
   ),
   withKisochi.LEARN_CONTENT,
 );
