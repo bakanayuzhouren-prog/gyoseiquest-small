@@ -51,5 +51,5 @@ Bottom:
 - 暗記:「拘禁刑は一本化。作業は必要に応じ行い得る」
 Answer:「懲役と禁錮は拘禁刑に一本化された。拘禁刑に処せられた者に対する作業は、必要な場合に行い得るものであり、常時の義務ではない。」
 
-Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. Never print あぷし, Gyosei Quest, @appshi113.
+Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks..
 ```

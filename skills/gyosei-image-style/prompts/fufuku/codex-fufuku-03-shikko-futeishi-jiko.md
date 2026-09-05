@@ -15,7 +15,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, あぷし style, 16:9.
+Japanese administrative law infographic, 16:9.
 Title:「行服法：執行不停止と18条期間（時効と別）」 Subtitle: 審査請求 ≠ 自動停止
 
 LEFT「論点」:

@@ -50,5 +50,5 @@ Bottom:
 - 暗記:「508は完成前の向き合い。511は差押え後取得が原則不可」
 Answer:「時効が完成した債権でも、完成前に相殺適状にあれば相殺できる。差押え後に取得した債権を自働債権とする相殺は、原則としてできない。」
 
-Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. Never print あぷし, Gyosei Quest, @appshi113.
+Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks..
 ```

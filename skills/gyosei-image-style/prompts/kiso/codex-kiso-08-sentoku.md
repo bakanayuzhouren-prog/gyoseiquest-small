@@ -28,7 +28,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: 先特後普 — earlier special law beats later general law.
 Learning goal: A later 一般法 does not override an earlier 特別法 just because it is newer.
 

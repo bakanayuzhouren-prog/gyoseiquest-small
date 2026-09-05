@@ -31,7 +31,7 @@
 ## GPT Image プロンプト（このまま生成）
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし. ONE TOPIC ONLY: 口頭でできる？ (意見陳述 / 審査請求 / 弁明 / 聴聞). Do not add 処分等の求め or 住民訴訟.
+Create a NEW Japanese legal-study infographic from scratch. ONE TOPIC ONLY: 口頭でできる？ (意見陳述 / 審査請求 / 弁明 / 聴聞). Do not add 処分等の求め or 住民訴訟.
 
 Match LAYOUT of「主宰者の許可」: navy title, left green「論点」, right orange「ひっかけ」, ONE center metaphor, bottom 判断軸 / ひっかけ / 暗記, navy answer bar. 16:9 warm off-white. Large Japanese. No overlap.
 

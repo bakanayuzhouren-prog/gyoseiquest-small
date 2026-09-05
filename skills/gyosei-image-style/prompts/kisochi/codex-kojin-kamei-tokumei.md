@@ -51,5 +51,5 @@ Bottom:
 - 暗記:「仮名は照合。匿名は復元できない。履歴はすぐ匿名にしない」
 Answer:「仮名加工情報は、他の情報と照合しない限り特定の個人を識別できないよう加工したものである。匿名加工情報は、識別できず復元できないよう加工したものである。」
 
-Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. Never print あぷし, Gyosei Quest, @appshi113.
+Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks..
 ```

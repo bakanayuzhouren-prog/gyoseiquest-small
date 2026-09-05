@@ -14,7 +14,6 @@
   - レイアウト見本: `skills/gyosei-image-style/assets/approved-shusaisha-kyoka.png`
   - 案内役正本: `skills/gyosei-image-style/assets/approved-smiling-hat-mascot.png` ＋ `assets/images/characters/chachalot.png`
   - 見出し見本: `skills/gyosei-kijutsu-textbook/prompts/codex-q1-126-ronten.md`
-- ブランド: あぷし / X @appshi113
 - **禁止**: フクロウ・猫・熊・犬。模試・予備校の全文転載。差止め／統治行為／将来請求の手続論を本図の主役にしない。アプリ埋め込み・マップ再生成は Cursor へ
 - 範囲: **この1枚の画像生成まで**（埋め込みは Cursor）
 
@@ -68,7 +67,7 @@
 2. `approved-smiling-hat-mascot.png` および `chachalot.png`（案内役 identity）
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: 国家賠償法2条 — 大阪空港の供用関連瑕疵（最大判昭56.12.16）.
 Learning goal: After one glance, the learner knows 瑕疵 is NOT only a broken facility;
 供用の仕方（騒音等）で第三者に危害を生む危険も2条の瑕疵になりうる.

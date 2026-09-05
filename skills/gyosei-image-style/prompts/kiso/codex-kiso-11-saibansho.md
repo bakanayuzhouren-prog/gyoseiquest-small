@@ -29,7 +29,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: Japanese court first instance and appeals — 簡裁 / 地裁 / 家裁 / 高裁 / 大法廷.
 Learning goal: 罰金以下 first instance = 簡裁. Civil appeal from 簡裁 = 地裁. Criminal appeal from 簡裁 = 高裁.
 人事訴訟 first instance = 家裁. Constitutional invalidity of statutes = Grand Bench as a rule.

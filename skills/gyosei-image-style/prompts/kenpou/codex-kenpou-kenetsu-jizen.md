@@ -51,5 +51,5 @@ Bottom:
 - 暗記:「検閲は行政の事前禁止。事前抑制は原則ダメだが検閲そのものではない」
 Answer:「検閲は、行政権が発表前に網羅的一般的に発表を禁止することであり、憲法上禁止される。裁判所による事前抑制は検閲そのものではない。」
 
-Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. Never print あぷし, Gyosei Quest, @appshi113.
+Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks..
 ```

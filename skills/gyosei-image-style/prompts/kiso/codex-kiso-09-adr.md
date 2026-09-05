@@ -30,7 +30,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: Four ADR types — 調停・和解・仲裁・あっせん.
 Learning goal: 和解 = 互譲 (695). 仲裁 = third-party judgment. あっせん is not civilians-only. 調停 = judge + 2+ commissioners (judge-only OK if appropriate).
 

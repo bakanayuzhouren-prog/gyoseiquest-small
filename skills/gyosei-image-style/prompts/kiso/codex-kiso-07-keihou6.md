@@ -28,7 +28,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: Penal Code 6 — after-the-fact change of punishment, apply the lighter one.
 Learning goal: If the new law is heavier, it does NOT apply retroactively. Always the lighter of old vs new.
 

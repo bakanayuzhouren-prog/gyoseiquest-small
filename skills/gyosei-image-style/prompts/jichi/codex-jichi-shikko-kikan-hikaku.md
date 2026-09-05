@@ -35,7 +35,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: 執行機関 in 行政法総論 vs 地方自治法. Same word, different shelf.
 Learning goal: 総論＝実力で実現する機関（行政庁ではない）. 自治法＝長＋委員会・委員（138条の4）. 副知事・会計管理者は補助機関.
 

@@ -13,7 +13,6 @@
   - `skills/gyosei-image-style/references/avatar-guidelines.md`
   - レイアウト見本: `skills/gyosei-image-style/assets/approved-shusaisha-kyoka.png`
   - 案内役正本: `skills/gyosei-image-style/assets/approved-smiling-hat-mascot.png` ＋ `assets/images/characters/chachalot.png`
-- ブランド: あぷし / X @appshi113
 - **禁止**: フクロウ・猫・熊・犬。模試全文転載。事故繰越しを主役にしない。アプリ埋め込みは Cursor
 - 範囲: **この1枚の画像生成まで**（埋め込みは Cursor）
 
@@ -61,7 +60,7 @@
 2. `approved-smiling-hat-mascot.png` および `chachalot.png`（案内役 identity）
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: 地方自治法 — 継続費（212条）vs 繰越明許費（213条）.
 Learning goal: After one glance, the learner splits
 「当初から数年の大型工事＝継続費」and「年度内に終わらない見込みの繰越し＝繰越明許費」.

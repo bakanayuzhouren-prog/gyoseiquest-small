@@ -50,5 +50,5 @@ Bottom:
 - 暗記:「32条は任意。中止は相手方。処分等の求めは何人も」
 Answer:「行政指導は任意の協力によってのみ実現する。中止等の求めは相手方がする。処分等の求めは何人もすることができる。」
 
-Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. Never print あぷし, Gyosei Quest, @appshi113.
+Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks..
 ```

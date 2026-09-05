@@ -33,7 +33,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「第三者効と拘束力の準用」
 Subtitle: 33拘束は広く／32第三者効は狭い／棄却に拘束なし
 

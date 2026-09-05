@@ -15,7 +15,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, あぷし style, 16:9, warm off-white.
+Japanese administrative law infographic, 16:9, warm off-white.
 Title:「行服法46条：裁決で変更できる審査庁は？」 Subtitle: 取消し ≠ 変更
 
 LEFT「論点」:

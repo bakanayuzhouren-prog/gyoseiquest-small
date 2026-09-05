@@ -47,7 +47,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「行服法：参加人・19条・23条・28条（行手法比較）」
 Subtitle: 不作為も13条＝審理員許可
 

@@ -25,7 +25,7 @@
 ## GPT Image プロンプト（このまま生成）
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし. ONE TOPIC ONLY: いのちの砦（とりで）訴訟. Do not add 特例法 or 職業の自由.
+Create a NEW Japanese legal-study infographic from scratch. ONE TOPIC ONLY: いのちの砦（とりで）訴訟. Do not add 特例法 or 職業の自由.
 
 Match LAYOUT of「主宰者の許可」: navy title, left green「論点」, right orange「ひっかけ」, ONE center metaphor, bottom 判断軸 / ひっかけ / 暗記, navy answer bar. 16:9 warm off-white. Large Japanese. No overlap.
 

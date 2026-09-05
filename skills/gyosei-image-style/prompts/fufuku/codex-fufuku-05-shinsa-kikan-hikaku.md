@@ -20,7 +20,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「行服法：不服申立期間の比較」 Subtitle: 54条・18条・62条 ＋ 不作為は期間なし
 
 LEFT「論点」:

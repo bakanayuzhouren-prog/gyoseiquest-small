@@ -28,7 +28,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「執行停止：行服 vs 行訴」
 Subtitle: 行訴は職権不可／総理異議は強制／仮の義務付け・差止めにも準用
 

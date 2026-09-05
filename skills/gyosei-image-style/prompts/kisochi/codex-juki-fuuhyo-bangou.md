@@ -54,5 +54,5 @@ Bottom:
 - 暗記:「附票は本籍地。法人番号は法人。公的個人認証は外国人住民も」
 Answer:「住民票は住所地の市町村が世帯単位で作る。戸籍の附票は本籍地の市町村が戸籍単位で住所の変遷を記載する。法人番号は個人番号ではない。」
 
-Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. Never print あぷし, Gyosei Quest, @appshi113.
+Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks..
 ```

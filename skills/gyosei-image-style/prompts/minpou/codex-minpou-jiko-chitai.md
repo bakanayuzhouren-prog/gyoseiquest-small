@@ -35,7 +35,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: 消滅時効の起算点と履行遅滞の起算点. Exam comparison table.
 Learning goal: 時効は権利を行使することができる時（166条1項2号）。遅滞は412条。同じではない。不確定期限の遅滞は早い時。
 

@@ -16,7 +16,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「行服法：行政不服審査会は何をする人？」 Subtitle: 答申≠裁決
 
 LEFT「論点」:

@@ -27,7 +27,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, あぷし style, 16:9, warm off-white.
+Japanese administrative law infographic, 16:9, warm off-white.
 Title:「行服法：一般概括主義と7条適用除外」
 Subtitle: 原則オール対象 → 7条で穴あき
 

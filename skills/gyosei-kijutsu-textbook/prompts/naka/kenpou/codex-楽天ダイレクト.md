@@ -26,7 +26,7 @@
 ## GPT Image プロンプト（このまま生成）
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし. ONE TOPIC ONLY: 楽天ダイレクト事件. Do not hold 旧警備業法 unconstitutional on this image.
+Create a NEW Japanese legal-study infographic from scratch. ONE TOPIC ONLY: 楽天ダイレクト事件. Do not hold 旧警備業法 unconstitutional on this image.
 
 Match LAYOUT of「主宰者の許可」: navy title, left green「論点」, right orange「ひっかけ」, ONE center metaphor, bottom 判断軸 / ひっかけ / 暗記, navy answer bar. 16:9 warm off-white. Large Japanese. No overlap.
 

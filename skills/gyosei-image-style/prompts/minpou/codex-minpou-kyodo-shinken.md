@@ -63,5 +63,5 @@ Bottom:
 - 暗記:「協議で双方又は一方。害悪のおそれは一方を定めなければならない」
 Answer:「協議上の離婚では父母の双方又は一方を親権者と定める。子の心身に害悪を及ぼすおそれなどがあるときは、一方を定めなければならない。」
 
-Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. Never print あぷし, Gyosei Quest, @appshi113. Never 切る／切れない.
+Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks. Never 切る／切れない.
 ```

@@ -39,7 +39,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「当事者訴訟 vs 争点訴訟」
 Subtitle: 額＝当事者（ガクト）／民事の中で処分効力が争点＝争点訴訟
 

@@ -33,7 +33,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: 善管注意義務. Heavier objective duty of care encyclopedia table.
 Learning goal: 原則は善管。無償でも商人の営業内寄託と使用貸借の借主は善管。後見人は644条準用。
 

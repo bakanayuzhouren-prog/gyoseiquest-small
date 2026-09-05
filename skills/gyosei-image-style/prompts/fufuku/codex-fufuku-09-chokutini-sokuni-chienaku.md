@@ -48,7 +48,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「行服法：直ちに・速やかに・遅滞なく」
 Subtitle: 行服法は速やかに多め。42条＝作成遅滞なく／提出速やかに
 

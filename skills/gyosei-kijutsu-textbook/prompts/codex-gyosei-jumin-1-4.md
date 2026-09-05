@@ -19,7 +19,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし. ONE MAIN TABLE plus a short note table. Save only as jumin-1-4.png. Do NOT overwrite hikoku-taiko.png or junyo-taiko.png.
+Create a NEW Japanese legal-study infographic from scratch. ONE MAIN TABLE plus a short note table. Save only as jumin-1-4.png. Do NOT overwrite hikoku-taiko.png or junyo-taiko.png.
 Quality: q26-2.png and hikoku-taiko.png. 16:9 warm off-white, POP, large gothic Japanese, ZERO overlap.
 
 LAYOUT (do NOT use 論点 / ひっかけ / 判断軸 / 暗記 boxes or those labels anywhere):

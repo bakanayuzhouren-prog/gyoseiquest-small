@@ -32,7 +32,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Overwrite the previous version. Same comparison, NEW nickname 行審法.
 Topic: 教示の比較（行審法82条 vs 行訴法46条）.
 Learning goal: 相手方への必要的教示はどちらも書面でしなければならない. 第三者の求めは行審法だけ.

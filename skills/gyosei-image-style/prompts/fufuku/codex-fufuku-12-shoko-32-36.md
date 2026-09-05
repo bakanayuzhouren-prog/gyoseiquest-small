@@ -29,7 +29,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「行服法：証拠・調査（32〜36条）」
 Subtitle: 三者提出／審理員は提出要求・留め置き・鑑定・検証・質問
 

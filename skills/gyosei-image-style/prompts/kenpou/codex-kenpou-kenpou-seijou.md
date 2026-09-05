@@ -28,7 +28,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: 憲法7条1号 what the Emperor promulgates.
 Learning goal: けんぽうせいじょう＝憲法改正・法律・政令・条約. Not 予算. The verb is 公布 not 交付.
 

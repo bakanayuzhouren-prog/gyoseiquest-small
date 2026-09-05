@@ -46,7 +46,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「行服法：事情裁決・4条・46条・15条」
 Subtitle: 主文宣言＋棄却／庁の長＝自己／上級＝命ずる
 

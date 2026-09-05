@@ -48,5 +48,5 @@ Bottom:
 - 暗記:「どちらも過半数出席。普通は過半数、特別は3分の2」
 Answer:「普通決議は出席株主の議決権の過半数、特別決議は出席株主の議決権の3分の2以上である。定足はいずれも議決権の過半数を有する株主の出席が原則である。」
 
-Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. Never print あぷし, Gyosei Quest, @appshi113.
+Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks..
 ```

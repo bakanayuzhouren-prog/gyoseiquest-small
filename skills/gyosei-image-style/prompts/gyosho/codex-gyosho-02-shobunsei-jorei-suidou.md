@@ -40,7 +40,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「処分性：条例・水道・同意・勧告・用途地域」
 Subtitle: 特定廃止○／一般改定×／同意拒否×／中止勧告○／用途地域×
 

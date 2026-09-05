@@ -47,7 +47,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「行服法：教示・誤教示・再調査決定（行訴法になし）」
 Subtitle: 教示82-83 ／ 誤教示22-55 ／ 59条決定
 

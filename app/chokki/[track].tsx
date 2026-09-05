@@ -32,8 +32,20 @@ export default function ChokkiGalleryScreen() {
   const { track: trackParam } = useLocalSearchParams<{ track: string }>();
   const track = Array.isArray(trackParam) ? trackParam[0] : trackParam;
   const [zoomKey, setZoomKey] = useState<string | null>(null);
+  const [openIds, setOpenIds] = useState<Record<string, true>>({});
   const imageHeight = Math.round(Math.min(width - 32, 920) * (9 / 16));
   const zoomSource = zoomKey ? getDeepdiveImageSource(zoomKey) : undefined;
+
+  const toggleOpen = (id: string) => {
+    setOpenIds((prev) => {
+      if (prev[id]) {
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      }
+      return { ...prev, [id]: true };
+    });
+  };
 
   const items = useMemo(() => {
     if (!isChokkiTrack(track)) return [];
@@ -64,36 +76,60 @@ export default function ChokkiGalleryScreen() {
           <Text style={[styles.lead, { color: colors.subText }]}>科目が見つからない。戻って選び直してほしい。</Text>
         ) : (
           <Text style={[styles.lead, { color: colors.subText }]}>
-            {track}の比較図 {items.length} 枚。タップで拡大。原文・誌面は転載していない。
+            {track}の比較図 {items.length} 枚。タイトルをタップして図を表示。原文・誌面は転載していない。
           </Text>
         )}
 
-        {items.map((item) => (
-          <View
-            key={item.id}
-            style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}
-          >
-            <Text style={[styles.subject, { color: colors.primary }]}>{item.subject}</Text>
-            <Text style={[styles.title, { color: colors.text }]}>{item.title}</Text>
-            <Text style={[styles.axis, { color: colors.subText }]}>{item.axis}</Text>
-            {item.source ? (
-              <Pressable onPress={() => setZoomKey(item.imageKey)} accessibilityLabel={`${item.title}を拡大`}>
-                <Image
-                  source={item.source}
-                  style={StyleSheet.flatten({ width: '100%' as const, height: imageHeight, borderRadius: 8 })}
-                  contentFit="contain"
+        {items.map((item) => {
+          const open = !!openIds[item.id];
+          return (
+            <View
+              key={item.id}
+              style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}
+            >
+              <Text style={[styles.subject, { color: colors.primary }]}>{item.subject}</Text>
+              <Pressable
+                onPress={() => toggleOpen(item.id)}
+                style={styles.titleRow}
+                accessibilityRole="button"
+                accessibilityState={{ expanded: open }}
+                accessibilityLabel={`${item.title}の図を${open ? '閉じる' : '表示'}`}
+              >
+                <Text style={[styles.title, { color: colors.text }]}>{item.title}</Text>
+                <MaterialIcons
+                  name={open ? 'expand-less' : 'expand-more'}
+                  size={28}
+                  color={colors.text}
                 />
-                <Text style={[styles.hint, { color: colors.subText }]}>タップで拡大</Text>
               </Pressable>
-            ) : (
-              <View style={[styles.pending, { borderColor: colors.border }]}>
-                <Text style={[styles.pendingText, { color: colors.subText }]}>
-                  図は生成待ち。保存先: {item.imageKey}.png
+              {open ? (
+                <>
+                  <Text style={[styles.axis, { color: colors.subText }]}>{item.axis}</Text>
+                  {item.source ? (
+                    <Pressable onPress={() => setZoomKey(item.imageKey)} accessibilityLabel={`${item.title}を拡大`}>
+                      <Image
+                        source={item.source}
+                        style={StyleSheet.flatten({ width: '100%' as const, height: imageHeight, borderRadius: 8 })}
+                        contentFit="contain"
+                      />
+                      <Text style={[styles.hint, { color: colors.subText }]}>タップで拡大</Text>
+                    </Pressable>
+                  ) : (
+                    <View style={[styles.pending, { borderColor: colors.border }]}>
+                      <Text style={[styles.pendingText, { color: colors.subText }]}>
+                        図は生成待ち。保存先: {item.imageKey}.png
+                      </Text>
+                    </View>
+                  )}
+                </>
+              ) : (
+                <Text style={[styles.hint, { color: colors.subText, textAlign: 'left' }]}>
+                  タイトルをタップして図を表示
                 </Text>
-              </View>
-            )}
-          </View>
-        ))}
+              )}
+            </View>
+          );
+        })}
 
         <Text style={[styles.note, { color: colors.subText }]}>
           法令・判例・官公庁資料に基づき独自に再構成。原文・誌面は転載していない。
@@ -133,8 +169,14 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   subject: { fontSize: 12, fontWeight: '700' },
-  title: { fontSize: 18, fontWeight: '700' },
-  axis: { fontSize: 13, lineHeight: 20, marginBottom: 8 },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 4,
+  },
+  title: { flex: 1, fontSize: 18, fontWeight: '700', paddingRight: 8 },
+  axis: { fontSize: 13, lineHeight: 20, marginBottom: 8, marginTop: 4 },
   hint: { fontSize: 12, textAlign: 'center', marginTop: 6 },
   pending: {
     minHeight: 88,

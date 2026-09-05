@@ -51,5 +51,5 @@ Bottom:
 - 暗記:「転得は当時の悪意。金銭と動産は自己へ求め得る」
 Answer:「転得者に対する詐害行為取消しは、転得の当時に害することを知っていた場合に限る。金銭の支払又は動産の引渡しは、自己に対してすることを求め得る。」
 
-Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. Never print あぷし, Gyosei Quest, @appshi113.
+Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks..
 ```

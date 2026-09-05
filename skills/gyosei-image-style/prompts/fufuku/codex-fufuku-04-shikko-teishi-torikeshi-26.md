@@ -17,7 +17,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「執行停止の取消し：行服26条 vs 行訴26・27条」 Subtitle: できる？ しなければならない？
 
 LEFT「論点」:

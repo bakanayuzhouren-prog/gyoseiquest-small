@@ -32,7 +32,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: 重過失要件 in four exam scenes.
 Learning goal: 誰が知り、又は重大な過失によって知らなかったかを先に見る。一般の譲渡は有効。預貯金は特約対抗。566条は売主。
 

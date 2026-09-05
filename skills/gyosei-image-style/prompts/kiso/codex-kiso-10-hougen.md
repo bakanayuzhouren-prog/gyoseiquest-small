@@ -27,7 +27,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: Sources of law — 制定法, 判例, 条理, 学説.
 Learning goal: Case law does not sit above statute. Binding force is 事実上. 条理 fills gaps in CIVIL cases only. 学説 is not a source of law.
 

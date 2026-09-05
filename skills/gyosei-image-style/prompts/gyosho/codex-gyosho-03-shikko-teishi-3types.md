@@ -22,7 +22,7 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, あぷし style.
+Japanese administrative law infographic, 16:9.
 Title:「執行停止の3類型」
 Subtitle: 効力／執行／手続続行（25条）・効力停止は補充的
 

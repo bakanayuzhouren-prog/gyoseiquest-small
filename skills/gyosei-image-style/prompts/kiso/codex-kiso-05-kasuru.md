@@ -26,7 +26,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: 科する vs 課する.
 Learning goal: 過料 uses 科する (same as 刑罰), even though 過料 is not a criminal penalty. Tax uses 課する.
 

@@ -28,7 +28,7 @@
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch for Gyosei Quest / あぷし.
+Create a NEW Japanese legal-study infographic from scratch.
 Topic: その他 vs その他の in Japanese statutes.
 Learning goal: 「の」あり＝前は後の例示. 国賠2条の道路・河川は営造物に含まれる.
 

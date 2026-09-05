@@ -50,5 +50,5 @@ Bottom:
 - 暗記:「全部引受け＝発起。募る＝創立総会」
 Answer:「発起設立は発起人が設立時発行株式の全部を引き受ける。募集設立では発起人以外からも募集し、創立総会を開く。」
 
-Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. Never print あぷし, Gyosei Quest, @appshi113.
+Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks..
 ```
