@@ -358,6 +358,14 @@ export const CHOKKI_FIGURES: ChokkiFigure[] = [
     imageKey: 'learn/minnpou/jiko-zaisan-chui',
   },
   {
+    id: 'jukashitsu',
+    track: '民法',
+    subject: '債権総論',
+    title: '重過失要件',
+    axis: '誰が知り又は重過失か。3項は履行拒絶。の5と505は特約対抗。566は売主。',
+    imageKey: 'learn/minnpou/jukashitsu',
+  },
+  {
     id: 'lec-q27-daisansha',
     track: '民法',
     subject: '民法総則',
