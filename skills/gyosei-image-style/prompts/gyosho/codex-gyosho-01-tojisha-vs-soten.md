@@ -39,33 +39,43 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9.
-Title:「当事者訴訟 vs 争点訴訟」
-Subtitle: 額＝当事者（ガクト）／民事の中で処分効力が争点＝争点訴訟
+Create a NEW Japanese legal-study infographic from scratch.
+ONE job: 当事者訴訟と争点訴訟. Hero is 額を求めるのは当事者訴訟.
+Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
+Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center TABLE, bottom 判断軸 / ひっかけ / 暗記.
 
-LEFT「論点」:
-当事者訴訟は？ → 公法上の法律関係を当事者として争う（4条）
-額を求めるのは？ → 当事者訴訟（ガクト）
-争点訴訟は？ → 民事訴訟の中で処分・裁決の効力が争点（45条）
-収用後の所有権確認は？ → 争点訴訟（被告＝起業者）
-地位確認・給与は？ → 実質的当事者訴訟
+Left heading 論点. Right heading ひっかけ.
+Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
+Labels: Left「公務員（地位と給与を求める）」Right「元所有者（所有権確認を求める）」
 
-RIGHT「ひっかけ」:
-× 争点訴訟＝当事者訴訟の別称
-× 補償額・給与＝取消訴訟
-× 争点訴訟の被告＝常に国
-× 無効確認と争点訴訟を混ぜる（補充性で分岐）
+Title:「額は当事者、所有権確認は争点」
+Chip:「4条・45条」
 
-CENTER: two columns
-当事者: 地位確認＋給料袋＋「額」バッジ
-争点: 土地札＋裁決スタンプが背景争点＋起業者vs元所有者
+Center ONLY: one table. Header navy. Row zebra white / light gray, horizontal not columns.
+Columns: | 当事者訴訟（4条） | 争点訴訟（45条）
+Rows:
+何を争うか | 公法上の法律関係そのもの | 私法上の訴えの中で処分・裁決の効力
+例 | 地位確認、給与、損失補償の額 | 収用後の所有権確認
+被告 | 法律関係の相手方 | 私法上の相手（収用では起業者）
+Caption:「無効確認の補充性で現在の法律関係の訴えで足りるときは、争点訴訟へ進む」
 
-BOTTOM:
-判断軸: 公法関係そのものか／民事＋効力が争点か
-ひっかけ: 額＝当事者。所有権確認＝争点
-暗記: ガクト＝額は当事者。争点＝民事の中の処分効力
+Left 論点:
+1. 額を求めるのは？ → 当事者訴訟
+2. 争点訴訟は当事者訴訟の別名か？ → NO
+3. 収用後の所有権確認の被告は国か？ → NO
 
-Chachalot pointing at「額＝当事者」badge.
+Right ひっかけ:
+- 争点訴訟は当事者訴訟の別称である
+- 補償額と給与は取消訴訟で求める
+- 争点訴訟の被告は常に国である
+
+Bottom:
+- 判断軸:「公法関係そのものか、民事の中の効力か」
+- ひっかけ:「額を抗告訴訟にする。争点の被告を国にする」
+- 暗記:「額は当事者訴訟。所有権確認は争点訴訟。被告は起業者」
+Answer:「損失補償の額や給与は当事者訴訟で争う。収用裁決後の所有権確認は争点訴訟であり、被告は起業者である。」
+
+Guide: ONE ちゃちゃロット only, SMALL bottom-right, 指し棒 to 額. Cream face, independent pale-sky-blue smiling hat, green lecturer jacket, white shirt, green trousers, shoes. No nameplate. No logos or watermarks.
 ```
 
 ## 目視チェック

@@ -27,36 +27,45 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9, warm off-white.
-Title:「行服法：一般概括主義と7条適用除外」
-Subtitle: 原則オール対象 → 7条で穴あき
+Create a NEW Japanese legal-study infographic from scratch.
+ONE job: 一般概括主義と7条1項の除外. Do not make 行手法3条 the hero.
+Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
+Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center TABLE, bottom 判断軸 / ひっかけ / 暗記.
 
-LEFT「論点」 (Q&A):
-概括主義とは？ → 特別法がなければ原則すべて審査請求可（1条2項）
-5号で外れるのは？ → 当事者訴訟型（一方を被告とすべき確認・形成処分）
-9号で外れるのは？ → 刑務所・拘置所等の収容目的処分
-行服10号 vs 行手10号？ → 行服は出入国・帰化のみ／行手は難民等も
+Left heading 論点. Right heading ひっかけ.
+Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
+Labels: Left「審査請求人（原則すべて争える）」Right「収容施設（9号の除外）」
 
-RIGHT「ひっかけ」:
-× 5号＝実質的当事者訴訟
-× 10号に難民認定（行服）
-× 9号＝検察官会議（4号）
-× 地方処分の手続除外＝行服7条（→行手法3条2項）
+Title:「原則すべて、7条で穴」
+Chip:「1条2項・7条1項」
 
-CENTER: 2×2 grid of excluded types with icons:
-[5号 当事者訴訟型] [9号 刑務所・拘置所]
-[10号 出入国] [4号 検察官会議]
-Small banner: 柱書＝処分・不作為とも除外
+Center ONLY: one table. Header navy. Row zebra white / light gray, horizontal not columns.
+Columns: 号 | 外れるもの
+Rows:
+5号 | 当事者の一方を被告とすべき確認・形成処分
+9号 | 刑務所・少年刑務所・拘置所等の収容目的処分
+10号 | 出入国及び帰化に関する処分
+Caption:「柱書は処分とその不作為の両方。審査請求は違法だけでなく不当も争い得る」
 
-Bottom compare strip 行服 vs 取消訴訟:
-行服＝違法＋不当可／取消訴訟＝原則違法のみ
+Left 論点:
+1. 概括主義とは？ → 特別の定めがなければ原則すべて審査請求可
+2. 5号で外れるのは？ → 一方を被告とすべき確認・形成処分
+3. 9号で外れるのは？ → 収容目的処分
+4. 10号に難民認定は入るか？ → NO
 
-BOTTOM:
-判断軸: 7条は号ごとに理由が違う
-ひっかけ: 5号は実質的当事者訴訟ではない
-暗記: 概括主義＝原則全部。5号一方被告・9号収容・10号出入国
+Right ひっかけ:
+- 5号は実質的当事者訴訟である
+- 行審法10号に難民認定が入る
+- 9号は検察官会議である
+- 地方公共団体の手続除外は行審法7条2項である
 
-Chachalot pointing at 5号「実質的当事者×」 stamp.
+Bottom:
+- 判断軸:「原則全部か、7条何号か」
+- ひっかけ:「5号＝実質的当事者訴訟。10号に難民」
+- 暗記:「概括主義。5号は一方被告。9号は収容。10号は出入国・帰化」
+Answer:「個別法に特別の定めがなければ、原則としてどの処分も審査請求できる。7条1項5号は一方を被告とすべき処分、9号は収容目的処分、10号は出入国及び帰化である。」
+
+Guide: ONE ちゃちゃロット only, SMALL bottom-right, 指し棒 to 5号. Cream face, independent pale-sky-blue smiling hat, green lecturer jacket, white shirt, green trousers, shoes. No nameplate. No logos or watermarks.
 ```
 
 ## 目視チェック

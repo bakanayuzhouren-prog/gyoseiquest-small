@@ -55,7 +55,7 @@ Rows:
 共同行使の例外（824条の2） | 急迫の事情。監護教育の日常の行為は単独可
 Caption:「選択的共同親権。強制的共同親権ではない」
 
-Roles: 親権者（子の利益のために監護する）／家庭裁判所（子の利益で定める）. Never だれが.
+Roles: 親権者（子の利益のために監護する）／家庭裁判所（子の利益で定める）.
 
 Bottom:
 - 判断軸:「子の利益。害悪・共同困難なら一方」
@@ -63,5 +63,5 @@ Bottom:
 - 暗記:「協議で双方又は一方。害悪のおそれは一方を定めなければならない」
 Answer:「協議上の離婚では父母の双方又は一方を親権者と定める。子の心身に害悪を及ぼすおそれなどがあるときは、一方を定めなければならない。」
 
-Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks. Never 切る／切れない.
+Guide: ONE ちゃちゃロット only. Cream face, independent pale-sky-blue smiling hat (not ears), green blazer, white shirt, green trousers, shoes, wooden 指し棒. SMALL bottom-right. No nameplate. No logos or watermarks.
 ```

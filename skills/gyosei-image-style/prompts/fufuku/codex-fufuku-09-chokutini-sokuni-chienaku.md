@@ -48,40 +48,44 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9.
-Title:「行服法：直ちに・速やかに・遅滞なく」
-Subtitle: 行服法は速やかに多め。42条＝作成遅滞なく／提出速やかに
+Create a NEW Japanese legal-study infographic from scratch.
+ONE job: 行審法の直ちに・遅滞なく・速やかに. Hero is 42条の作成と提出.
+Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
+Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center TABLE, bottom 判断軸 / ひっかけ / 暗記.
 
-LEFT「論点」:
-直ちには？ → 21条2項送付／29条1項写し／69条罷免（57条は内容に「直ちに」）
-遅滞なくは4つ？ → 37条2項期日／42条1項作成／44条裁決／57条教示
-速やかに最多？ → 誤教示22・55、執行停止25、意見書提出42条2項 等
-42条の切り分け？ → 作成＝遅滞なく／提出＝速やかに
+Left heading 論点. Right heading ひっかけ.
+Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
+Labels: Left「審理員（意見書を作る）」Right「審査庁（意見書を受ける）」
 
-RIGHT「ひっかけ」:
-× 28条＝遅滞なく（→計画的進行の努力）
-× 42条全部が遅滞なく
-× 57条義務語句＝直ちに（→遅滞なく教示）
-× 基礎法学の速度順をそのまま当てはめる
+Title:「作成は遅滞なく、提出は速やかに」
+Chip:「42条1項・2項」
 
-CENTER: three-column table (compact rows):
+Center ONLY: one table. Header navy. Row zebra white / light gray, horizontal not columns.
+Columns: 語句 | 代表条文
+Rows:
+直ちに | 21条2項の送付、29条1項の写し、69条3項の罷免
+遅滞なく | 42条1項の意見書作成、44条の裁決、57条の教示
+速やかに | 42条2項の意見書提出、22条の誤教示送付、25条の執行停止
+Caption:「57条の義務語句は遅滞なく。直ちに審査請求できる旨は教示の中身。28条は計画的進行の努力であり、遅滞なくではない」
 
-| 直ちに(3) | 遅滞なく(4) | 速やかに(代表) |
-21条2 経由送付 | 37条2 期日決定 | 22条 誤教示送付 |
-29条1 写し | 42条1 意見書作成 | 42条2 意見書提出 |
-69条3 罷免 | 44条 裁決 | 55条 教示漏れ |
-(57条内容) | 57条 3月教示 | 25条 執行停止 |
+Left 論点:
+1. 42条1項の作成は？ → 遅滞なく
+2. 42条2項の提出は？ → 速やかに
+3. 57条の義務語句は直ちにか？ → NO
 
-Highlight 42条 row split red: 作成 vs 提出
+Right ひっかけ:
+- 42条は全部が遅滞なく
+- 28条は遅滞なくである
+- 57条の義務語句は直ちにである
+- 基礎法学の速度順を行審法の全条文に当てはめる
 
-Small note: 基礎法学 speed order ≠ 行服法条番号表
+Bottom:
+- 判断軸:「条ごとに語句を固定する」
+- ひっかけ:「42条の作成と提出を同じ語句にする」
+- 暗記:「作成は遅滞なく。提出は速やかに。57条の義務は遅滞なく」
+Answer:「審理員意見書の作成は遅滞なく、審査庁への提出は速やかに行う。57条の教示義務の語句は遅滞なくである。」
 
-BOTTOM:
-判断軸: 条番号ごとに語句を固定
-ひっかけ: 42条作成と提出を分ける
-暗記: 直3・遅4・速は誤教示・提出・執停
-
-Chachalot pointing at 42条 split row.
+Guide: ONE ちゃちゃロット only, SMALL bottom-right, 指し棒 to 42条. Cream face, independent pale-sky-blue smiling hat, green lecturer jacket, white shirt, green trousers, shoes. No nameplate. No logos or watermarks.
 ```
 
 ## 目視チェック

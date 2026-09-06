@@ -15,26 +15,40 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9.
-Title:「行服法：執行不停止と18条期間（時効と別）」 Subtitle: 審査請求 ≠ 自動停止
+Create a NEW Japanese legal-study infographic from scratch.
+ONE job: 審査請求は執行不停止。18条は審査請求期間であり消滅時効ではない.
+Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
+Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center metaphor, bottom 判断軸 / ひっかけ / 暗記.
 
-LEFT「論点」:
-審査請求で効力・執行は止まる？ → NO（25条1項 妨げない）
-止めたいときは？ → 執行停止を別途（25条2項〜）
-18条は時効？ → NO 審査請求期間（除斥）
+Left heading 論点. Right heading ひっかけ.
+Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
+Labels: Left「審査請求人（処分を争う）」Right「処分庁（執行を続ける）」
 
-RIGHT「ひっかけ」:
-× 請求すれば自動停止
-× 18条＝民法の消滅時効
-× 請求中は18条期間が止まる
+Title:「請求しても止まらない」
+Chip:「25条1項・18条」
 
-CENTER two parallel train lanes:
-Lane A (still moving): 25条1項 — 効力・執行・手続続行
-Lane B (calendar): 18条 — 知った日翌日3か月 / 処分翌日1年 → 45条却下
-Note: 時効中断効 原則なし
+Center ONLY: two parallel lanes.
+Lane A still moving:「効力・執行・手続の続行を妨げない」（25条1項）
+Lane B calendar:「知った日の翌日から3か月／処分の翌日から1年」（18条）
+Caption:「止めたいときは執行停止を別途（25条2項以下）。時効の中断効は原則なし」
 
-BOTTOM: 判断軸:不停止・執行停止・18条は別 / ひっかけ:効力不停止と混同しない / 暗記:請求だけでは止まらない
-Chachalot pointing at Lane A.
+Left 論点:
+1. 審査請求で執行は止まるか？ → NO
+2. 止めたいときは？ → 執行停止を別途求める
+3. 18条は消滅時効か？ → NO
+
+Right ひっかけ:
+- 請求すれば自動停止する
+- 18条は民法の消滅時効である
+- 請求中は18条の期間が止まる
+
+Bottom:
+- 判断軸:「不停止か、執行停止か、請求期間か」
+- ひっかけ:「請求＝停止。18条＝時効」
+- 暗記:「審査請求だけでは効力も執行も止まらない。18条は除斥期間」
+Answer:「審査請求は処分の効力、執行又は手続の続行を妨げない。18条は審査請求期間であり、消滅時効ではない。」
+
+Guide: ONE ちゃちゃロット only, SMALL bottom-right, 指し棒 to Lane A. Cream face, independent pale-sky-blue smiling hat, green lecturer jacket, white shirt, green trousers, shoes. No nameplate. No logos or watermarks.
 ```
 
 ## 目視チェック

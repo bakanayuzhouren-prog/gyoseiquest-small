@@ -47,36 +47,44 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9.
-Title:「行服法：教示・誤教示・再調査決定（行訴法になし）」
-Subtitle: 教示82-83 ／ 誤教示22-55 ／ 59条決定
+Create a NEW Japanese legal-study infographic from scratch.
+ONE job: 教示（82条）と教示しなかったときのみなし（83条）は行審法だけ.
+Do not make 59条 or 22条・55条 the hero. One caption line is enough.
+Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
+Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center TABLE, bottom 判断軸 / ひっかけ / 暗記.
 
-LEFT「論点」:
-利害関係人の教示請求は？ → 82条2項 求めれば教示（行訴法に同定なし）
-書面教示はいつ必須？ → 82条3項 書面で求めたとき（最初から書面請求不要）
-教示なしの救済は？ → 83条 不服申立書→みなし審査請求（行訴法になし）
-59条1項でできることは？ → 決定で取消・変更（新規処分×）
+Left heading 論点. Right heading ひっかけ.
+Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
+Labels: Left「処分庁（教示する）」Right「利害関係人（教示を求める）」
 
-RIGHT「ひっかけ」:
-× 83条みなし＝行訴法にもある
-× 59条で処分そのものができる
-× 22条4項＝直ちに（→速やかに）
-× 55条 弁明書後も送付義務継続
+Title:「教示と、みなし審査請求」
+Chip:「82条・83条。行訴法に同定なし」
 
-CENTER: flowchart 3 lanes:
-Lane1 教示82→なし83→不服申立書→送付→みなし
-Lane2 誤教示22/55→速やかに送付→22条5項/55条3項みなし
-Lane3 59条 決定（取消・変更）vs 新規処分×
+Center ONLY: one table. Header navy. Row zebra white / light gray, horizontal not columns.
+Columns: | 行審法 | 行訴法
+Rows:
+相手方への教示 | 書面でしなければならない（82条1項） | 明文の同定なし
+利害関係人の求め | 教示しなければならない（82条2項） | 規定なし
+教示しなかったとき | 不服申立書提出とみなし（83条） | 明文なし
+Caption:「誤教示の送付は速やかに（22条・55条）。再調査の理由ありは決定で取消し又は変更し、新たな処分はできない（59条）」
 
-Small table 行服法 vs 行訴法:
-教示義務 / 教示なしみなし / 利害関係人教示 → 行服○ 行訴×
+Left 論点:
+1. 利害関係人が求めたら？ → 教示しなければならない
+2. 最初から書面で求めなければならないか？ → NO
+3. 教示しなかったときの救済は行訴法にもあるか？ → NO
 
-BOTTOM:
-判断軸: 教示→救済→みなし→決定の語句
-ひっかけ: 表示ではなく教示。55条ただし書＝弁明書後
-暗記: 83条みなしは行服だけ。59条＝決定で取消変更
+Right ひっかけ:
+- 83条のみなしは行訴法にもある
+- 教示は表示と書いてよい
+- 書面で求めるまでは教示しなくてよい、ではない。求めれば足りる
 
-Chachalot pointing at「行訴法に同定なし」box.
+Bottom:
+- 判断軸:「教示義務があるか。行訴法に同定があるか」
+- ひっかけ:「83条を行訴法にあるとする」
+- 暗記:「求めれば教示。しなければ83条でみなし。行訴法にない」
+Answer:「不服申立てができる処分をするときは書面で教示しなければならない。利害関係人から求められたときも教示しなければならない。しなかったときのみなしは行審法83条にあり、行訴法に同定はない。」
+
+Guide: ONE ちゃちゃロット only, SMALL bottom-right, 指し棒 to 行訴法に規定なし. Cream face, independent pale-sky-blue smiling hat, green lecturer jacket, white shirt, green trousers, shoes. No nameplate. No logos or watermarks.
 ```
 
 ## 目視チェック

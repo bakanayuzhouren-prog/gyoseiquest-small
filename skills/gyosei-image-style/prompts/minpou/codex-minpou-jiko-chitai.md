@@ -42,8 +42,8 @@ Learning goal: 時効は権利を行使することができる時（166条1項2
 Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center metaphor (comparison TABLE),
 bottom 判断軸 / ひっかけ / 暗記, warm off-white, large Japanese, 16:9.
 
-STRICT: Left heading「論点」. Right heading「ひっかけ」. Never「だれが」「問が聞くこと」「（聞かない）」. No GO/STOP.
-Never write せいなく. Table is CENTER only.
+Left heading 論点. Right heading ひっかけ. Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
+Table is CENTER only.
 Labels: Left「債権者（いつ請求できるか）」Right「債務者（いつ遅滞になるか）」
 
 Title:「時効の起算 / 履行遅滞 — 同じではない」

@@ -17,23 +17,43 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9.
-Title:「執行停止の取消し：行服26条 vs 行訴26・27条」 Subtitle: できる？ しなければならない？
+Create a NEW Japanese legal-study infographic from scratch.
+ONE job: 執行停止の取消し。行審法26条は職権で取り消すことができる。行訴法26条は申立て。行訴法27条は取り消さなければならない.
+Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
+Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center TABLE, bottom 判断軸 / ひっかけ / 暗記.
 
-LEFT「論点」:
-行服26条 — 審査庁 — 職権 — 明らか＋事情変更 → 取り消すことができる
+Left heading 論点. Right heading ひっかけ.
+Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
+Labels: Left「審査庁（職権で取り消す）」Right「裁判所（申立てを見る）」
 
-RIGHT「ひっかけ」:
-× 行訴26条は職権で取消
-× 行訴26条は取り消さなければならない
-○ 行訴27条 総理大臣異議 → 取り消さなければならない
+Title:「できるか、しなければならないか」
+Chip:「行審法26条／行訴法26条・27条」
 
-CENTER table 3 columns 行服26 / 行訴26 / 行訴27:
-主体・申立て・理由・義務語句（できる/できる/しなければならない）
-Highlight last row.
+Center ONLY: one table. Header navy. Row zebra white / light gray, horizontal not columns.
+Columns: | 行審法26条 | 行訴法26条 | 行訴法27条
+Rows:
+主体 | 審査庁 | 裁判所 | 裁判所
+きっかけ | 職権 | 相手方の申立て | 内閣総理大臣の異議
+語句 | 取り消すことができる | 取り消すことができる | 取り消さなければならない
+Caption:「行訴法26条に職権はない。しなければならないは27条だけ」
 
-BOTTOM: 判断軸:主体・申立て・義務語句 / ひっかけ:27条異議と26条混同しない / 暗記:行服26＝職権・できる
-Chachalot pointing at「しなければならない」(27条).
+Left 論点:
+1. 行審法26条は職権か？ → YES
+2. 行訴法26条は職権か？ → NO
+3. 取り消さなければならないのは？ → 行訴法27条
+
+Right ひっかけ:
+- 行訴法26条は職権で取り消せる
+- 行訴法26条は取り消さなければならない
+- 行審法26条は相手方の申立てが必要
+
+Bottom:
+- 判断軸:「主体と、できるか・しなければならないか」
+- ひっかけ:「26条を27条の義務語句にする」
+- 暗記:「行審法26条は職権でできる。しなければならないは行訴法27条」
+Answer:「行審法26条は審査庁が職権で取り消すことができる。行訴法26条は申立てによる。内閣総理大臣の異議があれば、裁判所は取り消さなければならない。」
+
+Guide: ONE ちゃちゃロット only, SMALL bottom-right, 指し棒 to 行訴法27条. Cream face, independent pale-sky-blue smiling hat, green lecturer jacket, white shirt, green trousers, shoes. No nameplate. No logos or watermarks.
 ```
 
 ## 目視チェック

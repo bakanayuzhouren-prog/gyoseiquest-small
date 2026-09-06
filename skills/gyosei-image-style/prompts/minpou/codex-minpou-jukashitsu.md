@@ -39,11 +39,11 @@ Learning goal: 誰が知り、又は重大な過失によって知らなかっ�
 Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center metaphor (comparison TABLE),
 bottom 判断軸 / ひっかけ / 暗記, warm off-white, large Japanese, 16:9.
 
-STRICT: Left heading「論点」. Right heading「ひっかけ」. Never「だれが」「問が聞くこと」「（聞かない）」. No GO/STOP.
-Never write せいなく. Table is CENTER only.
+Left heading 論点. Right heading ひっかけ. Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
+Table is CENTER only.
 Labels: Left「債務者（特約を対抗する）」Right「売主（1年の失権が外れる）」
 
-Title:「重過失要件 — 誰が知り又は重過失か」
+Title:「重過失要件 — 主観はどちらか」
 Chip:「知り、又は重大な過失によって知らなかった」
 
 Center ONLY: one table. Header navy: 場面 | 条文 | 重過失があると

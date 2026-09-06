@@ -24,41 +24,36 @@
 ## GPT Image プロンプト（このまま生成）
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch. ONE TOPIC ONLY: 孔子廟違憲判決. Do not make 大阪ヘイト or 津地鎮祭 the main story.
+Create a NEW Japanese legal-study infographic from scratch.
+ONE job: 孔子廟は総合考慮で違憲。住民訴訟は怠る事実. Do not make 大阪ヘイト or 津地鎮祭 the hero.
+Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
+Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center metaphor, bottom 判断軸 / ひっかけ / 暗記.
 
-Match LAYOUT of「主宰者の許可」: navy title, left green「論点」, right orange「ひっかけ」, ONE center metaphor, bottom 判断軸 / ひっかけ / 暗記, navy answer bar. 16:9 warm off-white. Large Japanese. No overlap.
+Left heading 論点. Right heading ひっかけ.
+Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
+Labels: Left「住民（使用料を求めたい）」Right「地方公共団体（無償で使わせる）」
 
-Guide: ちゃちゃロット SMALL bottom-right owl slot, 指し棒 pointing at 暗記. Match chachalot.png. Not a scene character. No nameplate. Not bear/owl/cat.
-(pale-sky-blue HAT not ears, cream face, equal circle eyes, four cheek marks, no glasses).
+Title:「総合考慮で違憲」
+Chip:「最大判令3.2.24」
 
-STRICT:
-- Left header「論点」. Never「問が聞くこと」.
-- Right header「ひっかけ」. Never「（聞かない）」.
-- 論点: Q&A only. NO GO/STOP. Do not mix GO and YES.
-- Never write「だれが」.
-- Do NOT use 目的効果基準 as the correct ruler. Do NOT call this 支出型.
-
-Title:「孔子廟 — 総合考慮で違憲 / 怠る事実」
-Chip:「津・愛媛の目的効果と入れ替えるな」
-
-Center: temple in a city park with stamp「使用料ゼロ」. Scale labeled 総合考慮. Small tag「住民訴訟は怠る事実」.
-Labels MUST be:
-「住民（使用料を取れと求める）」
+Center ONLY: a park temple with stamp「使用料ゼロ」and a scale labeled「総合考慮」.
+Small tag:「住民訴訟は怠る事実（賃料を取らない）」
 
 Left 論点:
-1. 20条3項の宗教的活動？ → YES → 違憲
-2. 物差しは？ → 空知太型の総合考慮
-3. 住民訴訟で叩くのは？ → 怠る事実（賃料を取らない）
+1. 20条3項の宗教的活動か？ → YES
+2. 物差しは目的効果か？ → NO
+3. 住民訴訟で争うのは支出か？ → NO
 
 Right ひっかけ:
-- 目的効果基準
-- 愛媛と同じ支出型
-- 観光・文化なら合憲
+- 物差しは津・愛媛の目的効果基準である
+- 愛媛と同じ支出型である
+- 観光・文化なら合憲である
 
 Bottom:
-- 判断軸:「施設の性格・経緯・無償の態様・一般人の評価。限度超え」
-- ひっかけ:「目的効果／支出型／文化で逃げ」
+- 判断軸:「施設の性格、経緯、無償の態様、一般人の評価」
+- ひっかけ:「目的効果に入れ替える。支出型にする」
 - 暗記:「孔子廟は総合考慮で違憲。怠る事実」
-Answer EXACT:
-「無償提供は総合考慮で20条3項に当たり違憲。住民訴訟は怠る事実。」
+Answer:「無償提供は総合考慮により20条3項の宗教的活動に当たり違憲である。住民訴訟で争うのは怠る事実である。」
+
+Guide: ONE ちゃちゃロット only, SMALL bottom-right, 指し棒 to 総合考慮. Cream face, independent pale-sky-blue smiling hat, green lecturer jacket, white shirt, green trousers, shoes. No nameplate. No logos or watermarks.
 ```

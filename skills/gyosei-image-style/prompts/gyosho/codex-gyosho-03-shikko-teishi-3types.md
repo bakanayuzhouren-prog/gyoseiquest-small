@@ -22,33 +22,43 @@
 ## GPT Image プロンプト
 
 ```text
-Japanese administrative law infographic, 16:9.
-Title:「執行停止の3類型」
-Subtitle: 効力／執行／手続続行（25条）・効力停止は補充的
+Create a NEW Japanese legal-study infographic from scratch.
+ONE job: 執行停止の3類型. Hero is 効力の停止の補充性（25条2項ただし書）.
+Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
+Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center TABLE, bottom 判断軸 / ひっかけ / 暗記.
 
-LEFT「論点」:
-効力の停止は？ → 処分がなかった状態に近づける（最強・最後の手段）
-執行の停止は？ → 処分は残るが実力行使・強制執行を止める
-手続続行の停止は？ → 次の手続ステップを止める
-効力停止ができるのは？ → 執行・手続続行では目的を達せないときだけ
+Left heading 論点. Right heading ひっかけ.
+Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
+Labels: Left「原告（執行を止めたい）」Right「裁判所（申立てを見る）」
 
-RIGHT「ひっかけ」:
-× 効力停止を最初から選ぶ（補充性無視）
-× 裁判所が職権で執行停止できる
-× 3類型は同じ強さ
-× 当事者の意見を聞かなくてよい
+Title:「効力の停止は最後」
+Chip:「25条2項ただし書」
 
-CENTER metaphor: three stop signs on a road
-1) 効力STOP（赤・太い）＝許可ハンコが消えるイメージ
-2) 執行STOP（橙）＝ブルドーザー／差押えが止まる
-3) 手続STOP（黄）＝矢印の次ステップが×
+Center ONLY: one table. Header navy. Row zebra white / light gray, horizontal not columns.
+Columns: 類型 | 止めるもの
+Rows:
+処分の効力の停止 | 処分がなかった状態に近づける
+処分の執行の停止 | 処分は残し、強制執行や実力行使を止める
+手続の続行の停止 | 次の手続の進行を止める
+Caption:「効力の停止は、執行の停止又は手続の続行の停止で目的を達することができるときはできない。裁判所の職権ではできない。あらかじめ当事者の意見をきく」
 
-BOTTOM:
-判断軸: 何を止めたいか（効力／執行／手続）
-ひっかけ: 効力停止は補充的。職権不可。意見はきく
-暗記: 効力＞執行・手続。ただし効力は最後。申立て＋当事者意見
+Left 論点:
+1. 効力の停止を最初から選べるか？ → NO
+2. 職権で執行停止できるか？ → NO
+3. 3類型は同じ強さか？ → NO
 
-Chachalot pointing at「効力＝最後」badge.
+Right ひっかけ:
+- 効力の停止を第一選択にする
+- 裁判所が職権で執行停止できる
+- 当事者の意見をきかなくてよい
+
+Bottom:
+- 判断軸:「何を止めるか。効力の停止で足りるか」
+- ひっかけ:「効力停止を最初に選ぶ。職権で止められる」
+- 暗記:「効力の停止は補充的。申立てのみ。意見をきく」
+Answer:「効力の停止は、執行の停止又は手続の続行の停止で目的を達することができるときはできない。執行停止は申立てにより、職権ではできない。」
+
+Guide: ONE ちゃちゃロット only, SMALL bottom-right, 指し棒 to 補充性. Cream face, independent pale-sky-blue smiling hat, green lecturer jacket, white shirt, green trousers, shoes. No nameplate. No logos or watermarks.
 ```
 
 ## 目視チェック

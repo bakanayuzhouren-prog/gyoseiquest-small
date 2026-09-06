@@ -19,7 +19,7 @@ Create a NEW Japanese legal-study infographic from scratch. ONE job: 行政指�
 Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
 Match LAYOUT of「主宰者の許可」sample: left green / right orange, ONE center TABLE, bottom 判断軸 / ひっかけ / 暗記.
 
-Title:「任意か。誰が求めるか」
+Title:「任意か。中止は相手方か」
 Chip:「32条・36条の2・36条の3」
 
 Left heading 論点:
@@ -42,7 +42,7 @@ Rows:
 36条の2 | 何人も、法令に違反する事実の是正のための処分又は行政指導を求める
 Caption:「規模の大小（無灯火と病院勧告）は別図」
 
-Roles: 行政指導の相手方（中止を求める）／第三者（処分等の求めをする）. Never だれが.
+Roles: 行政指導の相手方（中止を求める）／第三者（処分等の求めをする）.
 
 Bottom:
 - 判断軸:「任意協力か。中止を求めるのは相手方か」

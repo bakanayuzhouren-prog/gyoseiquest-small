@@ -28,38 +28,35 @@
 ```text
 Create a NEW Japanese legal-study infographic from scratch.
 Topic: 科する vs 課する.
-Learning goal: 過料 uses 科する (same as 刑罰), even though 過料 is not a criminal penalty. Tax uses 課する.
+Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
+Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center metaphor, bottom 判断軸 / ひっかけ / 暗記.
 
-Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center metaphor,
-bottom 判断軸 / ひっかけ / 暗記, warm off-white, large Japanese, 16:9.
-
-STRICT: Left「論点」Q&A (no GO/STOP). Right「ひっかけ」. Never「だれが」「問が聞くこと」「（聞かない）」.
+This is a two-word contrast. Left heading 論点（科する）. Right heading 論点（課する）.
+Do not write the other word in each panel. Pitfalls go only in the bottom ひっかけ card.
+Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
 Labels: Left「裁判所（過料を科したい）」Right「行政庁（税を課したい）」
 
-Title:「科する / 課する — 過料は科」
-Chip:「過料≠刑罰でも科する」
+Title:「科すると、課する」
+Chip:「過料は刑罰ではないが科する」
 
 Center ONLY: two stamps.
-Green stamp「科」on 刑罰 + 過料.
-Blue stamp「課」on 税 + 義務.
-Do not add その他 comparison.
+Left stamp「科」over 刑罰 and 過料.
+Right stamp「課」over 税 and 義務.
 
-Left 論点:
+Left 論点（科する）ONLY:
 1. 刑罰は？ → 科する
-2. 過料は？ → 科する（刑罰ではない）
-3. 税・義務は？ → 課する
+2. 過料は？ → 科する
+3. 過料は刑罰か？ → NO
 
-Right ひっかけ:
-- 過料は課する
-- 税は科する
-- 過料＝刑罰だから科する、とだけ覚える（過料は刑罰ではない）
+Right 論点（課する）ONLY:
+1. 税は？ → 課する
+2. 義務の負担は？ → 課する
 
 Bottom:
-- 判断軸:「過料も科する。税は課する」
-- ひっかけ:「過料＝課する、に釣られるな」
+- 判断軸:「罰・過料か、負担か」
+- ひっかけ:「過料は課する。税は科する」
 - 暗記:「刑と過料は科する。税・義務は課する」
 Answer:「過料は刑罰ではないが科する。税は課する。」
 
-Guide: ちゃちゃロット SMALL bottom-right, 指し棒 to 暗記. Match chachalot.png.
-Not bear/owl/cat. No nameplate.
+Guide: ONE ちゃちゃロット only, SMALL bottom-right, 指し棒 to 暗記. Cream face, independent pale-sky-blue smiling hat, green lecturer jacket, white shirt, green trousers, shoes. No nameplate. No logos or watermarks.
 ```

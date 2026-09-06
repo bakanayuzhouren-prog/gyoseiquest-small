@@ -43,7 +43,7 @@ NEVER write 行服法 or 行服 anywhere (title, table header, 論点, ひっか
 Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center metaphor (comparison TABLE),
 bottom 判断軸 / ひっかけ / 暗記, warm off-white, large Japanese, 16:9.
 
-STRICT: Left heading「論点（行審法）」. Right heading「論点（行訴法）」. Never「だれが」「問が聞くこと」「（聞かない）」. No GO/STOP.
+Left heading 論点（行審法）. Right heading 論点（行訴法）. Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
 Do not write the other side's rules in each panel. Table is CENTER only.
 Labels: Left「行政庁（教示する）」Right「相手方（案内を受ける）」
 

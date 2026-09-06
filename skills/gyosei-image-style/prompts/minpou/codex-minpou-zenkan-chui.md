@@ -40,8 +40,8 @@ Learning goal: 原則は善管。無償でも商人の営業内寄託と使用�
 Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center metaphor (comparison TABLE),
 bottom 判断軸 / ひっかけ / 暗記, warm off-white, large Japanese, 16:9.
 
-STRICT: Left heading「論点」. Right heading「ひっかけ」. Never「だれが」「問が聞くこと」「（聞かない）」. No GO/STOP.
-Never write せいなく. Table is CENTER only.
+Left heading 論点. Right heading ひっかけ. Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
+Table is CENTER only.
 Labels: Left「留置権者（他人の物を占有する）」Right「受任者（事務を処理する）」
 
 Title:「善管注意義務 — 重いランク」
