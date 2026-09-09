@@ -41,7 +41,7 @@ note: 伊藤塾ファイナルチェックカードから論点を抽出し、�
 | 番号 | ファイル | 試験の芯 |
 |------|----------|----------|
 | 01 | `01-tetsuzuki-chomon-benmei.md` | 聴聞と弁明の違い。文書閲覧権・参加人は聴聞のみ |
-| 02 | `02-gyosho-genkoku-tekikaku.md` | 原告適格がある判例／ない判例。既存3図を再利用 |
+| 02 | `02-gyosho-genkoku-tekikaku.md` | 原告適格。条文・判例を正とし、適格／訴えの利益／本案を区別 |
 | 03 | `03-jichi-kansa-jumin-sosho.md` | 事務監査請求・住民監査請求・住民訴訟 |
 | 04 | `04-kisochi-sengo-keizai.md` | 戦後日本経済。所得倍増は1960年閣議決定 |
 | 05 | `05-minpou-inin-junyo.md` | 委任の規定の準用。既存2図を再利用 |

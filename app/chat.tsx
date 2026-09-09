@@ -15,9 +15,10 @@ import Constants from 'expo-constants';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, KeyboardAvoidingView, Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 
-type SearchKnowledgeFull = (query: string) => Promise<
-  { source: string; title: string; text: string; score: number }[]
->;
+type SearchKnowledgeFull = (
+  query: string,
+  conversationContext?: string
+) => Promise<{ source: string; title: string; text: string; score: number }[]>;
 
 let searchKnowledgeFullFn: SearchKnowledgeFull | null = null;
 
@@ -79,8 +80,8 @@ function formatSearchFallback(
   chunks: { source: string; title: string; text: string }[],
   level: StudyLevel
 ): string {
-  const limit = level === 'beginner' ? 2 : level === 'intermediate' ? 3 : 5;
-  const sliceLen = level === 'beginner' ? 450 : level === 'intermediate' ? 700 : 900;
+  const limit = 8;
+  const sliceLen = 4000;
   const intro =
     level === 'beginner'
       ? '### まずはここだけ\n見つかった解説の要点です。用語がむずかしければ、ヘッダーを「初級」のまま聞き直してください。\n\n'
@@ -133,7 +134,12 @@ export default function ChatScreen() {
 
     try {
       const searchKnowledgeFull = await loadSearchKnowledgeFull();
-      const chunks = await searchKnowledgeFull(trimmed);
+      const conversationContext = messages
+        .filter((m) => m.id !== '0')
+        .slice(-4)
+        .map((m) => m.text.slice(0, m.sender === 'bot' ? 700 : 400))
+        .join('\n');
+      const chunks = await searchKnowledgeFull(trimmed, conversationContext);
       const sourceLabels = [...new Set(chunks.map((c) => `${c.source}: ${c.title}`))].slice(0, 8);
 
       let botText: string;

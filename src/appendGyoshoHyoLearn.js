@@ -15,7 +15,7 @@ const RULES = [
     test: (a) => /病院開設中止の勧告|保育所廃止条例は処分|特定の保育所の廃止/.test(a),
   },
   {
-    tag: '[[image:learn/gyosho/genkoku-ari]]',
+    tag: '[[image:learn/gyosho/genkoku-ari-v2]]',
     test: (a) => /空港周辺住民には原告適格|健康に直接的に被害を受けるものに原告適格/.test(a),
   },
   {

@@ -621,7 +621,7 @@ function expandSearchTokens(trimmed: string): { fullNormalized: string; rawNorma
     }
   }
   if (fullNormalized.includes('理由の提示') || fullNormalized.includes('理由提示') || rawNormalized.includes('理由の提示')) {
-    ['行政手続法', '不利益処分', '申請', '拒否', '第8条', '却下', '不許可'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+    ['行政手続法', '不利益処分', '申請', '拒否', '第8条', '第14条', '却下', '不許可'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
   }
   if (fullNormalized.includes('占有改定') || rawNormalized.includes('占有改定')) {
     ['183条', '第183条', '意思を表示', '占有権', '178条'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
@@ -630,7 +630,19 @@ function expandSearchTokens(trimmed: string): { fullNormalized: string; rawNorma
     ['行政処分', '公権力の行使', '取消訴訟', '直接強制'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
   }
   if (fullNormalized.includes('原告適格') || rawNormalized.includes('原告適格')) {
-    ['法律上の利益', '取消訴訟', '個別的利益'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
+    [
+      '法律上の利益',
+      '取消訴訟',
+      '個別的利益',
+      '長沼ナイキ',
+      '場外車券',
+      'もんじゅ',
+      '新潟空港',
+      '小田急',
+      '一般廃棄物',
+      '公衆浴場',
+      '開発区域外',
+    ].forEach((x) => bag.add(normalizeQueryForMatch(x)));
   }
   if (fullNormalized.includes('即時取得') || fullNormalized.includes('192') || rawNormalized.includes('即時取得')) {
     ['192条', '占有改定', '善意無過失'].forEach((x) => bag.add(normalizeQueryForMatch(x)));
@@ -886,14 +898,29 @@ function markdownSourceLabel(relRaw: string): { source: string; boost: number } 
  * アプリ内データ＋MDチャンクを横断検索し、スコア順のチャンクを返す。
  * learn／pin／MD本文／questions は初回検索で動的 import。
  */
-export async function searchKnowledgeFull(query: string): Promise<ScoredKnowledgeChunk[]> {
+function isFollowUpKnowledgeQuery(n: string): boolean {
+  return (
+    /ほかの判例|他の判例|ほかも|それも|それは|だろ|結局負け|どの住民|どの業者|個別的利益|個別利益|一覧|全部|詳しく/.test(
+      n
+    ) || (n.length > 0 && n.length <= 16 && !/条|最判|事件|憲法|民法/.test(n))
+  );
+}
+
+export async function searchKnowledgeFull(
+  query: string,
+  conversationContext?: string
+): Promise<ScoredKnowledgeChunk[]> {
   const trimmed = query.trim();
   if (!trimmed) return [];
 
-  const { fullNormalized, rawNormalized, tokens } = expandSearchTokens(trimmed);
+  const qNorm = normalizeQueryForMatch(trimmed);
+  const useCtx = Boolean(conversationContext && isFollowUpKnowledgeQuery(qNorm));
+  const tokenSource = useCtx ? `${trimmed}\n${String(conversationContext).slice(0, 800)}` : trimmed;
+  const { fullNormalized, rawNormalized, tokens } = expandSearchTokens(tokenSource);
   const candidates: ScoredKnowledgeChunk[] = [];
 
-  for (const brief of topicBriefsForQuery(fullNormalized, rawNormalized)) {
+  const briefHay = useCtx ? [trimmed, String(conversationContext)] : [fullNormalized, rawNormalized];
+  for (const brief of topicBriefsForQuery(...briefHay)) {
     const beyondPastBoost = brief.title.includes('過去問の外側') ? 500 : 0;
     const kimeuchiBoost = brief.title.includes('決め打ちしたい人への三段案内') ? 600 : 0;
     candidates.push({

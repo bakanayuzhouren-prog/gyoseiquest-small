@@ -49,8 +49,8 @@ export const CHOKKI_FIGURES: ChokkiFigure[] = [
     track: '直前期パック',
     subject: '行政事件訴訟法',
     title: '原告適格・あり側',
-    axis: '法律上保護された利益。生命身体の直接の危険など。',
-    imageKey: 'learn/gyosho/genkoku-ari',
+    axis: '法律上保護された利益。生命・身体の直接の危険など。',
+    imageKey: 'learn/gyosho/genkoku-ari-v2',
     alsoIn: ['行訴・国賠'],
   },
   {

@@ -101,7 +101,7 @@ const BASE = {
           '誤答肢。医療法7条は競争者保護なし。',
           '誤答肢。常に適格ではない。',
         ],
-        deepdiveImages: ['learn/gyosho/genkoku-ari', 'learn/gyosho/genkoku-nashi', 'learn/gyosho/genkoku-kikiwake'],
+        deepdiveImages: ['learn/gyosho/genkoku-ari-v2', 'learn/gyosho/genkoku-nashi', 'learn/gyosho/genkoku-kikiwake'],
         memo: '原告適格のありなし聞き分け（既存図）',
       },
     ],

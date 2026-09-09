@@ -67,7 +67,7 @@ ${NOTE}`,
   行政事件訴訟法: [
     {
       text: '取消訴訟の原告適格は法律上保護された利益で切る。周辺住民も競争者も常に認められるわけではない。',
-      deepdive: `[[image:learn/gyosho/genkoku-ari]]
+      deepdive: `[[image:learn/gyosho/genkoku-ari-v2]]
 [[image:learn/gyosho/genkoku-nashi]]
 [[image:learn/gyosho/genkoku-kikiwake]]
 

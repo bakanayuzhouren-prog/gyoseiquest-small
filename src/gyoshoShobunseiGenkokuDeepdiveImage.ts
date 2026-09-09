@@ -6,7 +6,7 @@
 export const GYOSHO_SHOBUNSEI_ARI_KEY = 'learn/gyosho/shobunsei-ari';
 export const GYOSHO_SHOBUNSEI_NASHI_KEY = 'learn/gyosho/shobunsei-nashi';
 export const GYOSHO_SHOBUNSEI_KIKIWAKE_KEY = 'learn/gyosho/shobunsei-kikiwake';
-export const GYOSHO_GENKOKU_ARI_KEY = 'learn/gyosho/genkoku-ari';
+export const GYOSHO_GENKOKU_ARI_KEY = 'learn/gyosho/genkoku-ari-v2';
 export const GYOSHO_GENKOKU_NASHI_KEY = 'learn/gyosho/genkoku-nashi';
 export const GYOSHO_GENKOKU_KIKIWAKE_KEY = 'learn/gyosho/genkoku-kikiwake';
 

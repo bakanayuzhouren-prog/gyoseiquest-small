@@ -264,7 +264,7 @@ export const GYOSEI_TEXTBOOK_CHAPTERS: TextbookChapter[] = [
       },
       {
         type: 'figure',
-        imageKey: 'learn/gyosho/genkoku-ari',
+        imageKey: 'learn/gyosho/genkoku-ari-v2',
         caption: '原告適格があり側。生命身体の直接の危険など。',
       },
       {
