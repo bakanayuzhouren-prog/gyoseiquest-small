@@ -25,6 +25,7 @@ import { JICHI_CHAT_BRIEFS } from '../utils/chatTopicBriefsJichi.ts';
 import { MINPOU_CHAT_BRIEFS } from '../utils/chatTopicBriefsMinpou.ts';
 import { MINPOU_COMPARISON_BRIEFS } from '../utils/chatTopicBriefsMinpouComparisons.ts';
 import { LEC_KOUKAI_CHAT_BRIEFS } from '../utils/chatTopicBriefsLecKoukai.ts';
+import { LEC_KOUKAI_R2_CHAT_BRIEFS } from '../utils/chatTopicBriefsLecKoukaiRound2.ts';
 import { GOUKAKU_ROUND3_CHAT_BRIEFS } from '../utils/chatTopicBriefsGoukakuRound3.ts';
 import { GOUKAKU_ROUND2_CHAT_BRIEFS } from '../utils/chatTopicBriefsGoukakuRound2.ts';
 import { NAKA_GYOSEI_YAMA_CHAT_BRIEFS } from '../utils/chatTopicBriefsNakaGyoseiYama.ts';
@@ -216,6 +217,11 @@ const cases = [
   { q: '届出 義務付け', expectTitle: /申請と届出/ },
   { q: '行政指導 具体例', expectTitle: /行政指導/ },
   { q: '無灯火 行政指導', expectTitle: /行政指導/ },
+  { q: 'LEC公開２の29番を解説して', expectTitle: /LEC公開2・問29/ },
+  { q: 'LEC公開２の29番 そのイはなぜ誤り？', expectTitle: /LEC公開2・問29/ },
+  { q: 'LEC公開２の29番 具体的なストーリーで説明して', expectTitle: /LEC公開2・問29/ },
+  { q: 'LEC公開2の12番', expectTitle: /LEC公開2・問12/ },
+  { q: 'LEC公開模試第２回 問44', expectTitle: /LEC公開2・問44/ },
   { q: '品川マンション事件', expectTitle: /品川マンション/ },
   { q: '品川マンションの論点', expectTitle: /品川マンション/ },
   { q: '給水契約を拒否できる？', expectTitle: /給水契約の拒否/ },
@@ -849,6 +855,7 @@ const all = [
   ...MINPOU_CHAT_BRIEFS,
   ...MINPOU_COMPARISON_BRIEFS,
   ...LEC_KOUKAI_CHAT_BRIEFS,
+  ...LEC_KOUKAI_R2_CHAT_BRIEFS,
   ...GOUKAKU_ROUND3_CHAT_BRIEFS,
   ...GOUKAKU_ROUND2_CHAT_BRIEFS,
   ...NAKA_GYOSEI_YAMA_CHAT_BRIEFS,

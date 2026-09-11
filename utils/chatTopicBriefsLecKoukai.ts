@@ -10,7 +10,9 @@ export type ChatTopicBrief = {
 export const LEC_KOUKAI_CHAT_BRIEFS: ChatTopicBrief[] = [
   {
     triggers: [
-      'LEC公開模試',
+      'LEC公開模試第1回',
+      'LEC公開１',
+      'LEC公開1',
       'LEC公開 問4',
       '川崎民商',
       'GPS捜査事件',
@@ -191,7 +193,8 @@ export const LEC_KOUKAI_CHAT_BRIEFS: ChatTopicBrief[] = [
 ];
 
 export const LEC_KOUKAI_KEY_PHRASES: string[] = [
-  'LEC公開模試',
+  'LEC公開模試第1回',
+  'LEC公開１',
   '全日本行政書士公開模試',
   '第三者の詐欺',
   '参議院 緊急集会',

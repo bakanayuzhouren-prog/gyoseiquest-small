@@ -80,6 +80,11 @@ import {
   LEC_KOUKAI_KEY_PHRASES,
 } from '@/utils/chatTopicBriefsLecKoukai';
 import {
+  LEC_KOUKAI_R2_CHAT_BRIEFS,
+  LEC_KOUKAI_R2_KEY_PHRASES,
+  LEC_KOUKAI_R2_PHRASE_ALIASES,
+} from '@/utils/chatTopicBriefsLecKoukaiRound2';
+import {
   LEC_BONUS_KENPOU_CHAT_BRIEFS,
   LEC_BONUS_KENPOU_KEY_PHRASES,
   LEC_BONUS_KENPOU_PHRASE_ALIASES,
@@ -316,6 +321,7 @@ const PHRASE_ALIASES: [string, string[]][] = [
   ...NAKA_MINPOU_YAMA_PHRASE_ALIASES,
   ...KENPOU_YAMA_PHRASE_ALIASES,
   ...LEC_BONUS_KENPOU_PHRASE_ALIASES,
+  ...LEC_KOUKAI_R2_PHRASE_ALIASES,
   ...KENPOU_COMPARISON_PHRASE_ALIASES,
 ];
 
@@ -400,6 +406,7 @@ const CHAT_TOPIC_BRIEFS: { triggers: string[]; title: string; text: string }[] =
   ...GOUKAKU_ROUND3_CHAT_BRIEFS,
   ...GOUKAKU_ROUND2_CHAT_BRIEFS,
   ...LEC_KOUKAI_CHAT_BRIEFS,
+  ...LEC_KOUKAI_R2_CHAT_BRIEFS,
   ...JICHI_CHAT_BRIEFS,
   ...MOSHI_BEYOND_PAST_CHAT_BRIEFS,
   ...SHOHO_KIMEUCHI_CHAT_BRIEFS,
@@ -489,6 +496,7 @@ const KEY_LEGAL_PHRASES = [
   ...GOUKAKU_ROUND3_KEY_PHRASES,
   ...GOUKAKU_ROUND2_KEY_PHRASES,
   ...LEC_KOUKAI_KEY_PHRASES,
+  ...LEC_KOUKAI_R2_KEY_PHRASES,
   ...JICHI_KEY_PHRASES,
   ...MOSHI_BEYOND_PAST_KEY_PHRASES,
   ...SHOHO_KIMEUCHI_KEY_PHRASES,
@@ -555,6 +563,22 @@ function topicBriefsForQuery(...haystacks: string[]): { title: string; text: str
         text: b.text,
         priority,
       });
+    }
+  }
+  const wantsLecR2 = /lec公開\s*[2２]|lec公開模試第\s*[2２]回/.test(blob);
+  if (wantsLecR2) {
+    const numHit = blob.match(/問\s*(\d{1,2})(?:番)?|[の\s](\d{1,2})\s*番/);
+    const qn = numHit ? Number(numHit[1] || numHit[2]) : NaN;
+    for (const m of matched) {
+      if (m.title.startsWith('LEC公開模試・')) {
+        m.priority = 6;
+        continue;
+      }
+      if (!m.title.startsWith('LEC公開2')) continue;
+      if (Number.isFinite(qn) && m.title.startsWith(`LEC公開2・問${qn}`)) m.priority = -1;
+      else if (m.title.startsWith('LEC公開2：使い方')) m.priority = 1;
+      else if (m.title.startsWith('LEC公開2・問')) m.priority = 5;
+      else m.priority = 0;
     }
   }
   const doryokuTitle = '比較：努力義務の並列（行政手続法｜行政不服審査法）';
@@ -900,7 +924,7 @@ function markdownSourceLabel(relRaw: string): { source: string; boost: number } 
  */
 function isFollowUpKnowledgeQuery(n: string): boolean {
   return (
-    /ほかの判例|他の判例|ほかも|それも|それは|だろ|結局負け|どの住民|どの業者|個別的利益|個別利益|一覧|全部|詳しく/.test(
+    /ほかの判例|他の判例|ほかも|それも|それは|だろ|結局負け|どの住民|どの業者|個別的利益|個別利益|一覧|全部|詳しく|その[アイウエオ1-5]|なぜ誤り|ストーリー|具体的/.test(
       n
     ) || (n.length > 0 && n.length <= 16 && !/条|最判|事件|憲法|民法/.test(n))
   );
