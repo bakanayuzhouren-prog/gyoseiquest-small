@@ -1,4 +1,64 @@
+const TTS_DIGIT_YOMI = ['', 'いち', 'に', 'さん', 'よん', 'ご', 'ろく', 'なな', 'はち', 'きゅう'] as const;
+
+function toHalfWidthDigits(s: string): string {
+    return s.replace(/[０-９]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0));
+}
+
+/** 条文番号用の整数読み（よん・なな・きゅう。九十＝きゅうじゅう、七百九＝ななひゃくきゅう） */
+export function readJapaneseIntegerForTts(n: number): string {
+    if (!Number.isFinite(n) || n < 0) return String(n);
+    if (n === 0) return 'ゼロ';
+    if (n > 9999) return String(n);
+
+    const sen = Math.floor(n / 1000);
+    const hyaku = Math.floor((n % 1000) / 100);
+    const ju = Math.floor((n % 100) / 10);
+    const ichi = n % 10;
+    const parts: string[] = [];
+
+    if (sen) parts.push(sen === 1 ? 'せん' : `${TTS_DIGIT_YOMI[sen]}せん`);
+    if (hyaku) {
+        if (hyaku === 1) parts.push('ひゃく');
+        else if (hyaku === 3) parts.push('さんびゃく');
+        else if (hyaku === 6) parts.push('ろっぴゃく');
+        else if (hyaku === 8) parts.push('はっぴゃく');
+        else parts.push(`${TTS_DIGIT_YOMI[hyaku]}ひゃく`);
+    }
+    if (ju) parts.push(ju === 1 ? 'じゅう' : `${TTS_DIGIT_YOMI[ju]}じゅう`);
+    if (ichi) parts.push(TTS_DIGIT_YOMI[ichi]);
+    return parts.join('');
+}
+
+/**
+ * アラビア数字の条・項・号を法律の読みへ。
+ * 例: 1条・90条・709条 → いちじょう、きゅうじゅうじょう、ななひゃくきゅうじょう
+ */
+export function expandStatuteNumbersForTts(text: string): string {
+    const parseNum = (raw: string) => parseInt(toHalfWidthDigits(raw), 10);
+    return text
+        .replace(/第?([0-9０-９]{1,4})条(の[0-9０-９]{1,4})?/g, (full, num, ofPart?: string) => {
+            const dai = full.startsWith('第') ? 'だい' : '';
+            const of = ofPart ? `の${readJapaneseIntegerForTts(parseNum(ofPart.slice(1)))}` : '';
+            return `${dai}${readJapaneseIntegerForTts(parseNum(num))}じょう${of}`;
+        })
+        .replace(/第?([0-9０-９]{1,4})項/g, (full, num) => {
+            const dai = full.startsWith('第') ? 'だい' : '';
+            return `${dai}${readJapaneseIntegerForTts(parseNum(num))}こう`;
+        })
+        .replace(/第?([0-9０-９]{1,4})号/g, (full, num) => {
+            const dai = full.startsWith('第') ? 'だい' : '';
+            return `${dai}${readJapaneseIntegerForTts(parseNum(num))}ごう`;
+        })
+        .replace(/じょう[・･]/g, 'じょう、')
+        .replace(/こう[・･]/g, 'こう、');
+}
+
+/** 連鎖 replace を分割しないと Metro が Maximum call stack size exceeded になる */
 export const applyTTSRules = (text: string): string => {
+    return applyTtsLexiconC(applyTtsLexiconB(applyTtsLexiconA(expandStatuteNumbersForTts(text))));
+};
+
+function applyTtsLexiconA(text: string): string {
     return text
         .replace(/※.*$/g, '')
         .replace(/行政代執行法/g, 'ぎょうせいだいしっこうほう')
@@ -297,7 +357,11 @@ export const applyTTSRules = (text: string): string => {
         .replace(/早い時刻/g, 'はやいじこく')
         .replace(/早い時期/g, 'はやいじき')
         .replace(/早い時点/g, 'はやいじてん')
-        .replace(/早い時/g, 'はやいとき')
+        .replace(/早い時/g, 'はやいとき');
+}
+
+function applyTtsLexiconB(text: string): string {
+    return text
         .replace(/許与/g, 'きょよ')
         .replace(/賜与/g, 'しよ')
         .replace(/財産分与/g, 'ざいさんぶんよ')
@@ -598,7 +662,11 @@ export const applyTTSRules = (text: string): string => {
         .replace(/再調査/g, 'さいちょうさ')
         .replace(/再審査請求/g, 'さいしんさせいきゅう')
         .replace(/審査請求/g, 'しんさせいきゅう')
-        .replace(/再審/g, 'さいしん')
+        .replace(/再審/g, 'さいしん');
+}
+
+function applyTtsLexiconC(text: string): string {
+    return text
         .replace(/訴えの利益/g, 'うったえのりえき')
         .replace(/被告適格/g, 'ひこくてきかく')
         .replace(/取消訴訟/g, 'とりけすそしょう')

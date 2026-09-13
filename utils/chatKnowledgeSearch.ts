@@ -1,5 +1,6 @@
 import type { ChatMarkdownChunk } from '@/src/generated/chatMarkdownChunks';
 import type { ChatMarkdownIndexRow } from '@/src/generated/chatMarkdownIndex';
+import { examKnowledgeCardById } from '@/utils/examKnowledgeCatalog';
 import {
   KISO_HOUGAKU_CHAT_TOPIC_BRIEFS,
   KISO_HOUGAKU_KEY_PHRASES,
@@ -908,14 +909,17 @@ function scoreIndexRow(row: ChatMarkdownIndexRow, tokens: string[], fullNormaliz
 function markdownSourceLabel(relRaw: string): { source: string; boost: number } {
   const rel = relRaw.replace(/\\/g, '/');
   const isKnowledge = rel.startsWith('data/knowledge/');
+  const isExamKb = rel.includes('受験生向け知識ベース');
   const isCreator = rel.includes('/creator/');
   const subjectMatch = isKnowledge ? rel.match(/data\/knowledge\/(?:quiz|learn|creator)\/([^/]+)/) : null;
-  const source = isCreator
-    ? `知識MD · ${subjectMatch?.[1] || 'creator'}（要約）`
-    : isKnowledge
-      ? `知識MD · ${subjectMatch?.[1] || 'canonical'}`
-      : `MD:${rel}`;
-  return { source, boost: isKnowledge ? (isCreator ? 4 : 3) : 0 };
+  const source = isExamKb
+    ? '知識MD · 受験生向け知識ベース'
+    : isCreator
+      ? `知識MD · ${subjectMatch?.[1] || 'creator'}（要約）`
+      : isKnowledge
+        ? `知識MD · ${subjectMatch?.[1] || 'canonical'}`
+        : `MD:${rel}`;
+  return { source, boost: isExamKb ? 10 : isKnowledge ? (isCreator ? 4 : 3) : 0 };
 }
 
 /**
@@ -932,7 +936,8 @@ function isFollowUpKnowledgeQuery(n: string): boolean {
 
 export async function searchKnowledgeFull(
   query: string,
-  conversationContext?: string
+  conversationContext?: string,
+  opts?: { pinExamKnowledgeId?: string }
 ): Promise<ScoredKnowledgeChunk[]> {
   const trimmed = query.trim();
   if (!trimmed) return [];
@@ -942,6 +947,16 @@ export async function searchKnowledgeFull(
   const tokenSource = useCtx ? `${trimmed}\n${String(conversationContext).slice(0, 800)}` : trimmed;
   const { fullNormalized, rawNormalized, tokens } = expandSearchTokens(tokenSource);
   const candidates: ScoredKnowledgeChunk[] = [];
+
+  const pinned = opts?.pinExamKnowledgeId ? examKnowledgeCardById(opts.pinExamKnowledgeId) : undefined;
+  if (pinned) {
+    candidates.push({
+      source: '知識MD · 受験生向け知識ベース',
+      title: pinned.title,
+      text: pinned.body,
+      score: 2500,
+    });
+  }
 
   const briefHay = useCtx ? [trimmed, String(conversationContext)] : [fullNormalized, rawNormalized];
   for (const brief of topicBriefsForQuery(...briefHay)) {

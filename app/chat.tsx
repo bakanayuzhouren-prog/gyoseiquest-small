@@ -10,6 +10,12 @@ import {
 } from '@/src/context/StudyLevelContext';
 import { Themes, useTheme } from '@/src/context/ThemeContext';
 import { answerChatFromContext } from '@/src/utils/geminiService';
+import {
+  appendExamKnowledgeOffer,
+  applyExamKnowledgeSession,
+  resolveExamKnowledgeTurn,
+  type ExamKnowledgeSession,
+} from '@/utils/examKnowledgeOffers';
 import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -17,7 +23,8 @@ import { ActivityIndicator, FlatList, Image, KeyboardAvoidingView, Platform, Pre
 
 type SearchKnowledgeFull = (
   query: string,
-  conversationContext?: string
+  conversationContext?: string,
+  opts?: { pinExamKnowledgeId?: string }
 ) => Promise<{ source: string; title: string; text: string; score: number }[]>;
 
 let searchKnowledgeFullFn: SearchKnowledgeFull | null = null;
@@ -42,6 +49,7 @@ type Message = {
   sender: 'user' | 'bot';
   useMarkdown?: boolean;
   sources?: string[];
+  offerText?: string;
 };
 
 const SUGGESTIONS_BY_LEVEL: Record<StudyLevel, string[]> = {
@@ -112,6 +120,11 @@ export default function ChatScreen() {
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const flatListRef = useRef<FlatList>(null);
+  const examKbSessionRef = useRef<ExamKnowledgeSession>({
+    pendingOfferId: null,
+    explainedIds: [],
+    declinedIds: [],
+  });
   const suggestions = useMemo(() => SUGGESTIONS_BY_LEVEL[studyLevel], [studyLevel]);
 
   useEffect(() => {
@@ -134,12 +147,16 @@ export default function ChatScreen() {
 
     try {
       const searchKnowledgeFull = await loadSearchKnowledgeFull();
+      const examTurn = resolveExamKnowledgeTurn(trimmed, examKbSessionRef.current);
+      examKbSessionRef.current = applyExamKnowledgeSession(examKbSessionRef.current, examTurn);
       const conversationContext = messages
         .filter((m) => m.id !== '0')
         .slice(-4)
         .map((m) => m.text.slice(0, m.sender === 'bot' ? 700 : 400))
         .join('\n');
-      const chunks = await searchKnowledgeFull(trimmed, conversationContext);
+      const chunks = await searchKnowledgeFull(examTurn.searchQuery, conversationContext, {
+        pinExamKnowledgeId: examTurn.pinCardId ?? undefined,
+      });
       const sourceLabels = [...new Set(chunks.map((c) => `${c.source}: ${c.title}`))].slice(0, 8);
 
       let botText: string;
@@ -153,7 +170,7 @@ export default function ChatScreen() {
             text: m.text,
           }));
         botText = await answerChatFromContext(GEMINI_API_KEY, {
-          userQuery: trimmed,
+          userQuery: examTurn.searchQuery,
           contextChunks: chunks,
           history,
           studyLevel,
@@ -165,12 +182,15 @@ export default function ChatScreen() {
           '該当するキーワードをアプリ内データで見つけられませんでした。\n別の言い回しや、条文番号・判例名・科目名で試してください。';
       }
 
+      botText = appendExamKnowledgeOffer(botText, examTurn.offer);
+
       const botMsg: Message = {
         id: (Date.now() + 1).toString(),
         text: botText,
         sender: 'bot',
         useMarkdown: true,
         sources: sourceLabels.length > 0 ? sourceLabels : undefined,
+        offerText: examTurn.offer?.text,
       };
       setMessages((prev) => [...prev, botMsg]);
     } catch (e) {
@@ -219,6 +239,38 @@ export default function ChatScreen() {
             参照: {item.sources.join(' / ')}
           </ThemedText>
         )}
+        {item.offerText ? (
+          <View style={{ flexDirection: 'row', gap: 8, marginTop: 10, flexWrap: 'wrap' }}>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="追加学習する"
+              onPress={() => handleSend('はい')}
+              style={{
+                paddingHorizontal: 12,
+                paddingVertical: 6,
+                borderRadius: 14,
+                backgroundColor: colors.primary,
+              }}
+            >
+              <ThemedText style={{ color: '#fff', fontSize: 12, fontWeight: '700' }}>学習する</ThemedText>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="今は学習しない"
+              onPress={() => handleSend('今はしない')}
+              style={{
+                paddingHorizontal: 12,
+                paddingVertical: 6,
+                borderRadius: 14,
+                borderWidth: 1,
+                borderColor: colors.choiceBorder,
+                backgroundColor: colors.choiceBg,
+              }}
+            >
+              <ThemedText style={{ color: colors.choiceText, fontSize: 12 }}>今はしない</ThemedText>
+            </Pressable>
+          </View>
+        ) : null}
       </View>
     );
     return (
