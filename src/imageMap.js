@@ -259,8 +259,14 @@ export const IMAGE_RESOURCES_MAP = {
   'city_hall_map': require('@/assets/images/city_hall_map.png'),
   'column_constitution_meaning': require('@/assets/images/column_constitution_meaning.png'),
   'kachadokuro': require('@/assets/images/characters/kachadokuro.png'),
+  'kachadokuro_sheet': require('@/assets/images/characters/kachadokuro_sheet.png'),
   'king_kachadokuro': require('@/assets/images/characters/king_kachadokuro.png'),
+  'king_kachadokuro_sheet': require('@/assets/images/characters/king_kachadokuro_sheet.png'),
   'pitchi': require('@/assets/images/characters/pitchi.png'),
+  'pitchi_sheet': require('@/assets/images/characters/pitchi_sheet.png'),
   'princess_kachadokuro': require('@/assets/images/characters/princess_kachadokuro.png'),
-  'task_turtle': require('@/assets/images/characters/task_turtle.png')
+  'princess_kachadokuro_sheet': require('@/assets/images/characters/princess_kachadokuro_sheet.png'),
+  'subeton_sheet': require('@/assets/images/characters/subeton_sheet.png'),
+  'task_turtle': require('@/assets/images/characters/task_turtle.png'),
+  'task_turtle_sheet': require('@/assets/images/characters/task_turtle_sheet.png')
 };

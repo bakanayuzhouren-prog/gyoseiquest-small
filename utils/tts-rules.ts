@@ -29,6 +29,51 @@ export function readJapaneseIntegerForTts(n: number): string {
     return parts.join('');
 }
 
+/** 項の促音（1項＝いっこう、6項＝ろっこう、8項＝はっこう、10項＝じゅっこう） */
+export function readJapaneseIntegerForKou(n: number): string {
+    const base = readJapaneseIntegerForTts(n);
+    if (n % 10 === 1) return base.replace(/いち$/, 'いっ');
+    if (n % 10 === 6) return base.replace(/ろく$/, 'ろっ');
+    if (n % 10 === 8) return base.replace(/はち$/, 'はっ');
+    if (n % 10 === 0 && n % 100 !== 0) return base.replace(/じゅう$/, 'じゅっ');
+    return base;
+}
+
+const TTS_MONTH_DAY: Record<number, string> = {
+    1: 'ついたち',
+    2: 'ふつか',
+    3: 'みっか',
+    4: 'よっか',
+    5: 'いつか',
+    6: 'むいか',
+    7: 'なのか',
+    8: 'ようか',
+    9: 'ここのか',
+    10: 'とおか',
+    14: 'じゅうよっか',
+    20: 'はつか',
+    24: 'にじゅうよっか',
+};
+
+function readMonthDayForTts(raw: string): string {
+    const n = parseInt(toHalfWidthDigits(raw), 10);
+    if (TTS_MONTH_DAY[n]) return TTS_MONTH_DAY[n];
+    return `${readJapaneseIntegerForTts(n)}にち`;
+}
+
+/**
+ * 暦の3月は「さんがつ」。期間の3月は「さんかげつ」。
+ * 「3月1日」は「さんがつついたち」。
+ */
+export function expandMarchCalendarAndPeriodForTts(text: string): string {
+    return text
+        .replace(/([後前])([3３三])月/g, '$1さんかげつ')
+        .replace(/([3３三])月(以内|を経過|間)/g, 'さんかげつ$2')
+        .replace(/([0-9０-９]{1,4})年([3３三])月/g, '$1ねんさんがつ')
+        .replace(/([3３三])月([0-9０-９]{1,2})日/g, (_full, _m, day) => `さんがつ${readMonthDayForTts(day)}`)
+        .replace(/([3３三])月/g, 'さんがつ');
+}
+
 /**
  * アラビア数字の条・項・号を法律の読みへ。
  * 例: 1条・90条・709条 → いちじょう、きゅうじゅうじょう、ななひゃくきゅうじょう
@@ -43,7 +88,7 @@ export function expandStatuteNumbersForTts(text: string): string {
         })
         .replace(/第?([0-9０-９]{1,4})項/g, (full, num) => {
             const dai = full.startsWith('第') ? 'だい' : '';
-            return `${dai}${readJapaneseIntegerForTts(parseNum(num))}こう`;
+            return `${dai}${readJapaneseIntegerForKou(parseNum(num))}こう`;
         })
         .replace(/第?([0-9０-９]{1,4})号/g, (full, num) => {
             const dai = full.startsWith('第') ? 'だい' : '';
@@ -55,7 +100,9 @@ export function expandStatuteNumbersForTts(text: string): string {
 
 /** 連鎖 replace を分割しないと Metro が Maximum call stack size exceeded になる */
 export const applyTTSRules = (text: string): string => {
-    return applyTtsLexiconC(applyTtsLexiconB(applyTtsLexiconA(expandStatuteNumbersForTts(text))));
+    return applyTtsLexiconC(
+        applyTtsLexiconB(applyTtsLexiconA(expandMarchCalendarAndPeriodForTts(expandStatuteNumbersForTts(text)))),
+    );
 };
 
 function applyTtsLexiconA(text: string): string {
@@ -298,7 +345,6 @@ function applyTtsLexiconA(text: string): string {
         .replace(/思料/g, 'しりょう')
         .replace(/何人/g, 'なんぴと')
         .replace(/その中には/g, 'そのなかには')
-        .replace(/[3３三]月/g, 'さんげつ')
         .replace(/公の利益/g, 'おおやけのりえき')
         .replace(/公の施設/g, 'おおやけのしせつ')
         .replace(/公の営造物/g, 'おおやけのえいぞうぶつ')

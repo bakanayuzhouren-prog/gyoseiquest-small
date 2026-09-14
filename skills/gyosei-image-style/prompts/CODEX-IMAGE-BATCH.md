@@ -57,7 +57,7 @@ node scripts/listPendingCodexImages.mjs --folder fufuku
 - `skills/gyosei-image-style/SKILL.md`
 - `skills/gyosei-image-style/references/visual-guidelines.md`
 - `skills/gyosei-image-style/assets/approved-shusaisha-kyoka.png`
-- `assets/images/characters/chachalot.png` ＋ `approved-smiling-hat-mascot.png`
+- その枚で使う許可キャストの参照PNG。案内役なら `chachalot.png` ＋ `approved-smiling-hat-mascot.png`。場面役はアイコンと、あればポーズシート（`pitchi_sheet.png` / `task_turtle_sheet.png` / `kachadokuro_sheet.png` / `king_kachadokuro_sheet.png` / `princess_kachadokuro_sheet.png` / `subeton_sheet.png`）。全身はシートを正とする
 
 ## 生成ルール
 
@@ -66,7 +66,7 @@ node scripts/listPendingCodexImages.mjs --folder fufuku
 | チェックOKの pending だけ生成する | おかしいプロンプトから描く／修正前ファイルを開く・直す |
 | **保存先**は `保存先:` / `保存:` / `コマN:` のパス通り | アプリコード・learn・sync の編集 |
 | **1枚ずつ**。古い順 | 6枚同時一括 |
-| 生成後 **目視**（ちゃちゃロット崩壊は不合格） | X 予約投稿 |
+| 生成後 **目視**（解説文・配役・文字かぶり。ちゃちゃロット崩壊は不合格） | X 予約投稿 |
 | 完了報告に promptFile → outputRel | `generateDeepdiveImages.js`（Cursor へ） |
 
 ## Cursor がプロンプトを書くとき

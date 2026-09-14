@@ -101,6 +101,46 @@ No whiskers, muzzle, fur, beak, feathers, glasses, distorted circles,
 wobbly outlines, text, watermark, or unrequested accessories.
 ```
 
+## 許可キャスト（てらしぃ確定・2026-09-14）
+
+ちゃちゃロットに加え、教材図の場面役に使ってよい。**生成は Codex。** Cursor はプロンプトに参照を書く。既存図は一括変更しない。新規と個別修正から適用する。
+
+| 名前 | アイコン | ポーズシート | 見た目の芯 |
+|---|---|---|---|
+| ちゃちゃロット | `chachalot.png` | 未作成。案内役は `approved-chachalot-pointer.png` | 標準案内役。下余白・指し棒。緑スーツ |
+| ぴっちゅ | `pitchi.png` | `pitchi_sheet.png` | 黄色いヒヨコ。6ポーズ |
+| タスク亀 | `task_turtle.png` | `task_turtle_sheet.png` | 薄い緑の亀。6ポーズ |
+| カチャドクロ | `kachadokuro.png` | `kachadokuro_sheet.png` | 白いドクロ。冠なし。シートは黒い胴体 |
+| キングカチャドクロ | `king_kachadokuro.png` | `king_kachadokuro_sheet.png` | 金冠・黒の上衣・赤マント。プリンセスと混ぜない |
+| プリンセスカチャドクロ | `princess_kachadokuro.png` | `princess_kachadokuro_sheet.png` | 銀のティアラ・桃色の胴体・まつ毛。キングと混ぜない |
+| すべとん | 未作成 | `subeton_sheet.png` | 暗い青緑のスライム。6ポーズ。悪い役（ひっかけ・誤った主張） |
+
+パスはすべて `assets/images/characters/`。教材図の全身・ポーズは**シートを正**にする。頭だけのアイコンとシートが違うときはシートに合わせる。
+
+### プロンプト必須
+
+採用する各キャラについて、次を書く。
+
+1. 参照画像のパス
+2. キャラクター名
+3. 法律上の役割（`役割（何をしたいか）`。当事者なら論点に合わせる）
+4. 配置（左パネル／中央／右パネル／余白など）
+
+同じ図では配役を固定する。本文・矢印・表・答え帯を隠さない。
+
+### 配役の原則（てらしぃ確定）
+
+- **いい役:** ちゃちゃロット、ぴっちゅ、タスク亀
+- **悪い役:** カチャドクロ、キングカチャドクロ、プリンセスカチャドクロ、すべとん
+- 冠を「正しい権力」にしない。キング／プリンセスも悪い役側。
+- てらしぃが個別に別配役を指定したときだけ例外。
+
+### 配役の禁止
+
+- 名簿外（無名のヒヨコ、別ドクロ、フクロウ講師、クマ、タヌキ、猫）
+- キングとプリンセスを同一キャラとして描く
+- 受験生シート（`gyosei_student_*`）を、てらしぃの明示なく教材図キャストに足す
+
 ### Green Owl Instructor（既存図のみ・移行前）
 
 - Role: 過去の教材図ガイド。承認レイアウト見本 `assets/approved-shusaisha-kyoka.png` 右下に残る。
@@ -128,3 +168,4 @@ Avoid text, complex background, excessive accessories, mascot fantasy elements.
 - Do not generate a new avatar style for each subject.
 - If a new avatar is approved, save one reference image under `assets/` and describe its stable traits here.
 - Do not bulk-migrate owl diagrams to the smiling-hat character without an explicit migration request.
+- Do not bulk-replace existing figures with the 2026-09-14 cast. Apply on new prompts and individual revision requests only.

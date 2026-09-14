@@ -6,7 +6,8 @@
 - 教材図・プロンプト考案時は、てらしぃが過去に投稿・承認した図の密度・色分け・底部3カード構成を優先する。
 - 承認済みレイアウト見本: `skills/gyosei-image-style/assets/approved-shusaisha-kyoka.png`（主宰者の許可 — 要る３つ / 要らないもの）
 - 承認済み案内役: **ちゃちゃロット**（`assets/images/characters/chachalot.png` ＋ `approved-smiling-hat-mascot.png`）
-- 詳細なキャラ固定仕様は `references/avatar-guidelines.md` の **ちゃちゃロット**。
+- 許可された場面役: ぴっちゅ / タスク亀 / カチャドクロ / キングカチャドクロ / プリンセスカチャドクロ / すべとん（`avatar-guidelines.md` の許可キャスト）
+- 詳細なキャラ固定仕様は `references/avatar-guidelines.md`。
 
 ## Design Direction
 
@@ -25,10 +26,11 @@
 
 ## Guide Character（新規 vs 既存）
 
-- **新規画像の標準案内役**は **ちゃちゃロット**（にっこり帽子。`chachalot.png` ＋ `approved-smiling-hat-mascot.png`）。緑のフクロウ講師を新規の絶対要件にしない。プロンプトに名前を書く。
+- **新規画像の標準案内役**は **ちゃちゃロット**（にっこり帽子。`chachalot.png` ＋ `approved-smiling-hat-mascot.png`）。緑のフクロウ講師を新規の絶対要件にしない。
+- **場面役**はてらしぃ許可キャストだけ。いい役＝ちゃちゃロット・ぴっちゅ・タスク亀。悪い役＝カチャドクロ系・すべとん。プロンプトに参照PNG・名前・法律上の役割・配置を書く。同じ図では配役を固定。本文・矢印を隠さない。
 - `approved-shusaisha-kyoka.png` 内のフクロウは、**配置位置・指示棒・本文を隠さない役割**の見本として扱う（キャラの見た目正本ではない）。
-- **既存フクロウ画像**は、別途移行指示があるまで変更しない。
-- キャラ生成・案内役入り図では、生成前に `avatar-guidelines.md` と承認PNGを開く。
+- **既存画像**は、てらしぃの個別修正まで一括変更しない（フクロウ図も許可キャストへの一括差し替えもしない）。
+- キャラ入り図では、生成前に `avatar-guidelines.md` と、使う各参照PNGを開く。
 
 ## あぷし承認レイアウト（プロンプト考案の標準骨格）
 
@@ -96,7 +98,8 @@
 | 判断軸 | 1〜2行 |
 | ひっかけ | 1枚 |
 | 暗記一行 | 答案の芯に近い合言葉 |
-| 案内役 | ちゃちゃロット（chachalot.png ＋ 承認PNG）。既存フクロウ図の移行でない |
+| 案内役 | ちゃちゃロット（chachalot.png ＋ 承認PNG） |
+| 場面役 | 使うなら許可キャストのみ。参照PNG・名前・法律上の役割・配置。配役固定。ドクロ＝加害者にしない |
 | 配置先 | textbook / deepdive 等のパス |
 
 ## Default GPT Image Prompt Skeleton（あぷし型）
@@ -123,6 +126,7 @@ Layout:
    Center characters: labels like「保佐人（契約を取り消したい）」／「相手方（売買の相手）」. Never write「だれが」.
 5) Bottom cards: 判断軸 / ひっかけ / 暗記 — exact Japanese phrases below.
 6) ちゃちゃロット in owl slot: SMALL bottom-right, 指し棒 pointing at 暗記. Not a scene character.
+7) If scene cast is used: name each approved character, legal role, placement, and the exact PNG. Do not hide labels or arrows. Do not treat a skull as the wrongdoer just because it is a skull.
 
 Exact Japanese labels to include:
 - 判断軸:「...」

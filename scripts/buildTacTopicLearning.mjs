@@ -178,7 +178,8 @@ function beginnerMemory(core, topic) {
 
 function beginnerRule(core, topic) {
   const polished = polishMemory(core);
-  return `${topic}はこう覚える。${polished}`;
+  if (!polished) return polishMemory(topic);
+  return polished;
 }
 
 function beginnerDeepDive(core, topic, refs) {
@@ -645,6 +646,15 @@ const TAC3_OVERRIDES = {
   },
 };
 
+function topicFromMemory(raw, fallback) {
+  const s = String(raw || '').replace(/\s+/g, '');
+  const first = s.split(/[。]/)[0] || s;
+  const untilHa = first.match(/^(.{4,28}?)は/);
+  if (untilHa) return untilHa[1];
+  if (first.length <= 24) return first.replace(/[、・].*$/, '') || fallback;
+  return fallback;
+}
+
 function normalizeLearnSubject(learnSubject) {
   const map = {
     '多肢選択:憲法': '多肢選択憲法',
@@ -660,7 +670,7 @@ function buildTac3Topic(card) {
   const quizSubject = QUIZ_SUBJECT_BY_LEARN[learnSubject] || learnSubject;
   const quizField = QUIZ_FIELD_BY_LEARN[learnSubject] || learnSubject;
   const ov = TAC3_OVERRIDES[card.questionNumber];
-  const topic = ov?.topic || card.memoryRaw.slice(0, 18).replace(/[。、].*$/, '') || `問${card.questionNumber}`;
+  const topic = ov?.topic || topicFromMemory(card.memoryRaw, `問${card.questionNumber}`);
   const memory = polishMemory(ov?.memory || card.memoryRaw);
   const rule = ov?.rule || beginnerRule(card.memoryRaw, topic);
   const trap = ov?.trap || '主語や例外を飛ばした言い切りを選ぶ。';

@@ -2,8 +2,9 @@
 name: gyosei-image-style
 description: >-
   Create consistent GPT Image prompts and placement plans for Gyosei Quest
-  learning visuals. Prefer the あぷし-approved layout (主宰者の許可 sample) and the
-  ちゃちゃロット (niconico-hat / Chachalot) as the guide character. Use for textbook/deep-dive
+  learning visuals. Prefer the あぷし-approved layout (主宰者の許可 sample),
+  ちゃちゃロット as the default guide, and the 2026-09-14 approved cast
+  (ぴっちゅ / タスク亀 / カチャドクロ系) for scene roles. Use for textbook/deep-dive
   diagrams, Codex image prompts, character generation, and X (@appshi113) study posts.
 ---
 
@@ -19,13 +20,15 @@ Use this skill whenever image generation or visual design consistency matters in
 - 承認済み案内役: **ちゃちゃロット**（にっこり帽子）
   - アプリ: `assets/images/characters/chachalot.png`
   - 教材図 identity: `assets/approved-smiling-hat-mascot.png`
+- 許可された場面役（てらしぃ確定・2026-09-14）: `pitchi.png` / `task_turtle.png` / `kachadokuro.png` / `king_kachadokuro.png` / `princess_kachadokuro.png`（`assets/images/characters/`）
 - プロフィール参考: `assets/x-profile-apushi.png`
 
 ### 参照画像の役割
 
 - **ちゃちゃロット**: 新規教材図の**標準案内役**。従来のフクロウと**同じ枠**（下の余白・小さく・指し棒だけ）。中央の登場人物にしない。名札は図に書かない。
+- **許可キャスト（場面役）**: ぴっちゅ・タスク亀・カチャドクロ・キングカチャドクロ・プリンセスカチャドクロ・すべとん。プロンプトは **スロット（陣営・法律上の役割・配置）＋いまのキャラ・参照PNG**。同じ図では配役を固定。本文・矢印を隠さない。**いい役**＝ちゃちゃロット・ぴっちゅ・タスク亀。**悪い役**＝カチャドクロ系・すべとん。新キャラは名簿に足してから。法律文はキャラ名に依存させない。
 - **`approved-shusaisha-kyoka.png`**: 教材図の**レイアウト・情報密度**の見本として引き続き使う（左右色分け・中央場面・底部3カード）。図内のフクロウは配置・指示棒の役割見本であり、新規生成のキャラ正本ではない。
-- **旧画像のフクロウ**: 明示された移行作業まで**一括置換しない**。
+- **旧画像**: 明示された個別修正まで**一括置換しない**（フクロウ図も許可キャストへの一括差し替えもしない）。
 
 てらしぃが「過去に投稿した図を参考に」と言ったら、**必ず見本PNGを開き**、同型のプロンプト骨格で書く。
 
@@ -36,11 +39,11 @@ Use this skill whenever image generation or visual design consistency matters in
    - For legal learning diagrams: `references/visual-guidelines.md`（**あぷし承認レイアウト**節を最優先）
    - For recurring characters and avatars: `references/avatar-guidelines.md`
    - Open `assets/approved-shusaisha-kyoka.png` as the **layout** gold standard
-   - When generating a character or a diagram that includes the guide: **必ず** `references/avatar-guidelines.md` と `chachalot.png` ＋ `approved-smiling-hat-mascot.png` を開く（無名の熊化・猫・フクロウ防止）
+   - When generating a character or a diagram that includes the cast: **必ず** `references/avatar-guidelines.md` と、使う各キャラの参照PNGを開く（名簿外・熊化・猫・フクロウ防止）
 3. Fill the **Prompt Crafting Checklist** in visual-guidelines（タイトル対比・左右・行リスト・判断軸・ひっかけ・暗記）before writing English/Japanese GPT prompts.
 4. Preserve legal accuracy before decoration. If a concept is uncertain, mark it for confirmation instead of inventing.
 4b. **Write the prompt only after** checking statutes and case holdings. X minimum quality is `assets/images/deepdive/textbook/minpou-kijutsu/q26-2.png`. Do not wait for てらしぃ to supply stylish wording or the full legal test phrase.
-5. Generate GPT Image prompts that specify layout, typography, style, colors, whitespace, and prohibited elements — **match the approved sample density**. Pass **ちゃちゃロット** identity PNGs (`chachalot.png` ＋ `approved-smiling-hat-mascot.png`) whenever the guide appears. Name the character in the prompt.
+5. Generate GPT Image prompts that specify layout, typography, style, colors, whitespace, and prohibited elements — **match the approved sample density**. Pass the **exact reference PNG** of every character used. Name each character, its legal role, and its placement. Keep casting fixed on that sheet.
 6. After generating an image, decide its app placement: `もっと深掘る`, `君の教科書`, `見て聞いて覚える`, bonus, textbook 問の下, or X投稿.
    - For DB textbook / 記述カード: place the figure **under the question（問の下）**. Follow `skills/gyosei-kijutsu-textbook/SKILL.md`.
 7. Verify the finished image visually against the layout sample and, if the guide is present, against the ちゃちゃロット identity checklist before calling the work complete.
@@ -88,7 +91,7 @@ When creating or planning an image, include:
 - Placement: exact screen/data target（and X投稿するか）
 - Prompt: GPT Image prompt using the **あぷし型** skeleton in visual-guidelines
 - Checklist filled: 判断軸 / ひっかけ / 暗記 の日本語確定文
-- Guide character: **ちゃちゃロット**（`chachalot.png` ＋ `approved-smiling-hat-mascot.png`）※既存フクロウ図の移行でない限り新規はこちら
+- Cast: 標準案内役は **ちゃちゃロット**。場面役は許可キャストのみ。各参照PNG・役割・配置をプロンプトに書く。既存図は一括変更しない
 - Alt summary: short text fallback for the app
 - Verification notes: text overlap, readability, legal accuracy risk, mascot identity checks, and file size
 
@@ -100,7 +103,8 @@ Use the full **あぷし型** skeleton in `references/visual-guidelines.md`. Sho
 Create a Japanese legal-study infographic for Gyosei Quest / あぷし.
 Match approved layout sample「主宰者の許可 — 要る３つ / 要らないもの」:
 left green / right orange panels, center scene, bottom 判断軸・ひっかけ・暗記 cards, warm off-white, large Japanese, navy title.
-Guide character: ちゃちゃロット (Chachalot) in the SAME slot as the green owl: SMALL, bottom-right margin only, wooden 指し棒 pointing at 暗記. Match chachalot.png. Not a scene character. No nameplate. Not a bear/owl/cat.
+Guide: ちゃちゃロット in the SAME slot as the green owl: SMALL, bottom-right margin only, wooden 指し棒 pointing at 暗記. Match chachalot.png. Not a scene character. No nameplate.
+If other approved cast appear, name each with legal role and placement. Match the named PNG. Do not hide labels or arrows. Do not cast a skull as the wrongdoer just because it is a skull.
 Topic: [...]. Learning goal: [...].
 Exact labels: [...].
 Avoid tiny text, dense paragraphs, mock-exam copy, clutter.

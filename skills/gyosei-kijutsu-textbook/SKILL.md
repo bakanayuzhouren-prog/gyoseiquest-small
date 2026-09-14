@@ -113,7 +113,7 @@ description: >-
 - 量産7（行政法 Q17〜Q35・19問）: `skills/gyosei-kijutsu-textbook/prompts/codex-batch-gyosei-kijutsu-q17-q35.md`。正本が Q35 で終わるため20問には足りない。**民法 q1〜q53・行政法 q1〜q16 を上書きしない**。
 - 見出し・論点の見本: `skills/gyosei-kijutsu-textbook/prompts/codex-q1-126-ronten.md`（126条）／`codex-q1-1-13-hosanin.md`（13条）。
 - 旧10問バッチ（`codex-batch-q2-q11.md` / `codex-batch-q12-q21.md`）は見出しが古いので使わない。
-- 画像プロンプト・画風は `skills/gyosei-image-style/SKILL.md` に従う。見本: `skills/gyosei-image-style/assets/approved-shusaisha-kyoka.png`。案内役: **ちゃちゃロット**（`assets/images/characters/chachalot.png` ＋ `approved-smiling-hat-mascot.png`）。X: @appshi113。
+- 画像プロンプト・画風は `skills/gyosei-image-style/SKILL.md` に従う。見本: `skills/gyosei-image-style/assets/approved-shusaisha-kyoka.png`。案内役の既定は **ちゃちゃロット**。場面役は許可キャスト（ぴっちゅ／タスク亀／カチャドクロ系）。既存図は一括変更しない。X: @appshi113。
 - UIは問本文の直後に画像を描画する（`DbMarkdownTextbook`）。未登録キーは表示しない。
 
 ## 見出しラベル（変更禁止）

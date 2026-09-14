@@ -40,6 +40,7 @@ import { appendSaikenHyoToLearnDeepdive } from './appendSaikenHyoLearn.js';
 import { appendKounenBessouToLearnDeepdive } from './appendKounenBessouLearn.js';
 import { appendShihaininKengenToLearnDeepdive } from './appendShihaininKengenLearn.js';
 import { appendMochibun3shaToLearnDeepdive } from './appendMochibun3shaLearn.js';
+import { appendTaxiKyushoToLearnDeepdive } from './appendTaxiKyushoLearn.js';
 
 function mergeLearnLayers(base, ...layers) {
   return layers.reduce(
@@ -99,7 +100,8 @@ const withKisochi = mergeTacLearn(
 );
 
 export const LEARN_CONTENT = withKisochi.LEARN_CONTENT;
-export const LEARN_DEEPDIVE = appendMochibun3shaToLearnDeepdive(
+export const LEARN_DEEPDIVE = appendTaxiKyushoToLearnDeepdive(
+  appendMochibun3shaToLearnDeepdive(
   appendShihaininKengenToLearnDeepdive(
   appendKounenBessouToLearnDeepdive(
   appendSaikenHyoToLearnDeepdive(
@@ -126,6 +128,8 @@ export const LEARN_DEEPDIVE = appendMochibun3shaToLearnDeepdive(
     withKisochi.LEARN_CONTENT,
   ),
     withKisochi.LEARN_CONTENT,
+  ),
+  withKisochi.LEARN_CONTENT,
   ),
   withKisochi.LEARN_CONTENT,
   ),

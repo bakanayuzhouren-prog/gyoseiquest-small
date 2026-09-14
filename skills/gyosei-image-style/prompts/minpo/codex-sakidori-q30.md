@@ -162,7 +162,7 @@ LOWER RIGHT or LOWER CENTER, small helper diagram only:
 People in a line: 大家A → 賃借人兼転貸人B → 転借人C
 One arrow A to B labeled「賃貸」
 One arrow B to C labeled「転貸」
-A separate arrow C to B labeled「転貸料の請求」
+A separate arrow B to C labeled「転貸料の請求」
 Caption:「BがCから受ける転貸料にも効力が及ぶ」
 Do not draw rent flowing automatically from C to A.
 
