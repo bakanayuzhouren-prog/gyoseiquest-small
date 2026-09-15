@@ -105,7 +105,6 @@ const req = [
   'trap',
   'memory',
   'deepDive',
-  'practiceQuestion',
   'sourceTrace',
   'status',
 ];
@@ -142,6 +141,9 @@ for (const t of data.topics) {
   for (const k of req) {
     if (t[k] === undefined || t[k] === '') errors.push(`${t.id || '?'}: ${k}`);
   }
+  if (t.emitBonus !== false && (t.practiceQuestion === undefined || t.practiceQuestion === '')) {
+    errors.push(`${t.id || '?'}: practiceQuestion`);
+  }
   if (ids.has(t.id)) errors.push(`${t.id}: duplicate`);
   ids.add(t.id);
   const learnSubject = resolveLearnSubject(t);
@@ -151,6 +153,7 @@ for (const t of data.topics) {
   const p = t.practiceQuestion || {};
   if (
     t.status === 'confirmed' &&
+    t.emitBonus !== false &&
     (!Array.isArray(p.choices) ||
       !Number.isInteger(p.answer) ||
       p.answer < 0 ||
@@ -193,6 +196,8 @@ for (const t of confirmed) {
     statuteRef: (t.references || []).join('、'),
     source: `${sourcePrefix} ${roundLabel} 問${t.questionNumber}`,
   });
+
+  if (t.emitBonus === false) continue;
 
   bonus[quizSubject] ??= {};
   (bonus[quizSubject][quizField] ??= []).push({
@@ -247,17 +252,21 @@ for (const [s, ts] of Object.entries(grouped)) {
       '',
       t.deepDive,
       '',
-      '#### 新作問題',
-      '',
-      t.practiceQuestion.prompt,
-      '',
-      ...t.practiceQuestion.choices.map((c, i) => `${i + 1}. ${c}`),
-      '',
-      `正解: ${t.practiceQuestion.answer + 1}`,
-      '',
-      t.practiceQuestion.explanation,
-      '',
     );
+    if (t.emitBonus !== false && t.practiceQuestion?.prompt) {
+      lines.push(
+        '#### 新作問題',
+        '',
+        t.practiceQuestion.prompt,
+        '',
+        ...t.practiceQuestion.choices.map((c, i) => `${i + 1}. ${c}`),
+        '',
+        `正解: ${t.practiceQuestion.answer + 1}`,
+        '',
+        t.practiceQuestion.explanation,
+        '',
+      );
+    }
   }
 }
 

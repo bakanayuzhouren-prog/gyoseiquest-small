@@ -63,6 +63,9 @@ async function processOne(filePath) {
   const w = meta.width || 0;
   const h = meta.height || 0;
   if (w < 2 || h < 2) return null;
+  // アイコン・極小UIは潰さない。容量の大半は教材図（おおむね 500px超・80KB超）。
+  if (before < 80 * 1024) return null;
+  if (Math.max(w, h) < 900) return null;
 
   const nw = Math.max(1, Math.round(w * SCALE));
   const nh = Math.max(1, Math.round(h * SCALE));
