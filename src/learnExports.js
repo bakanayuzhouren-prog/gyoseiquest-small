@@ -41,6 +41,11 @@ import { appendKounenBessouToLearnDeepdive } from './appendKounenBessouLearn.js'
 import { appendShihaininKengenToLearnDeepdive } from './appendShihaininKengenLearn.js';
 import { appendMochibun3shaToLearnDeepdive } from './appendMochibun3shaLearn.js';
 import { appendTaxiKyushoToLearnDeepdive } from './appendTaxiKyushoLearn.js';
+import { appendKetsugiHikakuToLearnDeepdive } from './appendKetsugiHikakuLearn.js';
+import { appendSeijiTaiseiToLearnDeepdive } from './appendSeijiTaiseiLearn.js';
+import { appendKojinjoho57ToLearnDeepdive } from './appendKojinjoho57Learn.js';
+import { appendKoumuinJinkenToLearnDeepdive } from './appendKoumuinJinkenLearn.js';
+import { appendJunkoRock602ToLearnDeepdive } from './appendJunkoRock602Learn.js';
 
 function mergeLearnLayers(base, ...layers) {
   return layers.reduce(
@@ -100,19 +105,39 @@ const withKisochi = mergeTacLearn(
 );
 
 export const LEARN_CONTENT = withKisochi.LEARN_CONTENT;
-export const LEARN_DEEPDIVE = appendTaxiKyushoToLearnDeepdive(
-  appendMochibun3shaToLearnDeepdive(
-  appendShihaininKengenToLearnDeepdive(
-  appendKounenBessouToLearnDeepdive(
-  appendSaikenHyoToLearnDeepdive(
-  appendChuiGimuToLearnDeepdive(
-    appendKoubunToLearnDeepdive(
-      appendShouhouCastToLearnDeepdive(
-        appendMinpo177ThirdPartyToLearnDeepdive(
-          appendSeigenSaikokuCompareToLearnDeepdive(
-            appendIninKitakuCompareToLearnDeepdive(
-              appendGyoshoHyoToLearnDeepdive(
-                appendStolenLostCompareToLearnDeepdive(withKisochi.LEARN_DEEPDIVE, withKisochi.LEARN_CONTENT),
+export const LEARN_DEEPDIVE = appendJunkoRock602ToLearnDeepdive(
+  appendKoumuinJinkenToLearnDeepdive(
+  appendKojinjoho57ToLearnDeepdive(
+  appendSeijiTaiseiToLearnDeepdive(
+  appendKetsugiHikakuToLearnDeepdive(
+    appendTaxiKyushoToLearnDeepdive(
+      appendMochibun3shaToLearnDeepdive(
+        appendShihaininKengenToLearnDeepdive(
+          appendKounenBessouToLearnDeepdive(
+            appendSaikenHyoToLearnDeepdive(
+              appendChuiGimuToLearnDeepdive(
+                appendKoubunToLearnDeepdive(
+                  appendShouhouCastToLearnDeepdive(
+                    appendMinpo177ThirdPartyToLearnDeepdive(
+                      appendSeigenSaikokuCompareToLearnDeepdive(
+                        appendIninKitakuCompareToLearnDeepdive(
+                          appendGyoshoHyoToLearnDeepdive(
+                            appendStolenLostCompareToLearnDeepdive(
+                              withKisochi.LEARN_DEEPDIVE,
+                              withKisochi.LEARN_CONTENT,
+                            ),
+                            withKisochi.LEARN_CONTENT,
+                          ),
+                          withKisochi.LEARN_CONTENT,
+                        ),
+                        withKisochi.LEARN_CONTENT,
+                      ),
+                      withKisochi.LEARN_CONTENT,
+                    ),
+                    withKisochi.LEARN_CONTENT,
+                  ),
+                  withKisochi.LEARN_CONTENT,
+                ),
                 withKisochi.LEARN_CONTENT,
               ),
               withKisochi.LEARN_CONTENT,
@@ -125,8 +150,6 @@ export const LEARN_DEEPDIVE = appendTaxiKyushoToLearnDeepdive(
       ),
       withKisochi.LEARN_CONTENT,
     ),
-    withKisochi.LEARN_CONTENT,
-  ),
     withKisochi.LEARN_CONTENT,
   ),
   withKisochi.LEARN_CONTENT,
