@@ -213,6 +213,14 @@ export const CHOKKI_FIGURES: ChokkiFigure[] = [
     imageKey: 'learn/gyosei/kyoseishikko-4plus1',
   },
   {
+    id: 'sokuji-kyosei-torikeshi',
+    track: '行政法',
+    subject: '行政法総論',
+    title: '即時強制と取消訴訟',
+    axis: '行政強制が続いている限り、即時強制に取消訴訟を提起できる。',
+    imageKey: 'learn/gyosei/sokuji-kyosei-torikeshi',
+  },
+  {
     id: 'koubun-life',
     track: '行政法',
     subject: '行政法総論',
@@ -648,6 +656,14 @@ export const CHOKKI_FIGURES: ChokkiFigure[] = [
     axis: '業務執行社員・持分の譲渡・責任の切り方。',
     imageKey: 'learn/shouhou/mochibun-3sha',
   },
+  {
+    id: 'fukosei-212-yonkoma',
+    track: '商法',
+    subject: '会社法',
+    title: '不公正な払込金額（212条）',
+    axis: '取締役と通じた安い引受けは差額を払う。権利行使は止まらない。仮装払込みと混ぜない。',
+    imageKey: 'learn/shouhou/212-fukosei-yonkoma',
+  },
 
   {
     id: 'chokusetsu-1',
@@ -987,6 +1003,15 @@ export const CHOKKI_FIGURES: ChokkiFigure[] = [
     imageKey: 'learn/shouhou/ketsugi-futsu-tokubetsu-ichiran',
   },
   {
+    id: 'ketsugi-ka-goro',
+    track: '直前期パック',
+    alsoIn: ['商法'],
+    subject: '会社法',
+    title: '特別決議は蚊が多い',
+    axis: 'かい（監査役・監査等委員の解任、解散、継続）。かぶ（非公開・有利・特定株主）。げん（減少の原則、金銭分配請求権なしの現物）。',
+    imageKey: 'learn/shouhou/ketsugi-ka-goro',
+  },
+  {
     id: 'ketsugi-2-tokushu',
     track: '直前期パック',
     alsoIn: ['商法'],
@@ -1048,6 +1073,15 @@ export const CHOKKI_FIGURES: ChokkiFigure[] = [
     title: '検閲と事前抑制',
     axis: '検閲は行政の事前禁止。司法の差止めは検閲そのものではない。',
     imageKey: 'learn/kenpou/kenetsu-jizen',
+  },
+  {
+    id: 'kyosanto-hakamada-yonkoma',
+    track: '憲法',
+    alsoIn: ['直前期パック'],
+    subject: '憲法',
+    title: '共産党袴田事件（明渡請求・適正手続）',
+    axis: '審査は党規約に基づく適正な手続に限る。除名の当否には立ち入らない。地位確認訴訟ではない。',
+    imageKey: 'learn/kenpou/kyosanto-hakamada-yonkoma',
   },
   {
     id: 'kokin-sagyo',
@@ -1149,6 +1183,24 @@ export const CHOKKI_FIGURES: ChokkiFigure[] = [
     title: '国又は都道府県の関与',
     axis: '法律又は政令によらなければ、関与を受け、又は要しない。',
     imageKey: 'learn/jichi/kuni-no-kanyo',
+  },
+  {
+    id: 'gomi-san-chokusetsu',
+    track: '直前期パック',
+    alsoIn: ['行政法'],
+    subject: '地方自治法',
+    title: '直接請求の連署（ゴミさん）',
+    axis: '条例・事務監査は50分の1。解散・解職は3分の1。投票の過半数は緩和されない。',
+    imageKey: 'learn/jichi/gomi-san-chokusetsu',
+  },
+  {
+    id: 'mikka-mukka',
+    track: '直前期パック',
+    alsoIn: ['行政法'],
+    subject: '行政事件訴訟法',
+    title: '不服3か月と訴訟6か月（みっかむっか）',
+    axis: '行服は知った日の翌日から3か月。行訴は知った日から6か月。',
+    imageKey: 'learn/gyosho/mikka-mukka',
   },
   {
     id: 'seikyu-saki',

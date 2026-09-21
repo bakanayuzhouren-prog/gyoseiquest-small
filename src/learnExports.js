@@ -46,6 +46,10 @@ import { appendSeijiTaiseiToLearnDeepdive } from './appendSeijiTaiseiLearn.js';
 import { appendKojinjoho57ToLearnDeepdive } from './appendKojinjoho57Learn.js';
 import { appendKoumuinJinkenToLearnDeepdive } from './appendKoumuinJinkenLearn.js';
 import { appendJunkoRock602ToLearnDeepdive } from './appendJunkoRock602Learn.js';
+import { appendFukosei212ToLearnDeepdive, FUKOSEI_212_LEARN_BY_SUBJECT } from './appendFukosei212Learn.js';
+import { appendGoroMnemonicToLearnDeepdive } from './appendGoroMnemonicLearn.js';
+import { appendSokujiKyoseiToLearnDeepdive } from './appendSokujiKyoseiLearn.js';
+import { appendHakamadaYonkomaToLearnDeepdive } from './appendHakamadaYonkomaLearn.js';
 
 function mergeLearnLayers(base, ...layers) {
   return layers.reduce(
@@ -91,6 +95,7 @@ const merged = mergeLearnLayers(
   GOKAKU_KAKUMEI_HOSEI_R2_LEARN_BY_SUBJECT,
   ITO_JUKU_KOUKAI1_LEARN_BY_SUBJECT,
   ITO_JUKU_FINALCHECK_LEARN_BY_SUBJECT,
+  FUKOSEI_212_LEARN_BY_SUBJECT,
 );
 
 const kisochiSplit = splitKisochiDumpToRooms(merged);
@@ -105,7 +110,11 @@ const withKisochi = mergeTacLearn(
 );
 
 export const LEARN_CONTENT = withKisochi.LEARN_CONTENT;
-export const LEARN_DEEPDIVE = appendJunkoRock602ToLearnDeepdive(
+export const LEARN_DEEPDIVE = appendHakamadaYonkomaToLearnDeepdive(
+  appendSokujiKyoseiToLearnDeepdive(
+  appendGoroMnemonicToLearnDeepdive(
+  appendFukosei212ToLearnDeepdive(
+  appendJunkoRock602ToLearnDeepdive(
   appendKoumuinJinkenToLearnDeepdive(
   appendKojinjoho57ToLearnDeepdive(
   appendSeijiTaiseiToLearnDeepdive(
@@ -151,6 +160,14 @@ export const LEARN_DEEPDIVE = appendJunkoRock602ToLearnDeepdive(
       withKisochi.LEARN_CONTENT,
     ),
     withKisochi.LEARN_CONTENT,
+  ),
+  withKisochi.LEARN_CONTENT,
+  ),
+  withKisochi.LEARN_CONTENT,
+  ),
+  withKisochi.LEARN_CONTENT,
+  ),
+  withKisochi.LEARN_CONTENT,
   ),
   withKisochi.LEARN_CONTENT,
   ),
