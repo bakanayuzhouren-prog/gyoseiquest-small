@@ -19,3 +19,16 @@ export const addPoints = (amount: number): number => {
     }
     return 0;
 };
+
+/** 足りなければ null。足りれば減算後の残高。 */
+export const spendPoints = (amount: number): number | null => {
+    if (amount <= 0) return getPoints();
+    if (Platform.OS === 'web') {
+        const current = getPoints();
+        if (current < amount) return null;
+        const newVal = current - amount;
+        localStorage.setItem(POINTS_KEY, newVal.toString());
+        return newVal;
+    }
+    return null;
+};

@@ -2,14 +2,15 @@ import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
+import { AvatarWithHeldItem } from '@/components/AvatarWithHeldItem';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Themes, useTheme } from '@/src/context/ThemeContext';
-import { AVATAR_LABELS, AVATARS, AvatarType, getAvatarSource, useUser } from '@/src/context/UserContext';
+import { AVATAR_LABELS, AVATARS, AvatarType, useUser } from '@/src/context/UserContext';
 import { getPoints } from '@/utils/points';
 
 export default function AvatarScreen() {
-    const { avatarId, setAvatarId, username, setUsername } = useUser();
+    const { avatarId, setAvatarId, username, setUsername, heldItemId } = useUser();
     const { theme } = useTheme();
     const colors = Themes[theme];
 
@@ -39,7 +40,7 @@ export default function AvatarScreen() {
                         onPress={() => router.push('/avatar-customize')}
                         style={styles.avatarContainer}
                     >
-                        <Image source={getAvatarSource(avatarId)} style={styles.currentAvatar} />
+                        <AvatarWithHeldItem avatarId={avatarId} heldItemId={heldItemId} size={100} avatarStyle={styles.currentAvatar} />
                     </Pressable>
                     <ThemedText style={[styles.tapHint, { color: colors.subText }]}>
                         アイコンをタップしてカスタマイズ

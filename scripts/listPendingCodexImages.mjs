@@ -63,6 +63,12 @@ function isRetiredPrompt(content) {
   );
 }
 
+/** 既存PNGがあっても pending にする（てらしぃが上書き再生成を明示したとき） */
+function isOverwriteTarget(content) {
+  const head = content.slice(0, 2500);
+  return /^overwrite:\s*true\s*$/m.test(head) || /上書き対象[:：]/.test(head);
+}
+
 function hasGptPrompt(content) {
   return /GPT Image プロンプト|```text\s*\nCreate a NEW/i.test(content);
 }
@@ -127,10 +133,12 @@ function main() {
 
     const mtimeMs = fs.statSync(file).mtimeMs;
 
+    const overwrite = isOverwriteTarget(content);
+
     for (const outRel of outputs) {
       const absOut = path.join(ROOT, outRel);
       const exists = fs.existsSync(absOut);
-      if (!showAll && exists) continue;
+      if (!showAll && exists && !overwrite) continue;
 
       entries.push({
         promptFile: relPrompt,
@@ -138,7 +146,8 @@ function main() {
         title: extractTitle(content),
         outputRel: outRel.replace(/\\/g, '/'),
         outputExists: exists,
-        status: exists ? 'done' : 'pending',
+        overwrite,
+        status: overwrite || !exists ? 'pending' : 'done',
         mtimeMs,
         promptMtime: new Date(mtimeMs).toISOString(),
       });

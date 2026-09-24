@@ -38,6 +38,15 @@ const RULES = [
       /監査等委員である取締役の解任/.test(t) ||
       (/普通決議/.test(t) && /特別決議/.test(t) && /解散|会社継続|自己株式|現物配当|資本金/.test(t)),
   },
+  {
+    tag: '[[image:learn/shouhou/ketsugi-ka-goro]]',
+    test: (t) =>
+      /監査等委員である取締役の解任/.test(t) ||
+      /金銭分配請求権を与えない/.test(t) ||
+      /資本金の減少は原則/.test(t) ||
+      (/監査役の解任は、議決権を行使することができる株主/.test(t) && /3分の2|三分の二/.test(t)) ||
+      (/普通決議/.test(t) && /特別決議/.test(t) && /解散|会社継続|自己株式|現物配当|資本金/.test(t)),
+  },
 ];
 
 function prependTag(body, tag) {

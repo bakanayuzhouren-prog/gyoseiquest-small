@@ -1,4 +1,7 @@
 import { getChunkImageSource } from '@/src/chunkImages';
+import { SEIJI_TAISEI_COMPARE_MD } from '@/utils/seijiTaiseiHikaku';
+import { KOJINJOHO57_COMPARE_MD } from '@/utils/kojinjoho57Hikaku';
+import { KOUMUIN_JINKEN_COMPARE_MD } from '@/utils/koumuinJinkenHikaku';
 
 export type CompareTableDef = {
   id: string;
@@ -202,6 +205,40 @@ const COMPARE_TABLE_DEFS: CompareTableDef[] = [
     },
   },
   {
+    id: 'chomon-13-iroha',
+    title: '聴聞になるイ・ロ・ハ／停止は原則弁明',
+    caption: '行手法13条1項。取消し・はく奪・解任命令は聴聞。停止は原則弁明。特則・ニ・2項は別',
+    body: `**意見陳述の入口（13条1項）**
+
+1号イ〜ハ（およびニ）に当たれば**聴聞**。**イ〜ニのいずれにも該当しない場合**は2号により**原則、弁明の機会の付与**。「軽いから弁明」ではない。許可が残る**営業停止・業務停止**は、行手法の原則ではここに入る。
+
+| 号 | 何をする処分か | 具体例 | 手続 |
+|---|---|---|---|
+| **イ** | **許認可等を取り消す** | 飲食店の営業許可取消し、宅建業の免許取消し | **聴聞** |
+| **ロ** | 資格・地位の直接のはく奪（イ以外） | イに該当しない資格・地位の直接のはく奪 | **聴聞** |
+| **ハ** | 法人の**役員解任**を命ずる、従業者の**解任**を命ずる、会員の**除名**を命ずる | 会社に取締役の解任を命ずる。事業所に従業者の解任を命ずる。団体に会員の除名を命ずる | **聴聞** |
+| **イ〜ニのいずれにも該当しない場合** | 権利制限だが、取消し・はく奪・解任命令ではなく、ニにも当たらない | **営業停止・業務停止**（許可は残る） | **原則、弁明の機会の付与** |
+
+混ぜない例外は次の3つ。
+- **他の法律の特則**: 個別法が聴聞等を別に定めるときは、その特則が先。
+- **1号ニ**: イ〜ハ以外でも、行政庁が相当と認めれば聴聞。営業停止でもニなら聴聞。原則はなお弁明の機会の付与。
+- **13条2項**: 緊急・金銭の確定など。聴聞でも弁明でもなく、意見陳述手続自体が不要。軽微だから弁明、と混ぜない。`,
+    isEligible: (text, field) => {
+      if (field && field !== '行政手続法') return false;
+      return hasKeyword(text, [
+        /13条1項/,
+        /1号イ/,
+        /許認可等を取り消/,
+        /資格又は地位/,
+        /直接にはく奪/,
+        /役員の解任/,
+        /営業停止/,
+        /業務停止/,
+        /イからハ/,
+      ]);
+    },
+  },
+  {
     id: 'sashiboso',
     title: '差し迫った必要・緊急3系列',
     caption: '行手法：14条・13条2項・39条4項',
@@ -283,6 +320,67 @@ const COMPARE_TABLE_DEFS: CompareTableDef[] = [
     isEligible: (text, field) => {
       if (field && !/行政事件訴訟|行訴/.test(field)) return false;
       return hasKeyword(text, [/訴えの利益/, /市街化/, /建築確認/, /土地区画/, /利益.*喪失/]);
+    },
+  },
+  {
+    id: 'seiji-taisei',
+    title: '各国の元首・首相の選出',
+    caption: '誰が選ぶか／誰が任命するか／議会との関係',
+    body: SEIJI_TAISEI_COMPARE_MD,
+    isEligible: (text, field) => {
+      if (field && !/基礎知識|基礎法学/.test(field)) return false;
+      return hasKeyword(text, [
+        /連邦集会/,
+        /全人代/,
+        /国家主席/,
+        /英米の政治/,
+        /各国の政治/,
+        /政治制度/,
+        /議会制定法の違憲審査/,
+        /下院優越/,
+        /大統領不信任/,
+      ]);
+    },
+  },
+  {
+    id: 'kojinjoho-57',
+    title: '個情法57条の適用除外',
+    caption: '主体と目的の対。○×は57条該当か',
+    body: KOJINJOHO57_COMPARE_MD,
+    isEligible: (text, field) => {
+      if (field && !/基礎知識|個人情報/.test(field)) return false;
+      return (
+        hasKeyword(text, [
+          /個人情報保護法の適用除外/,
+          /個情法57/,
+          /法第57条/,
+          /報道を業とする個人/,
+          /著述を業/,
+          /第4章の適用除外/,
+        ]) ||
+        (/57条/.test(text) && /(報道機関|宗教団体|政治団体)/.test(text))
+      );
+    },
+  },
+  {
+    id: 'koumuin-jinken',
+    title: '公務員の人権制約の判断基準',
+    caption: '判断場面ごとに考慮要素と基準を分ける',
+    body: KOUMUIN_JINKEN_COMPARE_MD,
+    isEligible: (text, field) => {
+      if (field && !/憲法|多肢選択|基礎知識/.test(field)) return false;
+      return hasKeyword(text, [
+        /猿払/,
+        /堀越/,
+        /宇治橋/,
+        /寺西判事/,
+        /積極的に政治運動/,
+        /君が代起立/,
+        /起立斉唱/,
+        /総合的に較量/,
+        /公務員の人権制約/,
+        /政治的行為の禁止/,
+      ]);
     },
   },
 ];

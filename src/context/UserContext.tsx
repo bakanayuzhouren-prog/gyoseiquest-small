@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 
+import { isAvatarAuraId, type AvatarAuraId } from '@/src/data/avatarAuras';
 import { isAvatarBackgroundId, type AvatarBackgroundId } from '@/src/data/avatarBackgrounds';
-import { isAvatarItemId, type AvatarItemId } from '@/src/data/avatarItems';
+import { STARTER_ITEM_IDS, isAvatarItemId, type AvatarItemId } from '@/src/data/avatarItems';
 
 // --- Avatar Definitions ---
 export const AVATARS = {
@@ -41,6 +42,14 @@ type UserContextType = {
     setCurrentLocation: (loc: string) => void;
     heldItemId: AvatarItemId | null;
     setHeldItemId: (id: AvatarItemId | null) => void;
+    ownedItemIds: AvatarItemId[];
+    addOwnedItemId: (id: AvatarItemId) => void;
+    ownsItem: (id: AvatarItemId) => boolean;
+    auraId: AvatarAuraId | null;
+    setAuraId: (id: AvatarAuraId | null) => void;
+    ownedAuraIds: AvatarAuraId[];
+    addOwnedAuraId: (id: AvatarAuraId) => void;
+    ownsAura: (id: AvatarAuraId) => boolean;
     avatarBackgroundId: AvatarBackgroundId;
     setAvatarBackgroundId: (id: AvatarBackgroundId) => void;
 };
@@ -54,6 +63,14 @@ const UserContext = createContext<UserContextType>({
     setCurrentLocation: () => { },
     heldItemId: null,
     setHeldItemId: () => { },
+    ownedItemIds: [...STARTER_ITEM_IDS],
+    addOwnedItemId: () => { },
+    ownsItem: () => false,
+    auraId: null,
+    setAuraId: () => { },
+    ownedAuraIds: [],
+    addOwnedAuraId: () => { },
+    ownsAura: () => false,
     avatarBackgroundId: 'none',
     setAvatarBackgroundId: () => { },
 });
@@ -65,6 +82,9 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [username, setUsernameState] = useState('Guest');
     const [currentLocation, setCurrentLocationState] = useState('東京都新宿区');
     const [heldItemId, setHeldItemIdState] = useState<AvatarItemId | null>(null);
+    const [ownedItemIds, setOwnedItemIdsState] = useState<AvatarItemId[]>([...STARTER_ITEM_IDS]);
+    const [auraId, setAuraIdState] = useState<AvatarAuraId | null>(null);
+    const [ownedAuraIds, setOwnedAuraIdsState] = useState<AvatarAuraId[]>([]);
     const [avatarBackgroundId, setAvatarBackgroundIdState] = useState<AvatarBackgroundId>('none');
 
     // Load saved data on mount
@@ -87,6 +107,33 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
             const savedHeld = localStorage.getItem('gq_held_item');
             if (isAvatarItemId(savedHeld)) {
                 setHeldItemIdState(savedHeld);
+            }
+            const savedOwned = localStorage.getItem('gq_owned_items');
+            if (savedOwned) {
+                try {
+                    const parsed = JSON.parse(savedOwned);
+                    if (Array.isArray(parsed)) {
+                        const owned = parsed.filter(isAvatarItemId);
+                        setOwnedItemIdsState([...new Set([...STARTER_ITEM_IDS, ...owned])]);
+                    }
+                } catch {
+                    /* ignore */
+                }
+            }
+            const savedAura = localStorage.getItem('gq_aura');
+            if (isAvatarAuraId(savedAura)) {
+                setAuraIdState(savedAura);
+            }
+            const savedOwnedAuras = localStorage.getItem('gq_owned_auras');
+            if (savedOwnedAuras) {
+                try {
+                    const parsed = JSON.parse(savedOwnedAuras);
+                    if (Array.isArray(parsed)) {
+                        setOwnedAuraIdsState(parsed.filter(isAvatarAuraId));
+                    }
+                } catch {
+                    /* ignore */
+                }
             }
             const savedBg = localStorage.getItem('gq_avatar_bg');
             if (isAvatarBackgroundId(savedBg)) {
@@ -128,6 +175,43 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
     };
 
+    const persistOwnedItems = (ids: AvatarItemId[]) => {
+        setOwnedItemIdsState(ids);
+        if (Platform.OS === 'web') {
+            localStorage.setItem('gq_owned_items', JSON.stringify(ids));
+        }
+    };
+
+    const addOwnedItemId = (id: AvatarItemId) => {
+        persistOwnedItems([...new Set([...ownedItemIds, id])]);
+    };
+
+    const ownsItem = (id: AvatarItemId) => ownedItemIds.includes(id) || STARTER_ITEM_IDS.includes(id as (typeof STARTER_ITEM_IDS)[number]);
+
+    const setAuraId = (id: AvatarAuraId | null) => {
+        setAuraIdState(id);
+        if (Platform.OS === 'web') {
+            if (id) {
+                localStorage.setItem('gq_aura', id);
+            } else {
+                localStorage.removeItem('gq_aura');
+            }
+        }
+    };
+
+    const persistOwnedAuras = (ids: AvatarAuraId[]) => {
+        setOwnedAuraIdsState(ids);
+        if (Platform.OS === 'web') {
+            localStorage.setItem('gq_owned_auras', JSON.stringify(ids));
+        }
+    };
+
+    const addOwnedAuraId = (id: AvatarAuraId) => {
+        persistOwnedAuras([...new Set([...ownedAuraIds, id])]);
+    };
+
+    const ownsAura = (id: AvatarAuraId) => ownedAuraIds.includes(id);
+
     const setAvatarBackgroundId = (id: AvatarBackgroundId) => {
         setAvatarBackgroundIdState(id);
         if (Platform.OS === 'web') {
@@ -136,7 +220,26 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     return (
-        <UserContext.Provider value={{ avatarId, setAvatarId, username, setUsername, currentLocation, setCurrentLocation, heldItemId, setHeldItemId, avatarBackgroundId, setAvatarBackgroundId }}>
+        <UserContext.Provider value={{
+            avatarId,
+            setAvatarId,
+            username,
+            setUsername,
+            currentLocation,
+            setCurrentLocation,
+            heldItemId,
+            setHeldItemId,
+            ownedItemIds,
+            addOwnedItemId,
+            ownsItem,
+            auraId,
+            setAuraId,
+            ownedAuraIds,
+            addOwnedAuraId,
+            ownsAura,
+            avatarBackgroundId,
+            setAvatarBackgroundId,
+        }}>
             {children}
         </UserContext.Provider>
     );
