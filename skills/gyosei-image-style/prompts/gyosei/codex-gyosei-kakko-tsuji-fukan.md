@@ -1,5 +1,7 @@
 # Codex用 — 法律行為的と準法律行為的（確公通受・附款）
 
+上書き対象: `assets/images/deepdive/learn/gyosei/kakko-tsuji-fukan.png`
+
 てらしぃ指定（2026-09-23）。参照PNGがなくても描く。Codexの名簿外チェックで止めない。
 - 過去の辻さん: 眼鏡。優しそう。ニコニコ。釣り竿を背負う。名札の上に振り仮名「かこのつじ」。縮小して隅に置かない。顔・眼鏡・釣り竿が読める大きさ。準法律の図と、附款の図の準法律側。
 - 代さん: ニコニコ。たすきは「代」。メダルと印。札は「下限は、許可で免除」。眼鏡も釣り竿も付けない。附款の図の法律行為側だけ。法律行為の図には足さない。
@@ -7,7 +9,7 @@
 1枚目は附款の可否。2枚目（法律行為）は生成済みのため、このファイルから生成しない。3枚目は準法律4行。既存の `kyoka-tokkyo-meirei-keisei.png` は上書きしない。
 
 - 保存先（附款）: `assets/images/deepdive/learn/gyosei/kakko-tsuji-fukan.png`
-- 保存先（準法律）: `assets/images/deepdive/learn/gyosei/kakko-tsuji-jun.png`
+- 準法律の図は生成済みで合格。このファイルからは再生成しない。
 - 法律行為の図は生成済み。変更指示がないので再生成しない。
 - 画像キー: `learn/gyosei/kakko-tsuji-fukan` / `learn/gyosei/kakko-tsuji-horitsu` / `learn/gyosei/kakko-tsuji-jun`
 - 生成は Codex。Cursor は描かない。
@@ -25,7 +27,7 @@
 - 通知: 特定の事項を相手方に知らせ、法律がその通知に効果を定める
 - 受理: 他人の行為を有効なものとして受け取る
 
-**附款** 条件・期限・負担・撤回権の留保。原則として、裁量のある法律行為的行政行為に付す。準法律行為的行政行為には付せない。法律行為的でも、裁量がなければ付す余地がない。裁量があっても、行政行為の目的と異なる附款は違法。「法律行為的だけ」「裁量のある法律行為的だけ」と断定しない。
+**附款** 条件・期限・負担・撤回権の留保。原則として、裁量のある法律行為的行政行為に付す。準法律行為的行政行為には付せない。法律行為的でも裁量がない行為（羈束行為）には、原則として付せない。例外は2つだけ。法令が附款を付すことを認めているとき。相手方の同意があるとき。この2つは、準法律行為的行政行為には及ばない。裁量があっても、行政行為の目的と異なる附款は違法。「法律行為的だけ」「裁量のある法律行為的だけ」「裁量がない行為には例外なく付せない」と断定しない。
 
 **書かない:** 確認にも附款を付せる。許可と特許は同じ。免除は禁止の解除。辻さんに釣り竿がない図。代さんに眼鏡や釣り竿。口語を答え帯へ。ブランド名。
 
@@ -46,7 +48,7 @@
 ```text
 参照必須: 場面役はポーズシート pitchi_sheet.png と kachadokuro_sheet.png を照合する。ちゃちゃロットは全身指し棒正本 approved-chachalot-pointer.png。
 Create a NEW Japanese legal-study infographic from scratch.
-ONE job: 附款は、原則として裁量のある法律行為的行政行為に付す。準法律行為的行政行為には付せない。裁量がなければ付せない。目的と異なる附款は違法.
+ONE job: 附款は、原則として裁量のある法律行為的行政行為に付す。準法律行為的行政行為には付せない。裁量がない法律行為的行政行為には、原則として付せない。例外は、法令が認めるとき、または相手方の同意があるときだけ。目的と異なる附款は違法.
 Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, VERY LARGE gothic Japanese, ZERO overlapping glyphs.
 Canvas/background: fully opaque solid warm off-white across 100% of the entire 16:9 canvas, including all four corners. No transparency, checkerboard, or unpainted margin.
 Match LAYOUT of「主宰者の許可」: left green / right orange, ONE center TABLE, bottom 判断軸 / ひっかけ / 暗記.
@@ -61,7 +63,7 @@ Left heading 論点. Right heading ひっかけ.
 Q&A answers are YES, NO, or a short legal phrase. Do not use GO or STOP.
 Labels: Left「受験生（附款の有無を分ける）」Right「誤った主張をする側（確認にも附款を付せるとする）」
 
-Title:「附款は、裁量があるときに付す」
+Title:「附款は、原則として裁量があるときに付す」
 Chip:「行政法総論」
 
 Center ONLY: one table. Header navy. Row zebra white / light gray, horizontal not columns.
@@ -69,12 +71,13 @@ Columns: 区分 | 何があるか | 附款
 Rows:
 命令的（法律行為的） | 下命・禁止・許可・免除 | 裁量があるときに付し得る
 形成的（法律行為的） | 特許・認可・代理 | 裁量があるときに付し得る
-準法律行為的 | 確認・公証・通知・受理 | 付せない
+準法律行為的 | 確認・公証・通知・受理 | 付せない。例外も及ばない
 Caption:「附款は条件・期限・負担・撤回権の留保」
+Exception box under the table, not a new column zebra:「裁量がない法律行為的行政行為には、原則として付せない。例外は、法令が附款を認めるとき、または相手方の同意があるとき。」
 
 Left 論点:
 1. 準法律行為的に附款は付せるか？ → NO
-2. 法律行為的なら常に付せるか？ → NO（裁量があるときに限る）
+2. 裁量がない法律行為的には？ → 原則NO。法令の定め、または相手方の同意があるときだけ
 3. 裁量があれば何でも付せるか？ → NO（目的と異なる附款は違法）
 
 Right ひっかけ:
@@ -87,7 +90,7 @@ Bottom:
 - 判断軸:「意思表示で効果を発生させるか。法規が直接定めるか。裁量があるか」
 - ひっかけ:「確認にも附款。許可＝特許。免除＝禁止の解除」
 - 暗記:「確公通受は、過去の辻さん。準法律には附款を付せない」
-Answer:「附款は、原則として裁量のある法律行為的行政行為に付す。準法律行為的行政行為には付せない。目的と異なる附款は違法。」
+Answer:「附款は、原則として裁量のある法律行為的行政行為に付す。裁量がない法律行為的行政行為には、法令の定めまたは相手方の同意があるときに限り付し得る。準法律行為的行政行為には付せない。目的と異なる附款は違法。」
 
 Guide: ONE ちゃちゃロット only, SMALL bottom-right margin, wooden 指し棒 pointing at 暗記. Cream face, independent pale-sky-blue smiling hat with three rounded hills and a long brim (not ears, not a hood), closed smiling eyes, green lecturer jacket, white shirt, green trousers, shoes. No nameplate. Do not stand on the answer band.
 Scene cast SMALL, do not cover the table: ぴっちゅ left, カチャドクロ right. Do not swap roles. No owl, bear, cat, raccoon.
