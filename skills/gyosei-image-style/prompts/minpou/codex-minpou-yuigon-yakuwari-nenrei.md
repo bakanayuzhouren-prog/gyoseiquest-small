@@ -1,6 +1,6 @@
 # Codex用 — 遺言の3役と、15歳か成年か
 
-上書き対象: `assets/images/deepdive/learn/minnpou/yuigon-shonin-tachiai-shikkou.png`
+生成済み。証人・立会人の図は再生成しない。てらしぃの修正指示があるまで、このPNGは上書きしない。
 
 定型の左右パネルと中央表は使わない。AGENTSの「見せ方は論点に合わせる」。生成前チェックで左右見出しがないことを理由に止めない。
 

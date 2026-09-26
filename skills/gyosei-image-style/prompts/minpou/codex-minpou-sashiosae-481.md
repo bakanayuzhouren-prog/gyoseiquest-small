@@ -1,6 +1,6 @@
 # Codex用 — 差押え後の弁済と、損害の限度（481条）
 
-上書き対象: `assets/images/deepdive/learn/minnpou/sashiosae-songai-481.png`
+生成済み。再生成しない。
 
 問題文を上に置く。その下で、A・B・Cが誰かを固定する。損害は、CがBへ払った全額ではない。Aが差押えで取れなくなった額。左右パネルと中央表は使わない。
 
