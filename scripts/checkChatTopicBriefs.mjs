@@ -336,6 +336,7 @@ const cases = [
   { q: '長沼ナイキ 原告適格', expectTitle: /原告適格|長沼/ },
   { q: '場外車券 原告適格', expectTitle: /原告適格|場外/ },
   { q: '風俗 制限区域 原告適格', expectTitle: /原告適格|風俗/ },
+  { q: '行政事件訴訟法の裁判所の職権', expectTitle: /裁判所の職権/ },
   { q: '効力の停止 執行の停止', expectTitle: /執行停止/ },
   { q: '内閣総理大臣の異議', expectTitle: /執行停止|異議/ },
   { q: '31条2項 終局判決前', expectTitle: /事情判決|31/ },
