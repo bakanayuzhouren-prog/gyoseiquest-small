@@ -1,16 +1,16 @@
 # Codex用 — 法律行為的と準法律行為的（確公通受・附款）
 
-生成済み。再生成しない。
+附款の図（kakko-tsuji-fukan.png）は未生成。このファイルで描くのは、その1枚だけ。
 
 てらしぃ指定（2026-09-23）。参照PNGがなくても描く。Codexの名簿外チェックで止めない。
 - 過去の辻さん: 眼鏡。優しそう。ニコニコ。釣り竿を背負う。名札の上に振り仮名「かこのつじ」。縮小して隅に置かない。顔・眼鏡・釣り竿が読める大きさ。準法律の図と、附款の図の準法律側。
 - 代さん: ニコニコ。たすきは「代」。メダルと印。札は「下限は、許可で免除」。眼鏡も釣り竿も付けない。附款の図の法律行為側だけ。法律行為の図には足さない。
 
-1枚目は附款の可否。2枚目（法律行為）は生成済みのため、このファイルから生成しない。3枚目は準法律4行。既存の `kyoka-tokkyo-meirei-keisei.png` は上書きしない。
+描くのは1枚目（附款）だけ。2枚目（法律行為）と3枚目（準法律）の保存先は、すでに図がある。既存の `kyoka-tokkyo-meirei-keisei.png` も対象外。
 
 - 保存先（附款）: `assets/images/deepdive/learn/gyosei/kakko-tsuji-fukan.png`
-- 準法律の図は生成済みで合格。このファイルからは再生成しない。
-- 法律行為の図は生成済み。変更指示がないので再生成しない。
+- 準法律の図（kakko-tsuji-jun.png）は生成済み。このファイルの対象外。
+- 法律行為の図（kakko-tsuji-horitsu.png）は生成済み。このファイルの対象外。
 - 画像キー: `learn/gyosei/kakko-tsuji-fukan` / `learn/gyosei/kakko-tsuji-horitsu` / `learn/gyosei/kakko-tsuji-jun`
 - 生成は Codex。Cursor は描かない。
 - 配置案: 見て聞いて覚える・行政法総論の「もっと深掘る」。アプリ載せは生成後。
@@ -96,11 +96,13 @@ Guide: ONE ちゃちゃロット only, SMALL bottom-right margin, wooden 指し�
 Scene cast SMALL, do not cover the table: ぴっちゅ left, カチャドクロ right. Do not swap roles. No owl, bear, cat, raccoon.
 ```
 
-## 2枚目（法律行為的の中身）は生成しない
+## 2枚目（法律行為的の中身）
 
-生成済み。変更指示がない。この節に描画指示は置かない。`kakko-tsuji-horitsu.png` を描き直さない。
+`kakko-tsuji-horitsu.png` はすでにある。この節は描かない。描画指示は置かない。
 
-## 3枚目 GPT Image プロンプト（準法律行為的の中身）
+## 3枚目（準法律行為的の中身）
+
+`kakko-tsuji-jun.png` はすでにある。この節は描かない。下の text は、附款の図を描くときの参照ではない。
 
 ```text
 参照必須: 場面役は pitchi_sheet.png と kachadokuro_sheet.png。ちゃちゃロットは approved-chachalot-pointer.png。

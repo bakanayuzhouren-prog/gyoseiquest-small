@@ -704,6 +704,16 @@ const cases = [
   { q: '566条 重過失', expectTitle: /重過失要件/ },
   { q: '負担付贈与 同時履行', expectTitle: /負担付贈与/ },
   { q: '連贈与契約', expectTitle: /負担付贈与/ },
+  { q: '賃借権の時効取得', expectTitle: /賃借権の時効取得/ },
+  { q: '継続的な用益 賃借の意思', expectTitle: /賃借権の時効取得/ },
+  { q: '物上代位 差押 送達 登記', expectTitle: /送達と登記/ },
+  { q: '転付命令とは', expectTitle: /転付命令/ },
+  { q: '肖像 譲渡 466条', expectTitle: /性質上譲渡できない/ },
+  { q: '負担付遺贈 家庭裁判所', expectTitle: /1027条|負担付遺贈/ },
+  { q: '死人に口なし 遺贈', expectTitle: /1027条|負担付遺贈/ },
+  { q: '相殺の遡及効 解除', expectTitle: /506条|相殺の遡及効/ },
+  { q: '監査等委員 区別して選任', expectTitle: /監査役会・監査等|監査等委員/ },
+  { q: '剰余金、資本金、出資額の違い', expectTitle: /出資額・資本金・剰余金/ },
   // 民法記述ヤマ（てらしぃ指定タイトル）
   { q: '過失相殺', expectTitle: /過失相殺/ },
   { q: '被害者側の過失', expectTitle: /過失相殺|被害者側/ },
@@ -851,6 +861,13 @@ const cases = [
   { q: '登記すれば必ず対抗できる', expectTitle: /商業登記は無敵ではない/ },
   { q: '仲立人と問屋の違い', expectTitle: /支配人・代理商・仲立・問屋/ },
   { q: '商法むず', expectTitle: /本試験5問の切り方/ },
+  { q: '大法廷と小法廷の違いは', expectTitle: /大法廷と小法廷/ },
+  { q: '定足数って', expectTitle: /大法廷と小法廷/ },
+  { q: '法規と国法の違いは', expectTitle: /法規と国法/ },
+  { q: '地方厚生局長に何を委任', expectTitle: /委任・法定代理/ },
+  { q: '都道府県医師会 指定', expectTitle: /撤回|指定医/ },
+  { q: '労災就学援護費って', expectTitle: /労災就学援護費/ },
+  { q: '歳出とは何', expectTitle: /会計年度独立|歳出/ },
 ];
 
 const all = [
