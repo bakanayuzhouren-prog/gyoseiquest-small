@@ -218,7 +218,7 @@ function sliceDescriptiveMainByCaseSlices(text: string): { introSlices: string[]
 const CARD_NUM_ONLY_TITLE = /^(?:[1-9][0-9]?|[１-９][０-９]?)[\\.．:：\uFF1A]\s*$/;
 const DEEPDIVE_SECTION_MARK = '(?:■|💡|🏠|👉|🔍|📚|📝)';
 const DEEPDIVE_SECTION_KEYWORDS =
-  '(?:解説|結論|本肢の正誤|直す場所|つまり|暗記|要点|具体的な事例でイメージしよう！|具体的な事例|ここが試験の勝負どころ[！!]?|関連知識|受験生へのアドバイス[！!]?|過去問の急所(?:（[^）]+）)?|試験対策のアドバイス|根拠条文(?:（[^）]+）)?|根拠判例|法理のポイント)';
+  '(?:解説|結論|ひっかけ|本肢の正誤|直す場所|つまり|暗記|要点|具体的な事例でイメージしよう！|具体的な事例|ここが試験の勝負どころ[！!]?|関連知識|受験生へのアドバイス[！!]?|過去問の急所(?:（[^）]+）)?|試験対策のアドバイス|根拠条文(?:（[^）]+）)?|根拠判例|法理のポイント)';
 const DEEPDIVE_NAMED_SECTION_HEAD =
   `${DEEPDIVE_SECTION_MARK}?\\s*${DEEPDIVE_SECTION_KEYWORDS}`;
 const DEEPDIVE_NAMED_SECTION_HEAD_RE = new RegExp(
@@ -661,7 +661,7 @@ export default function DeepdiveScreen() {
       .replace(/\\n/g, '\n')
       .replace(/([^\n])(【[^】]{1,80}】)/g, '$1\n$2')
       .replace(
-        /([^\n■💡🏠👉🔍📚📝 \t　])(考え方のポイント|受験生へのアドバイス|趣旨(?=\s*[\n　\s])|根拠条文[:：]|根拠判例[:：]|結論[:：]|具体的な事例|ここが試験の勝負どころ|関連知識)/g,
+        /([^\n■💡🏠👉🔍📚📝 \t　])(考え方のポイント|受験生へのアドバイス|趣旨(?=\s*[\n　\s])|根拠条文[:：]|根拠判例[:：]|結論[:：]|ひっかけ[:：]|具体的な事例|ここが試験の勝負どころ|関連知識)/g,
         '$1\n$2'
       )
       .replace(new RegExp(`([^\\n*])(${HALFWD_NUM_HEAD_TOKEN.source})`, 'g'), '$1\n$2')
@@ -677,10 +677,13 @@ export default function DeepdiveScreen() {
   const splitIntoCards = (text: string): string[] => {
     const trimmed = text.trim();
     if (!trimmed) return [];
-    /** 見て聞いて覚える: **1. 根拠** 形式は Markdown 番号見出しでだけ分割 */
-    if (fromLearn && /\*\*[1-4][\.．][^*\n]+?\*\*/.test(trimmed)) {
+    /** 見て聞いて覚える: **1. 根拠** と、**結論** / **ひっかけ** / **暗記** を別カードにする */
+    if (
+      fromLearn &&
+      /\*\*(?:[1-4][\.．][^*\n]+?|結論|ひっかけ|暗記)\*\*/.test(trimmed)
+    ) {
       const mdCards = trimmed
-        .split(/\n\n(?=\*\*[1-4][\.．][^*]*\*\*)/)
+        .split(/\n\n(?=\*\*(?:[1-4][\.．][^*]*|結論|ひっかけ|暗記)\*\*)/)
         .map((s) => s.trim())
         .filter(Boolean);
       if (mdCards.length >= 2) return splitEmbeddedDeepdiveCaseChunks(mdCards);
