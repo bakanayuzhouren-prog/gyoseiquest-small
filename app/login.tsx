@@ -1,22 +1,22 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Platform, Pressable, StyleSheet, TextInput } from 'react-native';
+import { Pressable, StyleSheet, TextInput } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { useUser } from '@/src/context/UserContext';
 
 export const USER_KEY = 'gq_user';
 
 export default function LoginScreen() {
     const [username, setUsername] = useState('');
+    const { setUsername: saveUser } = useUser();
 
     const handleLogin = () => {
-        if (username.trim()) {
-            if (Platform.OS === 'web') {
-                localStorage.setItem(USER_KEY, username.trim());
-            }
-            router.replace('/');
-        }
+        const name = username.trim();
+        if (!name) return;
+        saveUser(name);
+        router.replace('/');
     };
 
     return (

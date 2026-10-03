@@ -13,7 +13,7 @@ import { useCharacter } from '@/src/context/CharacterContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import { getDescriptiveScopeForChoice } from '@/src/descriptiveScopeBank';
 import { setDeepdiveParams } from '@/src/deepdiveState';
-import { RESOURCES } from '@/src/questions';
+import { ensureQuizSubject, ensureResources, RESOURCES } from '@/src/studyCache';
 import { mergeQuizResourcePages, parseQuizRefIds } from '@/utils/quizResources';
 import { explainChoiceIntent, generateDescriptiveQuestion } from '@/src/utils/geminiService';
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
@@ -31,7 +31,6 @@ import { getHiddenHashes, hideQuestionByHash } from '@/utils/question-hidden';
 import {
   filterHiddenFromQuestions,
   filterQuizQuestionsByMode,
-  getMergedSubjectData,
   pickQuestionsForField,
   shuffleQuestionsCopy,
 } from '@/utils/quiz-question-pipeline';
@@ -374,7 +373,27 @@ export default function QuestionScreen() {
     }
   }, [params.wrongCounts]);
 
-  const subjectData = useMemo(() => getMergedSubjectData(subject), [subject]);
+  const [subjectData, setSubjectData] = useState<Record<string, any[]>>({});
+  const [quizReady, setQuizReady] = useState(false);
+  const [resourcesData, setResourcesData] = useState<Record<string, unknown>>({});
+
+  useEffect(() => {
+    let cancel = false;
+    setQuizReady(false);
+    void (async () => {
+      const [data] = await Promise.all([
+        subject ? ensureQuizSubject(subject) : Promise.resolve({}),
+        ensureResources(),
+      ]);
+      if (cancel) return;
+      setSubjectData(data);
+      setResourcesData({ ...RESOURCES });
+      setQuizReady(true);
+    })();
+    return () => {
+      cancel = true;
+    };
+  }, [subject]);
 
   const { field, baseQuestions } = useMemo(() => {
     const fields = Object.keys(subjectData);
@@ -1340,8 +1359,6 @@ export default function QuestionScreen() {
   // Resource Logic
   const resourceId = question ? (question as any).refId : null;
   // resource can be an Object (single) or Array (multi). Normalize to Array.
-  // GUARD: RESOURCES might be undefined if import fails or file is incomplete
-  const resourcesData = (RESOURCES as any) || {};
   const resourcePages = useMemo(() => {
     const ids = parseQuizRefIds(resourceId);
     if (ids.length === 0) return [];
@@ -1688,6 +1705,14 @@ export default function QuestionScreen() {
         <Pressable style={styles.backButton} onPress={() => router.replace('/')}>
           <ThemedText type="defaultSemiBold">科目一覧へ</ThemedText>
         </Pressable>
+      </ThemedView>
+    );
+  }
+
+  if (!quizReady) {
+    return (
+      <ThemedView style={styles.container}>
+        <ActivityIndicator />
       </ThemedView>
     );
   }

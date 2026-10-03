@@ -1,8 +1,8 @@
 import { getHiddenHashes } from '@/utils/question-hidden';
 import {
+  ensureQuizSubject,
   filterHiddenFromQuestions,
   filterQuizQuestionsByMode,
-  getMergedSubjectData,
   pickQuestionsForField,
 } from '@/utils/quiz-question-pipeline';
 import { getQuestionTextHash } from '@/utils/question-stats';
@@ -17,7 +17,7 @@ async function findIndexWithMode(
   textHash: string,
   mode: string
 ): Promise<number> {
-  const subjectData = getMergedSubjectData(subject);
+  const subjectData = await ensureQuizSubject(subject);
   const { field: resolvedField, targetQuestions } = pickQuestionsForField(subjectData, field);
   if (!resolvedField) return -1;
   let list = filterQuizQuestionsByMode(targetQuestions, subject, mode);

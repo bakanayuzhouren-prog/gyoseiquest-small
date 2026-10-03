@@ -8,7 +8,7 @@ import { pickGyoshoJunyoRelatedImageKeys } from '@/src/gyoshoJunyoDeepdiveImage'
 import { pickKokubai1jo2joRelatedImageKeys } from '@/src/kokubai1jo2joDeepdiveImage';
 import { pickKokubaiJuminRelatedImageKeys } from '@/src/kokubaiJuminDeepdiveImage';
 import { ISHI_HYOJI_TAIKO_IMAGE_KEY, pickIshiHyojiRelatedImageKeys } from '@/src/ishiHyojiDeepdiveImage';
-import { STATUTES } from '@/src/questions';
+import { STATUTES } from '@/src/studyCache';
 import { statuteMarkdownForKisochiCard } from '@/utils/kisochiStatuteSnippets';
 import {
   formatResolvedStatutesForModal,

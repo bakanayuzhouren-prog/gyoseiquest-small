@@ -1,5 +1,4 @@
-import { LEARN_CONTENT } from '@/src/learn';
-import { SUBJECTS } from '@/src/questions';
+import { ensureLearnSubject, ensureQuizSubject, LEARN_CONTENT, QUIZ_SUBJECTS } from '@/src/studyCache';
 import type { LearnLinkTarget } from '@/src/quizLearnBridge';
 import {
   canResolveMinpouLearnLink,
@@ -300,7 +299,9 @@ export async function buildSousokuMasteryInsight(
   const resolved = resolvedList[0]!;
   const currentHash = getQuestionTextHash(questionText);
 
-  const quizList = (SUBJECTS as any)?.[MINPOU_SOUSOKU_SUBJECT]?.[MINPOU_SOUSOKU_FIELD] as
+  await ensureQuizSubject(MINPOU_SOUSOKU_SUBJECT);
+  await ensureLearnSubject(MINPOU_SOUSOKU_LEARN_SUBJECT);
+  const quizList = (QUIZ_SUBJECTS as any)?.[MINPOU_SOUSOKU_SUBJECT]?.[MINPOU_SOUSOKU_FIELD] as
     | { text?: string }[]
     | undefined;
   const questions = Array.isArray(quizList) ? quizList : [];

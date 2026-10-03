@@ -4,7 +4,7 @@ import { Pressable, ScrollView, StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
-import { SUBJECTS } from '@/src/questions';
+import { QUIZ_MANIFEST } from '@/src/generated/subjects/quizManifest';
 
 const isLightBg = (hex: string) => {
   if (!hex || hex.startsWith('rgba')) return false;
@@ -18,10 +18,10 @@ const isLightBg = (hex: string) => {
 export default function SubjectsScreen() {
   const router = useRouter();
   const { colors } = useTheme();
-  const subjects = Object.keys(SUBJECTS);
+  const subjects = Object.keys(QUIZ_MANIFEST);
 
   const handlePress = (subject: string) => {
-    const fields = Object.keys((SUBJECTS as any)[subject] || {});
+    const fields = QUIZ_MANIFEST[subject] || [];
 
     // If Admin Law (has sub-categories) or explicitly any subject with multiple fields
     // User requested "If Administrative Law is selected, show 1-6 subcategories"

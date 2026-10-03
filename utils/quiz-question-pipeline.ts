@@ -1,25 +1,11 @@
-import { BONUS_QUESTIONS } from '@/src/bonus_questions';
-import { SUBJECTS } from '@/src/questions';
-import { TAC_KISO_QUIZ_QUESTIONS } from '@/src/tac_kiso_quiz_questions';
+import { ensureQuizSubject, QUIZ_SUBJECTS } from '@/src/studyCache';
 
-function mergeFieldQuestions(
-  base: Record<string, any[]>,
-  extra: Record<string, any[]>,
-): Record<string, any[]> {
-  const merged: Record<string, any[]> = { ...base };
-  Object.keys(extra).forEach((k) => {
-    merged[k] = [...(merged[k] || []), ...(extra[k] || [])];
-  });
-  return merged;
-}
+export { ensureQuizSubject };
 
-/** SUBJECTS ＋ TAC通常問題 ＋ ボーナス問題（問題を解く画面と同一） */
+/** 開いた科目だけ studyCache に入っている。読み込み前は空。 */
 export function getMergedSubjectData(subject: string | undefined): Record<string, any[]> {
   if (!subject) return {};
-  const main = (SUBJECTS as any)[subject] || {};
-  const tac = (TAC_KISO_QUIZ_QUESTIONS as any)[subject] || {};
-  const bonus = (BONUS_QUESTIONS as any)[subject] || {};
-  return mergeFieldQuestions(mergeFieldQuestions(main, tac), bonus);
+  return QUIZ_SUBJECTS[subject] || {};
 }
 
 export function pickQuestionsForField(

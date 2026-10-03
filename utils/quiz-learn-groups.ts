@@ -1,4 +1,4 @@
-import { SUBJECTS } from '@/src/questions';
+import { getQuizLearnGroups } from '@/src/studyCache';
 import { extractLearnLinkKey, normalizeLearnLinkKey } from '@/src/quizLearnBridge';
 
 export type QuizLearnGroupItem = {
@@ -12,11 +12,6 @@ export type QuizLearnGroup = {
   key: string;
   items: QuizLearnGroupItem[];
 };
-
-function compact(value: unknown, limit = 90): string {
-  const s = String(value || '').replace(/\s+/g, ' ').trim();
-  return s.length > limit ? `${s.slice(0, limit)}...` : s;
-}
 
 function uniqueKeys(keys: string[]): string[] {
   return [...new Set(keys.map(normalizeLearnLinkKey).filter(Boolean))];
@@ -66,21 +61,7 @@ export function getChoiceLearnLinkKey(
 export function resolveQuizLearnGroup(linkKey: string): QuizLearnGroup | null {
   const key = normalizeLearnLinkKey(linkKey);
   if (!key) return null;
-  const items: QuizLearnGroupItem[] = [];
-  for (const [subject, group] of Object.entries(SUBJECTS as Record<string, unknown>)) {
-    if (!group || typeof group !== 'object') continue;
-    for (const [field, list] of Object.entries(group as Record<string, unknown>)) {
-      if (!Array.isArray(list)) continue;
-      list.forEach((question, index) => {
-        if (!getQuestionLearnLinkKeys(question).includes(key)) return;
-        items.push({
-          subject,
-          field,
-          index,
-          questionPreview: compact((question as Record<string, unknown>)?.text),
-        });
-      });
-    }
-  }
+  const items = getQuizLearnGroups()?.[key];
+  if (!items || items.length === 0) return null;
   return { key, items };
 }

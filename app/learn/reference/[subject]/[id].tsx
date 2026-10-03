@@ -4,9 +4,8 @@ import { useCharacter } from '@/src/context/CharacterContext';
 import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
 import { useTheme } from '@/src/context/ThemeContext';
 import { kenpouParallelSupplementImageKey, pickAutoLearnDeepdiveImageKey } from '@/src/deepdiveLearnAutoImage';
-import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/learnExports';
+import { LEARN_CONTENT, LEARN_DEEPDIVE, QUIZ_MAIN as SUBJECTS, loadLearnScreenData } from '@/src/studyCache';
 import { resolveDeepdiveImageTagInner, resolveImageAsset } from '@/src/resolveImageAsset';
-import { SUBJECTS } from '@/src/questions';
 import { applyTTSRules } from '@/utils/tts-rules';
 import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -42,7 +41,7 @@ function stripLeadingImageTags(text: string): { images: string[]; rest: string }
   return { images, rest: t.trimStart() };
 }
 
-export default function ReferencePage() {
+function ReferencePageLoaded() {
     const { subject, id, originSubject, originId, originIndex } = useLocalSearchParams();
     const router = useRouter();
     const { theme, colors } = useTheme();
@@ -523,6 +522,30 @@ export default function ReferencePage() {
             </Modal>
         </ThemedView>
     );
+}
+
+export default function ReferencePage() {
+  const params = useLocalSearchParams<{ subject?: string }>();
+  const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let cancel = false;
+    setReady(false);
+    void loadLearnScreenData(subject).then(() => {
+      if (!cancel) setReady(true);
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [subject]);
+  if (!ready) {
+    return (
+      <ThemedView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ThemedText>読み込み中</ThemedText>
+      </ThemedView>
+    );
+  }
+  return <ReferencePageLoaded />;
 }
 
 const styles = StyleSheet.create({

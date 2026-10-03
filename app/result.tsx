@@ -42,7 +42,7 @@ import { prependShouhouCastDeepdiveImage } from '@/src/shouhouCastDeepdiveImage'
 import { prependIshiHyojiDeepdiveImage } from '@/src/ishiHyojiDeepdiveImage';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
-import * as LearnData from '@/src/learnExports';
+import * as LearnData from '@/src/studyCache';
 import { PIN_CASES } from '@/src/pinData';
 import { extractQuestionCast } from '@/src/castRegistry';
 import { normalizeFinalConstitutionDeepDivePresentation } from '@/utils/constitution-deepdive-presentation-final';
@@ -57,7 +57,17 @@ import {
   pickCompareTable,
   resolveCompareTableImage,
 } from '@/src/compareTables';
-import { RESOURCES, STATUTES, SUBJECTS } from '@/src/questions';
+import {
+  ensureAllStatutes,
+  ensureLearnSubject,
+  ensureQuizIndexes,
+  ensureQuizSubject,
+  ensureResources,
+  learnKeysForQuiz,
+  QUIZ_SUBJECTS as SUBJECTS,
+  RESOURCES,
+  STATUTES,
+} from '@/src/studyCache';
 import {
     extractLearnLinkKey,
     getLearnRouteParams,
@@ -790,7 +800,7 @@ function isDescriptiveAnswerSimilar(modelAnswer: string, userAnswer: string): bo
   return ratio >= 0.7;
 }
 
-export default function ResultScreen() {
+function ResultScreenLoaded() {
   const params = useLocalSearchParams<{
     subject?: string;
     pickedIndex?: string;
@@ -2775,6 +2785,40 @@ export default function ResultScreen() {
       </ScrollView>
     </ThemedView>
   );
+}
+
+export default function ResultScreen() {
+  const params = useLocalSearchParams<{ subject?: string; field?: string }>();
+  const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
+  const field = Array.isArray(params.field) ? params.field[0] : params.field;
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    let cancel = false;
+    setReady(false);
+    void (async () => {
+      await Promise.all([
+        subject ? ensureQuizSubject(subject) : Promise.resolve(),
+        ensureResources(),
+        ensureAllStatutes(),
+        ensureQuizIndexes(),
+        ...learnKeysForQuiz(subject, field).map((key) => ensureLearnSubject(key)),
+      ]);
+      if (!cancel) setReady(true);
+    })();
+    return () => {
+      cancel = true;
+    };
+  }, [subject, field]);
+
+  if (!ready) {
+    return (
+      <ThemedView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator />
+      </ThemedView>
+    );
+  }
+  return <ResultScreenLoaded />;
 }
 
 const styles = StyleSheet.create({

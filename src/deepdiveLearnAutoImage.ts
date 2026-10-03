@@ -5,17 +5,17 @@ import {
   resolveMinpoLearnFolderByQuestionNumber,
   resolveSaikensouronLearnImageKey,
 } from '@/src/deepdiveImages';
+import { LEARN_CONTENT, LEARN_DEEPDIVE } from '@/src/studyCache';
 import { resolveDeepdiveImageTagInner, resolveImageAsset } from '@/src/resolveImageAsset';
 
 function getLearnDeepdiveTables(): {
   dd: Record<string, string[] | undefined>;
   lc: Record<string, string[] | undefined>;
 } {
-  const { LEARN_DEEPDIVE, LEARN_CONTENT } = require('@/src/learn') as {
-    LEARN_DEEPDIVE: Record<string, string[] | undefined>;
-    LEARN_CONTENT: Record<string, string[] | undefined>;
+  return {
+    dd: LEARN_DEEPDIVE as Record<string, string[] | undefined>,
+    lc: LEARN_CONTENT as Record<string, string[] | undefined>,
   };
-  return { dd: LEARN_DEEPDIVE, lc: LEARN_CONTENT };
 }
 
 /** B列先頭の [[…]]（画像タグ等）を除いたうえで1行目を取る。同一深掘り本文で [[image:]] あり／なしが混在しても兄弟判定できるようにする */

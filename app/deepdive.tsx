@@ -37,6 +37,7 @@ import {
     takeDeepdiveLearnBackMetaWeb,
     takeDeepdiveReturnHrefWeb,
 } from '@/src/deepdiveState';
+import { ensureLearnSubject, ensureQuizSubject, LEARN_DEEPDIVE } from '@/src/studyCache';
 import { resolveDeepdiveImageTagInner, resolveImageAsset } from '@/src/resolveImageAsset';
 import { CHACHALOT_SPEECH_OPTIONS } from '@/utils/chachalot-tts';
 import { isPreservableTableBlock } from '@/utils/deepdive-tab-table';
@@ -353,6 +354,7 @@ export default function DeepdiveScreen() {
     useCallback(() => {
       let aborted = false;
       const tid = setTimeout(() => {
+        void (async () => {
         if (aborted) return;
 
         hydrateDeepdiveFromSessionIfEmpty();
@@ -390,6 +392,7 @@ export default function DeepdiveScreen() {
               ? sourceRaw
               : inferQuizDeepdiveSourceFromScreenTitle(stored.screenTitle || '');
           if (choiceIndex != null && Number.isFinite(questionIndex) && questionIndex >= 0) {
+            await ensureQuizSubject(stored.quizSubject);
             raw = resolveQuizDeepdiveBodyFromCatalog({
               quizSubject: stored.quizSubject,
               quizField: stored.quizField,
@@ -540,14 +543,14 @@ export default function DeepdiveScreen() {
           }
           const snippet = raw.trim();
           if (!stored.fromLearn && snippet.length > 0 && snippet.length < 150) {
-            const { LEARN_DEEPDIVE } = require('@/src/learn') as {
-              LEARN_DEEPDIVE: Record<string, string[] | undefined>;
-            };
-            const dd = LEARN_DEEPDIVE;
             let arraysToSearch: string[][] = [];
-            if (learnSubj && dd[learnSubj] && Array.isArray(dd[learnSubj])) {
-              arraysToSearch = [dd[learnSubj]];
+            if (learnSubj) {
+              await ensureLearnSubject(learnSubj);
+              const row = LEARN_DEEPDIVE[learnSubj];
+              if (Array.isArray(row)) arraysToSearch = [row];
             } else {
+              const loaded = await import('@/src/learn');
+              const dd = loaded.LEARN_DEEPDIVE as Record<string, string[] | undefined>;
               arraysToSearch = Object.values(dd).filter(Array.isArray) as string[][];
             }
             const headChars = 80_000;
@@ -581,6 +584,7 @@ export default function DeepdiveScreen() {
         } else {
           finish();
         }
+        })();
       }, 0);
 
       return () => {

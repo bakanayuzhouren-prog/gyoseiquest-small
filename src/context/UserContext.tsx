@@ -21,6 +21,29 @@ export const AVATAR_LABELS: Record<AvatarType, string> = {
 };
 
 const LEGACY_AVATAR_IDS = new Set(['default', 'suit', 'cyber', 'casual']);
+const USER_PROFILES_KEY = 'gq_user_profiles';
+
+function readAvatarByUser(): Record<string, AvatarType> {
+    if (Platform.OS !== 'web') return {};
+    try {
+        const raw = localStorage.getItem(USER_PROFILES_KEY);
+        if (!raw) return {};
+        const parsed = JSON.parse(raw) as Record<string, unknown>;
+        const out: Record<string, AvatarType> = {};
+        for (const [name, value] of Object.entries(parsed)) {
+            const trimmed = name.trim();
+            if (trimmed) out[trimmed] = resolveAvatarId(value);
+        }
+        return out;
+    } catch {
+        return {};
+    }
+}
+
+function writeAvatarByUser(profiles: Record<string, AvatarType>) {
+    if (Platform.OS !== 'web') return;
+    localStorage.setItem(USER_PROFILES_KEY, JSON.stringify(profiles));
+}
 
 /** 旧保存値・不明値を male へ安全に寄せる */
 export function resolveAvatarId(id: unknown): AvatarType {
@@ -92,13 +115,17 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (Platform.OS === 'web') {
             const savedAvatar = localStorage.getItem('gq_avatar');
             const resolved = resolveAvatarId(savedAvatar);
-            setAvatarIdState(resolved);
-            if (savedAvatar !== resolved) {
-                localStorage.setItem('gq_avatar', resolved);
-            }
-            const savedName = localStorage.getItem('gq_username');
-            if (savedName) {
-                setUsernameState(savedName);
+            const loginName = (localStorage.getItem('gq_user') || localStorage.getItem('gq_username') || '').trim();
+            const profiles = readAvatarByUser();
+            const avatarForUser = loginName ? (profiles[loginName] ?? resolved) : resolved;
+            setAvatarIdState(avatarForUser);
+            localStorage.setItem('gq_avatar', avatarForUser);
+            if (loginName) {
+                profiles[loginName] = avatarForUser;
+                writeAvatarByUser(profiles);
+                localStorage.setItem('gq_user', loginName);
+                localStorage.setItem('gq_username', loginName);
+                setUsernameState(loginName);
             }
             const savedLoc = localStorage.getItem('gq_location');
             if (savedLoc) {
@@ -147,14 +174,33 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setAvatarIdState(resolved);
         if (Platform.OS === 'web') {
             localStorage.setItem('gq_avatar', resolved);
+            const owner = username.trim();
+            if (owner && owner !== 'Guest') {
+                const profiles = readAvatarByUser();
+                profiles[owner] = resolved;
+                writeAvatarByUser(profiles);
+            }
         }
     };
 
     const setUsername = (name: string) => {
-        setUsernameState(name);
+        const next = name.trim();
+        if (!next) return;
         if (Platform.OS === 'web') {
-            localStorage.setItem('gq_username', name);
+            const profiles = readAvatarByUser();
+            const previous = username.trim();
+            if (previous && previous !== 'Guest' && previous !== next) {
+                if (profiles[previous] && !profiles[next]) profiles[next] = profiles[previous];
+                delete profiles[previous];
+            }
+            if (!profiles[next]) profiles[next] = avatarId;
+            writeAvatarByUser(profiles);
+            localStorage.setItem('gq_avatar', profiles[next]);
+            localStorage.setItem('gq_username', next);
+            localStorage.setItem('gq_user', next);
+            setAvatarIdState(profiles[next]);
         }
+        setUsernameState(next);
     };
 
     const setCurrentLocation = (loc: string) => {

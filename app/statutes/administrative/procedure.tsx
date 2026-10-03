@@ -1,8 +1,8 @@
 import StatuteViewer from '@/components/StatuteViewer';
-// @ts-ignore
-import { STATUTES } from '@/src/questions';
+import { useStatuteBucket } from '@/src/useStatuteBucket';
 
 export default function AdministrativeProcedureScreen() {
-    const articles = STATUTES.gyote || [];
+    const articles = useStatuteBucket('gyote');
+    if (!articles) return null;
     return <StatuteViewer data={articles} title="行政手続法" />;
 }

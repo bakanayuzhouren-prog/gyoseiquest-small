@@ -2,9 +2,10 @@ import { MarkdownText } from '@/components/markdown-text';
 import { ConfusingTopicChips, type ConfusingTopicChipItem } from '@/components/confusing-topic-chips';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Stack, router } from 'expo-router';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Image, Platform, Pressable, ScrollView, StyleSheet, Text, View, type ImageLoadEvent } from 'react-native';
 
+import { ensureAllStatutes, getStatuteVersion } from '@/src/studyCache';
 import type { DbTextbookBundle } from '@/src/content/dbTextbookBundles';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
 import {
@@ -105,9 +106,11 @@ function QuestionImages({ keys }: { keys: string[] }) {
 function QuestionCard({
   card,
   statuteLabel = '条文',
+  statuteVersion,
 }: {
   card: DbTextbookCard;
   statuteLabel?: string;
+  statuteVersion: number;
 }) {
   const [answerOpen, setAnswerOpen] = useState(false);
   const [statuteOpen, setStatuteOpen] = useState(false);
@@ -117,7 +120,7 @@ function QuestionCard({
     if (!showStatute || !statuteOpen) return '';
     const text = resolveCardStatuteText(card).trim();
     return text || '（条文本文を取得できませんでした。六法で確認してください。）';
-  }, [card, showStatute, statuteOpen]);
+  }, [card, showStatute, statuteOpen, statuteVersion]);
 
   return (
     <View style={styles.card}>
@@ -223,6 +226,16 @@ export function DbMarkdownTextbook({
   hideSources,
   statuteLabel,
 }: Props) {
+  const [statuteVersion, setStatuteVersion] = useState(0);
+  useEffect(() => {
+    let cancel = false;
+    void ensureAllStatutes().then(() => {
+      if (!cancel) setStatuteVersion(getStatuteVersion());
+    });
+    return () => {
+      cancel = true;
+    };
+  }, []);
   const blocks = useMemo(() => {
     const parsed = parseDbTextbookBlocks(bundle.markdown, bundle.slug);
     if (!cardFilter) return parsed;
@@ -321,7 +334,7 @@ export function DbMarkdownTextbook({
                 cardY.current[block.card.id] = e.nativeEvent.layout.y;
               }}
             >
-              <QuestionCard card={block.card} statuteLabel={statuteLabel} />
+              <QuestionCard card={block.card} statuteLabel={statuteLabel} statuteVersion={statuteVersion} />
             </View>
           );
         })}

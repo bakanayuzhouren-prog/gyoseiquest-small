@@ -27,7 +27,19 @@ import {
     setLearnScreenPointerActive,
     unfreezeLearnDeepdiveReturnCursor,
 } from '@/src/deepdiveState';
-import { LEARN_CONTENT, LEARN_DEEPDIVE, LEARN_F_EXPLAIN, LEARN_LINKS, LEARN_SOURCE, LEARN_STATUTE_REFS } from '@/src/learnExports';
+import { QUIZ_MAIN_COUNTS } from '@/src/generated/subjects/quizManifest';
+import {
+    ensureStatuteBucket,
+    getRelatedStatutes,
+    LEARN_CONTENT,
+    LEARN_DEEPDIVE,
+    LEARN_F_EXPLAIN,
+    LEARN_LINKS,
+    LEARN_SOURCE,
+    LEARN_STATUTE_REFS,
+    loadLearnScreenData,
+    QUIZ_MAIN as SUBJECTS,
+} from '@/src/studyCache';
 import { KISOCHI_LEARN_ROOM_KEYS } from '@/src/splitKisochiLearn';
 import {
     appendGyoseiConfusingTopicChunks,
@@ -44,7 +56,6 @@ import {
 } from '@/src/personFlowDiagram';
 import { extractQuestionCast } from '@/src/castRegistry';
 import { PIN_CASES } from '@/src/pinData';
-import { STATUTES, SUBJECTS } from '@/src/questions';
 import { clearQuizLearnReturnParams, getQuizLearnReturnHref, stripLearnLinkTag } from '@/src/quizLearnBridge';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
 import {
@@ -237,99 +248,22 @@ function findLearnLinkKeyForCard(learnSubject: string, learnIndex: number): stri
   );
 }
 
-function choiceLabelForRelatedStatutes(choice: string, index: number): string {
-  const label = ['ア', 'イ', 'ウ', 'エ', 'オ', 'カ', 'キ', 'ク'][index] ?? String(index + 1);
-  const body = (choice || '').trim();
-  return body ? `${label}. ${body}` : label;
-}
-
 let relatedStatutesByLinkKey: Map<string, LearnRelatedStatutesPayload> | null = null;
+
+function resetLearnLookups() {
+  learnLinkKeyByCard = null;
+  relatedStatutesByLinkKey = null;
+}
 
 function relatedStatutesIndex(): Map<string, LearnRelatedStatutesPayload> {
   if (relatedStatutesByLinkKey) return relatedStatutesByLinkKey;
   const map = new Map<string, LearnRelatedStatutesPayload>();
-  for (const [quizSubject, group] of Object.entries(SUBJECTS as Record<string, unknown>)) {
-    if (!group || typeof group !== 'object') continue;
-    for (const [quizField, list] of Object.entries(group as Record<string, unknown>)) {
-      if (!Array.isArray(list)) continue;
-      for (const question of list as Record<string, unknown>[]) {
-        const questionLinkKey = typeof question.learnLinkKey === 'string' ? question.learnLinkKey : '';
-        const choices = Array.isArray(question.choices) ? (question.choices as string[]) : [];
-        const choiceLinkKeys = Array.isArray(question.choiceLearnLinkKeys)
-          ? (question.choiceLearnLinkKeys as string[])
-          : [];
-        const choiceRelatedStatutes = Array.isArray(question.choiceRelatedStatutes)
-          ? (question.choiceRelatedStatutes as string[])
-          : [];
-        const choiceStatuteRefs = Array.isArray(question.choiceStatuteRefs)
-          ? (question.choiceStatuteRefs as string[])
-          : [];
-        const keys = new Set<string>();
-        choiceLinkKeys.forEach((key) => {
-          if (key) keys.add(key);
-        });
-        if (questionLinkKey) keys.add(questionLinkKey);
-        keys.forEach((linkKey) => {
-          if (map.has(linkKey)) return;
-          const payload = buildRelatedStatutesPayload(
-            linkKey,
-            quizSubject,
-            quizField,
-            questionLinkKey,
-            choices,
-            choiceLinkKeys,
-            choiceRelatedStatutes,
-            choiceStatuteRefs,
-          );
-          if (payload) map.set(linkKey, payload);
-        });
-      }
-    }
+  const src = getRelatedStatutes() || {};
+  for (const [key, value] of Object.entries(src)) {
+    map.set(key, value);
   }
   relatedStatutesByLinkKey = map;
   return map;
-}
-
-function buildRelatedStatutesPayload(
-  linkKey: string,
-  quizSubject: string,
-  quizField: string,
-  questionLinkKey: string,
-  choices: string[],
-  choiceLinkKeys: string[],
-  choiceRelatedStatutes: string[],
-  choiceStatuteRefs: string[],
-): LearnRelatedStatutesPayload | null {
-  let choiceIndices = choiceLinkKeys
-    .map((key, idx) => (key === linkKey ? idx : -1))
-    .filter((idx) => idx >= 0);
-  if (choiceIndices.length === 0 && questionLinkKey === linkKey) {
-    choiceIndices = choices
-      .map((_, idx) =>
-        (choiceRelatedStatutes[idx] || choiceStatuteRefs[idx] || '').trim() ? idx : -1
-      )
-      .filter((idx) => idx >= 0);
-  }
-  if (choiceIndices.length === 0) return null;
-  const segments = choiceIndices
-    .map((idx) => {
-      const body = (choiceRelatedStatutes[idx] || choiceStatuteRefs[idx] || '').trim();
-      if (!body) return '';
-      const choiceLabel = choiceLabelForRelatedStatutes(choices[idx] || '', idx);
-      return choiceIndices.length === 1 ? body : `【${choiceLabel}】\n${body}`;
-    })
-    .filter(Boolean);
-  if (segments.length === 0) return null;
-  const firstIdx = choiceIndices[0] ?? -1;
-  return {
-    content: segments.join('\n\n'),
-    choiceLabel:
-      firstIdx >= 0 && choiceIndices.length === 1
-        ? choiceLabelForRelatedStatutes(choices[firstIdx] || '', firstIdx)
-        : '',
-    quizSubject,
-    quizField,
-  };
 }
 
 function findRelatedStatutesForLearnLink(linkKey: string): LearnRelatedStatutesPayload | null {
@@ -348,7 +282,7 @@ function findRelatedStatutesForLearnLink(linkKey: string): LearnRelatedStatutesP
   return relatedStatutesIndex().get(linkKey) ?? null;
 }
 
-export default function LearnSubjectScreen() {
+function LearnSubjectBody() {
   /** フォーカス中のみ true。Web の pointerEvents と、別画面へ遷移したあとも学習音声を流すときのポーリング誤検知防止に使う（ネイティブもフォーカスで同期） */
   const [learnReceivesPointer, setLearnReceivesPointer] = useState(true);
   useFocusEffect(
@@ -378,11 +312,10 @@ export default function LearnSubjectScreen() {
   const routeIndex = Number.isFinite(parsedIndex) && parsedIndex >= 0 ? parsedIndex : 0;
 
   const tashiKenGyoLens = useMemo(() => {
-    const t = (SUBJECTS as any)['多肢選択'];
-    if (!t) return { ken: 0, gyo: 0 };
+    const counts = QUIZ_MAIN_COUNTS['多肢選択'] || {};
     return {
-      ken: Array.isArray(t['憲法']) ? t['憲法'].length : 0,
-      gyo: Array.isArray(t['行政法']) ? t['行政法'].length : 0,
+      ken: counts['憲法'] || 0,
+      gyo: counts['行政法'] || 0,
     };
   }, []);
 
@@ -1050,8 +983,9 @@ export default function LearnSubjectScreen() {
   }, []);
 
   const handleStatutePress = useCallback((info: LexiconStatutePressInfo) => {
+    void (async () => {
     const bucket = lawNameToStatuteBucket(info.lawName, info.articleNum);
-    const statutes = bucket ? ((STATUTES as Record<string, Array<{ title: string; content: string }>>)[bucket] || []) : [];
+    const statutes = bucket ? await ensureStatuteBucket(bucket) : [];
     const found = resolveStatuteArticlesFromBucket(statutes, info.articleNum, {
       articleOf: info.articleOf,
       paragraphNum: info.paragraphNum,
@@ -1084,6 +1018,7 @@ export default function LearnSubjectScreen() {
       return;
     }
     Alert.alert('条文', `${info.lawName}${info.articleNum}条の本文を見つけられませんでした。`);
+    })();
   }, [currentIndex, subject, tashiField]);
 
   const tacLearnFallbackDeepdive = useMemo(
@@ -2175,6 +2110,36 @@ export default function LearnSubjectScreen() {
         )}
       </ThemedView>
   );
+}
+
+export default function LearnSubjectScreen() {
+  const params = useLocalSearchParams<{ subject?: string; field?: string }>();
+  const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
+  const fieldParam = Array.isArray(params.field) ? params.field[0] : params.field;
+  const readyKey = `${subject || ''}|${fieldParam || ''}`;
+  const [loadedKey, setLoadedKey] = useState('');
+
+  useEffect(() => {
+    let cancel = false;
+    setLoadedKey('');
+    void (async () => {
+      await loadLearnScreenData(subject);
+      resetLearnLookups();
+      if (!cancel) setLoadedKey(readyKey);
+    })();
+    return () => {
+      cancel = true;
+    };
+  }, [readyKey, subject]);
+
+  if (loadedKey !== readyKey) {
+    return (
+      <ThemedView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ThemedText>読み込み中</ThemedText>
+      </ThemedView>
+    );
+  }
+  return <LearnSubjectBody />;
 }
 
 function SeekBar({

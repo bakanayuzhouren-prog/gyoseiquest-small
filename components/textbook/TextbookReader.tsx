@@ -25,7 +25,7 @@ import type {
   TextbookChapter,
   TextbookQuiz,
 } from '@/src/content/shouhouTextbookContent';
-import { LEARN_CONTENT } from '@/src/learnExports';
+import { ensureLearnSubject, LEARN_CONTENT } from '@/src/studyCache';
 import { getDeepdiveImageSource } from '@/src/deepdiveImages';
 import { IMAGE_RESOURCES_MAP } from '@/src/imageMap';
 import { useLearnPlayback } from '@/src/context/LearnPlaybackContext';
@@ -456,12 +456,28 @@ export function TextbookReader({
     [setPlaybackAnchorChapter, scrollToChapterVisual],
   );
 
+  const [gyoseiLearnReady, setGyoseiLearnReady] = useState(0);
+  useEffect(() => {
+    if (confusingTopicMode !== 'gyosei') return;
+    let cancel = false;
+    void Promise.all([
+      ensureLearnSubject('行政手続法'),
+      ensureLearnSubject('行政不服審査法'),
+      ensureLearnSubject('行政事件訴訟法'),
+    ]).then(() => {
+      if (!cancel) setGyoseiLearnReady((n) => n + 1);
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [confusingTopicMode]);
+
   const gyoseiCardsBySubject = useMemo(
     () =>
       confusingTopicMode === 'gyosei'
         ? gyoseiLearnCardsBySubject(LEARN_CONTENT as Record<string, string[] | undefined>)
         : {},
-    [confusingTopicMode],
+    [confusingTopicMode, gyoseiLearnReady],
   );
 
   const openLearnCard = useCallback((subject: string, index: number) => {

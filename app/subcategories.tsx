@@ -4,7 +4,7 @@ import { Pressable, ScrollView, StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { useTheme } from '@/src/context/ThemeContext';
-import { SUBJECTS } from '@/src/questions';
+import { QUIZ_MANIFEST } from '@/src/generated/subjects/quizManifest';
 
 const isLightBg = (hex: string) => {
     if (!hex || hex.startsWith('rgba')) return false;
@@ -18,8 +18,7 @@ const isLightBg = (hex: string) => {
 export default function SubCategoriesScreen() {
     const params = useLocalSearchParams<{ subject?: string }>();
     const subject = Array.isArray(params.subject) ? params.subject[0] : params.subject;
-    const subjectData = subject ? (SUBJECTS as any)[subject] : {};
-    const fields = Object.keys(subjectData) || [];
+    const fields = subject ? QUIZ_MANIFEST[subject] || [] : [];
     const { colors } = useTheme();
 
     return (
