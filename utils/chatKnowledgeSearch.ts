@@ -7,6 +7,7 @@ import {
   KISO_HOUGAKU_PHRASE_ALIASES,
 } from '@/utils/chatTopicBriefsKisoHougaku';
 import { KISO_HOUGAKU_COMPARISON_BRIEFS } from '@/utils/chatTopicBriefsKisoComparisons';
+import { KISOCHI_IPPAN_CHAT_BRIEFS } from '@/utils/chatTopicBriefsKisochiIppan';
 import {
   KISO_HOUGAKU_MOSHI_BRIEFS,
   KISO_HOUGAKU_MOSHI_KEY_PHRASES,
@@ -391,6 +392,7 @@ const CHAT_TOPIC_BRIEFS: { triggers: string[]; title: string; text: string }[] =
     ].join('\n'),
   },
   ...KISO_HOUGAKU_CHAT_TOPIC_BRIEFS,
+  ...KISOCHI_IPPAN_CHAT_BRIEFS,
   ...KISO_HOUGAKU_COMPARISON_BRIEFS,
   ...KISO_HOUGAKU_MOSHI_BRIEFS,
   ...GYOSEI_SORON_CHAT_BRIEFS,

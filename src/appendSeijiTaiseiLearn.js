@@ -4,7 +4,7 @@ import {
   shouldAttachSeijiTaiseiCompare,
 } from '../utils/seijiTaiseiHikaku';
 
-const SUBJECTS = ['基礎知識', '基礎法学'];
+const SUBJECTS = ['基礎知識', '基礎法学', '政治'];
 
 export function appendSeijiTaiseiToLearnDeepdive(learnDeepdive, learnContent) {
   const next = { ...learnDeepdive };

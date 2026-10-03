@@ -19,6 +19,7 @@ import { SHOHOU_CHAT_BRIEFS } from '../utils/chatTopicBriefsShouhou.ts';
 import { SHOHO_KIMEUCHI_CHAT_BRIEFS } from '../utils/chatTopicBriefsShohoKimeuchi.ts';
 import { KISO_HOUGAKU_COMPARISON_BRIEFS } from '../utils/chatTopicBriefsKisoComparisons.ts';
 import { KISO_HOUGAKU_CHAT_TOPIC_BRIEFS } from '../utils/chatTopicBriefsKisoHougaku.ts';
+import { KISOCHI_IPPAN_CHAT_BRIEFS } from '../utils/chatTopicBriefsKisochiIppan.ts';
 import { KISO_HOUGAKU_MOSHI_BRIEFS } from '../utils/chatTopicBriefsKisoMoshi.ts';
 import { KOKUBAI_CHAT_BRIEFS } from '../utils/chatTopicBriefsKokubai.ts';
 import { JICHI_CHAT_BRIEFS } from '../utils/chatTopicBriefsJichi.ts';
@@ -59,6 +60,12 @@ function matchBriefs(query, briefs) {
 
 const cases = [
   { q: '実定法と実体法の違いは？', expectTitle: /実定法と実体法/ },
+  { q: '日銀ってなに', expectTitle: /日本銀行/ },
+  { q: 'FTAとEPAの違い', expectTitle: /自由貿易協定と経済連携協定/ },
+  { q: '相対的貧困ってなに', expectTitle: /相対的貧困/ },
+  { q: '合理的配慮はいつから義務', expectTitle: /合理的配慮/ },
+  { q: 'ボットとフォレンジック', expectTitle: /情報通信の用語/ },
+  { q: '空欄補充の解き方', expectTitle: /文章理解/ },
   { q: '法の支配と法治主義の違い', expectTitle: /法の支配と法治主義/ },
   { q: '公布と施行ってなん？', expectTitle: /公布と施行/ },
   { q: '各国の政治体制', expectTitle: /大統領・首相の選出/ },
@@ -713,6 +720,7 @@ const cases = [
   { q: '負担付遺贈 家庭裁判所', expectTitle: /1027条|負担付遺贈/ },
   { q: '死人に口なし 遺贈', expectTitle: /1027条|負担付遺贈/ },
   { q: '相殺の遡及効 解除', expectTitle: /506条|相殺の遡及効/ },
+  { q: '平24.3.16 抵当権は消える', expectTitle: /問30|388条/ },
   { q: '監査等委員 区別して選任', expectTitle: /監査役会・監査等|監査等委員/ },
   { q: '剰余金、資本金、出資額の違い', expectTitle: /出資額・資本金・剰余金/ },
   // 民法記述ヤマ（てらしぃ指定タイトル）
@@ -873,6 +881,7 @@ const cases = [
 
 const all = [
   ...KISO_HOUGAKU_CHAT_TOPIC_BRIEFS,
+  ...KISOCHI_IPPAN_CHAT_BRIEFS,
   ...KISO_HOUGAKU_COMPARISON_BRIEFS,
   ...KISO_HOUGAKU_MOSHI_BRIEFS,
   ...GYOSEI_SORON_CHAT_BRIEFS,

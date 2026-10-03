@@ -1,10 +1,30 @@
-# Codex用 — 国会の権能 ／ 議院の権能
+# Codex用 — 国会の仕事？議院の仕事？
 
-既存の同名プロンプトはなし。新規1枚。表が主役。LEC公開２・問6の棚分け。
+LEC公開２・問6の図。生成済み。てらしぃがこの画像の修正を言うまで上書きしない。
 
 - 保存先: `assets/images/deepdive/learn/kenpo/kokkai-giin-kenno.png`
 - 画像キー: `learn/kenpo/kokkai-giin-kenno`
-- 代替テキスト: 国会の権能と各議院の権能を左右に並べた比較表。弾劾裁判所の設置は国会、国政調査は各議院。
+- 関連: LEC公開2 問6
+- 新タイトル: 国会の仕事？議院の仕事？
+
+今回の生成は、次の指示だけ使う。下の旧プロンプト本文は使わない。
+
+```text
+Revise the existing Japanese legal-study poster. Keep the two statute tables and their article numbers. Make that table type substantially larger. Remove duplicated wording so the remaining type can be large.
+
+Title, one line only, large: 国会の仕事？議院の仕事？
+Do not write 議員. Do not add a subtitle. Do not print any brand name.
+
+Delete the upper question panels that repeat the tables. Each power appears once, inside its table, with its article number.
+Delete center captions that restate the tables, including 「両院で一つの権能として決める者」「国政調査は国会」「弾劾裁判所の設置は国会。資格争訟の裁判は各議院。条約の承認が国会。締結は内閣」.
+Keep the characters small, in the margin, not covering the tables. ちゃちゃロット is one body, green suit including trousers, independent pale-sky-blue hat. ぴっちゅ stays with 国会. タスク亀 stays with 各議院. カチャドクロ stays only as the wrong claim, one short line: 国政調査は国会、は×.
+
+Footer: one short trap card only. 試験で「国政調査は国会の仕事」と書いてあったら×. Do not repeat the table as 判断軸 or 暗記.
+
+Congress table, unchanged items: 法律の制定59条、条約の承認73条3号、憲法改正の発議96条1項、租税の法定84条、国費の支出と債務負担の議決85条、予備費を設ける議決87条1項、予備費の支出の事後承諾87条2項、皇室経費の議決88条、決算の審査90条、内閣総理大臣の指名67条、弾劾裁判所の設置64条.
+House table, unchanged items: 議院規則の制定58条2項前段、議員の資格争訟の裁判55条、議員の懲罰58条2項後段、国政調査62条、議院の逮捕の許諾と会期中の釈放要求50条、会議その他の手続の停止57条1項、議長その他の役員の選任58条1項、国務大臣の出席要求63条.
+Row backgrounds alternate by row: row 1 white, row 2 light gray.
+```
 
 ## 法律の芯（崩すな）
 
@@ -97,7 +117,7 @@ Create a NEW Japanese legal-study poster from scratch. Landscape, high resolutio
 Deep navy outer frame. White tables inside. Bold Japanese gothic. Wide padding. Thin rules. Soft shadow. Small gold accent only.
 No strong glow. No 3D letters. No large ornaments. No brand names.
 
-Title, navy, centered:「国会の権能 ／ 議院の権能」
+Title, navy, centered:「国会の仕事？議院の仕事？」
 
 Two comparison tables are the main subject. No 論点 panel. No ひっかけ panel. No bottom three cards.
 No lines connecting left rows to right rows. The lists are independent. Do not add blank rows or invented items on the right to match the left count.

@@ -69,6 +69,10 @@ const CATEGORIES: Category[] = [
       { label: '行政書士法', key: '行政書士法' },
       { label: '住民基本台帳法', key: '住民基本台帳法' },
       { label: '戸籍法', key: '戸籍法' },
+      { label: '政治', key: '政治' },
+      { label: '経済', key: '経済' },
+      { label: '社会', key: '社会' },
+      { label: '情報通信', key: '情報通信' },
     ],
   },
   {
@@ -104,11 +108,19 @@ const CATEGORIES: Category[] = [
       {
         label: '基礎知識',
         subCategories: [
+          {
+            label: '政・経・社',
+            subCategories: [
+              { label: '政治', key: '政治', plus: true },
+              { label: '経済', key: '経済', plus: true },
+              { label: '社会', key: '社会', plus: true },
+              { label: '情報通信', key: '情報通信', plus: true },
+            ],
+          },
           { label: '個人情報', key: '個人情報', plus: true },
           { label: '行政書士法', key: '行政書士法', plus: true },
           { label: '住民基本台帳法', key: '住民基本台帳法', plus: true },
           { label: '戸籍法', key: '戸籍法', plus: true },
-          { label: 'その他', key: '基礎知識', plus: true },
         ],
       },
       { label: '多肢選択・憲法', key: '多肢選択', field: '憲法', plus: true },

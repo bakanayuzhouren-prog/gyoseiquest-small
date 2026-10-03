@@ -210,22 +210,31 @@ type LearnRelatedStatutesPayload = {
   quizField: string;
 };
 
-function findLearnLinkKeyForCard(learnSubject: string, learnIndex: number): string {
-  if (!learnSubject || learnIndex < 0) return '';
+let learnLinkKeyByCard: Map<string, string> | null = null;
+
+function learnLinkKeyIndex(): Map<string, string> {
+  if (learnLinkKeyByCard) return learnLinkKeyByCard;
+  const map = new Map<string, string>();
   const links = LEARN_LINKS as Record<string, unknown>;
   for (const [key, rawTargets] of Object.entries(links)) {
     const targets = Array.isArray(rawTargets) ? rawTargets : [];
-    if (
-      targets.some((target) => {
-        if (!target || typeof target !== 'object') return false;
-        const t = target as Record<string, unknown>;
-        return t.subject === learnSubject && Number(t.index) === learnIndex;
-      })
-    ) {
-      return key;
+    for (const target of targets) {
+      if (!target || typeof target !== 'object') continue;
+      const t = target as Record<string, unknown>;
+      const cardKey = `${String(t.subject)}\0${Number(t.index)}`;
+      if (!map.has(cardKey)) map.set(cardKey, key);
     }
   }
-  return `#${String(learnIndex + 1).padStart(3, '0')}`;
+  learnLinkKeyByCard = map;
+  return map;
+}
+
+function findLearnLinkKeyForCard(learnSubject: string, learnIndex: number): string {
+  if (!learnSubject || learnIndex < 0) return '';
+  return (
+    learnLinkKeyIndex().get(`${learnSubject}\0${learnIndex}`) ||
+    `#${String(learnIndex + 1).padStart(3, '0')}`
+  );
 }
 
 function choiceLabelForRelatedStatutes(choice: string, index: number): string {
@@ -234,8 +243,11 @@ function choiceLabelForRelatedStatutes(choice: string, index: number): string {
   return body ? `${label}. ${body}` : label;
 }
 
-function findRelatedStatutesForLearnLink(linkKey: string): LearnRelatedStatutesPayload | null {
-  if (!linkKey) return null;
+let relatedStatutesByLinkKey: Map<string, LearnRelatedStatutesPayload> | null = null;
+
+function relatedStatutesIndex(): Map<string, LearnRelatedStatutesPayload> {
+  if (relatedStatutesByLinkKey) return relatedStatutesByLinkKey;
+  const map = new Map<string, LearnRelatedStatutesPayload>();
   for (const [quizSubject, group] of Object.entries(SUBJECTS as Record<string, unknown>)) {
     if (!group || typeof group !== 'object') continue;
     for (const [quizField, list] of Object.entries(group as Record<string, unknown>)) {
@@ -252,44 +264,88 @@ function findRelatedStatutesForLearnLink(linkKey: string): LearnRelatedStatutesP
         const choiceStatuteRefs = Array.isArray(question.choiceStatuteRefs)
           ? (question.choiceStatuteRefs as string[])
           : [];
-
-        let choiceIndices = choiceLinkKeys
-          .map((key, idx) => (key === linkKey ? idx : -1))
-          .filter((idx) => idx >= 0);
-
-        // 既存の同期データには肢ごとのキーが無いので、問題単位リンクなら条文がある肢を候補にする。
-        if (choiceIndices.length === 0 && questionLinkKey === linkKey) {
-          choiceIndices = choices
-            .map((_, idx) =>
-              (choiceRelatedStatutes[idx] || choiceStatuteRefs[idx] || '').trim() ? idx : -1
-            )
-            .filter((idx) => idx >= 0);
-        }
-
-        if (choiceIndices.length === 0) continue;
-
-        const segments = choiceIndices
-          .map((idx) => {
-            const body = (choiceRelatedStatutes[idx] || choiceStatuteRefs[idx] || '').trim();
-            if (!body) return '';
-            const choiceLabel = choiceLabelForRelatedStatutes(choices[idx] || '', idx);
-            return choiceIndices.length === 1 ? body : `【${choiceLabel}】\n${body}`;
-          })
-          .filter(Boolean);
-
-        if (segments.length === 0) continue;
-
-        const firstIdx = choiceIndices[0] ?? -1;
-        return {
-          content: segments.join('\n\n'),
-          choiceLabel: firstIdx >= 0 && choiceIndices.length === 1 ? choiceLabelForRelatedStatutes(choices[firstIdx] || '', firstIdx) : '',
-          quizSubject,
-          quizField,
-        };
+        const keys = new Set<string>();
+        choiceLinkKeys.forEach((key) => {
+          if (key) keys.add(key);
+        });
+        if (questionLinkKey) keys.add(questionLinkKey);
+        keys.forEach((linkKey) => {
+          if (map.has(linkKey)) return;
+          const payload = buildRelatedStatutesPayload(
+            linkKey,
+            quizSubject,
+            quizField,
+            questionLinkKey,
+            choices,
+            choiceLinkKeys,
+            choiceRelatedStatutes,
+            choiceStatuteRefs,
+          );
+          if (payload) map.set(linkKey, payload);
+        });
       }
     }
   }
-  return null;
+  relatedStatutesByLinkKey = map;
+  return map;
+}
+
+function buildRelatedStatutesPayload(
+  linkKey: string,
+  quizSubject: string,
+  quizField: string,
+  questionLinkKey: string,
+  choices: string[],
+  choiceLinkKeys: string[],
+  choiceRelatedStatutes: string[],
+  choiceStatuteRefs: string[],
+): LearnRelatedStatutesPayload | null {
+  let choiceIndices = choiceLinkKeys
+    .map((key, idx) => (key === linkKey ? idx : -1))
+    .filter((idx) => idx >= 0);
+  if (choiceIndices.length === 0 && questionLinkKey === linkKey) {
+    choiceIndices = choices
+      .map((_, idx) =>
+        (choiceRelatedStatutes[idx] || choiceStatuteRefs[idx] || '').trim() ? idx : -1
+      )
+      .filter((idx) => idx >= 0);
+  }
+  if (choiceIndices.length === 0) return null;
+  const segments = choiceIndices
+    .map((idx) => {
+      const body = (choiceRelatedStatutes[idx] || choiceStatuteRefs[idx] || '').trim();
+      if (!body) return '';
+      const choiceLabel = choiceLabelForRelatedStatutes(choices[idx] || '', idx);
+      return choiceIndices.length === 1 ? body : `【${choiceLabel}】\n${body}`;
+    })
+    .filter(Boolean);
+  if (segments.length === 0) return null;
+  const firstIdx = choiceIndices[0] ?? -1;
+  return {
+    content: segments.join('\n\n'),
+    choiceLabel:
+      firstIdx >= 0 && choiceIndices.length === 1
+        ? choiceLabelForRelatedStatutes(choices[firstIdx] || '', firstIdx)
+        : '',
+    quizSubject,
+    quizField,
+  };
+}
+
+function findRelatedStatutesForLearnLink(linkKey: string): LearnRelatedStatutesPayload | null {
+  if (!linkKey) return null;
+  // リンクが無いカード用の仮番号。問題側に同じキーが無いときは、問題集を全部見ない。
+  if (/^#\d{3}$/.test(linkKey)) {
+    let stored = false;
+    for (const value of learnLinkKeyIndex().values()) {
+      if (value === linkKey) {
+        stored = true;
+        break;
+      }
+    }
+    if (!stored) return null;
+  }
+  return relatedStatutesIndex().get(linkKey) ?? null;
 }
 
 export default function LearnSubjectScreen() {
