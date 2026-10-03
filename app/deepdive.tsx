@@ -519,7 +519,7 @@ export default function DeepdiveScreen() {
 
         const augmentBeginner = (b: string) => prependAutoImageIfNeeded(b);
 
-        const applyToState = () => {
+        const applyToState = async () => {
           if (!raw.trim()) {
             setContent('');
             setBeginnerContent(augmentBeginner(beg));
@@ -577,7 +577,7 @@ export default function DeepdiveScreen() {
 
         const finish = () => {
           if (aborted) return;
-          applyToState();
+          void applyToState();
         };
         if (Platform.OS === 'web' && typeof requestAnimationFrame === 'function') {
           requestAnimationFrame(finish);

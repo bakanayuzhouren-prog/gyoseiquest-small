@@ -108,6 +108,8 @@ const CATEGORIES: Category[] = [
       {
         label: '基礎知識',
         subCategories: [
+          { label: '時事', key: '基礎知識', plus: true },
+          { label: '文章理解', key: '文章理解', plus: true },
           {
             label: '政・経・社',
             subCategories: [
