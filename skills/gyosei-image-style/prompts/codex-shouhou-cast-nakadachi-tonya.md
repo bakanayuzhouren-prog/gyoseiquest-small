@@ -1,9 +1,8 @@
 # Codex用・商法教科書（仲立人 vs 問屋）
 
-てらしぃ指示（2026-09-29）: この1枚だけ上書きする。全体の作り直しはしない。右下の案内役の帽子を正す。タイトルと表の「乗る」「乗らない」は、当事者になる／当事者にならない、に置き換える。543条・544条・551条・552条の結論は変えない。
+PNGあり。上書きしない。改訂: 2026-10-04 23:05。上書き対象の行は削除済み。このファイルは生成しない。543条・544条・551条・552条の結論は変えない。
 
 - 保存先: `assets/images/deepdive/textbook/shouhou/cast-nakadachi-tonya.png`
-- 上書き対象: `assets/images/deepdive/textbook/shouhou/cast-nakadachi-tonya.png`（てらしぃがこのファイルの帽子修正を指示）
 - 画像キー: `textbook/shouhou/cast-nakadachi-tonya`
 - 前提: SKILL.md / 見本PNG / ちゃちゃロット正本
 - 範囲: **この1枚の画像生成まで**
@@ -51,7 +50,7 @@
 - 下: **問屋（自己の名で販売又は買入れをする）**
 - 左右: **委託者（計算の主人）**／**相手方（契約の相手）** ※問屋段のみ委託者は裏
 
-## GPT Image プロンプト（この1枚を上書き）
+## GPT Image プロンプト
 
 ```text
 参照必須: assets/images/characters/chachalot.png、skills/gyosei-image-style/assets/approved-smiling-hat-mascot.png、skills/gyosei-image-style/assets/approved-chachalot-pointer.png。

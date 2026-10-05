@@ -1,5 +1,7 @@
 # 戦後経済 1947–1968 — 復興から高度成長
 
+関連: TAC第2回 問50。傾斜生産は石炭と鉄鋼。この図を使う。描き直さない。
+
 - 保存先: assets/images/deepdive/learn/kisochi/keizai-fukkou-kodo-1947-1968.png
 - 画像キー: learn/kisochi/keizai-fukkou-kodo-1947-1968
 - 生成は Codex。Cursor は描かない。

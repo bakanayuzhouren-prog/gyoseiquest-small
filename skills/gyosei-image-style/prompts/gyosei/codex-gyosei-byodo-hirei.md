@@ -4,7 +4,7 @@
 
 - 保存先: `assets/images/deepdive/learn/gyosei/byodo-hirei.png`
 - 画像キー: `learn/gyosei/byodo-hirei`
-- 上書き対象: `assets/images/deepdive/learn/gyosei/byodo-hirei.png`（てらしぃ指示・2026-09-29。平等原則の側にイラストを足す。法律の文と比例側の2体は残す）
+- PNGあり。上書きしない。改訂: 2026-10-04 23:05。上書き対象の行は削除済み。このファイルは生成しない。
 - 配置候補: 質問ガイド「比較：比例原則と平等原則」。生成後に Cursor が載せる。今は埋め込まない。
 
 ## 法律の芯（崩すな）
