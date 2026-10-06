@@ -6,6 +6,8 @@
 - 画像キー: learn/kisochi/shosenkyoku-hirei-shihyo
 - 見せ方: 対比2語。左は小選挙区だけ。右は比例代表だけ。
 
+## GPT Image プロンプト
+
 ```text
 Japanese legal-study infographic, warm off-white background, navy and teal. Large type. One sheet.
 

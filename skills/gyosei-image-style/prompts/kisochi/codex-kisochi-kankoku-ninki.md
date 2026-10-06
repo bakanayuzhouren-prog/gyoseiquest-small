@@ -1,7 +1,7 @@
 # 韓国の大統領は、再任できる？
 
 - 状態: 未生成
-- 関連: TAC第2回 問48。韓国は再任不可。インドネシアは再選1回。
+- 関連: TAC第2回 問48。韓国は再任不可。インドネシアは再選1回。選び方と任期を同じ表に足した図は `genshu-ninki`。この図は描き直さない。
 - 保存先: assets/images/deepdive/learn/kisochi/kankoku-ninki.png
 - 画像キー: learn/kisochi/kankoku-ninki
 - 見せ方: 切り分けの表が本体。説明文は置かない。表の下に同じ文を繰り返さない。

@@ -6,6 +6,8 @@
 - 画像キー: learn/kisochi/doru-kin-kawase
 - 見せ方: 左から右への年表。比較表にはしない。
 
+## GPT Image プロンプト
+
 ```text
 Japanese legal-study infographic, warm off-white background, navy and teal. Large type. One sheet. A horizontal timeline. Each stop is one short label. Do not write a paragraph under each stop.
 
