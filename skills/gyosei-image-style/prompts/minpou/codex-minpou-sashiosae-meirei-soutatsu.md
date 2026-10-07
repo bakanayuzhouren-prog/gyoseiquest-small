@@ -1,5 +1,7 @@
 # Codex用 — 差押命令が届くと、第三債務者は債務者へ弁済できなくなる
 
+関連: 合格革命第2回・問30。一般債権者の差押えと物上代位の優劣は、この図の下の表。
+
 1枚。上に差押命令の定義。中央は送達で弁済が止まる場面。下に、優劣を比べる2行の表。左右のdebateパネルは使わない。行の背面は横一列で白と薄いグレーを交互にする。列ゼブラは禁止。`butsujo-daii-saiken-joto-4koma.png` は債権譲渡の別図なので、このファイルでは描かない。
 
 - 保存先: `assets/images/deepdive/learn/minnpou/sashiosae-meirei-soutatsu-toki.png`

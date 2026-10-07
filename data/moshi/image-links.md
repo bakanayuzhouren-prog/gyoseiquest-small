@@ -41,6 +41,7 @@
 | 29 | 問全体 | 物権的請求の2枚目 | `assets/images/deepdive/learn/minpo/bukken-seikyu-q29-2.png` | あり |
 | 30 | 問全体 | 先取特権 | `assets/images/deepdive/learn/minpo/sakidori-kihon.png` | あり |
 | 30 | 問全体 | 先取特権の続き | `assets/images/deepdive/learn/minpo/sakidori-q30.png` | あり |
+| 30 | 肢イ | 転売代金債権を譲ったあと、物上代位の差押えはできるか。合格革命第2回・問30の先取特権側と同じ | `assets/images/deepdive/learn/minpo/sakidori-tenbai-joto.png` | あり |
 | 30 | 肢ウ | 不動産賃貸の先取特権 | `assets/images/deepdive/learn/minpo/fudosan-chintai-sakidori-q30-u.png` | あり |
 | 31 | 肢2・肢3 | 保証人同士の求償。負担部分を超えてから | `assets/images/deepdive/learn/minpo/kyodo-hosho-kyusho-q31.png` | あり |
 | 32 | 問全体 | 催告なしの全部解除と一部解除 | `assets/images/deepdive/learn/minpo/kaijo-542.png` | あり |
@@ -218,6 +219,10 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 30 | 先取特権と抵当 | 譲渡のあと、差押えできる？ | `assets/images/deepdive/learn/minnpou/sakidori-teito-joto.png` | あり |
+| 30 | 一般債権者との優劣 | 送達と抵当権設定登記の先後 | `assets/images/deepdive/learn/minnpou/sashiosae-meirei-soutatsu-toki.png` | あり |
+| 30 | 転付 | 転付が届く前に、差し押さえた？ | `assets/images/deepdive/learn/minnpou/tenpu-butsujodaii.png` | あり |
+| 30 | 譲渡担保 | 許諾して転売したら、代金は追える？ | `assets/images/deepdive/learn/minnpou/jototanpo-kyodaku.png` | あり |
 | 47 | 問全体 | 党の方針で、投票させるか | `assets/images/deepdive/learn/kisochi/togi-kosoku.png` | あり |
 | 48 | 問全体 | イギリスは、加盟国か | `assets/images/deepdive/learn/kisochi/eu-ridatsu.png` | あり |
 | 49 | 問全体 | 100は、何か | `assets/images/deepdive/learn/kisochi/bukka-shisu.png` | あり |
@@ -234,6 +239,7 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 29 | 問全体 | 即時取得は、無権利者からの取引で、動産の占有を始めたとき | `assets/images/deepdive/learn/minnpou/sokuji-shutoku-yoken.png` | あり |
 | 47 | 問全体 | 改善措置は、だれが求めるか | `assets/images/deepdive/learn/kisochi/dango-kaizen.png` | あり |
 | 48 | 問全体 | 省庁再編は、いつか | `assets/images/deepdive/learn/kisochi/shochorei-nen.png` | あり |
 | 49 | 問全体 | 山は、いつか | `assets/images/deepdive/learn/kisochi/bubble-yama.png` | あり |
