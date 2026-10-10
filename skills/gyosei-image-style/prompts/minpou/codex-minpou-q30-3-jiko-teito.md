@@ -1,6 +1,7 @@
 # 問30肢3 再度の取得時効と抵当権
 
-- 状態: 生成済み。てらしぃがこの画像の修正を言うまで上書きしない
+- 状態: 生成済み。タイトルだけ上書き（てらしぃ指示・2026-10-09。この1枚）
+- 上書き対象: assets/images/deepdive/learn/minnpou/q30-3-jiko-teito.png（てらしぃ指示・2026-10-09。タイトル変更。この1枚だけ上書き）
 - 関連: LEC公開1 問30の肢3。ほかの模試に同じ時効の問はない。
 - 保存先: assets/images/deepdive/learn/minnpou/q30-3-jiko-teito.png
 - 画像キー: learn/minnpou/q30-3-jiko-teito
@@ -9,7 +10,7 @@
 ```text
 Japanese legal-study infographic, warm off-white background, navy and teal, one sheet.
 
-Title, large and readable: 時効が完成したあと、登記の前に抵当権がついた。抵当権は消えるか
+Title, large and readable: 時効完成→抵当権登記→再度時効完成⇒どっちが勝つ？
 
 Answer band: 再度の時効を援用すれば消える。ただし、抵当権の存在を容認していたなど、抵当権の消滅を妨げる特段の事情がない限り（最判平成24年3月16日）
 

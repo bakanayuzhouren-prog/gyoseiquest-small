@@ -1035,6 +1035,7 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'learn/shouhou/hikoukai-6kagetsu': require('@/assets/images/deepdive/learn/shouhou/hikoukai-6kagetsu.png'),
   'learn/shouhou/hikoukai-kikan': require('@/assets/images/deepdive/learn/shouhou/hikoukai-kikan.png'),
   'learn/shouhou/hikoukai-teikan': require('@/assets/images/deepdive/learn/shouhou/hikoukai-teikan.png'),
+  'learn/shouhou/hokki-setsuritsu-kainin': require('@/assets/images/deepdive/learn/shouhou/hokki-setsuritsu-kainin.png'),
   'learn/shouhou/kabushiki-4henka': require('@/assets/images/deepdive/learn/shouhou/kabushiki-4henka.png'),
   'learn/shouhou/kaisan-seisan': require('@/assets/images/deepdive/learn/shouhou/kaisan-seisan.png'),
   'learn/shouhou/ketsugi-1-yoken': require('@/assets/images/deepdive/learn/shouhou/ketsugi-1-yoken.png'),

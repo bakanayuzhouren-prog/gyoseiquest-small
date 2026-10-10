@@ -18,6 +18,7 @@
 | 33 | 問全体 | 書面が何を変えるか | `assets/images/deepdive/learn/minnpou/shomen-shugi.png` | あり |
 | 34 | 問全体 | 委任規定の準用範囲 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu.png` | あり |
 | 34 | 問全体 | 注意・報酬・費用・損害 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu-2.png` | あり |
+| 37 | 肢2 | 設立時の取締役と監査役の解任 | `assets/images/deepdive/learn/shouhou/hokki-setsuritsu-kainin.png` | あり |
 | 47 | 問全体 | どこに置くか | `assets/images/deepdive/learn/kisochi/dejitaru-casino.png` | あり |
 | 48 | 問全体 | 機関委任事務は、残るか | `assets/images/deepdive/learn/kisochi/kikan-inin.png` | あり |
 | 49 | 問全体 | 神武のあとは、どの不況か | `assets/images/deepdive/learn/kisochi/jinmu-nabesoko.png` | あり |
@@ -64,6 +65,12 @@
 | 57 | 問全体 | 用語は、どれか | `assets/images/deepdive/learn/kisochi/risk-base.png` | あり |
 
 問31の肢5（保証連帯）は、求償の図には無い。問33の芯（通常損耗）は、使用貸借の図には無い。問34の芯（いつでも返還請求）は、準用の図には無い。
+
+## LEC公開3
+
+| 問 | 肢 | 図 | パス | PNG |
+|---|---|---|---|---|
+| 31 | 肢2 | 併存と免責の契約の2通り。免責の債権者契約は通知時。肢5の「意思に反してもよい」（大判大15.3.25）は、この図に無い | `assets/images/deepdive/learn/minnpou/heizon-mensekiteki-hikiuke.png` | あり |
 
 ## 伊藤塾公開1
 

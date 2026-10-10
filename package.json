@@ -42,6 +42,8 @@
     "build:lec-koukai-learning": "node scripts/buildLecKoukaiLearning.mjs",
     "build:lec-koukai-round2-topics": "node scripts/buildLecKoukaiRound2Topics.mjs",
     "build:lec-koukai-round2-learning": "node scripts/buildLecKoukaiRound2Learning.mjs",
+    "build:lec-koukai-round3-topics": "node scripts/buildLecKoukaiRound3Topics.mjs",
+    "build:lec-koukai-round3-learning": "node scripts/buildLecKoukaiRound3Learning.mjs",
     "build:lec-koukai-round2-chat": "node scripts/buildLecKoukaiRound2ChatBriefs.mjs",
     "import:tac-zips": "node scripts/importTacZipsFromDownloads.mjs",
     "build:moshi-topics": "node scripts/buildMoshiTopicLearning.mjs",

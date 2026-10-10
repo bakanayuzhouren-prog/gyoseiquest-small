@@ -19,6 +19,7 @@ import { MINPOU_JOSHIKI_LEARN_BY_SUBJECT } from './minpou_joshiki_learn_content.
 import { GYOSEIHOU_JOSHIKI_LEARN_BY_SUBJECT } from './gyoseihou_joshiki_learn_content.js';
 import { LEC_KOUKAI_MOSHI_LEARN_BY_SUBJECT } from './lec_koukai_moshi_learn_content.js';
 import { LEC_KOUKAI_MOSHI_ROUND2_LEARN_BY_SUBJECT } from './lec_koukai_moshi_round2_learn_content.js';
+import { LEC_KOUKAI_MOSHI_ROUND3_LEARN_BY_SUBJECT } from './lec_koukai_moshi_round3_learn_content.js';
 import { LEC_BONUS_KENPOU_LEARN_BY_SUBJECT } from './lec_bonus_kenpou_learn_content.js';
 import { LEC_ATARU_ROUND1_LEARN_BY_SUBJECT } from './lec_ataru_round1_learn_content.js';
 import { LEC_ATARU_ROUND2_LEARN_BY_SUBJECT } from './lec_ataru_round2_learn_content.js';
@@ -90,6 +91,7 @@ const merged = mergeLearnLayers(
   GYOSEIHOU_JOSHIKI_LEARN_BY_SUBJECT,
   LEC_KOUKAI_MOSHI_LEARN_BY_SUBJECT,
   LEC_KOUKAI_MOSHI_ROUND2_LEARN_BY_SUBJECT,
+  LEC_KOUKAI_MOSHI_ROUND3_LEARN_BY_SUBJECT,
   LEC_BONUS_KENPOU_LEARN_BY_SUBJECT,
   LEC_ATARU_ROUND1_LEARN_BY_SUBJECT,
   LEC_ATARU_ROUND2_LEARN_BY_SUBJECT,
