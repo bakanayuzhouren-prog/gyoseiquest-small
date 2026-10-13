@@ -22,6 +22,11 @@ export function pickQuestionsForField(
   return { field: selectedField, targetQuestions: subjectData[selectedField] || [] };
 }
 
+/** 過去問と模擬試験（ボーナス）を同じ出題プールにするモード */
+export function isFullPoolMode(mode: string | undefined): boolean {
+  return mode === 'bonus' || mode === 'all';
+}
+
 /** 記述／選択・ボーナス肢ルールでフィルタ（question.tsx と同一） */
 export function filterQuizQuestionsByMode(
   targetQuestions: any[],
@@ -46,7 +51,7 @@ export function filterQuizQuestionsByMode(
     /** スプレッドシートの ※ 問題・※ 肢のみのセット */
     const inBonusOnlyPool = hasCb ? cb.some((b: boolean) => b) : !!q.isBonus;
 
-    if (mode === 'bonus') {
+    if (isFullPoolMode(mode)) {
       return inPastPool || inBonusOnlyPool;
     }
     // mode === 'past' | 'shisho': 師匠は過去問と同一プール

@@ -258,3 +258,9 @@
 | 55 | 問全体 | 遠隔操作は、どれか | `assets/images/deepdive/learn/kisochi/bot-forensic.png` | あり |
 | 56 | 問全体 | 外国人住民も、申請できるか | `assets/images/deepdive/learn/kisochi/kouteki-ninsho.png` | あり |
 | 57 | 問全体 | 復元できないのは、どれか | `assets/images/deepdive/learn/kisochi/tokumei-kamei.png` | あり |
+
+## 辰巳2026全国公開完全模試
+
+| 問 | 肢 | 図 | パス | PNG |
+|---|---|---|---|---|
+| 36 | 肢3 | 示さない契約。過失の相手方は、代理人に請求できる？ | `assets/images/deepdive/learn/shouhou/504-kashitsu-aitegata.png` | あり |

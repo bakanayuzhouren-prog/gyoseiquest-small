@@ -1,59 +1,86 @@
-# Codex用 — 行服法 審理員意見書の渡し先（横流れ）
+# Codex用 — 行服法 諮問するときの書類の流れ
 
 - 保存先: `assets/images/deepdive/fufuku/shomon-umu-saiketsu.png`
 - 上書き対象: `assets/images/deepdive/fufuku/shomon-umu-saiketsu.png`
-- てらしぃ指示: 2026-10-10。手書きのように、手続きを左から右へ流す。イラストは少し。小学生が見づらい密度にしない。この1枚だけ描き直す。
+- 関連: 諮問しない場合は別枚 `shomon-nashi-saiketsu.png`。この枚に混ぜない。
+- てらしぃ指示: 2026-10-10。諮問ありだけ。左から右。人物も案内役も置かない。書類を大きく。
 - 既存の `shomon-flow.png` は上書きしない。
 - 配置: 生成後に Cursor。PNGの差し替えまで `[[image:]]` を付けない。
 
 ## 法律の芯（崩すな）
 
-- 審理員が、意見書と事件記録を審査庁へ提出する（42条2項）。
-- 諮問するときは、審査会等へ写しを添える（43条2項）。審査会等から審査請求人へは送らない。
-- 諮問しないときは、裁決書に意見書を添付する（50条2項）。
-- 審査請求人へは送達（51条1項）。参加人と、審査庁以外の処分庁等へは送付（51条4項）。
+- 審理員は、審理員意見書を事件記録とともに、速やかに審査庁へ提出する（42条2項）。
+- 審査庁は、審理員意見書の写しと事件記録の写しを添えて、行政不服審査会等へ諮問する（43条2項）。
+- 同じとき、審査庁は審理関係人へ、諮問した旨を通知し、審理員意見書の写しを送付する（43条3項）。事件記録の写しは送らない。受け手は、審査請求人、参加人、審査庁とは別の処分庁等。
+- 行政不服審査会等は審査庁へ答申する。答申のあと、審査庁が裁決する（44条）。
+- 裁決書の謄本は、審査請求人へ送達し（51条1項・2項）、参加人と審査庁とは別の処分庁等へ送付する（51条4項）。
+- この経路では、裁決書に審理員意見書を添付しない。その一文は図の一箇所だけ。
 
-図に書かないもの: 答申が審査庁を拘束するか。底部カード。案内役。同じ文の繰り返し。受け手を4人に増やさない。
+## 生成前チェック
+
+- [x] 諮問なしの経路は、この枚に入れない
+- [x] 42条2項は、審理員意見書と事件記録の両方
+- [x] 43条2項は、行政不服審査会等へ両方の写し
+- [x] 43条3項は、審査庁から審理関係人へ、諮問した旨の通知と審理員意見書の写し
+- [x] 裁決書の謄本。審査請求人は送達。参加人と別の処分庁等は送付
+- [x] 添付しない、は一箇所だけ。人物も案内役も置かない
+- [x] 左右パネルは使わない。横流れが本業
 
 ## GPT Image プロンプト（このまま生成）
 
 ```text
-Japanese legal-study infographic. 16:9 landscape. Warm off-white. Huge Japanese type. Wide empty space. A child can follow the arrows without reading a paragraph. No mascot. No bottom cards. No answer banner. No English. No logo. No second flowchart.
+Japanese legal-study infographic. Wide 16:9. Warm off-white. One horizontal flow, left to right. Huge Japanese type. Large document drawings are the subject. No people. No mascot. No bottom cards. No answer banner. No English. No logo.
 
-Title, one line, top left:
-審理員意見書、誰から誰へ？
+Title, one line:
+諮問するとき、どの書類が誰へ渡る？
 
-Draw one horizontal flow, left to right, like a clean handwritten flowchart. Thick arrows. Few boxes.
+Five stations in one row. Thick arrows between them. Document titles sit on the papers. Arrow words sit in the gap, never on a paper. Do not abbreviate any document name. Do not repeat a sentence.
 
-Left box: 審理員
-Two small circles under the name only: 事　意
-One small paper drawing beside this box, labeled 意見書. Do not add more papers here.
+Station 1, box 審理員. Two large papers side by side:
+審理員意見書
+事件記録
+Arrow right to station 2, label only: 速やかに提出（42条2項）
 
-Arrow right to the center box: 審査庁
-Arrow label: 提出（42条2項）
+Station 2, box 審査庁.
+From here, one arrow right to station 3, box 行政不服審査会等.
+On that arrow, two large papers marked 写し:
+審理員意見書の写し
+事件記録の写し
+Arrow label: 写しを添えて諮問（43条2項）
 
-From 審査庁, one short arrow upward to a circle: 審査会
-Label: 諮問するとき、写し（43条2項）
-A large red × next to 審査会. One line beside the ×: 請求人へは送らない
-No arrow from 審査会 to any person.
+At the same moment, a second arrow from 審査庁 down to three recipient names in one group:
+審査請求人
+参加人
+審査庁とは別の処分庁等
+Two large papers on that arrow only:
+諮問した旨の通知
+審理員意見書の写し
+Arrow label: 通知・送付（43条3項）
+Do not send 事件記録の写し on this arrow.
+Do not draw any arrow from 行政不服審査会等 to these three people.
 
-From 審査庁, one arrow right to three large names in a row:
-審査請求人　送達（51条1項）
+Station 4, arrow from 行政不服審査会等 back is not used. Draw one arrow from 行政不服審査会等 to 審査庁, with one large paper:
+答申書
+Arrow label: 答申
+One small line under that arrow only: 答申後に裁決（44条）
+
+Station 5, arrow from 審査庁 to the right, one large paper:
+裁決書の謄本
+Three recipients:
+審査請求人　送達（51条1項・2項）
 参加人　送付（51条4項）
-処分庁等　送付（51条4項）
-処分庁等 is the office that is not the 審査庁. Do not draw a fourth name.
+審査庁とは別の処分庁等　送付（51条4項）
+One line under this station only, and nowhere else:
+この場面では、裁決書に審理員意見書を添付しない。
 
-One small paper drawing above those three names only, labeled 裁決書.
-One orange line under the three names, and nowhere else:
-諮問しないとき、意見書を添付（50条2項）
-
-Stop. Do not repeat any sentence. Do not write 拘束. Do not cover the arrows with drawings.
+Do not draw a 諮問なし path. Do not clip an opinion sheet onto the written decision. Do not write 通知書. Do not write 審査会 alone. Do not cover papers with arrow text.
 ```
 
 ## 目視チェック
 
-- [ ] 流れは左から右。審理員、審査庁、受け手の順
-- [ ] 審査会は上の枝で、請求人への矢印がない
-- [ ] 送達は審査請求人だけ。参加人と処分庁等は送付
-- [ ] 添付の一文は、諮問しないときだけ
-- [ ] 紙の絵は意見書と裁決書の2枚だけ。底部カードも案内役もない
+- [ ] 諮問ありだけ。諮問なしの箱がない
+- [ ] 審理員意見書と事件記録が、提出の段で両方見える
+- [ ] 行政不服審査会等へは、両方の写し
+- [ ] 審理関係人へは、諮問した旨の通知と審理員意見書の写し。審査会等からの矢印はない
+- [ ] 裁決書の謄本。送達は審査請求人だけ
+- [ ] 添付しない、は一箇所。文字が書類と重なっていない

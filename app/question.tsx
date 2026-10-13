@@ -17,7 +17,7 @@ import { ensureQuizSubject, ensureResources, RESOURCES } from '@/src/studyCache'
 import { mergeQuizResourcePages, parseQuizRefIds } from '@/utils/quizResources';
 import { explainChoiceIntent, generateDescriptiveQuestion } from '@/src/utils/geminiService';
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
-import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitHtmlUnderlineTags, splitNumberPrefix } from '@/utils/choiceNumber';
+import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, numberCountStatements, splitHtmlUnderlineTags, splitNumberPrefix, stripLeadingChoiceBullet } from '@/utils/choiceNumber';
 import { getQuestionMark, setQuestionMark, type QuestionMark } from '@/utils/question-marks';
 import {
   addOrSubtractQuestionHighlightRange,
@@ -27,21 +27,70 @@ import {
   type HighlightRange,
 } from '@/utils/question-highlight-ranges';
 import { getQuestionHighlights, setQuestionHighlights, toggleQuestionHighlight } from '@/utils/question-highlights';
+import {
+  choiceNeverAgainHash,
+  buildChoiceLinks,
+  getNeverAgainHashes,
+  setChoiceNeverAgainHashes,
+} from '@/utils/never-again-choices';
+
+const EMPTY_CHOICE_HASHES = new Set<string>();
 import { getHiddenHashes, hideQuestionByHash } from '@/utils/question-hidden';
+import {
+  findAllModeIndex,
+  loadAllQuestionSearchDocs,
+  searchAllQuestions,
+  type AllQuestionSearchHit,
+  type SearchDoc,
+} from '@/utils/allQuestionsSearch';
 import {
   filterHiddenFromQuestions,
   filterQuizQuestionsByMode,
+  isFullPoolMode,
   pickQuestionsForField,
   shuffleQuestionsCopy,
 } from '@/utils/quiz-question-pipeline';
 import { parseComboChoiceParts, splitSlotOptionParts } from '@/utils/slotNormalize';
-import { getQuestionStats, getQuestionTextHash, reconcileAllAttemptsAsCorrect, type QuestionStats } from '@/utils/question-stats';
+import { getQuestionStats, getQuestionTextHash, reconcileAllAttemptsAsCorrect, updateQuestionStats, type QuestionStats } from '@/utils/question-stats';
 import {
   buildSousokuMasteryInsight,
   sousokuLearnRoute,
   type TopicMasteryInsight,
 } from '@/utils/topic-mastery';
 import { canResolveFieldTopics } from '@/utils/topic-resolver';
+import { matchKnowledgeGap } from '@/utils/knowledge-gap';
+import { caseQuestionIndexMap, choiceIsSharedCase, gyoseiSoronCaseLabel, gyoseiSoronCaseNote, matchGyoseiSoronCase } from '@/utils/gyoseiSoronCaseLinks';
+import { SEIREI_SHOEI_KISOKU_DEEPDIVE, shouldAttachSeireiShoreiKisokuImage } from '@/src/seireiShoreiKisokuDeepdiveImage';
+import { KOKUJI_EXAMPLES_DEEPDIVE, kokujiPublicNoticeNote, shouldAttachKokujiExamples } from '@/src/kokujiExamplesDeepdiveImage';
+import { PACHINKO_STANDING_DEEPDIVE, shouldAttachPachinkoStanding } from '@/src/pachinkoStandingDeepdive';
+import { IKEN_KOBO_GYOSEI_KISOKU_DEEPDIVE, shouldAttachIkenKoboGyoseiKisoku } from '@/src/ikenKoboGyoseiKisokuDeepdive';
+import { KOEN_MINYUCHI_SAIRYO_DEEPDIVE, shouldAttachKoenMinyuchiSairyo } from '@/src/koenMinyuchiSairyoDeepdive';
+import { GYOSEIBATSU_TREE_DEEPDIVE, shouldAttachGyoseibatsuTree } from '@/src/gyoseibatsuTreeDeepdive';
+import {
+  expectedChoiceMark,
+  formatChoiceOxRate,
+  loadChoiceOxStats,
+  recordChoiceOx,
+  agencyHeadOrderNote,
+  ministerOrderNote,
+  ministryDepartmentNote,
+  cabinetOrgNote,
+  civilServiceDisciplineNote,
+  yakujiInternetBanNote,
+  publicCommentAdminRuleNote,
+  laterDispositionVoidNote,
+  standardIsNotMeireiNote,
+  disciplineCompareNote,
+  oldAgeAdditionNote,
+  personalTaxiStandardNote,
+  illegalActConversionNote,
+  dispositionDefectNote,
+  gyoseiFrom29Note,
+  illegalitySuccessionNote,
+  type ChoiceOxStats,
+} from '@/utils/choice-ox';
+import { recordGenreAttempt } from '@/utils/genre-eval';
+import { recordAllQuestionsAttempt } from '@/utils/all-questions-wrongs';
 import { CIVIL_PRECEDENT_IMAGES } from '@/src/civilPrecedentImages';
 import { resolveMondaibunnGazoItems } from '@/src/mondaibunn-gazou';
 import { extractQuestionCast } from '@/src/castRegistry';
@@ -95,6 +144,18 @@ function splitChoiceIntoKatakanaPairLabels(choice: string): string[] {
     .split(/[・･\s]+/)
     .map((s) => s.trim())
     .filter((s) => /^[アイウエオ]$/.test(s));
+}
+
+const KATAKANA_RUN = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワ';
+
+/** 問題文の「ア〜オ」を、肢の範囲として読む。 */
+function stemKatakanaRange(text: string): { start: number; count: number; label: string } | null {
+  const matched = text.match(/([アイウエオカキクケコサシスセソ])[〜～]([アイウエオカキクケコサシスセソ])/);
+  if (!matched) return null;
+  const start = KATAKANA_RUN.indexOf(matched[1]);
+  const end = KATAKANA_RUN.indexOf(matched[2]);
+  if (start < 0 || end < start) return null;
+  return { start, count: end - start + 1, label: `${matched[1]}〜${matched[2]}` };
 }
 
 /** 全肢が「ア・イ」形式の2文字組合せ（茎のア〜オタップと下の択一を同期する対象） */
@@ -409,15 +470,109 @@ export default function QuestionScreen() {
   }, [subjectData, paramField, mode, isShuffle]);
 
   const [hiddenHashes, setHiddenHashes] = useState<Set<string>>(new Set());
+  const [neverAgainHashes, setNeverAgainHashes] = useState<Set<string>>(new Set());
+  const [allSearchQuery, setAllSearchQuery] = useState('');
+  const [allSearchDocs, setAllSearchDocs] = useState<SearchDoc[] | null>(null);
 
   useEffect(() => {
     if (!subject || !field) return;
     getHiddenHashes(subject, field).then(setHiddenHashes);
+    getNeverAgainHashes(subject, field).then(setNeverAgainHashes);
   }, [subject, field]);
+
+  useEffect(() => {
+    if (mode !== 'all') return;
+    let alive = true;
+    loadAllQuestionSearchDocs()
+      .then((loaded) => {
+        if (alive) setAllSearchDocs(loaded);
+      })
+      .catch(() => {
+        if (alive) setAllSearchDocs([]);
+      });
+    return () => {
+      alive = false;
+    };
+  }, [mode]);
 
   const questions = useMemo(
     () => filterHiddenFromQuestions(baseQuestions, hiddenHashes, getQuestionTextHash),
-    [baseQuestions, hiddenHashes]
+    [baseQuestions, hiddenHashes],
+  );
+  const choiceLinks = useMemo(
+    () => (mode === 'all' ? buildChoiceLinks(questions) : null),
+    [mode, questions],
+  );
+  const repeatedChoiceHashes = choiceLinks?.repeated ?? EMPTY_CHOICE_HASHES;
+  const similarChoiceHashes = choiceLinks?.similar ?? EMPTY_CHOICE_HASHES;
+  useEffect(() => {
+    if (mode !== 'all' || !subject || !field || !choiceLinks) return;
+    let cancelled = false;
+    getNeverAgainHashes(subject, field).then((stored) => {
+      if (cancelled) return;
+      const next = new Set(stored);
+      stored.forEach((hash) => {
+        choiceLinks.cohortOf(hash).forEach((item) => next.add(item));
+      });
+      setNeverAgainHashes(next);
+      if (next.size !== stored.size) {
+        setChoiceNeverAgainHashes(subject, field, [...next], true).catch(() => {});
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [mode, subject, field, choiceLinks]);
+  const caseQuestionIndexes = useMemo(
+    () => caseQuestionIndexMap(subject, questions),
+    [subject, questions],
+  );
+  const repeatedQuestionIndexes = useMemo(() => {
+    const indexes = new Set<number>();
+    if (mode !== 'all') return indexes;
+    questions.forEach((question, index) => {
+      const choices = Array.isArray(question?.choices) ? question.choices : [];
+      if (choices.some((choice) => repeatedChoiceHashes.has(choiceNeverAgainHash(String(choice || ''))))) {
+        indexes.add(index);
+      }
+    });
+    return indexes;
+  }, [mode, questions, repeatedChoiceHashes]);
+  const isRepeatedChoice = useCallback(
+    (choiceText: string) => repeatedChoiceHashes.has(choiceNeverAgainHash(choiceText)),
+    [repeatedChoiceHashes],
+  );
+  const isParaphraseChoice = useCallback(
+    (choiceText: string) => {
+      if (repeatedChoiceHashes.has(choiceNeverAgainHash(choiceText))) return false;
+      const hash = choiceNeverAgainHash(choiceText);
+      if (hash && similarChoiceHashes.has(hash)) return true;
+      return choiceIsSharedCase(choiceText, caseQuestionIndexes);
+    },
+    [repeatedChoiceHashes, similarChoiceHashes, caseQuestionIndexes],
+  );
+  const paraphraseQuestionIndexes = useMemo(() => {
+    const indexes = new Set<number>();
+    if (mode !== 'all') return indexes;
+    questions.forEach((item, index) => {
+      if (repeatedQuestionIndexes.has(index)) return;
+      const choices = Array.isArray(item?.choices) ? item.choices : [];
+      if (choices.some((choice) => {
+        const text = String(choice || '');
+        const hash = choiceNeverAgainHash(text);
+        return (!!hash && similarChoiceHashes.has(hash)) || choiceIsSharedCase(text, caseQuestionIndexes);
+      })) {
+        indexes.add(index);
+      }
+    });
+    return indexes;
+  }, [mode, questions, repeatedQuestionIndexes, similarChoiceHashes, caseQuestionIndexes]);
+  const isNyMarked = useCallback(
+    (choiceText: string) => {
+      const hash = choiceNeverAgainHash(choiceText);
+      return !!hash && neverAgainHashes.has(hash);
+    },
+    [neverAgainHashes],
   );
 
   // State for current question index
@@ -438,6 +593,10 @@ export default function QuestionScreen() {
   const [highlightedSegments, setHighlightedSegments] = useState<Set<number>>(new Set());
   const [highlightRanges, setHighlightRanges] = useState<HighlightRange[]>([]);
   const [showCurrentInsight, setShowCurrentInsight] = useState(true);
+  const [oxPicks, setOxPicks] = useState<Record<string, 'o' | 'x'>>({});
+  const [oxStatsMap, setOxStatsMap] = useState<Record<string, ChoiceOxStats>>({});
+  const oxDoneRef = useRef('');
+  const oxBusyRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
     if (!subject || !field || !question?.text) {
@@ -844,7 +1003,7 @@ export default function QuestionScreen() {
     const hasNormalChoices = cb ? cb.some((b: boolean) => !b) : !(question as any).isBonus;
     const isMixedBonus = hasBonusChoices && hasNormalChoices;
     const effective =
-      mode !== 'bonus'
+      !isFullPoolMode(mode)
         ? ans.filter((i: number) => !isBonusChoice(i))
         : isMixedBonus || !hasBonusChoices
           ? ans
@@ -853,6 +1012,14 @@ export default function QuestionScreen() {
     if (effectiveCount <= 1) return null;
     const t = (question as any)?.text || '';
     const isComboPrompt = /の組合せはどれ|組み合わせはどれ|組合せはどれか|組合せはどれ。|当てはまるものの組合せ/.test(t);
+    const range = stemKatakanaRange(t);
+    const normalCount = cb ? cb.filter((flag) => !flag).length : 0;
+    const visibleCount = isFullPoolMode(mode)
+      ? ((question as any).choices?.length || 0)
+      : normalCount || ((question as any).choices?.length || 0);
+    if (mode === 'all' && isComboPrompt && range && visibleCount !== range.count && visibleCount > 0) {
+      return `問題は${visibleCount}つ。正解は${effectiveCount}つ。`;
+    }
     return isComboPrompt ? '２つ以上選んでね' : '１つ若しくは複数選んでください';
   }, [question, mode]);
 
@@ -971,7 +1138,9 @@ export default function QuestionScreen() {
       } else {
         // ⑱等は常に上段、問題文は下段に分離（テキストに含まれる場合もgetChoicePrefixで付与する場合も同様）
         const { body: questionBody } = splitNumberPrefix(text);
-        const displayBody = normalizeKatakanaChoiceNewlines(hasNumberPrefix(text) ? questionBody : text);
+        const displayBody = numberCountStatements(
+          normalizeKatakanaChoiceNewlines(hasNumberPrefix(text) ? questionBody : text),
+        );
         const segments = displayBody.split(/\n/);
         if (segments.length === 0) segments.push('');
         const anySpecial = segments.some(
@@ -1262,6 +1431,45 @@ export default function QuestionScreen() {
               <ThemedText style={[styles.mondaibunnGazoOpenButtonText, { color: '#00695C' }]}>模範</ThemedText>
             </Pressable>
           ) : null}
+          {shouldAttachKoenMinyuchiSairyo(String((question as { text?: string })?.text || '')) ? (
+            <Pressable
+              accessibilityLabel="公園区域の裁量をもっと深掘る"
+              onPress={() => {
+                setDeepdiveParams(KOEN_MINYUCHI_SAIRYO_DEEPDIVE, '', {
+                  screenTitle: '公園は、民有地にかけてよいか？',
+                  quizSubject: subject || '',
+                  quizField: field || '',
+                  quizMode: mode || '',
+                  quizQuestionIndex: questionIndex !== null ? String(questionIndex) : '',
+                });
+                router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
+              }}
+              style={[styles.mondaibunnGazoOpenButton, { borderColor: '#1565C0', backgroundColor: '#E3F2FD' }]}
+            >
+              <ThemedText style={[styles.mondaibunnGazoOpenButtonText, { color: '#1565C0' }]}>深掘る</ThemedText>
+            </Pressable>
+          ) : null}
+          {shouldAttachGyoseibatsuTree([
+            String((question as { text?: string })?.text || ''),
+            ...(((question as { choices?: string[] })?.choices) || []),
+          ].join('\n')) ? (
+            <Pressable
+              accessibilityLabel="行政罰の樹をもっと深掘る"
+              onPress={() => {
+                setDeepdiveParams(GYOSEIBATSU_TREE_DEEPDIVE, '', {
+                  screenTitle: '行政罰は、強制の中か？',
+                  quizSubject: subject || '',
+                  quizField: field || '',
+                  quizMode: mode || '',
+                  quizQuestionIndex: questionIndex !== null ? String(questionIndex) : '',
+                });
+                router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
+              }}
+              style={[styles.mondaibunnGazoOpenButton, { borderColor: '#1565C0', backgroundColor: '#E3F2FD' }]}
+            >
+              <ThemedText style={[styles.mondaibunnGazoOpenButtonText, { color: '#1565C0' }]}>図</ThemedText>
+            </Pressable>
+          ) : null}
         </View>
         <ThemedView style={[
           styles.questionContainer,
@@ -1311,7 +1519,10 @@ export default function QuestionScreen() {
               content
             )}
             {multiSelectGuideText ? (
-              <ThemedText style={[styles.descriptiveLabel, { color: colors.subText, marginTop: 10, marginBottom: 0 }]}>
+              <ThemedText style={[
+                multiSelectGuideText.startsWith('問題は') ? styles.questionText : styles.descriptiveLabel,
+                { color: multiSelectGuideText.startsWith('問題は') ? colors.text : colors.subText, marginTop: 10, marginBottom: 0 },
+              ]}>
                 {multiSelectGuideText}
               </ThemedText>
             ) : null}
@@ -1489,7 +1700,7 @@ export default function QuestionScreen() {
     const hasBonusChoices = cb ? cb.some((b: boolean) => b) : !!(question as any).isBonus;
     const hasNormalChoices = cb ? cb.some((b: boolean) => !b) : !(question as any).isBonus;
     const isMixedBonus = hasBonusChoices && hasNormalChoices;
-    if (mode === 'bonus') {
+    if (isFullPoolMode(mode)) {
       if (!(isMixedBonus || !hasBonusChoices)) list = list.filter((x: { isBonus: boolean }) => x.isBonus);
     } else if (cb?.some((b: boolean) => b)) list = list.filter((x: { isBonus: boolean }) => !x.isBonus);
     if (list.length === 0) return null;
@@ -1515,7 +1726,7 @@ export default function QuestionScreen() {
     const isBonusChoice = (i: number) => (cb && i < cb.length ? cb[i] : !!(question as any).isBonus);
     type ChoiceWithIndex = { text: string; originalIndex: number };
     let list: ChoiceWithIndex[] = question.choices.map((text: string, index: number) => ({ text, originalIndex: index }));
-    if (mode !== 'bonus') {
+    if (!isFullPoolMode(mode)) {
       list = list.filter((c: ChoiceWithIndex) => !isBonusChoice(c.originalIndex));
     } else {
       const hasBonusChoices = cb ? cb.some((b: boolean) => b) : !!(question as any).isBonus;
@@ -1551,7 +1762,7 @@ export default function QuestionScreen() {
     const hasNormalChoices = cb ? cb.some((b: boolean) => !b) : !(question as any).isBonus;
     const isMixedBonus = hasBonusChoices && hasNormalChoices;
     const effective =
-      mode !== 'bonus'
+      !isFullPoolMode(mode)
         ? ans.filter((i: number) => !isBonusChoice(i))
         : isMixedBonus || !hasBonusChoices
           ? ans
@@ -1565,6 +1776,89 @@ export default function QuestionScreen() {
     return /の組合せはどれ|組み合わせはどれ|組合せはどれか|組合せはどれ。|当てはまるものの組合せ/.test(t);
   }, [question]);
 
+  const oxQuestionKey = `${mode}|${subject}|${field}|${question?.text || ''}`;
+  const [oxQuestionSeen, setOxQuestionSeen] = useState(oxQuestionKey);
+  if (oxQuestionSeen !== oxQuestionKey) {
+    setOxQuestionSeen(oxQuestionKey);
+    setOxPicks({});
+    oxDoneRef.current = '';
+    oxBusyRef.current = new Set();
+  }
+
+  useEffect(() => {
+    if (mode !== 'all' || !subject || !field || !question?.text) {
+      setOxStatsMap({});
+      return;
+    }
+    const texts = (((question as any).choices || []) as string[]).map((c) => String(c || ''));
+    let cancelled = false;
+    loadChoiceOxStats(subject, field, question.text, texts).then((map) => {
+      if (!cancelled) setOxStatsMap(map);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [mode, subject, field, question?.text]);
+
+  useEffect(() => {
+    if (mode !== 'all' || !subject || !field || !question?.text) return;
+    if ((question as any).isReorder || /並び順|並べ替え|順番に選択/.test(question.text || '')) return;
+    if (subject === '記述') return;
+    const answer = (question as any).answer;
+    if (!Array.isArray(answer) || answer.length === 0) return;
+    const required = shuffledChoices
+      .map((item: { text?: string; originalIndex: number }) => ({
+        text: String(item?.text || ''),
+        index: item.originalIndex,
+      }))
+      .filter(({ text, index }) => {
+        if (!text || isNyMarked(text)) return false;
+        return expectedChoiceMark(question.text, answer, index, isCombinationChoicePrompt, text) != null;
+      });
+    if (required.length === 0) return;
+    if (!required.every(({ text }) => oxPicks[choiceNeverAgainHash(text)])) return;
+    const sig = getQuestionTextHash(question.text);
+    if (oxDoneRef.current === sig) return;
+    oxDoneRef.current = sig;
+    const allHit = required.every(
+      ({ text, index }) =>
+        oxPicks[choiceNeverAgainHash(text)] ===
+        expectedChoiceMark(question.text, answer, index, isCombinationChoicePrompt, text),
+    );
+    updateQuestionStats(subject, field, question.text, allHit).then(() => {
+      getQuestionStats(subject, field, question.text).then(setQuestionStats);
+    });
+    recordAllQuestionsAttempt(subject, field, question.text, allHit).catch(() => {});
+    recordGenreAttempt(subject, field, allHit).catch(() => {});
+  }, [mode, subject, field, question, oxPicks, isNyMarked, isCombinationChoicePrompt, shuffledChoices]);
+
+  const judgeLimb = useCallback((choiceText: string, originalIndex: number, pick: 'o' | 'x') => {
+    if (!subject || !field || !question?.text) return;
+    const hash = choiceNeverAgainHash(choiceText);
+    if (!hash || oxPicks[hash] || oxBusyRef.current.has(hash)) return;
+    const answer = (question as any).answer;
+    const expected = expectedChoiceMark(
+      question.text,
+      Array.isArray(answer) ? answer : [],
+      originalIndex,
+      isCombinationChoicePrompt,
+      choiceText,
+    );
+    if (!expected) return;
+    oxBusyRef.current.add(hash);
+    setOxPicks((prev) => (prev[hash] ? prev : { ...prev, [hash]: pick }));
+    recordChoiceOx(subject, field, question.text, choiceText, pick === expected).then((next) => {
+      setOxStatsMap((prev) => ({ ...prev, [hash]: next }));
+    });
+  }, [subject, field, question, oxPicks, isCombinationChoicePrompt]);
+
+  const limbOxMode = mode === 'all'
+    && subject !== '記述'
+    && !tashiData
+    && !(question as any)?.isReorder
+    && !/並び順|並べ替え|順番に選択/.test((question as any)?.text || '')
+    && shuffledChoices.length > 0;
+
   useEffect(() => {
     if (questionIndex !== null && sidebarScrollRef.current) {
       sidebarScrollRef.current.scrollTo({ x: Math.max(0, questionIndex * ITEM_WIDTH - 80), animated: true });
@@ -1576,6 +1870,68 @@ export default function QuestionScreen() {
       setQuestionIndex(idx);
       sidebarScrollRef.current?.scrollTo({ x: Math.max(0, idx * ITEM_WIDTH - 80), animated: true });
     }
+  };
+
+  const allSearchTrimmed = allSearchQuery.trim();
+  const allSearchHits = useMemo(() => {
+    if (mode !== 'all' || !allSearchDocs || !subject || !field || allSearchTrimmed.length < 2) return [];
+    const inField = allSearchDocs.filter((doc) => doc.subject === subject && doc.field === field);
+    return searchAllQuestions(inField, allSearchTrimmed).slice(0, 8);
+  }, [mode, allSearchDocs, allSearchTrimmed, subject, field]);
+
+  const openAllSearchHit = (hit: AllQuestionSearchHit) => {
+    void (async () => {
+      const index = await findAllModeIndex(hit.subject, hit.field, hit.textHash);
+      if (index < 0) {
+        Alert.alert('開けません', 'この問題は、ここまでの全問題から外れています。');
+        return;
+      }
+      setAllSearchQuery('');
+      if (hit.subject === subject && hit.field === field) {
+        jumpToQuestion(index);
+        return;
+      }
+      router.push({
+        pathname: '/question',
+        params: { subject: hit.subject, field: hit.field, mode: 'all', index: String(index) },
+      });
+    })();
+  };
+
+  const handleNeverAgainChoice = useCallback((choiceText: string) => {
+    if (mode !== 'all' || !subject || !field) return;
+    const hash = choiceNeverAgainHash(choiceText);
+    if (!hash) return;
+    const cohort = choiceLinks?.cohortOf(hash) ?? [hash];
+    const marked = neverAgainHashes.has(hash);
+    const optimistic = new Set(neverAgainHashes);
+    cohort.forEach((item) => {
+      if (marked) optimistic.delete(item);
+      else optimistic.add(item);
+    });
+    setNeverAgainHashes(optimistic);
+    setChoiceNeverAgainHashes(subject, field, cohort, !marked)
+      .then(setNeverAgainHashes)
+      .catch(() => setNeverAgainHashes(neverAgainHashes));
+  }, [mode, subject, field, neverAgainHashes, choiceLinks]);
+
+  const renderNyButton = (choiceText: string) => {
+    if (mode !== 'all') return null;
+    const marked = isNyMarked(choiceText);
+    return (
+      <Pressable
+        accessibilityLabel={marked ? '二度とやらない。選択中' : '二度とやらない'}
+        accessibilityState={{ selected: marked }}
+        hitSlop={6}
+        onPress={(event) => {
+          event?.stopPropagation?.();
+          handleNeverAgainChoice(choiceText);
+        }}
+        style={[styles.nyButton, marked && styles.nyButtonOn]}
+      >
+        <ThemedText style={[styles.nyText, marked && styles.nyTextOn]}>N.Y</ThemedText>
+      </Pressable>
+    );
   };
 
   const handleHideThisQuestion = useCallback(() => {
@@ -1606,8 +1962,17 @@ export default function QuestionScreen() {
     !hiddenHashes.has(getQuestionTextHash(question.text));
 
   const currentInsight = useMemo(() => buildCurrentInsight(questionStats), [questionStats]);
+  const knowledgeTitle = useMemo(
+    () => matchKnowledgeGap({
+      subject,
+      field,
+      questionText: question?.text,
+      explain: question?.explain,
+    })?.title || '',
+    [subject, field, question?.text, question?.explain],
+  );
   const tacQuestionDeepdive = useMemo(
-    () => (mode === 'bonus' ? buildTacQuizDeepdive(question, subject || '', field || '') : ''),
+    () => (isFullPoolMode(mode) ? buildTacQuizDeepdive(question, subject || '', field || '') : ''),
     [mode, question, subject, field]
   );
 
@@ -1758,15 +2123,21 @@ export default function QuestionScreen() {
             {questions.map((_, idx) => {
               const wrongs = wrongCounts[idx] || 0;
               const isActive = idx === questionIndex;
+              const exactSame = repeatedQuestionIndexes.has(idx);
+              const paraphrase = paraphraseQuestionIndexes.has(idx);
               const bgColor = isActive
                 ? colors.primary
                 : wrongs >= 2
                   ? '#D32F2F'
                   : wrongs === 1
                     ? '#FBC02D'
-                    : colors.choiceBg;
-              const borderColor = isActive ? colors.primary : wrongs >= 2 ? '#D32F2F' : wrongs === 1 ? '#FBC02D' : colors.choiceBorder;
-              const textColor = isActive ? '#fff' : wrongs >= 1 ? '#fff' : colors.text;
+                    : exactSame
+                      ? '#FFCDD2'
+                      : paraphrase
+                        ? '#FFF59D'
+                        : colors.choiceBg;
+              const borderColor = isActive ? colors.primary : wrongs >= 2 ? '#D32F2F' : wrongs === 1 ? '#FBC02D' : exactSame ? '#C62828' : paraphrase ? '#F9A825' : colors.choiceBorder;
+              const textColor = isActive ? '#fff' : wrongs >= 1 ? '#fff' : exactSame ? '#C62828' : paraphrase ? '#E65100' : colors.text;
               return (
                 <Pressable
                   key={idx}
@@ -1792,7 +2163,7 @@ export default function QuestionScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', marginBottom: 8, gap: 10 }}>
           <ThemedText type="subtitle" style={[styles.subject, { color: colors.text, fontWeight: '800' }]}>
             {subject} {questionIndex !== null ? `(${questionIndex + 1}/${questions.length || 0})` : ''}
-            {mode === 'bonus' ? ' ★ボーナスステージ★' : mode === 'shisho' ? ' 🎓師匠モード' : ''}
+            {mode === 'bonus' ? ' ★ボーナスステージ★' : mode === 'all' ? ' ここまでの全問題' : mode === 'shisho' ? ' 🎓師匠モード' : ''}
           </ThemedText>
           {questionStats && (() => {
             const total = questionStats.correct + questionStats.wrong;
@@ -1843,7 +2214,32 @@ export default function QuestionScreen() {
               <ThemedText style={{ fontSize: 13, fontWeight: '600', color: colors.text }}>この問題を非表示</ThemedText>
             </Pressable>
           ) : null}
+          {mode === 'all' ? (
+            <TextInput
+              value={allSearchQuery}
+              onChangeText={setAllSearchQuery}
+              placeholder="検索欄"
+              placeholderTextColor={colors.subText}
+              autoCorrect={false}
+              clearButtonMode="while-editing"
+              style={[styles.questionSearch, { color: colors.text, backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder }]}
+            />
+          ) : null}
         </View>
+        {mode === 'all' && allSearchTrimmed.length >= 2 ? (
+          <View style={[styles.questionSearchResults, { borderColor: colors.choiceBorder, backgroundColor: colors.card }]}>
+            {!allSearchDocs ? <ThemedText style={{ color: colors.subText }}>探しています。</ThemedText> : null}
+            {allSearchDocs && allSearchHits.length === 0 ? (
+              <ThemedText style={{ color: colors.subText }}>関連する問題はありません。</ThemedText>
+            ) : null}
+            {allSearchHits.map((hit) => (
+              <Pressable key={hit.key} onPress={() => openAllSearchHit(hit)} style={styles.questionSearchHit}>
+                <ThemedText style={{ color: colors.text, fontWeight: '700' }}>{hit.subjectTitle}　{hit.fieldLabel}</ThemedText>
+                <ThemedText style={{ color: colors.text, marginTop: 2 }} numberOfLines={2}>{hit.preview}</ThemedText>
+              </Pressable>
+            ))}
+          </View>
+        ) : null}
 
         <ThemedView style={[styles.currentInsightPanel, { borderColor: currentInsight.accent, backgroundColor: colors.card }]}>
           <View style={styles.currentInsightHeader}>
@@ -1882,6 +2278,11 @@ export default function QuestionScreen() {
               <ThemedText style={[styles.currentInsightMessage, { color: colors.text }]}>
                 {currentInsight.message}
               </ThemedText>
+              {knowledgeTitle ? (
+                <ThemedText style={[styles.currentInsightNextText, { color: colors.subText, marginBottom: 8 }]}>
+                  知識ベース: {knowledgeTitle}
+                </ThemedText>
+              ) : null}
               {topicMastery ? (
                 <View style={[styles.currentInsightNext, { borderColor: colors.choiceBorder, backgroundColor: colors.background, marginBottom: 8 }]}>
                   <ThemedText style={[styles.currentInsightNextTitle, { color: currentInsight.accent }]}>
@@ -2202,10 +2603,15 @@ export default function QuestionScreen() {
                   <ThemedText style={[styles.comboTableHeaderCell, { color: colors.text }]}>(ア)</ThemedText>
                   <ThemedText style={[styles.comboTableHeaderCell, { color: colors.text }]}>(イ)</ThemedText>
                 </View>
-                {comboFormatData!.map((item: { partA: string; partB: string; originalIndex: number }, idx: number) => (
+                {comboFormatData!.map((item: { partA: string; partB: string; originalIndex: number }, idx: number) => {
+                  const rawChoice = String((question as any)?.choices?.[item.originalIndex] || `${item.partA}${item.partB}`);
+                  const repeated = isRepeatedChoice(rawChoice);
+                  const paraphrased = isParaphraseChoice(rawChoice);
+                  return (
+                  <View key={idx} style={styles.choiceWithNy}>
+                    {renderNyButton(rawChoice)}
                   <Pressable
-                    key={idx}
-                    style={[styles.comboTableRow, { borderColor: colors.choiceBorder, backgroundColor: colors.choiceBg }]}
+                    style={[styles.comboTableRow, { flex: 1, borderColor: repeated ? '#C62828' : paraphrased ? '#F9A825' : colors.choiceBorder, backgroundColor: repeated ? '#FFCDD2' : paraphrased ? '#FFF59D' : colors.choiceBg }]}
                     onPress={() => {
                       if (activeActionMode === 'descriptiveScope') {
                         setActiveActionMode(null);
@@ -2234,10 +2640,12 @@ export default function QuestionScreen() {
                     }}
                   >
                     <ThemedText style={[styles.comboTableNum, { color: colors.text }]}>{idx + 1}.</ThemedText>
-                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{applyCharacterNames(item.partA)}</ThemedText>
-                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{applyCharacterNames(item.partB)}</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: repeated ? '#C62828' : paraphrased ? '#E65100' : colors.text }]}>{applyCharacterNames(item.partA)}</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: repeated ? '#C62828' : paraphrased ? '#E65100' : colors.text }]}>{applyCharacterNames(item.partB)}</ThemedText>
                   </Pressable>
-                ))}
+                  </View>
+                  );
+                })}
               </View>
             </>
           ) : slotFillOnly ? (
@@ -2368,14 +2776,20 @@ export default function QuestionScreen() {
                 const label = String(origIdx + 1);
                 const isSelected = reorderSelection.includes(origIdx);
                 const selectedPos = reorderSelection.indexOf(origIdx) + 1;
-                const displayText = applyCharacterNames((item.text || '').replace(/※/g, ''));
+                const displayText = applyCharacterNames(stripLeadingChoiceBullet((item.text || '').replace(/※/g, '')));
+                const repeated = isRepeatedChoice(item.text || '');
+                const paraphrased = isParaphraseChoice(item.text || '');
                 return (
+                  <View key={`reorder-${origIdx}`} style={styles.choiceWithNy}>
+                    {renderNyButton(item.text || '')}
                   <Pressable
                     key={origIdx}
                     style={[
                       styles.reorderRow,
-                      { backgroundColor: isSelected ? '#E3F2FD' : colors.choiceBg,
-                        borderWidth: isSelected ? 2 : 1, borderColor: isSelected ? '#2196F3' : colors.choiceBorder }
+                      { flex: 1,
+                        backgroundColor: isSelected ? '#E3F2FD' : repeated ? '#FFCDD2' : paraphrased ? '#FFF59D' : colors.choiceBg,
+                        borderWidth: isSelected || repeated || paraphrased ? 2 : 1,
+                        borderColor: isSelected ? '#2196F3' : repeated ? '#C62828' : paraphrased ? '#F9A825' : colors.choiceBorder }
                     ]}
                     onPress={() => {
                       if (activeActionMode === 'descriptiveScope') {
@@ -2396,11 +2810,12 @@ export default function QuestionScreen() {
                     }}
                   >
                     <ThemedText style={[styles.reorderNum, { color: colors.text }]}>{label}.</ThemedText>
-                    <ThemedText style={[styles.reorderText, { color: colors.text, flex: 1 }]} numberOfLines={5}>
+                    <ThemedText style={[styles.reorderText, { color: repeated ? '#C62828' : paraphrased ? '#E65100' : colors.text, flex: 1 }]} numberOfLines={5}>
                       {displayText}
                     </ThemedText>
                     {isSelected && <ThemedText style={{ color: '#2196F3', fontWeight: 'bold', marginLeft: 8 }}>→{selectedPos}番目</ThemedText>}
                   </Pressable>
+                  </View>
                 );
               })}
               <Pressable
@@ -2445,10 +2860,15 @@ export default function QuestionScreen() {
                   <ThemedText style={[styles.comboTableHeaderCell, { color: colors.text }]}>(ア)</ThemedText>
                   <ThemedText style={[styles.comboTableHeaderCell, { color: colors.text }]}>(イ)</ThemedText>
                 </View>
-                {comboFormatData.map((item: { partA: string; partB: string; originalIndex: number }, idx: number) => (
+                {comboFormatData.map((item: { partA: string; partB: string; originalIndex: number }, idx: number) => {
+                  const rawChoice = String((question as any)?.choices?.[item.originalIndex] || `${item.partA}${item.partB}`);
+                  const repeated = isRepeatedChoice(rawChoice);
+                  const paraphrased = isParaphraseChoice(rawChoice);
+                  return (
+                  <View key={idx} style={styles.choiceWithNy}>
+                    {renderNyButton(rawChoice)}
                   <Pressable
-                    key={idx}
-                    style={[styles.comboTableRow, { borderColor: colors.choiceBorder, backgroundColor: colors.choiceBg }]}
+                    style={[styles.comboTableRow, { flex: 1, borderColor: repeated ? '#C62828' : paraphrased ? '#F9A825' : colors.choiceBorder, backgroundColor: repeated ? '#FFCDD2' : paraphrased ? '#FFF59D' : colors.choiceBg }]}
                     onPress={() => {
                       if (activeActionMode === 'descriptiveScope') {
                         setActiveActionMode(null);
@@ -2477,10 +2897,12 @@ export default function QuestionScreen() {
                     }}
                   >
                     <ThemedText style={[styles.comboTableNum, { color: colors.text }]}>{idx + 1}.</ThemedText>
-                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{applyCharacterNames(item.partA)}</ThemedText>
-                    <ThemedText style={[styles.comboTableCell, { color: colors.text }]}>{applyCharacterNames(item.partB)}</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: repeated ? '#C62828' : paraphrased ? '#E65100' : colors.text }]}>{applyCharacterNames(item.partA)}</ThemedText>
+                    <ThemedText style={[styles.comboTableCell, { color: repeated ? '#C62828' : paraphrased ? '#E65100' : colors.text }]}>{applyCharacterNames(item.partB)}</ThemedText>
                   </Pressable>
-                ))}
+                  </View>
+                  );
+                })}
               </View>
             </>
           ) : subject === '記述' ? (
@@ -2546,7 +2968,60 @@ export default function QuestionScreen() {
             if (!choiceObj || !choiceObj.text) return null; // Guard against null/empty choices
 
             // [NEW] Display Logic: Strip '※'
-            const displayText = applyCharacterNames(choiceObj.text.replace(/※/g, ''));
+            const displayText = applyCharacterNames(stripLeadingChoiceBullet(choiceObj.text.replace(/※/g, '')));
+            const repeated = isRepeatedChoice(choiceObj.text);
+            const paraphrased = isParaphraseChoice(choiceObj.text);
+            const caseLabel = gyoseiSoronCaseLabel(subject, field, choiceObj.text);
+            const caseHit = matchGyoseiSoronCase(choiceObj.text);
+            const relatedIndexes = (() => {
+              if (!limbOxMode || questionIndex === null) return [] as number[];
+              const found = new Set<number>();
+              if (caseHit) {
+                (caseQuestionIndexes.get(caseHit.name) || []).forEach((item) => {
+                  if (item !== questionIndex) found.add(item);
+                });
+              }
+              const hash = choiceNeverAgainHash(choiceObj.text);
+              if (choiceLinks && hash && repeatedChoiceHashes.has(hash)) {
+                const cohort = new Set(choiceLinks.cohortOf(hash));
+                questions.forEach((item, itemIndex) => {
+                  if (itemIndex === questionIndex) return;
+                  const choices = Array.isArray(item?.choices) ? item.choices : [];
+                  if (choices.some((choice) => cohort.has(choiceNeverAgainHash(String(choice || ''))))) {
+                    found.add(itemIndex);
+                  }
+                });
+              }
+              return [...found].sort((a, b) => a - b).slice(0, 4);
+            })();
+            const caseNote = gyoseiSoronCaseNote(subject, field, choiceObj.text);
+            const knowledgeGap = limbOxMode
+              ? matchKnowledgeGap({
+                  subject,
+                  field,
+                  questionText: choiceObj.text,
+                  explain: caseNote || '',
+                })
+              : null;
+            const knowledgeLines = (knowledgeGap?.bullets || [])
+              .filter((line) => !/^(id|type|tags|validationStatus):/.test(line))
+              .slice(0, 4);
+            const openLimbKnowledge = () => {
+              const lines = [
+                caseHit ? `**${caseHit.name}（${caseHit.date}）**` : (knowledgeGap?.title ? `**${knowledgeGap.title}**` : ''),
+                caseNote || '',
+                knowledgeGap && knowledgeGap.title !== caseHit?.name ? knowledgeGap.title : '',
+                ...knowledgeLines,
+              ].filter(Boolean);
+              setDeepdiveParams(lines.join('\n\n'), '', {
+                screenTitle: '肢の知識',
+                quizSubject: subject || '',
+                quizField: field || '',
+                quizMode: mode || '',
+                quizQuestionIndex: questionIndex !== null ? String(questionIndex) : '',
+              });
+              router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
+            };
             // In Bonus mode, they are enabled, so no disabled logic based on ※ anymore
             const isDisabled = false;
             const isDimmed = dimmedIndices.includes(index);
@@ -2562,13 +3037,15 @@ export default function QuestionScreen() {
               stemSyncedOriginalIndex === choiceObj.originalIndex;
 
             return (
+              <View key={`${question.text}-${index}`} style={styles.choiceWithNy}>
+                {renderNyButton(choiceObj.text)}
               <Pressable
-                key={`${question.text}-${index}`}
                 style={[
                   styles.choiceButton,
+                  { flex: 1 },
                   {
-                    backgroundColor: colors.choiceBg,
-                    borderColor: colors.choiceBorder
+                    backgroundColor: repeated ? '#FFCDD2' : paraphrased ? '#FFF59D' : colors.choiceBg,
+                    borderColor: repeated ? '#C62828' : paraphrased ? '#F9A825' : colors.choiceBorder,
                   },
                   isDisabled && styles.choiceButtonDisabled,
                   isDimmed && { opacity: 0.3 }, // Dim the button
@@ -2587,6 +3064,7 @@ export default function QuestionScreen() {
                 }}
                 delayLongPress={200} // Set delay specifically for web responsiveness
                 onPress={() => {
+                  if (limbOxMode) return;
                   if (activeActionMode === 'descriptiveScope') {
                     setActiveActionMode(null);
                     requestDescriptiveScope(displayText, choiceObj.originalIndex);
@@ -2623,12 +3101,188 @@ export default function QuestionScreen() {
               >
                 <ThemedText style={[
                   styles.choiceText,
-                  { color: colors.choiceText },
+                  { color: (isMultiSelect && isSelected) || isStemSyncedChoice ? colors.choiceText : repeated ? '#C62828' : paraphrased ? '#E65100' : colors.choiceText },
                   isDisabled && styles.choiceTextDisabled,
                   (isMultiSelect && isSelected) && { color: '#1565C0', fontWeight: 'bold' },
                   isStemSyncedChoice && { color: '#1565C0', fontWeight: 'bold' }
                 ]}>{`${choiceObj.originalIndex + 1}. ${displayText}`}</ThemedText>
+                {caseLabel ? (
+                  <ThemedText style={styles.caseLink}>{caseLabel}</ThemedText>
+                ) : null}
+                {limbOxMode && (isNyMarked(choiceObj.text) || oxPicks[choiceNeverAgainHash(choiceObj.text)]) ? (
+                  <ThemedText style={styles.oxExplain}>
+                    {(() => {
+                      const storedList = (question as any)?.choiceExplanations as string[] | undefined;
+                      const stored = String(storedList?.[choiceObj.originalIndex] || '').trim();
+                      const stem = String((question as any)?.text || '').trim();
+                      const own = String(choiceObj.text || '').replace(/※/g, '').trim();
+                      const real = stored && stored !== stem && stored !== own && stored.length >= 12 ? stored : '';
+                      return real || gyoseiSoronCaseNote(subject, field, choiceObj.text) || agencyHeadOrderNote(choiceObj.text) || ministerOrderNote(choiceObj.text) || ministryDepartmentNote(choiceObj.text) || cabinetOrgNote(choiceObj.text) || civilServiceDisciplineNote(choiceObj.text) || yakujiInternetBanNote(choiceObj.text) || publicCommentAdminRuleNote(choiceObj.text) || laterDispositionVoidNote(choiceObj.text) || standardIsNotMeireiNote(choiceObj.text) || disciplineCompareNote(choiceObj.text) || oldAgeAdditionNote(choiceObj.text) || personalTaxiStandardNote(choiceObj.text) || illegalActConversionNote(choiceObj.text) || illegalitySuccessionNote(choiceObj.text) || dispositionDefectNote(choiceObj.text) || gyoseiFrom29Note(choiceObj.text, stem) || kokujiPublicNoticeNote(choiceObj.text) || 'この肢の解説は、まだ入っていない。';
+                    })()}
+                  </ThemedText>
+                ) : null}
+                {limbOxMode ? (
+                  <View style={styles.oxMetaRow}>
+                    <ThemedText style={styles.oxRate}>
+                      {formatChoiceOxRate(oxStatsMap[choiceNeverAgainHash(choiceObj.text)])}
+                    </ThemedText>
+                    {relatedIndexes.length > 0 ? (
+                      <View style={styles.oxLinkGroup}>
+                        <ThemedText style={styles.oxLinkLabel}>関連</ThemedText>
+                        {relatedIndexes.map((item) => (
+                          <Pressable
+                            key={item}
+                            accessibilityLabel={`関連問題 問${item + 1}`}
+                            onPress={() => setQuestionIndex(item)}
+                            style={styles.oxLinkChip}
+                          >
+                            <ThemedText style={styles.oxLinkChipText}>問{item + 1}</ThemedText>
+                          </Pressable>
+                        ))}
+                      </View>
+                    ) : null}
+                    {caseNote || knowledgeLines.length > 0 ? (
+                      <Pressable
+                        accessibilityLabel="この肢の知識"
+                        onPress={openLimbKnowledge}
+                        style={styles.oxKnowledgeChip}
+                      >
+                        <ThemedText style={styles.oxKnowledgeText}>知識</ThemedText>
+                      </Pressable>
+                    ) : null}
+                    {shouldAttachSeireiShoreiKisokuImage(`${(question as any)?.text || ''}\n${choiceObj.text}`)
+                      && /政令|省令|内閣府令|規則/.test(String(choiceObj.text || '').replace(/\s+/g, '')) ? (
+                      <Pressable
+                        accessibilityLabel="政令・省令・規則をもっと深掘る"
+                        onPress={() => {
+                          setDeepdiveParams(SEIREI_SHOEI_KISOKU_DEEPDIVE, '', {
+                            screenTitle: '政令・省令・規則',
+                            quizSubject: subject || '',
+                            quizField: field || '',
+                            quizMode: mode || '',
+                            quizQuestionIndex: questionIndex !== null ? String(questionIndex) : '',
+                          });
+                          router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
+                        }}
+                        style={styles.oxKnowledgeChip}
+                      >
+                        <ThemedText style={styles.oxKnowledgeText}>深掘る</ThemedText>
+                      </Pressable>
+                    ) : null}
+                    {shouldAttachKokujiExamples(String(choiceObj.text || '')) ? (
+                      <Pressable
+                        accessibilityLabel="告示の具体例をもっと深掘る"
+                        onPress={() => {
+                          setDeepdiveParams(KOKUJI_EXAMPLES_DEEPDIVE, '', {
+                            screenTitle: '告示の具体例',
+                            quizSubject: subject || '',
+                            quizField: field || '',
+                            quizMode: mode || '',
+                            quizQuestionIndex: questionIndex !== null ? String(questionIndex) : '',
+                          });
+                          router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
+                        }}
+                        style={styles.oxKnowledgeChip}
+                      >
+                        <ThemedText style={styles.oxKnowledgeText}>深掘る</ThemedText>
+                      </Pressable>
+                    ) : null}
+                    {shouldAttachIkenKoboGyoseiKisoku(String(choiceObj.text || '')) ? (
+                      <Pressable
+                        accessibilityLabel="意見公募の対象をもっと深掘る"
+                        onPress={() => {
+                          setDeepdiveParams(IKEN_KOBO_GYOSEI_KISOKU_DEEPDIVE, '', {
+                            screenTitle: '意見公募の対象は、何？',
+                            quizSubject: subject || '',
+                            quizField: field || '',
+                            quizMode: mode || '',
+                            quizQuestionIndex: questionIndex !== null ? String(questionIndex) : '',
+                          });
+                          router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
+                        }}
+                        style={styles.oxKnowledgeChip}
+                      >
+                        <ThemedText style={styles.oxKnowledgeText}>深掘る</ThemedText>
+                      </Pressable>
+                    ) : null}
+                    {shouldAttachPachinkoStanding(String(choiceObj.text || '')) ? (
+                      <Pressable
+                        accessibilityLabel="営業停止の取消しの利益をもっと深掘る"
+                        onPress={() => {
+                          setDeepdiveParams(PACHINKO_STANDING_DEEPDIVE, '', {
+                            screenTitle: '営業停止が終わっても、まだ争える？',
+                            quizSubject: subject || '',
+                            quizField: field || '',
+                            quizMode: mode || '',
+                            quizQuestionIndex: questionIndex !== null ? String(questionIndex) : '',
+                          });
+                          router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
+                        }}
+                        style={styles.oxKnowledgeChip}
+                      >
+                        <ThemedText style={styles.oxKnowledgeText}>深掘る</ThemedText>
+                      </Pressable>
+                    ) : null}
+                  </View>
+                ) : null}
               </Pressable>
+              {limbOxMode ? (
+                isNyMarked(choiceObj.text) ? (
+                  <View style={styles.oxSkip}>
+                    <ThemedText style={styles.oxSkipText}>対象外</ThemedText>
+                  </View>
+                ) : expectedChoiceMark(
+                    (question as any)?.text || '',
+                    Array.isArray((question as any)?.answer) ? (question as any).answer : [],
+                    choiceObj.originalIndex,
+                    isCombinationChoicePrompt,
+                    choiceObj.text,
+                  ) == null ? (
+                  <View style={styles.oxSkip}>
+                    <ThemedText style={styles.oxSkipText}>回答設定中</ThemedText>
+                  </View>
+                ) : (
+                  <View style={styles.oxCol}>
+                    {(['o', 'x'] as const).map((mark) => {
+                      const hash = choiceNeverAgainHash(choiceObj.text);
+                      const picked = oxPicks[hash];
+                      const expected = expectedChoiceMark(
+                        (question as any)?.text || '',
+                        Array.isArray((question as any)?.answer) ? (question as any).answer : [],
+                        choiceObj.originalIndex,
+                        isCombinationChoicePrompt,
+                        choiceObj.text,
+                      );
+                      const chosen = picked === mark;
+                      const wrong = chosen && picked !== expected;
+                      const right = chosen && picked === expected;
+                      return (
+                        <Pressable
+                          key={mark}
+                          accessibilityLabel={mark === 'o' ? 'この肢は正しい' : 'この肢は誤り'}
+                          disabled={!!picked}
+                          onPress={() => judgeLimb(choiceObj.text, choiceObj.originalIndex, mark)}
+                          style={[
+                            styles.oxBtn,
+                            mark === 'o' ? styles.oxBtnO : styles.oxBtnX,
+                            right && (mark === 'o' ? styles.oxBtnOOn : styles.oxBtnXOn),
+                            wrong && styles.oxBtnWrong,
+                          ]}
+                        >
+                          <ThemedText style={[
+                            styles.oxBtnText,
+                            mark === 'o' ? styles.oxBtnTextO : styles.oxBtnTextX,
+                            chosen && styles.oxBtnTextOn,
+                          ]}>
+                            {mark === 'o' ? '○' : '×'}
+                          </ThemedText>
+                        </Pressable>
+                      );
+                    })}
+                  </View>
+                )
+              ) : null}
+              </View>
             );
           })}
             </>
@@ -2657,7 +3311,7 @@ export default function QuestionScreen() {
                     <ThemedText style={[styles.scopeChipText, { color: '#3949AB' }]}>登場人物</ThemedText>
                   </Pressable>
                 ) : null}
-                {showDescriptiveScopeChip ? (
+                {mode !== 'all' && showDescriptiveScopeChip ? (
                   <Pressable
                     style={[
                       styles.scopeChip,
@@ -2670,6 +3324,7 @@ export default function QuestionScreen() {
                     </ThemedText>
                   </Pressable>
                 ) : null}
+                {mode !== 'all' ? (
                 <Pressable
                   style={[
                     styles.scopeChip,
@@ -2681,6 +3336,7 @@ export default function QuestionScreen() {
                     {activeActionMode === 'teachMe' ? '教えて先生 ON' : '教えて先生'}
                   </ThemedText>
                 </Pressable>
+                ) : null}
                 {tacQuestionDeepdive ? (
                   <Pressable
                     style={[styles.scopeChip, { borderColor: '#00897B', backgroundColor: colors.choiceBg }]}
@@ -2689,7 +3345,7 @@ export default function QuestionScreen() {
                     <ThemedText style={[styles.scopeChipText, { color: '#00897B' }]}>もっと深掘る</ThemedText>
                   </Pressable>
                 ) : null}
-                {interactiveSlots.length === 0 ? (
+                {mode !== 'all' && interactiveSlots.length === 0 ? (
                   <Pressable
                     style={[
                       styles.scopeChip,
@@ -2751,7 +3407,7 @@ export default function QuestionScreen() {
         </ThemedView>
 
         {/* Answer Button for Multi-Select（組み合わせ問題: （ｒ）の数だけ選択必須） */}
-        {(() => {
+        {limbOxMode ? null : (() => {
           const answer = (question as any).answer || [];
           if (Array.isArray(answer) && answer.length > 1) {
             const canSubmit = selectedIndices.length === requiredSelectCount;
@@ -3049,6 +3705,26 @@ const styles = StyleSheet.create({
   },
   subject: {
     opacity: 0.7,
+  },
+  questionSearch: {
+    marginLeft: 'auto',
+    width: 240,
+    borderWidth: 1,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    fontSize: 15,
+  },
+  questionSearchResults: {
+    borderWidth: 1,
+    borderRadius: 12,
+    padding: 8,
+    marginBottom: 8,
+    gap: 6,
+  },
+  questionSearchHit: {
+    paddingVertical: 6,
+    paddingHorizontal: 4,
   },
   currentInsightPanel: {
     borderWidth: 1.5,
@@ -3437,6 +4113,149 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 22,
   },
+  choiceWithNy: {
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    gap: 8,
+  },
+  nyButton: {
+    width: 52,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#C62828',
+    backgroundColor: '#FFEBEE',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 4,
+    zIndex: 2,
+  },
+  nyButtonOn: {
+    backgroundColor: '#B71C1C',
+    borderColor: '#7F0000',
+    borderWidth: 2,
+  },
+  nyText: {
+    color: '#C62828',
+    fontSize: 14,
+    fontWeight: '800',
+  },
+  nyTextOn: {
+    color: '#FFFFFF',
+  },
+  oxCol: {
+    width: 52,
+    gap: 6,
+    justifyContent: 'center',
+  },
+  oxBtn: {
+    flex: 1,
+    minHeight: 36,
+    borderRadius: 12,
+    borderWidth: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  oxBtnO: {
+    borderColor: '#EC407A',
+    backgroundColor: '#FCE4EC',
+  },
+  oxBtnX: {
+    borderColor: '#1565C0',
+    backgroundColor: '#E3F2FD',
+  },
+  oxBtnOOn: {
+    backgroundColor: '#EC407A',
+    borderColor: '#AD1457',
+  },
+  oxBtnXOn: {
+    backgroundColor: '#1565C0',
+    borderColor: '#0D47A1',
+  },
+  oxBtnWrong: {
+    backgroundColor: '#C62828',
+    borderColor: '#7F0000',
+  },
+  oxBtnText: {
+    fontSize: 18,
+    fontWeight: '800',
+  },
+  oxBtnTextO: {
+    color: '#C2185B',
+  },
+  oxBtnTextX: {
+    color: '#1565C0',
+  },
+  oxBtnTextOn: {
+    color: '#FFFFFF',
+  },
+  oxMetaRow: {
+    marginTop: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
+    alignSelf: 'stretch',
+  },
+  oxRate: {
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#1565C0',
+  },
+  oxLinkGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 4,
+  },
+  oxLinkLabel: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#E65100',
+  },
+  oxLinkChip: {
+    borderWidth: 1,
+    borderColor: '#EF6C00',
+    backgroundColor: '#FFF3E0',
+    borderRadius: 8,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+  },
+  oxLinkChipText: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#E65100',
+  },
+  oxKnowledgeChip: {
+    borderWidth: 1,
+    borderColor: '#00897B',
+    backgroundColor: '#E0F2F1',
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+  },
+  oxKnowledgeText: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#00695C',
+  },
+  oxExplain: {
+    marginTop: 8,
+    fontSize: 14,
+    lineHeight: 21,
+    fontWeight: '600',
+    color: '#37474F',
+  },
+  oxSkip: {
+    width: 52,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  oxSkipText: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: '#757575',
+    textAlign: 'center',
+  },
   choiceButton: {
     borderRadius: 30, // Pill shape
     paddingVertical: 16,
@@ -3460,6 +4279,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '400',
     textAlign: 'left',
+    alignSelf: 'stretch',
+  },
+  caseLink: {
+    marginTop: 6,
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#1565C0',
     alignSelf: 'stretch',
   },
   choiceButtonDisabled: {

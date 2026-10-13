@@ -52,6 +52,37 @@ export function splitHtmlUnderlineTags(input: string): HtmlUnderlinePiece[] {
   return out;
 }
 
+const ALREADY_NUMBERED = /^[\u2460-\u2473\u3251-\u325F\u32B1-\u32BF]/;
+const KATAKANA_LABEL = /^[アイウエオカキクケコ][\.．、\s\u3000]/;
+
+/**
+ * 「いくつある」型で、問題文の続きの行が肢なのに番号が無いとき、①②③を付ける。
+ * 原文は変えない。表示用。
+ */
+/** 肢の先頭の「・」は表示しない。原文は変えない。 */
+export function stripLeadingChoiceBullet(text: string): string {
+  return (text || '').replace(/^[・●◦]\s*/, '');
+}
+
+export function numberCountStatements(body: string): string {
+  if (!body || !/いくつ/.test(body)) return body;
+  const lines = body.split('\n');
+  if (!/いくつ/.test(lines[0] || '')) return body;
+  let n = 0;
+  return lines
+    .map((line, i) => {
+      if (i === 0) return line;
+      const trimmed = line.trim();
+      if (!trimmed) return line;
+      if (ALREADY_NUMBERED.test(trimmed) || KATAKANA_LABEL.test(trimmed)) return line;
+      const rest = trimmed.replace(/^[・●◦]\s*/, '');
+      const mark = getChoicePrefix(n);
+      n += 1;
+      return `${mark} ${rest}`;
+    })
+    .join('\n');
+}
+
 /** 「1.2. A / B」または「1.2. 1,A\n2,B」形式を「１，A」改行「２，B」に変換（問題文・解説肢表示用）。「1.2.」および「1,」「2,」の重複を除去 */
 export function formatNumberedClauses(text: string): string {
   if (!text) return text;

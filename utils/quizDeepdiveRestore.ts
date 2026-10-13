@@ -1,10 +1,8 @@
 import {
-  filterHiddenFromQuestions,
   filterQuizQuestionsByMode,
   getMergedSubjectData,
   pickQuestionsForField,
 } from '@/utils/quiz-question-pipeline';
-import { getQuestionTextHash } from '@/utils/question-stats';
 
 export type QuizDeepdiveSource =
   | 'statuteRef'
@@ -63,8 +61,7 @@ export function resolveQuizDeepdiveBodyFromCatalog(input: {
   const subjectData = getMergedSubjectData(subject);
   const { targetQuestions } = pickQuestionsForField(subjectData, field);
   const filtered = filterQuizQuestionsByMode(targetQuestions, subject, input.quizMode);
-  const questions = filterHiddenFromQuestions(filtered, new Set(), getQuestionTextHash);
-  const question = questions[qi] as Record<string, unknown> | undefined;
+  const question = filtered[qi] as Record<string, unknown> | undefined;
   if (!question) return '';
 
   if (input.source === 'memo') {

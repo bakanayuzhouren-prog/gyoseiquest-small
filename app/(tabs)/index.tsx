@@ -76,6 +76,27 @@ export default function HomeScreen() {
             </ThemedText>
           </Pressable>
         </Link>
+        <Link href={'/all-questions' as Href} asChild>
+          <Pressable style={buttonStyle}>
+            <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
+              ここまでの全問題
+            </ThemedText>
+          </Pressable>
+        </Link>
+        <Link href={'/all-wrong-answers' as Href} asChild>
+          <Pressable style={buttonStyle}>
+            <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
+              ここまでの全問題の誤答
+            </ThemedText>
+          </Pressable>
+        </Link>
+        <Link href={'/genre-eval' as Href} asChild>
+          <Pressable style={buttonStyle}>
+            <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>
+              ジャンル評価
+            </ThemedText>
+          </Pressable>
+        </Link>
         <Link href="/wrong-answers" asChild>
           <Pressable style={buttonStyle}>
             <ThemedText type="defaultSemiBold" style={getMenuTextStyle(styles.menuText)}>

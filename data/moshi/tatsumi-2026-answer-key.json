@@ -1,0 +1,1510 @@
+{
+  "examId": "tatsumi-2026-zenkoku-koukai",
+  "title": "辰巳 2026行政書士 全国公開完全模試",
+  "answerImageDir": "app/模試画像/辰巳/解答",
+  "answerImageCount": 107,
+  "policy": "紙面の「正解」を優先した。肢の正誤だけから正解番号は逆算していない。原画像は回転も改名もしていない。",
+  "statuteCheck": "民法416条2項、417条の2第1項、469条1項・2項、612条1項・2項、行訴法10条2項本文、行訴法32条1項・38条1項はe-Govで確認した。それ以外の条と判例は、冊子の見出しを超えて確定していない。",
+  "questions": [
+    {
+      "questionNumber": 1,
+      "subject": "基礎法学",
+      "topic": "法源",
+      "form": "組合せ",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "ア",
+          "ok": true
+        },
+        {
+          "id": "イ",
+          "ok": false
+        },
+        {
+          "id": "ウ",
+          "ok": false
+        },
+        {
+          "id": "エ",
+          "ok": true
+        },
+        {
+          "id": "オ",
+          "ok": true
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082531681 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132625805 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132654160 (3).jpg"
+      ],
+      "references": [
+        "法の適用に関する通則法3条",
+        "商法1条2項"
+      ],
+      "notes": "通則法3条と商法1条2項は、この回ではe-Govを再読していない。"
+    },
+    {
+      "questionNumber": 2,
+      "subject": "基礎法学",
+      "topic": "裁判所",
+      "form": "妥当でないもの",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": true
+        },
+        {
+          "id": "2",
+          "ok": true
+        },
+        {
+          "id": "3",
+          "ok": true
+        },
+        {
+          "id": "4",
+          "ok": true
+        },
+        {
+          "id": "5",
+          "ok": false
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130638624 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082516876 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132432397 (3).jpg"
+      ],
+      "references": [
+        "裁判所法33条",
+        "裁判所法26条",
+        "裁判官弾劾法"
+      ],
+      "notes": "弾劾法の条番号は、この回ではe-Govを再読していない。"
+    },
+    {
+      "questionNumber": 3,
+      "subject": "憲法",
+      "topic": "外国人の人権",
+      "form": "妥当でないもの",
+      "correctAnswer": 4,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082458195 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 4,
+      "subject": "憲法",
+      "topic": "信教の自由",
+      "form": "妥当でないもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": false
+        },
+        {
+          "id": "2",
+          "ok": false
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082449504 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130626625.MP (3).jpg"
+      ],
+      "references": [
+        "最決平8.1.30"
+      ],
+      "notes": "肢3から5は続き頁。判例の判旨は既存知識と全文照合していない。"
+    },
+    {
+      "questionNumber": 5,
+      "subject": "憲法",
+      "topic": "法廷でメモを取る自由",
+      "form": "妥当でないもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": true
+        },
+        {
+          "id": "2",
+          "ok": true
+        },
+        {
+          "id": "3",
+          "ok": false
+        },
+        {
+          "id": "4",
+          "ok": true
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082533634 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130635876.MP (3).jpg"
+      ],
+      "references": [
+        "憲法21条1項",
+        "憲法82条1項",
+        "最判平元.3.8"
+      ],
+      "notes": "肢5は続き頁。"
+    },
+    {
+      "questionNumber": 6,
+      "subject": "憲法",
+      "topic": "国会議員の地位",
+      "form": "妥当でないもの",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132518748 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130536437 (3).jpg"
+      ],
+      "references": [],
+      "notes": "追加撮影 PXL_20261010_212803564 の見出しは問題6。問いは妥当でないもの。正解5。元の62枚にはこの頁はなかった。"
+    },
+    {
+      "questionNumber": 7,
+      "subject": "憲法",
+      "topic": "裁判官の身分保障",
+      "form": "妥当でないもの",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082629680 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132809257 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 8,
+      "subject": "行政法",
+      "topic": "行政行為の瑕疵",
+      "form": "組合せ",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [],
+      "references": [],
+      "notes": "追加撮影 PXL_20261010_212819909 の見出しに正解5。続き PXL_20261010_212825794 は、正しい記述がウとエ。元の107枚にはこの見出しはなかった。"
+    },
+    {
+      "questionNumber": 9,
+      "subject": "行政法",
+      "topic": "行政契約",
+      "form": "妥当でないもの",
+      "correctAnswer": 2,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082507220 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082525246 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 10,
+      "subject": "行政法",
+      "topic": "行政調査",
+      "form": "妥当なもの",
+      "correctAnswer": 2,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082515102 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130720631.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082437031 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 11,
+      "subject": "行政法",
+      "topic": "聴聞",
+      "form": "誤っているもの",
+      "correctAnswer": 2,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": true
+        },
+        {
+          "id": "2",
+          "ok": false
+        },
+        {
+          "id": "3",
+          "ok": true
+        },
+        {
+          "id": "4",
+          "ok": true
+        },
+        {
+          "id": "5",
+          "ok": true
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_083126810 (3).jpg"
+      ],
+      "references": [
+        "行政手続法13条1項",
+        "行政手続法15条2項",
+        "行政手続法19条1項",
+        "行政手続法26条",
+        "行政手続法17条",
+        "行政手続法27条"
+      ],
+      "notes": "各号の文言は、この回ではe-Govの当該条を再読していない。"
+    },
+    {
+      "questionNumber": 12,
+      "subject": "行政法",
+      "topic": "理由の提示",
+      "form": "誤っているもの",
+      "correctAnswer": 4,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "5",
+          "ok": true
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130646134 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130612201.MP (3).jpg"
+      ],
+      "references": [
+        "行政手続法14条3項",
+        "行政手続法8条1項"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 13,
+      "subject": "行政法",
+      "topic": "行政指導",
+      "form": "妥当なもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": false
+        },
+        {
+          "id": "2",
+          "ok": false
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082523033 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082611865 (3).jpg"
+      ],
+      "references": [
+        "行政手続法2条6号",
+        "行政手続法4条1項",
+        "最判平17.7.15"
+      ],
+      "notes": "肢4と5は続き頁。"
+    },
+    {
+      "questionNumber": 14,
+      "subject": "行政法",
+      "topic": "不服申立て",
+      "form": "妥当なもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": false
+        },
+        {
+          "id": "2",
+          "ok": false
+        },
+        {
+          "id": "3",
+          "ok": true
+        },
+        {
+          "id": "4",
+          "ok": false
+        },
+        {
+          "id": "5",
+          "ok": false
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082555463 (3).jpg"
+      ],
+      "references": [
+        "最判昭53.3.14"
+      ],
+      "notes": "判例の全文は再読していない。肢5の末尾は頁の下で切れている。"
+    },
+    {
+      "questionNumber": 15,
+      "subject": "行政法",
+      "topic": "審理手続",
+      "form": "誤っているもの",
+      "correctAnswer": 2,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130749702.MP (3).jpg"
+      ],
+      "references": [
+        "行政不服審査法"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 16,
+      "subject": "行政法",
+      "topic": "裁決",
+      "form": "組合せ",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130717770 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082544136 (3).jpg"
+      ],
+      "references": [
+        "行政不服審査法47条",
+        "最判昭47.12.5"
+      ],
+      "notes": "続き頁の親問は、結論の肢5と論点から問16に結び付けた。別問の可能性は残る。"
+    },
+    {
+      "questionNumber": 17,
+      "subject": "行政法",
+      "topic": "当事者訴訟",
+      "form": "組合せ",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_083139128 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082439305 (3).jpg"
+      ],
+      "references": [
+        "行政事件訴訟法44条"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 18,
+      "subject": "行政法",
+      "topic": "訴えの利益",
+      "form": "誤っているもの",
+      "correctAnswer": 2,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_083150738 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130521579.MP (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 19,
+      "subject": "行政法",
+      "topic": "判決の効力",
+      "form": "誤っているもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": false,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": false
+        },
+        {
+          "id": "2",
+          "ok": false
+        },
+        {
+          "id": "3",
+          "ok": true
+        },
+        {
+          "id": "4",
+          "ok": false
+        },
+        {
+          "id": "5",
+          "ok": false
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132914810 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130544790.MP (3).jpg"
+      ],
+      "references": [
+        "行政事件訴訟法32条1項",
+        "行政事件訴訟法33条1項",
+        "行政事件訴訟法38条1項"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 20,
+      "subject": "行政法",
+      "topic": "国家賠償法1条",
+      "form": "誤っているもの",
+      "correctAnswer": 1,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130728693.MP (3).jpg"
+      ],
+      "references": [
+        "国家賠償法1条"
+      ],
+      "notes": "印字の問番号は目視していない。"
+    },
+    {
+      "questionNumber": 21,
+      "subject": "行政法",
+      "topic": "国家賠償法2条",
+      "form": "組合せ",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130533932.MP (3).jpg"
+      ],
+      "references": [
+        "国家賠償法2条1項"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 22,
+      "subject": "行政法",
+      "topic": "地方公共団体の種類",
+      "form": "誤っているもの",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082505509.MP (3).jpg"
+      ],
+      "references": [
+        "地方自治法"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 23,
+      "subject": "行政法",
+      "topic": "住民訴訟",
+      "form": "誤っているもの",
+      "correctAnswer": 4,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_083136899 (3).jpg"
+      ],
+      "references": [
+        "地方自治法242条の2"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 24,
+      "subject": "行政法",
+      "topic": "地方自治",
+      "form": "妥当でないもの",
+      "correctAnswer": 4,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130759660.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130801822.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132458377 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132411543 (3).jpg"
+      ],
+      "references": [
+        "地方自治法176条",
+        "地方自治法178条"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 25,
+      "subject": "行政法",
+      "topic": "行政事件訴訟全般",
+      "form": "組合せ",
+      "correctAnswer": 1,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_083154195 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082541818 (3).jpg"
+      ],
+      "references": [
+        "行政事件訴訟法"
+      ],
+      "notes": "組合せ頁が問25の続きであることは、結論の一致からの結び付き。"
+    },
+    {
+      "questionNumber": 26,
+      "subject": "行政法",
+      "topic": "公文書管理法",
+      "form": "組合せ",
+      "correctAnswer": 4,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130738207.MP (3).jpg"
+      ],
+      "references": [
+        "公文書等の管理に関する法律"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 27,
+      "subject": "民法",
+      "topic": "時効の援用",
+      "form": "誤っているもの",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130656549.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130813728.MP (3).jpg"
+      ],
+      "references": [
+        "民法145条"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 28,
+      "subject": "民法",
+      "topic": "無効と取消し",
+      "form": "誤っているもの",
+      "correctAnswer": 4,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130647974 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130547524.MP (3).jpg"
+      ],
+      "references": [
+        "民法126条",
+        "民法122条",
+        "民法120条"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 29,
+      "subject": "民法",
+      "topic": "相続と登記",
+      "form": "組合せ",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130708682.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130623770.MP (3).jpg"
+      ],
+      "references": [
+        "民法899条の2第1項"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 30,
+      "subject": "民法",
+      "topic": "抵当権の効力",
+      "form": "誤っているもの",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": true
+        },
+        {
+          "id": "2",
+          "ok": true
+        },
+        {
+          "id": "3",
+          "ok": true
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082355976 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132513973 (3).jpg"
+      ],
+      "references": [
+        "民法304条",
+        "民法372条"
+      ],
+      "notes": "肢4と5の正誤は、この頁の外。判例年月日は冊子記載を再検証していない。"
+    },
+    {
+      "questionNumber": 31,
+      "subject": "民法",
+      "topic": "債務不履行",
+      "form": "誤っているもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": false,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": true
+        },
+        {
+          "id": "2",
+          "ok": true
+        },
+        {
+          "id": "3",
+          "ok": false
+        },
+        {
+          "id": "4",
+          "ok": true
+        },
+        {
+          "id": "5",
+          "ok": true
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082447428 (3).jpg"
+      ],
+      "references": [
+        "民法416条2項",
+        "民法412条の2",
+        "民法417条の2第1項",
+        "民法422条",
+        "民法418条"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 32,
+      "subject": "民法",
+      "topic": "相殺",
+      "form": "誤っているもの",
+      "correctAnswer": 2,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132310706 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132429469 (3).jpg"
+      ],
+      "references": [
+        "民法"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 33,
+      "subject": "民法",
+      "topic": "契約の解除",
+      "form": "誤っているもの",
+      "correctAnswer": 4,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130601120.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_134828810 (3).jpg"
+      ],
+      "references": [
+        "民法542条1項"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 34,
+      "subject": "民法",
+      "topic": "不法行為",
+      "form": "誤っているもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": false
+        },
+        {
+          "id": "2",
+          "ok": false
+        },
+        {
+          "id": "3",
+          "ok": true
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132540969 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130603294.MP (3).jpg"
+      ],
+      "references": [
+        "民法714条",
+        "民法720条",
+        "民法722条"
+      ],
+      "notes": "肢4と5は、この画像の説明からは確定していない。"
+    },
+    {
+      "questionNumber": 35,
+      "subject": "民法",
+      "topic": "配偶者居住権",
+      "form": "誤っているもの",
+      "correctAnswer": 1,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132357088 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132530182 (3).jpg"
+      ],
+      "references": [
+        "民法1028条"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 36,
+      "subject": "商法",
+      "topic": "商行為の代理と委任",
+      "form": "誤っているもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": true
+        },
+        {
+          "id": "2",
+          "ok": true
+        },
+        {
+          "id": "3",
+          "ok": false
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130703327.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082620555 (3).jpg"
+      ],
+      "references": [
+        "商法504条",
+        "商法506条",
+        "商法512条"
+      ],
+      "notes": "頁は横向き。肢4と5は未確定。条の但書はe-Gov未再読。"
+    },
+    {
+      "questionNumber": 37,
+      "subject": "商法",
+      "topic": "設立手続",
+      "form": "組合せ",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "ア",
+          "ok": false
+        },
+        {
+          "id": "イ",
+          "ok": true
+        },
+        {
+          "id": "ウ",
+          "ok": true
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132501066 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082558300 (3).jpg"
+      ],
+      "references": [
+        "会社法25条2項",
+        "会社法38条1項",
+        "会社法88条3項",
+        "会社法46条",
+        "会社法93条2項"
+      ],
+      "notes": "エとオ、および組合せ表は続き頁。"
+    },
+    {
+      "questionNumber": 38,
+      "subject": "商法",
+      "topic": "単元株制度",
+      "form": "誤っているもの",
+      "correctAnswer": 2,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132608779 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130751788.MP (3).jpg"
+      ],
+      "references": [
+        "会社法188条",
+        "会社法195条"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 39,
+      "subject": "商法",
+      "topic": "役員の選任・終任",
+      "form": "組合せ",
+      "correctAnswer": 4,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133005076 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132821987 (3).jpg"
+      ],
+      "references": [
+        "会社法"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 40,
+      "subject": "商法",
+      "topic": "合併",
+      "form": "誤っているもの",
+      "correctAnswer": 2,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": true
+        },
+        {
+          "id": "2",
+          "ok": false
+        },
+        {
+          "id": "3",
+          "ok": true
+        },
+        {
+          "id": "4",
+          "ok": true
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133035890 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_133008392 (3).jpg"
+      ],
+      "references": [
+        "会社法789条3項",
+        "会社法801条",
+        "会社法803条",
+        "会社法785条"
+      ],
+      "notes": "789条3項の文言は、この回ではe-Govを再読していない。肢5は続き頁。"
+    },
+    {
+      "questionNumber": 41,
+      "subject": "憲法",
+      "topic": "経済活動の自由",
+      "form": "多肢選択",
+      "correctAnswer": null,
+      "blanks": {
+        "ア": "2",
+        "イ": "8",
+        "ウ": "15",
+        "エ": "2"
+      },
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132359683 (3).jpg"
+      ],
+      "references": [
+        "憲法22条1項",
+        "最大判昭50.4.30"
+      ],
+      "notes": "空欄に入る語句の本体は、語群の番号だけで、語句の再検証はしていない。"
+    },
+    {
+      "questionNumber": 42,
+      "subject": "行政法",
+      "topic": "行政裁量",
+      "form": "多肢選択",
+      "correctAnswer": null,
+      "blanks": {
+        "ア": "2",
+        "イ": "14",
+        "ウ": "8",
+        "エ": "2"
+      },
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133019425 (3).jpg"
+      ],
+      "references": [
+        "最二小判平8.3.8"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 43,
+      "subject": "行政法",
+      "topic": "原告適格",
+      "form": "多肢選択",
+      "correctAnswer": null,
+      "blanks": {
+        "ア": "1",
+        "イ": "16",
+        "ウ": "4",
+        "エ": "9"
+      },
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132803119 (3).jpg"
+      ],
+      "references": [
+        "行政事件訴訟法9条"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 44,
+      "subject": "行政法",
+      "topic": "裁決主義",
+      "form": "記述",
+      "correctAnswer": null,
+      "blanks": null,
+      "descriptive": {
+        "printedCharCount": 44,
+        "charCountNote": "欄に44字と読める。頁は横向き。",
+        "scoring": [
+          "裁決主義または同義の表現が必須",
+          "裁決の取消訴訟でも原処分の違法を主張する、という点"
+        ]
+      },
+      "confidence": "scoring_seen",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132447235 (3).jpg"
+      ],
+      "references": [
+        "行政事件訴訟法10条2項"
+      ],
+      "notes": "模範解答の全文は転記しない。配点の数字は回転頁のため要確認。"
+    },
+    {
+      "questionNumber": 45,
+      "subject": "民法",
+      "topic": "債権譲渡における相殺",
+      "form": "記述",
+      "correctAnswer": null,
+      "blanks": null,
+      "descriptive": {
+        "printedCharCount": 48,
+        "charCountNote": "欄は48字に見える。頁は横向きで、字数は要確認。",
+        "scoring": [
+          "相殺できること",
+          "対抗要件具備時より前に取得した債権であること"
+        ]
+      },
+      "confidence": "scoring_seen",
+      "needsReview": false,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132853698 (3).jpg"
+      ],
+      "references": [
+        "民法469条1項",
+        "民法469条2項1号"
+      ],
+      "notes": "模範解答の全文は転記しない。配点の内訳は回転頁のため要確認。"
+    },
+    {
+      "questionNumber": 46,
+      "subject": "民法",
+      "topic": "無断転貸と信頼関係",
+      "form": "記述",
+      "correctAnswer": null,
+      "blanks": null,
+      "descriptive": {
+        "printedCharCount": 42,
+        "charCountNote": "欄に42字と読める。頁は横向き。",
+        "scoring": [
+          "信頼関係破壊の法理",
+          "背信行為と認めるに足りない特段の事情"
+        ]
+      },
+      "confidence": "scoring_seen",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082456189 (3).jpg"
+      ],
+      "references": [
+        "民法612条1項",
+        "民法612条2項"
+      ],
+      "notes": "信頼関係破壊の判例年月日は、この回では再確認していない。模範解答の全文は転記しない。"
+    },
+    {
+      "questionNumber": 47,
+      "subject": "基礎知識",
+      "topic": "各国の政治体制",
+      "form": "妥当でないもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [
+        {
+          "id": "1",
+          "ok": true
+        },
+        {
+          "id": "2",
+          "ok": true
+        },
+        {
+          "id": "3",
+          "ok": false
+        },
+        {
+          "id": "4",
+          "ok": true
+        },
+        {
+          "id": "5",
+          "ok": true
+        }
+      ],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132911996 (3).jpg"
+      ],
+      "references": [],
+      "notes": "各国制度の細部は官庁資料と再照合していない。"
+    },
+    {
+      "questionNumber": 48,
+      "subject": "基礎知識",
+      "topic": "日本の国政選挙",
+      "form": "妥当なもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132732989 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_133021638 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 49,
+      "subject": "基礎知識",
+      "topic": "外国人材の受入れ",
+      "form": "妥当でないもの",
+      "correctAnswer": 1,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132748451 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132720945 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 50,
+      "subject": "基礎知識",
+      "topic": "戦後日本の為替",
+      "form": "妥当でないもの",
+      "correctAnswer": 2,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132612291 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132948967 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 51,
+      "subject": "基礎知識",
+      "topic": "経済用語",
+      "form": "妥当でないもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130811529.MP (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 52,
+      "subject": "基礎知識",
+      "topic": "気候変動",
+      "form": "空欄",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "conclusion_seen",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133115182 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132635332 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 53,
+      "subject": "基礎知識",
+      "topic": "行政書士法",
+      "form": "妥当なもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132952355 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130741246.MP (3).jpg"
+      ],
+      "references": [
+        "行政書士法1条の3",
+        "行政書士法19条"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 54,
+      "subject": "基礎知識",
+      "topic": "戸籍法",
+      "form": "妥当なもの",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133125738 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132826039 (3).jpg"
+      ],
+      "references": [
+        "戸籍法24条"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 55,
+      "subject": "基礎知識",
+      "topic": "情報セキュリティ",
+      "form": "妥当なもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132849509 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132414580 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 56,
+      "subject": "基礎知識",
+      "topic": "事業者ガイドライン",
+      "form": "妥当なもの",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132931040 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132751084 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 57,
+      "subject": "基礎知識",
+      "topic": "個人情報保護法",
+      "form": "妥当なもの",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133038228 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132441882 (3).jpg"
+      ],
+      "references": [
+        "個人情報保護法"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 58,
+      "subject": "基礎知識",
+      "topic": "文章理解1",
+      "form": "空欄",
+      "correctAnswer": 5,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_ocr",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132556701 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132643639 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    },
+    {
+      "questionNumber": 59,
+      "subject": "基礎知識",
+      "topic": "文章理解2",
+      "form": "空欄",
+      "correctAnswer": 3,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": true,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132551348 (3).jpg"
+      ],
+      "references": [],
+      "notes": "追加撮影 PXL_20261010_212906374 の見出しに正解3。217頁は続き。"
+    },
+    {
+      "questionNumber": 60,
+      "subject": "基礎知識",
+      "topic": "文章理解3",
+      "form": "空欄",
+      "correctAnswer": 1,
+      "blanks": null,
+      "descriptive": null,
+      "confidence": "header_seen",
+      "needsReview": false,
+      "choiceVerdicts": [],
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132706645 (3).jpg"
+      ],
+      "references": [],
+      "notes": ""
+    }
+  ],
+  "unassignedAnswerImages": [
+    {
+      "file": "app/模試画像/辰巳/解答/PXL_20261010_082627470 (3).jpg",
+      "needsReview": true,
+      "notes": "結論は肢5。親の問番号が印字されていない。"
+    },
+    {
+      "file": "app/模試画像/辰巳/解答/PXL_20261010_130609178.MP (3).jpg",
+      "needsReview": true,
+      "notes": "点字ブロックの判例の続き。親の問番号が読めない。"
+    },
+    {
+      "file": "app/模試画像/辰巳/解答/PXL_20261010_130822694.MP (3).jpg",
+      "needsReview": true,
+      "notes": "ほぼ白紙。問番号も本文も読めない。"
+    },
+    {
+      "file": "app/模試画像/辰巳/解答/PXL_20261010_132839921 (3).jpg",
+      "needsReview": true,
+      "notes": "税務調査の続き。親の問番号が読めない。"
+    }
+  ]
+}

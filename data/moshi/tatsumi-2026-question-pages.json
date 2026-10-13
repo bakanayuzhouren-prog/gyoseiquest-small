@@ -1,0 +1,1285 @@
+{
+  "examId": "tatsumi-2026-zenkoku-koukai",
+  "title": "辰巳 2026行政書士 全国公開完全模試",
+  "booklet": "フォルダ名は問題。紙面上部の冊子名は【解説】。撮影の主部は問題の再掲。",
+  "imageDir": "app/模試画像/辰巳/問題",
+  "imageCount": 62,
+  "answerPolicy": "解答冊子の「正解」を優先した。肢の正誤から番号は逆算していない。",
+  "questions": [
+    {
+      "questionNumber": 1,
+      "subject": "基礎法学",
+      "topicCandidate": "法源",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133445095.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 通則法3条と商法1条2項は、この回ではe-Govを再読していない。 通則法3条と商法1条2項は、この回ではe-Govを再読していない。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082531681 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132625805 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132654160 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 2,
+      "subject": "基礎法学",
+      "topicCandidate": "裁判所",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133606767.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 弾劾法の条番号は、この回ではe-Govを再読していない。 弾劾法の条番号は、この回ではe-Govを再読していない。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130638624 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082516876 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132432397 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 3,
+      "subject": "憲法",
+      "topicCandidate": "外国人の人権",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_134006136.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 4,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082458195 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 4,
+      "subject": "憲法",
+      "topicCandidate": "信教の自由",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133616335.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 肢3から5は続き頁。判例の判旨は既存知識と全文照合していない。 肢3から5は続き頁。判例の判旨は既存知識と全文照合していない。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082449504 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130626625.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 5,
+      "subject": "憲法",
+      "topicCandidate": "法廷でメモを取ること",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133531102.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 肢5は続き頁。 肢5は続き頁。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082533634 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130635876.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 6,
+      "subject": "憲法",
+      "topicCandidate": "国会議員の地位",
+      "images": [],
+      "multiPage": false,
+      "ocrStatus": "added_later",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": "追加撮影",
+      "notes": "追加撮影 PXL_20261010_212803564。見出しは問題6。問いは妥当でないもの。元の62枚には無く、images は空のまま。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132518748 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130536437 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 7,
+      "subject": "憲法",
+      "topicCandidate": "裁判官の身分保障",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133423259.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082629680 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132809257 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 8,
+      "subject": "行政法",
+      "topicCandidate": "行政行為の瑕疵",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133712288.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": "てらしぃ確認",
+      "notes": "追加撮影 PXL_20261010_212819909 の見出しに正解5。続きは正しい記述がウとエ。元の107枚にはこの見出しはなかった。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": []
+    },
+    {
+      "questionNumber": 9,
+      "subject": "行政法",
+      "topicCandidate": "行政契約",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133825505.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 2,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082507220 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082525246 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 10,
+      "subject": "行政法",
+      "topicCandidate": "行政調査",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133704508.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 2,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082515102 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130720631.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082437031 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 11,
+      "subject": "行政法",
+      "topicCandidate": "聴聞",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133629324.MP.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 2,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 各号の文言は、この回ではe-Govの当該条を再読していない。 各号の文言は、この回ではe-Govの当該条を再読していない。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_083126810 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 12,
+      "subject": "行政法",
+      "topicCandidate": "理由の提示",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133939578.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 4,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130646134 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130612201.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 13,
+      "subject": "行政法",
+      "topicCandidate": "行政指導",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_134116852.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 肢4と5は続き頁。 肢4と5は続き頁。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082523033 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082611865 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 14,
+      "subject": "行政法",
+      "topicCandidate": "不服申立て",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_134052377.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "見出しは行政法・不服申立て。頁下部の解説は不鮮明。正解は未確定。 判例の全文は再読していない。肢5の末尾は頁の下で切れている。 判例の全文は再読していない。肢5の末尾は頁の下で切れている。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082555463 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 15,
+      "subject": "行政法",
+      "topicCandidate": "審理手続",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_134040017.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 2,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130749702.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 16,
+      "subject": "行政法",
+      "topicCandidate": "裁決",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133651783.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 続き頁の親問は、結論の肢5と論点から問16に結び付けた。別問の可能性は残る。 続き頁の親問は、結論の肢5と論点から問16に結び付けた。別問の可能性は残る。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130717770 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082544136 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 17,
+      "subject": "行政法",
+      "topicCandidate": "当事者訴訟",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133839905.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_083139128 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082439305 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 18,
+      "subject": "行政法",
+      "topicCandidate": "訴えの利益",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133400605.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 2,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_083150738 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130521579.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 19,
+      "subject": "行政法",
+      "topicCandidate": "判決の効力",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133806437.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132914810 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130544790.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 20,
+      "subject": "行政法",
+      "topicCandidate": "国家賠償法1条",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133520120.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 1,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 印字の問番号は目視していない。 印字の問番号は目視していない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130728693.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 21,
+      "subject": "行政法",
+      "topicCandidate": "国家賠償法2条",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133404200.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130533932.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 22,
+      "subject": "行政法",
+      "topicCandidate": "地方公共団体の種類",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_134021838.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082505509.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 23,
+      "subject": "行政法",
+      "topicCandidate": "住民訴訟",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133502368.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 4,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_083136899 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 24,
+      "subject": "行政法",
+      "topicCandidate": "地方自治",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133719387.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 4,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130759660.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130801822.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132458377 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132411543 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 25,
+      "subject": "行政法",
+      "topicCandidate": "行政事件訴訟全般",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133832350.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 1,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 組合せ頁が問25の続きであることは、結論の一致からの結び付き。 組合せ頁が問25の続きであることは、結論の一致からの結び付き。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_083154195 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082541818 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 26,
+      "subject": "行政法",
+      "topicCandidate": "公文書管理法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133510172.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 4,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130738207.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 27,
+      "subject": "民法",
+      "topicCandidate": "時効の援用",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133817738.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130656549.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130813728.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 28,
+      "subject": "民法",
+      "topicCandidate": "無効と取消し",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133957807.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 4,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130647974 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130547524.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 29,
+      "subject": "民法",
+      "topicCandidate": "相続と登記",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133934318.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130708682.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130623770.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 30,
+      "subject": "民法",
+      "topicCandidate": "抵当権の効力",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133659140.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 肢4と5の正誤は、この頁の外。判例年月日は冊子記載を再検証していない。 肢4と5の正誤は、この頁の外。判例年月日は冊子記載を再検証していない。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082355976 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132513973 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 31,
+      "subject": "民法",
+      "topicCandidate": "債務不履行",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_134030435.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082447428 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 32,
+      "subject": "民法",
+      "topicCandidate": "相殺",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133732998.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 2,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132310706 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132429469 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 33,
+      "subject": "民法",
+      "topicCandidate": "契約の解除",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133535841.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 4,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130601120.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_134828810 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 34,
+      "subject": "民法",
+      "topicCandidate": "不法行為",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133548833.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 肢4と5は、この画像の説明からは確定していない。 肢4と5は、この画像の説明からは確定していない。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132540969 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130603294.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 35,
+      "subject": "民法",
+      "topicCandidate": "配偶者の居住の権利",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133436828.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 1,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132357088 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132530182 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 36,
+      "subject": "商法",
+      "topicCandidate": "商行為の代理と委任",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133849942.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 頁は横向き。肢4と5は未確定。条の但書はe-Gov未再読。 頁は横向き。肢4と5は未確定。条の但書はe-Gov未再読。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130703327.MP (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082620555 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 37,
+      "subject": "商法",
+      "topicCandidate": "設立手続",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_134013194.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 エとオ、および組合せ表は続き頁。 エとオ、および組合せ表は続き頁。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132501066 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_082558300 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 38,
+      "subject": "商法",
+      "topicCandidate": "単元株制度",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133800632.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 2,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132608779 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130751788.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 39,
+      "subject": "商法",
+      "topicCandidate": "役員の選任・終任",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133751566.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 4,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133005076 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132821987 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 40,
+      "subject": "商法",
+      "topicCandidate": "合併",
+      "form": "択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133944127.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 2,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 789条3項の文言は、この回ではe-Govを再読していない。肢5は続き頁。 789条3項の文言は、この回ではe-Govを再読していない。肢5は続き頁。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133035890 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_133008392 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 41,
+      "subject": "憲法",
+      "topicCandidate": "経済活動の自由",
+      "form": "多肢選択",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133430198.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": null,
+      "answerSource": null,
+      "notes": "見出しは憲法・経済活動の自由。空欄補充。空欄の正解語句は確定していない。 空欄に入る語句の本体は、語群の番号だけで、語句の再検証はしていない。 空欄に入る語句の本体は、語群の番号だけで、語句の再検証はしていない。",
+      "blanks": {
+        "ア": "2",
+        "イ": "8",
+        "ウ": "15",
+        "エ": "2"
+      },
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132359683 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 42,
+      "subject": "行政法",
+      "topicCandidate": "行政裁量",
+      "form": "多肢選択",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_134112363.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": null,
+      "answerSource": null,
+      "notes": "見出しは問題42・重要度A。科目欄は行政法、論点欄は行政裁量と読める。空欄の正解語句は確定していない。",
+      "blanks": {
+        "ア": "2",
+        "イ": "14",
+        "ウ": "8",
+        "エ": "2"
+      },
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133019425 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 43,
+      "subject": "行政法",
+      "topicCandidate": "原告適格",
+      "form": "多肢選択",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_134100446.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": null,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": {
+        "ア": "1",
+        "イ": "16",
+        "ウ": "4",
+        "エ": "9"
+      },
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132803119 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 44,
+      "subject": "行政法",
+      "topicCandidate": "裁決主義",
+      "form": "記述",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133524883.jpg",
+        "app/模試画像/辰巳/問題/PXL_20261010_133911612.jpg"
+      ],
+      "multiPage": false,
+      "duplicateOfSamePage": true,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": null,
+      "answerSource": null,
+      "notes": "同じ問題頁を2回撮影。見出しは行政法・裁決主義。記述。頁下部の解説は不鮮明で、正解の明示は読めていない。 模範解答の全文は転記しない。配点の数字は回転頁のため要確認。 模範解答の全文は転記しない。配点の数字は回転頁のため要確認。",
+      "blanks": null,
+      "answerConfidence": "scoring_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132447235 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 45,
+      "subject": "民法",
+      "topicCandidate": "債権譲渡における相殺",
+      "form": "記述",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133623024.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": false,
+      "correctAnswer": null,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 模範解答の全文は転記しない。配点の内訳は回転頁のため要確認。 模範解答の全文は転記しない。配点の内訳は回転頁のため要確認。",
+      "blanks": null,
+      "answerConfidence": "scoring_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132853698 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 46,
+      "subject": "民法",
+      "topicCandidate": "無断転貸",
+      "form": "記述",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133951725.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": null,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 信頼関係破壊の判例年月日は、この回では再確認していない。模範解答の全文は転記しない。 信頼関係破壊の判例年月日は、この回では再確認していない。模範解答の全文は転記しない。",
+      "blanks": null,
+      "answerConfidence": "scoring_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_082456189 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 47,
+      "subject": "基礎知識",
+      "topicCandidate": "各国の政治体制",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133542533.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 各国制度の細部は官庁資料と再照合していない。 各国制度の細部は官庁資料と再照合していない。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132911996 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 48,
+      "subject": "基礎知識",
+      "topicCandidate": "日本の国政選挙",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133609478.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "見出しを目視して正解3。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132732989 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_133021638 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 49,
+      "subject": "基礎知識",
+      "topicCandidate": "外国人材の受入れ",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_134046123.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 1,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132748451 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132720945 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 50,
+      "subject": "基礎知識",
+      "topicCandidate": "戦後日本の為替",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133637841.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 2,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132612291 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132948967 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 51,
+      "subject": "基礎知識",
+      "topicCandidate": "経済用語",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133726808.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "見出しを目視して正解3。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_130811529.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 52,
+      "subject": "基礎知識",
+      "topicCandidate": "気候変動",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133453951.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "conclusion_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133115182 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132635332 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 53,
+      "subject": "基礎知識",
+      "topicCandidate": "行政書士法",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133737347.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "見出しを目視して正解3。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132952355 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_130741246.MP (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 54,
+      "subject": "基礎知識",
+      "topicCandidate": "戸籍法",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_134108761.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133125738 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132826039 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 55,
+      "subject": "基礎知識",
+      "topicCandidate": "情報セキュリティ",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133912776.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "見出しを目視して正解3。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132849509 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132414580 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 56,
+      "subject": "基礎知識",
+      "topicCandidate": "事業者ガイドライン",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133412305.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": null,
+      "notes": "見出しを目視して正解3。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132931040 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132751084 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 57,
+      "subject": "基礎知識",
+      "topicCandidate": "個人情報保護法",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133417815.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_133038228 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132441882 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 58,
+      "subject": "基礎知識",
+      "topicCandidate": "文章理解",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133745189.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": true,
+      "correctAnswer": 5,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_ocr",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132556701 (3).jpg",
+        "app/模試画像/辰巳/解答/PXL_20261010_132643639 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 59,
+      "subject": "基礎知識",
+      "topicCandidate": "文章理解",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133844808.jpg",
+        "app/模試画像/辰巳/問題/PXL_20261010_133514574.jpg"
+      ],
+      "multiPage": true,
+      "ocrStatus": "header_on_first_page_only",
+      "needsReview": true,
+      "correctAnswer": 3,
+      "answerSource": "追加撮影",
+      "notes": "追加撮影 PXL_20261010_212906374 の見出しに正解3。217頁は続き。表からの逆算ではない。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132551348 (3).jpg"
+      ]
+    },
+    {
+      "questionNumber": 60,
+      "subject": "基礎知識",
+      "topicCandidate": "文章理解",
+      "form": "基礎知識択一",
+      "images": [
+        "app/模試画像/辰巳/問題/PXL_20261010_133555778.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_read",
+      "needsReview": false,
+      "correctAnswer": 1,
+      "answerSource": null,
+      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/辰巳/解答/PXL_20261010_132706645 (3).jpg"
+      ]
+    }
+  ],
+  "unnumberedImages": [
+    {
+      "file": "app/模試画像/辰巳/問題/PXL_20261010_133921492.jpg",
+      "ocrStatus": "no_question_header",
+      "needsReview": true,
+      "continuationCandidate": null,
+      "notes": "問番号の見出しがない。目視で問6ではない。問6へ割り当てない。"
+    }
+  ],
+  "ocrWorkdir": "tmp/moshi-ocr/tatsumi-2026/winocr",
+  "statuteCheck": "未実施。科目と論点候補は冊子の見出しから取った。正解も肢の正誤も確定していない。教材化の前に条文と既存知識へ突き合わせる。",
+  "explanationStatus": "各頁の下部に解説があるが、撮影では不鮮明で、正解の明示は読めていない。",
+  "answerImageCount": 107,
+  "unassignedAnswerImages": [
+    "app/模試画像/辰巳/解答/PXL_20261010_082627470 (3).jpg",
+    "app/模試画像/辰巳/解答/PXL_20261010_130609178.MP (3).jpg",
+    "app/模試画像/辰巳/解答/PXL_20261010_130822694.MP (3).jpg",
+    "app/模試画像/辰巳/解答/PXL_20261010_132839921 (3).jpg"
+  ]
+}

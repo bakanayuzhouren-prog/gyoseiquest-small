@@ -40,6 +40,12 @@ import { prependKokubai1jo2joDeepdiveImage } from '@/src/kokubai1jo2joDeepdiveIm
 import { prependKokubaiJuminDeepdiveImage } from '@/src/kokubaiJuminDeepdiveImage';
 import { prependShouhouCastDeepdiveImage } from '@/src/shouhouCastDeepdiveImage';
 import { prependIshiHyojiDeepdiveImage } from '@/src/ishiHyojiDeepdiveImage';
+import { prependSeireiShoreiKisokuDeepdiveImage } from '@/src/seireiShoreiKisokuDeepdiveImage';
+import { prependKokujiExamplesDeepdiveImage } from '@/src/kokujiExamplesDeepdiveImage';
+import { prependPachinkoStandingDeepdiveImage } from '@/src/pachinkoStandingDeepdive';
+import { prependIkenKoboGyoseiKisokuDeepdiveImage } from '@/src/ikenKoboGyoseiKisokuDeepdive';
+import { prependKoenMinyuchiSairyoDeepdiveImage } from '@/src/koenMinyuchiSairyoDeepdive';
+import { prependGyoseibatsuTreeDeepdiveImage } from '@/src/gyoseibatsuTreeDeepdive';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
 import * as LearnData from '@/src/studyCache';
@@ -47,6 +53,7 @@ import { PIN_CASES } from '@/src/pinData';
 import { extractQuestionCast } from '@/src/castRegistry';
 import { normalizeFinalConstitutionDeepDivePresentation } from '@/utils/constitution-deepdive-presentation-final';
 import { buildCompleteConstitutionDeepDive } from '@/utils/constitution-quiz-deepdive-complete';
+import { kisoHougakuChoiceExplain } from '@/utils/kisoHougakuChoiceExplain';
 import { appendConstitutionProcedureConfusionChunk } from '@/utils/constitution-procedure-confusion-chunk';
 import { appendConstitutionProcedureRelatedQuestions } from '@/utils/constitution-procedure-related-questions';
 import { appendGyoseiConfusingTopicChunks, findRelatedGyoseiLearnCards, gyoseiLearnCardsBySubject, isGyoseiLinkSubject } from '@/utils/gyoseiConfusingTopicLinks';
@@ -77,18 +84,24 @@ import {
     type LearnLinkTarget,
     type QuizLearnReturnParams,
 } from '@/src/quizLearnBridge';
-import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, splitHtmlUnderlineTags, splitNumberPrefix } from '@/utils/choiceNumber';
+import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, numberCountStatements, splitHtmlUnderlineTags, splitNumberPrefix, stripLeadingChoiceBullet } from '@/utils/choiceNumber';
 import { recordWeaknessSupport, type WeaknessProfileItem } from '@/utils/ai-teacher-support';
+import { recordGenreAttempt } from '@/utils/genre-eval';
+import { matchKnowledgeGap } from '@/utils/knowledge-gap';
 import { addPoints } from '@/utils/points';
 import { getChoiceLearnLinkKey, resolveQuizLearnGroup } from '@/utils/quiz-learn-groups';
 import { resolveTopicLearnLinkTarget, resolveTopicLearnLinkTargetForChoice } from '@/utils/topic-mastery';
 import { incrementLoopCount } from '@/utils/progress';
 import { getHiddenHashes, peekHiddenHashesSync } from '@/utils/question-hidden';
+import { recordAllQuestionsAttempt } from '@/utils/all-questions-wrongs';
+import { buildChoiceLinks, choiceNeverAgainHash } from '@/utils/never-again-choices';
+import { caseQuestionIndexMap, choiceIsSharedCase, gyoseiSoronCaseLabel } from '@/utils/gyoseiSoronCaseLinks';
 import { getQuestionTextHash, getQuestionStats, setLearnLinkBlueOverride, updateQuestionStats, type QuestionStats } from '@/utils/question-stats';
 import {
     filterHiddenFromQuestions,
     filterQuizQuestionsByMode,
     getMergedSubjectData,
+    isFullPoolMode,
     pickQuestionsForField,
 } from '@/utils/quiz-question-pipeline';
 import type { QuizDeepdiveSource } from '@/utils/quizDeepdiveRestore';
@@ -160,6 +173,8 @@ function isSelectLegallyIncorrectStem(stem: string): boolean {
   const t = stem.replace(/\s+/g, '');
   return (
     /誤っているもの/.test(t) ||
+    /誤っているはどれ/.test(t) ||
+    /誤りはどれ/.test(t) ||
     /誤りであるもの/.test(t) ||
     /妥当でないもの/.test(t) ||
     /正しくないもの/.test(t) ||
@@ -910,7 +925,6 @@ function ResultScreenLoaded() {
     }
     return new Set();
   });
-
   useEffect(() => {
     if (!subject || !field) return;
     getHiddenHashes(subject, field).then(setHiddenHashes);
@@ -922,6 +936,23 @@ function ResultScreenLoaded() {
     const filtered = filterQuizQuestionsByMode(targetQuestions, subject, mode);
     return filterHiddenFromQuestions(filtered, hiddenHashes, getQuestionTextHash);
   }, [subject, field, mode, hiddenHashes]);
+
+  const choiceLinks = useMemo(
+    () => (mode === 'all' ? buildChoiceLinks(questions) : null),
+    [mode, questions],
+  );
+  const repeatedChoiceHashes = choiceLinks?.repeated ?? new Set<string>();
+  const similarChoiceHashes = choiceLinks?.similar ?? new Set<string>();
+  const caseQuestionIndexes = useMemo(
+    () => caseQuestionIndexMap(subject, questions),
+    [subject, questions],
+  );
+  const choiceCardTone = (choiceText: string): 'exact' | 'paraphrase' | null => {
+    const hash = choiceNeverAgainHash(choiceText);
+    if (hash && repeatedChoiceHashes.has(hash)) return 'exact';
+    if ((hash && similarChoiceHashes.has(hash)) || choiceIsSharedCase(choiceText, caseQuestionIndexes)) return 'paraphrase';
+    return null;
+  };
 
   const question = questions[questionIndex] || null;
   const minpoBukkenResultFooterKeys = useMemo(() => {
@@ -1093,7 +1124,37 @@ function ResultScreenLoaded() {
     const trimmed = (body || '').trim();
     const imageKeys = resolveAutoChoiceDeepDiveImageKeys(choiceIndex0);
     const finishQuizDeepdiveImages = (base: string) => {
-      const afterJoshiki = prependJoshikiDeepdiveImages(base, (key) => !!resolveImageAsset(key));
+      const orderMatch = [
+        base,
+        String((question as { text?: string })?.text || ''),
+        String((question as { choices?: string[] })?.choices?.[choiceIndex0] || ''),
+      ].join('\n');
+      const withOrder = prependGyoseibatsuTreeDeepdiveImage(
+        prependKoenMinyuchiSairyoDeepdiveImage(
+        prependIkenKoboGyoseiKisokuDeepdiveImage(
+          prependPachinkoStandingDeepdiveImage(
+            prependKokujiExamplesDeepdiveImage(
+              prependSeireiShoreiKisokuDeepdiveImage(
+                base,
+                orderMatch,
+                (key) => !!resolveImageAsset(key),
+              ),
+              orderMatch,
+              (key) => !!resolveImageAsset(key),
+            ),
+            orderMatch,
+            (key) => !!resolveImageAsset(key),
+          ),
+          orderMatch,
+          (key) => !!resolveImageAsset(key),
+        ),
+        orderMatch,
+        (key) => !!resolveImageAsset(key),
+      ),
+        orderMatch,
+        (key) => !!resolveImageAsset(key),
+      );
+      const afterJoshiki = prependJoshikiDeepdiveImages(withOrder, (key) => !!resolveImageAsset(key));
       const matchText = [
         afterJoshiki,
         String((question as { text?: string })?.text || ''),
@@ -1199,7 +1260,7 @@ function ResultScreenLoaded() {
 
   let effectiveCorrectIndices = correctIndices;
   if (!isSlotStyle && correctIndices.length > 0) {
-    if (mode !== 'bonus') {
+    if (!isFullPoolMode(mode)) {
       // 通常モード: ※付き肢は出題から除外 → 正解判定からも除外
       effectiveCorrectIndices = correctIndices.filter((i) => !isBonusChoice(i));
     } else if (isMixedBonus || !hasBonusChoices) {
@@ -1324,13 +1385,13 @@ function ResultScreenLoaded() {
   const correctAnswersItems: AnswerItem[] = isSlotStyle
     ? correctSlots.map((s, i) => ({ prefix: `${i + 1}. `, text: s }))
     : isReorder
-      ? effectiveCorrectIndices.map((i: number, pos: number) => ({ prefix: `${pos + 1}. `, text: (choices[i] || '').replace(/※/g, '') }))
-      : effectiveCorrectIndices.map((i: number) => ({ prefix: `${i + 1}. `, text: stripR((choices[i] || '').replace(/※/g, '')) }));
+      ? effectiveCorrectIndices.map((i: number, pos: number) => ({ prefix: `${pos + 1}. `, text: stripLeadingChoiceBullet((choices[i] || '').replace(/※/g, '')) }))
+      : effectiveCorrectIndices.map((i: number) => ({ prefix: `${i + 1}. `, text: stripR(stripLeadingChoiceBullet((choices[i] || '').replace(/※/g, ''))) }));
   const selectedAnswerSummary = isSlotStyle && pickedSlots.length > 0
     ? pickedSlots.map((s, i) => `${i + 1}: ${s}`).join(' / ')
     : isDescriptive && pickedText
       ? pickedText
-      : userSelection.map((idx) => choices[idx] ? `${idx + 1}. ${choices[idx].replace(/※/g, '')}` : '').filter(Boolean).join(' / ');
+      : userSelection.map((idx) => choices[idx] ? `${idx + 1}. ${stripLeadingChoiceBullet(choices[idx].replace(/※/g, ''))}` : '').filter(Boolean).join(' / ');
   const correctAnswerSummary = correctAnswersItems.map((item) => `${item.prefix}${item.text}`).join(' / ');
   const primaryReviewChoiceIndex = userSelection[0] ?? effectiveCorrectIndices[0] ?? null;
   const primaryLearnGroupKey = useMemo(
@@ -1411,10 +1472,38 @@ function ResultScreenLoaded() {
       updateQuestionStats(subject, field, text, isCorrect).then(() => {
         getQuestionStats(subject, field, text).then(setQuestionStats);
       });
+      if (mode === 'all') {
+        recordAllQuestionsAttempt(subject, field, text, isCorrect).catch(() => {});
+      }
     } else if (subject && field && text) {
       getQuestionStats(subject, field, text).then(setQuestionStats);
     }
-  }, [answerPending, subject, field, text, isCorrect, isShishoMode]);
+  }, [answerPending, subject, field, text, isCorrect, isShishoMode, mode]);
+
+  const genreRecordedRef = useRef('');
+  useEffect(() => {
+    if (answerPending || !subject || !text || isShishoMode) return;
+    const sig = `${subject}|${field}|${questionIndex}|${isCorrect ? '1' : '0'}`;
+    if (genreRecordedRef.current === sig) return;
+    genreRecordedRef.current = sig;
+    recordGenreAttempt(subject, field, isCorrect).catch(() => {});
+  }, [answerPending, subject, field, text, isCorrect, isShishoMode, questionIndex]);
+
+  const knowledgeGap = useMemo(
+    () => (
+      isShishoMode || answerPending
+        ? null
+        : matchKnowledgeGap({
+            subject,
+            field,
+            questionText: text,
+            selectedText: selectedAnswerSummary,
+            correctText: correctAnswerSummary,
+            explain,
+          })
+    ),
+    [isShishoMode, answerPending, subject, field, text, selectedAnswerSummary, correctAnswerSummary, explain],
+  );
 
   // unique key for user memo: user + simple hash of question text
   useEffect(() => {
@@ -1803,7 +1892,7 @@ function ResultScreenLoaded() {
               { backgroundColor: colors.choiceBg, borderColor: colors.choiceBorder, marginBottom: 8 }
             ]}>
                   <ThemedText style={{ fontSize: 16, color: colors.text, textAlign: 'left', alignSelf: 'stretch' }}>
-                {choices[idx] ? applyCharacterNames(choices[idx].replace(/※/g, '')) : ''}
+                {choices[idx] ? applyCharacterNames(stripLeadingChoiceBullet(choices[idx].replace(/※/g, ''))) : ''}
               </ThemedText>
             </Pressable>
               ))
@@ -1964,6 +2053,17 @@ function ResultScreenLoaded() {
             </View>
           </ThemedView>
         ) : null}
+        {!isShishoMode && knowledgeGap ? (
+          <ThemedView style={[styles.aiTeacherCard, { backgroundColor: colors.card, borderColor: colors.choiceBorder }]}>
+            <ThemedText style={[styles.aiTeacherEyebrow, { color: colors.primary }]}>知識ベース</ThemedText>
+            <ThemedText style={[styles.aiTeacherTitle, { color: colors.text }]}>{knowledgeGap.title}</ThemedText>
+            {knowledgeGap.missing.map((line) => (
+              <ThemedText key={line} style={[styles.aiTeacherBody, { color: colors.text }]}>
+                {isCorrect ? `当たっている命題: ${line}` : `抜けている知識: ${line}`}
+              </ThemedText>
+            ))}
+          </ThemedView>
+        ) : null}
         <View style={styles.questionAnswerOuterCard}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
             <ThemedText style={[styles.questionLabel, { color: colors.text }]}>問題文</ThemedText>
@@ -2006,7 +2106,7 @@ function ResultScreenLoaded() {
             {(() => {
               const { prefix: numPrefix, body: questionBody } = splitNumberPrefix(text);
               const displayNum = hasNumberPrefix(text) ? numPrefix : getChoicePrefix(questionIndex);
-              const displayBody = hasNumberPrefix(text) ? questionBody : text;
+              const displayBody = numberCountStatements(hasNumberPrefix(text) ? questionBody : text);
               return (
                 <>
                   {displayNum ? (
@@ -2044,11 +2144,21 @@ function ResultScreenLoaded() {
             <View style={styles.correctAnswersBlock}>
               <ThemedText style={[styles.answerText, { color: '#C62828', fontWeight: 'bold' }]}>正解肢</ThemedText>
               {correctAnswersItems.map((item, idx) => (
-                <ThemedView key={idx} style={[styles.correctAnswerCard, { borderColor: '#E57373', backgroundColor: theme === 'premium' || theme === 'cyberpunk' ? 'rgba(198,40,40,0.2)' : '#FFEBEE' }]}>
+                <ThemedView key={idx} style={[styles.correctAnswerCard, (() => {
+                  const tone = choiceCardTone(item.text);
+                  if (tone === 'exact') return { borderColor: '#C62828', backgroundColor: '#FFCDD2' };
+                  if (tone === 'paraphrase') return { borderColor: '#F9A825', backgroundColor: '#FFF59D' };
+                  return { borderColor: '#E57373', backgroundColor: theme === 'premium' || theme === 'cyberpunk' ? 'rgba(198,40,40,0.2)' : '#FFEBEE' };
+                })()]}>
                   <View style={styles.correctAnswerRow}>
                     <ThemedText style={[styles.correctAnswerPrefix, { color: colors.text }]}>{item.prefix}</ThemedText>
-                    <ThemedText style={[styles.answerText, styles.correctAnswerBody, { color: colors.text }]}>{formatNumberedClauses(item.text)}</ThemedText>
+                    <ThemedText style={[styles.answerText, styles.correctAnswerBody, { color: choiceCardTone(item.text) === 'exact' ? '#C62828' : choiceCardTone(item.text) === 'paraphrase' ? '#E65100' : colors.text }]}>{formatNumberedClauses(item.text)}</ThemedText>
                   </View>
+                  {gyoseiSoronCaseLabel(subject, field, item.text) ? (
+                    <ThemedText style={{ color: '#1565C0', fontWeight: '700', fontSize: 13, marginTop: 4 }}>
+                      {gyoseiSoronCaseLabel(subject, field, item.text)}
+                    </ThemedText>
+                  ) : null}
                 </ThemedView>
               ))}
             </View>
@@ -2177,7 +2287,7 @@ function ResultScreenLoaded() {
               </ThemedView>
             );
           }
-          const visibleIndices: number[] = mode === 'bonus'
+          const visibleIndices: number[] = isFullPoolMode(mode)
             ? choices.map((_: unknown, i: number) => i)
             : choices.map((_: unknown, i: number) => i).filter((i: number) => !isBonusChoice(i));
           if (visibleIndices.length === 0) return null;
@@ -2224,10 +2334,11 @@ function ResultScreenLoaded() {
             ) : null}
             {visibleIndices.map((choiceIdx: number, gi: number) => {
               const label = `${choiceIdx + 1}. `;
-              const choiceText = (choices[choiceIdx] || '').replace(/※/g, '');
+              const choiceText = stripLeadingChoiceBullet((choices[choiceIdx] || '').replace(/※/g, ''));
               const formattedBody = formatNumberedClauses(choiceText);
               const choiceExpls = (question as any)?.choiceExplanations as string[] | undefined;
-              const explText = choiceExpls?.[choiceIdx] ?? '';
+              const storedExpl = (choiceExpls?.[choiceIdx] || '').trim();
+              const explText = storedExpl || kisoHougakuChoiceExplain(subject, text, choiceIdx);
               const statutes = choiceStatutes[choiceIdx] || [];
               const statuteRefBody = getChoiceStatuteRefBodyForPage(choiceStatuteRefs, choiceIdx);
               const deepMColumnRaw = (choiceDeepDive?.[choiceIdx] ?? '').trim();
@@ -2279,15 +2390,25 @@ function ResultScreenLoaded() {
                 resourcesData,
               );
               return (
-                <View key={gi} style={[styles.choiceStatuteItem, styles.choiceStatuteCard]}>
+                <View key={gi} style={[styles.choiceStatuteItem, styles.choiceStatuteCard, (() => {
+                  const tone = choiceCardTone(choiceText);
+                  if (tone === 'exact') return { backgroundColor: '#FFCDD2', borderColor: '#C62828' };
+                  if (tone === 'paraphrase') return { backgroundColor: '#FFF59D', borderColor: '#F9A825' };
+                  return null;
+                })()]}>
                   <View style={styles.choiceStatuteNumRow}>
-                    <ThemedText style={[styles.choiceStatuteChoice, { color: colors.text }]}>
+                    <ThemedText style={[styles.choiceStatuteChoice, { color: choiceCardTone(choiceText) === 'exact' ? '#C62828' : choiceCardTone(choiceText) === 'paraphrase' ? '#E65100' : colors.text }]}>
                       {label}
                     </ThemedText>
-                    <ThemedText style={[styles.choiceStatuteChoiceBody, { color: colors.text }]} numberOfLines={3}>
+                    <ThemedText style={[styles.choiceStatuteChoiceBody, { color: choiceCardTone(choiceText) === 'exact' ? '#C62828' : choiceCardTone(choiceText) === 'paraphrase' ? '#E65100' : colors.text }]} numberOfLines={3}>
                       {choiceText ? applyCharacterNames(formattedBody) : '—'}
                     </ThemedText>
                   </View>
+                  {gyoseiSoronCaseLabel(subject, field, choiceText) ? (
+                    <ThemedText style={{ color: '#1565C0', fontWeight: '700', fontSize: 13, marginBottom: 6 }}>
+                      {gyoseiSoronCaseLabel(subject, field, choiceText)}
+                    </ThemedText>
+                  ) : null}
                   {explText ? (
                     <View style={{ marginBottom: 8 }}>
                       <ResultReadableMarkdownText
@@ -2614,17 +2735,6 @@ function ResultScreenLoaded() {
               </Link>
             </View>
 
-        {/* Resources Button */}
-        {mergedAllResourcePages.length > 0 && (
-          <Pressable style={styles.resourceButton} onPress={() => openResourceViewer(mergedAllResourcePages)}>
-            <ThemedText style={styles.resourceButtonText}>
-              {mergedAllResourcePages[0]?.type === 'article' ? '関連条文を見る' : '資料を見る'} ({mergedAllResourcePages.length})
-            </ThemedText>
-            <ThemedText style={styles.resourceButtonSubText}>
-              {mergedAllResourcePages[0]?.type === 'article' ? '※条文参照' : '※補足資料あり'}
-            </ThemedText>
-          </Pressable>
-        )}
 
         {/* Case Diagram Button */}
         {linkedCase && (

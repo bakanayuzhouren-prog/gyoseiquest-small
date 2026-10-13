@@ -22,6 +22,12 @@ import { prependGyoshoShobunseiGenkokuDeepdiveImage } from '@/src/gyoshoShobunse
 import { prependKokubai1jo2joDeepdiveImage } from '@/src/kokubai1jo2joDeepdiveImage';
 import { prependKokubaiJuminDeepdiveImage } from '@/src/kokubaiJuminDeepdiveImage';
 import { prependIshiHyojiDeepdiveImage } from '@/src/ishiHyojiDeepdiveImage';
+import { prependSeireiShoreiKisokuDeepdiveImage } from '@/src/seireiShoreiKisokuDeepdiveImage';
+import { prependKokujiExamplesDeepdiveImage } from '@/src/kokujiExamplesDeepdiveImage';
+import { prependPachinkoStandingDeepdiveImage } from '@/src/pachinkoStandingDeepdive';
+import { prependIkenKoboGyoseiKisokuDeepdiveImage } from '@/src/ikenKoboGyoseiKisokuDeepdive';
+import { prependKoenMinyuchiSairyoDeepdiveImage } from '@/src/koenMinyuchiSairyoDeepdive';
+import { prependGyoseibatsuTreeDeepdiveImage } from '@/src/gyoseibatsuTreeDeepdive';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
 import { prependShouhouCastDeepdiveImage } from '@/src/shouhouCastDeepdiveImage';
 import { appendShouhouConfusingTopicChunks } from '@/utils/shouhouConfusingTopicLinks';
@@ -444,7 +450,32 @@ export default function DeepdiveScreen() {
               : null;
 
         const finishDeepdiveImages = (text: string, extraMatch = ''): string => {
-          const afterJoshiki = prependJoshikiDeepdiveImages(text, (key) => !!resolveImageAsset(key));
+          const withOrder = prependGyoseibatsuTreeDeepdiveImage(
+            prependKoenMinyuchiSairyoDeepdiveImage(
+            prependIkenKoboGyoseiKisokuDeepdiveImage(
+              prependPachinkoStandingDeepdiveImage(
+                prependKokujiExamplesDeepdiveImage(
+                  prependSeireiShoreiKisokuDeepdiveImage(
+                    text,
+                    `${extraMatch}\n${text}`,
+                    (key) => !!resolveImageAsset(key),
+                  ),
+                  `${extraMatch}\n${text}`,
+                  (key) => !!resolveImageAsset(key),
+                ),
+                `${extraMatch}\n${text}`,
+                (key) => !!resolveImageAsset(key),
+              ),
+              `${extraMatch}\n${text}`,
+              (key) => !!resolveImageAsset(key),
+            ),
+            `${extraMatch}\n${text}`,
+            (key) => !!resolveImageAsset(key),
+          ),
+            `${extraMatch}\n${text}`,
+            (key) => !!resolveImageAsset(key),
+          );
+          const afterJoshiki = prependJoshikiDeepdiveImages(withOrder, (key) => !!resolveImageAsset(key));
           const matchBlob = `${extraMatch}\n${text}\n${stored.screenTitle || ''}`;
           const afterHikoku = prependGyoshoHikokuDeepdiveImage(
             afterJoshiki,
