@@ -529,6 +529,7 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'learn/gyosei/fukudaijin-seimukan-tokumei': require('@/assets/images/deepdive/learn/gyosei/fukudaijin-seimukan-tokumei.png'),
   'learn/gyosei/gyosei-keiyaku': require('@/assets/images/deepdive/learn/gyosei/gyosei-keiyaku.png'),
   'learn/gyosei/gyosei-keiyaku-zuii': require('@/assets/images/deepdive/learn/gyosei/gyosei-keiyaku-zuii.png'),
+  'learn/gyosei/gyosei-koui-bunrui': require('@/assets/images/deepdive/learn/gyosei/gyosei-koui-bunrui.png'),
   'learn/gyosei/gyoseibatsu-tree': require('@/assets/images/deepdive/learn/gyosei/gyoseibatsu-tree.png'),
   'learn/gyosei/gyoseishido-shokibo': require('@/assets/images/deepdive/learn/gyosei/gyoseishido-shokibo.png'),
   'learn/gyosei/gyotei-gyofuku-gimu': require('@/assets/images/deepdive/learn/gyosei/gyotei-gyofuku-gimu.png'),

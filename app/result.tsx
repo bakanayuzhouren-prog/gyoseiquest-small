@@ -46,6 +46,8 @@ import { prependPachinkoStandingDeepdiveImage } from '@/src/pachinkoStandingDeep
 import { prependIkenKoboGyoseiKisokuDeepdiveImage } from '@/src/ikenKoboGyoseiKisokuDeepdive';
 import { prependKoenMinyuchiSairyoDeepdiveImage } from '@/src/koenMinyuchiSairyoDeepdive';
 import { prependGyoseibatsuTreeDeepdiveImage } from '@/src/gyoseibatsuTreeDeepdive';
+import { prependGyoseiKouiBunruiDeepdiveImage } from '@/src/gyoseiKouiBunruiDeepdive';
+import { prependNaikakufuGaikyokuDeepdiveImage } from '@/src/naikakufuGaikyokuDeepdive';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
 import { resolveImageAsset } from '@/src/resolveImageAsset';
 import * as LearnData from '@/src/studyCache';
@@ -84,7 +86,7 @@ import {
     type LearnLinkTarget,
     type QuizLearnReturnParams,
 } from '@/src/quizLearnBridge';
-import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, numberCountStatements, splitHtmlUnderlineTags, splitNumberPrefix, stripLeadingChoiceBullet } from '@/utils/choiceNumber';
+import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, numberCountStatements, splitHtmlUnderlineTags, splitNumberPrefix, stripLeadingChoiceBullet, stripTacQuizLead } from '@/utils/choiceNumber';
 import { recordWeaknessSupport, type WeaknessProfileItem } from '@/utils/ai-teacher-support';
 import { recordGenreAttempt } from '@/utils/genre-eval';
 import { matchKnowledgeGap } from '@/utils/knowledge-gap';
@@ -1129,7 +1131,9 @@ function ResultScreenLoaded() {
         String((question as { text?: string })?.text || ''),
         String((question as { choices?: string[] })?.choices?.[choiceIndex0] || ''),
       ].join('\n');
-      const withOrder = prependGyoseibatsuTreeDeepdiveImage(
+      const withOrder = prependNaikakufuGaikyokuDeepdiveImage(
+      prependGyoseiKouiBunruiDeepdiveImage(
+        prependGyoseibatsuTreeDeepdiveImage(
         prependKoenMinyuchiSairyoDeepdiveImage(
         prependIkenKoboGyoseiKisokuDeepdiveImage(
           prependPachinkoStandingDeepdiveImage(
@@ -1148,6 +1152,12 @@ function ResultScreenLoaded() {
           orderMatch,
           (key) => !!resolveImageAsset(key),
         ),
+        orderMatch,
+        (key) => !!resolveImageAsset(key),
+      ),
+        orderMatch,
+        (key) => !!resolveImageAsset(key),
+      ),
         orderMatch,
         (key) => !!resolveImageAsset(key),
       ),
@@ -2104,9 +2114,10 @@ function ResultScreenLoaded() {
           </View>
           <View style={styles.questionCard}>
             {(() => {
-              const { prefix: numPrefix, body: questionBody } = splitNumberPrefix(text);
-              const displayNum = hasNumberPrefix(text) ? numPrefix : getChoicePrefix(questionIndex);
-              const displayBody = numberCountStatements(hasNumberPrefix(text) ? questionBody : text);
+              const visibleQuestion = stripTacQuizLead(text);
+              const { prefix: numPrefix, body: questionBody } = splitNumberPrefix(visibleQuestion);
+              const displayNum = hasNumberPrefix(visibleQuestion) ? numPrefix : getChoicePrefix(questionIndex);
+              const displayBody = numberCountStatements(hasNumberPrefix(visibleQuestion) ? questionBody : visibleQuestion);
               return (
                 <>
                   {displayNum ? (

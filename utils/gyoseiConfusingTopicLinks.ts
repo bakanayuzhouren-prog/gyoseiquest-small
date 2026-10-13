@@ -10,11 +10,12 @@ export type GyoseiRelatedLearnCard = {
   axis: string;
 };
 
-export const GYOSEI_LINK_SUBJECTS = ['行政手続法', '行政不服審査法', '行政事件訴訟法'] as const;
+export const GYOSEI_LINK_SUBJECTS = ['行政法総論', '行政手続法', '行政不服審査法', '行政事件訴訟法'] as const;
 
 export type GyoseiLinkSubject = (typeof GYOSEI_LINK_SUBJECTS)[number];
 
 const SHORT: Record<string, string> = {
+  行政法総論: '総論',
   行政手続法: '行手',
   行政不服審査法: '行審',
   行政事件訴訟法: '行訴',
@@ -239,19 +240,83 @@ const CLUSTERS: Cluster[] = [
 
 本番の見分け：**いきなり取消訴訟OKが原則。前置は例外。無効確認は前置でも裁決待ち不要、が多い。**`,
   },
+  {
+    id: 'kousoku',
+    axis: '何が、誰を拘束するか',
+    marker: '紛らわしい論点チャンク（拘束力）',
+    trigger: /拘束力|公害防止協定/,
+    members: [
+      { label: '公害防止協定', subject: '行政法総論', test: /公害防止協定は、行政法学上の行政契約であり、法的拘束力はある/ },
+      { label: '再調査', subject: '行政不服審査法', test: /再調査の請求に対する決定については準用されない/ },
+      { label: '取消判決', subject: '行政事件訴訟法', test: /行訴法、行審法ともに裁決の拘束力の規定がある/ },
+    ],
+    chunk: `## 紛らわしい論点チャンク（拘束力）
+
+同じ「拘束」でも、何が誰を縛るかが違う。今回のカードもこの組から外さない。
+
+| | 拘束するか |
+|---|---|
+| 公害防止協定 | 合意した当事者を拘束し得る。法律の根拠がないから当然に無効、ではない |
+| 裁決（行服52条） | 関係行政庁を拘束する。再審査の裁決にも準用される（66条） |
+| 再調査の決定 | 52条は準用されない（61条の列挙にない） |
+| 取消判決（行訴33条） | 取り消す判決が、処分庁その他の関係行政庁を拘束する。棄却判決にはない |
+
+本番の見分け：**協定に「法的拘束力を有しない」とあったら誤り。再調査の決定に裁決の拘束力を書くのも誤り。**`,
+  },
 ];
 
 const SHORT_CARD_MAX = 220;
 
 export function isGyoseiLinkSubject(subject: string | undefined | null): subject is GyoseiLinkSubject {
-  return subject === '行政手続法' || subject === '行政不服審査法' || subject === '行政事件訴訟法';
+  return subject === '行政法総論' || subject === '行政手続法' || subject === '行政不服審査法' || subject === '行政事件訴訟法';
+}
+
+export function choiceHasKousokuConfusion(text: string): boolean {
+  return /拘束力|公害防止協定/.test(String(text || '').replace(/\s+/g, ''));
+}
+
+export function kousokuConfusingMembers(): ClusterMember[] {
+  return CLUSTERS.find((cluster) => cluster.id === 'kousoku')?.members || [];
+}
+
+export function kousokuConfusionDeepdive(): string {
+  return CLUSTERS.find((cluster) => cluster.id === 'kousoku')?.chunk || '';
+}
+
+const LEARN_PLUS_SOURCE_RE = /TAC|公開模試|模試|moshi|LEC|合格革命/i;
+
+/** 見て聞いて覚えるの表示順。行政法総論の通常はシート名一致の先頭133枚（learn画面と同じ）。 */
+export function gyoseiConfusingLearnRoute(
+  subject: string,
+  test: RegExp,
+  cards: string[],
+  source: unknown[] | undefined,
+): { subject: string; index: string; plus?: string } | null {
+  const raw = findGyoseiCardIndex(cards, test);
+  if (raw < 0) return null;
+  const src = Array.isArray(source) ? source : [];
+  if (subject === '行政法総論' || subject === '国家賠償法') {
+    const normal = src
+      .map((label, idx) => (label === subject ? idx : -1))
+      .filter((idx) => idx >= 0);
+    const capped = subject === '行政法総論' ? normal.slice(0, 133) : normal;
+    const display = capped.indexOf(raw);
+    if (display >= 0) return { subject, index: String(display) };
+    const plus = src
+      .map((label, idx) => (LEARN_PLUS_SOURCE_RE.test(String(label || '')) ? idx : -1))
+      .filter((idx) => idx >= 0);
+    const plusDisplay = plus.indexOf(raw);
+    if (plusDisplay >= 0) return { subject, index: String(plusDisplay), plus: '1' };
+    return null;
+  }
+  return { subject, index: String(raw) };
 }
 
 function clusterMatchesHaystack(cluster: Cluster, haystack: string): boolean {
   return cluster.trigger.test(haystack);
 }
 
-function findCardIndex(cards: string[], test: RegExp): number {
+export function findGyoseiCardIndex(cards: string[], test: RegExp): number {
   let fallback = -1;
   for (let i = 0; i < cards.length; i++) {
     const text = cards[i] || '';
@@ -285,7 +350,7 @@ export function findRelatedGyoseiLearnCards(args: {
     if (!clusterMatchesHaystack(cluster, haystack)) continue;
     for (const member of cluster.members) {
       const cards = cardsBySubject[member.subject] || [];
-      const index = findCardIndex(cards, member.test);
+      const index = findGyoseiCardIndex(cards, member.test);
       push(member.subject, index, member.label, cluster.axis);
     }
   }
@@ -308,6 +373,7 @@ export function gyoseiLearnCardsBySubject(
 ): Record<string, string[] | undefined> {
   const src = learnContent || {};
   return {
+    行政法総論: src['行政法総論'],
     行政手続法: src['行政手続法'],
     行政不服審査法: src['行政不服審査法'],
     行政事件訴訟法: src['行政事件訴訟法'],

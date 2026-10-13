@@ -86,7 +86,7 @@ function normalize(value: string): string {
 }
 
 function previewOf(text: string): string {
-  const cleaned = text.replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').replace(/※/g, '').replace(/\s+/g, ' ').trim();
+  const cleaned = text.replace(/^(?:【[^】]*TAC[^】]*】\s*)+/, '').replace(/[\(（]\s*[rｒ]\s*[\)）]/gi, '').replace(/※/g, '').replace(/\s+/g, ' ').trim();
   return cleaned.length > 52 ? `${cleaned.slice(0, 52)}…` : cleaned;
 }
 

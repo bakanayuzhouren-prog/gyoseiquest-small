@@ -877,6 +877,7 @@ const cases = [
   { q: '都道府県医師会 指定', expectTitle: /撤回|指定医/ },
   { q: '労災就学援護費って', expectTitle: /労災就学援護費/ },
   { q: '歳出とは何', expectTitle: /会計年度独立|歳出/ },
+  { q: '自己取引の利益額は損害額？', expectTitle: /自己取引と競業/ },
 ];
 
 const all = [

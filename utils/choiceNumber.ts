@@ -1,3 +1,8 @@
+/** 問題文先頭の 【ボーナスTAC2】 などを表示から外す。保存本文とハッシュはそのまま。 */
+export function stripTacQuizLead(text: string): string {
+  return String(text || '').replace(/^(?:【[^】]*TAC[^】]*】\s*)+/, '').trim();
+}
+
 /**
  * 問題文がすでに番号で始まっているか（①〜㊿、(1)等）
  */

@@ -28,6 +28,8 @@ import { prependPachinkoStandingDeepdiveImage } from '@/src/pachinkoStandingDeep
 import { prependIkenKoboGyoseiKisokuDeepdiveImage } from '@/src/ikenKoboGyoseiKisokuDeepdive';
 import { prependKoenMinyuchiSairyoDeepdiveImage } from '@/src/koenMinyuchiSairyoDeepdive';
 import { prependGyoseibatsuTreeDeepdiveImage } from '@/src/gyoseibatsuTreeDeepdive';
+import { prependGyoseiKouiBunruiDeepdiveImage } from '@/src/gyoseiKouiBunruiDeepdive';
+import { prependNaikakufuGaikyokuDeepdiveImage } from '@/src/naikakufuGaikyokuDeepdive';
 import { prependJoshikiDeepdiveImages } from '@/src/joshikiDeepdiveImageMap';
 import { prependShouhouCastDeepdiveImage } from '@/src/shouhouCastDeepdiveImage';
 import { appendShouhouConfusingTopicChunks } from '@/utils/shouhouConfusingTopicLinks';
@@ -450,7 +452,9 @@ export default function DeepdiveScreen() {
               : null;
 
         const finishDeepdiveImages = (text: string, extraMatch = ''): string => {
-          const withOrder = prependGyoseibatsuTreeDeepdiveImage(
+          const withOrder = prependNaikakufuGaikyokuDeepdiveImage(
+          prependGyoseiKouiBunruiDeepdiveImage(
+            prependGyoseibatsuTreeDeepdiveImage(
             prependKoenMinyuchiSairyoDeepdiveImage(
             prependIkenKoboGyoseiKisokuDeepdiveImage(
               prependPachinkoStandingDeepdiveImage(
@@ -469,6 +473,12 @@ export default function DeepdiveScreen() {
               `${extraMatch}\n${text}`,
               (key) => !!resolveImageAsset(key),
             ),
+            `${extraMatch}\n${text}`,
+            (key) => !!resolveImageAsset(key),
+          ),
+            `${extraMatch}\n${text}`,
+            (key) => !!resolveImageAsset(key),
+          ),
             `${extraMatch}\n${text}`,
             (key) => !!resolveImageAsset(key),
           ),

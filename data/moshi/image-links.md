@@ -76,6 +76,7 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 42 | 問全体 | 許可と特許、どっち？ 合格革命第1回問10と同じ | `assets/images/deepdive/learn/gyosei/gyosei-koui-bunrui.png` | あり |
 | 33 | 委任 | LEC公開1 問34と同じ2枚 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu.png` と `-2` | あり |
 | 34 | 事務管理 | 上と同じ2枚 | 上と同じ | あり |
 | 47 | 問全体 | 2人目は、だれか | `assets/images/deepdive/learn/kisochi/josei-shusho.png` | あり |
@@ -209,6 +210,9 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 10 | 問全体 | 許可と特許、どっち？ TAC第2回の行政行為の分類、合格革命第2回の許可と特許、伊藤塾公開1の分類も同じ | `assets/images/deepdive/learn/gyosei/gyosei-koui-bunrui.png` | あり |
+| 19 | 肢5 | 仮の差止めは、必ず取り消すか。事情変更は任意。総理の異議は強制 | `assets/images/deepdive/learn/gyosei/kari-sashitome-nin-i-kyosei.png` | 未生成 |
+| 26 | 肢4 | 内閣府には、何を置くか。合格革命第3回・問9も同じ | `assets/images/deepdive/learn/gyosei/naikakufu-gaikyoku.png` | あり |
 | 47 | 問全体 | 誰が、附票を作るか。LEC公開1 問54と同じ | `assets/images/deepdive/learn/kisochi/fuhyo-honseki.png` | あり |
 | 48 | 問全体 | 死票はどっちが増えるか | `assets/images/deepdive/learn/kisochi/shosenkyoku-hirei-shihyo.png` | 未生成 |
 | 49 | 問全体 | 課税は、法律か | `assets/images/deepdive/learn/kisochi/sozei-sogo.png` | あり |
@@ -226,6 +230,7 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 9 | 問全体 | 許可と特許、どっち？ 合格革命第1回問10と同じ | `assets/images/deepdive/learn/gyosei/gyosei-koui-bunrui.png` | あり |
 | 30 | 先取特権と抵当 | 譲渡のあと、差押えできる？ | `assets/images/deepdive/learn/minnpou/sakidori-teito-joto.png` | あり |
 | 30 | 一般債権者との優劣 | 送達と抵当権設定登記の先後 | `assets/images/deepdive/learn/minnpou/sashiosae-meirei-soutatsu-toki.png` | あり |
 | 30 | 転付 | 転付が届く前に、差し押さえた？ | `assets/images/deepdive/learn/minnpou/tenpu-butsujodaii.png` | あり |
@@ -246,6 +251,7 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 9 | 問全体 | 内閣府には、何を置くか。合格革命第1回・問26肢4と同じ | `assets/images/deepdive/learn/gyosei/naikakufu-gaikyoku.png` | あり |
 | 29 | 問全体 | 即時取得は、無権利者からの取引で、動産の占有を始めたとき | `assets/images/deepdive/learn/minnpou/sokuji-shutoku-yoken.png` | あり |
 | 47 | 問全体 | 改善措置は、だれが求めるか | `assets/images/deepdive/learn/kisochi/dango-kaizen.png` | あり |
 | 48 | 問全体 | 省庁再編は、いつか | `assets/images/deepdive/learn/kisochi/shochorei-nen.png` | あり |

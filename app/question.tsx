@@ -17,7 +17,7 @@ import { ensureQuizSubject, ensureResources, RESOURCES } from '@/src/studyCache'
 import { mergeQuizResourcePages, parseQuizRefIds } from '@/utils/quizResources';
 import { explainChoiceIntent, generateDescriptiveQuestion } from '@/src/utils/geminiService';
 import { formatDescriptiveText, type TextSegment } from '@/utils/formatDescriptiveText';
-import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, numberCountStatements, splitHtmlUnderlineTags, splitNumberPrefix, stripLeadingChoiceBullet } from '@/utils/choiceNumber';
+import { formatNumberedClauses, getChoicePrefix, hasNumberPrefix, numberCountStatements, splitHtmlUnderlineTags, splitNumberPrefix, stripLeadingChoiceBullet, stripTacQuizLead } from '@/utils/choiceNumber';
 import { getQuestionMark, setQuestionMark, type QuestionMark } from '@/utils/question-marks';
 import {
   addOrSubtractQuestionHighlightRange,
@@ -60,12 +60,16 @@ import {
 import { canResolveFieldTopics } from '@/utils/topic-resolver';
 import { matchKnowledgeGap } from '@/utils/knowledge-gap';
 import { caseQuestionIndexMap, choiceIsSharedCase, gyoseiSoronCaseLabel, gyoseiSoronCaseNote, matchGyoseiSoronCase } from '@/utils/gyoseiSoronCaseLinks';
+import { choiceHasKousokuConfusion, gyoseiConfusingLearnRoute, kousokuConfusionDeepdive, kousokuConfusingMembers } from '@/utils/gyoseiConfusingTopicLinks';
+import { LEARN_CONTENT, LEARN_SOURCE } from '@/src/learnExports';
 import { SEIREI_SHOEI_KISOKU_DEEPDIVE, shouldAttachSeireiShoreiKisokuImage } from '@/src/seireiShoreiKisokuDeepdiveImage';
 import { KOKUJI_EXAMPLES_DEEPDIVE, kokujiPublicNoticeNote, shouldAttachKokujiExamples } from '@/src/kokujiExamplesDeepdiveImage';
 import { PACHINKO_STANDING_DEEPDIVE, shouldAttachPachinkoStanding } from '@/src/pachinkoStandingDeepdive';
 import { IKEN_KOBO_GYOSEI_KISOKU_DEEPDIVE, shouldAttachIkenKoboGyoseiKisoku } from '@/src/ikenKoboGyoseiKisokuDeepdive';
 import { KOEN_MINYUCHI_SAIRYO_DEEPDIVE, shouldAttachKoenMinyuchiSairyo } from '@/src/koenMinyuchiSairyoDeepdive';
 import { GYOSEIBATSU_TREE_DEEPDIVE, shouldAttachGyoseibatsuTree } from '@/src/gyoseibatsuTreeDeepdive';
+import { GYOSEI_KOUI_BUNRUI_DEEPDIVE, shouldAttachGyoseiKouiBunrui } from '@/src/gyoseiKouiBunruiDeepdive';
+import { NAIKAKUFU_GAIKYOKU_DEEPDIVE, shouldAttachNaikakufuGaikyoku } from '@/src/naikakufuGaikyokuDeepdive';
 import {
   expectedChoiceMark,
   formatChoiceOxRate,
@@ -86,6 +90,8 @@ import {
   illegalActConversionNote,
   dispositionDefectNote,
   gyoseiFrom29Note,
+  gyoseiKouiBunruiNote,
+  sairyoyokenKisokuNote,
   illegalitySuccessionNote,
   type ChoiceOxStats,
 } from '@/utils/choice-ox';
@@ -605,7 +611,7 @@ export default function QuestionScreen() {
       setHighlightRanges([]);
       return;
     }
-    const qt = stripQuestionText(question.text);
+    const qt = stripTacQuizLead(stripQuestionText(question.text));
     getQuestionStats(subject, field, question.text).then(setQuestionStats);
     getQuestionMark(subject, field, question.text).then(setQuestionMarkState);
     getQuestionHighlights(subject, field, qt).then(setHighlightedSegments);
@@ -1055,7 +1061,7 @@ export default function QuestionScreen() {
     if (!question) return null;
     webPenSelectionActiveRef.current = false;
     let penUsesLineDrag = true;
-    const text = stripQuestionText(question.text || '');
+    const text = stripTacQuizLead(stripQuestionText(question.text || ''));
     const slots = (question as any).slots || [];
     const answer = (question as any).answer || [];
     const correctCount = Array.isArray(answer) ? answer.length : 0;
@@ -1449,6 +1455,48 @@ export default function QuestionScreen() {
               <ThemedText style={[styles.mondaibunnGazoOpenButtonText, { color: '#1565C0' }]}>深掘る</ThemedText>
             </Pressable>
           ) : null}
+          {shouldAttachGyoseiKouiBunrui([
+            String((question as { text?: string })?.text || ''),
+            ...(((question as { choices?: string[] })?.choices) || []),
+          ].join('\n')) ? (
+            <Pressable
+              accessibilityLabel="行政行為の分類をもっと深掘る"
+              onPress={() => {
+                setDeepdiveParams(GYOSEI_KOUI_BUNRUI_DEEPDIVE, '', {
+                  screenTitle: '許可と特許、どっち？',
+                  quizSubject: subject || '',
+                  quizField: field || '',
+                  quizMode: mode || '',
+                  quizQuestionIndex: questionIndex !== null ? String(questionIndex) : '',
+                });
+                router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
+              }}
+              style={[styles.mondaibunnGazoOpenButton, { borderColor: '#1565C0', backgroundColor: '#E3F2FD' }]}
+            >
+              <ThemedText style={[styles.mondaibunnGazoOpenButtonText, { color: '#1565C0' }]}>図</ThemedText>
+            </Pressable>
+          ) : null}
+          {shouldAttachNaikakufuGaikyoku([
+            String((question as { text?: string })?.text || ''),
+            ...(((question as { choices?: string[] })?.choices) || []),
+          ].join('\n')) ? (
+            <Pressable
+              accessibilityLabel="内閣府の外局の図をもっと深掘る"
+              onPress={() => {
+                setDeepdiveParams(NAIKAKUFU_GAIKYOKU_DEEPDIVE, '', {
+                  screenTitle: '内閣府には、何を置くか',
+                  quizSubject: subject || '',
+                  quizField: field || '',
+                  quizMode: mode || '',
+                  quizQuestionIndex: questionIndex !== null ? String(questionIndex) : '',
+                });
+                router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
+              }}
+              style={[styles.mondaibunnGazoOpenButton, { borderColor: '#1565C0', backgroundColor: '#E3F2FD' }]}
+            >
+              <ThemedText style={[styles.mondaibunnGazoOpenButtonText, { color: '#1565C0' }]}>図</ThemedText>
+            </Pressable>
+          ) : null}
           {shouldAttachGyoseibatsuTree([
             String((question as { text?: string })?.text || ''),
             ...(((question as { choices?: string[] })?.choices) || []),
@@ -1636,7 +1684,7 @@ export default function QuestionScreen() {
   /** Web ヘルプ文: プレーン本文はドラッグ選択で部分マーカー、それ以外は従来の行単位 */
   const webHelpUsesDragSelection = useMemo(() => {
     if (Platform.OS !== 'web' || !question?.text) return false;
-    const t = stripQuestionText(question.text);
+    const t = stripTacQuizLead(stripQuestionText(question.text));
     if (subject === '記述' && t.length > 150) return false;
     const { body: questionBody } = splitNumberPrefix(t);
     const displayBody = normalizeKatakanaChoiceNewlines(hasNumberPrefix(t) ? questionBody : t);
@@ -3106,26 +3154,79 @@ export default function QuestionScreen() {
                   (isMultiSelect && isSelected) && { color: '#1565C0', fontWeight: 'bold' },
                   isStemSyncedChoice && { color: '#1565C0', fontWeight: 'bold' }
                 ]}>{`${choiceObj.originalIndex + 1}. ${displayText}`}</ThemedText>
-                {caseLabel ? (
+                {caseLabel && (!limbOxMode || oxPicks[choiceNeverAgainHash(choiceObj.text)]) ? (
                   <ThemedText style={styles.caseLink}>{caseLabel}</ThemedText>
                 ) : null}
-                {limbOxMode && (isNyMarked(choiceObj.text) || oxPicks[choiceNeverAgainHash(choiceObj.text)]) ? (
-                  <ThemedText style={styles.oxExplain}>
-                    {(() => {
+                {limbOxMode && oxPicks[choiceNeverAgainHash(choiceObj.text)] ? (
+                  <MarkdownText
+                    text={(() => {
                       const storedList = (question as any)?.choiceExplanations as string[] | undefined;
                       const stored = String(storedList?.[choiceObj.originalIndex] || '').trim();
                       const stem = String((question as any)?.text || '').trim();
                       const own = String(choiceObj.text || '').replace(/※/g, '').trim();
                       const real = stored && stored !== stem && stored !== own && stored.length >= 12 ? stored : '';
-                      return real || gyoseiSoronCaseNote(subject, field, choiceObj.text) || agencyHeadOrderNote(choiceObj.text) || ministerOrderNote(choiceObj.text) || ministryDepartmentNote(choiceObj.text) || cabinetOrgNote(choiceObj.text) || civilServiceDisciplineNote(choiceObj.text) || yakujiInternetBanNote(choiceObj.text) || publicCommentAdminRuleNote(choiceObj.text) || laterDispositionVoidNote(choiceObj.text) || standardIsNotMeireiNote(choiceObj.text) || disciplineCompareNote(choiceObj.text) || oldAgeAdditionNote(choiceObj.text) || personalTaxiStandardNote(choiceObj.text) || illegalActConversionNote(choiceObj.text) || illegalitySuccessionNote(choiceObj.text) || dispositionDefectNote(choiceObj.text) || gyoseiFrom29Note(choiceObj.text, stem) || kokujiPublicNoticeNote(choiceObj.text) || 'この肢の解説は、まだ入っていない。';
+                      const note = sairyoyokenKisokuNote(choiceObj.text) || gyoseiSoronCaseNote(subject, field, choiceObj.text) || agencyHeadOrderNote(choiceObj.text) || ministerOrderNote(choiceObj.text) || ministryDepartmentNote(choiceObj.text) || cabinetOrgNote(choiceObj.text) || civilServiceDisciplineNote(choiceObj.text) || yakujiInternetBanNote(choiceObj.text) || publicCommentAdminRuleNote(choiceObj.text) || laterDispositionVoidNote(choiceObj.text) || standardIsNotMeireiNote(choiceObj.text) || disciplineCompareNote(choiceObj.text) || oldAgeAdditionNote(choiceObj.text) || personalTaxiStandardNote(choiceObj.text) || illegalActConversionNote(choiceObj.text) || illegalitySuccessionNote(choiceObj.text) || dispositionDefectNote(choiceObj.text) || gyoseiKouiBunruiNote(choiceObj.text) || gyoseiFrom29Note(choiceObj.text, stem) || kokujiPublicNoticeNote(choiceObj.text) || '';
+                      const storedIsList = real.startsWith('誤答肢。') && !real.includes('|');
+                      const noteHasTable = note.includes('|');
+                      if (note && (!real || storedIsList || (noteHasTable && !real.includes('|')))) return note;
+                      return real || note || 'この肢の解説は、まだ入っていない。';
                     })()}
-                  </ThemedText>
+                    style={styles.oxExplain}
+                    autoGlossaryTerms={false}
+                  />
                 ) : null}
                 {limbOxMode ? (
                   <View style={styles.oxMetaRow}>
                     <ThemedText style={styles.oxRate}>
                       {formatChoiceOxRate(oxStatsMap[choiceNeverAgainHash(choiceObj.text)])}
                     </ThemedText>
+                    {choiceHasKousokuConfusion(choiceObj.text) ? (
+                      <View style={styles.oxLinkGroup}>
+                        <ThemedText style={styles.oxConfusingLabel}>紛らわしい</ThemedText>
+                        {kousokuConfusingMembers().map((member) => (
+                          <Pressable
+                            key={`${member.subject}-${member.label}`}
+                            accessibilityLabel={`紛らわしい知識 ${member.label}`}
+                            onPress={() => {
+                              const openChunk = () => {
+                                const body = kousokuConfusionDeepdive();
+                                if (!body) return;
+                                setDeepdiveParams(body, '', {
+                                  screenTitle: '何が、誰を拘束するか',
+                                  quizSubject: subject || '',
+                                  quizField: field || '',
+                                  quizMode: mode || '',
+                                  quizQuestionIndex: questionIndex !== null ? String(questionIndex) : '',
+                                });
+                                router.push({ pathname: '/deepdive' as any, params: { choiceLabel: '' } });
+                              };
+                              try {
+                                const cards = ((LEARN_CONTENT as Record<string, string[] | undefined>)[member.subject] || []) as string[];
+                                const source = (LEARN_SOURCE as Record<string, unknown[] | undefined>)[member.subject];
+                                const route = gyoseiConfusingLearnRoute(member.subject, member.test, cards, source);
+                                if (!route) {
+                                  openChunk();
+                                  return;
+                                }
+                                router.push({
+                                  pathname: '/learn/[subject]' as any,
+                                  params: {
+                                    subject: route.subject,
+                                    index: route.index,
+                                    ...(route.plus ? { plus: route.plus } : {}),
+                                  },
+                                });
+                              } catch {
+                                openChunk();
+                              }
+                            }}
+                            style={styles.oxConfusingChip}
+                          >
+                            <ThemedText style={styles.oxConfusingChipText}>{member.label}</ThemedText>
+                          </Pressable>
+                        ))}
+                      </View>
+                    ) : null}
                     {relatedIndexes.length > 0 ? (
                       <View style={styles.oxLinkGroup}>
                         <ThemedText style={styles.oxLinkLabel}>関連</ThemedText>
@@ -4224,6 +4325,24 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '800',
     color: '#E65100',
+  },
+  oxConfusingLabel: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#6A1B9A',
+  },
+  oxConfusingChip: {
+    borderWidth: 1,
+    borderColor: '#8E24AA',
+    backgroundColor: '#F3E5F5',
+    borderRadius: 8,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+  },
+  oxConfusingChipText: {
+    fontSize: 12,
+    fontWeight: '800',
+    color: '#6A1B9A',
   },
   oxKnowledgeChip: {
     borderWidth: 1,
