@@ -116,7 +116,7 @@
 | 47 | 問全体 | 絶対と相対は、どこで分かれるか | `assets/images/deepdive/learn/kisochi/zettai-soutai.png` | あり |
 | 48 | 問全体 | 韓国の大統領は、再任できるか | `assets/images/deepdive/learn/kisochi/kankoku-ninki.png` | あり |
 | 48 | 選び方も同じ表 | 元首は、だれが選んで、何年か。LEC市販第1回 問47と同じ | `assets/images/deepdive/learn/kisochi/genshu-ninki.png` | あり |
-| 48 | 語呂 | フロカイは国民が直接。任期の表は上 | `assets/images/deepdive/learn/kisochi/genshu-furokai.png` | 未生成 |
+| 48 | 語呂 | フロカイは国民が直接。任期の表は上 | `assets/images/deepdive/learn/kisochi/genshu-furokai.png` | あり |
 | 49 | 問全体 | 都市計画税は、何に課すか | `assets/images/deepdive/learn/kisochi/toshi-keikakuzei.png` | あり |
 | 50 | 問全体 | 傾斜生産は、何に集中するか | `assets/images/deepdive/learn/kisochi/keizai-fukkou-kodo-1947-1968.png` | あり |
 | 51 | 問全体 | 旅館は、どんな要求なら拒めるか | `assets/images/deepdive/learn/kisochi/ryokan-kyohi.png` | あり |
@@ -153,7 +153,7 @@
 |---|---|---|---|---|
 | 47 | 問全体 | 元首は、だれが選ぶか | `assets/images/deepdive/learn/kisochi/genshu-erabu.png` | あり |
 | 47 | 任期も同じ表 | 元首は、だれが選んで、何年か。選び方だけの図は上 | `assets/images/deepdive/learn/kisochi/genshu-ninki.png` | あり |
-| 47 | 語呂 | フロカイは国民が直接。任期の表は上 | `assets/images/deepdive/learn/kisochi/genshu-furokai.png` | 未生成 |
+| 47 | 語呂 | フロカイは国民が直接。任期の表は上 | `assets/images/deepdive/learn/kisochi/genshu-furokai.png` | あり |
 | 48 | 沿革 | 自衛隊の前は、なにか | `assets/images/deepdive/learn/kisochi/jieitai-mae.png` | あり |
 | 48 | 条約 | 地位協定は、共同防衛か | `assets/images/deepdive/learn/kisochi/chii-anpo.png` | あり |
 | 49 | 持株会社 | 持株会社は、まだ禁止か | `assets/images/deepdive/learn/kisochi/mochikabu.png` | あり |
@@ -172,10 +172,13 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 9 | 3 | 内部の会議と、外に出した書面は、どっちが行政行為か。固有の当事者名は図にない | `assets/images/deepdive/learn/gyosei/hyoji-kenngen-4koma.png` | あり |
+| 9 | 4 | 刑事裁判で、行政行為の違法は言えるか。余目町 | `assets/images/deepdive/learn/gyosei/keiji-koteiryoku-4koma.png` | あり |
+| 14 | 2 | 検証の通知は、いつ要るか。32条から36条の一覧図とは別 | `assets/images/deepdive/learn/gyosei/kensho-shokken-moushitate.png` | 未生成 |
 | 47 | 機関委任と水道 | 機関委任事務は、いつ廃止か。オンブズマンの初は図にない | `assets/images/deepdive/learn/kisochi/kikan-inin.png` | あり |
-| 48 | 問全体 | 海の線はどこまでか | `assets/images/deepdive/learn/kisochi/umi-kukuu-kaiiki.png` | 未生成 |
+| 48 | 問全体 | 海の線はどこまでか | `assets/images/deepdive/learn/kisochi/umi-kukuu-kaiiki.png` | あり |
 | 49 | 問全体 | 硬貨は、だれが出すか | `assets/images/deepdive/learn/kisochi/kouka-seifu.png` | あり |
-| 50 | 問全体 | ドルと金の交換はいつ止めたか | `assets/images/deepdive/learn/kisochi/doru-kin-kawase.png` | 未生成 |
+| 50 | 問全体 | ドルと金の交換はいつ止めたか | `assets/images/deepdive/learn/kisochi/doru-kin-kawase.png` | あり |
 | 51 | 一次と二次 | 一次エネルギーは、転換したあとの呼び方か | `assets/images/deepdive/learn/kisochi/ichiji-henkan.png` | あり |
 | 51 | 供給促進交付金 | 供給促進交付金は、固定価格の前か | `assets/images/deepdive/learn/kisochi/kyokyu-sokushin.png` | あり |
 | 52 | 問全体 | 収集運搬は、市町村長か。産業廃棄物 | `assets/images/deepdive/learn/kisochi/sanpai-kyoka.png` | あり |
@@ -193,6 +196,7 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 21 | 問全体 | 正当な補償は、どの場面の言葉か。輪中堤は図にない | `assets/images/deepdive/learn/kenpou/sonshitsu-hoshou-yogo.png` | あり |
 | 34 | 問全体 | LEC公開1 問34と同じ2枚 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu.png` と `-2` | あり |
 | 47 | 問全体 | 行政国家は、だれが中心か | `assets/images/deepdive/learn/kisochi/gyosei-kokka.png` | あり |
 | 48 | 問全体 | 原案の発議か、国会の発議か | `assets/images/deepdive/learn/kisochi/kenpo-kaisei.png` | 未生成 |
