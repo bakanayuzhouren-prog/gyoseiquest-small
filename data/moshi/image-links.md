@@ -95,6 +95,8 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 8 | 問全体 | 税金の信頼は、いつ守られるか。信義則と遡及立法。84条の一般論の図は使わない | `assets/images/deepdive/learn/gyosei/zeimu-shingi-sokyu.png` | 未生成 |
+| 22 | 肢2 | 同じ蛇行進に、法律と条例？明確性・一般人の理解は図にない | `assets/images/deepdive/learn/gyosei/tokushima-hebi-koushin.png` | 未生成 |
 | 29 | 問全体 | 隣地使用。LEC公開1 問29と同じ | `assets/images/deepdive/learn/minnpou/rinchi-shiyo-shoten.png` | あり |
 | 30 | 同一所有者の時期だけ | LEC公開1 問30肢5と同じ。建替え・時効・借地の図は使わない | `assets/images/deepdive/learn/minnpou/q30-5-senjun-i.png` | あり |
 | 47 | 問全体 | 女性活躍は、いつの法律か | `assets/images/deepdive/learn/kisochi/josei-katsuyaku.png` | あり |
@@ -133,6 +135,8 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 22 | 肢2・肢4・肢5 | 設けるとき、許可？届出？勧告？指定都市・中核市と特別区の法人格は図にない。勧告の右端は対象外 | `assets/images/deepdive/learn/gyosei/kyoka-todokede-kankoku.png` | あり |
+| 25 | 問全体 | 4条の各号に、ある？助言は各号にない。作らなくてよい、ではない | `assets/images/deepdive/learn/gyosei/koubun-4jo-kakugo.png` | 未生成 |
 | 30 | 同一所有者の時期だけ | LEC公開1 問30肢5と同じ | `assets/images/deepdive/learn/minnpou/q30-5-senjun-i.png` | あり |
 | 47 | 問全体 | 議会は、自分で解散できるか | `assets/images/deepdive/learn/kisochi/gikai-jishukaisan.png` | あり |
 | 48 | 問全体 | 排他的経済水域は、何海里か | `assets/images/deepdive/learn/kisochi/eez-200.png` | あり |
@@ -216,6 +220,7 @@
 |---|---|---|---|---|
 | 10 | 問全体 | 許可と特許、どっち？ TAC第2回の行政行為の分類、合格革命第2回の許可と特許、伊藤塾公開1の分類も同じ | `assets/images/deepdive/learn/gyosei/gyosei-koui-bunrui.png` | あり |
 | 19 | 肢5 | 仮の差止めは、必ず取り消すか。事情変更は任意。総理の異議は強制 | `assets/images/deepdive/learn/gyosei/kari-sashitome-nin-i-kyosei.png` | 未生成 |
+| 24 | 許可と届出 | 設けるとき、許可？届出？勧告？ TAC第3回・問22と同じ。出席・監査・法令の解釈は図にない | `assets/images/deepdive/learn/gyosei/kyoka-todokede-kankoku.png` | あり |
 | 26 | 肢4 | 内閣府には、何を置くか。合格革命第3回・問9も同じ | `assets/images/deepdive/learn/gyosei/naikakufu-gaikyoku.png` | あり |
 | 47 | 問全体 | 誰が、附票を作るか。LEC公開1 問54と同じ | `assets/images/deepdive/learn/kisochi/fuhyo-honseki.png` | あり |
 | 48 | 問全体 | 死票はどっちが増えるか | `assets/images/deepdive/learn/kisochi/shosenkyoku-hirei-shihyo.png` | 未生成 |
@@ -273,4 +278,5 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 22 | 許可 | 設けるとき、許可？届出？勧告？ TAC第3回・問22と同じ。財産区と指定都市は図にない | `assets/images/deepdive/learn/gyosei/kyoka-todokede-kankoku.png` | あり |
 | 36 | 肢3 | 示さない契約。過失の相手方は、代理人に請求できる？ | `assets/images/deepdive/learn/shouhou/504-kashitsu-aitegata.png` | あり |
