@@ -1,0 +1,1169 @@
+{
+  "examId": "tac-2026-round1",
+  "title": "TAC 全国公開模試 第1回（2026-06）",
+  "imageDir": "app/模試画像/TAC1/問題",
+  "imageCount": 56,
+  "answerImageCount": 60,
+  "relation": "問題画像56枚、解答画像60枚。紙面の問題番号は1から60。1枚に2問の頁と、問番号のない続き頁がある。",
+  "questions": [
+    {
+      "questionNumber": 1,
+      "subject": "基礎法学",
+      "topicCandidate": "拘禁刑",
+      "form": "空欄",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034515734.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 1,
+      "blanks": {
+        "ア": "拘禁刑",
+        "イ": "再犯防止",
+        "ウ": "応報刑論",
+        "エ": "目的刑論"
+      },
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024559018.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 2,
+      "subject": "基礎法学",
+      "topicCandidate": "検察審査会",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034357604.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024446881.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 3,
+      "subject": "憲法",
+      "topicCandidate": "表現の自由",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034551484.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 4,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024415190.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 4,
+      "subject": "憲法",
+      "topicCandidate": "職業選択の自由",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034620472.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024207763.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 5,
+      "subject": "憲法",
+      "topicCandidate": "生存権",
+      "form": "空欄",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034449494.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 5,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024148819.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 6,
+      "subject": "憲法",
+      "topicCandidate": "国会の議事",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034437109.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024217058.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 7,
+      "subject": "憲法",
+      "topicCandidate": "司法権の限界",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034218195.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024532165.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 8,
+      "subject": "行政法",
+      "topicCandidate": "租税と信義則・遡及立法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034657996.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 5,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024510981.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 9,
+      "subject": "行政法",
+      "topicCandidate": "行政立法と委任の範囲",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034430177.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 4,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024545355.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 10,
+      "subject": "行政法",
+      "topicCandidate": "義務履行確保",
+      "form": "択一",
+      "images": [],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024615456.jpg"
+      ],
+      "notes": "正解3は解答紙面の印字。問題頁は56枚に無く、てらしぃが示した問題頁で問番号を確認した。"
+    },
+    {
+      "questionNumber": 11,
+      "subject": "行政法",
+      "topicCandidate": "行政手続法の目的",
+      "form": "組合せ",
+      "images": [],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 4,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024444236.jpg"
+      ],
+      "notes": "正解4は解答紙面の印字。問題頁は56枚に無く、てらしぃが示した問題頁で問番号を確認した。"
+    },
+    {
+      "questionNumber": 12,
+      "subject": "行政法",
+      "topicCandidate": "聴聞と弁明",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034627355.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 4,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024450792.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 13,
+      "subject": "行政法",
+      "topicCandidate": "意見公募",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034707875.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 1,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024258257.MP.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 14,
+      "subject": "行政法",
+      "topicCandidate": "審査請求",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034707875.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024617656.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 15,
+      "subject": "行政法",
+      "topicCandidate": "再調査の請求",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034305063.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 1,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024410763.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 16,
+      "subject": "行政法",
+      "topicCandidate": "教示",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034554495.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 5,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024251905.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 17,
+      "subject": "行政法",
+      "topicCandidate": "訴えの利益",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034629797.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 1,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024232507.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 18,
+      "subject": "行政法",
+      "topicCandidate": "取消訴訟の準用",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034629797.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024333867.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 19,
+      "subject": "行政法",
+      "topicCandidate": "義務付けの訴え",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034458690.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 5,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024301708.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 20,
+      "subject": "行政法",
+      "topicCandidate": "公権力の行使",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034730133.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024601283.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 21,
+      "subject": "行政法",
+      "topicCandidate": "営造物責任",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034350841.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 1,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024144515.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 22,
+      "subject": "行政法",
+      "topicCandidate": "条例と規則",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034521586.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024518489.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 23,
+      "subject": "行政法",
+      "topicCandidate": "大都市の特例",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034541693.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024133895.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 24,
+      "subject": "行政法",
+      "topicCandidate": "公の施設",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034317152.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 5,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024156413.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 25,
+      "subject": "行政法",
+      "topicCandidate": "公物",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034211615.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 5,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024242135.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 26,
+      "subject": "行政法",
+      "topicCandidate": "道路",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034258726.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 4,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024200474.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 27,
+      "subject": "民法",
+      "topicCandidate": "意思表示",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034604262.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024211678.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 28,
+      "subject": "民法",
+      "topicCandidate": "時効",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034648703.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 4,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024526079.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 29,
+      "subject": "民法",
+      "topicCandidate": "相隣関係",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034534425.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024237835.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 30,
+      "subject": "民法",
+      "topicCandidate": "法定地上権",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034440253.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 4,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024311631.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 31,
+      "subject": "民法",
+      "topicCandidate": "詐害行為取消し",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034233437.MP.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024609189.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 32,
+      "subject": "民法",
+      "topicCandidate": "相殺",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034233437.MP.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 4,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024422333.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 33,
+      "subject": "民法",
+      "topicCandidate": "契約の解除",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034530784.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024552893.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 34,
+      "subject": "民法",
+      "topicCandidate": "不法行為",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034336860.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 5,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024534668.MP.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 35,
+      "subject": "民法",
+      "topicCandidate": "婚姻と離婚",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034611850.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 5,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024110261.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 36,
+      "subject": "商法",
+      "topicCandidate": "物品運送",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034611850.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 1,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024521148.MP.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 37,
+      "subject": "商法",
+      "topicCandidate": "募集設立",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034426725.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024400291.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 38,
+      "subject": "商法",
+      "topicCandidate": "株式",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034154431.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 1,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024528084.MP.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 39,
+      "subject": "商法",
+      "topicCandidate": "株主総会",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034221996.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024247879.MP.jpg",
+        "app/模試画像/TAC1/解答/PXL_20260614_024503068.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 40,
+      "subject": "商法",
+      "topicCandidate": "計算",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034524175.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 1,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024352383.MP.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 41,
+      "subject": "多肢選択",
+      "topicCandidate": "性同一性障害特例法",
+      "form": "空欄",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034711113.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": null,
+      "blanks": {
+        "ア": "7",
+        "イ": "18",
+        "ウ": "8",
+        "エ": "4"
+      },
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024438015.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 42,
+      "subject": "多肢選択",
+      "topicCandidate": "行政罰と過料",
+      "form": "空欄",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034329213.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": null,
+      "blanks": {
+        "ア": "5",
+        "イ": "1",
+        "ウ": "19",
+        "エ": "12"
+      },
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024432611.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 43,
+      "subject": "多肢選択",
+      "topicCandidate": "法定受託事務と是正の指示",
+      "form": "空欄",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034346967.jpg",
+        "app/模試画像/TAC1/問題/PXL_20260614_034418746.jpg"
+      ],
+      "multiPage": true,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": null,
+      "blanks": {
+        "ア": "12",
+        "イ": "13",
+        "ウ": "6",
+        "エ": "16"
+      },
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024325855.jpg"
+      ],
+      "notes": "2枚目は語群の続き。問番号の印字はない。問42の語群は本文頁にある。"
+    },
+    {
+      "questionNumber": 44,
+      "subject": "記述",
+      "topicCandidate": "住民監査請求と住民訴訟",
+      "form": "記述",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034308361.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": null,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024606588.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 45,
+      "subject": "記述",
+      "topicCandidate": "妨害排除",
+      "form": "記述",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034506370.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": null,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024228255.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 46,
+      "subject": "記述",
+      "topicCandidate": "有益費",
+      "form": "記述",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034207507.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": null,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024128227.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 47,
+      "subject": "基礎知識",
+      "topicCandidate": "女性の参画",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034324788.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 1,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024221545.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 48,
+      "subject": "基礎知識",
+      "topicCandidate": "政治資金",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034622625.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024550786.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 49,
+      "subject": "基礎知識",
+      "topicCandidate": "税と社会保険",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034544367.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024427143.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 50,
+      "subject": "基礎知識",
+      "topicCandidate": "埋葬と火葬",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034732316.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 5,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024404271.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 51,
+      "subject": "基礎知識",
+      "topicCandidate": "指定管理鳥獣",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034512633.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 4,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024124049.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 52,
+      "subject": "基礎知識",
+      "topicCandidate": "空家",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034614376.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024115738.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 53,
+      "subject": "基礎知識",
+      "topicCandidate": "行政書士法",
+      "form": "組合せ",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034314182.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024513781.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 54,
+      "subject": "基礎知識",
+      "topicCandidate": "住民票と附票",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034314182.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024318770.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 55,
+      "subject": "基礎知識",
+      "topicCandidate": "サイバー攻撃の類型",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034720367.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 4,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024338628.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 56,
+      "subject": "基礎知識",
+      "topicCandidate": "人工知能基本計画と戦略本部",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034339655.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 1,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [],
+      "notes": "解答60枚にはこの頁が無い。てらしぃが示した解答頁の印字は正解1。"
+    },
+    {
+      "questionNumber": 57,
+      "subject": "基礎知識",
+      "topicCandidate": "個人情報の開示",
+      "form": "択一",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034637798.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 5,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024506035.MP.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 58,
+      "subject": "基礎知識",
+      "topicCandidate": "時間と空間",
+      "form": "空欄",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034601378.jpg"
+      ],
+      "multiPage": false,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 2,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024346845.jpg"
+      ],
+      "notes": ""
+    },
+    {
+      "questionNumber": 59,
+      "subject": "基礎知識",
+      "topicCandidate": "並べ替え",
+      "form": "並べ替え",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034640816.jpg",
+        "app/模試画像/TAC1/問題/PXL_20260614_034452248.jpg"
+      ],
+      "multiPage": true,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 4,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024138005.jpg"
+      ],
+      "notes": "2枚目は順序の選択肢の続き。問番号の印字はない。手書きの丸は正解に使っていない。"
+    },
+    {
+      "questionNumber": 60,
+      "subject": "基礎知識",
+      "topicCandidate": "脱文",
+      "form": "空欄",
+      "images": [
+        "app/模試画像/TAC1/問題/PXL_20260614_034652205.jpg",
+        "app/模試画像/TAC1/問題/PXL_20260614_034718115.jpg"
+      ],
+      "multiPage": true,
+      "ocrStatus": "header_seen",
+      "needsReview": false,
+      "correctAnswer": 3,
+      "blanks": null,
+      "answerConfidence": "header_seen",
+      "answerImages": [
+        "app/模試画像/TAC1/解答/PXL_20260614_024307599.jpg"
+      ],
+      "notes": "2枚目は肢の続き。問番号の印字はない。手書きの丸は正解に使っていない。"
+    }
+  ],
+  "unassignedQuestionImages": []
+}
