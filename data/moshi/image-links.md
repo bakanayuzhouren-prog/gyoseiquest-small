@@ -91,6 +91,15 @@
 | 56 | 問全体 | オンラインは、だれか | `assets/images/deepdive/learn/kisochi/maina-koshu.png` | あり |
 | 57 | 問全体 | 苦情は、努力義務か | `assets/images/deepdive/learn/kisochi/nintei-kujou.png` | あり |
 
+## 伊藤塾公開２
+
+問番号と写真の対応は `data/moshi/ito-juku-koukai-2026-round2-question-pages.json`。問題写真がないのは問1、58、59、60。解答写真がないのは問41、58、59、60。
+
+| 問 | 肢 | 図 | パス | PNG |
+|---|---|---|---|---|
+| 19 | ア | 斉唱の命令のあと、どの訴え？ 命令自体は処分ではない。減給は処分、昇給が抑えられることは処分以外。差止めの重大な損害と、命令の合憲性は図にない | `assets/images/deepdive/learn/gyosei/kimigayo-shogu-kakunin-4koma.png` | 未生成 |
+| 24 | 肢3 | 審査の申出は、だれが、だれに対して？ 3つの入口の図は別 | `assets/images/deepdive/learn/jichi/kuni-moushide-darekara.png` | 未生成 |
+
 ## TAC第1回
 
 | 問 | 肢 | 図 | パス | PNG |
