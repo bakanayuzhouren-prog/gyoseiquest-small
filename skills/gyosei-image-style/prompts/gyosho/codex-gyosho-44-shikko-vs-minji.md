@@ -1,4 +1,4 @@
-関連: 未確定。てらしぃの「19のエ」は、索引の合格革命第3回・問19が申請型義務付けで、仮処分の肢と突合できていない。索引には足さない。同じ論点の既存PNGはない。未生成。この修正後のプロンプトで描く。
+関連: LEC公開1・問19・ウ。公権力の行使は、民事保全の仮処分で止めない。提起・管轄・事情変更・総理の異議は、この図に無い。
 
 # Codex用 — 仮に守るなら、執行停止？民事の仮処分？
 
@@ -7,7 +7,8 @@
 - 保存先: assets/images/deepdive/learn/gyosho/shikko-teishi-vs-minji-karishobun.png
 - 画像キー: learn/gyosho/shikko-teishi-vs-minji-karishobun
 - 生成は Codex。Cursor は描かない。
-- 配置案: 見て聞いて覚える・行政事件訴訟法。PNGができてから Cursor が載せる。生成前は `[[image:]]` を付けない。
+- PNGはある。上書きしない。できる・できないの表は、別ファイル `codex-gyosho-minji-karishobun-dekiru.md`。
+- 配置案: 見て聞いて覚える・行政事件訴訟法。
 - 既存の執行停止の3類型・損害の語の図は上書きしない。
 
 ## PRE-GENERATE-CHECK（行訴法25条・37条の5・44条・45条、地方自治法242条の2第10項）

@@ -1,0 +1,881 @@
+{
+  "examId": "ito-juku-koukai-2026-round1",
+  "title": "伊藤塾 公開模擬試験Ⅰ",
+  "problemImageDir": "app/模試画像/伊藤塾公開１/問題",
+  "answerImageDir": "app/模試画像/伊藤塾公開１/解答",
+  "problemImageCount": 49,
+  "answerImageCount": 62,
+  "scoreSheetImage": "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg",
+  "policy": "見出しの問番号と、解答欄または得点表に印字された正解だけ。問題文・肢・解説は載せていない。記述は択一番号を付けない。",
+  "missingProblemImages": [
+    23
+  ],
+  "missingAnswerImages": [],
+  "questions": [
+    {
+      "questionNumber": 1,
+      "subject": "基礎法学",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033247004.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015836671.jpg"
+      ],
+      "correctAnswer": 1,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 2,
+      "subject": "基礎法学",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033237075.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_020038600.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 3,
+      "subject": "憲法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033215534.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015802688.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 4,
+      "subject": "憲法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033105318.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032205089.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 5,
+      "subject": "憲法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033105318.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_020033733.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 6,
+      "subject": "憲法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033446883.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032021665.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 7,
+      "subject": "憲法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033446883.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032056930.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 8,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033132798.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015653949.MP.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 9,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033155471.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032027360.jpg"
+      ],
+      "correctAnswer": 1,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 10,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033051466.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015822990.jpg"
+      ],
+      "correctAnswer": 2,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 11,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033051466.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015812238.jpg"
+      ],
+      "correctAnswer": 2,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 12,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033120696.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015748492.jpg"
+      ],
+      "correctAnswer": 2,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 13,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033224044.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032050979.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 14,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033205693.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015713083.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 15,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033315978.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015647665.jpg"
+      ],
+      "correctAnswer": 3,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 16,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033140787.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015900655.jpg"
+      ],
+      "correctAnswer": 1,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 17,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033324268.jpg",
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033412226.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015738732.jpg"
+      ],
+      "correctAnswer": 3,
+      "needsReview": true,
+      "notes": "続きの肢表。見出しの問番号は切れている。共有持分の差押えと無効確認の組合せが見える"
+    },
+    {
+      "questionNumber": 18,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033354567.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015851260.jpg"
+      ],
+      "correctAnswer": 2,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 19,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033418668.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015708999.jpg"
+      ],
+      "correctAnswer": 3,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 20,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033233502.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032139378.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 21,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033226326.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_020100284.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 22,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033426338.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032147449.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 23,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015846860.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": true,
+      "notes": "問題写真がない"
+    },
+    {
+      "questionNumber": 24,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033338868.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015757777.jpg"
+      ],
+      "correctAnswer": 3,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 25,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033102417.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032015960.jpg"
+      ],
+      "correctAnswer": 1,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 26,
+      "subject": "行政法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033305907.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015827541.jpg"
+      ],
+      "correctAnswer": 2,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 27,
+      "subject": "民法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033402697.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_020054265.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 28,
+      "subject": "民法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033042142.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015818260.jpg"
+      ],
+      "correctAnswer": 1,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 29,
+      "subject": "民法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033345550.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_020115282.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 30,
+      "subject": "民法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033345550.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015703526.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 31,
+      "subject": "民法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033312137.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_020042858.jpg"
+      ],
+      "correctAnswer": 2,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 32,
+      "subject": "民法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033123700.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015729062.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 33,
+      "subject": "民法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033123700.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015855790.jpg"
+      ],
+      "correctAnswer": 3,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 34,
+      "subject": "民法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033110870.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032118951.jpg"
+      ],
+      "correctAnswer": 2,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 35,
+      "subject": "民法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033110870.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_020110589.jpg"
+      ],
+      "correctAnswer": 1,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 36,
+      "subject": "商法・会社法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033243442.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015922694.jpg"
+      ],
+      "correctAnswer": 2,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 37,
+      "subject": "商法・会社法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033243442.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015718756.jpg"
+      ],
+      "correctAnswer": 3,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 38,
+      "subject": "商法・会社法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033431313.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015927081.MP.jpg"
+      ],
+      "correctAnswer": 1,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 39,
+      "subject": "商法・会社法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033431313.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032114588.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 40,
+      "subject": "商法・会社法",
+      "form": "択一",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033449821.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_020105177.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 41,
+      "subject": "多肢選択",
+      "form": "多肢選択",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033252669.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032152698.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": null,
+      "needsReview": false,
+      "notes": "正解は得点表の空欄番号。ア12、イ17、ウ14、エ2",
+      "printedSlots": "ア12、イ17、ウ14、エ2"
+    },
+    {
+      "questionNumber": 42,
+      "subject": "多肢選択",
+      "form": "多肢選択",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033113233.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015831735.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": null,
+      "needsReview": false,
+      "notes": "正解は得点表の空欄番号。ア16、イ2、ウ13、エ7",
+      "printedSlots": "ア16、イ2、ウ13、エ7"
+    },
+    {
+      "questionNumber": 43,
+      "subject": "多肢選択",
+      "form": "多肢選択",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033357244.MP.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032036667.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": null,
+      "needsReview": false,
+      "notes": "正解は得点表の空欄番号。ア15、イ19、ウ3、エ10",
+      "printedSlots": "ア15、イ19、ウ3、エ10"
+    },
+    {
+      "questionNumber": 44,
+      "subject": "記述",
+      "form": "記述",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033440948.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015753141.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": null,
+      "needsReview": false,
+      "notes": "記述。択一番号はない"
+    },
+    {
+      "questionNumber": 45,
+      "subject": "記述",
+      "form": "記述",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033152488.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_020028115.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": null,
+      "needsReview": false,
+      "notes": "記述。択一番号はない"
+    },
+    {
+      "questionNumber": 46,
+      "subject": "記述",
+      "form": "記述",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033334100.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032123807.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": null,
+      "needsReview": false,
+      "notes": "記述。択一番号はない"
+    },
+    {
+      "questionNumber": 47,
+      "subject": "基礎知識",
+      "form": "基礎知識",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033202722.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032109795.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 1,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 48,
+      "subject": "基礎知識",
+      "form": "基礎知識",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033202722.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015733945.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 49,
+      "subject": "基礎知識",
+      "form": "基礎知識",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033143682.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032032356.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 3,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 50,
+      "subject": "基礎知識",
+      "form": "基礎知識",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033143682.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015905685.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 51,
+      "subject": "基礎知識",
+      "form": "基礎知識",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033255623.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015840618.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 5,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 52,
+      "subject": "基礎知識",
+      "form": "基礎知識",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033255623.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015743409.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 2,
+      "needsReview": false,
+      "notes": "解説写真を付けた。得点表は問41から60の一覧"
+    },
+    {
+      "questionNumber": 53,
+      "subject": "基礎知識",
+      "form": "基礎知識",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033055751.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015807132.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 1,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 54,
+      "subject": "基礎知識",
+      "form": "基礎知識",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033327640.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032103940.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 1,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 55,
+      "subject": "基礎知識",
+      "form": "基礎知識",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033327640.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_020047782.MP.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": "解説写真を付けた。得点表は問41から60の一覧"
+    },
+    {
+      "questionNumber": 56,
+      "subject": "基礎知識",
+      "form": "基礎知識",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033129628.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032157198.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 2,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 57,
+      "subject": "基礎知識",
+      "form": "基礎知識",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033129628.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015724719.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": "解説写真を付けた。得点表は問41から60の一覧"
+    },
+    {
+      "questionNumber": 58,
+      "subject": "基礎知識",
+      "form": "文章理解",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033406884.jpg",
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033301637.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015916310.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": ""
+    },
+    {
+      "questionNumber": 59,
+      "subject": "基礎知識",
+      "form": "文章理解",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033348822.jpg",
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033218616.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032042574.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032128661.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 4,
+      "needsReview": false,
+      "notes": "解答冊子に問題文の再掲がある"
+    },
+    {
+      "questionNumber": 60,
+      "subject": "基礎知識",
+      "form": "文章理解",
+      "images": [
+        "app/模試画像/伊藤塾公開１/問題/PXL_20260903_033437490.jpg"
+      ],
+      "answerImages": [
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_015910456.jpg",
+        "app/模試画像/伊藤塾公開１/解答/PXL_20260903_032046515.jpg"
+      ],
+      "correctAnswer": 2,
+      "needsReview": false,
+      "notes": ""
+    }
+  ]
+}
