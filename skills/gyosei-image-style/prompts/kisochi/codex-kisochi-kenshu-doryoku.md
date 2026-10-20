@@ -1,7 +1,9 @@
 # 行政書士の研修は、義務？
 
-- 状態: 生成済み
-- 改訂: 2026-10-05。各行の主体を行政書士と書いた。
+- 状態: この1枚だけ上書き。列見出しを重要ワードと内容にする。各行は、何を守るかまで書く
+- 上書き対象: assets/images/deepdive/learn/kisochi/kenshu-doryoku.png
+- overwrite: true
+- 改訂: 2026-10-18。列見出し。会則を守る、信用または品位を害する、まで戻す。
 - 関連: LEC市販模試 第1回 問53。行政書士は、会則を守らなければならない。13条。信用または品位を害する行為をしてはならない。10条。研修を受け資質の向上を図るよう努めなければならない。13条の2。事務所の数の図とは別。
 - 保存先: assets/images/deepdive/learn/kisochi/kenshu-doryoku.png
 - 画像キー: learn/kisochi/kenshu-doryoku
@@ -16,13 +18,13 @@ Title, a short question: 行政書士の研修は、義務？
 
 Answer band: 行政書士の研修は、努めなければならない。
 
-One table. Column headings on a navy band: 見るところ / 結論
+One table. Column headings on a navy band: 重要ワード / 内容
 Three data rows. Alternate by row. Row 1 white, row 2 light gray, row 3 white. Not by column. Each cell is one short line. No footnotes. No cards under the table.
 
-見るところ | 結論
-行政書士の会則 | 守らなければならない
+重要ワード | 内容
+行政書士の会則 | 所属する会の会則を守らなければならない
 行政書士の信用または品位 | 害する行為をしてはならない
-行政書士の研修 | 資質の向上を図るよう努める
+行政書士の研修 | 資質の向上を図るよう努めなければならない
 
 One trap line, large type: 行政書士の研修を、しなければならない、にしない。
 

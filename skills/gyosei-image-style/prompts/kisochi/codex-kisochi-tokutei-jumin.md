@@ -1,7 +1,9 @@
 # 行政書士は、だれの住民票？
 
-- 状態: 生成済み
-- 改訂: 2026-10-05。申出が相当と認められるときを足した。
+- 状態: この1枚だけ上書き。列見出しを直し、行は住民票の写しの話だと分かる語にする
+- 上書き対象: assets/images/deepdive/learn/kisochi/tokutei-jumin.png
+- overwrite: true
+- 改訂: 2026-10-18。列見出し。答え帯の見出し語は置かない。
 - 関連: LEC市販模試 第1回 問54。住民基本台帳法12条の3。特定事務受任者は、受任している事件または事務の依頼者について、必要である旨の申出があり、かつ相当と認められるときに、基礎証明事項が表示された住民票の写しの交付を受けられる。行政書士は特定事務受任者に入る。
 - 保存先: assets/images/deepdive/learn/kisochi/tokutei-jumin.png
 - 画像キー: learn/kisochi/tokutei-jumin
@@ -14,14 +16,14 @@ Japanese legal-study infographic, warm off-white background, navy and teal. Very
 
 Title, a short question: 行政書士は、だれの住民票？
 
-Answer band: 受任中の依頼者。申出が相当なとき。
+Answer band: 受任中の依頼者。申出が相当と認められるとき。
 
-One table. Column headings on a navy band: 見るところ / 結論
-Four data rows. Alternate by row. Row 1 white, row 2 light gray, then white, light gray. Not by column. Each cell is one short line. No footnotes. No cards under the table.
+One table. Column headings on a navy band: 重要ワード / 内容
+Four data rows. Alternate by row. Row 1 white, row 2 light gray, then white, light gray. Not by column. Each cell is one short line. No footnotes. No cards under the table. Do not put a badge on the answer band.
 
-見るところ | 結論
-請求できる者 | 特定事務受任者。行政書士は入る
-対象の人 | 受任している事件または事務の依頼者
+重要ワード | 内容
+住民票の写しを請求できる者 | 特定事務受任者。行政書士は入る
+対象となる人 | 受任している事件または事務の依頼者
 交付の条件 | 必要である旨の申出が、相当と認められるとき
 交付する写し | 基礎証明事項が表示されたもの
 

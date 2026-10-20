@@ -1,31 +1,32 @@
 # 絶対と相対は、どこで分かれる？
 
-- 状態: 未生成
-- 関連: TAC第2回 問47。相対と絶対の入れ替え。
+- 状態: 生成済み（2026-10-19）
+- 関連: TAC第2回 問47。相対と絶対の入れ替え。2024年の貧困線は138万円。127万円は2021年。
 - 保存先: assets/images/deepdive/learn/kisochi/zettai-soutai.png
 - 画像キー: learn/kisochi/zettai-soutai
-- 見せ方: 切り分けの表が本体。説明文は置かない。表の下に同じ文を繰り返さない。
+- 見せ方: 表が本体。答え帯は置かない。表と同じ文を下に繰り返さない。案内役は置かない。数字を大きくするため。
+
+数字の根拠は、厚生労働省の国民生活基礎調査。2021年の所得は、貧困線127万円、相対的貧困率15.4%、子どもの貧困率11.5%。公表は令和5年7月4日。2024年の所得は、貧困線138万円、相対的貧困率15.0%、子どもの貧困率11.0%。公表は令和8年7月15日。
 
 ## GPT Image プロンプト
 
 ```text
-Japanese legal-study infographic, warm off-white background, navy and teal. Very large type. One sheet. A short table is the whole picture. Few words.
+Japanese legal-study infographic, warm off-white background, navy and teal. Very large gothic type. One sheet. A table is the whole picture. No answer band. No cards under the table. No characters. No footnotes.
 
 Title, a short question: 絶対と相対は、どこで分かれる？
 
-Answer band: 相対は中央値の半分。絶対は最低限。
+One table. Column headings on a navy band. Data rows alternate by row. Row 1 white, row 2 light gray, then white, light gray, white, light gray, white. Not by column. Each cell is one line. Do not repeat the title under the table.
 
-One table. Column headings on a navy band. Data rows alternate by row. Row 1 white, row 2 light gray, then white, light gray. Not by column. Each cell is one short line. No footnotes. No cards under the table. Do not repeat the table.
+重要ワード | 内容
+相対的貧困 | 等価可処分所得が、中央値の半分未満
+絶対的貧困 | 最低限の生活水準が、満たされない
+等価可処分所得 | 世帯の可処分所得を、世帯人員の平方根で割る
+2021年の貧困線 | 127万円。相対的貧困率は15.4%
+2021年の子どもの貧困率 | 11.5%。公表は令和5年7月4日
+2024年の貧困線 | 138万円。相対的貧困率は15.0%
+2024年の子どもの貧困率 | 11.0%（約9人に1人）。公表は令和8年7月15日
 
-見るところ | 結論
-相対的貧困 | 中央値の半分未満
-見る所得 | 等価可処分所得
-絶対的貧困 | 最低限の生活水準
-額 | 調査年で変わる
+One trap line, large type, under the table: 試験で「相対は最低限の生活」「2024年の貧困線は127万円」と書いてあったら、誤り。
 
-One trap line, large type: 相対を最低限の生活、は誤り。
-
-One small guide at the bottom margin, not covering the title, the answer band, or the table.
-ちゃちゃロット. Role: 案内. Green lecturer suit including trousers and shoes, white shirt, independent pale-sky-blue hat with two round side peaks, a low center, a long brim, and closed smiling eyes on the hat. Reference assets/images/characters/chachalot.png and skills/gyosei-image-style/assets/approved-smiling-hat-mascot.png. No nameplate. No other characters.
 No brand name, no watermark, no logo.
 ```

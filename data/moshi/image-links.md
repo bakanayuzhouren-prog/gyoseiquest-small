@@ -24,6 +24,8 @@
 | 37 | 肢2 | 設立時の取締役と監査役の解任 | `assets/images/deepdive/learn/shouhou/hokki-setsuritsu-kainin.png` | あり |
 | 47 | 問全体 | どこに置くか | `assets/images/deepdive/learn/kisochi/dejitaru-casino.png` | あり |
 | 48 | 問全体 | 機関委任事務は、残るか | `assets/images/deepdive/learn/kisochi/kikan-inin.png` | あり |
+| 48 | 運営権 | PFIと指定管理者、何が違う？ 水道の所有は残す。市販2問47も同じ図 | `assets/images/deepdive/learn/kisochi/pfi-sitei.png` | 未生成 |
+| 48 | 選び方は別図 | PFIの事業者は、だれが選ぶ？ | `assets/images/deepdive/learn/kisochi/pfi-erabu.png` | 未生成 |
 | 49 | 問全体 | 神武のあとは、どの不況か | `assets/images/deepdive/learn/kisochi/jinmu-nabesoko.png` | あり |
 | 50 | 問全体 | 発効は、いつか | `assets/images/deepdive/learn/kisochi/epa-hakko.png` | あり |
 | 51 | 問全体 | 領有権の問題は、あるか | `assets/images/deepdive/learn/kisochi/senkaku-nen.png` | あり |
@@ -63,6 +65,7 @@
 | 52 | 問全体 | 防止は、いつから義務か | `assets/images/deepdive/learn/kisochi/shokuba-nen.png` | あり |
 | 53 | 問全体 | 事務所は、いくつ置くか | `assets/images/deepdive/learn/kisochi/jimusho-kazu.png` | あり |
 | 54 | 問全体 | 氏を戻すと、どの戸籍か | `assets/images/deepdive/learn/kisochi/fukushi-koseki.png` | あり |
+| 54 | 問全体 | 同じ戸籍のままか、新しい戸籍か | `assets/images/deepdive/learn/kisochi/koseki-shin-iri.png` | 未生成 |
 | 55 | 問全体 | 第4章は、いつ外れるか | `assets/images/deepdive/learn/kisochi/kojin-57.png` | あり |
 | 56 | 問全体 | 1歳未満のカードは、写真か | `assets/images/deepdive/learn/kisochi/nyuji-card.png` | あり |
 | 57 | 問全体 | 用語は、どれか | `assets/images/deepdive/learn/kisochi/risk-base.png` | あり |
@@ -92,7 +95,8 @@
 | 42 | 問全体 | 許可と特許、どっち？ 合格革命第1回問10と同じ | `assets/images/deepdive/learn/gyosei/gyosei-koui-bunrui.png` | あり |
 | 33 | 委任 | LEC公開1 問34と同じ2枚 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu.png` と `-2` | あり |
 | 34 | 事務管理 | 上と同じ2枚 | 上と同じ | あり |
-| 47 | 問全体 | 2人目は、だれか | `assets/images/deepdive/learn/kisochi/josei-shusho.png` | あり |
+| 47 | 問全体 | 2人目は、だれか。サッチャー、メイ、メルケル、キャンベル、インディラ | `assets/images/deepdive/learn/kisochi/josei-shusho.png` | あり |
+| 47 | 3人の順 | イギリスの女性首相は、何人？ 左からサ、メ、ト。上の表とは別 | `assets/images/deepdive/learn/kisochi/same-to-shusho.png` | 未生成 |
 | 48 | 問全体 | 宇宙まで、主権は及ぶか。距離の断面は別図 | `assets/images/deepdive/learn/kisochi/uchuu-shuken.png` | あり |
 | 49 | 問全体 | 三種の神器は神武。LEC公開1 問49と同じ | `assets/images/deepdive/learn/kisochi/jinmu-nabesoko.png` | あり |
 | 50 | 問全体 | 上げると、供給は減るか | `assets/images/deepdive/learn/kisochi/kyokyu-houkou.png` | あり |
@@ -147,19 +151,22 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
-| 47 | 問全体 | 絶対と相対は、どこで分かれるか | `assets/images/deepdive/learn/kisochi/zettai-soutai.png` | あり |
+| 47 | 問全体 | 絶対と相対は、どこで分かれるか。2024年の貧困線は138万円。127万円は2021年 | `assets/images/deepdive/learn/kisochi/zettai-soutai.png` | あり |
 | 48 | 問全体 | 韓国の大統領は、再任できるか | `assets/images/deepdive/learn/kisochi/kankoku-ninki.png` | あり |
 | 48 | 選び方も同じ表 | 元首は、だれが選んで、何年か。LEC市販第1回 問47と同じ | `assets/images/deepdive/learn/kisochi/genshu-ninki.png` | あり |
 | 48 | 語呂 | フロカイは国民が直接。任期の表は上 | `assets/images/deepdive/learn/kisochi/genshu-furokai.png` | あり |
 | 49 | 問全体 | 都市計画税は、何に課すか | `assets/images/deepdive/learn/kisochi/toshi-keikakuzei.png` | あり |
+| 49 | 普通税と目的税 | 普通税か目的税か。固定資産税は普通税。都市計画税は目的税。消費税も普通税 | `assets/images/deepdive/learn/kisochi/mokuteki-futsuzei.png` | 未生成 |
 | 50 | 問全体 | 傾斜生産は、何に集中するか | `assets/images/deepdive/learn/kisochi/keizai-fukkou-kodo-1947-1968.png` | あり |
 | 51 | 問全体 | 旅館は、どんな要求なら拒めるか | `assets/images/deepdive/learn/kisochi/ryokan-kyohi.png` | あり |
 | 52 | 問全体 | 後期高齢者の給付費は、だれが賄うか | `assets/images/deepdive/learn/kisochi/kouki-zaigen.png` | あり |
 | 53 | 問全体 | 秘密を漏らすと、何か | `assets/images/deepdive/learn/kisochi/himitsu-rouji.png` | あり |
 | 54 | 問全体 | 転出届は、いつ出すか | `assets/images/deepdive/learn/kisochi/tenshutsu-todoke.png` | あり |
+| 54 | 転入から転出まで | 転入のあとと、転出の前に、何を届けるか。時期だけの図は上 | `assets/images/deepdive/learn/kisochi/tennyu-tenkyo-tenshutsu.png` | あり |
 | 55 | 問全体 | 不特定の者への通知は、入るか | `assets/images/deepdive/learn/kisochi/shobun-tsuchi.png` | あり |
 | 56 | 問全体 | 拡張現実は、複合現実と同じか | `assets/images/deepdive/learn/kisochi/kakucho-genjitsu.png` | あり |
 | 57 | 問全体 | 個人番号は、だれが生成するか | `assets/images/deepdive/learn/kisochi/bango-seisei.png` | あり |
+| 57 | 委員会の仕事 | この問で問われた仕事。個人番号とすべき番号の生成は入らない。生成する主体の図は上 | `assets/images/deepdive/learn/kisochi/iinkai-shigoto.png` | 未生成 |
 
 問46は書面の無報酬寄託の解除であり、LEC公開1 問33の書面の図は使わない。
 
@@ -167,42 +174,44 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 21 | 2 | 輪中堤の歴史の価値は、補償に足すか。LEC当たる第3回問21の輪中堤も同じ | `assets/images/deepdive/learn/gyosei/wajuu-bunkazai-4koma.png` | あり |
 | 22 | 肢2・肢4・肢5 | 設けるとき、許可？届出？勧告？指定都市・中核市と特別区の法人格は図にない。勧告の右端は対象外 | `assets/images/deepdive/learn/gyosei/kyoka-todokede-kankoku.png` | あり |
 | 25 | 問全体 | 4条の各号に、ある？助言は各号にない。作らなくてよい、ではない | `assets/images/deepdive/learn/gyosei/koubun-4jo-kakugo.png` | 未生成 |
 | 30 | 同一所有者の時期だけ | LEC公開1 問30肢5と同じ | `assets/images/deepdive/learn/minnpou/q30-5-senjun-i.png` | あり |
-| 47 | 問全体 | 議会は、自分で解散できるか | `assets/images/deepdive/learn/kisochi/gikai-jishukaisan.png` | あり |
-| 48 | 問全体 | 排他的経済水域は、何海里か | `assets/images/deepdive/learn/kisochi/eez-200.png` | あり |
+| 47 | 2 | 議会は、自分で解散できるか | `assets/images/deepdive/learn/kisochi/gikai-jishukaisan.png` | あり |
+| 48 | 2 | 排他的経済水域は、何海里か | `assets/images/deepdive/learn/kisochi/eez-200.png` | あり |
 | 49 | 控除額 | ふるさと納税は、全額控除か | `assets/images/deepdive/learn/kisochi/furusato-kojo.png` | あり |
 | 49 | ワンストップ | ふるさと納税のワンストップ特例は、所得税から直接引くか | `assets/images/deepdive/learn/kisochi/furusato-onestop.png` | あり |
-| 50 | 問全体 | 日銀は、地方の金銭も扱わなければならないか | `assets/images/deepdive/learn/kisochi/nichigin-kokko.png` | あり |
-| 51 | 問全体 | 環境アセスメントの1969年の制度は、どこの国か | `assets/images/deepdive/learn/kisochi/eia-1969.png` | あり |
-| 52 | 問全体 | 国民健康保険の保険料は、定額か | `assets/images/deepdive/learn/kisochi/kokuho-hokenryo.png` | あり |
-| 53 | 問全体 | 登録を取り消されたら、すぐ資格が戻るか | `assets/images/deepdive/learn/kisochi/gyosei-kekkaku.png` | あり |
-| 54 | 問全体 | 失踪宣告のあとは、届出が要るか | `assets/images/deepdive/learn/kisochi/shisso-todoke.png` | あり |
-| 55 | 問全体 | 包括的なAI規制は、世界に無いか | `assets/images/deepdive/learn/kisochi/eu-ai-act.png` | あり |
-| 56 | 問全体 | エコーチェンバーは、真偽確認か | `assets/images/deepdive/learn/kisochi/echo-chamber.png` | あり |
-| 57 | 問全体 | 行政機関の長等の保有個人情報は、だれの分を開示できるか | `assets/images/deepdive/learn/kisochi/kaiji-honnin.png` | あり |
+| 50 | 5 | 日銀は、地方の金銭も扱わなければならないか | `assets/images/deepdive/learn/kisochi/nichigin-kokko.png` | あり |
+| 51 | イ | 環境アセスメントの1969年の制度は、どこの国か | `assets/images/deepdive/learn/kisochi/eia-1969.png` | あり |
+| 52 | 2 | 国民健康保険の保険料は、定額か。1・3・4・5は図にない | `assets/images/deepdive/learn/kisochi/kokuho-hokenryo.png` | あり |
+| 53 | 1 | 登録を取り消されたら、すぐ資格が戻るか。2〜5は図にない | `assets/images/deepdive/learn/kisochi/gyosei-kekkaku.png` | あり |
+| 54 | ア | 失踪宣告のあとは、届出が要るか。イ・ウ・エ・オは図にない | `assets/images/deepdive/learn/kisochi/shisso-todoke.png` | あり |
+| 55 | 4 | 包括的なAI規制は、世界に無いか。1・2・3・5は図にない | `assets/images/deepdive/learn/kisochi/eu-ai-act.png` | あり |
+| 56 | 3 | エコーチェンバーは、真偽確認か。1・2・4・5は図にない | `assets/images/deepdive/learn/kisochi/echo-chamber.png` | あり |
+| 57 | イ | 行政機関の長等の保有個人情報は、だれの分を開示できるか。ア・ウ・エ・オは図にない | `assets/images/deepdive/learn/kisochi/kaiji-honnin.png` | あり |
 
 ## LEC市販第1回
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
-| 47 | 問全体 | 元首は、だれが選ぶか | `assets/images/deepdive/learn/kisochi/genshu-erabu.png` | あり |
-| 47 | 任期も同じ表 | 元首は、だれが選んで、何年か。選び方だけの図は上 | `assets/images/deepdive/learn/kisochi/genshu-ninki.png` | あり |
-| 47 | 語呂 | フロカイは国民が直接。任期の表は上 | `assets/images/deepdive/learn/kisochi/genshu-furokai.png` | あり |
-| 48 | 沿革 | 自衛隊の前は、なにか | `assets/images/deepdive/learn/kisochi/jieitai-mae.png` | あり |
-| 48 | 条約 | 地位協定は、共同防衛か | `assets/images/deepdive/learn/kisochi/chii-anpo.png` | あり |
-| 49 | 持株会社 | 持株会社は、まだ禁止か | `assets/images/deepdive/learn/kisochi/mochikabu.png` | あり |
-| 49 | 課徴金 | 課徴金減免は、いつからか。2019年は創設ではない | `assets/images/deepdive/learn/kisochi/kachokin-genmen.png` | あり |
-| 50 | 問全体 | 医療扶助は、現金か | `assets/images/deepdive/learn/kisochi/iryo-genbutsu.png` | あり |
-| 51 | 問全体 | 何度に、抑えるか。合格革命第3回と同じ | `assets/images/deepdive/learn/kisochi/pari-ondo.png` | あり |
-| 52 | 問全体 | 労働契約は、入るか | `assets/images/deepdive/learn/kisochi/roudou-shouhi.png` | あり |
-| 53 | 義務と努力 | 研修は、義務か。事務所の数は別 | `assets/images/deepdive/learn/kisochi/kenshu-doryoku.png` | あり |
-| 53 | 事務所 | 事務所は、いくつ置くか。LEC公開2と同じ | `assets/images/deepdive/learn/kisochi/jimusho-kazu.png` | あり |
-| 54 | 問全体 | 行政書士は、だれの住民票か | `assets/images/deepdive/learn/kisochi/tokutei-jumin.png` | あり |
-| 55 | 問全体 | 行政機関の長等は、保有個人情報を正確に保つ義務か | `assets/images/deepdive/learn/kisochi/seikaku-doryoku.png` | あり |
-| 56 | 問全体 | 学術研究は、57条で外れるか。LEC公開2と同じ | `assets/images/deepdive/learn/kisochi/kojin-57.png` | あり |
-| 57 | 問全体 | ドメイン名は、数字か | `assets/images/deepdive/learn/kisochi/ip-domain.png` | あり |
+| 47 | 問全体 | 元首は、だれが選ぶか | `assets/images/deepdive/learn/kisochi/genshu-erabu.png` | 上書き待ち |
+| 47 | 任期の表 | だれが選んで何年か。市販1の問47では使わない | `assets/images/deepdive/learn/kisochi/genshu-ninki.png` | 使わない |
+| 47 | 語呂の表 | 大統領を、国民が直接選ぶ国は。国の順は残す | `assets/images/deepdive/learn/kisochi/genshu-furokai.png` | 上書き待ち |
+| 47 | 語呂の会話 | スポーツのあと、直で風呂かい。直接選挙はフランス、ロシア、韓国、インドネシア | `assets/images/deepdive/learn/kisochi/genshu-furokai-supo.png` | あり |
+| 48 | 沿革 | 自衛隊の前は、なにか | `assets/images/deepdive/learn/kisochi/jieitai-mae.png` | 上書き待ち |
+| 48 | 条約 | 地位協定は、共同防衛か | `assets/images/deepdive/learn/kisochi/chii-anpo.png` | 上書き待ち |
+| 49 | 禁止の範囲 | 私的独占は2条5項。カルテルと持株会社 | `assets/images/deepdive/learn/kisochi/mochikabu.png` | あり |
+| 49 | 命令と減免 | 7条1項と、自ら関与したカルテル・入札談合の自主申告 | `assets/images/deepdive/learn/kisochi/kachokin-genmen.png` | あり |
+| 50 | 問全体 | 医療扶助は、現金か | `assets/images/deepdive/learn/kisochi/iryo-genbutsu.png` | 上書き待ち |
+| 51 | 問全体 | パリ協定は、気温を何度に抑えるか。合格革命第3回と同じ | `assets/images/deepdive/learn/kisochi/pari-ondo.png` | 上書き待ち |
+| 52 | 問全体 | 労働契約は、入るか | `assets/images/deepdive/learn/kisochi/roudou-shouhi.png` | 上書き待ち |
+| 53 | 義務と努力 | 研修は、義務か。事務所の数は別 | `assets/images/deepdive/learn/kisochi/kenshu-doryoku.png` | 上書き待ち |
+| 53 | 事務所 | 行政書士の事務所は、いくつ置くか。LEC公開2と同じ | `assets/images/deepdive/learn/kisochi/jimusho-kazu.png` | 上書き待ち |
+| 54 | 問全体 | 行政書士は、だれの住民票か | `assets/images/deepdive/learn/kisochi/tokutei-jumin.png` | 上書き待ち |
+| 55 | 問全体 | 行政機関の長等は、保有個人情報を正確に保つ義務か | `assets/images/deepdive/learn/kisochi/seikaku-doryoku.png` | 上書き待ち |
+| 56 | 問全体 | 学術研究は、57条で外れるか。LEC公開2と同じ | `assets/images/deepdive/learn/kisochi/kojin-57.png` | 上書き待ち |
+| 57 | 問全体 | ドメイン名は、数字か | `assets/images/deepdive/learn/kisochi/ip-domain.png` | 上書き待ち |
 
 ## LEC市販第2回
 
@@ -212,6 +221,8 @@
 | 9 | 4 | 刑事裁判で、行政行為の違法は言えるか。余目町 | `assets/images/deepdive/learn/gyosei/keiji-koteiryoku-4koma.png` | あり |
 | 14 | 2 | 検証の通知は、いつ要るか。32条から36条の一覧図とは別 | `assets/images/deepdive/learn/gyosei/kensho-shokken-moushitate.png` | 未生成 |
 | 47 | 機関委任と水道 | 機関委任事務は、いつ廃止か。オンブズマンの初は図にない | `assets/images/deepdive/learn/kisochi/kikan-inin.png` | あり |
+| 47 | PFIと指定管理者 | PFIと指定管理者、何が違う？ 公開1問48の運営権も同じ図 | `assets/images/deepdive/learn/kisochi/pfi-sitei.png` | 未生成 |
+| 47 | 選び方 | PFIの事業者は、だれが選ぶ？ | `assets/images/deepdive/learn/kisochi/pfi-erabu.png` | 未生成 |
 | 48 | 問全体 | 海の線はどこまでか | `assets/images/deepdive/learn/kisochi/umi-kukuu-kaiiki.png` | あり |
 | 49 | 問全体 | 硬貨は、だれが出すか | `assets/images/deepdive/learn/kisochi/kouka-seifu.png` | あり |
 | 50 | 問全体 | ドルと金の交換はいつ止めたか | `assets/images/deepdive/learn/kisochi/doru-kin-kawase.png` | あり |
@@ -232,10 +243,11 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
-| 21 | 問全体 | 正当な補償は、どの場面の言葉か。輪中堤は図にない | `assets/images/deepdive/learn/kenpou/sonshitsu-hoshou-yogo.png` | あり |
+| 21 | 問全体 | 正当な補償は、どの場面の言葉か。輪中堤は次の行 | `assets/images/deepdive/learn/kenpou/sonshitsu-hoshou-yogo.png` | あり |
+| 21 | 輪中堤 | 歴史の価値は、補償に足すか。TAC第3回問21肢2と同じ | `assets/images/deepdive/learn/gyosei/wajuu-bunkazai-4koma.png` | あり |
 | 34 | 問全体 | LEC公開1 問34と同じ2枚 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu.png` と `-2` | あり |
 | 47 | 問全体 | 行政国家は、だれが中心か | `assets/images/deepdive/learn/kisochi/gyosei-kokka.png` | あり |
-| 48 | 問全体 | 原案の発議か、国会の発議か | `assets/images/deepdive/learn/kisochi/kenpo-kaisei.png` | 未生成 |
+| 48 | 問全体 | 原案の発議か、国会の発議か。アの参議院20人、オの3分の2は図のひっかけ行 | `assets/images/deepdive/learn/kisochi/kenpo-kaisei.png` | あり |
 | 49 | 問全体 | 完全競争と寡占は、どう違うか | `assets/images/deepdive/learn/kisochi/shijo-yogo.png` | あり |
 | 50 | 問全体 | 住宅に人を泊める事業は、許可か | `assets/images/deepdive/learn/kisochi/jutaku-shukuhaku.png` | あり |
 | 51 | 問全体 | 著作権は、死後何年か | `assets/images/deepdive/learn/kisochi/chosaku-70.png` | あり |
@@ -243,6 +255,7 @@
 | 53 | 問全体 | 登録を拒否されたら、だれに審査請求するか | `assets/images/deepdive/learn/kisochi/gyosei-toroku.png` | あり |
 | 54 | 問全体 | 住民票は、個人か、世帯か | `assets/images/deepdive/learn/kisochi/jumin-tani.png` | あり |
 | 55 | 問全体 | 個人関連情報は、全部の総称か | `assets/images/deepdive/learn/kisochi/kojin-shurui.png` | あり |
+| 55 | 仮名と匿名 | 加工は、仮名の次が匿名か。第三者に渡せるかは各箱 | `assets/images/deepdive/learn/kisochi/kari-toku.png` | 未生成 |
 | 56 | 問全体 | 本人は、何を請求できるか | `assets/images/deepdive/learn/kisochi/honnin-seikyu.png` | あり |
 | 57 | 問全体 | カードで保険を確認できない人は、どうするか。1歳未満の写真は `nyuji-card` | `assets/images/deepdive/learn/kisochi/shikaku-kakuninsho.png` | あり |
 
@@ -255,11 +268,12 @@
 | 24 | 許可と届出 | 設けるとき、許可？届出？勧告？ TAC第3回・問22と同じ。出席・監査・法令の解釈は図にない | `assets/images/deepdive/learn/gyosei/kyoka-todokede-kankoku.png` | あり |
 | 26 | 肢4 | 内閣府には、何を置くか。合格革命第3回・問9も同じ | `assets/images/deepdive/learn/gyosei/naikakufu-gaikyoku.png` | あり |
 | 47 | 問全体 | 誰が、附票を作るか。LEC公開1 問54と同じ | `assets/images/deepdive/learn/kisochi/fuhyo-honseki.png` | あり |
-| 48 | 問全体 | 死票はどっちが増えるか | `assets/images/deepdive/learn/kisochi/shosenkyoku-hirei-shihyo.png` | 未生成 |
+| 48 | 問全体 | 死票はどっちが増えるか | `assets/images/deepdive/learn/kisochi/shosenkyoku-hirei-shihyo.png` | あり |
+| 48 | 名簿 | 衆議院の比例は拘束か。議席の配分は図にない | `assets/images/deepdive/learn/kisochi/kousoku-hikousoku.png` | 未生成 |
 | 49 | 問全体 | 課税は、法律か | `assets/images/deepdive/learn/kisochi/sozei-sogo.png` | あり |
-| 50 | 問全体 | 条約は、どれか。冊子の写真では条約は問51。国債は別図 | `assets/images/deepdive/learn/kisochi/seibutsu-joyaku.png` | あり |
-| 50 | 国債 | 建設国債は、いつから。冊子の写真ではこの問が問50 | `assets/images/deepdive/learn/kisochi/kensetsu-kokusai.png` | 未生成 |
-| 51 | 問全体 | 日銀は、独立行政法人か。手段の図は使わない | `assets/images/deepdive/learn/kisochi/nichigin-ninka.png` | あり |
+| 50 | 国債 | 建設国債は、いつから。冊子の問50 | `assets/images/deepdive/learn/kisochi/kensetsu-kokusai.png` | 未生成 |
+| 51 | 条約 | 条約は、どれか。冊子の問51 | `assets/images/deepdive/learn/kisochi/seibutsu-joyaku.png` | あり |
+| 51 | 日銀 | 日銀は、独立行政法人か。手段の図は使わない。冊子の問番号は条約と別 | `assets/images/deepdive/learn/kisochi/nichigin-ninka.png` | あり |
 | 52 | 問全体 | 空洞化は、何か | `assets/images/deepdive/learn/kisochi/kudoka.png` | あり |
 | 53 | 問全体 | 中核は、何か。罰則の図は使わない | `assets/images/deepdive/learn/kisochi/gyosei-shorui.png` | あり |
 | 54 | 問全体 | 個人情報は、だれか | `assets/images/deepdive/learn/kisochi/kojin-seizon.png` | あり |

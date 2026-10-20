@@ -1,6 +1,8 @@
 # ドメイン名は、数字？
 
-- 状態: 未生成
+- 状態: この1枚だけ上書き。列見出しはIT用語と内容。各語は、何をするかまで書く
+- 上書き対象: assets/images/deepdive/learn/kisochi/ip-domain.png
+- overwrite: true
 - 関連: LEC市販模試 第1回 問57。IPアドレスは数字の識別番号。ドメイン名はそれを文字で表した名前。インターネットの起源は1969年のARPANET。
 - 保存先: assets/images/deepdive/learn/kisochi/ip-domain.png
 - 画像キー: learn/kisochi/ip-domain
@@ -15,13 +17,13 @@ Title, a short question: ドメイン名は、数字？
 
 Answer band: 数字はIPアドレス。文字がドメイン名。
 
-One table. Column headings on a navy band: 見るところ / 結論
+One table. Column headings on a navy band: IT用語 / 内容
 Three data rows. Alternate by row. Row 1 white, row 2 light gray, row 3 white. Not by column. Each cell is one short line. No footnotes. No cards under the table.
 
-見るところ | 結論
-IPアドレス | 数字の識別番号
-ドメイン名 | 文字で表した名前
-ARPANET | 1969年。インターネットの起源
+IT用語 | 内容
+IPアドレス | コンピュータをネットワーク上で識別する数字
+ドメイン名 | IPアドレスを文字で表した名前
+ARPANET | 1969年に米国が国防用に作ったネットワーク。インターネットの起源
 
 One trap line, large type: ドメイン名を、数字の識別番号にしない。
 
