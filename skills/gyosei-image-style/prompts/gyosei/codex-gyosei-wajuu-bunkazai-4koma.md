@@ -44,14 +44,15 @@ An old earthen levee has protected a small village from flood water since the ea
 Caption: 江戸時代初期から、村落を水害から守ってきた輪中堤があった。長良川の改修が始まった。
 
 Panel 2 title: 当事者の言い分
-A new levee cuts across part of the old levee. Part of the old levee remains on the east side. カチャドクロ stands beside the scene, speech bubble outside the caption. Label under カチャドクロ: 占用者（歴史の価値も補償してほしい）
-Caption: 輪中堤の一部を壊し、横切る新しい堤防を造った。古い堤は一部残った。占用許可が取り消された。
+Part of the old levee has been removed, and a new levee has been built. Part of the old levee remains. カチャドクロ stands beside the scene, speech bubble outside the caption. Label under カチャドクロ: 占用者（歴史の価値も補償してほしい）
+Caption: 輪中堤の一部が壊され、新しい堤防が造られた。古い堤は一部残り、占用許可は取り消された。
 Speech bubble: 先祖が築き、村落を守ってきた。この価値も損失だ。補償せよ。
 
 Panel 3 title: 裁判所が見た争点
 タスク亀 looks at Article 88, not a winner's flag. Label under タスク亀: 裁判所（88条の損失の形を見たい）
 Caption: その歴史的・学術的価値は、88条の通常受ける損失か。
-Next line: 通常受ける損失は、離作料、営業上の損失、移転で失う賃貸料など、ふつう失う経済的・財産的な損失。
+Next line: 88条の『通常受ける損失』は、ふつう生じるお金や財産の損失。
+Next line: 例えば、農業を続けられず失う収入、営業で失う利益、建物を移して受け取れなくなる家賃。
 Next line: 歴史的・学術的価値は、土地の取引価格を上げない。
 
 Panel 4 title: 判決

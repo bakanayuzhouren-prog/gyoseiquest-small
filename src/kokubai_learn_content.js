@@ -734,7 +734,9 @@ export const KOKUBAI_LEARN_BY_SUBJECT = {
     },
     {
       text: '江戸時代初期からの輪中堤など、歴史的・学術的価値だけなら土地収用法の損失補償の対象とならない（通常受ける経済的損失のみ）。',
-      deepdive: `■ 結論
+      deepdive: `[[image:learn/gyosei/wajuu-bunkazai-4koma]]
+
+■ 結論
 
 88条「通常受ける損失」＝経済的・財産的損失。学術価値そのものは取引価格を高めない → 補償**×**。
 

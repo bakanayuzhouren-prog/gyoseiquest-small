@@ -12,7 +12,7 @@
 |---|---|---|---|---|
 | 17 | オ | 免許が切れても、訴えは残る？ すぐ再免許で事業が続くとき。許可でも国が被告でもない。完全失効は図の結論に含めない | `assets/images/deepdive/learn/gyosho/kyogan-saimenkyo-rieki.png` | 未生成 |
 | 19 | ウ | 公権力の行使は、民事の仮処分で止めない。提起・管轄・事情変更・総理の異議は、この図に無い | `assets/images/deepdive/learn/gyosho/shikko-teishi-vs-minji-karishobun.png` | あり |
-| 19 | ウ | 民事保全の仮処分ができるものとできないもの。執行停止は表の外の別の救済。辰巳2026・問17・オと同じ | `assets/images/deepdive/learn/gyosho/minji-karishobun-dekiru-dekinai.png` | 未生成 |
+| 19 | ウ | 民事保全の仮処分ができるものとできないもの。執行停止は表の外の別の救済。辰巳2026・問17・オと同じ | `assets/images/deepdive/learn/gyosho/minji-karishobun-dekiru-dekinai.png` | あり |
 | 29 | 問全体 | 隣の書店の敷地を使う | `assets/images/deepdive/learn/minnpou/rinchi-shiyo-shoten.png` | あり |
 | 30 | 肢2 | 共同抵当のあと建て替え | `assets/images/deepdive/learn/minnpou/q30-2-kyodo-teito-tatekae.png` | あり |
 | 30 | 肢3 | 時効完成後の抵当権 | `assets/images/deepdive/learn/minnpou/q30-3-jiko-teito.png` | あり |
@@ -24,8 +24,8 @@
 | 37 | 肢2 | 設立時の取締役と監査役の解任 | `assets/images/deepdive/learn/shouhou/hokki-setsuritsu-kainin.png` | あり |
 | 47 | 問全体 | どこに置くか | `assets/images/deepdive/learn/kisochi/dejitaru-casino.png` | あり |
 | 48 | 問全体 | 機関委任事務は、残るか | `assets/images/deepdive/learn/kisochi/kikan-inin.png` | あり |
-| 48 | 運営権 | PFIと指定管理者、何が違う？ 水道の所有は残す。市販2問47も同じ図 | `assets/images/deepdive/learn/kisochi/pfi-sitei.png` | 未生成 |
-| 48 | 選び方は別図 | PFIの事業者は、だれが選ぶ？ | `assets/images/deepdive/learn/kisochi/pfi-erabu.png` | 未生成 |
+| 48 | 運営権 | PFIと指定管理者、何が違う？ 水道の所有は残す。市販2問47も同じ図 | `assets/images/deepdive/learn/kisochi/pfi-sitei.png` | あり |
+| 48 | 選び方は別図 | PFIの事業者は、だれが選ぶ？ | `assets/images/deepdive/learn/kisochi/pfi-erabu.png` | あり |
 | 49 | 問全体 | 神武のあとは、どの不況か | `assets/images/deepdive/learn/kisochi/jinmu-nabesoko.png` | あり |
 | 50 | 問全体 | 発効は、いつか | `assets/images/deepdive/learn/kisochi/epa-hakko.png` | あり |
 | 51 | 問全体 | 領有権の問題は、あるか | `assets/images/deepdive/learn/kisochi/senkaku-nen.png` | あり |
@@ -65,7 +65,7 @@
 | 52 | 問全体 | 防止は、いつから義務か | `assets/images/deepdive/learn/kisochi/shokuba-nen.png` | あり |
 | 53 | 問全体 | 事務所は、いくつ置くか | `assets/images/deepdive/learn/kisochi/jimusho-kazu.png` | あり |
 | 54 | 問全体 | 氏を戻すと、どの戸籍か | `assets/images/deepdive/learn/kisochi/fukushi-koseki.png` | あり |
-| 54 | 問全体 | 同じ戸籍のままか、新しい戸籍か | `assets/images/deepdive/learn/kisochi/koseki-shin-iri.png` | 未生成 |
+| 54 | 問全体 | 同じ戸籍のままか、新しい戸籍か | `assets/images/deepdive/learn/kisochi/koseki-shin-iri.png` | あり |
 | 55 | 問全体 | 第4章は、いつ外れるか | `assets/images/deepdive/learn/kisochi/kojin-57.png` | あり |
 | 56 | 問全体 | 1歳未満のカードは、写真か | `assets/images/deepdive/learn/kisochi/nyuji-card.png` | あり |
 | 57 | 問全体 | 用語は、どれか | `assets/images/deepdive/learn/kisochi/risk-base.png` | あり |
@@ -96,7 +96,7 @@
 | 33 | 委任 | LEC公開1 問34と同じ2枚 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu.png` と `-2` | あり |
 | 34 | 事務管理 | 上と同じ2枚 | 上と同じ | あり |
 | 47 | 問全体 | 2人目は、だれか。サッチャー、メイ、メルケル、キャンベル、インディラ | `assets/images/deepdive/learn/kisochi/josei-shusho.png` | あり |
-| 47 | 3人の順 | イギリスの女性首相は、何人？ 左からサ、メ、ト。上の表とは別 | `assets/images/deepdive/learn/kisochi/same-to-shusho.png` | 未生成 |
+| 47 | 3人の順 | イギリスの女性首相は、何人？ 左からサ、メ、ト。上の表とは別 | `assets/images/deepdive/learn/kisochi/same-to-shusho.png` | あり |
 | 48 | 問全体 | 宇宙まで、主権は及ぶか。距離の断面は別図 | `assets/images/deepdive/learn/kisochi/uchuu-shuken.png` | あり |
 | 49 | 問全体 | 三種の神器は神武。LEC公開1 問49と同じ | `assets/images/deepdive/learn/kisochi/jinmu-nabesoko.png` | あり |
 | 50 | 問全体 | 上げると、供給は減るか | `assets/images/deepdive/learn/kisochi/kyokyu-houkou.png` | あり |
@@ -156,7 +156,7 @@
 | 48 | 選び方も同じ表 | 元首は、だれが選んで、何年か。LEC市販第1回 問47と同じ | `assets/images/deepdive/learn/kisochi/genshu-ninki.png` | あり |
 | 48 | 語呂 | フロカイは国民が直接。任期の表は上 | `assets/images/deepdive/learn/kisochi/genshu-furokai.png` | あり |
 | 49 | 問全体 | 都市計画税は、何に課すか | `assets/images/deepdive/learn/kisochi/toshi-keikakuzei.png` | あり |
-| 49 | 普通税と目的税 | 普通税か目的税か。固定資産税は普通税。都市計画税は目的税。消費税も普通税 | `assets/images/deepdive/learn/kisochi/mokuteki-futsuzei.png` | 未生成 |
+| 49 | 普通税と目的税 | 普通税か目的税か。固定資産税は普通税。都市計画税は目的税。消費税も普通税 | `assets/images/deepdive/learn/kisochi/mokuteki-futsuzei.png` | あり |
 | 50 | 問全体 | 傾斜生産は、何に集中するか | `assets/images/deepdive/learn/kisochi/keizai-fukkou-kodo-1947-1968.png` | あり |
 | 51 | 問全体 | 旅館は、どんな要求なら拒めるか | `assets/images/deepdive/learn/kisochi/ryokan-kyohi.png` | あり |
 | 52 | 問全体 | 後期高齢者の給付費は、だれが賄うか | `assets/images/deepdive/learn/kisochi/kouki-zaigen.png` | あり |
@@ -166,7 +166,7 @@
 | 55 | 問全体 | 不特定の者への通知は、入るか | `assets/images/deepdive/learn/kisochi/shobun-tsuchi.png` | あり |
 | 56 | 問全体 | 拡張現実は、複合現実と同じか | `assets/images/deepdive/learn/kisochi/kakucho-genjitsu.png` | あり |
 | 57 | 問全体 | 個人番号は、だれが生成するか | `assets/images/deepdive/learn/kisochi/bango-seisei.png` | あり |
-| 57 | 委員会の仕事 | この問で問われた仕事。個人番号とすべき番号の生成は入らない。生成する主体の図は上 | `assets/images/deepdive/learn/kisochi/iinkai-shigoto.png` | 未生成 |
+| 57 | 委員会の仕事 | この問で問われた仕事。個人番号とすべき番号の生成は入らない。生成する主体の図は上 | `assets/images/deepdive/learn/kisochi/iinkai-shigoto.png` | あり |
 
 問46は書面の無報酬寄託の解除であり、LEC公開1 問33の書面の図は使わない。
 
@@ -221,8 +221,8 @@
 | 9 | 4 | 刑事裁判で、行政行為の違法は言えるか。余目町 | `assets/images/deepdive/learn/gyosei/keiji-koteiryoku-4koma.png` | あり |
 | 14 | 2 | 検証の通知は、いつ要るか。32条から36条の一覧図とは別 | `assets/images/deepdive/learn/gyosei/kensho-shokken-moushitate.png` | 未生成 |
 | 47 | 機関委任と水道 | 機関委任事務は、いつ廃止か。オンブズマンの初は図にない | `assets/images/deepdive/learn/kisochi/kikan-inin.png` | あり |
-| 47 | PFIと指定管理者 | PFIと指定管理者、何が違う？ 公開1問48の運営権も同じ図 | `assets/images/deepdive/learn/kisochi/pfi-sitei.png` | 未生成 |
-| 47 | 選び方 | PFIの事業者は、だれが選ぶ？ | `assets/images/deepdive/learn/kisochi/pfi-erabu.png` | 未生成 |
+| 47 | PFIと指定管理者 | PFIと指定管理者、何が違う？ 公開1問48の運営権も同じ図 | `assets/images/deepdive/learn/kisochi/pfi-sitei.png` | あり |
+| 47 | 選び方 | PFIの事業者は、だれが選ぶ？ | `assets/images/deepdive/learn/kisochi/pfi-erabu.png` | あり |
 | 48 | 問全体 | 海の線はどこまでか | `assets/images/deepdive/learn/kisochi/umi-kukuu-kaiiki.png` | あり |
 | 49 | 問全体 | 硬貨は、だれが出すか | `assets/images/deepdive/learn/kisochi/kouka-seifu.png` | あり |
 | 50 | 問全体 | ドルと金の交換はいつ止めたか | `assets/images/deepdive/learn/kisochi/doru-kin-kawase.png` | あり |
@@ -325,7 +325,7 @@
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
 | 10 | 肢2 | 後に証拠になり得るだけでは、質問検査は行使時から犯則調査の手段ではない。LEC公開3・問10肢5と同じ。タイトルに事件名はまだ無い | `assets/images/deepdive/learn/gyosei/imabari-ryuyo-yonkoma.png` | あり |
-| 17 | オ | 民事保全の仮処分ができるものとできないもの。執行停止は表の外。LEC公開1・問19・ウの表と同じ | `assets/images/deepdive/learn/gyosho/minji-karishobun-dekiru-dekinai.png` | 未生成 |
+| 17 | オ | 民事保全の仮処分ができるものとできないもの。執行停止は表の外。LEC公開1・問19・ウの表と同じ | `assets/images/deepdive/learn/gyosho/minji-karishobun-dekiru-dekinai.png` | あり |
 | 22 | 許可 | 設けるとき、許可？届出？勧告？ TAC第3回・問22と同じ。財産区と指定都市は図にない | `assets/images/deepdive/learn/gyosei/kyoka-todokede-kankoku.png` | あり |
 | 25 | 問全体 | 斉唱の命令のあと、どの訴え？ 命令自体は処分ではない。減給は処分、昇給が抑えられることは処分以外。差止めの重大な損害と、命令の合憲性は図にない。伊藤塾公開２・問19・アと同じ | `assets/images/deepdive/learn/gyosei/kimigayo-shogu-kakunin-4koma.png` | あり |
 | 25 | イ | 差止めは、いつ重大な損害？ 事後の取消と執行停止で容易に救済できるときはない。この事件の一連の懲戒はある。戒告の差止めが本案で理由があることは図にない | `assets/images/deepdive/learn/gyosei/kimigayo-sashitome-songai.png` | 未生成 |
