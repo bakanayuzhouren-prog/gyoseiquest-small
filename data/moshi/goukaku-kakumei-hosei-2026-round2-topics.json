@@ -731,7 +731,14 @@
       },
       "sourceTrace": {
         "answerImage": "tmp/模試画像/合格革命２/解説/PXL_20260830_132740422.jpg",
-        "answerSource": "合格革命２解説・問42（公定力・明白・客観的・課税処分）"
+        "answerSource": "合格革命２解説・問42（公定力・明白・客観的・課税処分）",
+        "blankSource": "解答画像",
+        "blankAnswers": [
+          { "slot": "ア", "number": 17, "word": "公定力" },
+          { "slot": "イ", "number": 15, "word": "明白" },
+          { "slot": "ウ", "number": 3, "word": "客観的" },
+          { "slot": "エ", "number": 9, "word": "課税処分" }
+        ]
       },
       "status": "confirmed"
     },

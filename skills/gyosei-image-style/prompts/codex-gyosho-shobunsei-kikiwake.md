@@ -1,74 +1,54 @@
-# 行訴法・処分性の聞き分け（表3）
+# 処分性（対象になる・ならない）
 
-- 保存先: assets/images/deepdive/learn/gyosho/shobunsei-kikiwake.png
-- 見本品質: `assets/images/deepdive/textbook/minpou-kijutsu/q26-2.png`
-- **生成は Codex。Cursor は描かない。**
-- 姉妹: `codex-gyosho-shobunsei-ari.md`／`codex-gyosho-shobunsei-nashi.md`
+名前が似ていても、処分性は分かれる。右の列は、対象にならない行為だけ。誤った読みは、その列に置かない。ちゃちゃロットは下余白に1体。
 
-## PRE-GENERATE-CHECK（Cursor確認済み）
+- 状態: 生成済み（2026-10-22）。てらしぃがこの画像の修正を言うまで上書きしない
+- 保存先: `assets/images/deepdive/learn/gyosho/shobunsei-kikiwake.png`
+- 画像キー: `learn/gyosho/shobunsei-kikiwake`
+- 生成は Codex。Cursor は描かない。
+- 上書きしない: `shobunsei-kikiwake.png` `shobunsei-ari.png` `shobunsei-nashi.png` `genkoku-kikiwake.png`
 
-対比は正本どおり。同じ「指導・条例・計画」でも結論が分かれる。
+## PRE-GENERATE-CHECK
 
-| 対 | ○ | × |
-|---|---|---|
-| 勧告と同意 | 病院開設中止勧告（平17.7.15） | 開発同意拒否（平7.3.23） |
-| 条例 | 特定保育所廃止（平21.11.26） | 水道料金の一般改定（平18.7.14）／公立小学校廃止を当然の処分としない |
-| 都市計画 | 区画整理事業計画（平20.9.10） | 用途地域指定（昭57.4.22） |
-| 給付・人事 | 労災就学の支給・不支給（平15.9.4） | 採用内定取消（昭57.5.27） |
-| 指定の形 | 二項道路の一括指定（平14.1.17） | 「一括＝立法」として非処分にする読み |
+確認日 2026-10-21。生成前チェックの不合格（案内役がいない。右の列に「一括指定は立法だから対象にならない」という誤った読みがあり、表の結論と紛らわしい）を直した。見本は `genkoku-nashi.png`。横長。1536×1024の比率。
 
-公立小学校廃止条例に保護者の教育を受けさせる権利があるから処分性あり、は誤り（既存 quiz 正本）。この表では「小学校廃止条例を当然○としない」と書く。処分性なしと断定しすぎない（事案による）ので、結論欄は「当然○ではない」。
+右の列は、対象にならない行為だけ。読みや、断定できない留保は置かない。
+
+- 病院の開設中止勧告は対象になる（最判平17.7.15）。開発許可の前の同意の拒否は、対象にならない（最判平7.3.23）。
+- 特定の公立保育所を廃止する条例は対象になる（最大判平21.11.26）。水道料金を一般的に改定する条例は、対象にならない（最判平18.7.14）。
+- 土地区画整理の事業計画の決定は対象になる（最大判平20.9.10）。用途地域・工業地域の指定は、対象にならない（最判昭57.4.22）。
+- 労災就学援護費の支給決定と不支給決定は、どちらも対象になる（最判平15.9.4）。公務員の採用内定の取消は、対象にならない（最判昭57.5.27）。
+- 二項道路の一括指定は対象になる（最判平14.1.17）。法律の制定そのものは、原則として対象にならない。一括指定を、立法だから対象にならない、と右の列に書かない。その誤った読みは、下の試験の×だけ。
+
+この1枚から外す。小学校の廃止条例。処分になると断定せず、処分にならないとも断定しない。右の列に置かない。
+
+試験の×は1行。二項道路の一括指定は、立法だから対象にならない、と書くこと。
+
+書かない。列名「結論」。右の列に「という読み」。一括指定は対象にならない、と表の中に書くこと。乗る、乗らない。文字を縮めること。ちゃちゃロットを消すこと。ブランド名。左右の欄。底部の3枚。
+
+## 配役
+
+| スロット | 陣営 | 役割（何をしたいか） | キャラ | 参照 | 配置 |
+|---|---|---|---|---|---|
+| 案内 | いい役 | 案内（左の列を指す。せりふは足さない） | ちゃちゃロット | `chachalot.png` ＋ `approved-smiling-hat-mascot.png` ＋ `approved-chachalot-pointer.png` | 下余白の右。1体。緑の講師スーツ。表と試験の×を隠さない |
 
 ## GPT Image プロンプト
 
 ```text
-Create a NEW Japanese legal-study infographic from scratch. PAGE 3 of 行訴法・処分性. Comparison only. No 原告適格 rows.
-Quality: same density as q26-2.png. 16:9 warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
-
-Title:「処分性は、名前ではなく中身で分かれる」
-Chip:「指導・条例・計画・一括でも、法的地位が動くか」
-
-Left panel heading 論点:
-病院の勧告は？ → ○（実質の不利益）
-開発の同意拒否は？ → ×
-特定保育所の廃止条例は？ → ○
-
-Right panel heading ひっかけ:
-勧告は常に指導だから非処分
-条例は常に処分
-区画整理はいまも青写真
-一括指定は立法
-
-MAIN: one clean table. Columns: 対比 | ○になる側 | ×／原則側
-Header navy. Data rows white / light gray alternating (row zebra).
-Do not invent extra pairs.
-
-Rows EXACT:
-勧告と同意 | 病院開設中止勧告 ○（平17.7.15） | 開発同意の拒否 ×（平7.3.23）
-条例 | 特定の保育所廃止 ○（平21.11.26） | 水道料金の一般改定 ×（平18.7.14）
-都市計画 | 区画整理の事業計画 ○（平20.9.10） | 用途地域の指定 ×（昭57.4.22）
-給付と内定 | 労災就学の支給・不支給 ○ | 採用内定の取消 ×
-指定の形 | 二項道路の一括指定 ○ | 一括＝立法として非処分にするのは誤り
-学校・保育 | 特定保育所の廃止条例 ○ | 小学校廃止条例を当然○としない
-
-Exactly 6 data rows. No seventh row. Do not print English notes on the image.
-
-Small metaphor: two doors, one labeled 取消訴訟, one labeled 乗らない. Do not cover letters.
-
-Bottom three cards:
-判断軸: 特定の者の法的地位が、後続処分を待たず直接動くか
-ひっかけ: 指導・条例・計画・一括というラベルで結論を決めない
-暗記: 病院勧告○／開発同意×。保育廃止○／水道改定×。区画整理○／用途地域×
-
-Answer bar EXACT:
-「名前が指導でも条例でも、特定の法的地位を直接動かすなら処分になり得る。」
-
-Guide: ONE ちゃちゃロット only. Copy approved-chachalot-pointer.png: cream face, pale-sky-blue hat (not ears), green blazer+trousers+shoes, wooden pointer. NOT owl/bear/tanuki/cat. NO glasses. Bottom-right cream margin ABOVE the navy bar. No name tag. Pointer must not cover letters.
-Never write 切る／切れない. Never「だれが」. Never「問が聞くこと」.
+参照必須: ちゃちゃロットは approved-chachalot-pointer.png。見本の向きと密度: assets/images/deepdive/learn/gyosho/genkoku-nashi.png
+Create a NEW Japanese legal-study infographic from scratch. Landscape, about 3:2, same proportion as the sample. Warm off-white background. Thick outlines, large gothic type, clear gaps. One wide table of exactly 5 data rows. No side panels. No bottom cards.
+Title: 処分性（対象になる・ならない）
+Header, navy: 比べる行為 | 対象になる | 対象にならない
+Data rows alternate by row. Row 1 white, row 2 light gray, row 3 white, row 4 light gray, row 5 white. Not by column.
+Keep the type large enough to read on a phone. Rows may wrap. Do not shrink the type to force each cell onto one line.
+The right column is an act that is not a disposition. Do not put a misreading in that column. Exactly these 5 rows:
+勧告と、同意の拒否 | 病院の開設中止勧告（平17.7.15） | 開発許可の前の、同意の拒否（平7.3.23）
+条例 | 特定の公立保育所を廃止する条例（平21.11.26） | 水道料金を一般的に改定する条例（平18.7.14）
+都市計画 | 土地区画整理の事業計画の決定（平20.9.10） | 用途地域・工業地域の指定（昭57.4.22）
+給付と、内定 | 労災就学援護費の支給決定と不支給決定（平15.9.4） | 公務員の採用内定の取消（昭57.5.27）
+道路の指定と、法規 | 二項道路の一括指定（平14.1.17） | 法律の制定そのもの（原則）
+Under the table, one line only:
+試験で「二項道路の一括指定は、立法だから対象にならない」と書いてあったら×。
+ちゃちゃロット stands in the bottom-right margin, one mascot only, in a green lecturer suit, white shirt, trousers, and shoes. Hat is a separate pale-sky-blue hat on the head: two round side peaks, one low center peak, long brim, smiling closed eyes. Not ears. Not a hood. The pointer indicates the left column. No speech balloon. Do not cover the table or the line under the table.
+Do not print any brand name, account name, or app name.
 ```
-
-## 生成後チェック
-
-- [ ] 病院勧告と開発同意が逆になっていない
-- [ ] 小学校廃止を保育所と同じ○にしていない
-- [ ] 「Wait」や英語のメモが画像に出ていない（プロンプト指示の迷い行は生成に出さない）

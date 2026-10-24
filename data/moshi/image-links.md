@@ -11,6 +11,8 @@
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
 | 17 | オ | 免許が切れても、訴えは残る？ すぐ再免許で事業が続くとき。許可でも国が被告でもない。完全失効は図の結論に含めない | `assets/images/deepdive/learn/gyosho/kyogan-saimenkyo-rieki.png` | 未生成 |
+| 20 | ア | 損害賠償事件。起訴してくれは、国賠になる？ 反射的な事実上の利益 | `assets/images/deepdive/learn/gyosei/kokubai-higai-koso-4koma.png` | 未生成 |
+| 25 | ア | 豊中市給水拒否事件。申込書を返したら、賠償か？ | `assets/images/deepdive/learn/gyosei/toyonaka-kyusui-4koma.png` | 未生成 |
 | 19 | ウ | 公権力の行使は、民事の仮処分で止めない。提起・管轄・事情変更・総理の異議は、この図に無い | `assets/images/deepdive/learn/gyosho/shikko-teishi-vs-minji-karishobun.png` | あり |
 | 19 | ウ | 民事保全の仮処分ができるものとできないもの。執行停止は表の外の別の救済。辰巳2026・問17・オと同じ | `assets/images/deepdive/learn/gyosho/minji-karishobun-dekiru-dekinai.png` | あり |
 | 29 | 問全体 | 隣の書店の敷地を使う | `assets/images/deepdive/learn/minnpou/rinchi-shiyo-shoten.png` | あり |
@@ -57,6 +59,7 @@
 | 34 | 寄託の注意・再保管の行だけ | 委任規定の中身の2枚目 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu-2.png` | あり |
 | 35 | 15歳・契約・代理 | 死因贈与と遺贈（狭い図） | `assets/images/deepdive/learn/minpo/shiin-zoyo-izo-q35.png` | あり |
 | 35 | 撤回の例外まで | 死因贈与と遺贈の比較 | `assets/images/deepdive/learn/minnpou/shiin-zoyo-yuigon.png` | あり |
+| 43 | 問全体 | 理由の提示は、どこまで必要か。左は誰の処分か。右は付記・提示の程度と、足りないときの効果。所得税の更正、青色の更正、旅券の発給拒否、建築士の免許取消し。個別の4コマは別 | `assets/images/deepdive/learn/tetsuzuki/riyu-teiji-4go.png` | あり |
 | 47 | 問全体 | イギリスとアメリカ、どこが違うか | `assets/images/deepdive/learn/kisochi/eibei-giin-daitoryo.png` | あり |
 | 48 | 問全体 | 防衛の年は、どれか | `assets/images/deepdive/learn/kisochi/boei-iten-nen.png` | あり |
 | 49 | 問全体 | 日銀の手段は、どれか | `assets/images/deepdive/learn/kisochi/nichigin-shudan.png` | あり |
@@ -82,11 +85,17 @@
 | 10 | 肢3 | 所得税法違反被告事件。犯則調査は適正課税の質問検査とは別。タイトルに事件名がまだ無い | `assets/images/deepdive/learn/gyosei/kokuzei-hanzoku-yonkoma.png` | あり |
 | 10 | 肢4 | 一斉交通検問事件。違反の多い場所の短時間停止は、任意で自由を不当に制約しなければ適法。日付は最決 | `assets/images/deepdive/learn/gyosei/inshu-kenmon-yonkoma.png` | あり |
 | 10 | 肢5 | 今治税務署。質問検査は犯則捜査の手段に使えない。タイトルに事件名がまだ無い | `assets/images/deepdive/learn/gyosei/imabari-ryuyo-yonkoma.png` | あり |
+| 11 | 肢4 | 審査基準・標準処理期間・処分基準。だれが定めるか。法律根拠の市町村長の許認可を、標準処理期間の適用除外にする、が試験の× | `assets/images/deepdive/learn/gyosei/shinsa-shori-shobun.png` | あり |
 | 20 | 肢1 | 宅地買収不服事件。違法を理由とする国家賠償に、先の取消判決は要らない | `assets/images/deepdive/learn/kokubai/takuchi-baishu-yonkoma.png` | 未生成 |
 | 20 | 肢2 | 公文書の非開示。取り消すべき瑕疵だけでは国賠違法にならない | `assets/images/deepdive/learn/kokubai/kobunsho-hikokai-yonkoma.png` | 未生成 |
 | 20 | 肢3 | 姉歯事件。明らかな誤りを漫然と看過したときに限り、建築確認は国賠違法になり得る。この請求は棄却 | `assets/images/deepdive/learn/kokubai/aneba-kakunin-yonkoma.png` | あり |
 | 20 | 肢4 | 国会議員名誉毀損発言事件。特別の事情がなければ国は賠償しない | `assets/images/deepdive/learn/kokubai/kokkai-meiyo-yonkoma.png` | あり |
 | 20 | 肢5 | 奈良税務署推計課税事件。申告額で必要経費を認定しても、国賠違法ではない | `assets/images/deepdive/learn/kokubai/nara-suikei-yonkoma.png` | あり |
+| 41 | 問全体 | 商業宣伝放送差止等請求事件。とらわれの聞き手。直ちに違法、が試験の× | `assets/images/deepdive/learn/kenpou/toraware-kikite.png` | 未生成 |
+| 42 | 流れ | 弁明書・反論書・意見書の受け渡し。再調査と再審査の準用は、この図に無い | `assets/images/deepdive/learn/gyoseihou/shinriin-nagare.png` | あり |
+| 42 | 準用 | 再調査は29条も30条も準用しない。再審査は29条1項と30条2項・3項だけ | `assets/images/deepdive/learn/gyoseihou/saichousa-saishinsa-shomen.png` | 未生成 |
+| 43 | 問全体 | 場外車券。開設者はあり得る。周辺住民は、この図の×。新規は書かない | `assets/images/deepdive/learn/gyosho/genkoku-kikiwake.png` | あり |
+| 43 | 距離 | 1000メートルは見取図の範囲。住むだけでは適格がない。納骨堂は別の半分 | `assets/images/deepdive/learn/gyosho/shaken-1000-nokotsu-300.png` | あり |
 
 ## 伊藤塾公開1
 
@@ -99,7 +108,7 @@
 | 47 | 3人の順 | イギリスの女性首相は、何人？ 左からサ、メ、ト。上の表とは別 | `assets/images/deepdive/learn/kisochi/same-to-shusho.png` | あり |
 | 48 | 問全体 | 宇宙まで、主権は及ぶか。距離の断面は別図 | `assets/images/deepdive/learn/kisochi/uchuu-shuken.png` | あり |
 | 49 | 問全体 | 三種の神器は神武。LEC公開1 問49と同じ | `assets/images/deepdive/learn/kisochi/jinmu-nabesoko.png` | あり |
-| 50 | 問全体 | 上げると、供給は減るか | `assets/images/deepdive/learn/kisochi/kyokyu-houkou.png` | あり |
+| 50 | 問全体 | 日本銀行の政策で、貨幣は増える？減る？ 売りオペと準備率と基準割引率は減、量的緩和とマイナス金利は増 | `assets/images/deepdive/learn/kisochi/kyokyu-houkou.png` | あり |
 | 51 | 問全体 | 基本法に、罰則はあるか | `assets/images/deepdive/learn/kisochi/kanko-batsu.png` | あり |
 | 52 | 問全体 | 依存度は、下がったか | `assets/images/deepdive/learn/kisochi/kaseki-izon.png` | あり |
 | 53 | 問全体 | 拘禁刑は、どれか | `assets/images/deepdive/learn/kisochi/gyosei-kokin.png` | あり |
@@ -126,6 +135,7 @@
 |---|---|---|---|---|
 | 19 | ア | 斉唱の命令のあと、どの訴え？ 命令自体は処分ではない。減給は処分、昇給が抑えられることは処分以外。差止めの重大な損害と、命令の合憲性は図にない | `assets/images/deepdive/learn/gyosei/kimigayo-shogu-kakunin-4koma.png` | あり |
 | 24 | 肢3 | 審査の申出は、だれが、だれに対して？ 3つの入口の図は別 | `assets/images/deepdive/learn/jichi/kuni-moushide-darekara.png` | あり |
+| 24 | 期間 | 関与に不服なら、いつ高裁へ？ 30日、90日、30日。15日と上告1週間。だれが申出するかは上の図 | `assets/images/deepdive/learn/jichi/keiso-kikan-nagare.png` | あり |
 
 ## TAC第1回
 
@@ -330,3 +340,4 @@
 | 25 | 問全体 | 斉唱の命令のあと、どの訴え？ 命令自体は処分ではない。減給は処分、昇給が抑えられることは処分以外。差止めの重大な損害と、命令の合憲性は図にない。伊藤塾公開２・問19・アと同じ | `assets/images/deepdive/learn/gyosei/kimigayo-shogu-kakunin-4koma.png` | あり |
 | 25 | イ | 差止めは、いつ重大な損害？ 事後の取消と執行停止で容易に救済できるときはない。この事件の一連の懲戒はある。戒告の差止めが本案で理由があることは図にない | `assets/images/deepdive/learn/gyosei/kimigayo-sashitome-songai.png` | 未生成 |
 | 36 | 肢3 | 示さない契約。過失の相手方は、代理人に請求できる？ | `assets/images/deepdive/learn/shouhou/504-kashitsu-aitegata.png` | あり |
+| 50 | 肢1 | ドルと金の交換はいつ止めたか。1971年8月に停止、12月のスミソニアンで一時的に固定、1973年に変動。プラザ合意はドル安。360円と308円、肢2から肢5は図にない。LEC市販第2回・問50と同じ | `assets/images/deepdive/learn/kisochi/doru-kin-kawase.png` | あり |

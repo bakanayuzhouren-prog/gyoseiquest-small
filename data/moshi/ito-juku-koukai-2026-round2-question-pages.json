@@ -628,8 +628,15 @@
       "answerImages": [],
       "answerPage": null,
       "correctAnswer": null,
-      "needsReview": true,
-      "notes": "解答写真がない"
+      "needsReview": false,
+      "notes": "解答写真はない。空欄は、問題画像の語群と最判令和5年2月21日（金沢市庁舎前広場）の判決文との照合。ア10事前抑制、イ17侮辱、ウ16自由市場、エ5集会の自由。",
+      "blankSource": "問題画像＋判決文",
+      "blankAnswers": [
+        { "slot": "ア", "number": 10, "word": "事前抑制" },
+        { "slot": "イ", "number": 17, "word": "侮辱" },
+        { "slot": "ウ", "number": 16, "word": "自由市場" },
+        { "slot": "エ", "number": 5, "word": "集会の自由" }
+      ]
     },
     {
       "questionNumber": 42,

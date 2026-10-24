@@ -1,88 +1,43 @@
-# 裁決の義務付け（37条の3第7項）④ 元の処分を直接争えるなら
+# 元の不許可を、裁判所で直接争えるなら？
 
+分岐が本体。提起できるときと、どちらも提起できないときを、同じ箱にしない。
+
+- 状態: 生成済み（2026-10-22）。てらしぃがこの画像の修正を言うまで上書きしない
 - 保存先: `assets/images/deepdive/learn/gyosho/saiketsu-gimetsuke-4.png`
-- 画像キー: `learn/gyosho/saiketsu-gimetsuke-4`（生成後。いまはアプリにタグを置かない）
-- 連作: ①→④の4枚目。スマホ縦読み。生成は Codex。Cursor は描かない。
-- 根拠: 行政事件訴訟法37条の3第7項。併合は同条3項。認容は同条5項。
+- 画像キー: `learn/gyosho/saiketsu-gimetsuke-4`
+- 生成は Codex。Cursor は描かない。
+- 連作の4枚目。他の枚は上書きしない。
 
 ## PRE-GENERATE-CHECK
 
-- 芯: 第7項は一定の裁決を求める義務付けに限る。元の処分の取消訴訟または無効等確認訴訟を提起できるときは、裁決の義務付けは提起できない。どちらも提起できないときは第7項の入口を満たす。ほかに1項・3項・5項も必要。勝訴は保証しない。
-- 下部補足: 不許可の取消し＋許可処分の義務付けは別話。拒否処分がある申請型では取消訴訟等を併合する（37条の3第3項）。
-- 画像内文言は処分・裁決・義務付けの区別。制作指示（同じ建物にする、悪役にする、このコマで断定するか）は印字しない。
-- 禁止: 直接争えない＝必ず勝つ。審査請求前置と裁決主義を同一ラベルにする。元の処分の取消訴訟と裁決の取消訴訟を同じ箱にする。申請型全体が第7項だと書く。ブランド印字。
-- 判定: このプロンプト範囲では通す。生成はてらしぃ指示まで行わない。
+確認日 2026-10-21。行政事件訴訟法37条の3第7項。
 
-## 配役（①と同じ）
+第7項は、一定の裁決を求める義務付けに限る。元の処分の取消訴訟または無効等確認訴訟を提起できるときは、裁決の義務付けは提起できない。どちらも提起できないときは、第7項の入口を満たす。ほかに訴訟要件と認容要件も必要であり、勝訴は保証しない。
 
-| スロット | キャラ | 参照PNG | 役割（何をしたいか） | 配置 |
-|---|---|---|---|---|
-| いい役・場面 | ぴっちゅ | `assets/images/characters/pitchi.png` ＋ `assets/images/characters/pitchi_sheet.png` | 申請者（どの訴えが立つかを確認する） | 分岐の手前・小さく |
-| 案内役 | ちゃちゃロット | `assets/images/characters/chachalot.png` ＋ `skills/gyosei-image-style/assets/approved-smiling-hat-mascot.png` ＋ `skills/gyosei-image-style/assets/approved-chachalot-pointer.png` | 案内（第7項の分岐を指す） | 下余白。指し棒は分岐表 |
-| 裁判所 | 建物 | なし | 裁判所（訴えの可否を分ける） | 背景 |
+拒否処分がある申請型では、取消訴訟等を併合する（37条の3第3項）。不許可の取消しと、許可処分の義務付けは、別の話。この図の分岐には混ぜない。下に1行だけ。
 
-生成指示のみ（画像に印字しない）: 処分の取消訴訟と裁決の取消訴訟を同じ箱に描かない。「必ず勝つ」と印字しない。
+書かない。直接争えないなら必ず勝つ。審査請求前置と裁決主義を同じラベルにする。元の処分の取消訴訟と、裁決の取消訴訟を同じ箱にする。申請型の全部が第7項だ、と書くこと。ブランド名。左右の欄。底部の3枚。答え帯での繰り返し。
 
-## 確定セリフ（分岐ラベル・画像に出してよい学習文）
+## 配役
 
-- 分岐問:「元の不許可処分の取消訴訟・無効等確認訴訟を提起できるか」
-- 左枝:「提起できる → 裁決の義務付けは提起できない」
-- 右枝:「どちらも提起できない → 第7項の入口を満たす。ほかの訴訟要件・認容要件も必要」
-- 脚注:「不許可の取消し＋許可処分の義務付けは別の話。拒否処分がある申請型では取消訴訟などを併合する（37条の3第3項）」
+| スロット | 陣営 | 役割（何をしたいか） | キャラ | 参照 | 配置 |
+|---|---|---|---|---|---|
+| 申請者 | いい役 | 申請者（どの訴えが立つかを確認する） | ぴっちゅ | `pitchi.png` | 分岐の手前。小さい |
+| 案内 | いい役 | 案内（分岐を指す） | ちゃちゃロット | `chachalot.png` ＋ `approved-chachalot-pointer.png` | 下余白。せりふは足さない |
 
 ## GPT Image プロンプト
 
-画像参照（実在・生成本文にも同じパスを書く）:
-- `assets/images/characters/pitchi.png`
-- `assets/images/characters/pitchi_sheet.png`
-- `assets/images/characters/chachalot.png`
-- `skills/gyosei-image-style/assets/approved-smiling-hat-mascot.png`
-- `skills/gyosei-image-style/assets/approved-chachalot-pointer.png`
-
 ```text
-Create a NEW Japanese legal-study comic panel from scratch. ONE job: 第7項は原処分を直接争えるかで分岐する.
-Portrait 3:4, smartphone reading. Warm off-white, slightly POP, large gothic Japanese, ZERO overlapping glyphs.
-This is panel 4 of 4. Title:「④ 元の処分を直接争えるなら」 Chip:「4/4・37条の3第7項」
-Do not print brand names, watermarks, file names, or production notes.
-Do not print director notes, casting notes, or layout orders on the artwork. Print only legal study Japanese listed below.
-
-Layout: navy title bar. Center is ONE fork diagram, not a long statute. Two branches. Small left 論点 / right ひっかけ. Bottom 判断軸 / ひっかけ / 暗記. A thin footnote bar above the bottom cards.
-
-Cast. Match these files exactly:
-- ぴっちゅ small at the fork start. Match `assets/images/characters/pitchi.png` (icon) and `assets/images/characters/pitchi_sheet.png` (pose sheet). Label:「申請者（どの訴えが立つかを確認する）」
-- ONE ちゃちゃロット SMALL bottom-right. Match `assets/images/characters/chachalot.png`, `skills/gyosei-image-style/assets/approved-smiling-hat-mascot.png`, and `skills/gyosei-image-style/assets/approved-chachalot-pointer.png`. Green lecturer suit, independent pale-sky-blue smiling hat, 指し棒 to the fork. No nameplate.
-- Court building in the background only. No extra mascots.
-
-Center fork (exact Japanese, print these learning lines only):
-Question:「元の不許可処分の取消訴訟・無効等確認訴訟を提起できるか」
-Left branch (green):「提起できる → 裁決の義務付けは提起できない」
-Right branch (amber):「どちらも提起できない → 第7項の入口を満たす。ほかの訴訟要件・認容要件も必要」
-Generation-only layout: keep 処分の取消訴訟 and 裁決の取消訴訟 in separate ideas. Do not present winning the case as guaranteed. The ひっかけ lines below may warn about that mistake.
-
-Footnote bar:「不許可の取消し＋許可処分の義務付けは別の話。拒否処分がある申請型では取消訴訟などを併合する（37条の3第3項）」
-
-Left heading 論点 (print only):
-第7項の対象は？ → 一定の裁決の義務付け
-原処分訴訟ができるときは？ → 裁決の義務付けは提起できない
-入口を満たせば勝つか？ → NO
-
-Right heading ひっかけ (print only):
-審査請求をしたから使える
-直接争えないなら義務付け判決で必ず勝つ
-審査請求前置と裁決主義を同じ語にする
-処分の取消訴訟と裁決の取消訴訟を混ぜる
-
-Bottom (print only):
-- 判断軸:「原処分を裁判所で直接争えるなら、一定の裁決の義務付けは起こせない（37条の3第7項）」
-- ひっかけ:「申請型全体の条件だと思う。勝てると早合点する」
-- 暗記:「裁決の義務付けは、原処分の取消し・無効等確認ができないときに限る」
-Answer:「行政庁が一定の裁決をすべき旨を命ずる義務付けは、当該処分の取消訴訟または無効等確認訴訟を提起できないときに限り提起できる。提起できても認容には第5項等が要る。」
-
-Row zebra if any mini-table: data row 1 white, row 2 light gray, horizontal not columns.
-
-No logos, watermarks, nameplates, or product names on the artwork.
+参照必須: ぴっちゅは pitchi_sheet.png。ちゃちゃロットは approved-chachalot-pointer.png。
+Create a NEW Japanese legal-study infographic from scratch. Warm off-white background. Thick outlines, large gothic type, clear gaps. One fork. No side panels. No bottom cards. No second answer bar.
+Title, one short question: 元の不許可を、裁判所で直接争えるなら？
+Center question box: 元の不許可処分の取消訴訟・無効等確認訴訟を提起できるか
+Left branch: 提起できる → 裁決の義務付けは、提起できない
+Right branch: どちらも提起できない → 第7項の入口を満たす。ほかの訴訟要件と、認容要件も必要
+ぴっちゅ above the fork, small, label 申請者（どの訴えが立つかを確認する）.
+Under the fork, two lines only:
+拒否処分がある申請型では、取消訴訟等を併合する（37条の3第3項）。
+試験で「直接争えないなら、裁決の義務付けは必ず勝つ」と書いてあったら×。
+ちゃちゃロット in the bottom margin, green lecturer suit, separate pale-sky-blue hat, pointer toward the fork. No extra sentence. Do not cover the text.
+Do not print any brand name, account name, or app name.
 ```
-
-## 代替テキスト
-
-元の不許可処分について取消訴訟または無効等確認訴訟を提起できるときは、裁決の義務付けは提起できない。どちらも提起できないときは第7項の入口を満たすが、ほかの訴訟要件と認容要件も必要であり、必ず勝つわけではない。不許可の取消しと許可処分の義務付けの併合は別の話である。

@@ -487,6 +487,76 @@
       "status": "confirmed"
     },
     {
+      "id": "lec3-q41-shinrin",
+      "questionNumber": 41,
+      "subject": "多肢選択",
+      "field": "多肢選択憲法",
+      "learnSubject": "多肢選択憲法",
+      "quizSubject": "多肢選択",
+      "quizField": "多肢選択憲法",
+      "topic": "森林法の共有林分割制限",
+      "aim": "私有財産制度の規制を、公共の福祉と手段の比較で切る。",
+      "rule": "森林法が共有林の分割請求を制限した定めは、憲法29条に違反する。空欄は、私有財産制度、公共の福祉、経済的弱者、比較考量。",
+      "trap": "経済的弱者の保護を目的にすれば、手段の比較なしに常に合憲とする。",
+      "references": [
+        "憲法29条",
+        "最大判昭62.4.22"
+      ],
+      "memory": "共有林の分割制限は違憲。私有財産制度、公共の福祉、経済的弱者、比較考量。",
+      "deepDive": "最大判昭62.4.22。空欄はア3私有財産制度、イ6公共の福祉、ウ20経済的弱者、エ11比較考量。旧番号3・1・6・11は誤り。",
+      "practiceQuestion": {
+        "prompt": "森林法が共有林の分割請求を制限した定めについて、妥当なものはどれか。",
+        "choices": [
+          "私有財産制度を公共の福祉で制限できるが、経済的弱者の保護を目的としても、手段との比較考量で違憲になり得る。",
+          "経済的弱者の保護が目的なら、手段を問わず常に合憲である。",
+          "公共の福祉は、財産権の制限理由にならない。",
+          "共有林の分割請求は、憲法の財産権の外である。"
+        ],
+        "answer": 0,
+        "explanation": "最大判昭62.4.22。空欄は私有財産制度、公共の福祉、経済的弱者、比較考量。"
+      },
+      "sourceTrace": {
+        "answerSource": "解答画像の印字。番号は3・6・20・11",
+        "blankSource": "解答画像",
+        "blankAnswers": [
+          { "slot": "ア", "number": 3, "word": "私有財産制度" },
+          { "slot": "イ", "number": 6, "word": "公共の福祉" },
+          { "slot": "ウ", "number": 20, "word": "経済的弱者" },
+          { "slot": "エ", "number": 11, "word": "比較考量" }
+        ]
+      },
+      "status": "confirmed"
+    },
+    {
+      "id": "lec3-q43-kotei-shadan",
+      "questionNumber": 43,
+      "subject": "多肢選択",
+      "field": "多肢選択行政法",
+      "learnSubject": "多肢選択行政法",
+      "quizSubject": "多肢選択",
+      "quizField": "多肢選択行政法",
+      "topic": "公定力・排他的管轄・遮断効",
+      "aim": "病床数削減勧告の処分性と混ぜない。",
+      "rule": "空欄は、公定力、排他的管轄、遮断効、正当な。病床数削減勧告の処分性ではない。",
+      "trap": "この問を、勧告に処分性があるかの問題として読む。",
+      "references": [],
+      "memory": "空欄は公定力、排他的管轄、遮断効、正当な。病床勧告ではない。",
+      "deepDive": "印字はア6公定力、イ8排他的管轄、ウ20遮断効、エ2正当な。旧番号6・1・8・2と、旧題名の病床数削減勧告は誤り。エの語は印字の「正当な」まで。先の語は補わない。",
+      "practiceQuestion": null,
+      "sourceTrace": {
+        "answerSource": "解答画像の印字。番号は6・8・20・2",
+        "blankSource": "解答画像",
+        "blankAnswers": [
+          { "slot": "ア", "number": 6, "word": "公定力" },
+          { "slot": "イ", "number": 8, "word": "排他的管轄" },
+          { "slot": "ウ", "number": 20, "word": "遮断効" },
+          { "slot": "エ", "number": 2, "word": "正当な" }
+        ],
+        "replacedTopic": "病床数削減勧告"
+      },
+      "status": "confirmed"
+    },
+    {
       "id": "lec3-q44-daiko-hiyo",
       "questionNumber": 44,
       "subject": "記述",

@@ -1,5 +1,5 @@
 てらしぃ用。この順にXへ予約する。
-303枚。欠けなし。1日3本。朝8:00、昼12:00、晩21:00。
+306枚。欠けなし。1日3本。朝8:00、昼12:00、晩21:00。
 開始は2026-10-17。最終は下の末尾。
 本文はまだ作っていない。記述対策の型を、基礎知識や会社法の図へは使わない。
 Xへのログイン投稿はしない。画像をこの順で添付する。
@@ -307,3 +307,6 @@ Xへのログイン投稿はしない。画像をこの順で添付する。
 301  2027-01-25 08:00  作10/16  assets\images\deepdive\learn\gyosei\jijitsu-youken-kouka-sairyo.png
 302  2027-01-25 12:00  作10/16  assets\images\deepdive\learn\jichi\saigi-nini-gimu.png
 303  2027-01-25 21:00  作10/16  assets\images\deepdive\learn\gyosei\shuuyou-88-tsujo-songai.png
+304  2027-01-26 08:00  作10/21  assets\images\deepdive\learn\jichi\jimu-buntan.png
+305  2027-01-26 12:00  作10/21  assets\images\deepdive\learn\jichi\todoufuken-jorei-shichoson.png
+306  2027-01-26 21:00  作10/21  assets\images\deepdive\learn\jichi\shichoson-kanyo-kyokai.png

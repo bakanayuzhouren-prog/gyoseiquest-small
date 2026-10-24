@@ -1455,7 +1455,9 @@
       },
       "sourceTrace": {
         "answerSource": "解答画像",
-        "extractedAnswer": "あ10・い4・う17・え6"
+        "extractedAnswer": "あ10・い4・う17・え6",
+        "slotWordsStatus": "unconfirmed",
+        "slotWordsNote": "番号はある。番号と語句を結び付ける問題画像・語群がない。語句は補わない。"
       },
       "status": "confirmed"
     },
@@ -1490,7 +1492,9 @@
       },
       "sourceTrace": {
         "answerSource": "解答画像",
-        "extractedAnswer": "あ14・い19・う13・え1"
+        "extractedAnswer": "あ14・い19・う13・え1",
+        "slotWordsStatus": "unconfirmed",
+        "slotWordsNote": "番号はある。番号と語句を結び付ける問題画像・語群がない。語句は補わない。"
       },
       "status": "confirmed"
     },
@@ -1525,7 +1529,9 @@
       },
       "sourceTrace": {
         "answerSource": "解答画像",
-        "extractedAnswer": "あ9・い16・う15・え4"
+        "extractedAnswer": "あ9・い16・う15・え4",
+        "slotWordsStatus": "unconfirmed",
+        "slotWordsNote": "番号はある。番号と語句を結び付ける問題画像・語群がない。語句は補わない。"
       },
       "status": "confirmed"
     },

@@ -411,7 +411,7 @@
       "needsReview": true,
       "correctAnswer": 1,
       "answerSource": null,
-      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。 印字の問番号は目視していない。 印字の問番号は目視していない。",
+      "notes": "見出しは問題20、正解1。誤っているのは肢1。最判平5.3.11は職務行為基準。肢4と肢5はこの頁では未確認。",
       "blanks": null,
       "answerConfidence": "header_ocr",
       "answerImages": [
@@ -845,17 +845,23 @@
       ],
       "multiPage": false,
       "ocrStatus": "header_read",
-      "needsReview": true,
-      "correctAnswer": null,
-      "answerSource": null,
-      "notes": "見出しは憲法・経済活動の自由。空欄補充。空欄の正解語句は確定していない。 空欄に入る語句の本体は、語群の番号だけで、語句の再検証はしていない。 空欄に入る語句の本体は、語群の番号だけで、語句の再検証はしていない。",
+      "needsReview": false,
+      "correctAnswer": "ア2・イ8・ウ15・エ20",
+      "answerSource": "解答画像",
+      "notes": "空欄はア2職業選択、イ8継続、ウ15職業活動、エ20社会的相互関連性。エを2としたheader_ocrは誤り。",
       "blanks": {
         "ア": "2",
         "イ": "8",
         "ウ": "15",
-        "エ": "2"
+        "エ": "20"
       },
-      "answerConfidence": "header_ocr",
+      "blankAnswers": [
+        { "slot": "ア", "number": 2, "word": "職業選択" },
+        { "slot": "イ", "number": 8, "word": "継続" },
+        { "slot": "ウ", "number": 15, "word": "職業活動" },
+        { "slot": "エ", "number": 20, "word": "社会的相互関連性" }
+      ],
+      "answerConfidence": "answer_image",
       "answerImages": [
         "app/模試画像/辰巳/解答/PXL_20261010_132359683 (3).jpg"
       ]
@@ -870,17 +876,23 @@
       ],
       "multiPage": false,
       "ocrStatus": "header_read",
-      "needsReview": true,
-      "correctAnswer": null,
-      "answerSource": null,
-      "notes": "見出しは問題42・重要度A。科目欄は行政法、論点欄は行政裁量と読める。空欄の正解語句は確定していない。",
+      "needsReview": false,
+      "correctAnswer": "ア2・イ14・ウ8・エ20",
+      "answerSource": "解答画像",
+      "notes": "空欄はア2合理的、イ14裁量、ウ8同一、エ20慎重。エを2としたheader_ocrは誤り。",
       "blanks": {
         "ア": "2",
         "イ": "14",
         "ウ": "8",
-        "エ": "2"
+        "エ": "20"
       },
-      "answerConfidence": "header_ocr",
+      "blankAnswers": [
+        { "slot": "ア", "number": 2, "word": "合理的" },
+        { "slot": "イ", "number": 14, "word": "裁量" },
+        { "slot": "ウ", "number": 8, "word": "同一" },
+        { "slot": "エ", "number": 20, "word": "慎重" }
+      ],
+      "answerConfidence": "answer_image",
       "answerImages": [
         "app/模試画像/辰巳/解答/PXL_20261010_133019425 (3).jpg"
       ]
@@ -888,24 +900,30 @@
     {
       "questionNumber": 43,
       "subject": "行政法",
-      "topicCandidate": "原告適格",
+      "topicCandidate": "産廃処理施設の許可と原告適格",
       "form": "多肢選択",
       "images": [
         "app/模試画像/辰巳/問題/PXL_20261010_134100446.jpg"
       ],
       "multiPage": false,
       "ocrStatus": "header_read",
-      "needsReview": true,
-      "correctAnswer": null,
-      "answerSource": null,
-      "notes": "頁下部の解説は不鮮明。正解の明示は読めていない。",
+      "needsReview": false,
+      "correctAnswer": "ア1・イ16・ウ4・エ9",
+      "answerSource": "解答画像",
+      "notes": "空欄はア1原告適格、イ16法規、ウ4相手方以外の者、エ9無効等。産業廃棄物処理施設の許可。森林法の日付の問題ではない。",
       "blanks": {
         "ア": "1",
         "イ": "16",
         "ウ": "4",
         "エ": "9"
       },
-      "answerConfidence": "header_ocr",
+      "blankAnswers": [
+        { "slot": "ア", "number": 1, "word": "原告適格" },
+        { "slot": "イ", "number": 16, "word": "法規" },
+        { "slot": "ウ", "number": 4, "word": "相手方以外の者" },
+        { "slot": "エ", "number": 9, "word": "無効等" }
+      ],
+      "answerConfidence": "answer_image",
       "answerImages": [
         "app/模試画像/辰巳/解答/PXL_20261010_132803119 (3).jpg"
       ]
@@ -1005,7 +1023,7 @@
       "needsReview": true,
       "correctAnswer": 3,
       "answerSource": null,
-      "notes": "見出しを目視して正解3。",
+      "notes": "問いの型は妥当でないもの。正解3。2016年改正を10増10減と書くと誤る。",
       "blanks": null,
       "answerConfidence": "header_seen",
       "answerImages": [
@@ -1068,7 +1086,7 @@
       "needsReview": true,
       "correctAnswer": 3,
       "answerSource": null,
-      "notes": "見出しを目視して正解3。",
+      "notes": "問いの型は妥当なもの。正解3。GDPデフレーター。",
       "blanks": null,
       "answerConfidence": "header_seen",
       "answerImages": [
@@ -1109,7 +1127,7 @@
       "needsReview": true,
       "correctAnswer": 3,
       "answerSource": null,
-      "notes": "見出しを目視して正解3。",
+      "notes": "問いの型は妥当でないもの。正解3。権利義務書類の作成を業務から外すと誤る。",
       "blanks": null,
       "answerConfidence": "header_seen",
       "answerImages": [
@@ -1151,7 +1169,7 @@
       "needsReview": true,
       "correctAnswer": 3,
       "answerSource": null,
-      "notes": "見出しを目視して正解3。",
+      "notes": "問いの型は妥当なもの。正解3。マルウェアの手口は一つではない。",
       "blanks": null,
       "answerConfidence": "header_seen",
       "answerImages": [
@@ -1172,7 +1190,7 @@
       "needsReview": true,
       "correctAnswer": 3,
       "answerSource": null,
-      "notes": "見出しを目視して正解3。",
+      "notes": "問いの型は妥当でないもの。正解3。匿名化しても目的外利用は外さない。",
       "blanks": null,
       "answerConfidence": "header_seen",
       "answerImages": [

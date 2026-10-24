@@ -1,0 +1,24 @@
+---
+description: 番号だけの質問は辰巳2026全国公開完全模試。正本は箇条書きなので見出し検索で無いと判断しない。
+alwaysApply: true
+---
+
+# 辰巳2026の番号質問
+
+てらしぃが番号だけを出したら、**辰巳2026全国公開完全模試**の問番号として扱う。別の模試名を出したあとは、その模試に切り替える。
+
+## 読む順
+
+1. 先に `data/knowledge/canonical/tatsumi-2026-zenkoku-koukai.md` を開く。
+2. この正本に `## 問N` はない。科目見出しの下の `- 問N ` である。見出し検索だけで「無い」と判断しない。対象問は正規表現 `^- 問N ` で探す。全角数字の `問５５` も、半角の `問55` に直してから探す。
+3. 足りないときだけ、次を補助にする。
+   - `data/moshi/tatsumi-2026-topics.json`
+   - `data/moshi/tatsumi-2026-answer-key.json`
+   - `data/moshi/tatsumi-2026-question-pages.json`
+4. 図は `data/moshi/image-links.md` の `## 辰巳2026全国公開完全模試` を先に見る。
+
+## 触らない
+
+- `validationStatus` は `needs_review` のまま。てらしぃが確認した、と書くまで変えない。
+- 正本にない肢の文言を推測しない。問題文・肢・解説は転載しない。
+- アプリ（`src/` の learn・bonus、画面）には反映しない。

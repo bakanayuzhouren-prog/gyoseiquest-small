@@ -3,7 +3,7 @@
   "examId": "tatsumi-2026-zenkoku-koukai",
   "title": "辰巳 2026行政書士 全国公開完全模試",
   "expectedQuestionCount": 60,
-  "note": "解答冊子の見出しと、確認できた条文から論点を自作要約した。問題文・肢・解説・模範解答の全文は転載しない。アプリには未反映。",
+  "note": "解答冊子の見出しと、確認できた条文から論点を自作要約した。問題文・肢・解説・模範解答の全文は転載しない。アプリには未反映。 肢別の choiceConclusions は、解答頁の○×と、確認できた条文・判例から自作した。未撮影・未完の肢は needs_review。",
   "topics": [
     {
       "id": "tatsumi-2026-q01",
@@ -62,7 +62,53 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": true,
+          "conclusion": "法源は成文法と不文法に大別され、わが国は大陸法系を継受して成文法を基本とする。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": false,
+          "conclusion": "公の秩序または善良の風俗に反しない慣習のうち、法令が認めたもの、または法令に規定がない事項に限って、法律と同一の効力を有する。",
+          "errorPoint": "公序良俗に反しない慣習の全部に、法律と同一の効力を認めた点。",
+          "references": [
+            "法の適用に関する通則法3条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": false,
+          "conclusion": "商事に商法の定めがないときは商慣習に従い、商慣習がないときは民法に従う。",
+          "errorPoint": "慣習が成文法に優先することはない、とした点。",
+          "references": [
+            "商法1条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": true,
+          "conclusion": "条理は不文法の一種であり、成文法も慣習も裁判の基準がない民事事件では、条理を基準とする。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "オ",
+          "verdict": true,
+          "conclusion": "判例が法源となるとき、拘束力を生じるのは結論を導くのに直接必要な判決理由であり、主文の結論部分だけではない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q02",
@@ -122,7 +168,62 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "簡易裁判所は、140万円を超えない民事の請求（行政事件訴訟の請求を除く）と、罰金以下の刑に当たる罪などについて第一審の裁判権を有し、原則として裁判官1人で扱う。",
+          "errorPoint": null,
+          "references": [
+            "裁判所法33条1項",
+            "裁判所法35条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "民事調停は、特別の定めがある場合を除き、相手方の住所地等を管轄する簡易裁判所、または当事者が合意で定める地方裁判所もしくは簡易裁判所が管轄する。",
+          "errorPoint": null,
+          "references": [
+            "民事調停法3条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "高等裁判所は、地方裁判所の第一審判決等に対する控訴、刑事事件を除く上告、および内乱に関する罪の第一審を管轄する。",
+          "errorPoint": null,
+          "references": [
+            "裁判所法16条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "地方裁判所は原則として裁判官1人で扱い、法律が定める場合に限り3人の合議体が扱う。",
+          "errorPoint": null,
+          "references": [
+            "裁判所法26条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "弾劾裁判所は国会が設ける機関であり、罷免の訴追があったときに初めて設置されるものではない。罷免の訴追は裁判官弾劾法の手続による。",
+          "errorPoint": "罷免の訴追があったときに弾劾裁判所が設置される、とした点。",
+          "references": [
+            "憲法64条1項",
+            "裁判官弾劾法"
+          ],
+          "validationStatus": "confirmed",
+          "gap": "弾劾法の条番号は、この回ではe-Govを再読していない。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q03",
@@ -134,8 +235,8 @@
       "quizField": "憲法",
       "topic": "外国人の人権",
       "aim": "外国人の人権を、試験で使う結論で切る。",
-      "askType": "妥当でないもの",
-      "rule": "再入国の自由は憲法上保障されない。政治活動の自由は、政治的意思決定に影響する活動を除き、在留外国人にも及ぶ。妥当でないものは肢4。",
+      "askType": "妥当なもの",
+      "rule": "再入国の自由は憲法上保障されない。政治活動の自由は、政治的意思決定に影響する活動を除き、在留外国人にも及ぶ。妥当でないものは肢4。 【紙面訂正】紙面の問いは妥当なものである。解答頁は肢1から肢3を妥当でないとする。肢4と肢5は続き頁が無い。",
       "trap": "在留資格の違いを、人権の享有主体の話にすり替えない。",
       "references": [],
       "memory": "再入国の自由は憲法上保障されない。政治活動の自由は、政治的意思決定に影響する活動を除き、在留外国人にも及ぶ。",
@@ -155,7 +256,57 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "在留外国人に、憲法上、外国へ一時旅行する自由や再入国の自由は保障されない。",
+          "errorPoint": "長期在留の外国人に、再入国の自由が憲法上保障されるとした点。",
+          "references": [
+            "最判平4.11.16"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "在留外国人の政治活動の自由は、わが国の政治的意思決定またはその実施に影響を及ぼす活動を除き、保障が及ぶ。",
+          "errorPoint": "在留外国人には政治活動の自由の保障が及ばない、とした点。",
+          "references": [
+            "最大判昭53.10.4"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "永住者等であっても、地方公共団体の長およびその議会の議員の選挙権は、憲法上保障されない。",
+          "errorPoint": "永住者等に、その選挙権が憲法上保障されるとした点。",
+          "references": [
+            "最判平7.2.28"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": null,
+          "conclusion": "続き頁が無く、命題を確定しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "needs_review",
+          "gap": "要再撮影。解答 PXL_20261010_082458195 (3).jpg は肢3の途中まで。肢4の印字がある続きが無い。"
+        },
+        {
+          "id": "5",
+          "verdict": null,
+          "conclusion": "続き頁が無く、命題を確定しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "needs_review",
+          "gap": "要再撮影。同上。肢5の印字がある続きが無い。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q04",
@@ -167,8 +318,8 @@
       "quizField": "憲法",
       "topic": "信教の自由",
       "aim": "信教の自由を、試験で使う結論で切る。",
-      "askType": "妥当でないもの",
-      "rule": "宗教法人の解散命令と、信者の宗教行為の継続は、最決平8.1.30の前段と後段で切り分ける。",
+      "askType": "妥当なもの",
+      "rule": "宗教法人の解散命令と、信者の宗教行為の継続は、最決平8.1.30の前段と後段で切り分ける。 【紙面訂正】紙面の問いは妥当なものである。妥当なのは肢3。",
       "trap": "解散命令が信者の行為を直ちに禁止すると書くと誤る。",
       "references": [
         "最決平8.1.30"
@@ -200,7 +351,63 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "宗教法人の解散命令は、信者の宗教上の行為を禁止しまたは制限する効果を持たない。他方、礼拝施設の用に供していた財産が処分されると、宗教上の行為の継続に支障を生じ得る。",
+          "errorPoint": "その財産が処分されても、宗教上の行為の継続に支障を生じない、とした点。",
+          "references": [
+            "最決平8.1.30",
+            "宗教法人法81条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "信仰生活の静穏が法的利益となるのは、侵害の態様と程度が社会的に許容される限度を超える場合であり、態様と程度を問わず直ちに損害賠償を求められるものではない。",
+          "errorPoint": "態様と程度を考慮せず、直ちに損害賠償等を求められる、とした点。",
+          "references": [
+            "最大判昭63.6.1",
+            "憲法20条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "宗教行為として行われた行為でも、他人の生命・身体に危害を及ぼす違法な有形力の行使に当たるときは、憲法20条1項の信教の自由の保障の限界を超え得る。",
+          "errorPoint": null,
+          "references": [
+            "最大判昭38.5.15",
+            "憲法20条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "宗教的行為の自由には、宗教的行為をしない自由と、宗教的行為への参加を強制されない自由が含まれる。",
+          "errorPoint": "参加を強制されない自由は含まれない、とした点。",
+          "references": [
+            "憲法20条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": null,
+          "conclusion": "問題の再掲には、輸血を拒否する明確な意思があっても、その意思決定は人格権として尊重されない、とする記述がある。最判平12.2.29は、その意思を人格権として尊重する。解答続きに肢5の印字が無いので、○×は付けない。",
+          "errorPoint": null,
+          "references": [
+            "最判平12.2.29"
+          ],
+          "validationStatus": "needs_review",
+          "gap": "要再撮影。解答 PXL_20261010_130626625.MP (3).jpg は肢4まで。肢5の妥当でないとの印字がある続きが無い。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q05",
@@ -255,7 +462,63 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "傍聴人が見聞を認識し記憶する限度で法廷のメモを取ることは、憲法21条1項の精神に照らして尊重され、理由なく妨げられてはならない。",
+          "errorPoint": null,
+          "references": [
+            "最大判平元.3.8",
+            "憲法21条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "法廷のメモが公正かつ円滑な訴訟の運営を妨げるときは、表現の自由の制約に一般に求められる厳格な基準によらず、そのメモを制限できる。",
+          "errorPoint": null,
+          "references": [
+            "最大判平元.3.8"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "憲法82条1項の裁判の公開は、何人も裁判所に対し傍聴を権利として要求できるところまでは認めない。",
+          "errorPoint": "何人も傍聴を権利として要求できる、とした点。",
+          "references": [
+            "最大判平元.3.8",
+            "憲法82条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "司法記者クラブ所属の報道機関の記者に限り法廷のメモを許すことは、報道の公共性と取材の自由への配慮に基づき、憲法14条1項の下で合理性を欠く措置とはいえない。",
+          "errorPoint": null,
+          "references": [
+            "最大判平元.3.8",
+            "憲法14条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "傍聴人のメモを禁ずる裁判長の措置は、法廷警察権の目的・範囲を著しく逸脱し、または方法が甚だしく不当であるなどの特段の事情がない限り、国家賠償法1条1項の違法な公権力の行使には当たらない。",
+          "errorPoint": null,
+          "references": [
+            "最大判平元.3.8",
+            "国家賠償法1条1項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q06",
@@ -293,7 +556,62 @@
         "questionImages": [],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "国会議員は、会期中、院外の現行犯を除き、所属の院の許諾がなければ逮捕されない。",
+          "errorPoint": null,
+          "references": [
+            "憲法50条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "参議院の緊急集会の期間中も、参議院議員に不逮捕特権が及ぶ。",
+          "errorPoint": null,
+          "references": [
+            "憲法50条",
+            "憲法54条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "議院で行った演説、討論または表決についての院外免責は、内閣総理大臣その他の国務大臣の資格で行った発言にも及ぶ。",
+          "errorPoint": null,
+          "references": [
+            "憲法51条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "両議院の議員は全国民の代表であり、選挙区の指示に法的に拘束されない。",
+          "errorPoint": null,
+          "references": [
+            "憲法43条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "議員の歳費は法律の定める相当額であり、在職中の減額禁止は裁判官の報酬についてである。",
+          "errorPoint": "議員の歳費は在職中減額できない、とした点。",
+          "references": [
+            "憲法49条",
+            "憲法79条6項",
+            "憲法80条2項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q07",
@@ -305,8 +623,8 @@
       "quizField": "憲法",
       "topic": "裁判官の身分保障",
       "aim": "裁判官の身分保障を、試験で使う結論で切る。",
-      "askType": "妥当でないもの",
-      "rule": "裁判官の懲戒は裁判所が行い、国会も行政機関もできない。弾劾による罷免は通常裁判所に出訴できない。最高裁長官は内閣の指名に基づき天皇が任命し、その他の最高裁判事は内閣が任命する。下級裁判所の裁判官は最高裁の指名した名簿によって内閣が任命する。妥当でないものは肢5。",
+      "askType": "妥当なもの",
+      "rule": "裁判官の懲戒は裁判所が行い、国会も行政機関もできない。弾劾による罷免は通常裁判所に出訴できない。最高裁長官は内閣の指名に基づき天皇が任命し、その他の最高裁判事は内閣が任命する。下級裁判所の裁判官は最高裁の指名した名簿によって内閣が任命する。妥当でないものは肢5。 【紙面訂正】紙面の問いは妥当なものである。妥当なのは肢5。",
       "trap": "弾劾と分限を同一の手続にしない。",
       "references": [
         "憲法78条",
@@ -333,7 +651,63 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "裁判官の懲戒処分は裁判所が行い、行政機関も国会も行うことはできない。",
+          "errorPoint": "憲法78条後段は行政機関だけを禁じ、立法機関の懲戒は許される、とした点。",
+          "references": [
+            "憲法78条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "弾劾裁判所による罷免の裁判を受けた者は、新たな証拠があっても、通常裁判所に出訴することはできない。",
+          "errorPoint": "新たな証拠があれば通常裁判所へ出訴できる、とした点。",
+          "references": [
+            "憲法76条1項",
+            "憲法64条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "最高裁判所長官は内閣の指名に基づき天皇が任命し、その他の最高裁判事は内閣が任命する。最高裁判所の指名に基づく内閣の任命は、下級裁判所の裁判官についてである。",
+          "errorPoint": "長官以外の裁判官の全部を、最高裁判所の指名に基づく内閣の任命とした点。",
+          "references": [
+            "憲法6条2項",
+            "憲法79条1項",
+            "憲法80条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "個々の裁判官の報酬は在任中減額できないが、国家公務員全体の給与引下げに合わせ、法律の改正で全裁判官の報酬を一律に減額することは憲法上許される。",
+          "errorPoint": "その一律減額も許されない、とした点。",
+          "references": [
+            "憲法79条6項",
+            "憲法80条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "心身の故障による罷免は、職務を遂行できない程度の精神上または身体の故障で、一時的でなく相当期間継続することが確実に予想される場合に限られ、職務の執行に支障がない長期の故障は罷免事由に当たらない。",
+          "errorPoint": null,
+          "references": [
+            "憲法78条"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q08",
@@ -346,11 +720,16 @@
       "topic": "行政行為の瑕疵",
       "aim": "行政行為の瑕疵を、試験で使う結論で切る。",
       "askType": "組合せ",
-      "rule": "組合せの正解は5。正しい記述はウとエ。無効の瑕疵では、明白性を原則として不要とする立場が現在の一般である。",
-      "trap": "違法の瑕疵と不当の瑕疵、重大明白説と明白性補充要件説を混ぜない。",
-      "references": [],
-      "memory": "行政行為の瑕疵は、正しい記述がウとエ。組合せの正解は5。",
-      "deepDive": "■ 結論\n\n組合せの正解は5。正しい記述はウとエ。無効の瑕疵では、明白性を原則として不要とする立場が現在の一般である。\n\n■ ひっかけ\n\n違法の瑕疵と不当の瑕疵、重大明白説と明白性補充要件説を混ぜない。\n\n■ 確認\n\n追加撮影 PXL_20261010_212819909 の見出しに正解5。続き PXL_20261010_212825794 は、正しい記述がウとエで正解は肢5、と結ぶ。元の107枚にはこの見出しはなかった。判例の年月日は再確認していない。",
+      "rule": "組合せの正解は5。正しい記述はウとエ。判例の原則は、無効には重大かつ明白な瑕疵を要する。明白性を一般に不要としたのではない。 【紙面訂正】解答画像 PXL_20261010_212819909 と PXL_20261010_212825794 はリポジトリに無い。過去の取込みメモは正解5、正しい記述はウとエ。肢の命題は画像が無いので確定しない。",
+      "trap": "裁量の問題を全て不当にしない。課税処分の例外を、判例の一般論にしない。",
+      "references": [
+        "行政事件訴訟法30条",
+        "最判昭36.3.7",
+        "最判昭48.4.26",
+        "最判平16.7.13"
+      ],
+      "memory": "正しいのはウとエ。無効の原則は重大かつ明白。明白性不要は課税の例外。",
+      "deepDive": "■ 結論\n\n組合せの正解は5。正しい記述はウとエ。\n\nアは誤り。裁量の逸脱または濫用は違法で、取消訴訟で争える。行政事件訴訟法30条。\n\nイは誤り。判例の原則は、無効には重大かつ明白な瑕疵を要する。最判昭36.3.7。課税処分で、第三者の信頼が問題にならず、課税要件の根幹の過誤があり、期間徒過の不可争で不利益を甘受させることが著しく不当な例外的事情があるときに、明白でなくても無効になり得る。最判昭48.4.26。この例外を一般論にしない。最判平16.7.13は例外事情がないとして無効を否定した。\n\nウは正しい。瑕疵の治癒は、手続をやり直さずに効力を維持できる反面、過程の適正が軽視されるおそれがある。\n\nエは正しい。申請拒否で示した理由の追加・差替えには、紛争の一回的解決から一定の合理性がある。広く認めると、完備した理由を一つだけ示しておけばよい行動を誘発するおそれがある。追加・差替えを認める条文はない。拒否の理由を示させるのは行政手続法8条。14条は不利益処分で、申請拒否は2条4号ロで除く。\n\n■ 確認\n\n治癒と理由の差替えの判決年月日は、この回では判決本文を再読していない。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "追加撮影の見出し。正解5。正しい記述はウとエ。",
@@ -364,7 +743,45 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": null,
+          "conclusion": "解答画像が無く、命題の正誤を確定しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "needs_review",
+          "gap": "要再撮影。PXL_20261010_212819909 と PXL_20261010_212825794 が無い。問題 PXL_20261010_133712288.jpg だけでは○×を確定しない。"
+        },
+        {
+          "id": "イ",
+          "verdict": null,
+          "conclusion": "解答画像が無く、命題の正誤を確定しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "needs_review",
+          "gap": "要再撮影。同上。"
+        },
+        {
+          "id": "ウ",
+          "verdict": null,
+          "conclusion": "解答画像が無く、命題の正誤を確定しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "needs_review",
+          "gap": "要再撮影。同上。過去メモはウが正しい記述だが、画像が無いので○にしない。"
+        },
+        {
+          "id": "エ",
+          "verdict": null,
+          "conclusion": "解答画像が無く、命題の正誤を確定しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "needs_review",
+          "gap": "要再撮影。同上。過去メモはエが正しい記述だが、画像が無いので○にしない。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q09",
@@ -376,8 +793,8 @@
       "quizField": "行政法",
       "topic": "行政契約",
       "aim": "行政契約を、試験で使う結論で切る。",
-      "askType": "妥当でないもの",
-      "rule": "水道事業者は、供給計画で対応できる限り給水契約の申込みを拒めない。増量しても深刻な水不足が避けられないときは、需要を抑えるための拒否が許されることがある。妥当でないものは肢2。",
+      "askType": "組合せ",
+      "rule": "水道事業者は、供給計画で対応できる限り給水契約の申込みを拒めない。増量しても深刻な水不足が避けられないときは、需要を抑えるための拒否が許されることがある。妥当でないものは肢2。 【紙面訂正】紙面は正誤の組合せである。エは続き頁が無い。",
       "trap": "行政手続法の適用対象に行政契約を常に含めると誤る。",
       "references": [
         "水道法15条"
@@ -400,7 +817,50 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": true,
+          "conclusion": "水道事業者は、供給計画で対応できる限り給水契約の申込みを拒めない。増量しても深刻な水不足が避けられないときは、需要の増加を抑えるための締結拒否が許されることがあり、行政指導への不協力はその正当な理由に当たらない。",
+          "errorPoint": null,
+          "references": [
+            "水道法15条1項",
+            "最判平11.1.21"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": false,
+          "conclusion": "行政手続法は、行政契約を適用対象としていない。",
+          "errorPoint": "行政手続法が行政契約も適用対象とする、とした点。",
+          "references": [
+            "行政手続法"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": false,
+          "conclusion": "地方公共団体が随意契約の制限に違反して締結した契約は違法であるが、私法上当然に無効となるわけではなく、制限を没却する特段の事情があるときに限り私法上無効になり得る。",
+          "errorPoint": "その違反の契約が私法上当然に無効となる、とした点。",
+          "references": [
+            "最判昭62.5.19",
+            "地方自治法234条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": null,
+          "conclusion": "続き頁が無く、命題を確定しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "needs_review",
+          "gap": "要再撮影。解答 PXL_20261010_082525246 (3).jpg はウの途中まで。エの印字がある続きが無い。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q10",
@@ -463,7 +923,60 @@
           }
         ]
       },
-      "status": "confirmed"
+      "status": "confirmed",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "工作物への立入りと質問は、必要性、刑事責任の追及との結びつき、強制の程度を総合して、憲法35条に反しない。",
+          "errorPoint": null,
+          "references": [
+            "最大判平4.7.1",
+            "憲法35条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "法人税法の質問検査は、行使のときから犯則調査の手段であったときは許されないが、後に犯則事件の証拠になり得ることだけでは、その行使が許されないことにはならない。",
+          "errorPoint": "後に犯則事件の証拠となり得ることだけで、質問検査権の行使が許されない、とした点。",
+          "references": [
+            "最決平16.1.20"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "施設内の立入検査は事実上の行為であり、行政手続法の不利益処分ではなく、意見陳述の手続を要しない。",
+          "errorPoint": null,
+          "references": [
+            "行政手続法2条4号",
+            "大気汚染防止法26条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "犯則調査で収集した資料を、その被疑者に対する課税処分および青色申告承認の取消処分に用いることは許される。",
+          "errorPoint": null,
+          "references": [
+            "最判昭63.3.31"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "行政調査と、その調査を基礎とする行政行為は相対的に独立し、調査の違法は当然には後の行政行為の違法を構成しない。重大な違法は、後の行政決定の違法を基礎づけ得る。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed",
+          "gap": "解答頁は妥当と結ぶ。この効果を正面から判示した最高裁判例は、この回では確認していない。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q11",
@@ -476,8 +989,8 @@
       "topic": "聴聞",
       "aim": "聴聞を、試験で使う結論で切る。",
       "askType": "誤っているもの",
-      "rule": "聴聞が必要となる不利益処分は、許可の取消しなど13条1項1号の列挙と、同項2号の裁量による場合である。列挙された類型だけに限るとすると誤る。",
-      "trap": "主宰者の指名、関係人の参加、審査請求の制限を、聴聞不要の理由にすり替えない。",
+      "rule": "聴聞が必要となる不利益処分は、13条1項1号イからハの列挙と、同号ニの、行政庁が相当と認めるときである。列挙された類型だけに限るとすると誤る。裁量で聴聞にするのは2号ではない。2号は、イからニのどれにも当たらないときの弁明の機会の付与である。",
+      "trap": "相当と認めるときを2号にしない。主宰者の指名、関係人の参加、審査請求の制限を、聴聞不要の理由にすり替えない。",
       "references": [
         "行政手続法13条1項",
         "行政手続法15条2項",
@@ -486,8 +999,8 @@
         "行政手続法17条",
         "行政手続法27条"
       ],
-      "memory": "聴聞が必要となる不利益処分は、許可の取消しなど13条1項1号の列挙と、同項2号の裁量による場合である。列挙された類型だけに限るとすると誤る。",
-      "deepDive": "■ 結論\n\n聴聞が必要となる不利益処分は、許可の取消しなど13条1項1号の列挙と、同項2号の裁量による場合である。列挙された類型だけに限るとすると誤る。\n\n■ ひっかけ\n\n主宰者の指名、関係人の参加、審査請求の制限を、聴聞不要の理由にすり替えない。\n\n■ 確認\n\n各号の文言は、この回ではe-Govの当該条を再読していない。",
+      "memory": "聴聞は1号イからニ。相当と認めるときは1号ニ。2号は弁明の機会の付与。列挙だけに限ると誤る。",
+      "deepDive": "■ 結論\n\n聴聞が必要となる不利益処分は、13条1項1号イからハの列挙と、同号ニの、行政庁が相当と認めるときである。列挙された類型だけに限るとすると誤る。\n\n2号は、イからニのどれにも当たらないときの弁明の機会の付与である。裁量で聴聞にする場合を2号と呼ばない。\n\n■ ひっかけ\n\n相当と認めるときを2号にしない。\n\n■ 確認\n\ne-Govの13条1項。確認日 2026-10-24。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -524,7 +1037,61 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "行政庁は、聴聞の通知書面で、聴聞が終結する時まで、不利益処分の原因となる事実を証する資料の閲覧を求めることができる旨を教示しなければならない。",
+          "errorPoint": null,
+          "references": [
+            "行政手続法15条2項2号"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "聴聞を要する不利益処分は、許可等の取消し、資格または地位の直接のはく奪、役員等の解任・除名に限られず、行政庁が相当と認めるときも聴聞をしなければならない。",
+          "errorPoint": "列挙された類型だけに聴聞を限った点。裁量で聴聞にするのは1号ニであり、どれにも当たらないときは2号の弁明の機会の付与である。",
+          "references": [
+            "行政手続法13条1項1号",
+            "行政手続法13条1項2号"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "聴聞は、行政庁が指名する職員その他政令で定める者が主宰する。",
+          "errorPoint": null,
+          "references": [
+            "行政手続法19条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "行政庁は、不利益処分の決定をするとき、調書の内容と主宰者の意見を十分に参酌しなければならない。",
+          "errorPoint": null,
+          "references": [
+            "行政手続法26条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "主宰者は、利害関係を有する関係人に聴聞手続への参加を求め、または参加を許可できる。聴聞の節に基づく処分またはその不作為には、審査請求ができない。",
+          "errorPoint": null,
+          "references": [
+            "行政手続法17条1項",
+            "行政手続法27条"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q12",
@@ -566,7 +1133,61 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "申請拒否の理由は、原則として処分と同時に申請者へ示す。法令または公にされた審査基準等により申請内容から明らかなときは、申請者の求めがあったときに示せば足りる。",
+          "errorPoint": null,
+          "references": [
+            "行政手続法8条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "理由を示さないで不利益処分をすべき差し迫った必要があるときは、名あて人の所在が判明したあと、処分後相当の期間内に理由を示さなければならない。",
+          "errorPoint": null,
+          "references": [
+            "行政手続法14条1項",
+            "行政手続法14条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "申請拒否の理由を示す義務は申請者に対するものであり、許認可が第三者に不利益な効果を及ぼすときでも、第三者への理由の提示を義務付けるものではない。",
+          "errorPoint": null,
+          "references": [
+            "行政手続法8条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "不利益処分の理由は、処分の性質・内容、原因事実、根拠法令に加え、どの処分基準の適用でその処分が選ばれたかが分からなければ、基準の適用関係も示さなければならない。",
+          "errorPoint": "処分基準の適用関係まで示す必要はないとした点。",
+          "references": [
+            "行政手続法14条1項",
+            "最判平23.6.7"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "不利益処分を書面でするときは、理由を書面で示さなければならない。",
+          "errorPoint": null,
+          "references": [
+            "行政手続法14条3項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q13",
@@ -579,15 +1200,15 @@
       "topic": "行政指導",
       "aim": "行政指導を、試験で使う結論で切る。",
       "askType": "妥当なもの",
-      "rule": "行政指導は、処分ではないが、相手方の権利利益に実質的な影響を与えるときは処分性が認められることがある。国の機関への適用除外は4条1項。",
-      "trap": "教示を行政指導の一種に含めると誤る。",
+      "rule": "妥当なのは肢3。行政指導は処分そのものではない。実質的な影響で実際上従わざるを得ないときは争える。病院開設中止勧告は最判平17.7.15。国の機関等への行政指導は、固有の資格でなくても行手法が外れる。4条1項。",
+      "trap": "教示は行政指導ではない。固有の資格の括弧は処分と届出に付く。行政指導には付かない。",
       "references": [
         "行政手続法2条6号",
         "行政手続法4条1項",
         "最判平17.7.15"
       ],
-      "memory": "行政指導は、処分ではないが、相手方の権利利益に実質的な影響を与えるときは処分性が認められることがある。国の機関への適用除外は4条1項。",
-      "deepDive": "■ 結論\n\n行政指導は、処分ではないが、相手方の権利利益に実質的な影響を与えるときは処分性が認められることがある。国の機関への適用除外は4条1項。\n\n■ ひっかけ\n\n教示を行政指導の一種に含めると誤る。\n\n■ 確認\n\n肢4と5は続き頁。",
+      "memory": "行政指導は処分そのものではない。実際上従わざるを得ないときは争える。正解は3。",
+      "deepDive": "■ 結論\n\n問いの型は妥当なもの。正解3。病院の開設中止勧告は最判平17.7.15。指定を受けられなくなる、と断定しない。\n\n■ ひっかけ\n\n教示は行政指導ではない。4条1項の固有の資格は処分と届出。行政指導には括弧がない。\n\n■ 確認\n\n肢1と肢2は妥当ではない。肢4と肢5は続き頁。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -613,7 +1234,59 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "国の機関または地方公共団体もしくはその機関に対する行政指導には、行政手続法は適用されない。固有の資格の限定は処分と届出に付き、行政指導には付かない。",
+          "errorPoint": "国の機関への行政指導には適用され、地方公共団体の機関とは適否が異なるとした点。",
+          "references": [
+            "行政手続法4条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "教示は、行政不服申立てによる救済を知らせる制度であり、特定の者に一定の作為または不作為を求める意図を欠くので、行政指導には含まれない。",
+          "errorPoint": "教示を助成的行政指導の例とした点。",
+          "references": [
+            "行政手続法2条6号"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "病院開設中止の勧告は、医療法上は任意の行政指導でも、従わないと相当程度の確実さをもって保険医療機関の指定を受けられず、実際上開設を断念せざるを得ないときは、取消訴訟の処分に当たる。指定を受けられなくなる、と断定しない。",
+          "errorPoint": null,
+          "references": [
+            "最判平17.7.15"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "行政指導に携わる者は、相手方が従わなかったことを理由として、不利益な取扱いをしてはならない。",
+          "errorPoint": "従わなかったことを理由に不利益な取扱いができるとした点。",
+          "references": [
+            "行政手続法32条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "建築主が、留保されたままの行政指導には協力できない意思を真摯かつ明確に示し、直ちに応答を求めたときは、特段の事情がない限り、それ以後の建築確認の留保は国家賠償法1条1項の違法になる。特段の事情は、建築主の不利益と指導目的の公益上の必要性を比べて、協力しないことが社会通念上正義の観念に反するときである。",
+          "errorPoint": "不協力の表明があれば、その後の建築確認の留保が常に違法となるとした点。",
+          "references": [
+            "最判昭60.7.16"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q14",
@@ -669,7 +1342,60 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "景品表示の是正をめぐる不服申立ては、法律が特に定める場合を除き、自己の法律上の利益にかかわらず提起できる民衆争訟にはならない。",
+          "errorPoint": "民衆争訟を認めたものとした点。",
+          "references": [
+            "最判昭53.3.14"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "不服申立適格は、当該処分により自己の権利または法律上保護された利益を侵害され、または必然的に侵害されるおそれがある者に限り認められる。",
+          "errorPoint": "利害関係を有しない者でも、期間内であれば審査請求できるとした点。",
+          "references": [
+            "最判昭53.3.14"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "法律上保護された利益は、行政法規が私人の個別的利益を保護する目的で行政権の行使に制約を課すことにより保障される利益であり、反射的利益とは区別される。",
+          "errorPoint": null,
+          "references": [
+            "最判昭53.3.14"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "処分の名あて人以外の者でも、当該処分につき不服申立てをする法律上の利益があれば、不服申立てができる。",
+          "errorPoint": "名あて人以外の者による不服申立ては認められないとした点。",
+          "references": [
+            "最判昭53.3.14"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": null,
+          "conclusion": "述語が頁の下で切れており、命題の正誤を確定しない。",
+          "errorPoint": null,
+          "references": [
+            "最判昭53.3.14"
+          ],
+          "validationStatus": "needs_review",
+          "gap": "判読不能。問題 PXL_20261010_134052377.jpg と解答 PXL_20261010_082555463 (3).jpg の肢5は文が未完。既存の choiceVerdicts は false だが、印字が完結していないので○×を合わせない。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q15",
@@ -705,7 +1431,59 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "審理員は、審査請求人もしくは参加人の申立てまたは職権で、書類その他の物件の所持人に対し、相当の期間を定めて提出を求めることができる。その求めは常に義務ではない。",
+          "errorPoint": null,
+          "references": [
+            "行政不服審査法33条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "審理員は、審理手続を終結したときは、遅滞なく、審査庁がすべき裁決に関する審理員意見書を作成しなければならない。",
+          "errorPoint": "意見書の作成を努力義務とした点。",
+          "references": [
+            "行政不服審査法42条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "審査請求人は、送付された弁明書に記載された事項に対する反論書を提出することができる。",
+          "errorPoint": null,
+          "references": [
+            "行政不服審査法30条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "審理員は、審査庁から指名されたときは、直ちに審査請求書または審査請求録取書の写しを処分庁等へ送付しなければならない。処分庁等が審査庁であるときは送付しない。",
+          "errorPoint": null,
+          "references": [
+            "行政不服審査法29条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "審理員は、相当の期間を定めて、処分庁等に弁明書の提出を求める。この求めは審理員の義務である。",
+          "errorPoint": null,
+          "references": [
+            "行政不服審査法29条2項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q16",
@@ -718,7 +1496,7 @@
       "topic": "裁決",
       "aim": "裁決を、試験で使う結論で切る。",
       "askType": "組合せ",
-      "rule": "見出しは正解5。続き頁は、正しい記述がウとエであり正解は肢5、と結んでいる。理由の追完と瑕疵の治癒を、常に認める趣旨ではない。",
+      "rule": "見出しは正解5。続き頁は、正しい記述がウとエであり正解は肢5、と結んでいる。理由の追完と瑕疵の治癒を、常に認める趣旨ではない。 【紙面訂正】番号のない解答頁（頁29、PXL_20261010_082544136 (3).jpg）は、瑕疵の治癒と理由の追加・差替えを扱い、この問のアからオと中身が違う。別問の可能性があるので結び付けない。この問はエとオが誤り。",
       "trap": "審査裁決が附記理由の不備を当然に治癒する、と書かない。",
       "references": [
         "行政不服審査法47条",
@@ -742,7 +1520,60 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": true,
+          "conclusion": "事実上の行為についての審査請求に理由があるとき、処分庁の上級行政庁である審査庁は、その行為が違法または不当である旨を宣言し、処分庁に対し全部もしくは一部の撤廃または変更を命じる。",
+          "errorPoint": null,
+          "references": [
+            "行政不服審査法47条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": true,
+          "conclusion": "不作為についての審査請求に理由があり、申請に対して一定の処分をすべきと認めるとき、不作為庁の上級行政庁である審査庁は、不作為庁に対しその処分をすべき旨を命ずる。",
+          "errorPoint": null,
+          "references": [
+            "行政不服審査法49条3項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": true,
+          "conclusion": "裁決は、関係行政庁を拘束する。",
+          "errorPoint": null,
+          "references": [
+            "行政不服審査法52条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": false,
+          "conclusion": "審査庁は、処分についての審査請求を認容するときでも、審査請求人の不利益に当該処分を変更することができない。",
+          "errorPoint": "処分庁の上級行政庁である審査庁が、相当と認める場合に不利益変更ができるとした点。",
+          "references": [
+            "行政不服審査法46条1項",
+            "行政不服審査法48条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "オ",
+          "verdict": false,
+          "conclusion": "審査庁は、裁決をしたとき、提出された証拠書類等を速やかに提出人へ返還しなければならない。",
+          "errorPoint": "直ちに返還しなければならないとした点。",
+          "references": [
+            "行政不服審査法53条"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q17",
@@ -755,7 +1586,7 @@
       "topic": "当事者訴訟",
       "aim": "当事者訴訟を、試験で使う結論で切る。",
       "askType": "組合せ",
-      "rule": "見出しは正解5。続き頁は、正しい記述がウとオであり正解は肢5、と結んでいる。処分の効力が先決問題となる当事者訴訟でも、仮処分は原則として制限される。",
+      "rule": "見出しは正解5。続き頁は、正しい記述がウとオであり正解は肢5、と結んでいる。処分の効力が先決問題となる当事者訴訟でも、仮処分は原則として制限される。 【紙面訂正】紙面は正しいものの組合せである。正しいのはウとオ。",
       "trap": "公権力の行使が問題にならない関係まで、仮処分が禁止されると書かない。",
       "references": [
         "行政事件訴訟法44条"
@@ -778,7 +1609,62 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": false,
+          "conclusion": "形式的当事者訴訟では、裁判所は、処分または裁決をした行政庁に訴えの提起を通知する。実質的当事者訴訟には、その通知の定めがない。",
+          "errorPoint": "実質的当事者訴訟にも、処分または裁決をした行政庁への通知の定めがあるとした点。",
+          "references": [
+            "行政事件訴訟法39条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": false,
+          "conclusion": "当事者訴訟には執行停止の規定は準用されない。免職処分の無効を前提に俸給の支払いを求める実質的当事者訴訟で、その免職処分の効力の執行停止の申立ては認められない。",
+          "errorPoint": "執行停止の規定が準用されるので、公務員が免職処分の効力の執行停止を申し立てられるとした点。",
+          "references": [
+            "行政事件訴訟法41条1項",
+            "行政事件訴訟法25条",
+            "行政事件訴訟法44条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": true,
+          "conclusion": "実質的当事者訴訟は、公法上の法律関係に関する訴訟である。",
+          "errorPoint": null,
+          "references": [
+            "行政事件訴訟法4条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": false,
+          "conclusion": "裁判所は、必要があると認めるときは職権で証拠調べをすることができ、この規定は当事者訴訟に準用される。",
+          "errorPoint": "実質的当事者訴訟では職権証拠調べが認められないとした点。",
+          "references": [
+            "行政事件訴訟法24条",
+            "行政事件訴訟法41条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "オ",
+          "verdict": true,
+          "conclusion": "行政庁の処分その他公権力の行使に当たる行為については、民事保全法の仮処分ができない。その行使に当たらない行為については、仮処分ができる。",
+          "errorPoint": null,
+          "references": [
+            "行政事件訴訟法44条"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q18",
@@ -790,8 +1676,8 @@
       "quizField": "行政法",
       "topic": "訴えの利益",
       "aim": "訴えの利益を、試験で使う結論で切る。",
-      "askType": "誤っているもの",
-      "rule": "その日限りの使用不許可は、期日の経過で訴えの利益を失う。免職処分の取消訴訟中に死亡しても、給料請求権が残る限り訴えの利益は失われない。誤っているものは肢2。",
+      "askType": "正しいもの",
+      "rule": "その日限りの使用不許可は、期日の経過で訴えの利益を失う。免職処分の取消訴訟中に死亡しても、給料請求権が残る限り訴えの利益は失われない。誤っているものは肢2。 【紙面訂正】紙面の問いは正しいものである。正しいのは肢2。",
       "trap": "後続処分があっても、先行処分の取消しの利益が常に消えるとしない。",
       "references": [],
       "memory": "期日限りの不許可は、その日が過ぎれば訴えの利益を失う。免職後の死亡だけでは、給料が残る限り利益は消えない。",
@@ -812,7 +1698,60 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "免許期間の満了後直ちに再免許が付与され事業が継続しているときは、期間満了と再免許を更新とその実質において異ならないものとして扱い、競願者の取消しの訴えの利益を当然には否定できない。",
+          "errorPoint": "再免許が付与されたときは、競願者に対する免許処分の取消しの訴えの利益が当然に消滅するとした点。",
+          "references": [
+            "最判昭43.12.24"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "その日限りの使用不許可は、その期日の経過により、不許可処分の取消しの訴えの利益を失う。",
+          "errorPoint": null,
+          "references": [
+            "最大判昭28.12.23"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "免職処分の取消訴訟の係属中に公務員が死亡しても、相続人が給料請求権等を承継する限り、地位の回復が不可能になったことだけでは、取消しの訴えの利益は失われない。",
+          "errorPoint": "地位を回復することがないので訴えの利益は失われるとした点。",
+          "references": [
+            "最判昭49.12.10"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "事業の施行認可の取消訴訟の係属中に、工事と換地処分が完了し原状回復が社会通念上不可能になっても、認可取消しの法律上の利益は消滅しない。その事情は事情判決の考慮事由である。",
+          "errorPoint": "原状回復が不可能になったときは、認可取消しの法律上の利益が消滅するとした点。",
+          "references": [
+            "最判平4.1.24",
+            "行政事件訴訟法31条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "公文書の非公開決定の取消訴訟で、請求に係る公文書が書証として提出されても、その非公開決定の取消しの訴えの利益は消滅しない。",
+          "errorPoint": "書証として提出されたときは訴えの利益が消滅するとした点。",
+          "references": [
+            "最判平14.2.28"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q19",
@@ -824,8 +1763,8 @@
       "quizField": "行政法",
       "topic": "判決の効力",
       "aim": "判決の効力を、試験で使う結論で切る。",
-      "askType": "誤っているもの",
-      "rule": "取消判決の第三者効は32条1項。無効等確認には32条1項は準用されず、38条1項が準用するのは拘束力（33条）などである。取消判決の拘束力は、関係行政庁を拘束する。",
+      "askType": "正しいもの",
+      "rule": "取消判決の第三者効は32条1項。無効等確認には32条1項は準用されず、38条1項が準用するのは拘束力（33条）などである。取消判決の拘束力は、関係行政庁を拘束する。 【紙面訂正】紙面の問いは正しいものである。正しいのは肢3。",
       "trap": "無効確認に取消判決と同じ第三者効があると書くと誤る。既判力の明文がないことを、既判力がないことと混同しない。",
       "references": [
         "行政事件訴訟法32条1項",
@@ -871,7 +1810,61 @@
           }
         ]
       },
-      "status": "confirmed"
+      "status": "confirmed",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "処分または裁決を取り消す判決は第三者に対しても効力を有する。無効等確認を認容する判決には、この第三者効は準用されない。",
+          "errorPoint": "無効確認請求を認容する判決の効力が第三者にも及ぶことが、行政事件訴訟法上規定されているとした点。",
+          "references": [
+            "行政事件訴訟法32条1項",
+            "行政事件訴訟法38条1項",
+            "行政事件訴訟法38条3項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "行政事件訴訟法は既判力を明文で定めず、定めのない事項は民事訴訟の例による。明文がないことを、既判力がないこととは混同しない。",
+          "errorPoint": "既判力についての規定を明文で置いているとした点。",
+          "references": [
+            "行政事件訴訟法7条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "取消判決が確定すると、処分庁は、同一の事情の下で同一の理由により同一の処分を再度することができない。事情が変わっていなくても、別の理由による再処分まで禁じられるものではない。",
+          "errorPoint": null,
+          "references": [
+            "行政事件訴訟法33条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "取消判決は、処分をした行政庁その他の関係行政庁を拘束する。処分庁は、訴訟の当事者でなくても、認容判決に拘束される。",
+          "errorPoint": "処分庁は訴訟の当事者ではないから、取消判決に拘束されないとした点。",
+          "references": [
+            "行政事件訴訟法33条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "取消判決により権利を害された第三者は、自己の責めに帰することができない理由で訴訟に参加できず、判決に影響すべき攻撃または防御の方法を提出できなかったときは、確定した終局判決に対し再審の訴えを提起できる。",
+          "errorPoint": "不参加が第三者の責めに帰さないときでも、判決の確定後は再審の訴えの余地がないとした点。",
+          "references": [
+            "行政事件訴訟法34条1項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q20",
@@ -883,14 +1876,14 @@
       "quizField": "行政法",
       "topic": "国家賠償法1条",
       "aim": "国家賠償法1条を、試験で使う結論で切る。",
-      "askType": "誤っているもの",
-      "rule": "見出しの論点は国家賠償法1条で、隣に正解1と読める。OCRは問番号を2と落としている。",
-      "trap": "職務行為基準を、加害公務員の主観だけに置かない。",
+      "askType": "組合せ",
+      "rule": "紙面の見出しは問題20。正解1。誤っているのは肢1。最判平5.3.11は行為不法説ではない。職務行為基準である。 【紙面訂正】紙面は誤っているものの組合せである。エとオは頁が未完。",
+      "trap": "所得を過大に認定したことから、直ちに国賠1条の違法にしない。",
       "references": [
         "国家賠償法1条"
       ],
-      "memory": "見出しの論点は国家賠償法1条で、隣に正解1と読める。OCRは問番号を2と落としている。",
-      "deepDive": "■ 結論\n\n見出しの論点は国家賠償法1条で、隣に正解1と読める。OCRは問番号を2と落としている。\n\n■ ひっかけ\n\n職務行為基準を、加害公務員の主観だけに置かない。\n\n■ 確認\n\n印字の問番号は目視していない。",
+      "memory": "最判平5.3.11は職務行為基準。行為不法説ではない。正解は1。",
+      "deepDive": "■ 結論\n\n紙面の見出しは問題20。正解1。誤っているのは肢1。最判平5.3.11は、漫然と更正した事情があるときに限り国賠1条の違法の評価を受ける、という職務行為基準である。\n\n■ ひっかけ\n\n行為不法説ではない。必要経費を認定すべき注意義務があると判決が判断した、でもない。\n\n■ 確認\n\n肢4と肢5は、この頁では未確認。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -906,7 +1899,58 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": false,
+          "conclusion": "所得税の更正は、所得金額を過大に認定したことから直ちに国家賠償法1条1項の違法になるのではなく、税務署長が資料を収集し課税要件事実を認定判断するうえで、職務上通常尽くすべき注意義務を尽くさず漫然と更正した事情がある場合に限り違法になる。",
+          "errorPoint": "行政活動による被害と、法の許さない結果に着目する見解を、この判決の前提とした点。",
+          "references": [
+            "最判平5.3.11",
+            "国家賠償法1条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": true,
+          "conclusion": "税務署長の所得税更正が国家賠償法1条1項の違法となるのは、所得の過大認定そのものではなく、職務上通常尽くすべき注意義務を尽くさず漫然と更正したと認められる事情がある場合に限られる。",
+          "errorPoint": null,
+          "references": [
+            "最判平5.3.11"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": false,
+          "conclusion": "必要経費を過大に申告し、収入が申告を超える旨を知らされた後も調査に協力しなかった事案では、税務署長が注意義務を尽くさず漫然と更正した事情は認められず、その更正は国家賠償法1条1項の違法にはならない。更正が取り消されても、そのことから国賠の違法にはならない。",
+          "errorPoint": "認定した収入額と調査資料から相当と認められる額を必要経費として認定すべき注意義務がある、とこの判決が判断したとした点。",
+          "references": [
+            "最判平5.3.11"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": null,
+          "conclusion": "頁が途中で切れており、命題の正誤を確定しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "needs_review",
+          "gap": "判読不能。問題 PXL_20261010_133520120.jpg のエは対比の途中で終わる。解答 PXL_20261010_130728693.MP (3).jpg はウの途中まで。"
+        },
+        {
+          "id": "オ",
+          "verdict": null,
+          "conclusion": "オの印字が無く、命題の正誤を確定しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "needs_review",
+          "gap": "要再撮影。問題 PXL_20261010_133520120.jpg と解答頁にオが無い。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q21",
@@ -918,8 +1962,8 @@
       "quizField": "行政法",
       "topic": "国家賠償法2条",
       "aim": "国家賠償法2条を、試験で使う結論で切る。",
-      "askType": "組合せ",
-      "rule": "国賠2条は過失を要しない。不可抗力、または回避可能性がないときは免責される。瑕疵は構造、用法、場所的環境、利用状況から見る。通常の用法に即しない行動の結果までは、管理者の責任にならない。組合せの正解は5。",
+      "askType": "妥当なもの",
+      "rule": "国賠2条は過失を要しない。不可抗力、または回避可能性がないときは免責される。瑕疵は構造、用法、場所的環境、利用状況から見る。通常の用法に即しない行動の結果までは、管理者の責任にならない。組合せの正解は5。 【紙面訂正】紙面の問いは妥当なものである。妥当なのは肢5。",
       "trap": "不可抗力でも管理者の責任が常に残る、と書かない。",
       "references": [
         "国家賠償法2条1項"
@@ -941,7 +1985,64 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "国または公共団体の国家賠償法2条1項の責任は過失を要しないが、不可抗力または回避可能性のない損害については免責され得る。",
+          "errorPoint": "不可抗力または回避可能性のない場合にも免責されないとする点。",
+          "references": [
+            "国家賠償法2条1項",
+            "最判昭45.8.20"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "防護柵自体に安全性の欠陥がなく、通常予測できない用法外の行動で傷害が生じたときは、道路管理者は国家賠償法2条1項の責任を負わない。",
+          "errorPoint": "判断能力の乏しい幼児の行動でも道路管理者が責任を負うとする点。",
+          "references": [
+            "国家賠償法2条1項",
+            "最判昭53.7.4"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "放置車両の排除権限が警察にあっても、道路管理者は標識設置などの独自の措置をとり得るから、そのことだけで道路管理の瑕疵は否定されない。",
+          "errorPoint": "独自の措置がないため道路管理に瑕疵がないとする点。",
+          "references": [
+            "国家賠償法2条1項",
+            "最判昭50.7.25"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "新たに開発された視覚障害者用の安全設備を駅ホームに設置しなかったことが瑕疵に当たるかは、その設備の標準化と普及の程度を含めて総合考慮する。",
+          "errorPoint": "標準化と普及の事実を考慮しないとする点。",
+          "references": [
+            "国家賠償法2条1項",
+            "最判昭61.3.25"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "国家賠償法2条1項の設置または管理の瑕疵とは、営造物が有すべき安全性を欠く状態をいい、供用目的に沿った利用との関連で危害を生じさせる危険がある場合を含む。",
+          "errorPoint": null,
+          "references": [
+            "国家賠償法2条1項",
+            "最大判昭56.12.16"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q22",
@@ -978,7 +2079,60 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "政令で特別の定めがある場合を除き、地方自治法の市に関する規定は特別区に適用される。",
+          "errorPoint": null,
+          "references": [
+            "地方自治法283条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "一部事務組合または広域連合は、都道府県が加入するものは総務大臣の許可、それ以外は都道府県知事の許可を得て設けることができる。",
+          "errorPoint": null,
+          "references": [
+            "地方自治法284条2項",
+            "地方自治法284条3項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "財産区は市町村または特別区の一部であり、法人格を有する。",
+          "errorPoint": null,
+          "references": [
+            "地方自治法294条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "政令で指定する人口50万以上の市は、都道府県が処理する事務のうち政令で定めるものを、政令の定めるところにより処理できる。",
+          "errorPoint": null,
+          "references": [
+            "地方自治法252条の19第1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "中核市は、指定都市が処理できる事務のうち、都道府県が一体として処理することが効率的な事務など中核市に適さないものを除き、政令で定める事務を処理できる。",
+          "errorPoint": "指定都市が処理できる事務のすべてを中核市が処理できるとする点。",
+          "references": [
+            "地方自治法252条の22第1項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q23",
@@ -1013,7 +2167,59 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "住民訴訟は、当該普通地方公共団体の事務所の所在地を管轄する地方裁判所の専属管轄に属する。",
+          "errorPoint": null,
+          "references": [
+            "地方自治法242条の2第5項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "普通地方公共団体の住民は、行政処分である当該行為の取消しまたは無効確認を請求できる。",
+          "errorPoint": null,
+          "references": [
+            "地方自治法242条の2第1項2号"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "普通地方公共団体が公有地の不法占拠を放置したとき、住民は財産の管理を怠る事実の違法確認を請求できる。",
+          "errorPoint": null,
+          "references": [
+            "地方自治法242条の2第1項3号"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "違法な公金支出について住民が請求できるのは、執行機関または職員に対し、職員等へ損害賠償を請求するよう求めることである。住民が職員へ直接請求することはできない。",
+          "errorPoint": "住民が関与職員に対し直接損害賠償を請求できるとする点。",
+          "references": [
+            "地方自治法242条の2第1項4号"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "住民訴訟の対象である違法な行為または怠る事実について、民事保全法の仮処分はできない。",
+          "errorPoint": null,
+          "references": [
+            "地方自治法242条の2第10項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q24",
@@ -1052,7 +2258,59 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "普通地方公共団体の議会は、条例制定のほか、契約の締結や財産の交換など個別の事項についても議決できる。",
+          "errorPoint": null,
+          "references": [
+            "地方自治法96条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "普通地方公共団体は、条例に違反した者に対し2年以下の拘禁刑を科する旨を条例に定めることができる。",
+          "errorPoint": null,
+          "references": [
+            "地方自治法14条3項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "地方公共団体の有する債権について、長は原則として行使または不行使の裁量を有しない。",
+          "errorPoint": null,
+          "references": [
+            "最判平16.4.23"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "普通地方公共団体の議会は、長に対して不信任の議決をすることができる。長は通知の日から10日以内に議会を解散しなければ失職する。",
+          "errorPoint": "議会が長に対する不信任の議決をすることができないとする点。",
+          "references": [
+            "地方自治法178条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "委員会または委員は長の所轄の下にあるが、権限の行使においては長から独立して職務を行う。",
+          "errorPoint": null,
+          "references": [
+            "地方自治法138条の4第1項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q25",
@@ -1088,7 +2346,50 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": true,
+          "conclusion": "校長の職務命令の根拠となる国歌斉唱の通達は、抗告訴訟の対象となる行政処分に当たらない。",
+          "errorPoint": null,
+          "references": [
+            "最判平24.2.9"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": true,
+          "conclusion": "差止めの重大な損害は、処分後の取消訴訟と執行停止では容易に救済されず、処分前の差止めを認めなければ救済を受けられないことを要する。",
+          "errorPoint": null,
+          "references": [
+            "最判平24.2.9",
+            "行政事件訴訟法37条の4"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": true,
+          "conclusion": "職務命令に基づく公的義務の不存在を確認する訴えは、懲戒処分の予防を目的とする無名抗告訴訟としては、法定の差止めの訴えとの関係で補充性を欠き不適法である。",
+          "errorPoint": null,
+          "references": [
+            "最判平24.2.9"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": false,
+          "conclusion": "同じ確認の訴えでも、行政処分以外の処遇上の不利益の予防を目的とする公法上の法律関係の確認としては、確認の利益が肯定される。",
+          "errorPoint": "その確認の利益を肯定できないとした点。",
+          "references": [
+            "最判平24.2.9"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q26",
@@ -1123,7 +2424,59 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": true,
+          "conclusion": "公文書管理法は、公文書等を健全な民主主義の根幹を支える国民共有の知的資源と位置づける。",
+          "errorPoint": null,
+          "references": [
+            "公文書管理法1条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": true,
+          "conclusion": "行政機関の長は、行政文書ファイル等について、保存期間満了前のできる限り早い時期に、満了後の移管または廃棄の区別を定めなければならない。",
+          "errorPoint": null,
+          "references": [
+            "公文書管理法5条5項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": false,
+          "conclusion": "公文書管理法が作成から廃棄までの公文書管理の一般法であり、情報公開法は現用文書の利用に関する特別法である。",
+          "errorPoint": "情報公開法を一般法、公文書管理法を現用文書の利用に関する特別法とする点。",
+          "references": [
+            "公文書管理法1条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": true,
+          "conclusion": "公文書管理に識見を用いるため、内閣府に公文書管理委員会が置かれる。",
+          "errorPoint": null,
+          "references": [
+            "公文書管理法28条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "オ",
+          "verdict": false,
+          "conclusion": "特定歴史公文書等の利用請求に対する処分または不作為に不服がある者は、国立公文書館等の長に審査請求をする。",
+          "errorPoint": "審査請求先を内閣総理大臣だけとする点。",
+          "references": [
+            "公文書管理法21条1項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q27",
@@ -1136,7 +2489,7 @@
       "topic": "時効の援用",
       "aim": "時効の援用を、試験で使う結論で切る。",
       "askType": "誤っているもの",
-      "rule": "時効を援用できるのは、その権利の取得または消滅で直接利益を受ける者である。反射的利益だけでは足りない。民法145条。正しい記述はエとオ。組合せの正解は5。",
+      "rule": "時効を援用できるのは、その権利の取得または消滅で直接利益を受ける者である。反射的利益だけでは足りない。民法145条。正しい記述はエとオ。組合せの正解は5。 【紙面訂正】紙面は正しいものの組合せである。正しいのはエとオ。",
       "trap": "後順位抵当権者の順位上昇や、建物賃借人の利用を、直接利益と書かない。",
       "references": [
         "民法145条"
@@ -1159,7 +2512,63 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": false,
+          "conclusion": "被相続人の占有により取得時効が完成したとき、共同相続人の一人は、自己の相続分の限度でのみ取得時効を援用できる。",
+          "errorPoint": "自己の相続分を超えて他の相続人の持分についても援用できるとする点。",
+          "references": [
+            "民法145条",
+            "最判平13.7.10"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": false,
+          "conclusion": "後順位抵当権者は、先順位抵当権の被担保債権の消滅時効を援用できない。",
+          "errorPoint": "後順位抵当権者が先順位の被担保債権の消滅時効を援用できるとする点。",
+          "references": [
+            "民法145条",
+            "最判平11.10.21"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": false,
+          "conclusion": "土地を時効取得すべき者からその土地上の建物を賃借した者は、その土地の所有権の取得時効を援用できない。",
+          "errorPoint": "建物賃借人が土地所有権の取得時効を援用できるとする点。",
+          "references": [
+            "民法145条",
+            "最判昭44.7.15"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": true,
+          "conclusion": "抵当不動産の第三取得者は、被担保債権の消滅時効を援用できる。",
+          "errorPoint": null,
+          "references": [
+            "民法145条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "オ",
+          "verdict": true,
+          "conclusion": "売買予約の完結権の仮登記の後に所有権を得た者は、その完結権の消滅時効を援用できる。",
+          "errorPoint": null,
+          "references": [
+            "民法145条",
+            "最判平4.3.19"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q28",
@@ -1198,7 +2607,61 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "他人の子を自己の嫡出子とする出生の届出は嫡出子出生届として無効であり、養子とする意思があっても養子縁組届としての効力を有しない。",
+          "errorPoint": null,
+          "references": [
+            "最判昭50.4.8"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "賭博の勝敗で生じた債権が譲渡され、債務者が抗弁を放棄しても、信義則に反する行為がない限り、債務者は譲受人に公序良俗違反の無効を主張できる。",
+          "errorPoint": null,
+          "references": [
+            "民法90条",
+            "最判平9.11.11"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "詐害行為の取消しは、債権者の請求に基づいて裁判所が行う。",
+          "errorPoint": null,
+          "references": [
+            "民法424条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "無効な売買を当事者双方が無効と知って追認したときは、その売買に効力は生じず、新たな売買をしたものとみなされる。",
+          "errorPoint": "無効な売買そのものに効力を生じさせるとする点。",
+          "references": [
+            "民法119条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "詐欺により取り消すことができる行為をした者の包括承継人は、その売買契約を追認できる。",
+          "errorPoint": null,
+          "references": [
+            "民法120条2項",
+            "民法122条"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q29",
@@ -1211,7 +2674,7 @@
       "topic": "相続と登記",
       "aim": "相続と登記を、試験で使う結論で切る。",
       "askType": "組合せ",
-      "rule": "相続による権利の承継は、法定相続分を超える部分について登記がなければ第三者に対抗できない（民法899条の2第1項）。見出しは正解5。",
+      "rule": "相続による権利の承継は、法定相続分を超える部分について登記がなければ第三者に対抗できない（民法899条の2第1項）。見出しは正解5。 【紙面訂正】紙面は誤っているものの組合せである。誤っているのはウとオ。",
       "trap": "相続による承継は登記がなくても常に対抗できる、と書かない。",
       "references": [
         "民法899条の2第1項"
@@ -1234,7 +2697,61 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": true,
+          "conclusion": "相続させる旨の遺言で法定相続分を超えて不動産を取得する相続人は、登記がなければ、代位で法定相続分の登記と差押えをした債権者に、その取得を対抗できない。",
+          "errorPoint": null,
+          "references": [
+            "民法899条の2第1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": true,
+          "conclusion": "遺産分割協議書を偽造して単独名義の登記をした相続人から登記を経由して取得した第三者に対し、他の共同相続人は自己の持分の取得を主張できる。",
+          "errorPoint": null,
+          "references": [
+            "最判昭38.2.22"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": false,
+          "conclusion": "相続放棄の効力は、登記がなくても、放棄者の持分を代位登記して差し押さえた債権者を含む第三者に及ぶ。",
+          "errorPoint": "放棄者の持分について登記を経なければ差押債権者に単独所有を主張できないとする点。",
+          "references": [
+            "民法939条",
+            "最判昭42.1.20"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": true,
+          "conclusion": "遺産分割で法定相続分を超えて不動産を取得した相続人は、登記を経なければ、他の相続人から買い受けた第三者に単独所有を対抗できない。",
+          "errorPoint": null,
+          "references": [
+            "民法899条の2第1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "オ",
+          "verdict": false,
+          "conclusion": "遺贈により不動産を取得した受遺者は、登記を経なければ、他の相続人の債権者が代位で共同相続登記をして持分を差し押さえた場合に、その債権者に単独所有を対抗できない。",
+          "errorPoint": "受遺者が登記なく差押債権者に単独所有を主張できるとする点。",
+          "references": [
+            "民法177条",
+            "最判昭39.3.6"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q30",
@@ -1284,7 +2801,63 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "抵当権者は、第三者が抵当不動産を不法占有し優先弁済権の行使が困難なとき、所有者に代位してその占有者に妨害排除を請求できる。",
+          "errorPoint": null,
+          "references": [
+            "最大判平11.11.24"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "将来の抵当権実行時に価値減少で被担保債権の満足が見込めない場合、抵当権者は弁済期の前後を問わず、抵当権侵害を理由に損害賠償を請求できる。",
+          "errorPoint": null,
+          "references": [
+            "大判昭11.4.13"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "物上代位の目的である賃料債権が譲渡され第三者に対抗要件が備わった後でも、抵当権者は自らその債権を差し押さえて物上代位できる。",
+          "errorPoint": null,
+          "references": [
+            "民法372条",
+            "民法304条",
+            "最判平10.1.30"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "所有者が抵当不動産を適切に維持管理することが期待できないとき、抵当権者は不法占有者に対し、自己への明渡しを直接請求できる。",
+          "errorPoint": null,
+          "references": [
+            "最判平17.3.10"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "抵当不動産の賃借人の転貸賃料債権には、賃借人が所有者と同視できる場合を除き、抵当権者は物上代位できない。",
+          "errorPoint": "例外なく常に物上代位できないとする点。",
+          "references": [
+            "民法372条",
+            "民法304条1項",
+            "最決平12.4.14"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q31",
@@ -1344,7 +2917,59 @@
           }
         ]
       },
-      "status": "confirmed"
+      "status": "confirmed",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "特別の事情による損害でも、当事者がその事情を予見すべきであったときは、債権者は賠償を請求できる。",
+          "errorPoint": null,
+          "references": [
+            "民法416条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "契約その他の発生原因および取引上の社会通念に照らして履行不能なら、債権者は履行を請求できない。",
+          "errorPoint": null,
+          "references": [
+            "民法412条の2第1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "将来において取得すべき利益についての損害賠償の額を定める場合に中間利息を控除するときは、損害賠償の請求権が生じた時点の法定利率による。",
+          "errorPoint": "請求した時点の法定利率によるとする点。",
+          "references": [
+            "民法417条の2第1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "債権者が目的物または権利の価額の全部を損害賠償として受けると、債務者はその物または権利の所有権を当然に取得し、譲渡行為は要らない。",
+          "errorPoint": null,
+          "references": [
+            "民法422条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "債務不履行または損害の発生もしくは拡大について債権者に過失があるときは、裁判所は賠償の責任およびその額を定める。",
+          "errorPoint": null,
+          "references": [
+            "民法418条"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q32",
@@ -1357,7 +2982,7 @@
       "topic": "相殺",
       "aim": "相殺を、試験で使う結論で切る。",
       "askType": "誤っているもの",
-      "rule": "誤っているのはアとウ。組合せの正解は2。アは、抵当不動産の第三取得者が、抵当権者に対して有する債権と抵当債務を相殺できない。民法505条。大判昭8.12.5。ウは、物上代位で賃料を差し押さえた後、賃借人は抵当権設定登記の後に取得した債権を自働債権とする相殺を抵当権者に対抗できない。最判平13.3.13。差押え前なら対抗できる、ではない。",
+      "rule": "誤っているのはアとウ。組合せの正解は2。アは、抵当不動産の第三取得者が、抵当権者に対して有する債権と抵当債務を相殺できない。民法505条。大判昭8.12.5。ウは、物上代位で賃料を差し押さえた後、賃借人は抵当権設定登記の後に取得した債権を自働債権とする相殺を抵当権者に対抗できない。最判平13.3.13。差押え前なら対抗できる、ではない。 【紙面訂正】紙面は誤っているものの組合せである。誤っているのはアとウ。",
       "trap": "物上代位で差し押さえた賃料との相殺の基準時を、差押えと書かない。基準は抵当権設定登記。",
       "references": [
         "民法505条",
@@ -1384,14 +3009,84 @@
           "app/模試画像/辰巳/問題/PXL_20261010_133732998.jpg"
         ],
         "choiceVerdicts": [
-          { "id": "ア", "ok": false },
-          { "id": "イ", "ok": true },
-          { "id": "ウ", "ok": false },
-          { "id": "エ", "ok": true },
-          { "id": "オ", "ok": true }
+          {
+            "id": "ア",
+            "ok": false
+          },
+          {
+            "id": "イ",
+            "ok": true
+          },
+          {
+            "id": "ウ",
+            "ok": false
+          },
+          {
+            "id": "エ",
+            "ok": true
+          },
+          {
+            "id": "オ",
+            "ok": true
+          }
         ]
       },
-      "status": "confirmed"
+      "status": "confirmed",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": false,
+          "conclusion": "抵当不動産の第三取得者は被担保債権の債務者ではないので、抵当権者に対する自己の債権と被担保債権とを相殺できない。",
+          "errorPoint": "対当額で相殺できるとする点。",
+          "references": [
+            "民法505条",
+            "大判昭8.12.5"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": true,
+          "conclusion": "相殺には、意思表示の時に双方の債権が現に存在することを要する。先に相殺の意思表示がされ債権が消滅した後は、後からその債権を対象とする相殺を対抗できない。",
+          "errorPoint": null,
+          "references": [
+            "民法505条",
+            "最判昭54.7.10"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": false,
+          "conclusion": "抵当権者が賃料債権を物上代位により差し押さえた後は、賃借人は、抵当権設定登記の後に取得した賃貸人に対する債権を自働債権とする相殺を、抵当権者に対抗できない。",
+          "errorPoint": "登記後に取得した債権でも、差押え前であれば相殺で対抗できるとする点。",
+          "references": [
+            "最判平13.3.13"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": true,
+          "conclusion": "債権者代位の相手方は、債務者に対する抗弁を代位債権者に対抗でき、相殺もその抗弁に含まれる。",
+          "errorPoint": null,
+          "references": [
+            "民法423条の4"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "オ",
+          "verdict": true,
+          "conclusion": "相殺の遡及効は相殺する債権債務自体に及び、意思表示より前に効力を生じた契約の解除は左右されない。",
+          "errorPoint": null,
+          "references": [
+            "民法506条2項",
+            "最判昭32.3.8"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q33",
@@ -1434,14 +3129,88 @@
           "app/模試画像/辰巳/問題/PXL_20261010_133535841.jpg"
         ],
         "choiceVerdicts": [
-          { "id": "1", "ok": false },
-          { "id": "2", "ok": false },
-          { "id": "3", "ok": false },
-          { "id": "4", "ok": true },
-          { "id": "5", "ok": false }
+          {
+            "id": "1",
+            "ok": false
+          },
+          {
+            "id": "2",
+            "ok": false
+          },
+          {
+            "id": "3",
+            "ok": false
+          },
+          {
+            "id": "4",
+            "ok": true
+          },
+          {
+            "id": "5",
+            "ok": false
+          }
         ]
       },
-      "status": "confirmed"
+      "status": "confirmed",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "主たる目的に必須でない付随的義務の不履行は、特段の事情がなければ解除原因にならない。",
+          "errorPoint": "特段の事情がなくても解除できるとする点。",
+          "references": [
+            "民法541条",
+            "最判昭36.11.21"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "契約を解除したときは原状回復義務を負い、引渡しを受けていた買主は使用利益も返還する。",
+          "errorPoint": "使用利益の返還義務を負わないとする点。",
+          "references": [
+            "民法545条1項",
+            "最判昭51.2.13"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "組合契約の解除は、将来に向かってのみ効力を生ずる。",
+          "errorPoint": "契約時にさかのぼって効力を生ずるとする点。",
+          "references": [
+            "民法684条",
+            "民法620条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "履行期を過ぎて引き渡さない間に目的物が全部焼失したときは、全部の履行が不能であり、催告なしに解除できる。解除に債務者の帰責事由は不要である。",
+          "errorPoint": null,
+          "references": [
+            "民法542条1項1号",
+            "民法412条の2第1項",
+            "民法413条の2第1項",
+            "民法543条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "未払賃料が敷金より少なくても、賃貸人は賃料不払を理由に賃貸借を解除できる。賃借人は敷金の充当を請求できない。",
+          "errorPoint": "敷金に満たないときは解除できないとする点。",
+          "references": [
+            "民法622条の2第2項",
+            "最判昭45.9.18"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q34",
@@ -1481,14 +3250,85 @@
           "app/模試画像/辰巳/問題/PXL_20261010_133548833.jpg"
         ],
         "choiceVerdicts": [
-          { "id": "1", "ok": false },
-          { "id": "2", "ok": false },
-          { "id": "3", "ok": true },
-          { "id": "4", "ok": false },
-          { "id": "5", "ok": false }
+          {
+            "id": "1",
+            "ok": false
+          },
+          {
+            "id": "2",
+            "ok": false
+          },
+          {
+            "id": "3",
+            "ok": true
+          },
+          {
+            "id": "4",
+            "ok": false
+          },
+          {
+            "id": "5",
+            "ok": false
+          }
         ]
       },
-      "status": "confirmed"
+      "status": "confirmed",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "被害者に責任能力がなくても、事理を弁識するに足りる知能があれば、裁判所は賠償額を定めるときに被害者の過失を考慮できる。",
+          "errorPoint": "責任能力がなければ過失を考慮できないとする点。",
+          "references": [
+            "民法722条2項",
+            "最判昭39.6.24"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "他人の不法行為に対し、自己または第三者の権利を防衛するためやむを得ずした者は、損害賠償の責任を負わない。その防衛で害を受けた者は、元の不法行為者に賠償を請求できる。",
+          "errorPoint": "防衛の行為者に対しても賠償を請求できるとする点。",
+          "references": [
+            "民法720条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "後遺障害による逸失利益は、損害賠償制度の目的および公平な分担の理念に照らして相当なときは、定期金による賠償を求めることができる。",
+          "errorPoint": null,
+          "references": [
+            "最判令2.7.9"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "未成年者に責任能力があり本人が責任を負うときでも、監督義務者の義務違反と結果に相当因果関係があれば、監督義務者は民法709条の責任を負う。",
+          "errorPoint": "相当因果関係があっても監督義務者は責任を負わないとする点。",
+          "references": [
+            "民法709条",
+            "民法714条",
+            "最判昭49.3.22"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "被害者と実質的に同視できる身分関係にあり、死亡により甚大な精神的苦痛を受けた者は、加害者に固有の慰謝料を請求できる。長年同居して庇護の下にあった夫の妹も当たり得る。",
+          "errorPoint": "夫の妹は請求できないとする点。",
+          "references": [
+            "民法711条",
+            "最判昭49.12.17"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q35",
@@ -1501,7 +3341,7 @@
       "topic": "配偶者居住権",
       "aim": "配偶者居住権を、試験で使う結論で切る。",
       "askType": "誤っているもの",
-      "rule": "配偶者居住権は、遺産分割等により建物の全部について無償で使用収益する権利として取得する（民法1028条）。見出しは正解1。",
+      "rule": "配偶者居住権は、遺産分割等により建物の全部について無償で使用収益する権利として取得する（民法1028条）。見出しは正解1。 【紙面訂正】解答頁の肢1の誤りは、配偶者の死亡を配偶者短期居住権の消滅原因から外した点である。建物の全部を対象とする点は、この肢の誤りの箇所ではない。",
       "trap": "居住建物の一部だけを当然の対象としない。",
       "references": [
         "民法1028条"
@@ -1524,7 +3364,62 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "配偶者の死亡は、配偶者居住権と配偶者短期居住権の双方の消滅原因である。",
+          "errorPoint": "配偶者短期居住権は、配偶者の死亡では消滅しないとする点。",
+          "references": [
+            "民法1036条",
+            "民法597条3項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "配偶者居住権は、譲渡することができない。",
+          "errorPoint": null,
+          "references": [
+            "民法1032条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "配偶者居住権を登記すると、その後に居住建物の物権を取得した者その他の第三者に対抗できる。",
+          "errorPoint": null,
+          "references": [
+            "民法1031条2項",
+            "民法605条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "配偶者居住権も配偶者短期居住権も、従前の用法に従い、善良な管理者の注意をもって居住建物を使用する義務を負う。",
+          "errorPoint": null,
+          "references": [
+            "民法1032条1項",
+            "民法1038条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "配偶者居住権は、居住建物の全部について無償で使用し、および収益する権利である。",
+          "errorPoint": null,
+          "references": [
+            "民法1028条1項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q36",
@@ -1588,7 +3483,62 @@
           }
         ]
       },
-      "status": "confirmed"
+      "status": "confirmed",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "商行為の委任による代理権というためには、代理権の授与が本人のためにする商行為であることを要する。",
+          "errorPoint": null,
+          "references": [
+            "大判昭13.8.1"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "商人は、営業の範囲内で他人のためにした行為について、特約がなくても相当な報酬を請求できる。",
+          "errorPoint": null,
+          "references": [
+            "商法512条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "非顕名の商行為代理でも行為は本人に効力を生ずる。知らなかった相手方が代理人に履行を請求できるのは、過失により知らなかったときを除く。",
+          "errorPoint": "過失で知らなかった相手方でも代理人に履行を請求できるとする点。",
+          "references": [
+            "商法504条",
+            "最大判昭43.4.24"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "商行為の受任者は、委任の本旨に反しない範囲で、委任を受けていない行為をすることができる。",
+          "errorPoint": null,
+          "references": [
+            "商法505条",
+            "民法644条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "商行為の委任による代理権は、本人の死亡によっては消滅しない。",
+          "errorPoint": null,
+          "references": [
+            "商法506条",
+            "民法111条1項1号"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q37",
@@ -1601,7 +3551,7 @@
       "topic": "設立手続",
       "aim": "設立手続を、試験で使う結論で切る。",
       "askType": "組合せ",
-      "rule": "募集設立の設立時取締役は、発起人ではなく創立総会が選任する（会社法88条3項、57条1項）。発起人は設立時発行株式を1株以上引き受ける（会社法25条2項）。見出しは正解3。",
+      "rule": "募集設立の設立時取締役は、発起人ではなく創立総会が選任する（会社法88条3項、57条1項）。発起人は設立時発行株式を1株以上引き受ける（会社法25条2項）。見出しは正解3。 【紙面訂正】正しいのはイとウ。",
       "trap": "発起設立の調査と、募集設立の創立総会への報告を同一視しない。",
       "references": [
         "会社法25条2項",
@@ -1641,7 +3591,63 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": false,
+          "conclusion": "募集設立の設立時取締役は、発起人ではなく創立総会が選任する。発起設立では発起人が選任する。",
+          "errorPoint": "募集設立でも発起人が選任するとする点。",
+          "references": [
+            "会社法88条3項",
+            "会社法38条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": true,
+          "conclusion": "各発起人は、株式会社の設立に際し、設立時発行株式を1株以上引き受けなければならない。",
+          "errorPoint": null,
+          "references": [
+            "会社法25条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": true,
+          "conclusion": "現物出資の調査に法令または定款の違反も不当な事項もないとき、発起設立では発起人への通知は不要であり、募集設立では調査結果を創立総会に報告しなければならない。",
+          "errorPoint": null,
+          "references": [
+            "会社法46条2項",
+            "会社法93条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": false,
+          "conclusion": "発起設立では、成立時まで発起人全員の同意で発行可能株式総数の定款を変更できる。募集設立では、払込期日または払込期間の初日のうち最も早い日以後は、その同意による変更はできない。",
+          "errorPoint": "募集設立でも成立時まで発起人全員の同意で変更できるとする点。",
+          "references": [
+            "会社法37条2項",
+            "会社法95条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "オ",
+          "verdict": false,
+          "conclusion": "出資を履行しない発起人は、払込期日の経過だけでは失権せず、他の発起人から期間を定めた通知を受け、その期間内に履行しないときに失権する。",
+          "errorPoint": "払込期日の経過により直ちに失権するとする点。",
+          "references": [
+            "会社法36条1項",
+            "会社法36条3項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q38",
@@ -1654,7 +3660,7 @@
       "topic": "単元株制度",
       "aim": "単元株制度を、試験で使う結論で切る。",
       "askType": "誤っているもの",
-      "rule": "単元株式数には上限がある（会社法188条）。見出しは正解2。OCRは問番号を8と落としている。",
+      "rule": "単元株式数には上限がある（会社法188条）。見出しは正解2。OCRは問番号を8と落としている。 【紙面訂正】紙面の問番号は38である。",
       "trap": "単元株式数の増加を、取締役会決議だけでできると書かない。",
       "references": [
         "会社法188条",
@@ -1678,7 +3684,60 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "会社は定款で単元株式数を定めることができるが、単元株式数には上限がある。",
+          "errorPoint": "上限の定めはないとする点。",
+          "references": [
+            "会社法188条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "単元未満株主は、株主総会で議決権を行使することができない。",
+          "errorPoint": null,
+          "references": [
+            "会社法189条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "単元未満株主の会社に対する買取請求権は、定款で奪うことができない。",
+          "errorPoint": "定款で買取請求権を奪えるとする点。",
+          "references": [
+            "会社法192条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "単元未満株主の売渡請求は、定款の定めがあるときに限り認められる。",
+          "errorPoint": "定款の定めがなくても売渡請求できるとする点。",
+          "references": [
+            "会社法194条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "取締役会設置会社では、単元株式数の減少は取締役会決議で定款を変更できる。増加は、株主の利益を害しない一定の場合には、株主総会決議によらず定款を変更できる。",
+          "errorPoint": "増加は常に株主総会決議を要するとする点。",
+          "references": [
+            "会社法195条1項",
+            "会社法191条"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q39",
@@ -1691,7 +3750,7 @@
       "topic": "役員の選任・終任",
       "aim": "役員の選任・終任を、試験で使う結論で切る。",
       "askType": "組合せ",
-      "rule": "見出しは正解4。続き頁は、誤っているのがイとオで正解は肢4、と結んでいる。取締役の解任の訴えでは、当該役員にも当事者適格がある。",
+      "rule": "見出しは正解4。続き頁は、誤っているのがイとオで正解は肢4、と結んでいる。取締役の解任の訴えでは、当該役員にも当事者適格がある。 【紙面訂正】誤っているのはイとオ。オの続き頁に問題39の印字はないが、問題頁にオがあり、会社法の被告の定めと合う。",
       "trap": "解任の訴えの被告を会社だけにしない。",
       "references": [
         "会社法"
@@ -1714,7 +3773,62 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": true,
+          "conclusion": "株主総会における役員の選任は、定款で定足数を議決権の3分の1未満にできず、定足数要件を撤廃できない。",
+          "errorPoint": null,
+          "references": [
+            "会社法341条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": false,
+          "conclusion": "累積投票による選任の請求は、2人以上の取締役の選任に限られ、監査役の選任には認められない。",
+          "errorPoint": "2人以上の監査役の選任でも、株主が累積投票を請求できるとする点。",
+          "references": [
+            "会社法342条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": true,
+          "conclusion": "任期の途中で辞任した監査役は、辞任後最初に招集される株主総会で、辞任の旨と理由を述べることができる。",
+          "errorPoint": null,
+          "references": [
+            "会社法345条4項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": true,
+          "conclusion": "監査役の解任は、その監査役を選任した株主総会の特別決議によらなければならない。",
+          "errorPoint": null,
+          "references": [
+            "会社法339条1項",
+            "会社法343条4項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "オ",
+          "verdict": false,
+          "conclusion": "役員の解任の訴えの被告は、株式会社と、解任の対象である役員の双方である。",
+          "errorPoint": "会社だけを被告とすれば足り、対象役員を被告にしなくてよいとする点。",
+          "references": [
+            "会社法854条1項",
+            "会社法855条"
+          ],
+          "validationStatus": "confirmed",
+          "gap": "解答続き PXL_20261010_132821987 (3).jpg に問題39の印字はない。問題 PXL_20261010_133751566.jpg にオがある。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q40",
@@ -1770,7 +3884,60 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "吸収合併の存続会社の株主および債権者は、存続会社に対し、承継した権利義務その他の吸収合併に関する事項を記載した書面の閲覧を請求できる。",
+          "errorPoint": null,
+          "references": [
+            "会社法801条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "吸収合併で、官報に加え、定款の定めに従い時事に関する事項を掲載する日刊新聞紙または電子公告をするときは、知れている債権者への個別催告は不要である。",
+          "errorPoint": "電子公告によるときでも個別催告を要するとする点。",
+          "references": [
+            "会社法789条3項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "新設合併消滅株式会社は、契約等の備置きの開始日から設立会社の成立の日まで、新設合併契約の内容等を記載した書面または電磁的記録を本店に備え置かなければならない。",
+          "errorPoint": null,
+          "references": [
+            "会社法803条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "略式合併では、特別支配会社を除く消滅会社の株主は反対株主となり、存続会社に株式の買取りを請求できる。特別支配会社自身に買取請求を認めない。",
+          "errorPoint": null,
+          "references": [
+            "会社法785条2項",
+            "会社法784条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "新設合併で消滅会社の株主等に交付する合併対価は、設立株式会社の株式および社債等に限られる。",
+          "errorPoint": null,
+          "references": [
+            "会社法753条1項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q41",
@@ -1781,28 +3948,51 @@
       "quizSubject": "憲法",
       "quizField": "憲法",
       "topic": "経済活動の自由",
-      "aim": "経済活動の自由を、試験で使う結論で切る。",
+      "aim": "職業の自由は、選択だけでなく継続と活動の中身も含む。",
       "askType": "多肢選択",
-      "rule": "完成文の見出しは、空欄の正解をア=2、イ=8、ウ=15、エ=2としている。択一の肢番号ではない。",
+      "rule": "憲法22条1項の職業の自由は、職業選択、継続、職業活動を含む。職業は社会的相互関連性が大きい。空欄はア2職業選択、イ8継続、ウ15職業活動、エ20社会的相互関連性。",
       "trap": "職業選択の自由と、職業活動の自由を一つの空欄にまとめない。",
       "references": [
         "憲法22条1項",
         "最大判昭50.4.30"
       ],
-      "memory": "完成文の見出しは、空欄の正解をア=2、イ=8、ウ=15、エ=2としている。択一の肢番号ではない。",
-      "deepDive": "■ 結論\n\n完成文の見出しは、空欄の正解をア=2、イ=8、ウ=15、エ=2としている。択一の肢番号ではない。\n\n■ ひっかけ\n\n職業選択の自由と、職業活動の自由を一つの空欄にまとめない。\n\n■ 確認\n\n空欄に入る語句の本体は、語群の番号だけで、語句の再検証はしていない。",
+      "memory": "職業選択、継続、職業活動、社会的相互関連性。エは20。",
+      "deepDive": "解答画像の完成文。エを2としたheader_ocrは誤り。最大判昭50.4.30は、選んだ職業の活動の内容・態様も原則として自由だとした。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
-        "sourceCorrectAnswer": null,
+        "sourceCorrectAnswer": "ア2職業選択・イ8継続・ウ15職業活動・エ20社会的相互関連性",
         "blanks": {
           "ア": "2",
           "イ": "8",
           "ウ": "15",
-          "エ": "2"
+          "エ": "20"
         },
+        "blankSource": "解答画像",
+        "blankAnswers": [
+          {
+            "slot": "ア",
+            "number": 2,
+            "word": "職業選択"
+          },
+          {
+            "slot": "イ",
+            "number": 8,
+            "word": "継続"
+          },
+          {
+            "slot": "ウ",
+            "number": 15,
+            "word": "職業活動"
+          },
+          {
+            "slot": "エ",
+            "number": 20,
+            "word": "社会的相互関連性"
+          }
+        ],
         "descriptive": null,
-        "confidence": "header_ocr",
+        "confidence": "answer_image",
         "answerImages": [
           "app/模試画像/辰巳/解答/PXL_20261010_132359683 (3).jpg"
         ],
@@ -1811,7 +4001,51 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "confirmed",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": true,
+          "conclusion": "空欄アは職業選択。憲法22条1項が保障する自由の中核である。番号は2。",
+          "errorPoint": null,
+          "references": [
+            "憲法22条1項",
+            "最大判昭50.4.30"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": true,
+          "conclusion": "空欄イは継続。生計を維持する活動を続けることである。番号は8。",
+          "errorPoint": null,
+          "references": [
+            "最大判昭50.4.30"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": true,
+          "conclusion": "空欄ウは職業活動。選んだ職業の遂行の内容と態様である。番号は15。",
+          "errorPoint": null,
+          "references": [
+            "最大判昭50.4.30"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": true,
+          "conclusion": "空欄エは社会的相互関連性。公権力による規制の要請が大きい性質である。解答頁の番号は20。索引の2とは一致しない。",
+          "errorPoint": null,
+          "references": [
+            "最大判昭50.4.30"
+          ],
+          "validationStatus": "confirmed",
+          "gap": "answer-key のエ=2は、解答頁の20と一致しない。topics の空欄は20。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q42",
@@ -1822,27 +4056,50 @@
       "quizSubject": "行政法",
       "quizField": "行政法",
       "topic": "行政裁量",
-      "aim": "行政裁量を、試験で使う結論で切る。",
+      "aim": "同じ不利益でも、判断の過程が合理的かを見る。",
       "askType": "多肢選択",
-      "rule": "完成文の見出しは、空欄の正解をア=2、イ=14、ウ=8、エ=2としている。",
-      "trap": "退学処分の裁量を、裁判所が何ら審査できないと書かない。",
+      "rule": "原級留置の裁量は、同じ不利益でも判断過程が合理的かを見る。不利益が大きいときは慎重に判断する。空欄はア2合理的、イ14裁量、ウ8同一、エ20慎重。",
+      "trap": "不利益の大きさが同じなら、裁量の判断も同じだと書く。",
       "references": [
-        "最二小判平8.3.8"
+        "最判平8.3.8"
       ],
-      "memory": "完成文の見出しは、空欄の正解をア=2、イ=14、ウ=8、エ=2としている。",
-      "deepDive": "■ 結論\n\n完成文の見出しは、空欄の正解をア=2、イ=14、ウ=8、エ=2としている。\n\n■ ひっかけ\n\n退学処分の裁量を、裁判所が何ら審査できないと書かない。",
+      "memory": "合理的、裁量、同一、慎重。エは20。",
+      "deepDive": "解答画像の完成文。剣道実技拒否。最判平8.3.8。エを2としたheader_ocrは誤り。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
-        "sourceCorrectAnswer": null,
+        "sourceCorrectAnswer": "ア2合理的・イ14裁量・ウ8同一・エ20慎重",
         "blanks": {
           "ア": "2",
           "イ": "14",
           "ウ": "8",
-          "エ": "2"
+          "エ": "20"
         },
+        "blankSource": "解答画像",
+        "blankAnswers": [
+          {
+            "slot": "ア",
+            "number": 2,
+            "word": "合理的"
+          },
+          {
+            "slot": "イ",
+            "number": 14,
+            "word": "裁量"
+          },
+          {
+            "slot": "ウ",
+            "number": 8,
+            "word": "同一"
+          },
+          {
+            "slot": "エ",
+            "number": 20,
+            "word": "慎重"
+          }
+        ],
         "descriptive": null,
-        "confidence": "header_ocr",
+        "confidence": "answer_image",
         "answerImages": [
           "app/模試画像/辰巳/解答/PXL_20261010_133019425 (3).jpg"
         ],
@@ -1851,7 +4108,50 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "confirmed",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": true,
+          "conclusion": "空欄アは合理的。裁量の逸脱または濫用を見る基準である。番号は2。",
+          "errorPoint": null,
+          "references": [
+            "最判平8.3.8"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": true,
+          "conclusion": "空欄イは裁量。校長の懲戒・進級判定に残る判断の幅である。番号は14。",
+          "errorPoint": null,
+          "references": [
+            "最判平8.3.8"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": true,
+          "conclusion": "空欄ウは同一。生徒の立場に立って比べることである。番号は8。",
+          "errorPoint": null,
+          "references": [
+            "最判平8.3.8"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": true,
+          "conclusion": "空欄エは慎重。信仰の自由の重さを踏まえた判断である。解答頁の番号は20。索引の2とは一致しない。",
+          "errorPoint": null,
+          "references": [
+            "最判平8.3.8"
+          ],
+          "validationStatus": "confirmed",
+          "gap": "answer-key のエ=2は、解答頁の20と一致しない。topics の空欄は20。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q43",
@@ -1861,28 +4161,52 @@
       "learnSubject": "行政法",
       "quizSubject": "行政法",
       "quizField": "行政法",
-      "topic": "原告適格",
-      "aim": "原告適格を、試験で使う結論で切る。",
+      "topic": "産廃処理施設の許可と原告適格",
+      "aim": "処分の相手方以外の原告適格と、無効等確認を分ける。",
       "askType": "多肢選択",
-      "rule": "完成文の見出しは、空欄の正解をア=1、イ=16、ウ=4、エ=9としている。",
-      "trap": "処分の相手方以外の原告適格を、法律上の利益から外さない。",
+      "rule": "産業廃棄物処理施設の許可について、相手方以外の者の原告適格と、無効等確認の訴えが問われている。空欄はア1原告適格、イ16法規、ウ4相手方以外の者、エ9無効等。森林法の日付の問題ではない。",
+      "trap": "この問を、森林法の保安林解除の日付で切る。",
       "references": [
-        "行政事件訴訟法9条"
+        "行政事件訴訟法9条",
+        "行政事件訴訟法36条"
       ],
-      "memory": "完成文の見出しは、空欄の正解をア=1、イ=16、ウ=4、エ=9としている。",
-      "deepDive": "■ 結論\n\n完成文の見出しは、空欄の正解をア=1、イ=16、ウ=4、エ=9としている。\n\n■ ひっかけ\n\n処分の相手方以外の原告適格を、法律上の利益から外さない。",
+      "memory": "原告適格、法規、相手方以外の者、無効等。産廃施設の許可。",
+      "deepDive": "解答画像の完成文。イの語は法規。森林法の判決日をこの問の主題にしない。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
-        "sourceCorrectAnswer": null,
+        "sourceCorrectAnswer": "ア1原告適格・イ16法規・ウ4相手方以外の者・エ9無効等",
         "blanks": {
           "ア": "1",
           "イ": "16",
           "ウ": "4",
           "エ": "9"
         },
+        "blankSource": "解答画像",
+        "blankAnswers": [
+          {
+            "slot": "ア",
+            "number": 1,
+            "word": "原告適格"
+          },
+          {
+            "slot": "イ",
+            "number": 16,
+            "word": "法規"
+          },
+          {
+            "slot": "ウ",
+            "number": 4,
+            "word": "相手方以外の者"
+          },
+          {
+            "slot": "エ",
+            "number": 9,
+            "word": "無効等"
+          }
+        ],
         "descriptive": null,
-        "confidence": "header_ocr",
+        "confidence": "answer_image",
         "answerImages": [
           "app/模試画像/辰巳/解答/PXL_20261010_132803119 (3).jpg"
         ],
@@ -1891,7 +4215,49 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "confirmed",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": true,
+          "conclusion": "空欄アは原告適格。処分の取消しを求める法律上の利益を有する者である。番号は1。",
+          "errorPoint": null,
+          "references": [
+            "行政事件訴訟法9条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": true,
+          "conclusion": "空欄イは法規。根拠法令の文言だけで判断しない、という対象である。番号は16。",
+          "errorPoint": null,
+          "references": [
+            "行政事件訴訟法9条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": true,
+          "conclusion": "空欄ウは相手方以外の者。名宛人でない周辺住民の利益の見方である。番号は4。",
+          "errorPoint": null,
+          "references": [
+            "行政事件訴訟法9条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": true,
+          "conclusion": "空欄エは無効等。処分の効力の有無の確認の訴えである。番号は9。",
+          "errorPoint": null,
+          "references": [
+            "行政事件訴訟法36条"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q44",
@@ -1918,7 +4284,7 @@
         "blanks": null,
         "descriptive": {
           "printedCharCount": 44,
-          "charCountNote": "欄に44字と読める。頁は横向き。",
+          "charCountNote": "欄は44字。確認済み。",
           "scoring": [
             "裁決主義または同義の表現が必須",
             "裁決の取消訴訟でも原処分の違法を主張する、という点"
@@ -1934,7 +4300,40 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "芯",
+          "verdict": true,
+          "conclusion": "電波法が総務大臣の処分について裁決に対してのみ取消しの訴えを認める事案では、処分の取消しの訴えができないので、棄却裁決の取消しの訴えで原処分の違法を主張できる。",
+          "errorPoint": null,
+          "references": [
+            "電波法96条の2",
+            "行政事件訴訟法10条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "要素",
+          "verdict": true,
+          "conclusion": "必要要素は、手段が棄却裁決の取消しの訴えであること、原処分の取消しの訴えができないこと、行訴法10条2項が原処分の違法の主張を禁じるのは両方の訴えを起こせる場合であること。",
+          "errorPoint": null,
+          "references": [
+            "行政事件訴訟法10条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "字数",
+          "verdict": true,
+          "conclusion": "字数欄は44字である。",
+          "errorPoint": null,
+          "references": [
+            "app/模試画像/辰巳/解答/PXL_20261010_132447235 (3).jpg"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q45",
@@ -1961,8 +4360,8 @@
         "sourceCorrectAnswer": null,
         "blanks": null,
         "descriptive": {
-          "printedCharCount": 48,
-          "charCountNote": "欄は48字に見える。頁は横向きで、字数は要確認。",
+          "printedCharCount": 45,
+          "charCountNote": "欄は45字。確認済み。",
           "scoring": [
             "相殺できること",
             "対抗要件具備時より前に取得した債権であること"
@@ -1977,7 +4376,39 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "confirmed"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "芯",
+          "verdict": true,
+          "conclusion": "対抗要件の具備より前の賃貸借を原因として、通知の後に生じた賃料債権でも、債務者は譲受人に相殺を対抗できる。",
+          "errorPoint": null,
+          "references": [
+            "民法469条2項1号"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "要素",
+          "verdict": true,
+          "conclusion": "必要要素は、相殺できること、賃料の発生は対抗要件の後であること、原因である賃貸借は対抗要件の前であること、他人から取得した債権ではないこと。",
+          "errorPoint": null,
+          "references": [
+            "民法469条2項1号"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "字数",
+          "verdict": true,
+          "conclusion": "字数欄は45字である。48字ではない。",
+          "errorPoint": null,
+          "references": [
+            "app/模試画像/辰巳/解答/PXL_20261010_132853698 (3).jpg"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q46",
@@ -1997,7 +4428,7 @@
         "民法612条2項"
       ],
       "memory": "賃借人は、賃貸人の承諾がなければ賃借物を転貸できない（民法612条1項）。違反しても、解除には信頼関係の破壊が要ると解されている。",
-      "deepDive": "■ 結論\n\n賃借人は、賃貸人の承諾がなければ賃借物を転貸できない（民法612条1項）。違反しても、解除には信頼関係の破壊が要ると解されている。\n\n■ ひっかけ\n\n承諾のない転貸があれば、信頼関係を問わず常に解除できると書かない。\n\n■ 確認\n\n信頼関係破壊の判例年月日は、この回では再確認していない。模範解答の全文は転記しない。",
+      "deepDive": "■ 結論\n\n賃借人は、賃貸人の承諾がなければ賃借物を転貸できない（民法612条1項）。違反しても、解除には信頼関係の破壊が要ると解されている。\n\n■ ひっかけ\n\n承諾のない転貸があれば、信頼関係を問わず常に解除できると書かない。\n\n■ 確認\n\n判例は最判昭39.11.19（昭和39年（オ）第696号、民集18巻9号1900頁）。字数欄は42字。模範解答の全文は転記しない。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -2005,7 +4436,7 @@
         "blanks": null,
         "descriptive": {
           "printedCharCount": 42,
-          "charCountNote": "欄に42字と読める。頁は横向き。",
+          "charCountNote": "欄は42字。確認済み。",
           "scoring": [
             "信頼関係破壊の法理",
             "背信行為と認めるに足りない特段の事情"
@@ -2020,7 +4451,51 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "芯",
+          "verdict": true,
+          "conclusion": "賃借人は賃貸人の承諾がなければ転貸できないが、信頼関係を破壊するとはいえないときは、承諾のない転貸だけでは解除できない。",
+          "errorPoint": null,
+          "references": [
+            "民法612条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "要素",
+          "verdict": true,
+          "conclusion": "必要要素は、承諾がないこと、使用の実質が変わらないこと、信頼関係破壊の法理により解除は認められないこと。",
+          "errorPoint": null,
+          "references": [
+            "民法612条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "字数",
+          "verdict": true,
+          "conclusion": "字数欄は42字である。",
+          "errorPoint": null,
+          "references": [
+            "app/模試画像/辰巳/解答/PXL_20261010_082456189 (3).jpg"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "判例日",
+          "verdict": true,
+          "conclusion": "承諾のない転貸でも、信頼関係を破壊するとはいえないときは解除できない、とする判例は最判昭39.11.19である。",
+          "errorPoint": null,
+          "references": [
+            "最判昭39.11.19",
+            "昭和39年（オ）第696号",
+            "民集18巻9号1900頁"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q47",
@@ -2074,7 +4549,52 @@
           }
         ]
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "大統領制では、大統領は法案提出権を持たず、教書の形で報告し勧告する。",
+          "errorPoint": null,
+          "references": [
+            "アメリカ合衆国憲法2条3節"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "議院内閣制では、立法府と行政府が一体化する。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "フランスの大統領は国民議会を解散できる。半大統領制を、大統領に議会解散権がない制度としない。",
+          "errorPoint": "半大統領制を、アメリカと同じく大統領に議会解散権がない制度とした点。",
+          "references": [],
+          "validationStatus": "confirmed",
+          "gap": "解答頁は妥当でないと結ぶ。フランス共和国憲法12条の原文は、この回では開いていない。"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "憲法改正と国家主席の選挙は全国人民代表大会の権限であり、常務委員会はその常設機関である。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "大統領に国会の解散権はなく、罷免は国会の弾劾と憲法裁判所の審判による。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q48",
@@ -2086,12 +4606,12 @@
       "quizField": "基礎知識",
       "topic": "日本の国政選挙",
       "aim": "日本の国政選挙を、試験で使う結論で切る。",
-      "askType": "妥当なもの",
-      "rule": "見出しを目視して正解3。",
-      "trap": "特定枠と、拘束名簿式の当選順を混ぜない。",
+      "askType": "妥当でないもの",
+      "rule": "正解3。2016年の区割り審議会設置法の改正は、その時点の10増10減ではない。10増10減は2022年の改正。",
+      "trap": "選挙権18歳と、被選挙権25歳・30歳を一緒に下げない。特定枠を拘束名簿と混ぜない。",
       "references": [],
-      "memory": "見出しを目視して正解3。",
-      "deepDive": "■ 結論\n\n見出しを目視して正解3。\n\n■ ひっかけ\n\n特定枠と、拘束名簿式の当選順を混ぜない。",
+      "memory": "2016年改正はアダムズ方式。10増10減は2022年。正解は3。",
+      "deepDive": "■ 結論\n\n問いの型は妥当でないもの。正解3。落ちるのは、2016年の改正を10増10減と書いた肢。\n\n■ ひっかけ\n\n被選挙権は25歳と30歳のまま。参議院は248人。特定枠を入れても非拘束名簿が本体。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -2108,7 +4628,62 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "既存の投票区の投票所とは別に、駅や商業施設などに共通投票所を置くことができる。",
+          "errorPoint": null,
+          "references": [
+            "公職選挙法"
+          ],
+          "validationStatus": "confirmed",
+          "gap": "条番号は、この回ではe-Govを開いていない。"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "選挙権は満18歳以上である。被選挙権は、衆議院議員が満25歳以上、参議院議員が満30歳以上のままである。",
+          "errorPoint": null,
+          "references": [
+            "公職選挙法9条",
+            "公職選挙法10条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "2016年の衆議院議員選挙区画定審議会設置法の改正で入ったのはアダムズ方式である。その時点の10増10減ではない。10増10減は2020年国勢調査に基づく2022年の改正であり、合計465人は動かない。",
+          "errorPoint": "2016年の改正を、その時点の10増10減とし、または定数を465人以外の数とする点。",
+          "references": [
+            "衆議院議員選挙区画定審議会設置法3条2項",
+            "総務省"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "インターネット選挙運動は認められ、候補者についての虚偽事項の公表は処罰の対象である。",
+          "errorPoint": null,
+          "references": [
+            "公職選挙法"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "参議院比例代表の特定枠の候補者は、個人名の得票と関係なく、名簿の記載順に当選人となる。本体は非拘束名簿式のままである。",
+          "errorPoint": null,
+          "references": [
+            "公職選挙法86条の3"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q49",
@@ -2120,12 +4695,12 @@
       "quizField": "基礎知識",
       "topic": "外国人材の受入れ",
       "aim": "外国人材の受入れを、試験で使う結論で切る。",
-      "askType": "妥当でないもの",
-      "rule": "別頁が「正解は肢1」と結んでいる。見出し側も正解1と読める。",
-      "trap": "技能実習と育成就労を、同じ在留資格のままにしない。",
+      "askType": "妥当でないものの組合せ",
+      "rule": "正解1。外国人労働者の内訳を、在留外国人全体の在留資格の内訳として述べると誤る。 【紙面訂正】紙面は妥当でないものの組合せである。正解1はアとイ。肢2を第二の正解にしない。",
+      "trap": "技能実習と育成就労の同一視は、この問の正解肢の落ちる点ではない。",
       "references": [],
-      "memory": "別頁が「正解は肢1」と結んでいる。見出し側も正解1と読める。",
-      "deepDive": "■ 結論\n\n別頁が「正解は肢1」と結んでいる。見出し側も正解1と読める。\n\n■ ひっかけ\n\n技能実習と育成就労を、同じ在留資格のままにしない。",
+      "memory": "労働者の割合を、在留外国人全体の内訳にしない。正解は1。",
+      "deepDive": "■ 結論\n\n問いの型は妥当でないもの。正解1。令和7年10月末の外国人労働者は257万1037人。専門技術33.7パーセント、身分25.1パーセント、技能実習19.4パーセントは、労働者の内訳である。\n\n■ ひっかけ\n\n特定技能は2019年から。1号は家族帯同を基本的に認めない。育成就労は技能実習に代わる別制度。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -2142,7 +4717,60 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": false,
+          "conclusion": "厚生労働省の令和7年10月末の外国人労働者は257万1037人である。専門的・技術的分野は33.7パーセント、身分に基づく在留資格は25.1パーセント、技能実習は19.4パーセントである。これは労働者の内訳であり、在留外国人全体の内訳ではない。",
+          "errorPoint": "就労制限のない身分系が、外国人労働者のおよそ8割を占めるとした点。",
+          "references": [
+            "厚生労働省外国人雇用状況"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": false,
+          "conclusion": "医療、研究、教育の在留資格は、特定技能より前から別にある。特定技能の受入れ開始は2019年である。1号は相当程度の知識または経験、2号は熟練した技能である。",
+          "errorPoint": "特定技能の開始によって、医療・研究・教育でも就労目的の在留が認められるようになったとする点。",
+          "references": [
+            "出入国管理及び難民認定法別表第一の二"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": true,
+          "conclusion": "特定技能1号は通算5年が上限で、家族の帯同は原則として認めない。2号には、その上限もその帯同制限もない。",
+          "errorPoint": null,
+          "references": [
+            "出入国管理及び難民認定法"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": true,
+          "conclusion": "技能実習は技能等の移転が本来の目的であり、育成就労は令和6年法律第60号で、令和9年4月1日に施行され、技能実習に代わる。",
+          "errorPoint": null,
+          "references": [
+            "出入国管理及び難民認定法"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "オ",
+          "verdict": true,
+          "conclusion": "出入国在留管理庁は法務省の外局であり、入国と在留の公正な管理を任務とする。",
+          "errorPoint": null,
+          "references": [
+            "法務省設置法"
+          ],
+          "validationStatus": "confirmed",
+          "gap": "解答頁は妥当と結ぶ。法務省設置法26条と28条の原文は、この回ではe-Govを開いていない。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q50",
@@ -2154,12 +4782,12 @@
       "quizField": "基礎知識",
       "topic": "戦後日本の為替",
       "aim": "戦後日本の為替を、試験で使う結論で切る。",
-      "askType": "妥当でないもの",
-      "rule": "見出し側は正解2。もう1枚は円安の記述の断片で、問番号も正解番号も読めない。",
-      "trap": "固定相場と変動相場の時期を入れ替えない。",
+      "askType": "妥当なもの",
+      "rule": "正解2。1989年12月29日の最高値のあと株は下落した。1990年の入りは円安で、円の上昇は5月以降。",
+      "trap": "360円、308円、1973年2月の変動、1985年のプラザ合意を入れ替えない。",
       "references": [],
-      "memory": "見出し側は正解2。もう1枚は円安の記述の断片で、問番号も正解番号も読めない。",
-      "deepDive": "■ 結論\n\n見出し側は正解2。もう1枚は円安の記述の断片で、問番号も正解番号も読めない。\n\n■ ひっかけ\n\n固定相場と変動相場の時期を入れ替えない。",
+      "memory": "最高値は1989年12月29日。変動相場は1973年2月。正解は2。",
+      "deepDive": "■ 結論\n\n問いの型は妥当なもの。正解2。終値は3万8915円87銭。1990年の入りは円安。\n\n■ ひっかけ\n\nプラザ合意を変動相場の開始にしない。異次元緩和の局面は円安。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -2176,7 +4804,56 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "1ドル360円は1949年からの固定である。1971年8月に金とドルの交換が止まり、スミソニアン協定は1971年12月の1ドル308円、変動相場への移行は1973年2月、プラザ合意は1985年である。",
+          "errorPoint": "1971年のプラザ合意で、360円固定から変動相場へ移ったとする点。",
+          "references": [
+            "財務省"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "1989年12月29日に日経平均が当時の終値の最高値3万8915円87銭を付け、その後大きく下落した。1990年の入りは株安・円安・債券安で、円が上昇に転じたのは同年5月以降である。",
+          "errorPoint": null,
+          "references": [
+            "財務省",
+            "内閣府"
+          ],
+          "validationStatus": "confirmed",
+          "gap": "解答頁の金額はザラバ高値にも読める。終値は3万8915円87銭。"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "2008年のリーマン・ショックのあと円高が進み、2011年の東日本大震災のあとにも円高が進んだ。",
+          "errorPoint": "東日本大震災のあと急激な円安が進んだとする点。",
+          "references": [],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "量的・質的金融緩和の局面で進んだのは円安である。",
+          "errorPoint": "量的・質的金融緩和で円高が進んだとする点。",
+          "references": [],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "米連邦準備制度理事会は2022年3月から政策金利の利上げを繰り返し、円安が進んだ。",
+          "errorPoint": "2022年に大幅な利下げへ転じ、円高が進んだとする点。",
+          "references": [],
+          "validationStatus": "confirmed",
+          "gap": "利上げの公表日の原文は、この回では開いていない。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q51",
@@ -2188,12 +4865,12 @@
       "quizField": "基礎知識",
       "topic": "経済用語",
       "aim": "経済用語を、試験で使う結論で切る。",
-      "askType": "妥当でないもの",
-      "rule": "見出しを目視して正解3。",
-      "trap": "マネタリーベースとマネーストックを入れ替えない。",
+      "askType": "妥当なもの",
+      "rule": "正解3。GDPデフレーターは、名目GDPを実質GDPで割った物価の指数。 【紙面訂正】解答頁の訂正。肢1はマネタリーベースをマネーストックの区分とした点で妥当でない。肢2はGDPデフレーターを実質成長率の指数とした点で妥当でない。肢3は全要素生産性で、これが妥当。肢4は潜在成長率とGDPギャップの説明に実質成長率の名を当てた点で妥当でない。肢5は経常赤字の向きが逆で妥当でない。",
+      "trap": "マネタリーベースとマネーストック、潜在成長率とGDPギャップを入れ替えない。",
       "references": [],
-      "memory": "見出しを目視して正解3。",
-      "deepDive": "■ 結論\n\n見出しを目視して正解3。\n\n■ ひっかけ\n\nマネタリーベースとマネーストックを入れ替えない。",
+      "memory": "GDPデフレーターは名目を実質で割る。正解は3。",
+      "deepDive": "■ 結論\n\n問いの型は妥当なもの。正解3。デフレーターは物価の指数であり、実質成長率そのものではない。\n\n■ ひっかけ\n\nマネタリーベースは日銀の供給。マネーストックは金融部門から経済全体への供給。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -2209,7 +4886,59 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "マネタリーベースは、日本銀行が供給する日本銀行券発行高、貨幣流通高および日銀当座預金である。M1、M2、M3、広義流動性はマネーストックの区分である。",
+          "errorPoint": "マネタリーベースを、マネーストックの区分で測る通貨総量とした点。",
+          "references": [
+            "日本銀行"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "GDPデフレーターは、名目GDPを実質GDPで割った物価の指数である。実質成長率は実質GDPの増加率である。",
+          "errorPoint": "デフレーターを、実質成長率を測る指数とした点。",
+          "references": [
+            "内閣府"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "全要素生産性は、労働と資本などの投入では説明しきれない産出の伸びであり、投入の質の向上と技術進歩を含む。",
+          "errorPoint": null,
+          "references": [
+            "内閣府"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "潜在成長率は、資本と労働を平均的に用いたときの供給能力の伸びである。GDPギャップは、実際のGDPと潜在GDPの差である。実質成長率は実質GDPの増加率である。",
+          "errorPoint": "潜在成長率とGDPギャップの説明に、実質成長率の名を当てた点。",
+          "references": [
+            "内閣府"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "経常収支は、貿易・サービス収支、第一次所得収支、第二次所得収支の合計である。経常赤字は、貯蓄が投資に足りない方向を示す。",
+          "errorPoint": "経常赤字を、投資不足または貯蓄過多の方向とした点。",
+          "references": [
+            "内閣府"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q52",
@@ -2222,11 +4951,11 @@
       "topic": "気候変動",
       "aim": "気候変動を、試験で使う結論で切る。",
       "askType": "空欄",
-      "rule": "続き頁が、空欄の組合せのあと「正解は肢3」と結んでいる。",
-      "trap": "京都議定書とパリ協定の年を入れ替えない。",
+      "rule": "正解3。空欄はリオデジャネイロ、京都議定書、1.5、アメリカ。",
+      "trap": "2度を十分低く保つ側、1.5度を努力目標にする。枠組条約からの脱退年は断定しない。",
       "references": [],
-      "memory": "続き頁が、空欄の組合せのあと「正解は肢3」と結んでいる。",
-      "deepDive": "■ 結論\n\n続き頁が、空欄の組合せのあと「正解は肢3」と結んでいる。\n\n■ ひっかけ\n\n京都議定書とパリ協定の年を入れ替えない。",
+      "memory": "空欄はリオ、京都議定書、1.5、アメリカ。正解は3。",
+      "deepDive": "■ 結論\n\n枠組条約は1992年のリオ。京都議定書は1997年のCOP3。パリ協定の努力目標は1.5度。離脱したのはアメリカ。\n\n■ ひっかけ\n\n2026年と2027年の脱退見通しは、空欄の語以上の事実にしない。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -2243,7 +4972,22 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "空欄の語は、リオデジャネイロ、京都議定書、1.5、アメリカ、カーボンニュートラルである。1992年の会議の開催地はリオデジャネイロ、1997年のCOP3で採択されたのは京都議定書、気温上昇を抑える努力の目標は1.5度、排出量第2位でパリ協定から離脱したのはアメリカ、2050年までに排出を全体としてゼロにする宣言の語はカーボンニュートラルである。この組は3だけ。本文の命題は一般知識にしない。",
+          "errorPoint": null,
+          "references": [
+            "気候変動枠組条約",
+            "京都議定書",
+            "パリ協定"
+          ],
+          "validationStatus": "confirmed",
+          "gap": "解説の2026年と2027年の脱退見通しは、空欄の語がアメリカであること以上には事実にしない。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q53",
@@ -2255,15 +4999,15 @@
       "quizField": "基礎知識",
       "topic": "行政書士法",
       "aim": "行政書士法を、試験で使う結論で切る。",
-      "askType": "妥当なもの",
-      "rule": "見出しを目視して正解3。",
-      "trap": "19条が禁じるのは報酬を得て業とする書類作成であり、相談一般ではない。",
+      "askType": "妥当でないもの",
+      "rule": "正解3。権利義務に関する書類の作成を、行政書士の業務から外すと誤る。1条の3。",
+      "trap": "19条が禁じるのは1条の3の作成である。相談は1条の4で、19条の禁止は及ばない。",
       "references": [
         "行政書士法1条の3",
         "行政書士法19条"
       ],
-      "memory": "見出しを目視して正解3。",
-      "deepDive": "■ 結論\n\n見出しを目視して正解3。\n\n■ ひっかけ\n\n19条が禁じるのは報酬を得て業とする書類作成であり、相談一般ではない。",
+      "memory": "権利義務書類の作成は業務に入る。正解は3。",
+      "deepDive": "■ 結論\n\n問いの型は妥当でないもの。正解3。遺産分割協議書や契約書を業務から外すと誤る。\n\n■ ひっかけ\n\n19条1項本文の禁止は1条の3。他の法律の別段の定めはただし書。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -2280,7 +5024,63 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "行政書士は、他人の依頼を受け報酬を得て、官公署に提出する書類の作成を業とし、その提出手続の代理も業とすることができる。",
+          "errorPoint": null,
+          "references": [
+            "行政書士法1条の2",
+            "行政書士法1条の3"
+          ],
+          "validationStatus": "confirmed",
+          "gap": "提出手続の代理の条番号は、この回ではe-Govの条建てを再読していない。"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "事実証明に関する書類の作成は行政書士の業務である。",
+          "errorPoint": null,
+          "references": [
+            "行政書士法1条の2"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "権利義務に関する書類の作成は行政書士の業務である。遺産分割協議書や契約書も、その書類に当たり得る。",
+          "errorPoint": "報酬を得てこれらの書類を作成できないとした点。",
+          "references": [
+            "行政書士法1条の2",
+            "行政書士法1条の3"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "他の法律で制限されている業務は行えない。登記申請手続の代理と、税務代理としての申告は、それぞれ司法書士と税理士の業務である。",
+          "errorPoint": null,
+          "references": [
+            "行政書士法1条の2第2項",
+            "行政書士法19条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "行政書士または行政書士法人でない者は、他の法律に別段の定めがある場合を除き、他人の依頼を受け報酬を得て業として、官公署に提出する書類等を作成できない。",
+          "errorPoint": null,
+          "references": [
+            "行政書士法19条1項"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q54",
@@ -2292,8 +5092,8 @@
       "quizField": "基礎知識",
       "topic": "戸籍法",
       "aim": "戸籍法を、試験で使う結論で切る。",
-      "askType": "妥当なもの",
-      "rule": "見出しは正解5。職権訂正には、管轄法務局長等の許可が要る場合がある（戸籍法24条）。",
+      "askType": "妥当でないもの",
+      "rule": "見出しは正解5。職権訂正には、管轄法務局長等の許可が要る場合がある（戸籍法24条）。 【紙面訂正】紙面の問いは妥当でないものである。妥当でないのは肢5。職権訂正には、管轄法務局長等の許可を要する場合がある。",
       "trap": "届書に不備があっても、市町村長が常に受理できると書かない。",
       "references": [
         "戸籍法24条"
@@ -2316,7 +5116,60 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "戸籍は、市町村内に本籍を定める一組の夫婦と、これと氏を同じくする子ごとに編製する。",
+          "errorPoint": null,
+          "references": [
+            "戸籍法6条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "戸籍に記載されている者、その配偶者、直系尊属または直系卑属は、戸籍謄本等を請求できる。不当な目的が明らかなときは、市町村長は交付を拒むことができる。",
+          "errorPoint": null,
+          "references": [
+            "戸籍法10条"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "権利の行使または義務の履行のため記載事項の確認を必要とするときは、本人等以外の第三者も戸籍謄本等を請求できる。",
+          "errorPoint": null,
+          "references": [
+            "戸籍法10条の2第1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "弁護士、司法書士、土地家屋調査士、税理士、社会保険労務士、弁理士、海事代理士および行政書士は、受任事件または事務に必要なときは戸籍謄本等を請求できる。",
+          "errorPoint": null,
+          "references": [
+            "戸籍法10条の2第3項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": false,
+          "conclusion": "利害関係人は家庭裁判所の許可を得て訂正を申請できる。市町村長は、届書等から訂正すべき内容と事由が明らかなときは、管轄法務局長等の許可を得て訂正できる。身分関係の記載に影響しない軽微な訂正は、その許可を要しない。",
+          "errorPoint": "家庭裁判所の許可申請が必須で、市町村長による訂正はできないとした点。",
+          "references": [
+            "戸籍法113条",
+            "戸籍法24条"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q55",
@@ -2328,12 +5181,12 @@
       "quizField": "基礎知識",
       "topic": "情報セキュリティ",
       "aim": "情報セキュリティを、試験で使う結論で切る。",
-      "askType": "妥当なもの",
-      "rule": "見出しを目視して正解3。",
-      "trap": "マルウェアと、ソーシャルエンジニアリングを同じ手法にしない。",
+      "askType": "妥当でないものの組合せ",
+      "rule": "正解3。マルウェアは悪意のあるソフトウェアで、手口は一つではない。 【紙面訂正】解答頁の訂正。紙面は妥当でないものの組合せである。正解3はイとエ。ア、ウ、オは妥当である。アを、マルウェアを一つの手口に狭めた誤りとしない。",
+      "trap": "フィッシングをトロイの木馬にしない。ソーシャルエンジニアリングを技術的侵入にしない。",
       "references": [],
-      "memory": "見出しを目視して正解3。",
-      "deepDive": "■ 結論\n\n見出しを目視して正解3。\n\n■ ひっかけ\n\nマルウェアと、ソーシャルエンジニアリングを同じ手法にしない。",
+      "memory": "マルウェアの手口は一つではない。正解は3。",
+      "deepDive": "■ 結論\n\n問いの型は妥当なもの。正解3。VPNは公衆回線を認証や暗号で専用回線のように使う。\n\n■ ひっかけ\n\nインターネットVPNとIP-VPNは別。フィッシングとトロイの木馬は別。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -2350,7 +5203,49 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "ア",
+          "verdict": true,
+          "conclusion": "マルウェアは、悪意のあるソフトウェアの総称である。攻撃の手口は一つではない。エモテットはその例である。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "イ",
+          "verdict": false,
+          "conclusion": "VPNは、認証と暗号により、公衆回線を専用回線のように使う仕組みである。インターネットVPNと、通信会社の閉域網を使うIP-VPNは別である。",
+          "errorPoint": "公衆回線を介さず、専用回線を引くサービスとした点。",
+          "references": [],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "ウ",
+          "verdict": true,
+          "conclusion": "公開鍵暗号は、暗号化と復号に異なる鍵を使い、インターネット上の安全な通信に用いる。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "エ",
+          "verdict": false,
+          "conclusion": "有用を装って内部に潜み、外部からの不正侵入を助けるソフトウェアはトロイの木馬である。ランサムウェアは、データを使えなくして復元と引換えに金銭を要求する。",
+          "errorPoint": "トロイの木馬の説明に、ランサムウェアの名を当てた点。",
+          "references": [],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "オ",
+          "verdict": true,
+          "conclusion": "ソーシャルエンジニアリングは、技術の穴ではなく、人の心理や手順の隙を突いて情報を出させる方法の総称である。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q56",
@@ -2362,12 +5257,12 @@
       "quizField": "基礎知識",
       "topic": "事業者ガイドライン",
       "aim": "事業者ガイドラインを、試験で使う結論で切る。",
-      "askType": "妥当なもの",
-      "rule": "見出しを目視して正解3。",
-      "trap": "企業秘密を理由に、利用者への説明を常に拒めると書かない。",
+      "askType": "妥当でないもの",
+      "rule": "正解3。個人情報の目的外利用の禁止を、匿名化しただけで外すと誤る。",
+      "trap": "AIが判断したので提供者に責任はない、とはしない。",
       "references": [],
-      "memory": "見出しを目視して正解3。",
-      "deepDive": "■ 結論\n\n見出しを目視して正解3。\n\n■ ひっかけ\n\n企業秘密を理由に、利用者への説明を常に拒めると書かない。",
+      "memory": "匿名化しても目的外利用を外さない。正解は3。",
+      "deepDive": "■ 結論\n\n問いの型は妥当でないもの。正解3。ガイドラインは法令の逐条解説ではなく、法的拘束力はない。\n\n■ ひっかけ\n\n利用者への説明を、企業秘密を理由に常に拒める、ではない。",
       "practiceQuestion": null,
       "sourceTrace": {
         "answerSource": "辰巳2026全国公開完全模試・解答冊子",
@@ -2384,7 +5279,62 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "AI事業者ガイドラインの安全性は、性能の向上に優先する。誤回答のリスクがある問い合わせの仕組みは、リスクを把握し低減措置を講じてから提供する。",
+          "errorPoint": null,
+          "references": [
+            "AI事業者ガイドライン"
+          ],
+          "validationStatus": "confirmed",
+          "gap": "ガイドラインの文言の細目は、この回では本文を再読していない。"
+        },
+        {
+          "id": "2",
+          "verdict": true,
+          "conclusion": "利用目的、できることとできないこと、出力の限界は利用者に説明する。仕組みが企業秘密であることは、その説明を拒む理由にならない。",
+          "errorPoint": null,
+          "references": [
+            "AI事業者ガイドライン"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "顧客データの匿名化だけでは、利用目的の制限は外れない。匿名加工情報にする場合も、作成基準と項目の公表などの規律がある。",
+          "errorPoint": "匿名化しさえすれば、他の目的での利用も公表も自由になるとした点。",
+          "references": [
+            "個人情報保護法18条",
+            "個人情報保護法43条",
+            "AI事業者ガイドライン"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": true,
+          "conclusion": "特定の地域の審査通過率が低い傾向は、公平性の問題になり得る。学習データと出力の偏りを検証し、必要なら改善する。",
+          "errorPoint": null,
+          "references": [
+            "AI事業者ガイドライン"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "運用の過程と判断の根拠を説明できる記録を残し、事故のときは説明責任を負う。AIが判断したので提供者に責任はない、とはしない。",
+          "errorPoint": null,
+          "references": [
+            "AI事業者ガイドライン"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q57",
@@ -2420,7 +5370,65 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": false,
+          "conclusion": "個人情報は、生存する個人に関する情報で、氏名等により特定の個人を識別できるもの、または個人識別符号が含まれるものである。コンピュータで検索できるよう体系的に構成した集合物は、個人情報データベース等である。",
+          "errorPoint": "個人情報データベース等の定義に、個人情報の名を当てた点。",
+          "references": [
+            "個人情報保護法2条1項",
+            "個人情報保護法16条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "2",
+          "verdict": false,
+          "conclusion": "要配慮個人情報の取得は、原則として本人の同意を要する。第三者提供のオプトアウトは、提供される個人データが要配慮個人情報であるときは認められない。",
+          "errorPoint": "要配慮個人情報にもオプトアウトによる第三者提供を認めた点。",
+          "references": [
+            "個人情報保護法20条2項",
+            "個人情報保護法27条2項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "3",
+          "verdict": false,
+          "conclusion": "個人データの漏えい等を防止するため、必要かつ適切な安全管理措置を講じる。権利利益を害するおそれが大きいものとして規則で定める漏えい等は、個人情報保護委員会への報告を要する。",
+          "errorPoint": "個別事案の内容を委員会に報告する必要はないとした点。",
+          "references": [
+            "個人情報保護法23条",
+            "個人情報保護法26条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "4",
+          "verdict": false,
+          "conclusion": "提供先が個人関連情報を個人データとして取得することが想定されるときは、本人の同意が得られていることをあらかじめ確認しなければ、第三者に提供できない。",
+          "errorPoint": "その想定があるときも、同意の有無にかかわらず提供できるとした点。",
+          "references": [
+            "個人情報保護法31条1項"
+          ],
+          "validationStatus": "confirmed"
+        },
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "仮名加工情報は、他の情報と照合しない限り特定の個人を識別できないように加工した情報である。第三者提供は法令に基づく場合等を除き禁止され、開示、利用停止および漏えい等報告の適用が外される。匿名加工情報は、識別できず復元できないように加工した情報であり、加工の程度は匿名の方が厳しい。",
+          "errorPoint": null,
+          "references": [
+            "個人情報保護法2条5項",
+            "個人情報保護法2条6項",
+            "個人情報保護法41条",
+            "個人情報保護法42条"
+          ],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q58",
@@ -2454,7 +5462,17 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "5",
+          "verdict": true,
+          "conclusion": "空欄は語の働きで取る。心情に並ぶ語、抵抗のよりどころ、容易さ、効率化に逆らう構造、人員削減の材料になる余剰、の組は5だけである。本文の命題は一般知識にしない。本文は転記しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q59",
@@ -2488,7 +5506,18 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "needs_review"
+      "status": "needs_review",
+      "choiceConclusions": [
+        {
+          "id": "3",
+          "verdict": true,
+          "conclusion": "空欄は文の働きで取る。見えるものと見えない雰囲気、場所探しに時間がかかること、旅の目的の違い、家庭の雰囲気、学校を例にすること、の順は組合せ3である。本文の命題は一般知識にしない。本文は転記しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed",
+          "gap": "見出し写真 PXL_20261010_212906374 はリポジトリに無い。問題 PXL_20261010_133844808.jpg に問題59の見出しがある。解答頁は横向きで、文対応の一部が読みにくい。"
+        }
+      ]
     },
     {
       "id": "tatsumi-2026-q60",
@@ -2521,7 +5550,17 @@
         ],
         "choiceVerdicts": []
       },
-      "status": "confirmed"
+      "status": "confirmed",
+      "choiceConclusions": [
+        {
+          "id": "1",
+          "verdict": true,
+          "conclusion": "空欄は、画像処理と、見えていることとの違いを置く位置にある。焦点を合わせても見ていることにはならず、視覚のクオリアもない、とまとめる1がこの位置に合う。焦点を合わせられることを見ていることに等しいとする肢、見えておりクオリアもあるとする肢、焦点機能があるので見ることができクオリアとは無関係だとする肢は、この位置に合わない。本文の命題は一般知識にしない。本文は転記しない。",
+          "errorPoint": null,
+          "references": [],
+          "validationStatus": "confirmed"
+        }
+      ]
     }
   ]
 }

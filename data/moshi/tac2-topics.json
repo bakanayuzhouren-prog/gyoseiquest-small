@@ -234,7 +234,14 @@
         "explanation": "管理上の支障が具体的に認められるとき拒否し得る。政治的中立性の維持も支障になり得る。"
       },
       "sourceTrace": {
-        "answerSource": "TAC2解答画像 問41 ア管理・イ中立性・ウ民主主義・エ合理的"
+        "answerSource": "TAC2解答画像 問41 ア管理・イ中立性・ウ民主主義・エ合理的",
+        "blankSource": "解答画像",
+        "blankAnswers": [
+          { "slot": "ア", "word": "管理" },
+          { "slot": "イ", "word": "中立性" },
+          { "slot": "ウ", "word": "民主主義" },
+          { "slot": "エ", "word": "合理的" }
+        ]
       },
       "status": "confirmed",
       "subject": "多肢選択",
@@ -269,7 +276,14 @@
         "explanation": "審査請求は原則上級行政庁へ。監督関係がない相手へ出しても応答義務は生じない。"
       },
       "sourceTrace": {
-        "answerSource": "TAC2解答画像 問42 ア上級行政庁・イ不作為の違法確認の訴え・ウ応答義務・エ不適法"
+        "answerSource": "TAC2解答画像 問42 ア上級行政庁・イ不作為の違法確認の訴え・ウ応答義務・エ不適法",
+        "blankSource": "解答画像",
+        "blankAnswers": [
+          { "slot": "ア", "word": "上級行政庁" },
+          { "slot": "イ", "word": "不作為の違法確認の訴え" },
+          { "slot": "ウ", "word": "応答義務" },
+          { "slot": "エ", "word": "不適法" }
+        ]
       },
       "status": "confirmed",
       "subject": "多肢選択",
@@ -304,7 +318,14 @@
         "explanation": "差止めは蓋然性と重大な損害のおそれが入口。執行停止で足りるなら認めにくい。"
       },
       "sourceTrace": {
-        "answerSource": "TAC2解答画像 問43 ア訴訟要件・イ蓋然性・ウ重大な損害・エ執行停止"
+        "answerSource": "TAC2解答画像 問43 ア訴訟要件・イ蓋然性・ウ重大な損害・エ執行停止",
+        "blankSource": "解答画像",
+        "blankAnswers": [
+          { "slot": "ア", "word": "訴訟要件" },
+          { "slot": "イ", "word": "蓋然性" },
+          { "slot": "ウ", "word": "重大な損害" },
+          { "slot": "エ", "word": "執行停止" }
+        ]
       },
       "status": "confirmed",
       "subject": "多肢選択",

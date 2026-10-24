@@ -6,8 +6,11 @@
 
 - 保存先: `assets/images/deepdive/learn/jichi/kuni-kanyo-moushide-3.png`
 - 画像キー: `learn/jichi/kuni-kanyo-moushide-3`
+- 上書き対象: `assets/images/deepdive/learn/jichi/kuni-kanyo-moushide-3.png`
+- overwrite: true
 - 生成は Codex。Cursor は描かない。
 - 既存の `kuni-no-kanyo.png` は上書きしない。
+- 矢印は3本とも、各ブロックから上の委員会へ上げる。委員会からブロックへ下ろさない。
 - 配置案: 見て聞いて覚える・地方自治法の「もっと深掘る」。アプリ載せは生成後。
 
 ## 法律（250条の13）
@@ -27,7 +30,7 @@
 | スロット | 陣営 | 役割（何をしたいか） | キャラ | 参照 | 配置 |
 |---|---|---|---|---|---|
 | 申出する側 | いい役 | 長（国の関与に不服で、審査の申出をしたい） | ぴっちゅ | `pitchi.png` ＋ `pitchi_sheet.png` | 3ブロックに同じ姿で1体ずつ。本文を隠さない |
-| 受付 | いい役 | 委員会（審査の申出を受ける） | タスク亀 | `task_turtle.png` ＋ `task_turtle_sheet.png` | 上部の受付口に1体。3ブロックへ分岐する |
+| 受付 | いい役 | 委員会（審査の申出を受ける） | タスク亀 | `task_turtle.png` ＋ `task_turtle_sheet.png` | 上部の受付口に1体。3本の矢印は各ブロックから、この受付へ上がる |
 | 誤った主張 | 悪い役 | 誤った主張をする側（助言でも申出できる、不作為はできない、とする） | カチャドクロ | `kachadokuro.png` ＋ `kachadokuro_sheet.png` | 下部のひっかけだけ。ブロックの中に置かない |
 | 案内 | いい役 | 案内（注記を指す。本文を隠さない） | ちゃちゃロット | `chachalot.png` ＋ `approved-smiling-hat-mascot.png` ＋ `approved-chachalot-pointer.png` | 下余白の右。1体だけ |
 
@@ -48,11 +51,12 @@ Layout: a short title, then ONE reception scene, then THREE equal story blocks s
 Do not print brand names anywhere on the image.
 Scene people are only ぴっちゅ, タスク亀, カチャドクロ, and one ちゃちゃロット. The same ぴっちゅ design appears once in each of the three blocks. No other people. No 辻さん. No 代さん.
 
-Title:「国の関与に不服なら、委員会へ審査の申出」
+Title:「国の関与で、委員会へ出せるのは？」
 Chip:「地方自治法」
 One line under the title:「申出ができるのは、長その他の執行機関。文書でする。」
 
-Reception, small, above the three blocks: タスク亀 at a doorway labeled「国地方係争処理委員会（審査の申出を受ける）」. Three paths leave the doorway into the three blocks. Label under タスク亀:「委員会（申出を受ける）」. Do not cover the blocks.
+Reception, small, above the three blocks: ONE タスク亀 at a doorway labeled「国地方係争処理委員会」. A small sign under タスク亀:「委員会（申出を受ける）」.
+THREE arrows, one from each block, all point UP into that doorway. The left arrow leaves block 1 and points up. The center arrow leaves block 2 and points up. The right arrow leaves block 3 and points up. No arrow points down from the doorway into a block. Do not cover the blocks.
 
 Block 1, left. Heading:「1. 公権力の行使が来た」
 Scene: a written order「是正の要求」and a stamp「許可しない」arrive. ぴっちゅ holds them and faces the committee path. A small calendar reads「関与の日から30日」.

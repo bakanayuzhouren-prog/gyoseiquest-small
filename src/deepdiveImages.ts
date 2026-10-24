@@ -599,6 +599,7 @@ export const DEEPDIVE_IMAGES: Record<string, ReturnType<typeof require>> = {
   'learn/gyosho/genkoku-kikiwake': require('@/assets/images/deepdive/learn/gyosho/genkoku-kikiwake.png'),
   'learn/gyosho/genkoku-nashi': require('@/assets/images/deepdive/learn/gyosho/genkoku-nashi.png'),
   'learn/gyosho/gimetsuke-shinsei': require('@/assets/images/deepdive/learn/gyosho/gimetsuke-shinsei.png'),
+  'learn/gyosho/hanketsu-4kouka': require('@/assets/images/deepdive/learn/gyosho/hanketsu-4kouka.png'),
   'learn/gyosho/horitsujo-rieki-junyo': require('@/assets/images/deepdive/learn/gyosho/horitsujo-rieki-junyo.png'),
   'learn/gyosho/iryo-sanpai-gomi': require('@/assets/images/deepdive/learn/gyosho/iryo-sanpai-gomi.png'),
   'learn/gyosho/kari-kyusai-songai': require('@/assets/images/deepdive/learn/gyosho/kari-kyusai-songai.png'),

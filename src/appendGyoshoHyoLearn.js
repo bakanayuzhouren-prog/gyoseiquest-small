@@ -1,5 +1,21 @@
 const SUBJECT = '行政事件訴訟法';
 
+const HANKETSU_A = '処分取消判決には第三者効がある';
+const HANKETSU_B = [
+  '**結論**',
+  '',
+  '認容判決には、形成力、第三者効、拘束力、[[red:既判力]]がある。棄却判決にあるのは、[[red:既判力]]だけである。',
+  '',
+  '**ひっかけ**',
+  '',
+  '取消判決の第三者効は、既判力が一般の第三者に及ぶことだ。⇒[[red:×]]',
+  '棄却判決に拘束力がある。⇒[[red:×]]',
+  '',
+  '**暗記**',
+  '',
+  '第三者に及ぶのは[[red:32条]]。行政庁を縛るのは[[red:33条]]。主文を縛るのは[[red:既判力]]。',
+].join('\n');
+
 const RULES = [
   {
     tag: '[[image:learn/gyosho/shobunsei-ari]]',
@@ -26,6 +42,10 @@ const RULES = [
     tag: '[[image:learn/gyosho/genkoku-kikiwake]]',
     test: (a) => /原告適格は法律上保護された利益で切る/.test(a),
   },
+  {
+    tag: '[[image:learn/gyosho/hanketsu-4kouka]]',
+    test: (a) => a === HANKETSU_A,
+  },
 ];
 
 export function appendGyoshoHyoToLearnDeepdive(learnDeepdive, learnContent) {
@@ -36,6 +56,9 @@ export function appendGyoshoHyoToLearnDeepdive(learnDeepdive, learnContent) {
   for (let i = 0; i < len; i++) {
     const a = String(aCol[i] || '');
     let b = bCol[i] || '';
+    if (a === HANKETSU_A && !b.includes('棄却判決にあるのは')) {
+      b = HANKETSU_B;
+    }
     for (const { tag, test } of RULES) {
       if (!test(a) || b.includes(tag)) continue;
       b = b ? `${tag}\n\n${b}` : tag;
