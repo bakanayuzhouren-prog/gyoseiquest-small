@@ -641,7 +641,7 @@
     {
       "questionNumber": 42,
       "subject": "一般的法理論",
-      "form": "択一",
+      "form": "多肢選択",
       "images": [
         "app/模試画像/伊藤塾公開２/問題/PXL_20261003_003235578.MP.jpg"
       ],
@@ -650,8 +650,15 @@
       ],
       "answerPage": 84,
       "correctAnswer": null,
-      "needsReview": true,
-      "notes": "解答頁の正解欄がこの写真では見えない"
+      "needsReview": false,
+      "notes": "解説末尾の空欄対応。余目町。最二小判昭53.6.16。",
+      "blankSource": "解答解説の末尾",
+      "blankAnswers": [
+        { "slot": "ア", "number": 20, "word": "取消訴訟の排他的管轄" },
+        { "slot": "イ", "number": 1, "word": "行政権の濫用" },
+        { "slot": "ウ", "number": 6, "word": "罪刑法定主義" },
+        { "slot": "エ", "number": 8, "word": "公定力" }
+      ]
     },
     {
       "questionNumber": 43,
@@ -665,8 +672,15 @@
       ],
       "answerPage": 86,
       "correctAnswer": null,
-      "needsReview": true,
-      "notes": "空欄は4つ。語句の正解は載せていない"
+      "needsReview": false,
+      "notes": "解説末尾の空欄対応。最大判平20.9.10。",
+      "blankSource": "解答解説の末尾",
+      "blankAnswers": [
+        { "slot": "ア", "number": 5, "word": "形成力" },
+        { "slot": "イ", "number": 19, "word": "さかのぼって" },
+        { "slot": "ウ", "number": 11, "word": "訴訟参加" },
+        { "slot": "エ", "number": 9, "word": "再審の訴えを提起" }
+      ]
     },
     {
       "questionNumber": 44,

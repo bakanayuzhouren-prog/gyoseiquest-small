@@ -129,7 +129,13 @@
       },
       "sourceTrace": {
         "answerImage": "tmp/模試画像/LEC市販１/解説/PXL_20260725_045722480.MP.jpg",
-        "answerSource": "LEC市販１解説・問43（岡山税務署健康診断事件）"
+        "answerSource": "LEC市販１解説・問43（岡山税務署健康診断事件）",
+        "blankAnswers": [
+          { "slot": "ア", "number": 9, "word": "一連" },
+          { "slot": "イ", "number": 15, "word": "特定" },
+          { "slot": "ウ", "number": 17, "word": "民法" },
+          { "slot": "エ", "number": 4, "word": "同一" }
+        ]
       },
       "status": "confirmed"
     },

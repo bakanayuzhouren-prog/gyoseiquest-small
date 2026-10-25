@@ -1256,8 +1256,14 @@
           "ウ": "8",
           "エ": "4"
         },
+        "blankAnswers": [
+          { "slot": "ア", "number": 7, "word": "社会" },
+          { "slot": "イ", "number": 18, "word": "医学" },
+          { "slot": "ウ", "number": 8, "word": "合理" },
+          { "slot": "エ", "number": 4, "word": "多様" }
+        ],
         "confidence": "header_seen",
-        "answerSource": "解答紙面の正解欄を目視"
+        "answerSource": "解答頁。ア7社会、イ18医学、ウ8合理、エ4多様"
       },
       "status": "confirmed"
     },
@@ -1293,8 +1299,14 @@
           "ウ": "19",
           "エ": "12"
         },
+        "blankAnswers": [
+          { "slot": "ア", "number": 5, "word": "行政罰" },
+          { "slot": "イ", "number": 1, "word": "秩序罰" },
+          { "slot": "ウ", "number": 19, "word": "過料" },
+          { "slot": "エ", "number": 12, "word": "地方自治法" }
+        ],
         "confidence": "header_seen",
-        "answerSource": "解答紙面の正解欄を目視"
+        "answerSource": "解答頁。ア5行政罰、イ1秩序罰、ウ19過料、エ12地方自治法"
       },
       "status": "confirmed"
     },
@@ -1332,8 +1344,14 @@
           "ウ": "6",
           "エ": "16"
         },
+        "blankAnswers": [
+          { "slot": "ア", "number": 12, "word": "都道府県知事" },
+          { "slot": "イ", "number": 13, "word": "簡易迅速" },
+          { "slot": "ウ", "number": 6, "word": "権利利益" },
+          { "slot": "エ", "number": 16, "word": "上級行政庁" }
+        ],
         "confidence": "header_seen",
-        "answerSource": "解答紙面の正解欄を目視"
+        "answerSource": "解答頁。ア12都道府県知事、イ13簡易迅速、ウ6権利利益、エ16上級行政庁"
       },
       "status": "confirmed"
     },

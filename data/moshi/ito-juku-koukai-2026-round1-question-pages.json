@@ -584,8 +584,15 @@
       ],
       "correctAnswer": null,
       "needsReview": false,
-      "notes": "正解は得点表の空欄番号。ア12、イ17、ウ14、エ2",
-      "printedSlots": "ア12、イ17、ウ14、エ2"
+      "notes": "解答末尾の空欄対応。堀木。反対意見の文。多数意見は併給調整を14条1項に違反しないとする。",
+      "printedSlots": "ア12、イ17、ウ14、エ2",
+      "blankSource": "解答解説の末尾",
+      "blankAnswers": [
+        { "slot": "ア", "number": 12, "word": "社会保障制度" },
+        { "slot": "イ", "number": 17, "word": "平等原則" },
+        { "slot": "ウ", "number": 14, "word": "政令" },
+        { "slot": "エ", "number": 2, "word": "委任" }
+      ]
     },
     {
       "questionNumber": 42,
@@ -600,8 +607,15 @@
       ],
       "correctAnswer": null,
       "needsReview": false,
-      "notes": "正解は得点表の空欄番号。ア16、イ2、ウ13、エ7",
-      "printedSlots": "ア16、イ2、ウ13、エ7"
+      "notes": "解答末尾の空欄対応。特許、許可、認証、確認。",
+      "printedSlots": "ア16、イ2、ウ13、エ7",
+      "blankSource": "解答解説の末尾",
+      "blankAnswers": [
+        { "slot": "ア", "number": 16, "word": "特許" },
+        { "slot": "イ", "number": 2, "word": "許可" },
+        { "slot": "ウ", "number": 13, "word": "認証" },
+        { "slot": "エ", "number": 7, "word": "確認" }
+      ]
     },
     {
       "questionNumber": 43,
@@ -616,8 +630,15 @@
       ],
       "correctAnswer": null,
       "needsReview": false,
-      "notes": "正解は得点表の空欄番号。ア15、イ19、ウ3、エ10",
-      "printedSlots": "ア15、イ19、ウ3、エ10"
+      "notes": "解答末尾の空欄対応。経産省トイレ。最三小判令和5.7.11。",
+      "printedSlots": "ア15、イ19、ウ3、エ10",
+      "blankSource": "解答解説の末尾",
+      "blankAnswers": [
+        { "slot": "ア", "number": 15, "word": "個人の人格的な生存" },
+        { "slot": "イ", "number": 19, "word": "性的マイノリティ" },
+        { "slot": "ウ", "number": 3, "word": "客観的かつ具体的" },
+        { "slot": "エ", "number": 10, "word": "公平性" }
+      ]
     },
     {
       "questionNumber": 44,

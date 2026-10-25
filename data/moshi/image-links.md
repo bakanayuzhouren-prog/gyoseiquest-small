@@ -24,6 +24,7 @@
 | 34 | 問全体 | 委任規定の準用範囲 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu.png` | あり |
 | 34 | 問全体 | 注意・報酬・費用・損害 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu-2.png` | あり |
 | 37 | 肢2 | 設立時の取締役と監査役の解任 | `assets/images/deepdive/learn/shouhou/hokki-setsuritsu-kainin.png` | あり |
+| 43 | 問全体 | 呉市学校施設使用不許可事件。支障がなくても不許可にできるか。当該不許可は違法 | `assets/images/deepdive/learn/gyosei/kure-gakko-4koma.png` | 未生成 |
 | 47 | 問全体 | どこに置くか | `assets/images/deepdive/learn/kisochi/dejitaru-casino.png` | あり |
 | 48 | 問全体 | 機関委任事務は、残るか | `assets/images/deepdive/learn/kisochi/kikan-inin.png` | あり |
 | 48 | 運営権 | PFIと指定管理者、何が違う？ 水道の所有は残す。市販2問47も同じ図 | `assets/images/deepdive/learn/kisochi/pfi-sitei.png` | あり |
@@ -105,7 +106,8 @@
 | 33 | 委任 | LEC公開1 問34と同じ2枚 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu.png` と `-2` | あり |
 | 34 | 事務管理 | 上と同じ2枚 | 上と同じ | あり |
 | 47 | 問全体 | 2人目は、だれか。サッチャー、メイ、メルケル、キャンベル、インディラ | `assets/images/deepdive/learn/kisochi/josei-shusho.png` | あり |
-| 47 | 3人の順 | イギリスの女性首相は、何人？ 左からサ、メ、ト。上の表とは別 | `assets/images/deepdive/learn/kisochi/same-to-shusho.png` | あり |
+| 47 | 3人の順 | イギリスの女性首相は、何人？ 左からサ、メ、ト。上の表とは別 | `assets/images/deepdive/learn/kisochi/same-to-shusho.png` | 未生成 |
+| 47 | サメとエイ | 英はエイ。サッチャー、メイ、トラスはサメと。大統領ではない。人数と年は上の図 | `assets/images/deepdive/learn/kisochi/suizokukan-same-ei.png` | あり |
 | 48 | 問全体 | 宇宙まで、主権は及ぶか。距離の断面は別図 | `assets/images/deepdive/learn/kisochi/uchuu-shuken.png` | あり |
 | 49 | 問全体 | 三種の神器は神武。LEC公開1 問49と同じ | `assets/images/deepdive/learn/kisochi/jinmu-nabesoko.png` | あり |
 | 50 | 問全体 | 日本銀行の政策で、貨幣は増える？減る？ 売りオペと準備率と基準割引率は減、量的緩和とマイナス金利は増 | `assets/images/deepdive/learn/kisochi/kyokyu-houkou.png` | あり |
@@ -136,6 +138,7 @@
 | 19 | ア | 斉唱の命令のあと、どの訴え？ 命令自体は処分ではない。減給は処分、昇給が抑えられることは処分以外。差止めの重大な損害と、命令の合憲性は図にない | `assets/images/deepdive/learn/gyosei/kimigayo-shogu-kakunin-4koma.png` | あり |
 | 24 | 肢3 | 審査の申出は、だれが、だれに対して？ 3つの入口の図は別 | `assets/images/deepdive/learn/jichi/kuni-moushide-darekara.png` | あり |
 | 24 | 期間 | 関与に不服なら、いつ高裁へ？ 30日、90日、30日。15日と上告1週間。だれが申出するかは上の図 | `assets/images/deepdive/learn/jichi/keiso-kikan-nagare.png` | あり |
+| 41 | 問全体 | 庁舎前の示威は、常に断れるか。空欄は事前抑制、侮辱、自由市場、集会の自由 | `assets/images/deepdive/naka/kenpou/kanazawa.png` | 未生成 |
 
 ## TAC第1回
 
@@ -177,6 +180,9 @@
 | 56 | 問全体 | 拡張現実は、複合現実と同じか | `assets/images/deepdive/learn/kisochi/kakucho-genjitsu.png` | あり |
 | 57 | 問全体 | 個人番号は、だれが生成するか | `assets/images/deepdive/learn/kisochi/bango-seisei.png` | あり |
 | 57 | 委員会の仕事 | この問で問われた仕事。個人番号とすべき番号の生成は入らない。生成する主体の図は上 | `assets/images/deepdive/learn/kisochi/iinkai-shigoto.png` | あり |
+| 41 | 問全体 | 庁舎利用の拒否は、管理上の支障が具体的なとき。空欄はア8管理、イ14中立性、ウ13民主主義、エ16合理的。金沢の図の空欄は事前抑制、侮辱、自由市場、集会の自由 | `assets/images/deepdive/naka/kenpou/kanazawa.png` | あり |
+| 42 | 問全体 | 不作為の審査請求。監督のない知事へ出しても、応答義務は生じるか。空欄はア19上級行政庁、イ14応答義務、ウ17不作為の違法確認の訴え、エ12不適法 | `assets/images/deepdive/learn/fufuku/fusakui-seikyusaki-4koma.png` | 未生成 |
+| 43 | 問全体 | 差止めは、いつ重大な損害？ 空欄はア16訴訟要件、イ5蓋然性、ウ12重大な損害、エ19執行停止。仮の差止めの償うことのできない損害は図にない | `assets/images/deepdive/learn/gyosei/kimigayo-sashitome-songai.png` | あり |
 
 問46は書面の無報酬寄託の解除であり、LEC公開1 問33の書面の図は使わない。
 
@@ -230,6 +236,7 @@
 | 9 | 3 | 内部の会議と、外に出した書面は、どっちが行政行為か。固有の当事者名は図にない | `assets/images/deepdive/learn/gyosei/hyoji-kenngen-4koma.png` | あり |
 | 9 | 4 | 刑事裁判で、行政行為の違法は言えるか。余目町 | `assets/images/deepdive/learn/gyosei/keiji-koteiryoku-4koma.png` | あり |
 | 14 | 2 | 検証の通知は、いつ要るか。32条から36条の一覧図とは別 | `assets/images/deepdive/learn/gyosei/kensho-shokken-moushitate.png` | 未生成 |
+| 42 | 問全体 | 差止めは、いつ重大な損害？ 事後の取消と執行停止で容易に救済できるときはない。市販3の問42も同じ。戒告の差止めが本案で理由があることは図にない | `assets/images/deepdive/learn/gyosei/kimigayo-sashitome-songai.png` | 未生成 |
 | 47 | 機関委任と水道 | 機関委任事務は、いつ廃止か。オンブズマンの初は図にない | `assets/images/deepdive/learn/kisochi/kikan-inin.png` | あり |
 | 47 | PFIと指定管理者 | PFIと指定管理者、何が違う？ 公開1問48の運営権も同じ図 | `assets/images/deepdive/learn/kisochi/pfi-sitei.png` | あり |
 | 47 | 選び方 | PFIの事業者は、だれが選ぶ？ | `assets/images/deepdive/learn/kisochi/pfi-erabu.png` | あり |
@@ -255,6 +262,7 @@
 |---|---|---|---|---|
 | 21 | 問全体 | 正当な補償は、どの場面の言葉か。輪中堤は次の行 | `assets/images/deepdive/learn/kenpou/sonshitsu-hoshou-yogo.png` | あり |
 | 21 | 輪中堤 | 歴史の価値は、補償に足すか。TAC第3回問21肢2と同じ | `assets/images/deepdive/learn/gyosei/wajuu-bunkazai-4koma.png` | あり |
+| 42 | 問全体 | 差止めは、いつ重大な損害？ 市販2の問42と同じ。事後の取消と執行停止で容易に救済できるときはない | `assets/images/deepdive/learn/gyosei/kimigayo-sashitome-songai.png` | 未生成 |
 | 34 | 問全体 | LEC公開1 問34と同じ2枚 | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu.png` と `-2` | あり |
 | 47 | 問全体 | 行政国家は、だれが中心か | `assets/images/deepdive/learn/kisochi/gyosei-kokka.png` | あり |
 | 48 | 問全体 | 原案の発議か、国会の発議か。アの参議院20人、オの3分の2は図のひっかけ行 | `assets/images/deepdive/learn/kisochi/kenpo-kaisei.png` | あり |
@@ -274,9 +282,11 @@
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
 | 10 | 問全体 | 許可と特許、どっち？ TAC第2回の行政行為の分類、合格革命第2回の許可と特許、伊藤塾公開1の分類も同じ | `assets/images/deepdive/learn/gyosei/gyosei-koui-bunrui.png` | あり |
-| 19 | 肢5 | 仮の差止めは、必ず取り消すか。事情変更は任意。総理の異議は強制 | `assets/images/deepdive/learn/gyosei/kari-sashitome-nin-i-kyosei.png` | 未生成 |
+| 19 | 肢5 | 仮の差止めは、必ず取り消すか。事情変更は任意。総理の異議は強制。問43の損害の言葉は、この図にない | `assets/images/deepdive/learn/gyosei/kari-sashitome-nin-i-kyosei.png` | あり |
 | 24 | 許可と届出 | 設けるとき、許可？届出？勧告？ TAC第3回・問22と同じ。出席・監査・法令の解釈は図にない | `assets/images/deepdive/learn/gyosei/kyoka-todokede-kankoku.png` | あり |
 | 26 | 肢4 | 内閣府には、何を置くか。合格革命第3回・問9も同じ | `assets/images/deepdive/learn/gyosei/naikakufu-gaikyoku.png` | あり |
+| 41 | 問全体 | 地方議会議員の出席停止。議会の懲罰は、裁判で争えるか。地方自治の本旨はフッター | `assets/images/deepdive/learn/kenpou/shusseki-teishi-4koma.png` | あり |
+| 42 | 問全体 | 市営住宅の暴力団員排除。平等原則に反するか | `assets/images/deepdive/learn/kenpou/shiei-boryoku-4koma.png` | 未生成 |
 | 47 | 問全体 | 誰が、附票を作るか。LEC公開1 問54と同じ | `assets/images/deepdive/learn/kisochi/fuhyo-honseki.png` | あり |
 | 48 | 問全体 | 死票はどっちが増えるか | `assets/images/deepdive/learn/kisochi/shosenkyoku-hirei-shihyo.png` | あり |
 | 48 | 名簿 | 衆議院の比例は拘束か。議席の配分は図にない | `assets/images/deepdive/learn/kisochi/kousoku-hikousoku.png` | 未生成 |
@@ -296,6 +306,8 @@
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
 | 9 | 問全体 | 許可と特許、どっち？ 合格革命第1回問10と同じ | `assets/images/deepdive/learn/gyosei/gyosei-koui-bunrui.png` | あり |
+| 41 | 問全体 | 空知太神社。市有地の無償提供は違憲か。図は総合考慮。空欄の目的効果基準・津地鎮祭・完全・相当は、この図の見出しにはない | `assets/images/deepdive/kenpou/sorachibuto-jinja-4koma.png` | あり |
+| 42 | 問全体 | 課税処分の無効。重大な瑕疵なら、常に無効か。明白でなくても無効になり得るのは、課税要件の根幹の過誤で、期間徒過の不利益が著しく不当なとき。空欄は公定力、明白、客観的、課税処分。辰巳の問8肢イと同じ | `assets/images/deepdive/learn/gyosho/kazei-mukou-4koma.png` | あり |
 | 30 | 先取特権と抵当 | 譲渡のあと、差押えできる？ | `assets/images/deepdive/learn/minnpou/sakidori-teito-joto.png` | あり |
 | 30 | 一般債権者との優劣 | 送達と抵当権設定登記の先後 | `assets/images/deepdive/learn/minnpou/sashiosae-meirei-soutatsu-toki.png` | あり |
 | 30 | 転付 | 転付が届く前に、差し押さえた？ | `assets/images/deepdive/learn/minnpou/tenpu-butsujodaii.png` | あり |
@@ -317,6 +329,8 @@
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
 | 9 | 問全体 | 内閣府には、何を置くか。合格革命第1回・問26肢4と同じ | `assets/images/deepdive/learn/gyosei/naikakufu-gaikyoku.png` | あり |
+| 41 | 問全体 | GPS捜査事件。同意のない位置の把握は、任意捜査か。令状が要る。空欄はプライバシー・継続的・侵入・令状 | `assets/images/deepdive/learn/kenpou/gps-sosa-4koma.png` | あり |
+| 42 | 問全体 | 保育所廃止条例事件。期間が終わったあとも、訴えの利益はあるか。空欄の立法作用・抗告訴訟・当事者訴訟・第三者効は、この図の見出しにはない | `assets/images/deepdive/learn/gyosho/hoiku-haishi-4koma.png` | あり |
 | 29 | 問全体 | 即時取得は、無権利者からの取引で、動産の占有を始めたとき | `assets/images/deepdive/learn/minnpou/sokuji-shutoku-yoken.png` | あり |
 | 47 | 問全体 | 改善措置は、だれが求めるか | `assets/images/deepdive/learn/kisochi/dango-kaizen.png` | あり |
 | 48 | 問全体 | 省庁再編は、いつか | `assets/images/deepdive/learn/kisochi/shochorei-nen.png` | あり |
@@ -334,10 +348,18 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 8 | 肢イ | 課税処分の無効。重大な瑕疵なら、常に無効か。明白でなくても無効になり得るのは、課税要件の根幹の過誤で、期間徒過の不利益が著しく不当なとき。最判昭48.4.26。原則の明白性、平16.7.13、ア、ウ、エは図にない。合格革命法制第2回・問42と同じ | `assets/images/deepdive/learn/gyosho/kazei-mukou-4koma.png` | あり |
 | 10 | 肢2 | 後に証拠になり得るだけでは、質問検査は行使時から犯則調査の手段ではない。LEC公開3・問10肢5と同じ。タイトルに事件名はまだ無い | `assets/images/deepdive/learn/gyosei/imabari-ryuyo-yonkoma.png` | あり |
 | 17 | オ | 民事保全の仮処分ができるものとできないもの。執行停止は表の外。LEC公開1・問19・ウの表と同じ | `assets/images/deepdive/learn/gyosho/minji-karishobun-dekiru-dekinai.png` | あり |
 | 22 | 許可 | 設けるとき、許可？届出？勧告？ TAC第3回・問22と同じ。財産区と指定都市は図にない | `assets/images/deepdive/learn/gyosei/kyoka-todokede-kankoku.png` | あり |
+| 24 | 肢4 | 最初の不信任と、解散後の不信任。出席はどちらも議員数の3分の2以上。同意は出席議員の4分の3と、出席議員の過半数。再度の解散はない。住民の解散請求は図にない | `assets/images/deepdive/learn/jichi/fushin-saisho-saido.png` | あり |
 | 25 | 問全体 | 斉唱の命令のあと、どの訴え？ 命令自体は処分ではない。減給は処分、昇給が抑えられることは処分以外。差止めの重大な損害と、命令の合憲性は図にない。伊藤塾公開２・問19・アと同じ | `assets/images/deepdive/learn/gyosei/kimigayo-shogu-kakunin-4koma.png` | あり |
 | 25 | イ | 差止めは、いつ重大な損害？ 事後の取消と執行停止で容易に救済できるときはない。この事件の一連の懲戒はある。戒告の差止めが本案で理由があることは図にない | `assets/images/deepdive/learn/gyosei/kimigayo-sashitome-songai.png` | 未生成 |
 | 36 | 肢3 | 示さない契約。過失の相手方は、代理人に請求できる？ | `assets/images/deepdive/learn/shouhou/504-kashitsu-aitegata.png` | あり |
+| 41 | 問全体 | 薬局距離制限事件。距離で許可を拒む規定は、合憲か。小売市場距離制限事件はフッターだけ。公衆浴場の原告適格は図にない | `assets/images/deepdive/learn/kenpou/yakkyoku-kyori-4koma.png` | あり |
+| 41 | 対比 | 小売市場距離制限事件。1コマは許可を要する。2コマは距離の内規（合憲性は判断していない）。論点は、許可制が著しく不合理であることが明白か。結論は、薬局距離制限事件とは逆 | `assets/images/deepdive/learn/kenpou/kouri-ichiba-kyori-4koma.png` | あり |
+| 41 | 空欄 | 薬局距離制限事件。職業の自由は、どこまで含む？ 開始・継続・廃止と、職業活動。距離制限の違憲は別の図 | `assets/images/deepdive/learn/kenpou/yakkyoku-shokugyo-han-i.png` | あり |
+| 42 | 問全体 | 神戸高専剣道実技拒否事件。信仰を理由に拒んだ学生を、原級留置にできるか。結論は裁量権の逸脱。代替を検討したうえでの留年、とは図に置かない | `assets/images/deepdive/learn/kenpou/kobe-kosen-4koma.png` | あり |
+| 43 | 原告適格 | 産廃の最終処分場の周辺住民に適格があるか。問43の空欄（原告適格・行政法規・相手方以外の者・無効等）は、この図では埋まらない。枠は小田急（最大判平17.12.7）ともんじゅ（最判平4.9.22） | `assets/images/deepdive/learn/gyosho/iryo-sanpai-gomi.png` | あり |
+| 49 | 技能実習と特定技能 | 目的、在留、仕事、家族、試験。1号は通算5年で帯同できない。2号は更新の上限がなく、配偶者と子。2号の試験は各試験に合格する。日本語試験は不要、とは書かない。下の1行は育成就労 | `assets/images/deepdive/learn/kisochi/ginou-jisshu-tokutei.png` | 未生成 |
 | 50 | 肢1 | ドルと金の交換はいつ止めたか。1971年8月に停止、12月のスミソニアンで一時的に固定、1973年に変動。プラザ合意はドル安。360円と308円、肢2から肢5は図にない。LEC市販第2回・問50と同じ | `assets/images/deepdive/learn/kisochi/doru-kin-kawase.png` | あり |

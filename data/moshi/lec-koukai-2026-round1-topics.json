@@ -1665,7 +1665,10 @@
         "explanation": "正解[object Object]。投票価値の平等が憲法上の要求。人口平等を基準としつつ行政区画・地理条件等も考慮し、合理的な制度でなければならない。国会には広範な裁量がある。"
       },
       "sourceTrace": {
-        "answerSource": "LEC公開模試第1回・正解[object Object]・衆議院議員定数不均衡訴訟（多肢選択・憲法）"
+        "answerSource": "LEC公開模試第1回・問41・衆議院議員定数不均衡訴訟",
+        "slotWordsStatus": "confirmed",
+        "blankAnswers": {"ア": "14投票価値", "イ": "7法律", "ウ": "17合理", "エ": "4的確"},
+        "slotWordsNote": "解答頁の対応表。2026-10-25。"
       },
       "status": "confirmed"
     },
@@ -1701,8 +1704,9 @@
       },
       "sourceTrace": {
         "answerSource": "LEC公開模試第1回・正解[object Object]・処分の取消しの訴えと審査請求との関係（多肢選択・行政法）",
-        "slotWordsStatus": "unconfirmed",
-        "slotWordsNote": "論点は行政事件訴訟法8条の審査請求前置。空欄の語句と番号の組合せを確定できる問題画像はない。番号から語句は補わない。"
+        "slotWordsStatus": "confirmed",
+        "blankAnswers": {"ア": "18裁決主義", "イ": "15審査請求前置主義", "ウ": "5却下", "エ": "12棄却"},
+        "slotWordsNote": "解答頁の対応表。正当な却下は最判昭30.1.28。誤った却下は最判昭36.7.21。棄却裁決では原処分の違法を主張できない（10条2項）。2026-10-25。"
       },
       "status": "confirmed"
     },
@@ -1739,8 +1743,9 @@
         "answerSource": "LEC公開模試第1回・正解[object Object]・呉市学校施設使用不許可事件（多肢選択・行政法）",
         "judgmentDate": "最判平成18年2月7日",
         "judgmentDateSource": "裁判所ウェブサイト判決PDF",
-        "slotWordsStatus": "unconfirmed",
-        "slotWordsNote": "日付は最判平成18年2月7日。空欄の語句と番号の組合せを確定できる問題画像はない。番号から語句は補わない。"
+        "slotWordsStatus": "confirmed",
+        "blankAnswers": {"ア": "6目的外使用", "イ": "13裁量", "ウ": "20支障", "エ": "10行政財産"},
+        "slotWordsNote": "解答頁の対応表。日付は最判平成18年2月7日。2026-10-25。"
       },
       "status": "confirmed"
     },

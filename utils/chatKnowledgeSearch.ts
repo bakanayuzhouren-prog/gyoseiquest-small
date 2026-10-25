@@ -77,6 +77,7 @@ import {
   GOUKAKU_ROUND2_CHAT_BRIEFS,
   GOUKAKU_ROUND2_KEY_PHRASES,
 } from '@/utils/chatTopicBriefsGoukakuRound2';
+import { MOSHI_KIJUTSU_446_CHAT_BRIEFS } from '@/utils/chatTopicBriefsMoshiKijutsu446';
 import {
   LEC_KOUKAI_CHAT_BRIEFS,
   LEC_KOUKAI_KEY_PHRASES,
@@ -408,6 +409,7 @@ const CHAT_TOPIC_BRIEFS: { triggers: string[]; title: string; text: string }[] =
   ...KOKUBAI_CHAT_BRIEFS,
   ...GOUKAKU_ROUND3_CHAT_BRIEFS,
   ...GOUKAKU_ROUND2_CHAT_BRIEFS,
+  ...MOSHI_KIJUTSU_446_CHAT_BRIEFS,
   ...LEC_KOUKAI_CHAT_BRIEFS,
   ...LEC_KOUKAI_R2_CHAT_BRIEFS,
   ...JICHI_CHAT_BRIEFS,
