@@ -10,6 +10,7 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 5 | 問全体 | 孔子廟。使用料の免除は違憲か。歴史や文化があっても総合考慮。TAC第3回問3も同じ図 | `assets/images/deepdive/kenpou/koushibyo-soshou-4koma.png` | あり |
 | 17 | オ | 免許が切れても、訴えは残る？ すぐ再免許で事業が続くとき。許可でも国が被告でもない。完全失効は図の結論に含めない | `assets/images/deepdive/learn/gyosho/kyogan-saimenkyo-rieki.png` | 未生成 |
 | 20 | ア | 損害賠償事件。起訴してくれは、国賠になる？ 反射的な事実上の利益 | `assets/images/deepdive/learn/gyosei/kokubai-higai-koso-4koma.png` | 未生成 |
 | 25 | ア | 豊中市給水拒否事件。申込書を返したら、賠償か？ | `assets/images/deepdive/learn/gyosei/toyonaka-kyusui-4koma.png` | 未生成 |
@@ -80,7 +81,12 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 6 | 問全体 | 両院の議決が異なったとき、協議会は義務？任意？ 法律案は任意。予算・条約・首相指名は義務 | `assets/images/deepdive/learn/kenpou/ryouin-kyogikai.png` | あり |
 | 31 | 肢2 | 併存と免責の契約の2通り。免責の債権者契約は通知時。肢5の「意思に反してもよい」（大判大15.3.25）は、この図に無い | `assets/images/deepdive/learn/minnpou/heizon-mensekiteki-hikiuke.png` | あり |
+| 32 | 肢1 | 正当な利益のない第三者の弁済。代位に債権者の承諾は要らない。対抗は債権者から債務者への通知、または債務者の承諾 | `assets/images/deepdive/learn/minnpou/seitona-rieki-nashi-daisansha.png` | 未生成 |
+| 33 | オ | 当事者が死亡したとき、請負は終了しない。委任はどちらの死亡でも終了する。破産・報酬はこの図に無い | `assets/images/deepdive/learn/minnpou/ukeoi-inin-shibou.png` | あり |
+| 34 | イ | 使用貸借と賃貸借。通常の必要費は借主。それ以外は返還時。アの196条、ウの299条、エの質権の費用、オの買戻しの償還は、この図に無い。LEC公開2問33も同じ図 | `assets/images/deepdive/learn/minnpou/shiyou-chin-taisho-2.png` | あり |
+| 34 | 問全体 | 費用償還の一覧。196条を買戻しと使用貸借が準用。賃貸借の有益費だけ608条2項。299条を質権が350条で準用。賃貸借の必要費も返還から1年 | `assets/images/deepdive/learn/minnpou/hiyo-shokan-ichiran.png` | あり |
 | 10 | 肢1 | 川崎民商。刑事でないだけでは35条の外に出ない。タイトルに事件名がまだ無い | `assets/images/deepdive/learn/gyosei/kawasaki-minsho-yonkoma.png` | あり |
 | 10 | 肢2 | 大阪覚せい剤事件。承諾なく上衣の内ポケットに手を入れて取り出した行為は許容限度を超える | `assets/images/deepdive/learn/gyosei/shoyuhin-kensa-yonkoma.png` | あり |
 | 10 | 肢3 | 所得税法違反被告事件。犯則調査は適正課税の質問検査とは別。タイトルに事件名がまだ無い | `assets/images/deepdive/learn/gyosei/kokuzei-hanzoku-yonkoma.png` | あり |
@@ -190,10 +196,15 @@
 
 | 問 | 肢 | 図 | パス | PNG |
 |---|---|---|---|---|
+| 3 | 津 | 市の地鎮祭は、目的効果で合憲か | `assets/images/deepdive/kenpou/tsu-jichinsai-4koma.png` | あり |
+| 3 | 愛媛 | 玉串料の公金支出は、目的効果で違憲か | `assets/images/deepdive/kenpou/ehime-tamagushi-4koma.png` | あり |
+| 3 | 空知太 | 市有地の無償提供は違憲か。図は総合考慮。合格革命第2回問41も同じ図。空欄の4語は見出しにない | `assets/images/deepdive/kenpou/sorachibuto-jinja-4koma.png` | あり |
+| 3 | 孔子廟 | 使用料の免除は違憲か。LEC公開1問5も同じ図 | `assets/images/deepdive/kenpou/koushibyo-soshou-4koma.png` | あり |
 | 21 | 2 | 輪中堤の歴史の価値は、補償に足すか。LEC当たる第3回問21の輪中堤も同じ | `assets/images/deepdive/learn/gyosei/wajuu-bunkazai-4koma.png` | あり |
 | 22 | 肢2・肢4・肢5 | 設けるとき、許可？届出？勧告？指定都市・中核市と特別区の法人格は図にない。勧告の右端は対象外 | `assets/images/deepdive/learn/gyosei/kyoka-todokede-kankoku.png` | あり |
 | 25 | 問全体 | 4条の各号に、ある？助言は各号にない。作らなくてよい、ではない | `assets/images/deepdive/learn/gyosei/koubun-4jo-kakugo.png` | 未生成 |
-| 30 | 同一所有者の時期だけ | LEC公開1 問30肢5と同じ | `assets/images/deepdive/learn/minnpou/q30-5-senjun-i.png` | あり |
+| 30 | 問全体 | この問は質権。法定地上権の同一所有者の図は、この問には使わない | `assets/images/deepdive/learn/minnpou/q30-5-senjun-i.png` | あり |
+| 34 | 問全体 | 委任の条を、預かり・組合・事務管理のどこまで使うか。前払い・報酬・過失のない損害が事務管理に準用されない点は合う。有益な債務の代弁済は702条2項なので、表の650条1項・2項の×は肢1に使わない | `assets/images/deepdive/learn/minnpou/inin-kitaku-kumiai-jimu.png` | あり |
 | 47 | 2 | 議会は、自分で解散できるか | `assets/images/deepdive/learn/kisochi/gikai-jishukaisan.png` | あり |
 | 48 | 2 | 排他的経済水域は、何海里か | `assets/images/deepdive/learn/kisochi/eez-200.png` | あり |
 | 49 | 控除額 | ふるさと納税は、全額控除か | `assets/images/deepdive/learn/kisochi/furusato-kojo.png` | あり |

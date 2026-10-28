@@ -48,6 +48,8 @@ import { appendKojinjoho57ToLearnDeepdive } from './appendKojinjoho57Learn.js';
 import { appendKoumuinJinkenToLearnDeepdive } from './appendKoumuinJinkenLearn.js';
 import { appendJunkoRock602ToLearnDeepdive } from './appendJunkoRock602Learn.js';
 import { appendFukosei212ToLearnDeepdive, FUKOSEI_212_LEARN_BY_SUBJECT } from './appendFukosei212Learn.js';
+import { SHOUHOU_NAKADACHI_COMPARE_LEARN_BY_SUBJECT } from './shouhouNakadachiCompareLearn.js';
+import { KANGO_HIYO_SAKIDORI_LEARN_BY_SUBJECT } from './kangoHiyoSakidoriLearn.js';
 import { appendGoroMnemonicToLearnDeepdive } from './appendGoroMnemonicLearn.js';
 import { appendSokujiKyoseiToLearnDeepdive } from './appendSokujiKyoseiLearn.js';
 import { appendHakamadaYonkomaToLearnDeepdive } from './appendHakamadaYonkomaLearn.js';
@@ -100,6 +102,8 @@ const merged = mergeLearnLayers(
   ITO_JUKU_KOUKAI1_LEARN_BY_SUBJECT,
   ITO_JUKU_FINALCHECK_LEARN_BY_SUBJECT,
   FUKOSEI_212_LEARN_BY_SUBJECT,
+  SHOUHOU_NAKADACHI_COMPARE_LEARN_BY_SUBJECT,
+  KANGO_HIYO_SAKIDORI_LEARN_BY_SUBJECT,
 );
 
 const kisochiSplit = splitKisochiDumpToRooms(merged);

@@ -92,6 +92,7 @@ export function appendShouhouCastToLearnDeepdive(learnDeepdive, learnContent) {
   const len = Math.max(aCol.length, bCol.length);
   for (let i = 0; i < len; i++) {
     const a = String(aCol[i] || '');
+    if (a.includes('当事者になるのは、問屋だけ')) continue;
     let b = bCol[i] || '';
     for (const { tag, test } of RULES) {
       if (!test(a) || b.includes(tag)) continue;
